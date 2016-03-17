@@ -121,9 +121,19 @@ You can learn about further options on how to run a Spark job via the [DC/OS doc
 
 To interactively work with Spark, you can use [Apache Zeppelin](https://zeppelin.incubator.apache.org/). Here's what you need to do to install it:
 
+You typically want to access Zeppelin via a web browser outside of the DC/OS cluster. For this, we want to configure Zeppelin so that it's launched on a public node. Create a JSON file `options.json` with the following content:
+
+    $ cat options.json
+    {
+      "zeppelin": {
+        "role": "slave_public"
+      }
+    }
+
+Then, you can install Zeppelin like so:
 
     $ dcos package repo add multiverse https://github.com/mesosphere/multiverse/archive/version-2.x.zip
-    $ dcos package install zeppelin
+    $ dcos package install --options=options.json zeppelin
     Installing Marathon app for package [zeppelin] version [0.5.6]
     Zeppelin has been successfully installed!
     Note that the service is experimental and there may be bugs, incomplete features, incorrect documentation or other discrepancies.
@@ -132,18 +142,7 @@ After this, you should see Zeppelin running via the DC/OS dashboard (by clicking
 
 ![Zeppelin in the dashboard](img/dcos-zeppelin-dashboard.png)
 
-You typically want to access Zeppelin via a web browser outside of the DC/OS cluster. Since Zeppelin is launched, as all long-running applications, via Marathon, you need to add the resource role `slave_public` to the app, in order for DC/OS to schedule it onto the public node.
-For this to happen, first open Marathon, and click on the `/zeppelin` app:
-
-![Zeppelin in Marathon](img/dcos-marathon-zeppelin-app.png)
-
-Next, click on the `Configuration` tab and click the `Edit` button in the right upper corner, which brings up a dialog titled `Edit Application`. 
-Find the last section called `Optional settings` and expand it to add the resource role. The result should look like the following:
-
-![Zeppelin app updated](img/dcos-marathon-zeppelin-app-updated.png)
-
-Now, hit the `Change and deploy configuration` button at the bottom of the dialog. The deployment may take again a couple of minutes and after this,
-Zeppelin is available via the public node (in my case the IP is `52.10.197.225`) and the first (lower) port that you can either glean from the Marathon UI or via the following command, using the DC/OS CLI (ignore the IPs shown below, these are just the cluster-internal ones):
+Since Zeppelin is launched, as all long-running applications, via Marathon you need to look up the port it has been scheduled on first. You will want the first (lower) port that you can either glean from the Marathon UI or via the following command, using the DC/OS CLI (ignore the IPs shown below, these are just the cluster-internal ones):
 
     $ dcos marathon task list
     APP        HEALTHY          STARTED              HOST     ID
