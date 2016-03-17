@@ -3,6 +3,10 @@ Documentation for the Datacenter Operating System (DC/OS)
 
 These documents are used as source to generate <dcos.io>.
 
+- [tutorials](tutorials)
+- [contribution guidelines](contrib)
+
+
 **Prior to official release of DC/OS, the contents of this repo are under NDA. See [License and Authors](#license-and-authors) for more details.**
 
 
