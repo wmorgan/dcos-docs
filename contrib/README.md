@@ -9,4 +9,4 @@ If you want to contribute some documentation, please do the following:
 1. If you have screen shots, keep them in `foo/img/`
 1. Once you're done, please send in a [pull request](https://help.github.com/articles/using-pull-requests/) to the original repo
 
-Note that if you're unsure about what exactly should go into the tutorial, you can always check out [spark](../tutorials/spark/) for reference.
+Note that if you're unsure about what exactly should go into the tutorial, you can always check out [spark/](../1.7/tutorials/spark/) for reference.
