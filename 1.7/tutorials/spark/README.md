@@ -119,9 +119,13 @@ You can learn about further options on how to run a Spark job via the [DC/OS doc
 
 ## Using Spark Interactively
 
-To interactively work with Spark, you can use [Apache Zeppelin](https://zeppelin.incubator.apache.org/). Here's what you need to do to install it:
+To interactively work with Spark, you can use [Apache Zeppelin](https://zeppelin.incubator.apache.org/) and here's what you need to do to install it.
 
-You typically want to access Zeppelin via a web browser outside of the DC/OS cluster. For this, we want to configure Zeppelin so that it's launched on a public node. Create a JSON file `options.json` with the following content:
+You typically want to access Zeppelin via a web browser outside of the DC/OS cluster. To access the Zeppelin UI from outside of the DC/OS cluster you have a number of options available: from launching it on a public node to [using marathon-lb](https://mesosphere.com/blog/2015/12/04/dcos-marathon-lb/).
+
+In the following I will show you how to launch Zeppelin on a public node and this is fine for testing but be aware that this is going to make Zeppelin available on the public Internet (access from `0.0.0.0`) and with it, everyone out there can access your data and launch Spark jobs on your DC/OS cluster. 
+
+To launch Zeppelin on a public node, create a JSON file `options.json` with the following content:
 
     $ cat options.json
     {
