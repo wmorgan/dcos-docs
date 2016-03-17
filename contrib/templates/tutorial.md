@@ -19,10 +19,10 @@ This is an optional section, allowing you to link to other tutorials, slide deck
 
 Explain what needs to be installed, usually `dcos package install ...`, and any additional requirements necessary, for example, a recommendation how many nodes there should be available at minimum.
 
-## STEP 1
+# STEP 1
 
 Explain the usage of XXX. Screen shots and detailed command line instructions are highly encouraged.
 
-## STEP 2
+# STEP 2
 
 As above.
