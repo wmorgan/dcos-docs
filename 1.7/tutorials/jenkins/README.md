@@ -1,0 +1,113 @@
+# How to use Jenkins
+
+[Jenkins](https://jenkins-ci.org/) is a popular automation server with hundreds of plugins (GitHub, Docker, etc.) available.
+
+**Terminology**:
+
+- XXX
+
+**Scope**:
+
+In the following how-to you will learn about how to use Jenkins on DCOS.
+
+**Further resources**:
+
+- TBD
+
+## Preparation
+
+Using an [ARM template](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fgist.githubusercontent.com%2Fmhausenblas%2Fa8247ecf4a791813626a%2Fraw%2F673cc5a69791e078c82f806a58ce44d344b38e29%2Fazuredeploy.nojumpbox.json), launch a DCOS cluster on Azure. 
+
+After launching the ARM template, in the parameters you must set the DNS prefix (`jenkins` in my case) and, assuming you generated an [SSH key pair](https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-linux-use-ssh-key/) locally already, you need to provide your public key in the template. To do that, replace the value for `sshRSAPublicKey` with something like `ssh-rsa AAAAB...UcyupgH azureuser@linuxvm` (using your own public key value). The result should looks like so:
+
+![Azure Portal: DNS prefix and SSH key](img/acs-template-dns-and-ssh-key.png)
+
+Further, you need to create a new resource group (`mh9` for me) and accept the terms:
+
+![Azure Portal: Resource Group and ToS](img/acs-template-new-rg-and-accept-terms.png)
+
+### Installing Jenkins and a User-Marathon
+
+Assuming you have a DC/OS cluster up and running, the first step is to [install Jenkins](https://docs.mesosphere.com/manage-service/jenkins/).
+
+    $ dcos package install jenkins
+    WARNING: Jenkins on DCOS is currently in BETA. There may be bugs, incomplete
+    features, incorrect documentation, or other discrepancies.
+    
+    If you didn't provide a value for `host-volume` in the CLI,
+    YOUR DATA WILL NOT BE SAVED IN ANY WAY.
+    
+    Continue installing? [yes/no] yes
+    Installing Marathon app for package [jenkins] version [0.2.3]
+    Jenkins has been installed.
+
+Further, you want to [install a user-specific Marathon instance](https://docs.mesosphere.com/manage-service/marathon/) that act as the deployment and upgrade platform for any new versions of the Docker images created by Jenkins:
+
+    $ dcos package install marathon
+    We recommend a minimum of one node with at least 2 CPU shares and 1GB of RAM available for the Marathon DCOS Service.
+    Continue installing? [yes/no] yes
+    Installing Marathon app for package [marathon] version [0.15.3]
+    Marathon DCOS Service has been successfully installed!
+
+    	Documentation: https://mesosphere.github.io/marathon
+    	Issues: https:/github.com/mesosphere/marathon/issue
+
+
+## Using Jenkins for testing
+
+TBD: GitHub trigger - Jenkins - Marathon with Jenkins pinned to one host like described in http://mesosphere.github.io/jenkins-mesos/docs/configuration.html
+
+## Using Jenkins in production
+
+Same as above and then using a File Share for HA.
+
+First, you need to create a [Storage Account](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM), in my case `mh9storage`, in the same resource group that you have launched your DCOS cluster in (`mh9` here):
+
+![Azure Portal: Storage Account](img/azure-portal-storage.png)
+
+Now you can create a file share (`jenkins` was what I chose):
+
+![Azure Portal: File Service](img/azure-portal-storage-fileshare.png)
+
+Next, log into the DCOS master node: for that, look up SSH connection string labeled `SSHMASTER0` in the `Microsoft.Template` deployments `Outputs` section 
+
+![Azure Portal: Deployment Output](azure-portal-deployment-output.png)
+
+Now we add the private SSH key locally:
+
+    $ ssh-add ~/.ssh/azure
+    Identity added: /Users/mhausenblas/.ssh/azure (/Users/mhausenblas/.ssh/azure)
+
+And log into the master node (note that `-L 8000:localhost:80` is a port forward from the local machine):
+
+    $ ssh azureuser@jenkinsmgmt.westus.cloudapp.azure.com -A -p 2200 -L 8000:localhost:80
+
+On this node you can now [mount the File Share](https://azure.microsoft.com/en-us/documentation/articles/storage-how-to-use-files-linux/) we created in the previous step. First, let's make 100% sure that the CIFS mount utils are available:
+
+    $ sudo apt-get update && sudo apt-get -y install cifs-utils
+
+Now we can mount the file share:
+
+    azureuser@dcos-master-415F65E0-0:~$ sudo mkdir -p /mnt/jenkins
+    azureuser@dcos-master-415F65E0-0:~$ sudo mount -t cifs //mh9storage.file.core.windows.net/jenkins /mnt/jenkins -o vers=3.0,username=mh9storage,password=4VWsqPiYJa/JfVqkIBsDIudw5vI6W+ZxfhJPjg9C1rYi9d/dnUjAz0h8N2oc/gxyoIBmrxNCb4O6bCoiXK+DLA==,dir_mode=0777,file_mode=0777
+
+The generic form of the command is `mount -t cifs //myaccountname.file.core.windows.net/mysharename /somedir -o vers=3.0,username=myaccountname,password=StorageAccountKeyEndingIn==,dir_mode=0777,file_mode=0777` and the password is the `KEY2` from the `Access keys` here:
+
+![Azure Portal: Storage Account Access Keys](azure-portal-storage-accesskeys.png)
+
+To check if the file share works, we upload a test file via the Azure portal:
+
+![Azure Portal: Storage File Upload](azure-portal-storage-fileupload.png)
+
+… and then list the content of the mounted file share on the DCOS master node:
+
+    azureuser@dcos-master-415F65E0-0:~$ ls -al /mnt/jenkins
+    total 1
+    -rwxrwxrwx 1 root root 19 Mar 20 11:21 test.txt
+
+Further, you could use the following shell script `init_jenkins_mountpoint.sh` to make sure the mount point exists (on every node you launch Jenkins):
+
+    JENKINS_MOUNTPOINT=/mnt/jenkins
+    if [ ! -d "$JENKINS_MOUNTPOINT" ]; then
+        mkdir -p $JENKINS_MOUNTPOINT
+    fi
