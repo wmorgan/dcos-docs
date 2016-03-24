@@ -1,5 +1,7 @@
 # How to use Jenkins
 
+TODO: apply new template and refer to https://docs.mesosphere.com/manage-service/velocity/
+
 [Jenkins](https://jenkins-ci.org/) is a popular automation server with hundreds of plugins (GitHub, Docker, etc.) available.
 
 **Terminology**:
@@ -43,7 +45,8 @@ For testing, the first step is to [install Jenkins](https://docs.mesosphere.com/
     Installing Marathon app for package [jenkins] version [0.2.3]
     Jenkins has been installed.
 
-TBD: GitHub trigger - Jenkins - Marathon with Jenkins pinned to one host like described in http://mesosphere.github.io/jenkins-mesos/docs/configuration.html
+
+Marathon with Jenkins pinned to one host like described in http://mesosphere.github.io/jenkins-mesos/docs/configuration.html
 
 ## Using Jenkins in production
 
@@ -108,9 +111,16 @@ To check if the file share works, we upload a test file via the Azure portal:
     total 1
     -rwxrwxrwx 1 root root 19 Mar 20 11:21 test.txt
 
-Further, you could use the following shell script `init_jenkins_mountpoint.sh` to make sure the mount point exists (on every node you launch Jenkins):
 
-    JENKINS_MOUNTPOINT=/mnt/jenkins
-    if [ ! -d "$JENKINS_MOUNTPOINT" ]; then
-        mkdir -p $JENKINS_MOUNTPOINT
-    fi
+### Automate file share mount
+
+On the master:
+
+    $ sudo apt-get install pssh
+    $ cat pssh_agents
+    10.0.0.4
+    10.0.0.5
+    10.32.0.4
+    
+    $ parallel-ssh -O StrictHostKeyChecking=no -l azureuser -h pssh_agents "if [ ! -d "/mnt/jenkins" ]; then mkdir -p "/mnt/jenkins" ; fi"
+    $ parallel-ssh -O StrictHostKeyChecking=no -l azureuser -h pssh_agents "mount -t cifs //mh9storage.file.core.windows.net/jenkins /mnt/jenkins -o vers=3.0,username=mh9storage,password=4VWsqPiYJa/JfVqkIBsDIudw5vI6W+ZxfhJPjg9C1rYi9d/dnUjAz0h8N2oc/gxyoIBmrxNCb4O6bCoiXK+DLA==,dir_mode=0777,file_mode=0777"
