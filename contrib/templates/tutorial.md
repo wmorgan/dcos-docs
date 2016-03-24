@@ -1,4 +1,14 @@
-# Running XXX on DC/OS
+---
+post_title: Running XXX on DC/OS
+post_excerpt: ""
+layout: page
+published: true
+menu_order: 1
+page_options_require_authentication: false
+page_options_show_link_unauthenticated: false
+hide_from_navigation: false
+hide_from_related: false
+---
 
 Explain XXX in a paragraph or two: what it is in a nutshell (a database, a query engine, etc.) and what can you use it for.
 If there are official docs, such as from Apache, please reference them here.
