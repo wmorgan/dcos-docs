@@ -1,8 +1,17 @@
-## Running Tomcat on DC/OS
-
+---
+post_title: Running Tomcat on DC/OS
+post_excerpt: ""
+layout: page
+published: true
+menu_order: 1
+page_options_require_authentication: false
+page_options_show_link_unauthenticated: false
+hide_from_navigation: false
+hide_from_related: false
+---
 Take an existing multi-tier Tomcat application and run it on DC/OS.
 
-### Time Estimate
+### Time Estimate/Scope
 
 ### Target Audience
 
@@ -12,7 +21,7 @@ Take an existing multi-tier Tomcat application and run it on DC/OS.
 
 ### Table of Contents
 
-### Prerequisites
+# Prerequisites
 
 - [Install](../install/README.md)
 - Cluster Size - [Check Cluster Size](../getting-started/cluster-size)
@@ -21,6 +30,8 @@ Take an existing multi-tier Tomcat application and run it on DC/OS.
 
 - [MySQL](../database/mysql/README.md)
 - [Postgres](../database/postgres/README.md)
+
+# Procedure
 
 #### Format
 
@@ -46,9 +57,9 @@ Take an existing multi-tier Tomcat application and run it on DC/OS.
 - Success: Show container logs via. CLI + GUI
 - Success: Route "externally"
 
-### Cleanup
+# Cleanup
 
-### Appendix: Next Steps
+# Appendix: Next Steps
 
 - [Debugging](../debugging/README.md)
 - [Operating](../operating/README.md)

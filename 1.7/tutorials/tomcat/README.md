@@ -1,5 +1,14 @@
-## Running Tomcat in Docker on DC/OS
-
+---
+post_title: Running Tomcat in Docker on DC/OS
+post_excerpt: ""
+layout: page
+published: true
+menu_order: 1
+page_options_require_authentication: false
+page_options_show_link_unauthenticated: false
+hide_from_navigation: false
+hide_from_related: false
+---
 Take an existing multi-tier Tomcat application and run it on DC/OS.
 
 ### Time Estimate
@@ -22,6 +31,8 @@ Take an existing multi-tier Tomcat application and run it on DC/OS.
 
 - [MySQL](../database/mysql/README.md)
 - [Postgres](../database/postgres/README.md)
+
+# Procedure
 
 ### Build the container
 
@@ -52,9 +63,9 @@ Take an existing multi-tier Tomcat application and run it on DC/OS.
 - Success: Show container logs via. CLI + GUI
 - Success: Route "externally"
 
-### Cleanup
+# Cleanup
 
-### Appendix: Next Steps
+# Appendix: Next Steps
 
 - [Debugging](../debugging/README.md)
 - [Operating](../operating/README.md)
