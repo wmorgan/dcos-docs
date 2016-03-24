@@ -1,4 +1,14 @@
-# How to use Apache Spark
+---
+post_title: How to use Apache Spark
+post_excerpt: ""
+layout: page
+published: true
+menu_order: 1
+page_options_require_authentication: false
+page_options_show_link_unauthenticated: false
+hide_from_navigation: false
+hide_from_related: false
+---
 
 [Apache Spark](https://spark.apache.org/) is a general-purpose data processing engine. It supports batch and stream processing and comes with built-in APIs for SQL, machine learning and graph workloads. Spark is storage-layer agnostic, meaning it doesn't come with its own storage system but provides connectors to read data from and write data into, for example, the local filesystem, HDFS, Kafka, Cassandra, Elasticsearch, and HBase.
 
@@ -13,12 +23,6 @@
 
 In the following tutorial you will learn about how to use Spark on DCOS, from the simple first steps
 of how to launch a Spark job to using Spark interactively with [Apache Zeppelin](https://zeppelin.incubator.apache.org/).
-
-**Further resources**:
-
-- [Mesos-specifc](https://spark.apache.org/docs/latest/running-on-mesos.html#configuration) configuration options for Spark
-- [Mesos run modes](https://spark.apache.org/docs/latest/running-on-mesos.html#mesos-run-modes) for Spark
-- A gentle introduction into [Spark on Mesos](http://www.slideshare.net/Typesafe_Inc/how-to-deploy-apache-spark-to-mesosdcos) by Lightbend
 
 # Installing
 
@@ -190,5 +194,12 @@ In my case the lower port was `31753` and together with the public node IP this 
 To get started with Zeppelin, check out the Zeppelin [docs](http://zeppelin.incubator.apache.org/docs/0.5.6-incubating/tutorial/tutorial.html) or simply walk through the built-in tutorial in form of a notebook called `Zeppelin Tutorial`:
 
 ![Zeppelin Tutorial](img/dcos-zeppelin-tutorial.png)
+
+**Further resources**:
+
+- [Mesos-specific](https://spark.apache.org/docs/latest/running-on-mesos.html#configuration) configuration options for Spark
+- [Mesos run modes](https://spark.apache.org/docs/latest/running-on-mesos.html#mesos-run-modes) for Spark
+- A gentle introduction into [Spark on Mesos](http://www.slideshare.net/Typesafe_Inc/how-to-deploy-apache-spark-to-mesosdcos) by Lightbend
+
 
 

@@ -1,5 +1,14 @@
-# Running Tomcat in Docker on DC/OS
-
+---
+post_title: Running Tomcat in Docker on DC/OS
+post_excerpt: ""
+layout: page
+published: true
+menu_order: 1
+page_options_require_authentication: false
+page_options_show_link_unauthenticated: false
+hide_from_navigation: false
+hide_from_related: false
+---
 Take an existing multi-tier Tomcat application and run it on DC/OS.
 
 ### Time Estimate
@@ -18,12 +27,14 @@ Take an existing multi-tier Tomcat application and run it on DC/OS.
 - [Docker](https://docker.com)
 - Cluster Size - [Check Cluster Size](../getting-started/cluster-size)
 
-# The database
+### The database
 
 - [MySQL](../database/mysql/README.md)
 - [Postgres](../database/postgres/README.md)
 
-# Build the container
+# Procedure
+
+### Build the container
 
 - [Mesos vs. Docker Container](../internals/mesos-docker.md)
 - [Run without Docker](../tomcat-mesos/README.md)
@@ -38,13 +49,13 @@ Take an existing multi-tier Tomcat application and run it on DC/OS.
 
 - Note that all assets should be either included locally or already uploaded to the correct storage (Docker Hub, S3).
 
-# Run the container
+### Run the container
 
 - [Service Discovery](../internals/service-discovery.md)
 
 - Success: Show container logs via. CLI + GUI
 
-# The load balancer
+### The load balancer
 
 - [Haproxy](../loadbalancer/haproxy/README.md)
 
