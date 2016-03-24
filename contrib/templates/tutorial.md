@@ -9,7 +9,7 @@ This is an optional section, allowing you to define and explain concepts used in
 
 **Scope**:
 
-Define what this how-to covers (what one will learn in it).
+Define what this tutorial covers (what one will learn in it).
 
 **Further resources**:
 

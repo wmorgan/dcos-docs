@@ -11,7 +11,7 @@
 
 **Scope**:
 
-In the following how-to you will learn about how to use Spark on DCOS, from the simple first steps
+In the following tutorial you will learn about how to use Spark on DCOS, from the simple first steps
 of how to launch a Spark job to using Spark interactively with [Apache Zeppelin](https://zeppelin.incubator.apache.org/).
 
 **Further resources**:
@@ -20,9 +20,9 @@ of how to launch a Spark job to using Spark interactively with [Apache Zeppelin]
 - [Mesos run modes](https://spark.apache.org/docs/latest/running-on-mesos.html#mesos-run-modes) for Spark
 - A gentle introduction into [Spark on Mesos](http://www.slideshare.net/Typesafe_Inc/how-to-deploy-apache-spark-to-mesosdcos) by Lightbend
 
-## Preparation
+# Installing
 
-Assuming you have a DC/OS cluster up and running, the first step is to [install Spark](https://docs.mesosphere.com/manage-service/spark/). As the minimum cluster size for this how-to I recommend at least three nodes with 2 CPUs and 2 GB of RAM available, each:
+Assuming you have a DC/OS cluster up and running, the first step is to [install Spark](https://docs.mesosphere.com/manage-service/spark/). As the minimum cluster size for this tutorial I recommend at least three nodes with 2 CPUs and 2 GB of RAM available, each:
 
     $ dcos package install spark
     Note that the Apache Spark DCOS Service is beta and there may be bugs, incomplete features, incorrect documentation or other discrepancies.
@@ -65,7 +65,7 @@ By clicking on the `Open Service` button, you can access the Spark drivers page 
 
 ![Spark Drivers page](img/dcos-spark-drivers.png)
 
-## Executing a Spark job
+# Executing a Spark job
 
 Now that you've set up Spark, it's time to launch your first Spark job. We will use one of the [existing examples](https://github.com/apache/spark/blob/master/examples/src/main/scala/org/apache/spark/examples/SparkPi.scala) that comes with Spark.
 Also, note that when you execute the `dcos spark run` command the first time, DC/OS downloads the necessary assets to your local machine and that can take (depending on your connection) some 10 mins or more.
@@ -117,7 +117,7 @@ After all, it turns out to be useful to use the `dcos spark log` command: we get
 
 You can learn about further options on how to run a Spark job via the [DC/OS docs](https://docs.mesosphere.com/manage-service/service-tutorials/running-a-spark-job/).
 
-## Using Spark Interactively
+# Using Spark Interactively
 
 To interactively work with Spark, you can use [Apache Zeppelin](https://zeppelin.incubator.apache.org/) and here's what you need to do to install it.
 
