@@ -5,17 +5,9 @@ These documents are used as source to generate <dcos.io>.
 
 **Prior to official release of DC/OS, the contents of this repo are under NDA. See [License and Authors](#license-and-authors) for more details.**
 
+## Versions
 
-## Navigation
-
-- [Concepts](concepts)
-- [Administration](administration)
-    - [Components](administration/components)
-- [User Guide](user-guide)
-    - [Services](user-guide/services)
-    - [Examples](user-guide/examples)
-    - [Tutorials](user-guide/tutorials)
-- [Support](support)
+- [1.7](1.7) (latest)
 
 
 ## Contributing
