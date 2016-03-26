@@ -4,11 +4,11 @@
 
 ## Navigation
 
-- [Concepts](latest/concepts)
-- [Administration](latest/administration)
-    - [Components](latest/administration/components)
-- [User Guide](latest/user-guide)
-    - [Services](latest/user-guide/services)
-    - [Examples](latest/user-guide/examples)
-    - [Tutorials](latest/user-guide/tutorials)
-- [Support](latest/support)
+- [Concepts](concepts)
+- [Administration](administration)
+    - [Components](administration/components)
+- [User Guide](user-guide)
+    - [Services](user-guide/services)
+    - [Examples](user-guide/examples)
+    - [Tutorials](user-guide/tutorials)
+- [Support](support)
