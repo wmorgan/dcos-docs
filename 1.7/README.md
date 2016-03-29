@@ -5,10 +5,10 @@
 ## Navigation
 
 - [Concepts](concepts)
+- [Usage](usage)
+    - [Services](usage/services)
+    - [Examples](usage/examples)
+    - [Tutorials](usage/tutorials)
 - [Administration](administration)
     - [Components](administration/components)
-- [User Guide](user-guide)
-    - [Services](user-guide/services)
-    - [Examples](user-guide/examples)
-    - [Tutorials](user-guide/tutorials)
 - [Support](support)
