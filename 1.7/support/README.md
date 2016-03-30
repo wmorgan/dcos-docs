@@ -1,5 +1,17 @@
 # Support
 
+DC/OS is a free open source product.
+
+Support for DC/OS may be purchased from [Mesosphere, Inc](http://mesosphere.com).
+
+
+## Project Management
+
+- [Issue Tracking](http://jira.dcos.io)
+- [Roadmap](http://dcos.io/roadmap)
+
+
+## Community Support
+
 - [Slack](http://chat.mesosphere.com/)
-- [Intercom](https://support.mesosphere.com/hc/en-us/articles/206959716)
 - [Stack Overflow](http://stackoverflow.com/questions/tagged/mesosphere)
