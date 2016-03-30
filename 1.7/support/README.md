@@ -1,8 +1,6 @@
 # Support
 
-DC/OS is a free open source product.
-
-Support for DC/OS may be purchased from [Mesosphere, Inc](http://mesosphere.com).
+DC/OS is a free, open source, community supported product.
 
 
 ## Project Management
@@ -15,3 +13,8 @@ Support for DC/OS may be purchased from [Mesosphere, Inc](http://mesosphere.com)
 
 - [Slack](http://chat.mesosphere.com/)
 - [Stack Overflow](http://stackoverflow.com/questions/tagged/mesosphere)
+
+
+## Professional Support
+
+- [Mesosphere, Inc](http://mesosphere.com)
