@@ -5,7 +5,7 @@ DC/OS documentation describes how to install, use, and administer the Datacenter
 
 ## Navigation
 
-- [Concepts](concepts)
+- [Overview](overview)
 - [Usage](usage)
 - [Administration](administration)
 - [Support](support)
