@@ -9,6 +9,6 @@ If you want to contribute some documentation, please do the following:
 1. Adapt the sections in your new `foo/README.md` to the specifics of your content.
 1. If you have any screen shots, you can store them in `foo/img/`; also please make sure that all assets (such as a Marathon app spec JSON docs or a Dockerfile you might be using in your documentation) are actually included in the `foo/` directory.
 1. When you're done, create a [pull request](https://help.github.com/articles/using-pull-requests/) to the original repo, `dcos-docs`.
-1. For all contributions that include hands-on instructions, such as found in `usage/` or `administration`, the community managers will test-drive and validated before merging. We might come back to you asking you to fix stuff. All communication strictly via the pull request on GitHub.  
+1. For all contributions that include hands-on instructions, such as found in `usage/` or `administration/`, the community managers will test-drive and validate before merging. We might come back to you asking you to fix stuff. All communication strictly via your pull request on GitHub.  
 
 Note that if you're unsure about what exactly should go into the tutorial, you can always check out [spark/](../1.7/tutorials/spark/) for reference.
