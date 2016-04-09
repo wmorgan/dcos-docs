@@ -2,6 +2,8 @@
 
 The following pages and directories are planned:
 
+## Overview
+
 - /overview/distributions/ (OSS DC/OS, Mesosphere Enterprise DC/OS)
 - /overview/networking/ (from security?)
 - /overview/governance/
@@ -9,11 +11,15 @@ The following pages and directories are planned:
 - /overview/contribution/
 - /overview/vs/*
 
+## Usage
+
 - /usage/service-logging/
 - /usage/volumes/ (external, reservation, distributed)
 - /usage/tutorials/*
 - /usage/examples/*
 - /usage/service-debugging/
+
+## Administration
 
 - /administration/installing/ (vagrant, aws, azure, custom)
 - /administration/upgrading/
