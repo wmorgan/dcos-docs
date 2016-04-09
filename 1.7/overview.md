@@ -10,3 +10,4 @@ page_options_show_link_unauthenticated: false
 hide_from_navigation: false
 hide_from_related: false
 ---
+This section covers the high level overview of DC/OS: what it is, what it does, its architecture, its design, what its primary features are, and what makes it stand out from other comparable solutions.

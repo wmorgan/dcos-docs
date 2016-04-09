@@ -10,19 +10,21 @@ page_options_show_link_unauthenticated: false
 hide_from_navigation: false
 hide_from_related: false
 ---
-We welcome any questions or feedback that you might have about Mesosphere DCOS and documentation. To request help and submit feedback:
+DC/OS is a free, open source, community supported product.
 
-*   A public [Slack community][1] channel.
 
-*   A private Intercom chat session is embedded in the DCOS web interface. Click the chat icon in the bottom-left side of the page to start an Intercom chat with a member of the Mesosphere team.
+# Project Management
 
-*   To submit documentation feedback, send an email directly to [support@mesosphere.com][2].
+- [Issue Tracking](http://jira.dcos.io)
+- [Roadmap](http://dcos.io/roadmap)
 
-### <a name="dcosfaq"></a>FAQ and Support
 
-*   The DCOS Knowledge Base provides FAQs and in-depth support documentation from Mesosphere at <a href="http://help.mesosphere.com" target="_blank">http://help.mesosphere.com</a>.
+# Community Support
 
-*   The Mesosphere community page provides an open-forum for questions and answers at <a href="http://stackoverflow.com/questions/tagged/mesosphere" target="_blank">ask.mesosphere.com</a>.
+- [Slack](http://chat.mesosphere.com/)
+- [Stack Overflow](http://stackoverflow.com/questions/tagged/mesosphere)
 
- [1]: http://chat.mesosphere.com
- [2]: mailto:support@mesosphere.com?subject=Documentation%20feedback
+
+# Professional Support
+
+- [Mesosphere, Inc](http://mesosphere.com)

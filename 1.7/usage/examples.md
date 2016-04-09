@@ -1,4 +1,10 @@
-# Examples
+---
+post_title: Examples
+layout: page
+---
+These are examples of how to run popular services on DCOS.
+
+TODO:
 
 - asp-dot-net
 - cadvisor
