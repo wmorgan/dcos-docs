@@ -49,23 +49,25 @@ In the following, we have a look at how a DC/OS cluster boots up, this means, we
 
 ### Master nodes
 
-- Exhibitor starts up, creates ZK config, launches ZK
-- Mesos Master are launched, looks at local ZK, discovers other Masters
+- [Exhibitor](https://github.com/mesosphere/exhibitor-dcos) starts up, creates Zookeeper configuration and launches Zookeeper
+- Mesos Master are launched, registers with local Zookeeper, discovers other Masters
 - Mesos-DNS is launched on the master nodes
-- Mesos-DNS keeps hitting `master/state.json` via leading Mesos Master
+- Mesos-DNS keeps hitting `master/state.json` via leading Mesos Master `leader.mesos`
 - Spartan (DNS proxy) runs on all nodes (master/agents) and forward to MesosDNS
-- Marathon is launched
-- Marathon goes to localhost for ZK, discovers leading Master
+- System Marathon is launched
+- System Marathon goes to localhost for Zookeeper, discovers leading Master `leader.mesos` and registers with it
 - Admin router depends on Master, MesosDNS and Spartan and runs on each of the master nodes (== DCOS UI)
+- DC/OS UI, Mesos UI, Marathon UI, and Exhibitor UI become externally accessible
 - Auth is managed by OAuth (only masters)
 - History services provides the data for the graphs in the UI (only masters)
 - DCOS diagnostics (also systemd service, on every node)
 
 ### Agent nodes
 
-- Mesos Agent starts up and discovers the leading Mesos Master via ZK
-- Mesos Agent registers with the leading Mesos Master
+- Mesos Agent starts up and discovers the leading Mesos Master `leader.mesos` via Zookeeper
+- Mesos Agent registers with the leading Mesos Master `leader.mesos`
 - Mesos Master confirms and Mesos Agent starts sending status reports (what resources are available) to Mesos Master
+- DC/OS nodes become visible in the DCOS UI
 
 ### Services
 
@@ -82,7 +84,7 @@ We now focus on the management of processes in a DC/OS cluster: from the resourc
 
 Before we dive into the details of the interaction between different DC/OS components, let's define the terminology used in the following:
 
-- Master: this is the leading Mesos Master in the DC/OS cluster (`mesos.master`).
+- Master: this is the leading Mesos Master in the DC/OS cluster (`leader.mesos`).
 - Scheduler: the scheduler component of a service, for example the Marathon scheduler.
 - User: also known as Client, is a cluster-external or internal app that kicks off a process, for example a human user that submits a Marathon app spec.
 - Agent: a private or public Mesos Agent; originally was called Mesos Slave and you might still see references to it in the codebase. 
