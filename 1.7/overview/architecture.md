@@ -20,7 +20,7 @@ In DC/OS, the **kernel space** comprises Mesos Masters and Mesos Agents. System 
 
 ![DC/OS architecture 100,000ft view](img/dcos-architecture-100000ft.png)
 
-Kernel space:
+### Kernel space
 
 - One or more Mesos Masters. When a leading Mesos Master fails due to a crash or goes offline for an upgrade, a standby Mesos Master automatically becomes the leader without causing any disruption to running services. Leader election is performed via ZooKeeper.
 - The `mesos-master` process on a Mesos Master orchestrates tasks that are run on Mesos Agents. The Mesos Master process receives resource offers from Mesos Agents and distributes those resources to registered DC.OS services, such as Marathon or Spark.
@@ -29,7 +29,7 @@ Kernel space:
   - The Mesos Containerizer provides lightweight containerization and resource isolation of executors using Linux-specific functionality such as cgroups and namespaces. For more information, see the [Mesos Containerizer][3] documentation.
   - The Mesos Docker Containerizer provides support for launching tasks that contain Docker images. For more information, see the [Docker Containerizer][4] documentation.
 
-User space:
+### User space
 
 - System Components
   - [Admin router](https://github.com/mesosphere/adminrouter-public) is an open source NGNIX configuration that provides central authentication and proxy to DC/OS services within the cluster.
@@ -80,27 +80,29 @@ For each service:
 
 We now focus on the management of processes in a DC/OS cluster: from the resource allocation to the execution of a process.
 
-![Concept of distributed process management in DC/OS](img/dcos-architecture-distributed-process-management-concept.png)
+Before we dive into the details of the interaction between different DC/OS components, let's define the terminology used in the following:
 
-Definitions:
-
-- Master: the leading Mesos Master
-- Scheduler: the service scheduler
-- Client (user): cluster-external or internal app that kicks off a process, for example a program that submits a Marathon app spec
-- Agent: a private or public Mesos Agent (originally this was called Mesos Slave and you might still see references to it in the codebase 
-- Executor: part of a scheduler running on an Agent, managing one or more tasks
+- Master: this is the leading Mesos Master in the DC/OS cluster (`mesos.master`).
+- Scheduler: the scheduler component of a service, for example the Marathon scheduler.
+- User: also known as Client, is a cluster-external or internal app that kicks off a process, for example a human user that submits a Marathon app spec.
+- Agent: a private or public Mesos Agent; originally was called Mesos Slave and you might still see references to it in the codebase. 
+- Executor: is part of a service running on an Agent, managing one or more tasks
 - Task: a Mesos task
 - Process: a logical collection of tasks initiated by client, for example a Marathon app or a Chronos job
 
-Let’s now have a look at a concrete example using the Marathon framework and a user wanting to launch a container based on a Docker image:
+On a high level, the following interaction takes place between the DC/OS components when a User requests to launch a process. Note that communication takes place between the different layers (such as the User interacting with the Scheduler) as well as within a layer, for example, a Master communicating with Agents.
+
+![Concept of distributed process management in DC/OS](img/dcos-architecture-distributed-process-management-concept.png)
+
+Let’s now have a look at a concrete example, using the Marathon service and a User wanting to launch a container based on a Docker image:
 
 ![Example of distributed process management in DC/OS](img/dcos-architecture-distributed-process-management-example.png)
 
-On a high level, the interaction between above components looks as follows (note that Executors and Task are folded into one block since in practice this is often the case):
+From a timing perspective, the interaction between above components looks as follows (note that Executors and Task are folded into one block since in practice this is often the case):
 
 ![Sequence diagram for distributed process management in DC/OS](img/dcos-architecture-distributed-process-management-seq-diagram.png)
 
-
+The steps in detail are:
 
 | Step | Description |
 | ---- | ----------- |
