@@ -97,5 +97,11 @@ Let’s now have a look at a concrete example using the Marathon framework and a
 
 On a high level, the interaction between above components looks as follows (note that Executors and Task are folded into one block since in practice this is often the case):
 
-TBD: insert sequence diagram and detailed steps table here
+![Sequence diagram for distributed process management in DC/OS](img/dcos-architecture-distributed-process-management-seq-diagram.png)
 
+
+
+| Step | Description | Remark        |
+| ---- | ----------- | ------------- |
+| 1    | Client - Scheduler init | Client needs to know how to connect to Framework Scheduler in order to launch a process, for example via MesosDNS or DC/OS CLI |
+| 2    | Mesos Master sends resource offer to Framework Scheduler| Client needs to know how to connect to Framework Scheduler in order to launch a process, for example via MesosDNS or DC/OS CLI |
