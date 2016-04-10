@@ -16,7 +16,7 @@ An operating system abstracts resources such as CPU, RAM and networking and prov
 
 ## 100,000ft view
 
-In DC/OS, as many operating systems, differentiates between the kernel space, comprising Mesos Masters and Mesos Agents and the user space, spanning System Components (such as Mesos-DNS or Spartan) as well services like Marathon or Spark and processes managed by said services (for example a Marathon application).
+DC/OS, as many operating systems, differentiates between the kernel space, comprising Mesos Masters and Mesos Agents and the user space, spanning System Components (such as Mesos-DNS or Spartan) as well services like Marathon or Spark and processes managed by said services (for example a Marathon application).
 
 ![DC/OS architecture 100,000ft view](img/dcos-architecture-100000ft.png)
 
@@ -97,8 +97,8 @@ Before we dive into the details of the interaction between different DC/OS compo
 - User: also known as Client, is a cluster-external or internal app that kicks off a process, for example a human user that submits a Marathon app spec.
 - Agent: a private or public Mesos Agent; originally was called Mesos Slave and you might still see references to it in the codebase. 
 - Executor: is part of a service running on an Agent, managing one or more tasks
-- Task: a Mesos task
-- Process: a logical collection of tasks initiated by client, for example a Marathon app or a Chronos job
+- Task: a Mesos task, the unit of execution in DC/OS.
+- Process: a logical collection of tasks initiated by a Client, for example a Marathon app or a Chronos job.
 
 On a high level, the following interaction takes place between the DC/OS components when a User requests to launch a process. Note that communication takes place between the different layers (such as the User interacting with the Scheduler) as well as within a layer, for example, a Master communicating with Agents.
 
