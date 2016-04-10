@@ -102,17 +102,17 @@ On a high level, the interaction between above components looks as follows (note
 
 
 
-| Step | Description | Details       |
-| ---- | ----------- | ------------- |
-| 1    | Client - Scheduler init | Client needs to know how to connect to the Scheduler in order to launch a process, for example via Mesos-DNS or DC/OS CLI |
-| 2    | Mesos Master sends resource offer to Scheduler| The resource offers are based on cluster resources managed through Agents and the [DRF](https://www.cs.berkeley.edu/~alig/papers/drf.pdf) algorithm in Mesos Master.|
-| 3    | Scheduler declines resource offer since no process requests from Clients are pending | As long as no clients have initiated a process, the scheduler will reject offers from the Master |
-| 4    | Client initiates process launch | For example, this could be a user creating a Marathon app via the UI or via the HTTP endpoint `/v2/app` |
-| 5    | Mesos Master sends resource offers | For example, `cpus(*):1; mem(*):128; ports(*):[21452-21452]` |
-| 6    | If resource offer matches the requirements the Scheduler has for the process, it accepts the offer and sends a `launchTask` request to Mesos Master |  |
-| 7    |  |  |
-| 8    |  |  |
-| 9    |  |  |
-| 10   |  |  |
-| 11   |  |  |
-| 12   |  |  |
+| Step | Description |
+| ---- | ----------- |
+| 1    | Client/Scheduler init: the Client needs to know how to connect to the Scheduler in order to launch a process, for example via Mesos-DNS or DC/OS CLI |
+| 2    | Mesos Master sends resource offer to Scheduler: the resource offers are based on cluster resources managed through Agents and the [DRF](https://www.cs.berkeley.edu/~alig/papers/drf.pdf) algorithm in Mesos Master.|
+| 3    | Scheduler declines resource offer since no process requests from Clients are pending. As long as no clients have initiated a process, the scheduler will reject offers from the Master |
+| 4    | Client initiates process launch. For example, this could be a user creating a Marathon app via the UI or via the HTTP endpoint `/v2/app` |
+| 5    | Mesos Master sends resource offers . For example, `cpus(*):1; mem(*):128; ports(*):[21452-21452]` |
+| 6    | If resource offer matches the requirements the Scheduler has for the process, it accepts the offer and sends a `launchTask` request to Mesos Master |
+| 7    | Mesos Master directs Mesos Agent(s) to launch tasks |
+| 8    | Mesos Agent launches tasks via Executor |
+| 9    | Executor reports task status to Mesos Agent |
+| 10   | Mesos Agent reports task status to Mesos Master |
+| 11   | Mesos Master report task status to framework scheduler |
+| 12   | Framework scheduler reports process status to client |
