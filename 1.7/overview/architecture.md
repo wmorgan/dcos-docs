@@ -16,13 +16,13 @@ An operating system abstracts resources such as CPU, RAM and networking and prov
 
 ## 100,000ft view
 
-In DC/OS, the **kernel space** comprises Mesos Masters and Mesos Agents. System Components such as Mesos-DNS or Spartan as well services like Marathon or Spark and processes managed by said services (for example a Marathon application) make up the **user space**.
+In DC/OS, as many operating systems, differentiates between the kernel space, comprising Mesos Masters and Mesos Agents and the user space, spanning System Components (such as Mesos-DNS or Spartan) as well services like Marathon or Spark and processes managed by said services (for example a Marathon application).
 
 ![DC/OS architecture 100,000ft view](img/dcos-architecture-100000ft.png)
 
 ### Kernel space
 
-In the kernel space there are two types of processes:
+In the kernel space of DC/OS there are two types of processes:
 
 - One or more **Mesos Masters**. The `mesos-master` process orchestrates tasks that are run on Mesos Agents. The Mesos Master process receives resource reports from Mesos Agents and distributes those resources to registered DC/OS services, such as Marathon or Spark. When a leading Mesos Master fails due to a crash or goes offline for an upgrade, a standby Mesos Master automatically becomes the leader without causing any disruption to running services. Leader election is performed via ZooKeeper.
 - There are two types of **Mesos Agents**: private agent nodes run the deployed apps and services. The optional public agent nodes can provide public access to DC/OS services and applications. The `mesos-slave` process on a Mesos Agent manages its local resources (CPU cores, RAM, etc.) and registers said resources with the Mesos Masters. It also accepts schedule requests from the Mesos Master and invokes an Executor to launch a Task via [containerizers](http://mesos.apache.org/documentation/latest/containerizer/):
@@ -31,54 +31,60 @@ In the kernel space there are two types of processes:
 
 ### User space
 
-The user space has three types of processes: 1. DC/OS System Components, 2. Services (like Chronos or Kafka), and 3. user apps:
+The DC/OS user space spans System Components and Services (like Chronos or Kafka):
 
-- System Components
-  - [Admin router](https://github.com/mesosphere/adminrouter-public) is an open source NGNIX configuration that provides central authentication and proxy to DC/OS services within the cluster.
-  - Exhibitor automatically configures your Zookeeper installation on the master nodes during installation.
-  - Mesos-DNS provides service discovery within the cluster. Mesos DNS allows applications and services that are running on Mesos to find each other by using the domain name system (DNS), similar to how services discover each other throughout the Internet.
-  - Minuteman-TBD
-  - Spartan-TBD
+- [System Components](components.md) are installed and are running by default in the DC/OS cluster and include (but are not limited to) the following:
+  - The Admin router is an open source NGNIX configuration that provides central authentication and proxy to DC/OS services.
+  - Exhibitor automatically configures Zookeeper during installation and provides a usable Web UI to Zookeeper.
+  - Mesos-DNS provides service discovery, allowing apps and services to find each other by using the domain name system (DNS).
+  - Minuteman is the internal layer 4 load balancer. 
+  - Spartan is the internal DNS dispater. 
   - System Marathon, the native Marathon instance that is the 'init system' for DC/OS, starts and monitors DC/OS services.
   - Zookeeper, a high-performance coordination service that manages the DC/OS services.
 - Services
-  - A service in DC/OS is technically a Mesos Framework (scheduler and executor)
-- User apps (for example a Marathon app)
+  - A service in DC/OS is consists of a Scheduler (responsible for scheduling tasks on behalf of a user) and an Executor (running Tasks on Agents)
+  - User-level applications, for example an NGINX webserver launched through Marathon
 
 ## Boot sequence
 
 In the following, we have a look at how a DC/OS cluster boots up, this means, we have a cluster of nodes with DC/OS installed and switch on the power. What happens?
 
+Note that the following is post-install, that is it assumes that all System Components and DC/OS kernel-level software has been installed on the nodes in a DC/OS cluster.
+
 ### Master nodes
 
-- [Exhibitor](https://github.com/mesosphere/exhibitor-dcos) starts up, creates Zookeeper configuration and launches Zookeeper
-- Mesos Master are launched, registers with local Zookeeper, discovers other Masters
-- Mesos-DNS is launched on the master nodes
-- Mesos-DNS keeps hitting `master/state.json` via leading Mesos Master `leader.mesos`
-- Spartan (DNS proxy) runs on all nodes (master/agents) and forward to MesosDNS
-- System Marathon is launched
-- System Marathon goes to localhost for Zookeeper, discovers leading Master `leader.mesos` and registers with it
-- Admin router depends on Master, MesosDNS and Spartan and runs on each of the master nodes (== DCOS UI)
-- DC/OS UI, Mesos UI, Marathon UI, and Exhibitor UI become externally accessible
-- Auth is managed by OAuth (only masters)
-- History services provides the data for the graphs in the UI (only masters)
-- DCOS diagnostics (also systemd service, on every node)
+On each Master node the following happens, in chronological order:
+
+1. [Exhibitor](https://github.com/mesosphere/exhibitor-dcos) starts up, creates Zookeeper configuration and launches Zookeeper
+1. Mesos Master are launched, registers with local Zookeeper, discovers other Masters
+1. Mesos-DNS is launched on the master nodes
+1. Mesos-DNS keeps hitting `master/state.json` via leading Mesos Master `leader.mesos`
+1. Spartan (DNS proxy) runs on all nodes (master/agents) and forward to MesosDNS
+1. System Marathon is launched
+1. System Marathon goes to localhost for Zookeeper, discovers leading Master `leader.mesos` and registers with it
+1. Admin router depends on Master, MesosDNS and Spartan and runs on each of the master nodes (== DCOS UI)
+1. DC/OS UI, Mesos UI, Marathon UI, and Exhibitor UI become externally accessible
+1. Auth is managed by OAuth (only masters)
+1. History services provides the data for the graphs in the UI (only masters)
+1. DCOS diagnostics (also systemd service, on every node)
 
 ### Agent nodes
 
-- Mesos Agent starts up and discovers the leading Mesos Master `leader.mesos` via Zookeeper
-- Mesos Agent registers with the leading Mesos Master `leader.mesos`
-- Mesos Master confirms and Mesos Agent starts sending status reports (what resources are available) to Mesos Master
-- DC/OS nodes become visible in the DCOS UI
+On each Agent node the following happens, in chronological order:
+
+1. Mesos Agent starts up and discovers the leading Mesos Master `leader.mesos` via Zookeeper
+1. Mesos Agent registers with the leading Mesos Master `leader.mesos`
+1. Mesos Master confirms and Mesos Agent starts sending status reports (what resources are available) to Mesos Master
+1. DC/OS nodes become visible in the DCOS UI
 
 ### Services
 
 For each service:
 
-- Service scheduler starts up and discovers the leading Mesos Master via ZK
+- Service scheduler starts up and discovers the leading Mesos Master via Zookeeper
 - Service scheduler registers with leading Mesos Master
-- Mesos Master confirms and framework scheduler stores framework ID in ZK
-- Once a service is registered the resource offer cycle between Mesos Master and framework scheduler kicks in (see also last section in this doc)
+- Mesos Master confirms and scheduler stores service ID in Zookeeper
+- Once a service is registered the resource offer cycle between Mesos Master and  scheduler kicks in (details in next section).
 
 ## Distributed process management
 
@@ -120,5 +126,5 @@ The steps in detail are:
 | 8    | Mesos Agent launches tasks via Executor |
 | 9    | Executor reports task status to Mesos Agent |
 | 10   | Mesos Agent reports task status to Mesos Master |
-| 11   | Mesos Master report task status to framework scheduler |
-| 12   | Framework scheduler reports process status to client |
+| 11   | Mesos Master report task status to scheduler |
+| 12   | Scheduler reports process status to client |
