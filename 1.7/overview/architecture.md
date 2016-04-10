@@ -22,14 +22,16 @@ In DC/OS, the **kernel space** comprises Mesos Masters and Mesos Agents. System 
 
 ### Kernel space
 
-- One or more Mesos Masters. When a leading Mesos Master fails due to a crash or goes offline for an upgrade, a standby Mesos Master automatically becomes the leader without causing any disruption to running services. Leader election is performed via ZooKeeper.
-- The `mesos-master` process on a Mesos Master orchestrates tasks that are run on Mesos Agents. The Mesos Master process receives resource offers from Mesos Agents and distributes those resources to registered DC.OS services, such as Marathon or Spark.
-- There are two types of Mesos Agents: private agent nodes run the deployed apps and services. The optional public agent nodes can provide public access to DC/OS services and applications.
-- The `mesos-slave` process on a Mesos Agent manages its local resources (CPU cores, RAM, etc.) and reports it to the Mesos Masters. It also accepts schedule requests from the Mesos Master and invokes an executor to launch a task.
-  - The Mesos Containerizer provides lightweight containerization and resource isolation of executors using Linux-specific functionality such as cgroups and namespaces. For more information, see the [Mesos Containerizer][3] documentation.
-  - The Mesos Docker Containerizer provides support for launching tasks that contain Docker images. For more information, see the [Docker Containerizer][4] documentation.
+In the kernel space there are two types of processes:
+
+- One or more **Mesos Masters**. The `mesos-master` process orchestrates tasks that are run on Mesos Agents. The Mesos Master process receives resource reports from Mesos Agents and distributes those resources to registered DC/OS services, such as Marathon or Spark. When a leading Mesos Master fails due to a crash or goes offline for an upgrade, a standby Mesos Master automatically becomes the leader without causing any disruption to running services. Leader election is performed via ZooKeeper.
+- There are two types of **Mesos Agents**: private agent nodes run the deployed apps and services. The optional public agent nodes can provide public access to DC/OS services and applications. The `mesos-slave` process on a Mesos Agent manages its local resources (CPU cores, RAM, etc.) and registers said resources with the Mesos Masters. It also accepts schedule requests from the Mesos Master and invokes an Executor to launch a Task via [containerizers](http://mesos.apache.org/documentation/latest/containerizer/):
+  - The Mesos containerizer provides lightweight containerization and resource isolation of executors using Linux-specific functionality such as cgroups and namespaces.
+  - The Docker containerizer provides support for launching tasks that contain Docker images.
 
 ### User space
+
+The user space has three types of processes: 1. DC/OS System Components, 2. Services (like Chronos or Kafka), and 3. user apps:
 
 - System Components
   - [Admin router](https://github.com/mesosphere/adminrouter-public) is an open source NGNIX configuration that provides central authentication and proxy to DC/OS services within the cluster.
@@ -41,7 +43,7 @@ In DC/OS, the **kernel space** comprises Mesos Masters and Mesos Agents. System 
   - Zookeeper, a high-performance coordination service that manages the DC/OS services.
 - Services
   - A service in DC/OS is technically a Mesos Framework (scheduler and executor)
-  - User apps (for example a Marathon app)
+- User apps (for example a Marathon app)
 
 ## Boot sequence
 
