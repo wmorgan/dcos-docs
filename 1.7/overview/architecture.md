@@ -14,6 +14,8 @@ hide_from_related: false
 
 An operating system abstracts resources such as CPU, RAM and networking and provides common services to applications. DC/OS is a distributed operating system that abstracts the resources of a cluster of machines and provides common services, such as running processes across a number of nodes, service discovery, and package management, just to name a few. In the following, we have a look at the architecture of DC/OS and the interaction of its components. 
 
+In order to simplify the understanding of DC/OS, we will re-use terminology known from traditional operating system such as Linux, for example kernel and user space. The kernel space is a protected space that is inaccessible for users and involves low-level operations such as resource allocation, security, and process isolation. The user space is where the user applications and higher order services live, for example the GUI of your OS.
+
 ## 100,000ft view
 
 DC/OS, as many operating systems, differentiates between the kernel space, comprising Mesos Masters and Mesos Agents and the user space, spanning System Components (such as Mesos-DNS or Spartan) as well services like Marathon or Spark and processes managed by said services (for example a Marathon application).
@@ -22,7 +24,7 @@ DC/OS, as many operating systems, differentiates between the kernel space, compr
 
 ### Kernel space
 
-In the kernel space of DC/OS there are two types of processes:
+In DC/OS, the kernel space is responsible for the resource allocation across the cluster. It's also where the two-level scheduling process lives. There are two types of processes in the kernel space:
 
 - One or more **Mesos Masters**. The `mesos-master` process orchestrates tasks that are run on Mesos Agents. The Mesos Master process receives resource reports from Mesos Agents and distributes those resources to registered DC/OS services, such as Marathon or Spark. When a leading Mesos Master fails due to a crash or goes offline for an upgrade, a standby Mesos Master automatically becomes the leader without causing any disruption to running services. Leader election is performed via ZooKeeper.
 - There are two types of **Mesos Agents**: private agent nodes run the deployed apps and services. The optional public agent nodes can provide public access to DC/OS services and applications. The `mesos-slave` process on a Mesos Agent manages its local resources (CPU cores, RAM, etc.) and registers said resources with the Mesos Masters. It also accepts schedule requests from the Mesos Master and invokes an Executor to launch a Task via [containerizers](http://mesos.apache.org/documentation/latest/containerizer/):
