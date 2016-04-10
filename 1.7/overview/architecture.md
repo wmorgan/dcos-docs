@@ -16,7 +16,7 @@ An operating system abstracts resources such as CPU, RAM and networking and prov
 
 ## 100,000ft view
 
-In DC/OS, the **kernel space** comprises Mesos Masters and Mesos Agents. System Services, such as Mesos-DNS or Spartan as well services like Marathon or Spark and processes managed by said services (for example a Marathon application) make up the **user space**.
+In DC/OS, the **kernel space** comprises Mesos Masters and Mesos Agents. System Components such as Mesos-DNS or Spartan as well services like Marathon or Spark and processes managed by said services (for example a Marathon application) make up the **user space**.
 
 ![DC/OS architecture 100,000ft view](img/dcos-architecture-100000ft.png)
 
@@ -31,7 +31,7 @@ Kernel space:
 
 User space:
 
-- System Services
+- System Components
   - [Admin router](https://github.com/mesosphere/adminrouter-public) is an open source NGNIX configuration that provides central authentication and proxy to DC/OS services within the cluster.
   - Exhibitor automatically configures your Zookeeper installation on the master nodes during installation.
   - Mesos-DNS provides service discovery within the cluster. Mesos DNS allows applications and services that are running on Mesos to find each other by using the domain name system (DNS), similar to how services discover each other throughout the Internet.
@@ -61,7 +61,7 @@ In the following, we have a look at how a DC/OS cluster boots up, this means, we
 - History services provides the data for the graphs in the UI (only masters)
 - DCOS diagnostics (also systemd service, on every node)
 
-### Agens nodes
+### Agent nodes
 
 - Mesos Agent starts up and discovers the leading Mesos Master via ZK
 - Mesos Agent registers with the leading Mesos Master
@@ -84,12 +84,13 @@ We now focus on the management of processes in a DC/OS cluster: from the resourc
 
 Definitions:
 
-Master: the leading Mesos Master
-Agent: on each DC/OS worker node a Mesos Agent runs, managing the resources (CPU shares, RAM, etc.) locally. Note: originally this was called Mesos Slave and you might still see references to it in the codebase 
-Process: a logical collection of tasks initiated by client, for example Marathon app or Chronos job
-Executor: part of a Mesos framework, running on an Agent, managing one or more Mesos tasks
-Task: Mesos task
-Client (user): cluster-external or internal app that kicks off a process, for example a program that submits a Marathon app spec
+- Master: the leading Mesos Master
+- Scheduler: the service scheduler
+- Client (user): cluster-external or internal app that kicks off a process, for example a program that submits a Marathon app spec
+- Agent: a private or public Mesos Agent (originally this was called Mesos Slave and you might still see references to it in the codebase 
+- Executor: part of a scheduler running on an Agent, managing one or more tasks
+- Task: a Mesos task
+- Process: a logical collection of tasks initiated by client, for example a Marathon app or a Chronos job
 
 Let’s now have a look at a concrete example using the Marathon framework and a user wanting to launch a container based on a Docker image:
 
@@ -97,5 +98,21 @@ Let’s now have a look at a concrete example using the Marathon framework and a
 
 On a high level, the interaction between above components looks as follows (note that Executors and Task are folded into one block since in practice this is often the case):
 
-TBD: insert sequence diagram and detailed steps table here
+![Sequence diagram for distributed process management in DC/OS](img/dcos-architecture-distributed-process-management-seq-diagram.png)
 
+
+
+| Step | Description | Details       |
+| ---- | ----------- | ------------- |
+| 1    | Client - Scheduler init | Client needs to know how to connect to the Scheduler in order to launch a process, for example via Mesos-DNS or DC/OS CLI |
+| 2    | Mesos Master sends resource offer to Scheduler| The resource offers are based on cluster resources managed through Agents and the [DRF](https://www.cs.berkeley.edu/~alig/papers/drf.pdf) algorithm in Mesos Master.|
+| 3    | Scheduler declines resource offer since no process requests from Clients are pending | As long as no clients have initiated a process, the scheduler will reject offers from the Master |
+| 4    | Client initiates process launch | For example, this could be a user creating a Marathon app via the UI or via the HTTP endpoint `/v2/app` |
+| 5    | Mesos Master sends resource offers | For example, `cpus(*):1; mem(*):128; ports(*):[21452-21452]` |
+| 6    | If resource offer matches the requirements the Scheduler has for the process, it accepts the offer and sends a `launchTask` request to Mesos Master |  |
+| 7    |  |  |
+| 8    |  |  |
+| 9    |  |  |
+| 10   |  |  |
+| 11   |  |  |
+| 12   |  |  |
