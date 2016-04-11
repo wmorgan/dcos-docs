@@ -25,46 +25,46 @@ Once you had a good look around in the DC/OS Dashboard and familiarized yourself
 
 - If you are have a devops role:
   - How to run [NGINX](/usage/examples/nginx) on DC/OS
-  - How to run [MySQL](/usage/examples/mysql) on DC/OS
-  - How to run [PostgreSQL](/usage/examples/postgres) on DC/OS
   - How to run a [Ruby on Rails](/usage/examples/ruby-on-rails) app on DC/OS
   - How to run a [.NET](/usage/examples/asp-dot-net) app on DC/OS
   - How to run [Tomcat](/usage/examples/tomcat) on DC/OS
   - How to run [Jekyll](/usage/examples/jekyll) on DC/OS
   - How to run [Jenkins](/usage/services/jenkins) on DC/OS
+- If you have a data engineering or data scientists role:
   - How to run [Spark](/usage/examples/Spark) on DC/OS
   - How to run [Cassandra](/usage/services/cassandra) on DC/OS
   - How to run [Kafka](/usage/examples/kafka) on DC/OS
   - How to run [Elasticsearch](/usage/examples/elasticsearch) on DC/OS
   - How to run [Redis](/usage/examples/redis) on DC/OS
 - If you are administrating a DC/OS cluster:
-  - /administration/resizing
-  - /administration/upgrading
-  - /overview/monitoring
+  - How to [resize](/administration/resizing) a DC/OS cluster 
+  - How to [upgrade](/administration/upgrading) a DC/OS cluster 
+  - How to [monitor](/administration/monitoring) a DC/OS cluster 
 
 ## Intermediate
 
 So you've been playing around with DC/OS for a bit now and want to dive a bit deeper into its features? Here we go:
 
-- Check out the [DC/OS Architecture](/overview/architecture)
-- Check out the [High Availability](/overview/high-availability) characteristics of DC/OS
-- Check out the [Security](/overview/security) characteristics of DC/OS
+- If you want to learn more about how DC/OS works:
+  - Check out the [DC/OS Architecture](/overview/architecture)
+  - Check out the [High Availability](/overview/high-availability) characteristics of DC/OS
+  - Check out the [Security](/overview/security) characteristics of DC/OS
+  - Check out [Container Operations](/overview/container-operations) using DC/OS
 - If you are have a devops role:
-  - /usage/stateful-services
-  - /overview/service-discovery
-  - /overview/container-operations
-  - /usage/examples/wordpress
-  - /usage/examples/consul
-  - /usage/examples/docker-registry
-  - /usage/examples/microservices
-  - /usage/examples/vault
-  - /usage/debugging
+  - How to implement a [microservices](/usage/examples/microservices) architecture on DC/OS
+  - How to deal with [service discovery](/usage/examples/service-discovery) in DC/OS
+  - How to [debug](/usage/examples/debugging) your app in DC/OS
+  - How to run [MySQL](/usage/examples/mysql) on DC/OS
+  - How to run [PostgreSQL](/usage/examples/postgres) on DC/OS
+  - How to run [Wordpress](/usage/examples/wordpress) on DC/OS
 - If you are administrating a DC/OS cluster:
-  - /administration/logging
-  - /administration/monitoring
-  - /administration/monitoring/nagios
-  - /overview/autoscaling
-  - /overview/load-balancing
+  - How to run a [Docker registry](/usage/examples/docker-registry) on DC/OS
+  - How to run a [Vault](/usage/examples/vault) on DC/OS  
+  - How to run [Consul](/usage/examples/consul) on DC/OS
+  - How to handle [logging](/usage/examples/logging) in DC/OS
+  - How to handle [monitoring](/usage/examples/monitoring) in DC/OS
+  - How to handle [auto-scaling](/usage/examples/autoscaling) in DC/OS
+  - How to handle [load-balancing](/usage/examples/load-balancing) in DC/OS
 
 ## Advanced
 
@@ -72,9 +72,11 @@ You are now a seasoned DC/OS user and want to adapt and extend DC/OS? Have a loo
 
 - Learn how to [contribute](/overview/contribution) to DC/OS
 - If you are have a devops role:
-  - /usage/packaging
+  - How to handle [stateful services](/usage/examples/stateful-services) in DC/OS
+  - How to [package](/usage/examples/packaging) your service
+  - How do I [migrate](/overview/migration) an existing app to DC/OS
 - If you are administrating a DC/OS cluster:
-  - /administration/system-services
-  - /administration/telemetry
-  - /administration/proxy
-  - /overview/migration
+  - Understand the [system components](/administration/system-components) in DC/OS
+  - Understand DC/OS [telemetry](/administration/telemetry)
+  - How to do monitor DC/OS using [Nagios](/administration/monitoring/nagios)
+  - How to set up a [proxy](/administration/proxy)
