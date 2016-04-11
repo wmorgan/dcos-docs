@@ -22,7 +22,7 @@ If you're savvy with a terminal, you might also want to play around with the [DC
 
 # What Can I Do With It?
 
-First, take a look at the [package repository][5] and install you favorite [services][6] with ease.
+First, take a look at the [package repository][5] and install your favorite [services][6] with ease.
 
 For a more curated experience, follow one of our [tutorials][7].
 
