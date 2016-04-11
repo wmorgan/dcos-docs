@@ -29,6 +29,9 @@ Once you had a good look around in the DC/OS Dashboard and familiarized yourself
   - How to run a [.NET](/usage/examples/asp-dot-net) app on DC/OS
   - How to run [Tomcat](/usage/examples/tomcat) on DC/OS
   - How to run [Jekyll](/usage/examples/jekyll) on DC/OS
+  - How to run [MySQL](/usage/examples/mysql) on DC/OS
+  - How to run [PostgreSQL](/usage/examples/postgres) on DC/OS
+  - How to run [Wordpress](/usage/examples/wordpress) on DC/OS
   - How to run [Jenkins](/usage/services/jenkins) on DC/OS
 - If you have a data engineering or data scientists role:
   - How to run [Spark](/usage/examples/Spark) on DC/OS
@@ -54,9 +57,8 @@ So you've been playing around with DC/OS for a bit now and want to dive a bit de
   - How to implement a [microservices](/usage/examples/microservices) architecture on DC/OS
   - How to deal with [service discovery](/usage/examples/service-discovery) in DC/OS
   - How to [debug](/usage/examples/debugging) your app in DC/OS
-  - How to run [MySQL](/usage/examples/mysql) on DC/OS
-  - How to run [PostgreSQL](/usage/examples/postgres) on DC/OS
-  - How to run [Wordpress](/usage/examples/wordpress) on DC/OS
+  - How to run [MySQL HA](/usage/examples/mysql-ha) on DC/OS
+  - How to run [PostgreSQL HA](/usage/examples/postgres-ha) on DC/OS
 - If you are administrating a DC/OS cluster:
   - How to run a [Docker registry](/usage/examples/docker-registry) on DC/OS
   - How to run a [Vault](/usage/examples/vault) on DC/OS  
