@@ -26,9 +26,7 @@ Contribute to the docs using one of the following options:
 * Create a Github issue with a suggestion for a tutorial (for example: I'd like to see a tutorial on Apache Kafka)
 * Update or write a new doc yourself following the [Contributing Guidelines](CONTRIBUTING.md)
 
-See the [TODO list](TODO.md) for a list of pages that need writing.
-
-# License and Authors
+## License and Authors
 
 Copyright:: 2016 Mesosphere, Inc.
 
