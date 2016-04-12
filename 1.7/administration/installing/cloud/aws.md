@@ -4,23 +4,20 @@ layout: docs.jade
 published: true
 ---
 
-# Overview
+You can create a DC/OS cluster for Amazon Web Services (AWS) by using the DC/OS template on AWS CloudFormation.
 
-This document explains how to install DC/OS via AWS.
+Depending on the DC/OS services that you install, you might have to modify the DC/OS templates to suit your needs. For more information, see [Scaling the DC/OS cluster in AWS][1].
 
 # System requirements
 
 ## Hardware
 
-In order to [use](/usage/) all of the services offered in DC/OS you should choose 
-
-Selecting smaller-sized VMs is not recommended, and selecting fewer VMs will likely cause certain resource-intensive services such as distributed datastores not to work properly (from installation issues to operational limitations).
+An Amazon EC2 <a href="https://aws.amazon.com/ec2/pricing/" target="_blank">m3.xlarge</a> instance.  Selecting smaller-sized VMs is not recommended, and selecting fewer VMs will likely cause certain resource-intensive services, such as distributed datastores, to not work properly.
 
 ## Software
 
-You will need an AWS account.
-
-Also, in order to access nodes in the DC/OS cluster you will need `ssh` installed and configured.
+- An AWS account.
+- SSH installed and configured. This is required for accessing nodes in the DC/OS cluster.
 
 # Install DC/OS
 
@@ -38,36 +35,68 @@ In the navigation pane, under `Network & Security`, click `Key Pairs` and then c
 
 Save the `.pem` file locally for use later. Note that this is the only chance to save file!
 
+## Step 2: Launching a DC/OS cluster
 
-## Step 2: Launching DC/OS cluster
+1.  Launch the <a href="http://dcos.io/amazon/setup" target="_blank">DC/OS template</a> on CloudFormation and select the region and number of masters. You must have a key pair for your selected region.
+    
+    **Important:** The DC/OS template is configured for running DC/OS. If you modify the template you might be unable to run certain packages on your DC/OS cluster. 
+    
+    ![Configure template](aws/img/dcos-aws-step2a.png)
 
-First, select a launch region (the one you created the key pair in) and the preferred cluster configuration:
+2.  On the **Select Template** page, accept the defaults and click **Next**.
 
-![Configure template](aws/img/dcos-aws-step2a.png)
+    ![Launch stack](aws/img/dcos-aws-step2b.png)
 
-Launch stack (just click `Next`, nothing to change on this screen):
+3.  On the **Specify Details** page, specify a cluster name (`Stack name
+`), accept the <a href="/community-edition-eula/" target="_blank">EULA</a> (AcceptEULA), SSH key (`KeyName`), the number of public (`PublicSlaveInstanceCount`) and private (`SlaveInstanceCount
+`) agents and click **Next**. The other parameters are optional.
 
-![Launch stack](aws/img/dcos-aws-step2b.png)
+    Here is the recommended cluster configuration:
+    *   5 Mesos private agent nodes
+    *   1 Mesos public agent node 
+    
+    ![Create stack](aws/img/dcos-aws-step2c.png)
 
-On the `Create stack` page, enter a name for your cluster, accept the EULA, select number of private Agents and click `Next`:
+4.  On the **Options** page, accept the defaults and click **Next**.
+    
+    **Tip:** You can choose whether to rollback on failure. By default this option is set to **Yes**.
+    
+    ![Confirm stack](aws/img/dcos-aws-step2d.png)
 
-![Create stack](aws/img/dcos-aws-step2c.png)
+5.  On the **Review** page, check the acknowledgement box and then click **Create**.
+    
+    **Tip:** If the **Create New Stack** page is shown, either AWS is still processing your request or you’re looking at a different region. Navigate to the correct region and refresh the page to see your stack.
 
-On the `Options` page, accept the defaults and click Next. On the Review page, check the acknowledgement box and click `Create`:
+# Monitor the DC/OS cluster convergence process
 
-![Confirm stack](aws/img/dcos-aws-step2d.png)
+In <a href="https://console.aws.amazon.com/cloudformation/home" target="_blank">CloudFormation</a> you should see:
 
-The stack spins up over a period of 10 to 15 minutes. The status changes from `CREATE_IN_PROGRESS` to `CREATE_COMPLETE`:
+*   The cluster stack spins up over a period of 10 to 15 minutes.
 
-![Monitor stack creation](aws/img/dcos-aws-step2e.png)
+*   The status changes from CREATE_IN_PROGRESS to CREATE_COMPLETE.
 
-## Step 3: Accessing DC/OS
+**Troubleshooting:** A ROLLBACK_COMPLETE status means the deployment has failed. See the **Events** tab for useful information about failures. For more information, see the <a href="https://support.mesosphere.com/hc/en-us/articles/205316535-Why-did-my-AWS-cluster-Rollback-" target="_blank">Mesosphere Knowledge Base</a>.
 
-From the CloudFormation Management page, click on the `Outputs` tab and copy/paste the Mesos Master hostname into your browser:
+# <a name="launchdcos"></a>Launch DC/OS
 
-![Monitor stack creation](aws/img/dcos-aws-step3a.png)
+Launch the DC/OS web interface by entering the Mesos Master hostname:
 
+1.  From the <a href="https://console.aws.amazon.com/cloudformation/home" target="_blank">Amazon CloudFormation Management</a> page, click to check the box next to your stack.
+
+2.  Click on the **Outputs** tab and copy/paste the Mesos Master hostname into your browser to open the DC/OS web interface. The interface runs on the standard HTTP port 80, so you do not need to specify a port number after the hostname.
+    
+    **Tip:** You might need to resize your window to see this tab. You can find your DC/OS hostname any time from the <a href="https://console.aws.amazon.com/cloudformation/home" target="_blank">Amazon CloudFormation Management</a> page.
+    
+    ![Monitor stack creation](aws/img/dcos-aws-step3a.png)
 
 # Next steps
 
+- [Install the DC/OS Command-Line Interface (CLI)][5]. 
 - [Scaling considerations](https://aws.amazon.com/autoscaling/)
+
+ [1]: /administration/managing-a-dcos-cluster-in-aws/#scrollNav-1
+ [2]: /overview/security/#scrollNav-1
+ [3]: /overview/security/#scrollNav-2
+ [4]: /overview/security/#scrollNav-3
+ [5]: /usage/cli/install/
+ [6]: /usage/tutorials/containerized-app/
