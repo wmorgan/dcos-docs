@@ -4,7 +4,7 @@ post_title: >
   Marathon Deployment on Velocity
   Walkthrough
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 110
 page_options_require_authentication: false

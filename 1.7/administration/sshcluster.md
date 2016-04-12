@@ -2,7 +2,7 @@
 UID: 56f98449546cf
 post_title: SSHing into Nodes
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 15
 page_options_require_authentication: false

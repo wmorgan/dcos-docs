@@ -2,7 +2,7 @@
 UID: 5703eac5ec464
 post_title: System Requirements
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 1
 page_options_require_authentication: false

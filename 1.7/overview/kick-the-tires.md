@@ -2,7 +2,7 @@
 UID: 5706a5e03f872
 post_title: Kick the Tires
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 5
 page_options_require_authentication: false

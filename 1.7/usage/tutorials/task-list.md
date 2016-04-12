@@ -2,7 +2,7 @@
 UID: 5705936c00b4a
 post_title: Listing Tasks
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 0
 page_options_require_authentication: false

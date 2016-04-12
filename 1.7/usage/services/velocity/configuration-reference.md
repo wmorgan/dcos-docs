@@ -2,7 +2,7 @@
 UID: 56f984454f791
 post_title: Configuration Reference
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 130
 page_options_require_authentication: false

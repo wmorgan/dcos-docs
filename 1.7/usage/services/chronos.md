@@ -2,7 +2,7 @@
 UID: 56f98449a773c
 post_title: Chronos
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 11
 page_options_require_authentication: false

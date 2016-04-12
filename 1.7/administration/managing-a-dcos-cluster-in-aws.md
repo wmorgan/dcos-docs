@@ -2,7 +2,7 @@
 UID: 56f98447c920b
 post_title: Managing AWS Clusters
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 13
 page_options_require_authentication: false

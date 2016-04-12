@@ -2,7 +2,7 @@
 UID: 56f98446a1383
 post_title: Advanced Features of marathon-lb
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 115
 page_options_require_authentication: false

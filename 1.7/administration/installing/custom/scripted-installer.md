@@ -2,7 +2,7 @@
 UID: 5703eac617d56
 post_title: Scripted Installer
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 2
 page_options_require_authentication: false

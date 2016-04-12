@@ -2,7 +2,7 @@
 UID: 56f98445387d2
 post_title: Assigning a Virtual IP Addresses
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 100
 page_options_require_authentication: false

@@ -2,7 +2,7 @@
 UID: 56f9844569787
 post_title: Creating Custom Build Agents
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 104
 page_options_require_authentication: false

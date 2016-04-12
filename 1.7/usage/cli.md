@@ -2,7 +2,7 @@
 UID: 56f98449e7e89
 post_title: Command Line Interface
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 2
 page_options_require_authentication: false

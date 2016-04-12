@@ -2,7 +2,7 @@
 UID: 56f98446e5623
 post_title: Overview of Mesos-DNS
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 1
 page_options_require_authentication: false

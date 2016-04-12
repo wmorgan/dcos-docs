@@ -2,7 +2,7 @@
 UID: 56f9844a945b9
 post_title: Support and Feedback
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 46
 page_options_require_authentication: false

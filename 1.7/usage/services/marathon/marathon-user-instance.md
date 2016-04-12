@@ -2,7 +2,7 @@
 UID: 56f984492e389
 post_title: Adding a Marathon User Instance
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 26
 page_options_require_authentication: false

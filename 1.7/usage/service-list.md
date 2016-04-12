@@ -2,7 +2,7 @@
 UID: 56f98447f1528
 post_title: Listing Installed Services
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 6
 page_options_require_authentication: false

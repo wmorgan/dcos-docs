@@ -1,6 +1,6 @@
 ---
 post_title: DCOS Service Certification Criteria
-layout: page
+layout: docs.jade
 published: true
 ---
 

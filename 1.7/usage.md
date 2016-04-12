@@ -2,7 +2,7 @@
 UID: 56f9844aa8e6c
 post_title: Usage
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 36
 page_options_require_authentication: false
@@ -40,9 +40,9 @@ Once you had a good look around in the DC/OS Dashboard and familiarized yourself
   - How to run [Elasticsearch](/usage/examples/elasticsearch) on DC/OS
   - How to run [Redis](/usage/examples/redis) on DC/OS
 - If you are administrating a DC/OS cluster:
-  - How to [resize](/administration/resizing) a DC/OS cluster 
-  - How to [upgrade](/administration/upgrading) a DC/OS cluster 
-  - How to [monitor](/administration/monitoring) a DC/OS cluster 
+  - How to [resize](/administration/resizing) a DC/OS cluster
+  - How to [upgrade](/administration/upgrading) a DC/OS cluster
+  - How to [monitor](/administration/monitoring) a DC/OS cluster
 
 ## Intermediate
 

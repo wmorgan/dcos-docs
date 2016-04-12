@@ -1,7 +1,7 @@
 ---
 post_title: What is DC/OS?
 post_excerpt: "DC/OS is a distribution of software that allows you to manage everything from two “machines” to thousands, as if they are a single computer. It automates placing processes, managing resources and configuring inter-process communication."
-layout: page
+layout: docs.jade
 published: true
 menu_order: 1
 page_options_require_authentication: false

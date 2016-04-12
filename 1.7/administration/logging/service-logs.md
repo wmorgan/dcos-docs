@@ -2,7 +2,7 @@
 UID: 56f9844a1a15f
 post_title: Service Logging
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 2
 page_options_require_authentication: false

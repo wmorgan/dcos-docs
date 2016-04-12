@@ -2,7 +2,7 @@
 UID: 56f984469bd54
 post_title: Service Discovery and Load Balancing
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 6
 page_options_require_authentication: false

@@ -2,7 +2,7 @@
 UID: 56f98445be00e
 post_title: Jenkins
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 14
 page_options_require_authentication: false

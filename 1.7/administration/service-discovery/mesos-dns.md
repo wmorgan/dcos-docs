@@ -2,7 +2,7 @@
 UID: 56f98446df6eb
 post_title: Service Discovery with Mesos-DNS
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 6
 page_options_require_authentication: false

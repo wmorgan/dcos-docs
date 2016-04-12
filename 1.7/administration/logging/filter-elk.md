@@ -2,7 +2,7 @@
 UID: 56f9844a3b585
 post_title: Filtering Task Logs with ELK
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 4
 page_options_require_authentication: false

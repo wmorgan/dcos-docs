@@ -2,7 +2,7 @@
 UID: 56f98445756de
 post_title: Velocity
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 19
 page_options_require_authentication: false

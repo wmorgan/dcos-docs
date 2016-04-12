@@ -1,7 +1,7 @@
 ---
 post_title: High Availability in DC/OS
 post_excerpt: "Describes high availability in DC/OS"
-layout: page
+layout: docs.jade
 published: true
 menu_order: 1
 page_options_require_authentication: false

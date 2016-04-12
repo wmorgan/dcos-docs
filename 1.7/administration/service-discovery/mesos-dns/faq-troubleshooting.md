@@ -2,7 +2,7 @@
 UID: 56f98446d83f7
 post_title: 'FAQ &#038; Troubleshooting'
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 4
 page_options_require_authentication: false

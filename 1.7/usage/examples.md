@@ -1,6 +1,6 @@
 ---
 post_title: Examples
-layout: page
+layout: docs.jade
 ---
 These are examples of how to run popular services on DCOS.
 

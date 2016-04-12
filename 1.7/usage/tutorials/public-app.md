@@ -2,7 +2,7 @@
 UID: 56f98449df041
 post_title: Running Your App on Public Nodes
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 12
 page_options_require_authentication: false

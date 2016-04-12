@@ -2,7 +2,7 @@
 UID: 56f984496ddfc
 post_title: Marathon
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 17
 page_options_require_authentication: false

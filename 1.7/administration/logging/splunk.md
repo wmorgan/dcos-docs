@@ -2,7 +2,7 @@
 UID: 56f9844a100f4
 post_title: Log Management with Splunk
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 5
 page_options_require_authentication: false

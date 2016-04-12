@@ -1,7 +1,7 @@
 ---
 post_title: The Architecture of DC/OS
 post_excerpt: "Explains the Architecture of DC/OS, boot sequence and distributed process management"
-layout: page
+layout: docs.jade
 published: true
 menu_order: 1
 page_options_require_authentication: false

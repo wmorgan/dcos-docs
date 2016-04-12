@@ -2,7 +2,7 @@
 UID: 56f9844a21f53
 post_title: Logging
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 17
 page_options_require_authentication: false

@@ -2,7 +2,7 @@
 UID: 56f98445a9ae4
 post_title: Service Requirements Specification
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 100
 page_options_require_authentication: false

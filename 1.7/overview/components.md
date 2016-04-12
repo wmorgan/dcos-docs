@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: docs.jade
 title: "An Introduction to DC/OS Components"
 date: 2016-04-10 13:20:36 -0700
 comments: true

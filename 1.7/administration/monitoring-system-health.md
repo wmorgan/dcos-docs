@@ -2,7 +2,7 @@
 UID: 56f9ad68e48cc
 post_title: Monitoring System Health
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 100
 page_options_require_authentication: false

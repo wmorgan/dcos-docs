@@ -2,7 +2,7 @@
 UID: 56f984483ebbe
 post_title: HDFS Capacity
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 105
 page_options_require_authentication: false

@@ -2,7 +2,7 @@
 UID: 56f9844a74f88
 post_title: Installing the CLI
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 1
 page_options_require_authentication: false

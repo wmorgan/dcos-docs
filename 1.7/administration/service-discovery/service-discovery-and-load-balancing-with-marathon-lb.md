@@ -4,7 +4,7 @@ post_title: >
   Service Discovery and Load Balancing
   with marathon-lb
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 105
 page_options_require_authentication: false

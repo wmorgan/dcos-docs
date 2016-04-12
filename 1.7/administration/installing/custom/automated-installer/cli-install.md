@@ -2,7 +2,7 @@
 UID: 5708121e3f1ae
 post_title: Command Line
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 3
 page_options_require_authentication: false

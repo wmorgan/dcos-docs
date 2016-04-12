@@ -4,7 +4,7 @@ post_title: >
   Using A Custom Domain For DCOS Service
   Discovery
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 105
 page_options_require_authentication: false

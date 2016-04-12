@@ -2,7 +2,7 @@
 UID: 56f984497821a
 post_title: Kubernetes
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 16
 page_options_require_authentication: false

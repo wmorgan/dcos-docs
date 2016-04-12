@@ -2,7 +2,7 @@
 UID: 56f98444d99d1
 post_title: Developing Services
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 100
 page_options_require_authentication: false

@@ -2,7 +2,7 @@
 UID: 56f984484cb28
 post_title: Creating a Chronos job
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 105
 page_options_require_authentication: false

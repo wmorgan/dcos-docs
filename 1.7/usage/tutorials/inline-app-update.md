@@ -2,7 +2,7 @@
 UID: 5705936ad654f
 post_title: Inline App Update
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 0
 page_options_require_authentication: false

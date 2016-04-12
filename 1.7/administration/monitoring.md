@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: docs.jade
 title: "Monitoring DC/OS"
 date: 2016-03-25 10:04:54 -0700
 comments: true

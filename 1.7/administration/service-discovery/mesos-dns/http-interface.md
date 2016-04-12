@@ -2,7 +2,7 @@
 UID: 56f98446d0618
 post_title: HTTP Interface
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 3
 page_options_require_authentication: false

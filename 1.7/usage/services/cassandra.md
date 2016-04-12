@@ -2,7 +2,7 @@
 UID: 56f98449afc05
 post_title: Cassandra
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 10
 page_options_require_authentication: false

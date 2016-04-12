@@ -2,7 +2,7 @@
 UID: 5703eac639700
 post_title: Configure and install DCOS
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 3
 page_options_require_authentication: false

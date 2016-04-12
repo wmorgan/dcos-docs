@@ -2,7 +2,7 @@
 UID: 56f98447ea6a8
 post_title: Customizing Your Spark Installation
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 105
 page_options_require_authentication: false

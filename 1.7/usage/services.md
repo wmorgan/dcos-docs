@@ -2,7 +2,7 @@
 UID: 56f98444def8a
 post_title: Services
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 99
 page_options_require_authentication: false

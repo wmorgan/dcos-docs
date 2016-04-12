@@ -2,7 +2,7 @@
 UID: 5703eac5c8a9f
 post_title: GUI
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 2
 page_options_require_authentication: false

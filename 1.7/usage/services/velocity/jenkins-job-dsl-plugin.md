@@ -2,7 +2,7 @@
 UID: 56f984455d36f
 post_title: Using the Jenkins Job DSL plugin
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 120
 page_options_require_authentication: false

@@ -1,6 +1,6 @@
 ---
 post_title: Install DC/OS on Azure
-layout: page
+layout: docs.jade
 published: true
 ---
 

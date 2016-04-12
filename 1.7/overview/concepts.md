@@ -2,7 +2,7 @@
 UID: 56f98449d141e
 post_title: Concepts
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 3
 page_options_require_authentication: false

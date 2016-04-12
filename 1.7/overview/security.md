@@ -2,7 +2,7 @@
 UID: 56f98449d6863
 post_title: Network Security
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 4
 page_options_require_authentication: false

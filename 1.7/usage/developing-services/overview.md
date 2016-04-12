@@ -2,7 +2,7 @@
 UID: 56f9844599c70
 post_title: Overview
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 100
 page_options_require_authentication: false

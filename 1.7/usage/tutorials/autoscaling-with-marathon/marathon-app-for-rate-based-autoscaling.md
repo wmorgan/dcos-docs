@@ -2,7 +2,7 @@
 UID: 56f9844863e83
 post_title: Autoscaling based on app request rate
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 2
 page_options_require_authentication: false

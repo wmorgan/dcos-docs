@@ -2,7 +2,7 @@
 UID: 5703eac65ca19
 post_title: Create A Script for IP Address Discovery
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 2
 page_options_require_authentication: false

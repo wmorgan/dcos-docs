@@ -2,7 +2,7 @@
 UID: 56f9844984a01
 post_title: Kafka
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 15
 page_options_require_authentication: false
