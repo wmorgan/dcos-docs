@@ -24,21 +24,21 @@ If you now go to the DC/OS Dashboard and open the Marathon service you [see](img
 Once you had a good look around in the DC/OS Dashboard and familiarized yourself with the DC/OS CLI, here are a few things you might want to check out:
 
 - If you are have a devops role:
-  - How to run [NGINX](/usage/examples/nginx) on DC/OS
-  - How to run a [Ruby on Rails](/usage/examples/ruby-on-rails) app on DC/OS
-  - How to run a [.NET](/usage/examples/asp-dot-net) app on DC/OS
-  - How to run [Tomcat](/usage/examples/tomcat) on DC/OS
-  - How to run [Jekyll](/usage/examples/jekyll) on DC/OS
-  - How to run [MySQL](/usage/examples/mysql) on DC/OS
-  - How to run [PostgreSQL](/usage/examples/postgres) on DC/OS
-  - How to run [Wordpress](/usage/examples/wordpress) on DC/OS
-  - How to run [Jenkins](/usage/services/jenkins) on DC/OS
+  - How to run [NGINX](/usage/tutorials/nginx)
+  - How to run a [Ruby on Rails](/usage/tutorials/ruby-on-rails) app
+  - How to run a [.NET](/usage/tutorials/asp-dot-net) app
+  - How to run [Tomcat](/usage/tutorials/tomcat)
+  - How to run [Jekyll](/usage/tutorials/jekyll)
+  - How to run [MySQL](/usage/tutorials/mysql)
+  - How to run [PostgreSQL](/usage/tutorials/postgres)
+  - How to run [Wordpress](/usage/tutorials/wordpress)
+  - How to run [Jenkins](/usage/tutorials/jenkins)
 - If you have a data engineering or data scientists role:
-  - How to run [Spark](/usage/examples/Spark) on DC/OS
-  - How to run [Cassandra](/usage/services/cassandra) on DC/OS
-  - How to run [Kafka](/usage/examples/kafka) on DC/OS
-  - How to run [Elasticsearch](/usage/examples/elasticsearch) on DC/OS
-  - How to run [Redis](/usage/examples/redis) on DC/OS
+  - How to run [Spark](/usage/tutorials/spark)
+  - How to run [Cassandra](/usage/tutorials/cassandra)
+  - How to run [Kafka](/usage/tutorials/kafka)
+  - How to run [Elasticsearch](/usage/tutorials/elasticsearch)
+  - How to run [Redis](/usage/tutorials/redis)
 - If you are administrating a DC/OS cluster:
   - How to [resize](/administration/resizing) a DC/OS cluster
   - How to [upgrade](/administration/upgrading) a DC/OS cluster
@@ -54,19 +54,19 @@ So you've been playing around with DC/OS for a bit now and want to dive a bit de
   - Check out the [Security](/overview/security) characteristics of DC/OS
   - Check out [Container Operations](/overview/container-operations) using DC/OS
 - If you are have a devops role:
-  - How to implement a [microservices](/usage/examples/microservices) architecture on DC/OS
-  - How to deal with [service discovery](/usage/examples/service-discovery) in DC/OS
-  - How to [debug](/usage/examples/debugging) your app in DC/OS
-  - How to run [MySQL HA](/usage/examples/mysql-ha) on DC/OS
-  - How to run [PostgreSQL HA](/usage/examples/postgres-ha) on DC/OS
+  - How to implement a [microservices](/usage/tutorials/microservices) architecture
+  - How to deal with [service discovery](/usage/tutorials/service-discovery)
+  - How to [debug](/usage/tutorials/debugging) your app
+  - How to run [MySQL HA](/usage/tutorials/mysql-ha)
+  - How to run [PostgreSQL HA](/usage/tutorials/postgres-ha)
 - If you are administrating a DC/OS cluster:
-  - How to run a [Docker registry](/usage/examples/docker-registry) on DC/OS
-  - How to run a [Vault](/usage/examples/vault) on DC/OS  
-  - How to run [Consul](/usage/examples/consul) on DC/OS
-  - How to handle [logging](/usage/examples/logging) in DC/OS
-  - How to handle [monitoring](/usage/examples/monitoring) in DC/OS
-  - How to handle [auto-scaling](/usage/examples/autoscaling) in DC/OS
-  - How to handle [load-balancing](/usage/examples/load-balancing) in DC/OS
+  - How to run a [Docker registry](/usage/tutorials/docker-registry)
+  - How to run a [Vault](/usage/tutorials/vault)
+  - How to run [Consul](/usage/tutorials/consul)
+  - How to handle [logging](/usage/tutorials/logging)
+  - How to handle [monitoring](/usage/tutorials/monitoring)
+  - How to handle [auto-scaling](/usage/tutorials/autoscaling)
+  - How to handle [load-balancing](/usage/tutorials/load-balancing)
 
 ## Advanced
 
@@ -74,11 +74,11 @@ You are now a seasoned DC/OS user and want to adapt and extend DC/OS? Have a loo
 
 - Learn how to [contribute](/overview/contribution) to DC/OS
 - If you are have a devops role:
-  - How to handle [stateful services](/usage/examples/stateful-services) in DC/OS
-  - How to [package](/usage/examples/packaging) your service
+  - How to handle [stateful services](/usage/tutorials/stateful-services)
+  - How to [package](/usage/tutorials/packaging) your service
   - How do I [migrate](/overview/migration) an existing app to DC/OS
 - If you are administrating a DC/OS cluster:
-  - Understand the [system components](/administration/system-components) in DC/OS
+  - Understand the [system components](/administration/system-components) of DC/OS
   - Understand DC/OS [telemetry](/administration/telemetry)
   - How to do monitor DC/OS using [Nagios](/administration/monitoring/nagios)
   - How to set up a [proxy](/administration/proxy)
