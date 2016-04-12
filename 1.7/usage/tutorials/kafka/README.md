@@ -1,7 +1,7 @@
 ---
-post_title: Running Kafka on DC/OS
+post_title: How to use Apache Kafka on DC/OS
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 1
 page_options_require_authentication: false
@@ -10,11 +10,9 @@ hide_from_navigation: false
 hide_from_related: false
 ---
 
-[Apache Kafka](https://kafka.apache.org/) is a distributed, fast, highly scalable and durable publish-subscribe messaging system.
-In a nutshell, Kafka is a messaging system implemented as a distributed commit log.
-[Apache Zookeeper](https://zookeeper.apache.org/) is used for coordination.
-The purpose of Kafka is to serve real-time data ingestion systems with high-throughput and low-latency.
-Kafka is written is Scala.
+[Apache Kafka](https://kafka.apache.org/) is a distributed high-throughput publish-subscribe messaging system with strong ordering guarantees. Kafka clusters are highly available, fault tolerant, and very durable. DC/OS Kafka gives you direct access to the Kafka API so that existing producers and consumers can interoperate. You can configure and install DC/OS Kafka in moments. Multiple Kafka clusters can be installed on DC/OS and managed independently, so you can offer Kafka as a managed service to your organization.
+[Apache Zookeeper](https://zookeeper.apache.org/) is used by Kafka for coordination.
+The purpose of Kafka is to serve real-time data ingestion systems with high-throughput and low-latency. Kafka is written is Scala.
 
 
 **Time Estimate**:
@@ -30,6 +28,8 @@ This tutorial will take aproximatively 20 minutes to complete, given a DC/OS clu
 - pub/sub ... Publish/Subscribe messaging pattern
 - Broker ... A Kafka message broker that routes messages to one or more topics
 - Topic ... A Kafka topic: message filtering mechanism in the pub/sub systems. Subscribers register to receive/consume messages from topics
+- Publisher ... An application that publishes messages on Kafka
+- Consumer ... An application that consumes messages from Kafka
 - Universe ... The default DC/OS repository
 - Multiverse ... The extended DC/OS repository
 
@@ -38,6 +38,7 @@ This tutorial will take aproximatively 20 minutes to complete, given a DC/OS clu
 
 This tutorial will cover the installation of Kafka framework on DC/OS and dcos enhanced cli operations for Kafka.
 You will learn how to install Kafka framework, how to validate the Kafka framework is up and running and how to use the enhanced cli Kafka operations.
+You will learn about how to use Kafka on DC/OS, launching brokers and publishing/consuming messages.
 
 # Table of Contents
 
@@ -47,6 +48,25 @@ You will learn how to install Kafka framework, how to validate the Kafka framewo
 - Cluster Size - [Check Cluster Size](../getting-started/cluster-size)
 
 # Installing
+
+## Typical installation
+Assuming you have a DC/OS cluster up and running, the first step is to install Kafka. As the minimum cluster size for this tutorial I recommend at least three nodes with 2 CPUs and 2 GB of RAM available, each:
+
+```
+dcos package install kafka
+This will install Apache Kafka DCOS Service.
+Continue installing? [yes/no] yes
+Installing Marathon app for package [kafka] version [0.9.4.0]
+Installing CLI subcommand for package [kafka] version [0.9.4.0]
+New command available: dcos kafka
+The Apache Kafka DCOS Service is installed:
+  docs   - https://github.com/mesos/kafka
+  issues - https://github.com/mesos/kafka/issues
+```
+
+While the DC/OS command line interface (CLI) is immediately available it takes a few minutes until Kafka is actually running in the cluster.
+
+## Custom manual installation procedure
 
 Verify existing dcos repositories
 
@@ -71,9 +91,6 @@ Identify available versions for the Kafka framework
 
 Install the Kafka framework
 
-- Install the latest available kafka version
-`dcos package install --yes kafka`
-
 - Install/upgrade to a specific version of the kafka package
 `dcos package install --yes --force --package-version=<package_version> kafka`
 
@@ -84,7 +101,12 @@ Validate that Kafka service is healthy
 ![DCOS dashboard services status](img/dcos-dashboard-kafka-service-status.png)
 ![DCOS services status](img/dcos-services-kafka-service-status.png)
 
-# dcos Kafka operations
+## UI manual installation procedure
+
+On DC/OS you can also install the Kafka service from [DC/OS Univers dashboard](http://<dcos-master-dns>/#/universe/packages/)
+
+
+# DC/OS Kafka operations
 
 - Add Brokers
 `dcos kafka broker add 0..2`
@@ -148,6 +170,20 @@ broker started:
 - Add Topic
 `dcos kafka topic add t0 --broker 0`
 
+- Publishing and consuming messages
+
+```
+dcos kafka topic create topic1 --partitions 3 --replication 3
+dcos kafka connection
+dcos node ssh --master-proxy --master
+docker run -it mesosphere/kafka-client
+./kafka-console-producer.sh --broker-list ip-10-0-3-230.us-west-2.compute.internal:9092 --topic test
+This is a message
+This is another message
+./kafka-console-consumer.sh --zookeeper master.mesos:2181/kafka --topic test --from-beginning
+This is a message
+This is another message
+```
 
 # Cleanup
 
