@@ -18,17 +18,18 @@ For first-time users or developers looking to build services or modify DC/OS, th
 
 # Cloud Provisioning
 
-For users deploying to the public cloud, DC/OS offers configurable [cloud provisioning templates][2] for AWS and Azure that will manage virtual machines and DC/OS installation.
+For users deploying to the public cloud, DC/OS offers configurable cloud provisioning templates for [AWS][2] and [Azure][3] that will manage virtual machines and DC/OS installation.
 
 DCOS can be installed on other public and private clouds using the Datacenter Installation process, provided virtual machines and networks are created first.
 
 # Datacenter Installation
 
-For new users installing to existing virtual or physical machines, on-premises or in the cloud, the [Automated Installer][3] provides a guided experience for bootstrapping a DCOS cluster.
+For new users installing to existing virtual or physical machines, on-premises or in the cloud, the [Automated Installer][4] provides a guided experience for bootstrapping a DCOS cluster.
 
-For advanced users installing to existing virtual or physical machines, on-premises or in the cloud, the [Manual Installer][4] provides a scriptable, automatable interface to integrate with your preferred configuration management system.
+For advanced users installing to existing virtual or physical machines, on-premises or in the cloud, the [Manual Installer][5] provides a scriptable, automatable interface to integrate with your preferred configuration management system.
 
- [1]: /administration/installing/local
- [2]: /administration/installing/cloud
- [3]: /administration/installing/custom/automated-installer
- [3]: /administration/installing/custom/scripted-installer
+ [1]: /administration/installing/local/
+ [2]: /administration/installing/cloud/aws/
+ [3]: /administration/installing/cloud/azure/
+ [4]: /administration/installing/custom/automated-installer
+ [5]: /administration/installing/custom/scripted-installer
