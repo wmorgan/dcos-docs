@@ -10,15 +10,15 @@ page_options_show_link_unauthenticated: false
 hide_from_navigation: false
 hide_from_related: false
 ---
-If you've read through the other [overview][1] topics and you want some hands-on experience, the next step is to spin up a DCOS cluster for yourself.
+If you've read through the other [overview][1] topics and you want some hands-on experience, the next step is to spin up a DC/OS cluster for yourself.
 
-# Install DCOS
+# Install DC/OS
 
-The best way to try out DCOS is to [install the Community Edition][2] on your favorite cloud provider.
+The best way to try out DC/OS is to [install the Community Edition][2] on your favorite cloud provider.
 
-Once you've got DCOS installed, explore the [Web Interface][3].
+Once you've got DC/OS installed, explore the [Web Interface][3].
 
-If you're savvy with a terminal, you might also want to play around with the [DCOS CLI][4].
+If you're savvy with a terminal, you might also want to play around with the [DC/OS CLI][4].
 
 # What Can I Do With It?
 
@@ -30,7 +30,7 @@ For a more curated experience, follow one of our [tutorials][7].
 
 When you've got the basics down, read more about [developing your own services][8].
 
-Then continue down the road to mastery by perusing the docs on how to [administer a DCOS installation][9].
+Then continue down the road to mastery by perusing the docs on how to [administer a DC/OS installation][9].
 
 Enjoy!
 

@@ -10,15 +10,15 @@ page_options_show_link_unauthenticated: false
 hide_from_navigation: false
 hide_from_related: false
 ---
-Kafka is a distributed, partitioned, replicated commit log service. It provides the functionality of a messaging system, but with a unique design. The Kafka DCOS service also has its own CLI as well.
+Kafka is a distributed, partitioned, replicated commit log service. It provides the functionality of a messaging system, but with a unique design. The Kafka DC/OS service also has its own CLI as well.
 
-# <a name="kafkainstall"></a>Installing Kafka on DCOS
+# <a name="kafkainstall"></a>Installing Kafka on DC/OS
 
 **Prerequisite**
 
-*   The DCOS CLI must be [installed][1].
+*   The DC/OS CLI must be [installed][1].
 
-1.  From the DCOS CLI, enter this command to install the Kafka DCOS service and CLI:
+1.  From the DC/OS CLI, enter this command to install the Kafka DC/OS service and CLI:
     
         $ dcos package install kafka
         
@@ -29,7 +29,7 @@ Kafka is a distributed, partitioned, replicated commit log service. It provides 
 
 # <a name="uninstall"></a>Uninstalling Kafka
 
-1.  From the DCOS CLI, enter this command:
+1.  From the DC/OS CLI, enter this command:
     
         $ dcos package uninstall kafka
         

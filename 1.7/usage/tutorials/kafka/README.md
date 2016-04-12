@@ -27,12 +27,12 @@ In the following tutorial you will learn about how to use Kafka on DC/OS, launch
 Assuming you have a DC/OS cluster up and running, the first step is to install Kafka. As the minimum cluster size for this tutorial I recommend at least three nodes with 2 CPUs and 2 GB of RAM available, each:
 
     $ dcos package install kafka
-    This will install Apache Kafka DCOS Service.
+    This will install Apache Kafka DC/OS Service.
     Continue installing? [yes/no] yes
     Installing Marathon app for package [kafka] version [0.9.4.0]
     Installing CLI subcommand for package [kafka] version [0.9.4.0]
     New command available: dcos kafka
-    The Apache Kafka DCOS Service is installed:
+    The Apache Kafka DC/OS Service is installed:
       docs   - https://github.com/mesos/kafka
       issues - https://github.com/mesos/kafka/issues
       

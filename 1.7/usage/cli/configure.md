@@ -10,7 +10,7 @@ page_options_show_link_unauthenticated: false
 hide_from_navigation: false
 hide_from_related: false
 ---
-The DCOS CLI configuration can be seen using the following command:
+The DC/OS CLI configuration can be seen using the following command:
 
     $ dcos config show
     core.dcos_url=http://dcos.example.com
@@ -22,9 +22,9 @@ The DCOS CLI configuration can be seen using the following command:
 
 This configuration is stored in the `~/./dcos/dcos.toml` configuration file.
 
-# Configure DCOS URL
+# Configure DC/OS URL
 
-If you are using multiple DCOS installations (e.g. dev, test, prod), it may be necessary to reconfigure the CLI to point to a new cluster. This can be done by changing the value of the `dcos_url` configuration field.
+If you are using multiple DC/OS installations (e.g. dev, test, prod), it may be necessary to reconfigure the CLI to point to a new cluster. This can be done by changing the value of the `dcos_url` configuration field.
 
 *   See the current value of `dcos_url`:
     

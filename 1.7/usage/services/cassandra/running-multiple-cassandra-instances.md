@@ -10,15 +10,15 @@ page_options_show_link_unauthenticated: false
 hide_from_navigation: false
 hide_from_related: false
 ---
-In this tutorial, an additional instance of the DCOS Cassandra service is installed.
+In this tutorial, an additional instance of the DC/OS Cassandra service is installed.
 
 For each new instance, you must provide a unique Cassandra instance name in an `options.json` file and specify this file during Cassandra installation.
 
-By default, the DCOS Cassandra service creates an instance named `cassandra`. Additional instance names are created as `cassandra.<new-user>`.
+By default, the DC/OS Cassandra service creates an instance named `cassandra`. Additional instance names are created as `cassandra.<new-user>`.
 
 **Prerequisites:**
 
-*   [DCOS is installed][1]
+*   [DC/OS is installed][1]
 *   Sufficient resources to add more Cassandra hosts
 
 1.  Create an `options.json` file and specify the new Cassandra instance as `user3`. This new Cassandra instance is named: `cassandra.user3`.
@@ -30,7 +30,7 @@ By default, the DCOS Cassandra service creates an instance named `cassandra`. Ad
         }
         
 
-2.  From the DCOS CLI, run this command to install Cassandra with the options file specified:
+2.  From the DC/OS CLI, run this command to install Cassandra with the options file specified:
     
         dcos package install cassandra --options=options.json
         

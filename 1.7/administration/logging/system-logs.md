@@ -10,7 +10,7 @@ page_options_show_link_unauthenticated: false
 hide_from_navigation: false
 hide_from_related: false
 ---
-To access the DCOS core component logs, you must have SSH access to your DCOS cluster. The DCOS core components use the host’s systemd journal for logging; they do not use the standard Mesos sandbox logs.
+To access the DC/OS core component logs, you must have SSH access to your DC/OS cluster. The DC/OS core components use the host’s systemd journal for logging; they do not use the standard Mesos sandbox logs.
 
 1.  [SSH into your master node][1].
 
@@ -21,7 +21,7 @@ To access the DCOS core component logs, you must have SSH access to your DCOS cl
            journalctl -u dcos-nginx -b
         
     
-    **DCOS Marathon**
+    **DC/OS Marathon**
     
            journalctl -u dcos-marathon -b
         

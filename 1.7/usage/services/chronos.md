@@ -10,18 +10,18 @@ page_options_show_link_unauthenticated: false
 hide_from_navigation: false
 hide_from_related: false
 ---
-Chronos is the "cron" for your Mesosphere DCOS. It is a highly-available distributed job scheduler, providing the most robust way to run batch jobs in your datacenter. Chronos schedules jobs across the Mesos cluster and manages dependencies between jobs in an intelligent way.
+Chronos is the "cron" for your Mesosphere DC/OS. It is a highly-available distributed job scheduler, providing the most robust way to run batch jobs in your datacenter. Chronos schedules jobs across the Mesos cluster and manages dependencies between jobs in an intelligent way.
 
-*   [Installing Chronos on DCOS][1]
+*   [Installing Chronos on DC/OS][1]
 *   [Uninstalling Chronos][2]
 
-### <a name="chronosinstall"></a>Installing Chronos on DCOS
+### <a name="chronosinstall"></a>Installing Chronos on DC/OS
 
 **Prerequisite**
 
-*   The DCOS CLI must be [installed][3].
+*   The DC/OS CLI must be [installed][3].
 
-1.  From the DCOS CLI, enter this command:
+1.  From the DC/OS CLI, enter this command:
     
         $ dcos package install chronos
         
@@ -32,7 +32,7 @@ Chronos is the "cron" for your Mesosphere DCOS. It is a highly-available distrib
 
 ### <a name="uninstall"></a>Uninstalling Chronos
 
-1.  From the DCOS CLI, enter this command:
+1.  From the DC/OS CLI, enter this command:
     
         $ dcos package uninstall chronos
         

@@ -14,7 +14,7 @@ In this example, a Kafka broker is added by using the Kafka CLI.
 
 **Prerequisites:**
 
-*   The DCOS Kafka service is [installed][1]
+*   The DC/OS Kafka service is [installed][1]
 
 1.  From the Kafka CLI add a new broker:
     

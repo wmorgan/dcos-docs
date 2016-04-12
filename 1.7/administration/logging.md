@@ -10,6 +10,6 @@ page_options_show_link_unauthenticated: false
 hide_from_navigation: false
 hide_from_related: false
 ---
-DCOS cluster nodes generate logs that contain diagnostic and status information for DCOS core components and DCOS services.
+DC/OS cluster nodes generate logs that contain diagnostic and status information for DC/OS core components and DC/OS services.
 
-You can aggregate DCOS logs using your existing log infrastructure. This section explains how to view DCOS system and service logs, and how to manage DCOS logs with ELK and Splunk.
+You can aggregate DC/OS logs using your existing log infrastructure. This section explains how to view DC/OS system and service logs, and how to manage DC/OS logs with ELK and Splunk.

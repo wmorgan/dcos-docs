@@ -18,12 +18,12 @@ In this tutorial, a custom Docker app is created and added to Marathon.
 
 *   [Docker][1] installed on your workstation
 *   [Docker Hub][2] account
-*   [DCOS][3] installed
-*   [DCOS CLI][4] installed
+*   [DC/OS][3] installed
+*   [DC/OS CLI][4] installed
 
 # Create a custom Docker container
 
-1.  In the `dcos` directory created by the DCOS CLI installation script, create a new directory named `simple-docker-tutorial` and navigate to it:
+1.  In the `dcos` directory created by the DC/OS CLI installation script, create a new directory named `simple-docker-tutorial` and navigate to it:
     
         $ mkdir simple-docker-tutorial
         $ cd simple-docker-tutorial
@@ -99,7 +99,7 @@ In this tutorial, a custom Docker app is created and added to Marathon.
     
     This file specifies a simple Marathon application called “nginx” that runs one instance of itself on a public node.
 
-3.  Add the nginx Docker container to Marathon by using the DCOS command:
+3.  Add the nginx Docker container to Marathon by using the DC/OS command:
     
         $ dcos marathon app add nginx.json
         

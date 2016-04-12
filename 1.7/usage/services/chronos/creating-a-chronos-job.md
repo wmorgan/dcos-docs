@@ -14,9 +14,9 @@ In this example, a Chronos job that sleeps for 10 seconds is created.
 
 **Prerequisite:**
 
-*   The DCOS Chronos service is [installed][1]
+*   The DC/OS Chronos service is [installed][1]
 
-1.  From the DCOS Services page, click on the **chronos** link to go to the Chronos web interface.
+1.  From the DC/OS Services page, click on the **chronos** link to go to the Chronos web interface.
 
 2.  From the Chronos web interface, click **New Job**.
 

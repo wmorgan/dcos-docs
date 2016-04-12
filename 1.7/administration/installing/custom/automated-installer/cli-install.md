@@ -10,13 +10,13 @@ page_options_show_link_unauthenticated: false
 hide_from_navigation: false
 hide_from_related: false
 ---
-The automated command line installation method provides a guided installation of DCOS from the command line. With this method you can choose from the complete set of DCOS configuration options. 
+The automated command line installation method provides a guided installation of DC/OS from the command line. With this method you can choose from the complete set of DC/OS configuration options. 
 
 # Create a Script for IP Address Discovery
 
-In this step you create an IP detect script to broadcast the IP address of each node across the cluster. Each node in a DCOS cluster has a unique IP address that is used to communicate between nodes in the cluster. The IP detect script prints the unique IPv4 address of a node to STDOUT each time DCOS is started on the node.
+In this step you create an IP detect script to broadcast the IP address of each node across the cluster. Each node in a DC/OS cluster has a unique IP address that is used to communicate between nodes in the cluster. The IP detect script prints the unique IPv4 address of a node to STDOUT each time DC/OS is started on the node.
 
-**Important:** The IP address of a node must not change after DCOS is installed on the node. For example, the IP address must not change when a node is rebooted or if the DHCP lease is renewed. If the IP address of a node does change, the node must be [wiped and reinstalled][1].
+**Important:** The IP address of a node must not change after DC/OS is installed on the node. For example, the IP address must not change when a node is rebooted or if the DHCP lease is renewed. If the IP address of a node does change, the node must be [wiped and reinstalled][1].
 
 1.  Create a directory named `genconf` on your bootstrap node and navigate to it.
     
@@ -76,7 +76,7 @@ In this step you create an IP detect script to broadcast the IP address of each 
 
 # <a name="config-json"></a>Configure your cluster
 
-In this step you create a YAML configuration file that is customized for your environment. DCOS uses this configuration file during installation to generate your cluster installation files. In these instructions we assume that you are using ZooKeeper for shared storage.
+In this step you create a YAML configuration file that is customized for your environment. DC/OS uses this configuration file during installation to generate your cluster installation files. In these instructions we assume that you are using ZooKeeper for shared storage.
 
 1.  From your home directory, run this command to create a hashed password for superuser authentication, where `<superuser_password>` is the superuser password. Use the hashed password key for the `superuser_password_hash` parameter in your `config.yaml` file.
     
@@ -103,7 +103,7 @@ In this step you create a YAML configuration file that is customized for your en
         - <agent-private-ip-3>
         - <agent-private-ip-4>
         - <agent-private-ip-5>
-        # Use this bootstrap_url value unless you have moved the DCOS installer assets.   
+        # Use this bootstrap_url value unless you have moved the DC/OS installer assets.   
         bootstrap_url: file:///opt/dcos_install_tmp
         cluster_name: <cluster-name>
         exhibitor_storage_backend: zookeeper
@@ -130,9 +130,9 @@ In this step you create a YAML configuration file that is customized for your en
         $ cp <path-to-key> genconf/ssh_key && chmod 0600 genconf/ssh_key
         
 
-# <a name="install-bash"></a>Install DCOS
+# <a name="install-bash"></a>Install DC/OS
 
-In this step you create a custom DCOS build file on your bootstrap node and then install DCOS across your cluster nodes with SSH. With this installation method you create a bootstrap server that uses your SSH key and connects to every node to automate the deployment.
+In this step you create a custom DC/OS build file on your bootstrap node and then install DC/OS across your cluster nodes with SSH. With this installation method you create a bootstrap server that uses your SSH key and connects to every node to automate the deployment.
 
 You can view all of the automated command line installer options with the `--help` flag:
 
@@ -171,9 +171,9 @@ You can view all of the automated command line installer options with the `--hel
 
 **Tip:** If something goes wrong and you want to rerun your setup, use these cluster <a href="/administration/installing/installing-enterprise-edition/dcos-cleanup-script/" target="_blank">cleanup instructions</a>.
 
-To install DCOS:
+To install DC/OS:
 
-1.  From your home directory, run the DCOS installer shell script on your bootstrapping master nodes to generate a customized DCOS build. The setup script extracts a Docker container that uses the generic DCOS install files to create customized DCOS build files for your cluster. The build files are output to `./genconf/serve/`.
+1.  From your home directory, run the DC/OS installer shell script on your bootstrapping master nodes to generate a customized DC/OS build. The setup script extracts a Docker container that uses the generic DC/OS install files to create customized DC/OS build files for your cluster. The build files are output to `./genconf/serve/`.
     
         $ sudo bash dcos_generate_config.ee.sh --genconf
         
@@ -233,7 +233,7 @@ To install DCOS:
     
     **Tip:** For a detailed view, you can append log level debug (`-v`) to your command. For example `sudo bash dcos_generate_config.ee.sh --preflight -v`.
 
-4.  Install DCOS on your cluster.
+4.  Install DC/OS on your cluster.
     
         $ sudo bash dcos_generate_config.ee.sh --deploy
         
@@ -241,7 +241,7 @@ To install DCOS:
     Here is an example of the output.
     
         Running mesosphere/dcos-genconf docker with BUILD_DIR set to /home/centos/genconf
-        20:55:00 dcos_installer.action_lib.prettyprint:: ====> EXECUTING DCOS INSTALLATION
+        20:55:00 dcos_installer.action_lib.prettyprint:: ====> EXECUTING DC/OS INSTALLATION
         20:55:00 dcos_installer.action_lib.prettyprint:: ====> START deploy_master
         20:57:04 dcos_installer.action_lib.prettyprint:: ====> STAGE deploy_master
         20:57:04 dcos_installer.action_lib.prettyprint:: ====> STAGE deploy_master_cleanup
@@ -256,7 +256,7 @@ To install DCOS:
         20:59:19 dcos_installer.action_lib.prettyprint:: 1 out of 1 hosts successfully completed deploy_agent stage.
         
 
-5.  Run the DCOS diagnostic script to verify that services are up and running.
+5.  Run the DC/OS diagnostic script to verify that services are up and running.
     
         $ sudo bash dcos_generate_config.ee.sh --postflight
         
@@ -281,11 +281,11 @@ To install DCOS:
     
     ![alt text](/img/chef-zk-status.png)
     
-    When the status icons are green, you can access the DCOS web interface.
+    When the status icons are green, you can access the DC/OS web interface.
 
-7.  Launch the DCOS web interface at: `http://<public-master-ip>/`. 
+7.  Launch the DC/OS web interface at: `http://<public-master-ip>/`. 
 
-8.  Click **Log In To DCOS**.
+8.  Click **Log In To DC/OS**.
     
     ![alt text](/img/ui-installer-success1.png)
 
@@ -299,13 +299,13 @@ To install DCOS:
 
 # Next Steps
 
-### Add DCOS users
+### Add DC/OS users
 
-You can assign user roles and grant access to DCOS services. For more information, see the [documentation][5].
+You can assign user roles and grant access to DC/OS services. For more information, see the [documentation][5].
 
 ### Add more agent nodes
 
-After DCOS is installed and deployed across your cluster, you can add more agent nodes.
+After DC/OS is installed and deployed across your cluster, you can add more agent nodes.
 
 **Prerequisite:**
 
@@ -319,9 +319,9 @@ After DCOS is installed and deployed across your cluster, you can add more agent
     
     **Important:** You can ignore the errors that are shown. For example, during the `--preflight` you may see this error:
     
-        18:17:14::           Found an existing DCOS installation. To reinstall DCOS on this this machine you must
-        18:17:14::           first uninstall DCOS then run dcos_install.sh. To uninstall DCOS, follow the product
-        18:17:14::           documentation provided with DCOS.
+        18:17:14::           Found an existing DC/OS installation. To reinstall DC/OS on this this machine you must
+        18:17:14::           first uninstall DC/OS then run dcos_install.sh. To uninstall DC/OS, follow the product
+        18:17:14::           documentation provided with DC/OS.
         18:17:14::           
         18:17:14:: 
         18:17:14:: ====> 10.10.0.160:22 FAILED
