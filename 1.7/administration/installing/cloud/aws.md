@@ -48,7 +48,7 @@ Save the `.pem` file locally for use later. Note that this is the only chance to
     ![Launch stack](aws/img/dcos-aws-step2b.png)
 
 3.  On the **Specify Details** page, specify a cluster name (`Stack name
-`), accept the <a href="/community-edition-eula/" target="_blank">EULA</a> (AcceptEULA), SSH key (`KeyName`), the number of public (`PublicSlaveInstanceCount`) and private (`SlaveInstanceCount
+`), accept the EULA (AcceptEULA), SSH key (`KeyName`), the number of public (`PublicSlaveInstanceCount`) and private (`SlaveInstanceCount
 `) agents and click **Next**. The other parameters are optional.
 
     Here is the recommended cluster configuration:
@@ -75,7 +75,7 @@ In <a href="https://console.aws.amazon.com/cloudformation/home" target="_blank">
 
 *   The status changes from CREATE_IN_PROGRESS to CREATE_COMPLETE.
 
-**Troubleshooting:** A ROLLBACK_COMPLETE status means the deployment has failed. See the **Events** tab for useful information about failures. For more information, see the <a href="https://support.mesosphere.com/hc/en-us/articles/205316535-Why-did-my-AWS-cluster-Rollback-" target="_blank">Mesosphere Knowledge Base</a>.
+**Troubleshooting:** A ROLLBACK_COMPLETE status means the deployment has failed. See the **Events** tab for useful information about failures.
 
 # <a name="launchdcos"></a>Launch DC/OS
 
