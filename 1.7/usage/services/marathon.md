@@ -10,26 +10,26 @@ page_options_show_link_unauthenticated: false
 hide_from_navigation: false
 hide_from_related: false
 ---
-The DCOS uses Marathon to manage the processes and services and is the "init system" for the DCOS. Marathon starts and monitors your applications and services, automatically healing failures.
+The DC/OS uses Marathon to manage the processes and services and is the "init system" for the DC/OS. Marathon starts and monitors your applications and services, automatically healing failures.
 
-A native Marathon instance is installed as a part of the DCOS installation. After DCOS has been started, you can manage the native Marathon instance through the web interface at `<hostname>/marathon` or from the DCOS CLI with the `dcos marathon` command.
+A native Marathon instance is installed as a part of the DC/OS installation. After DC/OS has been started, you can manage the native Marathon instance through the web interface at `<hostname>/marathon` or from the DC/OS CLI with the `dcos marathon` command.
 
 You can create additional Marathon instances for specific users by using the instructions below.
 
-# <a name="install"></a>Installing a Marathon instance on DCOS
+# <a name="install"></a>Installing a Marathon instance on DC/OS
 
 **Prerequisite**
 
-*   The DCOS CLI must be [installed][1].
+*   The DC/OS CLI must be [installed][1].
 
 1.  Install a Marathon instance:
     
-    *   To install a single Marathon instance, enter this command from the DCOS CLI:
+    *   To install a single Marathon instance, enter this command from the DC/OS CLI:
         
             $ dcos package install marathon
             
         
-        By default the DCOS Service name is `marathon-user`. <a href="/wp-content/uploads/2015/12/marathontask.png" rel="attachment wp-att-1410"><img src="/wp-content/uploads/2015/12/marathontask.png" alt="marathontask" width="709" height="44" class="alignnone size-full wp-image-1410" /></a>
+        By default the DC/OS Service name is `marathon-user`. <a href="/wp-content/uploads/2015/12/marathontask.png" rel="attachment wp-att-1410"><img src="/wp-content/uploads/2015/12/marathontask.png" alt="marathontask" width="709" height="44" class="alignnone size-full wp-image-1410" /></a>
     
     *   To install multiple Marathon instances:
         
@@ -40,16 +40,16 @@ You can create additional Marathon instances for specific users by using the ins
             
             **Tip:** You must create a separate JSON configuration file for each Marathon instance.
         
-        2.  From the DCOS CLI, enter this command:
+        2.  From the DC/OS CLI, enter this command:
             
                  $ dcos package install --options=<config-file>.json marathon
                 
         
-        3.  From the DCOS web interface **Services** tab, click on your Marathon service name to navigate to the web interface. For more information, see [Deploying Multiple Marathon Instances][2].
+        3.  From the DC/OS web interface **Services** tab, click on your Marathon service name to navigate to the web interface. For more information, see [Deploying Multiple Marathon Instances][2].
 
 # <a name="uninstall"></a>Uninstalling a Marathon Instance
 
-1.  From the DCOS CLI, enter this command:
+1.  From the DC/OS CLI, enter this command:
     
         $ dcos package uninstall marathon
         
@@ -58,7 +58,7 @@ You can create additional Marathon instances for specific users by using the ins
     
     1.  Click on the **Explorer** tab and navigate to the `universe/<marathon-user>` folder.
         
-        **Important:** Do not delete the `marathon` folder. This is the native DCOS Marathon instance.
+        **Important:** Do not delete the `marathon` folder. This is the native DC/OS Marathon instance.
         
         <a href="/wp-content/uploads/2015/12/zkmarathon.png" rel="attachment wp-att-1407"><img src="/wp-content/uploads/2015/12/zkmarathon-600x482.png" alt="zkmarathon" width="300" height="241" class="alignnone size-medium wp-image-1407" /></a>
     

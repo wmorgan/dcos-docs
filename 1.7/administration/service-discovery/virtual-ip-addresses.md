@@ -10,9 +10,9 @@ page_options_show_link_unauthenticated: false
 hide_from_navigation: true
 hide_from_related: true
 ---
-DCOS can map traffic from a single Virtual IP (VIP) to multiple IP addresses and ports.
+DC/OS can map traffic from a single Virtual IP (VIP) to multiple IP addresses and ports.
 
-You can assign a VIP to your application by using the DCOS Marathon web interface. The values you enter in these fields are translated into the appropriate `portMapping` entry in your application definition. Toggle to `JSON mode` as you create your app to see and edit your application definition.
+You can assign a VIP to your application by using the DC/OS Marathon web interface. The values you enter in these fields are translated into the appropriate `portMapping` entry in your application definition. Toggle to `JSON mode` as you create your app to see and edit your application definition.
 
 ## Prerequisite:
 
@@ -20,7 +20,7 @@ You can assign a VIP to your application by using the DCOS Marathon web interfac
 
 To create a VIP:
 
-1.  From the DCOS web interface, click on the **Services** tab and select **marathon**.
+1.  From the DC/OS web interface, click on the **Services** tab and select **marathon**.
     
     *   To create a new application, click **Create Application** and select the **Ports and Service Discovery** menu option. 
     *   To edit an existing application, select your application and click the **Configuration** tab, then click **Edit**. You can then select the **Ports and Service Discovery** menu option. 

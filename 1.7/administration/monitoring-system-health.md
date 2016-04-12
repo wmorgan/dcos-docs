@@ -10,7 +10,7 @@ page_options_show_link_unauthenticated: false
 hide_from_navigation: true
 hide_from_related: true
 ---
-You can monitor the health of your cluster components from the DCOS web interface. The component health page provides the health status of all DCOS system components that are running in systemd. You can drill down by health status, host IP address, or specific systemd unit.
+You can monitor the health of your cluster components from the DC/OS web interface. The component health page provides the health status of all DC/OS system components that are running in systemd. You can drill down by health status, host IP address, or specific systemd unit.
 
 ![alt text](/assets/images/ui-sys-health.gif)
 

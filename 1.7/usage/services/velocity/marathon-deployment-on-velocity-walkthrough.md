@@ -26,7 +26,7 @@ The files needed for this tutorial are `Dockerfile`, `marathon.json`, and the `s
 
 If you have not already installed Velocity as described on the [Overview and Installation][2] page, do so before proceeding.
 
-Velocity can be accessed through the Dashboard or Services navigation menu’s within the DCOS UI. Click on the “velocity” service and click the "Open Service"" to access the Jenkins UI.
+Velocity can be accessed through the Dashboard or Services navigation menu’s within the DC/OS UI. Click on the “velocity” service and click the "Open Service"" to access the Jenkins UI.
 
 <a href="/wp-content/uploads/2016/03/dcos-velocity-healthy.png" rel="attachment wp-att-4059"><img src="/wp-content/uploads/2016/03/dcos-velocity-healthy-800x351.png" alt="dcos-velocity-healthy" width="800" height="351" class="aligncenter size-large wp-image-4059" /></a>
 
@@ -92,7 +92,7 @@ Add a Marathon Deployment post-build action.
 
 <a href="/wp-content/uploads/2016/03/dcos-jenkins-plugin-popup.png" rel="attachment wp-att-4065"><img src="/wp-content/uploads/2016/03/dcos-jenkins-plugin-popup.png" alt="dcos-jenkins-plugin-popup" width="637" height="701" class="aligncenter size-full wp-image-4065" /></a>
 
-The Marathon instance within DCOS can be accessed using the URL `http://leader.mesos/service/marathon`. Fill in the fields appropriately, using Jenkins variables if desired. The Docker Image should be the same as the build step above (`${DOCKER_HUB_USERNAME}/${JOB_NAME}:${GIT_COMMIT}`) to ensure the correct image is used.
+The Marathon instance within DC/OS can be accessed using the URL `http://leader.mesos/service/marathon`. Fill in the fields appropriately, using Jenkins variables if desired. The Docker Image should be the same as the build step above (`${DOCKER_HUB_USERNAME}/${JOB_NAME}:${GIT_COMMIT}`) to ensure the correct image is used.
 
 <a href="/wp-content/uploads/2016/03/dcos-velocity-marathon-config.png" rel="attachment wp-att-4066"><img src="/wp-content/uploads/2016/03/dcos-velocity-marathon-config-800x300.png" alt="dcos-velocity-marathon-config" width="800" height="300" class="aligncenter size-large wp-image-4066" /></a>
 
@@ -126,7 +126,7 @@ When the Status has changed to Running, the deployment is complete and you can v
 
 ## Visit Your Site
 
-Visit port `80` on the public DCOS agent to display a jekyll website.
+Visit port `80` on the public DC/OS agent to display a jekyll website.
 
 <a href="/wp-content/uploads/2016/03/dcos-jekyll-site1.png" rel="attachment wp-att-4070"><img src="/wp-content/uploads/2016/03/dcos-jekyll-site1-800x313.png" alt="dcos-jekyll-site1" width="800" height="313" class="aligncenter size-large wp-image-4070" /></a>
 

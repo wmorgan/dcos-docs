@@ -10,18 +10,18 @@ page_options_show_link_unauthenticated: false
 hide_from_navigation: false
 hide_from_related: false
 ---
-Mesos-DNS defines the DNS top-level domain `.mesos` for Mesos tasks that are running on DCOS. Tasks and services are discovered by looking up A and, optionally, SRV records within this Mesos domain.
+Mesos-DNS defines the DNS top-level domain `.mesos` for Mesos tasks that are running on DC/OS. Tasks and services are discovered by looking up A and, optionally, SRV records within this Mesos domain.
 
 # <a name="a-records"></a>A Records
 
 An A record associates a hostname to an IP address.
 
-When a task is launched by a DCOS service, Mesos-DNS generates an A record for a hostname in the format `<task>.<service>.mesos` that provides one of the following:
+When a task is launched by a DC/OS service, Mesos-DNS generates an A record for a hostname in the format `<task>.<service>.mesos` that provides one of the following:
 
 *   The IP address of the [agent node][1] that is running the task
 *   The IP address of the task's network container (provided by a Mesos containerizer)
 
-For example, other DCOS tasks can discover the IP address for a task named `search` launched by the `marathon` service with a lookup for `search.marathon.mesos`:
+For example, other DC/OS tasks can discover the IP address for a task named `search` launched by the `marathon` service with a lookup for `search.marathon.mesos`:
 
     $ dig search.marathon.mesos
     
@@ -84,7 +84,7 @@ For example, other Mesos tasks can discover a task named `search` launched by th
 
 Mesos-DNS supports the use of a task's DiscoveryInfo for SRV record generation.
 
-On a DCOS cluster, ports are offered by agent nodes in the same way as other resources such as CPU and memory. If DiscoveryInfo is not available, Mesos-DNS uses the ports that were allocated for the task.
+On a DC/OS cluster, ports are offered by agent nodes in the same way as other resources such as CPU and memory. If DiscoveryInfo is not available, Mesos-DNS uses the ports that were allocated for the task.
 
 The following table shows the rules that govern SRV generation:
 
@@ -256,8 +256,8 @@ Mesos-DNS generates a few special records:
 
 *   For the leading master: A record (`leader.mesos`) and SRV records (`_leader._tcp.mesos` and `_leader._udp.mesos`)
 *   For all service schedulers: A records (`myservice.mesos`) and SRV records (`_myservice._tcp.myservice.mesos`)
-*   For every known DCOS master: A records (`master.mesos`) and SRV records (`_master._tcp.mesos` and `_master._udp.mesos`)
-*   For every known DCOS agent: A records (`slave.mesos`) and SRV records (`_slave._tcp.mesos`)
+*   For every known DC/OS master: A records (`master.mesos`) and SRV records (`_master._tcp.mesos` and `_master._udp.mesos`)
+*   For every known DC/OS agent: A records (`slave.mesos`) and SRV records (`_slave._tcp.mesos`)
 
 **Important:** To query the leading master node, always query `leader.mesos`, not `master.mesos`. See [this FAQ entry][2] for more information.
 

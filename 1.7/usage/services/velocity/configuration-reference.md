@@ -10,7 +10,7 @@ page_options_show_link_unauthenticated: false
 hide_from_navigation: false
 hide_from_related: false
 ---
-Services on DCOS are configured via a JSON file that is passed to the DCOS CLI when installing a package. To configure Velocity, create a new JSON options file in your working directory. This file will contain options specific to your environment, such as the name of the framework (e.g. `velocity-team1`, `velocity-team2`, and so on), and the path to the NFS share where you want to save the Jenkins configuration and build data.
+Services on DC/OS are configured via a JSON file that is passed to the DC/OS CLI when installing a package. To configure Velocity, create a new JSON options file in your working directory. This file will contain options specific to your environment, such as the name of the framework (e.g. `velocity-team1`, `velocity-team2`, and so on), and the path to the NFS share where you want to save the Jenkins configuration and build data.
 
 # General options
 
@@ -49,7 +49,7 @@ Services on DCOS are configured via a JSON file that is passed to the DCOS CLI w
     </td>
     
     <td class="tg-yw4l">
-      The location of a volume on the host for persistent Velocity configuration and build data. The final location will be derived from this value plus the name set in `framework-name` (e.g. `/mnt/host_volume/velocity`). This path must be the same on all DCOS agents.
+      The location of a volume on the host for persistent Velocity configuration and build data. The final location will be derived from this value plus the name set in `framework-name` (e.g. `/mnt/host_volume/velocity`). This path must be the same on all DC/OS agents.
     </td>
     
     <td class="tg-yw4l">
@@ -63,7 +63,7 @@ Services on DCOS are configured via a JSON file that is passed to the DCOS CLI w
     </td>
     
     <td class="tg-yw4l">
-      An optional DCOS agent hostname to run this instance on (e.g. `10.0.0.1`).
+      An optional DC/OS agent hostname to run this instance on (e.g. `10.0.0.1`).
     </td>
     
     <td class="tg-yw4l">
@@ -206,7 +206,7 @@ Services on DCOS are configured via a JSON file that is passed to the DCOS CLI w
 
 ## Create a new instance backed by NFS
 
-The following JSON options file will create a new DCOS service named `velocity-team1` and use the NFS share located at `/mnt/nfs/velocity_data`:
+The following JSON options file will create a new DC/OS service named `velocity-team1` and use the NFS share located at `/mnt/nfs/velocity_data`:
 
     {
         "velocity": {
@@ -251,4 +251,4 @@ Install Velocity with your site-specific configuration by running the following 
     $ dcos package install velocity --options=options.json
     
 
-Wait a few moments for the instance to become healthy, then access the Velocity service via the DCOS web interface.
+Wait a few moments for the instance to become healthy, then access the Velocity service via the DC/OS web interface.

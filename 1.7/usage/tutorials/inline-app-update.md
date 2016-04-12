@@ -10,7 +10,7 @@ page_options_show_link_unauthenticated: false
 hide_from_navigation: false
 hide_from_related: false
 ---
-The [DCOS CLI][1] Marathon plugin allows you to easily view and update the configuration of existing applications.
+The [DC/OS CLI][1] Marathon plugin allows you to easily view and update the configuration of existing applications.
 
 # Update an Environment Variable
 

@@ -16,7 +16,7 @@ In this tutorial you install and deploy a containerized Ruby on Rails app named 
 
 With this tutorial you will learn:
 
-*   How to install a DCOS service 
+*   How to install a DC/OS service 
 *   How to add apps to Marathon 
 *   How to route apps to the public node 
 *   How your apps are discovered
@@ -25,21 +25,21 @@ With this tutorial you will learn:
 **Prerequisites:**
 
 *   [community-edition-prereq]
-*   DCOS cluster with at least 4 [private agent nodes][1] and 1 [public agent node][1]
-*   Your DCOS [public node hostname][2]
+*   DC/OS cluster with at least 4 [private agent nodes][1] and 1 [public agent node][1]
+*   Your DC/OS [public node hostname][2]
 
 # Add the Cassandra database
 
-The [Cassandra][3] database is used on the back end to store the Oinker app data. Cassandra is installed with a single-command with the DCOS CLI as a DCOS service.
+The [Cassandra][3] database is used on the back end to store the Oinker app data. Cassandra is installed with a single-command with the DC/OS CLI as a DC/OS service.
 
-1.  From your terminal, install the Cassandra DCOS service with this single command:
+1.  From your terminal, install the Cassandra DC/OS service with this single command:
     
         $ dcos package install cassandra
         
 
-2.  From the DCOS web interface **Services** tab, you can watch Cassandra spin up to at least 4 nodes. You will see the Health status go from Idle to Unhealthy, and finally to Healthy as the nodes come online.
+2.  From the DC/OS web interface **Services** tab, you can watch Cassandra spin up to at least 4 nodes. You will see the Health status go from Idle to Unhealthy, and finally to Healthy as the nodes come online.
     
-    **Important:** Do not go on to the next steps until the Cassandra installation is complete and shows as Healthy in the DCOS web interface. It can take up to 10 minutes for Cassandra to initialize with DCOS.
+    **Important:** Do not go on to the next steps until the Cassandra installation is complete and shows as Healthy in the DC/OS web interface. It can take up to 10 minutes for Cassandra to initialize with DC/OS.
     
     <a href="/wp-content/uploads/2015/12/services.png" rel="attachment wp-att-1126"><img src="/wp-content/uploads/2015/12/services.png" alt="Services page" width="1346" height="818" class="alignnone size-full wp-image-1126" /></a>
 
@@ -47,7 +47,7 @@ The [Cassandra][3] database is used on the back end to store the Oinker app data
 
 In this step you install the Marathon load balancer. The Marathon load balancer (marathon-lb) is a supplementary service discovery tool that can work in conjunction with native Mesos DNS. For more information, see the [Marathon Load Balancer][4] GitHub repository.
 
-**Important:** Do not install Marathon Load Balancer until the Cassandra DCOS service is installed and shows status of Healthy in the DCOS web interface.
+**Important:** Do not install Marathon Load Balancer until the Cassandra DC/OS service is installed and shows status of Healthy in the DC/OS web interface.
 
 1.  Install the marathon-lb package:
     
@@ -64,7 +64,7 @@ In this step you install the Marathon load balancer. The Marathon load balancer 
 
 In this step you deploy the Oinker containerized app. For more information, see the [Oinker][5] GitHub repository.
 
-**Important:** Do not install the Oinker app until the Cassandra DCOS service is installed and shows status of Healthy in the DCOS web interface.
+**Important:** Do not install the Oinker app until the Cassandra DC/OS service is installed and shows status of Healthy in the DC/OS web interface.
 
 1.  Create a Marathon app definition file named `oinker-with-marathon-lb.json` by using nano, or another text editor of your choice. A Marathon app definition file specifies the required parameters for launching an app with Marathon.
     
@@ -73,7 +73,7 @@ In this step you deploy the Oinker containerized app. For more information, see 
 
 2.  Add this content to your `oinker-with-marathon-lb.json` file, where `<your-elb-hostname>` is your AWS ELB **DNS Name**. Specified in this snippet is the Oinker Docker container, the resources required by Oinker, Marathon health checks, the Marathon load balancer settings, and a command to initialize the Cassandra database. <!-- Add link to AWS doc for ELB hostname -->
     
-    **Tip:** DCOS Community Edition clusters are deployed by using an AWS CloudFormation template. The ELB is created automatically.
+    **Tip:** DC/OS Community Edition clusters are deployed by using an AWS CloudFormation template. The ELB is created automatically.
     
         {
             "id": "/oinker-with-marathon-lb",
@@ -126,7 +126,7 @@ In this step you deploy the Oinker containerized app. For more information, see 
         
     
     **From the Web interface**  
-    The DCOS web interface shows the Oinker application being loaded.
+    The DC/OS web interface shows the Oinker application being loaded.
     
     <a href="/wp-content/uploads/2015/12/marathonapptutorial2.png" rel="attachment wp-att-2833"><img src="/wp-content/uploads/2015/12/marathonapptutorial2-800x350.png" alt="marathonapptutorial2" width="800" height="350" class="alignnone size-large wp-image-2833" /></a>
 
@@ -149,9 +149,9 @@ In this step you deploy the Oinker containerized app. For more information, see 
 
 # Try out your app on a public node
 
-Your containerized Oinker app is now available on a DCOS public node and the ELB is able to route traffic to HAProxy.
+Your containerized Oinker app is now available on a DC/OS public node and the ELB is able to route traffic to HAProxy.
 
-Service discovery is natively built-in to DCOS through Mesos-DNS. The Cassandra service is assigned the name `cassandra-dcos-node.cassandra.dcos.mesos` and the Oinker app definition includes this value. DCOS applications and services discover the IP addresses and ports of other applications by making DNS queries or by making HTTP requests through a REST API. For more information about service discovery, see [Service Discovery with Mesos-DNS][7].
+Service discovery is natively built-in to DC/OS through Mesos-DNS. The Cassandra service is assigned the name `cassandra-dcos-node.cassandra.dcos.mesos` and the Oinker app definition includes this value. DC/OS applications and services discover the IP addresses and ports of other applications by making DNS queries or by making HTTP requests through a REST API. For more information about service discovery, see [Service Discovery with Mesos-DNS][7].
 
 1.  Find the public ELB DNS name and enter into your browser. To do this, you’ll need to get the public ELB **DNS Name** from the Description tab in the EC2 Management Console. In this example, my public DNS name is `joel-ht5s-PublicSl-WPOWMR3C5291-2090420787.us-west-2.elb.amazonaws.com`.
     
@@ -170,7 +170,7 @@ In this step you can see the load balancer in action by removing or adding nodes
         $ dcos marathon app update oinker-with-marathon-lb instances=2
         
 
-2.  Click on Marathon in the DCOS web interface to see the Active deployments. There are 2 now instances of Oinker.
+2.  Click on Marathon in the DC/OS web interface to see the Active deployments. There are 2 now instances of Oinker.
 
 3.  Go to the Oinker app to see that it's still accessible. Your application should still be up and serving traffic!
 

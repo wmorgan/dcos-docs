@@ -10,17 +10,17 @@ page_options_show_link_unauthenticated: false
 hide_from_navigation: false
 hide_from_related: false
 ---
-*   [Installing the DCOS CLI on Unix, Linux, and OS X][1]
-*   [Installing the DCOS CLI on Windows][2]
+*   [Installing the DC/OS CLI on Unix, Linux, and OS X][1]
+*   [Installing the DC/OS CLI on Windows][2]
 
 # <a name="linux"></a>Installing on Unix, Linux, and OS X
 
-The easiest way to install the DCOS CLI is by clicking the signpost icon in the lower left corner of the DCOS web interface. Or, you can manually install the CLI by following these instructions.
+The easiest way to install the DC/OS CLI is by clicking the signpost icon in the lower left corner of the DC/OS web interface. Or, you can manually install the CLI by following these instructions.
 
 #### Prerequisites
 
-*   A system external to your DCOS cluster that you can install the CLI
-*   Network access from the external system to your DCOS cluster
+*   A system external to your DC/OS cluster that you can install the CLI
+*   Network access from the external system to your DC/OS cluster
 *   A command-line environment, such as Terminal
 *   cURL: Installed by default on OS X and most Linux distributions.
 *   Python 2.7.x or 3.4.x: Installed by default on OS X and most Linux distributions. (Python 3.5.x will not work.)
@@ -29,7 +29,7 @@ The easiest way to install the DCOS CLI is by clicking the signpost icon in the 
     *   **OS X:** Get the installer from [Git downloads][3].
     *   **Unix/Linux:** See these <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git" target="_blank">installation instructions</a>.
 
-#### Installing the DCOS CLI
+#### Installing the DC/OS CLI
 
 1.  Install **virtualenv**:
     
@@ -43,12 +43,12 @@ The easiest way to install the DCOS CLI is by clicking the signpost icon in the 
         $ mkdir dcos && cd dcos
         
 
-3.  Download the DCOS CLI install script to your new directory:
+3.  Download the DC/OS CLI install script to your new directory:
     
         $ curl -O https://downloads.mesosphere.io/dcos-cli/install.sh
         
 
-4.  Run the DCOS CLI install script, where `<installdir>` is the DCOS installation directory and `<hosturl>` is the hostname of your master node prefixed with `http://`:
+4.  Run the DC/OS CLI install script, where `<installdir>` is the DC/OS installation directory and `<hosturl>` is the hostname of your master node prefixed with `http://`:
     
         $ bash install.sh <install_dir> http://<hosturl>
         
@@ -58,24 +58,24 @@ The easiest way to install the DCOS CLI is by clicking the signpost icon in the 
         $ bash install.sh . http://dcos-ab-1234.us-west-2.elb.amazonaws.com
         
 
-5.  Follow the on-screen DCOS CLI instructions. You can ignore any Python "Insecure Platform" warnings.
+5.  Follow the on-screen DC/OS CLI instructions. You can ignore any Python "Insecure Platform" warnings.
     
     You can now use the CLI.
     
         Command line utility for the Mesosphere Datacenter Operating 
-        System (DCOS). The Mesosphere DCOS is a distributed operating 
+        System (DC/OS). The Mesosphere DC/OS is a distributed operating 
         system built around Apache Mesos. This utility provides tools 
-        for easy management of a DCOS installation.
+        for easy management of a DC/OS installation.
         
-        Available DCOS commands:
+        Available DC/OS commands:
         
-            config Get and set DCOS CLI configuration properties 
+            config Get and set DC/OS CLI configuration properties 
             help Display command line usage information 
-            marathon Deploy and manage applications on the DCOS 
-            node Manage DCOS nodes 
-            package Install and manage DCOS packages 
-            service Manage DCOS services 
-            task Manage DCOS tasks
+            marathon Deploy and manage applications on the DC/OS 
+            node Manage DC/OS nodes 
+            package Install and manage DC/OS packages 
+            service Manage DC/OS services 
+            task Manage DC/OS tasks
         
         Get detailed command description with 'dcos <command> --help'.
         
@@ -84,11 +84,11 @@ The easiest way to install the DCOS CLI is by clicking the signpost icon in the 
 
 #### Prerequisites
 
-*   A system external to your DCOS cluster onto which you will install the CLI
-*   Network access from the external system to your DCOS cluster
+*   A system external to your DC/OS cluster onto which you will install the CLI
+*   Network access from the external system to your DC/OS cluster
 *   Windows PowerShell: Installed by default on Windows 7 and later
 
-To install the DCOS CLI, you must first install Python, pip, Git, and virtualenv.
+To install the DC/OS CLI, you must first install Python, pip, Git, and virtualenv.
 
 **Important:** Disable any security or antivirus software before beginning the installation.
 
@@ -96,17 +96,17 @@ To install the DCOS CLI, you must first install Python, pip, Git, and virtualenv
 
 1.  Download the Python 2.7 or Python 3.4 installer <a href="https://www.python.org/downloads/windows/" target="_blank">here</a>.
     
-    **Important:** You must use Python version 2.7.x or 3.4.x. Python version 3.5.x will not work with the DCOS CLI. Use the x86-64 installer for 64-bit versions of Windows and the x86 installer for 32-bit versions of Windows.
+    **Important:** You must use Python version 2.7.x or 3.4.x. Python version 3.5.x will not work with the DC/OS CLI. Use the x86-64 installer for 64-bit versions of Windows and the x86 installer for 32-bit versions of Windows.
 
 2.  Run the installer and select the "Add python.exe to Path" option when you are prompted to "Customize Python" as shown in the screenshot below.
     
     <a href="/wp-content/uploads/2016/01/python.png" rel="attachment wp-att-2944"><img src="/wp-content/uploads/2016/01/python.png" alt="Python Installer with Path Option Selected" width="495" height="427" class="alignnone size-full wp-image-2944" /></a>
     
-    **Important:** If you do not select the "Add python.exe to Path" option, you must manually add the Python installation folder to your Path or the DCOS CLI will not work.
+    **Important:** If you do not select the "Add python.exe to Path" option, you must manually add the Python installation folder to your Path or the DC/OS CLI will not work.
 
 #### Upgrading pip
 
-Pip is included with Python, but you must upgrade pip for it to work properly with the DCOS CLI.
+Pip is included with Python, but you must upgrade pip for it to work properly with the DC/OS CLI.
 
 1.  Download the `get-pip.py` script from <a href="https://pip.pypa.io/en/stable/installing.html#install-pip" target="_blank">the pip download page</a>.
 
@@ -133,7 +133,7 @@ Pip is included with Python, but you must upgrade pip for it to work properly wi
     
     <a href="/wp-content/uploads/2016/01/git.png" rel="attachment wp-att-2945"><img src="/wp-content/uploads/2016/01/git.png" alt="Git Installer with Windows Command Prompt Option Enabled" width="499" height="387" class="alignnone size-full wp-image-2945" /></a>
     
-    **Important:** If you do not select the "Use Git from the Windows Command Prompt" option, you must manually add the Git installation folder to your Path or the DCOS CLI will not work.
+    **Important:** If you do not select the "Use Git from the Windows Command Prompt" option, you must manually add the Git installation folder to your Path or the DC/OS CLI will not work.
 
 #### Installing virtualenv
 
@@ -167,7 +167,7 @@ Pip is included with Python, but you must upgrade pip for it to work properly wi
         PS C:\dcos>
         
 
-3.  Download the DCOS CLI Powershell install script [by clicking here][4]. Save the script to the `dcos` directory.
+3.  Download the DC/OS CLI Powershell install script [by clicking here][4]. Save the script to the `dcos` directory.
     
     If you are running Windows 10, or if you are running an earlier version of Windows and have manually installed the `wget` software package, you can alternatively download the Powershell script directly from within Powershell:
     
@@ -188,7 +188,7 @@ Pip is included with Python, but you must upgrade pip for it to work properly wi
         (default is "N"): Y
         
 
-5.  Run the DCOS CLI install script, where `<installdir>` is the DCOS installation directory and `<hosturl>` is the hostname of your master node prefixed with `http://`:
+5.  Run the DC/OS CLI install script, where `<installdir>` is the DC/OS installation directory and `<hosturl>` is the hostname of your master node prefixed with `http://`:
     
         PS C:\dcos\> .\install.ps1 <install_dir> <hosturl>
         
@@ -209,7 +209,7 @@ Pip is included with Python, but you must upgrade pip for it to work properly wi
 
 6.  Enter the Mesosphere verification code when prompted or hit ENTER to continue. You can ignore any Python "Insecure Platform" warnings.
 
-7.  Follow the on-screen DCOS CLI instructions to add the `dcos` command to your PATH and complete installation:
+7.  Follow the on-screen DC/OS CLI instructions to add the `dcos` command to your PATH and complete installation:
     
         PS C:\dcos\> & .activate.ps1; dcos help
         
@@ -217,19 +217,19 @@ Pip is included with Python, but you must upgrade pip for it to work properly wi
     You can now use the CLI.
     
         Command line utility for the Mesosphere Datacenter Operating 
-        System (DCOS). The Mesosphere DCOS is a distributed operating 
+        System (DC/OS). The Mesosphere DC/OS is a distributed operating 
         system built around Apache Mesos. This utility provides tools 
-        for easy management of a DCOS installation.
+        for easy management of a DC/OS installation.
         
-        Available DCOS commands:
+        Available DC/OS commands:
         
-            config Get and set DCOS CLI configuration properties 
+            config Get and set DC/OS CLI configuration properties 
             help Display command line usage information 
-            marathon Deploy and manage applications on the DCOS 
-            node Manage DCOS nodes 
-            package Install and manage DCOS packages 
-            service Manage DCOS services 
-            task Manage DCOS tasks
+            marathon Deploy and manage applications on the DC/OS 
+            node Manage DC/OS nodes 
+            package Install and manage DC/OS packages 
+            service Manage DC/OS services 
+            task Manage DC/OS tasks
         
         Get detailed command description with 'dcos <command> --help'.
 

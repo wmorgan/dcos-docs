@@ -10,16 +10,16 @@ page_options_show_link_unauthenticated: false
 hide_from_navigation: false
 hide_from_related: false
 ---
-These instructions explain how to set up an SSH connection to your DCOS cluster from an outside network. If you are on the same network as your cluster or connected by using VPN, you can instead use the `dcos node ssh` command. For more information, see the [dcos node section][1] of the CLI reference.
+These instructions explain how to set up an SSH connection to your DC/OS cluster from an outside network. If you are on the same network as your cluster or connected by using VPN, you can instead use the `dcos node ssh` command. For more information, see the [dcos node section][1] of the CLI reference.
 
-*   [SSH to your DCOS cluster on Unix/Linux (OS X, Ubuntu, etc)][2]
-*   [SSH to your DCOS cluster on Windows][3]
+*   [SSH to your DC/OS cluster on Unix/Linux (OS X, Ubuntu, etc)][2]
+*   [SSH to your DC/OS cluster on Windows][3]
 
 **Requirements:**
 
-*   During [AWS DCOS cluster creation][4], a `.pem` file is created. You will need this `.pem` file to SSH to your cluster.
+*   During [AWS DC/OS cluster creation][4], a `.pem` file is created. You will need this `.pem` file to SSH to your cluster.
 
-### <a name="unix"></a>SSH to your DCOS cluster on Unix/Linux (OS X, Ubuntu, etc)
+### <a name="unix"></a>SSH to your DC/OS cluster on Unix/Linux (OS X, Ubuntu, etc)
 
 1.  Change the permissions on the `.pem` file to owner read/write by using the `chmod` command.
     
@@ -39,7 +39,7 @@ These instructions explain how to set up an SSH connection to your DCOS cluster 
     
     *   **To SSH to a master node:**
         
-        1.  From the DCOS CLI, enter the following command:
+        1.  From the DC/OS CLI, enter the following command:
             
                 $ dcos node ssh --master-proxy --leader
                 
@@ -54,12 +54,12 @@ These instructions explain how to set up an SSH connection to your DCOS cluster 
             
             <a href="/wp-content/uploads/2015/12/mesos-sandbox-slave-copy.png" rel="attachment wp-att-1560"><img src="/wp-content/uploads/2015/12/mesos-sandbox-slave-copy-600x119.png" alt="mesos-sandbox-slave-copy" width="500" height="260" class="alignnone size-medium wp-image-1560" /></a>
         
-        2.  From the DCOS CLI, enter the following command, where `<slave-id>` is your agent ID:
+        2.  From the DC/OS CLI, enter the following command, where `<slave-id>` is your agent ID:
             
                 $ dcos node ssh --master-proxy --slave=<slave-id>
                 
 
-### <a name="windows"></a>SSH to your DCOS cluster on Windows
+### <a name="windows"></a>SSH to your DC/OS cluster on Windows
 
 **Requirements:**
 
@@ -83,7 +83,7 @@ To install these programs, download the Windows installer <a href="http://www.ch
     
     *   **To SSH to a master node:**
         
-        1.  From the DCOS web interface, copy the IP address of the master node. The IP address is displayed beneath your cluster name.
+        1.  From the DC/OS web interface, copy the IP address of the master node. The IP address is displayed beneath your cluster name.
             
             <a href="/wp-content/uploads/2015/12/nodehostname.png" rel="attachment wp-att-1567"><img src="/wp-content/uploads/2015/12/nodehostname-600x231.png" alt="nodehostname" width="300" height="116" class="alignnone size-medium wp-image-1567" /></a>
         
@@ -127,7 +127,7 @@ To install these programs, download the Windows installer <a href="http://www.ch
         
         3.  SSH into the master node.
             
-            1.  From the DCOS web interface, copy the IP address of the master node. The IP address is displayed beneath your cluster name.
+            1.  From the DC/OS web interface, copy the IP address of the master node. The IP address is displayed beneath your cluster name.
             
             2.  In the **Category** pane on the left side of the PuTTY window, choose **Session** and enter the master node IP address in the **Host Name (or IP address)** field.
             

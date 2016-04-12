@@ -10,11 +10,11 @@ page_options_show_link_unauthenticated: false
 hide_from_navigation: false
 hide_from_related: false
 ---
-[DCOS services][1] are generally installed in one of two ways, either through Marathon directly or from a DCOS package repository. By default, the [DCOS Command-Line Interface][2] is configured to use the primary public package repository: [Mesosphere Universe][1].
+[DC/OS services][1] are generally installed in one of two ways, either through Marathon directly or from a DC/OS package repository. By default, the [DC/OS Command-Line Interface][2] is configured to use the primary public package repository: [Mesosphere Universe][1].
 
 ## Install a Packaged Service
 
-DCOS services can be installed on your cluster with a single command from the DCOS CLI:
+DC/OS services can be installed on your cluster with a single command from the DC/OS CLI:
 
     $ dcos package install <service-name>
 
@@ -30,7 +30,7 @@ If you're looking for big data packages, use:
 
 ## List Repositories
 
-By default, the DCOS CLI is configured to use the Mesosphere Universe, but other package repositories may also be configured.
+By default, the DC/OS CLI is configured to use the Mesosphere Universe, but other package repositories may also be configured.
 
 See which package repositories are currently configured:
 

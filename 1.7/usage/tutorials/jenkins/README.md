@@ -10,7 +10,7 @@ TODO: apply new template and refer to https://docs.mesosphere.com/manage-service
 
 **Scope**:
 
-In the following how-to you will learn about how to use Jenkins on DCOS.
+In the following how-to you will learn about how to use Jenkins on DC/OS.
 
 **Further resources**:
 
@@ -21,10 +21,10 @@ In the following how-to you will learn about how to use Jenkins on DCOS.
 Assuming you have a DC/OS cluster up and running you want to [install a user-specific Marathon instance](https://docs.mesosphere.com/manage-service/marathon/) that acts as the deployment and upgrade platform for any new versions of the Docker images created by Jenkins:
 
     $ dcos package install marathon
-    We recommend a minimum of one node with at least 2 CPU shares and 1GB of RAM available for the Marathon DCOS Service.
+    We recommend a minimum of one node with at least 2 CPU shares and 1GB of RAM available for the Marathon DC/OS Service.
     Continue installing? [yes/no] yes
     Installing Marathon app for package [marathon] version [0.15.3]
-    Marathon DCOS Service has been successfully installed!
+    Marathon DC/OS Service has been successfully installed!
 
     	Documentation: https://mesosphere.github.io/marathon
     	Issues: https:/github.com/mesosphere/marathon/issue
@@ -35,7 +35,7 @@ Assuming you have a DC/OS cluster up and running you want to [install a user-spe
 For testing, the first step is to [install Jenkins](https://docs.mesosphere.com/manage-service/jenkins/) like so:
 
     $ dcos package install jenkins
-    WARNING: Jenkins on DCOS is currently in BETA. There may be bugs, incomplete
+    WARNING: Jenkins on DC/OS is currently in BETA. There may be bugs, incomplete
     features, incorrect documentation, or other discrepancies.
     
     If you didn't provide a value for `host-volume` in the CLI,
@@ -67,7 +67,7 @@ Then, you can install Jenkins:
 
 Now we will use a File Share for HA.
 
-First, you need to create a [Storage Account](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM), in my case `mh9storage`, in the same resource group that you have launched your DCOS cluster in (`mh9` here):
+First, you need to create a [Storage Account](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM), in my case `mh9storage`, in the same resource group that you have launched your DC/OS cluster in (`mh9` here):
 
 ![Azure Portal: Storage Account](img/azure-portal-storage.png)
 
@@ -75,7 +75,7 @@ Now you can create a file share (`jenkins` was what I chose):
 
 ![Azure Portal: File Service](img/azure-portal-storage-fileshare.png)
 
-Next, log into the DCOS master node: for that, look up SSH connection string labeled `SSHMASTER0` in the `Microsoft.Template` deployments `Outputs` section 
+Next, log into the DC/OS master node: for that, look up SSH connection string labeled `SSHMASTER0` in the `Microsoft.Template` deployments `Outputs` section 
 
 ![Azure Portal: Deployment Output](azure-portal-deployment-output.png)
 
@@ -105,7 +105,7 @@ To check if the file share works, we upload a test file via the Azure portal:
 
 ![Azure Portal: Storage File Upload](img/azure-portal-storage-fileupload.png)
 
-… and then list the content of the mounted file share on the DCOS master node:
+… and then list the content of the mounted file share on the DC/OS master node:
 
     azureuser@dcos-master-415F65E0-0:~$ ls -al /mnt/jenkins
     total 1
