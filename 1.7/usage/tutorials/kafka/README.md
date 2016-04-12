@@ -42,6 +42,16 @@ You will learn about how to use Kafka on DC/OS, launching brokers and publishing
 
 # Table of Contents
 
+  * [Prerequisites](#prerequisites)
+  * [Installing](#installing)
+    * [Typical installation](#typical-installation)
+    * [Custom manual installation procedure](#custom-manual-installation-procedure)
+    * [UI manual installation procedure](#ui-manual-installation-procedure)
+  * [DC/OS Kafka operations](#dcos-kafka-operations)
+  * [Cleanup](#cleanup)
+  * [Appendix: Next Steps](#appendix-next-steps)
+
+
 # Prerequisites
 
 - [Install](../install/README.md)
