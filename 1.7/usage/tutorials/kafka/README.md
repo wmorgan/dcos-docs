@@ -31,8 +31,6 @@ This tutorial will take aproximatively 20 minutes to complete, given a DC/OS clu
 - Publisher ... An application that publishes messages on Kafka
 - Consumer ... An application that consumes messages from Kafka
 - Universe ... The default DC/OS repository
-- Multiverse ... The extended DC/OS repository
-
 
 **Scope**:
 
@@ -47,6 +45,7 @@ You will learn about how to use Kafka on DC/OS, launching brokers and publishing
     * [Typical installation](#typical-installation)
     * [Custom manual installation procedure](#custom-manual-installation-procedure)
     * [UI manual installation procedure](#ui-manual-installation-procedure)
+    * [Validate installation](#validate-installation)
   * [DC/OS Kafka operations](#dcos-kafka-operations)
   * [Cleanup](#cleanup)
   * [Appendix: Next Steps](#appendix-next-steps)
@@ -84,13 +83,6 @@ Verify existing dcos repositories
 Universe: https://universe.mesosphere.com/repo
 `
 
-In case you want to install a version of the Kafka framework available on the Multiverse repository, [install](https://github.com/mesosphere/multiverse#installation) the Multiverse repository first
-`dcos package repo add Multiverse: https://github.com/mesosphere/multiverse/archive/version-2.x.zip`
-`dcos package repo list
-Universe: https://universe.mesosphere.com/repo
-Multiverse: https://github.com/mesosphere/multiverse/archive/version-2.x.zip
-`
-
 Identify available versions for the Kafka framework
 
 - List
@@ -104,17 +96,18 @@ Install the Kafka framework
 - Install/upgrade to a specific version of the kafka package
 `dcos package install --yes --force --package-version=<package_version> kafka`
 
+## UI manual installation procedure
+
+On DC/OS you can also install the Kafka service from [DC/OS Univers dashboard](http://<dcos-master-dns>/#/universe/packages/)
+
+## Validate installation
+
 Validate that installation added enhanced cli Kafka support
 `dcos package list kafka; dcos kafka help`
 
 Validate that Kafka service is healthy
 ![DCOS dashboard services status](img/dcos-dashboard-kafka-service-status.png)
 ![DCOS services status](img/dcos-services-kafka-service-status.png)
-
-## UI manual installation procedure
-
-On DC/OS you can also install the Kafka service from [DC/OS Univers dashboard](http://<dcos-master-dns>/#/universe/packages/)
-
 
 # DC/OS Kafka operations
 
