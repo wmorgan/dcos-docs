@@ -22,9 +22,9 @@ For users deploying to the public cloud, DC/OS offers configurable [cloud provis
 
 # Datacenter Installation
 
-For new users installing to existing virtual or physical machines, on-premise or in the cloud, the [Automated Installer][3] provides a guided experience for bootstrapping a DCOS cluster.
+For new users installing to existing virtual or physical machines, on-premises or in the cloud, the [Automated Installer][3] provides a guided experience for bootstrapping a DCOS cluster.
 
-For advanced users installing to existing virtual or physical machines, on-premise or in the cloud, the [Manual Installer][4] provides a scriptable, automatable interface to integrate with your preferred configuration management system.
+For advanced users installing to existing virtual or physical machines, on-premises or in the cloud, the [Manual Installer][4] provides a scriptable, automatable interface to integrate with your preferred configuration management system.
 
  [1]: /administration/installing/local
  [2]: /administration/installing/cloud
