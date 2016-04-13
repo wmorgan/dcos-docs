@@ -18,7 +18,7 @@ The application runs on any system that has Python 3 installed and has access to
 
 **Prerequisites**
 
-*   A [running DCOS cluster][1].
+*   A [running DC/OS cluster][1].
 *   Python 3 installed on the system you will run marathon-autoscale.py. **Note:** This can be one of the Mesos master nodes.
 *   An application running on the native Marathon instance that you intend to autoscale.
 *   TCP Port 80 open to the Marathon instance and TCP Port 5051 open to the Mesos Agent hosts.

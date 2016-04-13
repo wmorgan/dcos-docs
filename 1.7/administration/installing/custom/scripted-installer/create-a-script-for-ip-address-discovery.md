@@ -10,9 +10,9 @@ page_options_show_link_unauthenticated: false
 hide_from_navigation: false
 hide_from_related: false
 ---
-In this step you create an IP detect script to broadcast the IP address of each node across the cluster. Each node in a DCOS cluster has a unique IP address that is used to communicate between nodes in the cluster. The IP detect script prints the unique IPv4 address of a node to STDOUT each time DCOS is started on the node.
+In this step you create an IP detect script to broadcast the IP address of each node across the cluster. Each node in a DC/OS cluster has a unique IP address that is used to communicate between nodes in the cluster. The IP detect script prints the unique IPv4 address of a node to STDOUT each time DC/OS is started on the node.
 
-**Important:** The IP address of a node must not change after DCOS is installed on the node. For example, the IP address must not change when a node is rebooted or if the DHCP lease is renewed. If the IP address of a node does change, the node must be [wiped and reinstalled][1].
+**Important:** The IP address of a node must not change after DC/OS is installed on the node. For example, the IP address must not change when a node is rebooted or if the DHCP lease is renewed. If the IP address of a node does change, the node must be [wiped and reinstalled][1].
 
 1.  Create a directory named `genconf` on your bootstrap node and navigate to it.
     
@@ -72,7 +72,7 @@ In this step you create an IP detect script to broadcast the IP address of each 
 
 ## Next step
 
-[Configure and install DCOS][2]
+[Configure and install DC/OS][2]
 
  [1]: /administration/installing/installing-enterprise-edition/dcos-cleanup-script/
  [2]: /installing-enterprise-edition-1-7/scripted-installer/configure-and-install-dcos/

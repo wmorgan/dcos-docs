@@ -10,11 +10,11 @@ page_options_show_link_unauthenticated: false
 hide_from_navigation: false
 hide_from_related: false
 ---
-The file system paths of DCOS task logs contain information such as the agent ID, framework ID, and executor ID. You can use this information to filter the log output for specific tasks, applications, or agents.
+The file system paths of DC/OS task logs contain information such as the agent ID, framework ID, and executor ID. You can use this information to filter the log output for specific tasks, applications, or agents.
 
 **Prerequisite**
 
-*   [An ELK stack that aggregates DCOS logs][1]
+*   [An ELK stack that aggregates DC/OS logs][1]
 
 # <a name="configuration"></a>Configuration
 

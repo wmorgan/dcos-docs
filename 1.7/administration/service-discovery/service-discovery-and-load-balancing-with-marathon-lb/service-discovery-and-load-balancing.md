@@ -10,12 +10,12 @@ page_options_show_link_unauthenticated: false
 hide_from_navigation: false
 hide_from_related: false
 ---
-To demonstrate marathon-lb, you can boot a DCOS cluster on AWS to run an internal and external load balancer. The external load balancer will be used for routing external HTTP traffic into the cluster, and the internal load balancer will be used for internal service discovery and load balancing. Since we’ll be doing this on AWS, external traffic will first hit an external load balancer configured to expose our "public" agent nodes.
+To demonstrate marathon-lb, you can boot a DC/OS cluster on AWS to run an internal and external load balancer. The external load balancer will be used for routing external HTTP traffic into the cluster, and the internal load balancer will be used for internal service discovery and load balancing. Since we’ll be doing this on AWS, external traffic will first hit an external load balancer configured to expose our "public" agent nodes.
 
 ## Prequisistes
 
-*   [A DCOS cluster][1]
-*   [DCOS and DCOS CLI][2] are installed.
+*   [A DC/OS cluster][1]
+*   [DC/OS and DC/OS CLI][2] are installed.
 
 ## Steps
 
@@ -40,7 +40,7 @@ To demonstrate marathon-lb, you can boot a DCOS cluster on AWS to run an interna
         $ dcos package install --options=options.json marathon-lb
         
 
-3.  Now there are 2 load balancers: an internal load balancer and an external one, which was installed along with marathon-lb. Launch an external version of nginx to demonstrate the features. Launch this app on DCOS by pasting the JSON below into a file called `nginx-external.json`.
+3.  Now there are 2 load balancers: an internal load balancer and an external one, which was installed along with marathon-lb. Launch an external version of nginx to demonstrate the features. Launch this app on DC/OS by pasting the JSON below into a file called `nginx-external.json`.
     
         {
           "id": "nginx-external",

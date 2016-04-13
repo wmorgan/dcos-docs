@@ -12,14 +12,14 @@ hide_from_related: false
 ---
 Spark is a fast, general-purpose cluster computing system that makes parallel jobs easy to write.
 
-# <a name="sparkinstall"></a>Installing Spark on DCOS
+# <a name="sparkinstall"></a>Installing Spark on DC/OS
 
 **Prerequisites:**
 
-*   The DCOS CLI must be [installed][1]. 
+*   The DC/OS CLI must be [installed][1]. 
 *   It is recommend that you have minimum of two nodes with at least 2 CPUs and 2 GB of RAM available for the Spark Service and running a Spark job.
 
-1.  From the DCOS CLI, enter this command to install the Spark DCOS service and CLI:
+1.  From the DC/OS CLI, enter this command to install the Spark DC/OS service and CLI:
     
         $ dcos package install spark
         
@@ -30,7 +30,7 @@ Spark is a fast, general-purpose cluster computing system that makes parallel jo
 
 # <a name="uninstall"></a>Uninstalling Spark
 
-1.  From the DCOS CLI, enter this command:
+1.  From the DC/OS CLI, enter this command:
     
         $ dcos package uninstall spark
         
@@ -47,7 +47,7 @@ Spark is a fast, general-purpose cluster computing system that makes parallel jo
     
     3.  Click **OK** to confirm your deletion.
 
-For more information, see the <a href="https://github.com/mesosphere/dcos-spark" target="_blank">DCOS Spark CLI</a> documentation on GitHub.
+For more information, see the <a href="https://github.com/mesosphere/dcos-spark" target="_blank">DC/OS Spark CLI</a> documentation on GitHub.
 
  [1]: /usage/cli/install/
  [2]: /administration/installing/awscluster#launchdcos

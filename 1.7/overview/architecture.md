@@ -64,11 +64,11 @@ On each Master node the following happens, in chronological order:
 1. Spartan (DNS proxy) runs on all nodes (master/agents) and forward to MesosDNS
 1. System Marathon is launched
 1. System Marathon goes to localhost for Zookeeper, discovers leading Master `leader.mesos` and registers with it
-1. Admin router depends on Master, MesosDNS and Spartan and runs on each of the master nodes (== DCOS UI)
+1. Admin router depends on Master, MesosDNS and Spartan and runs on each of the master nodes (== DC/OS UI)
 1. DC/OS UI, Mesos UI, Marathon UI, and Exhibitor UI become externally accessible
 1. Auth is managed by OAuth (only masters)
 1. History services provides the data for the graphs in the UI (only masters)
-1. DCOS diagnostics (also systemd service, on every node)
+1. DC/OS diagnostics (also systemd service, on every node)
 
 ### Agent nodes
 
@@ -77,7 +77,7 @@ On each Agent node the following happens, in chronological order:
 1. Mesos Agent starts up and discovers the leading Mesos Master `leader.mesos` via Zookeeper
 1. Mesos Agent registers with the leading Mesos Master `leader.mesos`
 1. Mesos Master confirms and Mesos Agent starts sending status reports (what resources are available) to Mesos Master
-1. DC/OS nodes become visible in the DCOS UI
+1. DC/OS nodes become visible in the DC/OS UI
 
 ### Services
 

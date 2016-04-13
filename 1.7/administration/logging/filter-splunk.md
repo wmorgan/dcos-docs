@@ -10,11 +10,11 @@ page_options_show_link_unauthenticated: false
 hide_from_navigation: false
 hide_from_related: false
 ---
-The file system paths of DCOS task logs contain information such as the agent ID, framework ID, and executor ID. You can use this information to filter the log output for specific tasks, applications, or agents.
+The file system paths of DC/OS task logs contain information such as the agent ID, framework ID, and executor ID. You can use this information to filter the log output for specific tasks, applications, or agents.
 
 **Prerequisite**
 
-*   [A Splunk installation that aggregates DCOS logs][1]
+*   [A Splunk installation that aggregates DC/OS logs][1]
 
 # <a name="configuration"></a>Configuration
 
@@ -71,7 +71,7 @@ Finally, let's search for all of the events that reference the framework ID of t
 
 # <a name="templates"></a>Template Examples
 
-Here are example query templates for aggregating the DCOS logs with Splunk. Replace the template parameters `$executor1`, `$framework2`, and any others with actual values from your cluster.
+Here are example query templates for aggregating the DC/OS logs with Splunk. Replace the template parameters `$executor1`, `$framework2`, and any others with actual values from your cluster.
 
 **Important:** Do not change the quotation marks in these examples or the queries will not work. If you create custom queries, be careful with the placement of quotation marks.
 

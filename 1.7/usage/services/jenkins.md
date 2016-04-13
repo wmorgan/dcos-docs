@@ -10,23 +10,23 @@ page_options_show_link_unauthenticated: false
 hide_from_navigation: false
 hide_from_related: false
 ---
-Jenkins is a continuous integration and continuous delivery application. You can use Mesosphere DCOS to deploy Jenkins on your cluster.
+Jenkins is a continuous integration and continuous delivery application. You can use Mesosphere DC/OS to deploy Jenkins on your cluster.
 
-Jenkins on DCOS allows you to scale your Jenkins cluster by dynamically creating and destroying Jenkins agents as demand increases or decreases and enables you to avoid the statically partitioned infrastructure typical of other Jenkins clusters.
+Jenkins on DC/OS allows you to scale your Jenkins cluster by dynamically creating and destroying Jenkins agents as demand increases or decreases and enables you to avoid the statically partitioned infrastructure typical of other Jenkins clusters.
 
-To use Jenkins on DCOS, you must provide a mount point to a shared file system on each of your DCOS agents. There are a number of existing shared file system solutions, including NFS, HDFS (plus its NFS gateway), Ceph and more. The following instructions use NFS as the example.
+To use Jenkins on DC/OS, you must provide a mount point to a shared file system on each of your DC/OS agents. There are a number of existing shared file system solutions, including NFS, HDFS (plus its NFS gateway), Ceph and more. The following instructions use NFS as the example.
 
-## Installing Jenkins on DCOS
+## Installing Jenkins on DC/OS
 
 #### Prerequisites
 
-*   The DCOS CLI must be [installed][1].
+*   The DC/OS CLI must be [installed][1].
 
-*   A mount point to a shared file system at the same path on each of your DCOS agents. NFS guides are available for [Red Hat Enterprise Linux][2], [Ubuntu][3], and [CoreOS][4].
+*   A mount point to a shared file system at the same path on each of your DC/OS agents. NFS guides are available for [Red Hat Enterprise Linux][2], [Ubuntu][3], and [CoreOS][4].
 
-1.  Create a Jenkins JSON configuration file that specifies any instance or site-specific information, such as the framework name and the base path to the NFS share on the DCOS or Mesos agent. See the [Configuration Reference][5] for a complete example.
+1.  Create a Jenkins JSON configuration file that specifies any instance or site-specific information, such as the framework name and the base path to the NFS share on the DC/OS or Mesos agent. See the [Configuration Reference][5] for a complete example.
     
-    Save the file as `options.json`. This file is specified during DCOS Jenkins installation.
+    Save the file as `options.json`. This file is specified during DC/OS Jenkins installation.
     
         {
             "jenkins": {
@@ -38,27 +38,27 @@ To use Jenkins on DCOS, you must provide a mount point to a shared file system o
     
     By choosing a unique framework name, you can run multiple Jenkins instances on the same cluster, sharing the cluster’s resources among all Jenkins masters. Each Jenkins instance creates a subdirectory inside the directory that you specified for the host volume. In this example, the data is stored on the NFS server at `/mnt/nfs/jenkins_data/jenkins-myteam`.
 
-2.  From the DCOS CLI, install Jenkins with the `options.json` file specified:
+2.  From the DC/OS CLI, install Jenkins with the `options.json` file specified:
     
         $ dcos package install jenkins --options=options.json
         
     
-    The first time Jenkins runs, it populates the directory on your NFS share with a basic Jenkins configuration and a small set of plugins. If Marathon needs to restart the task on a different host, the container automatically mounts your existing data directory, including job configurations, build history and installed plugins. For future versions of DCOS, we are planning add support for other distributed file systems and leverage the persistence primitives available in recent versions of Mesos.
+    The first time Jenkins runs, it populates the directory on your NFS share with a basic Jenkins configuration and a small set of plugins. If Marathon needs to restart the task on a different host, the container automatically mounts your existing data directory, including job configurations, build history and installed plugins. For future versions of DC/OS, we are planning add support for other distributed file systems and leverage the persistence primitives available in recent versions of Mesos.
 
 3.  Verify that Jenkins is installed and healthy.
     
-    *   From the DCOS CLI, enter this command to show the installed packages:
+    *   From the DC/OS CLI, enter this command to show the installed packages:
         
             $ dcos package list
             
     
-    *   From the DCOS web interface, go to the Services tab and confirm that Jenkins is running at `/#/services/`. <!-- screenshot of web UI -->
+    *   From the DC/OS web interface, go to the Services tab and confirm that Jenkins is running at `/#/services/`. <!-- screenshot of web UI -->
 
 4.  Open a browser and navigate to the Jenkins web interface at `http://<hostname>/service/jenkins`.
 
-## Uninstalling Jenkins on DCOS
+## Uninstalling Jenkins on DC/OS
 
-1.  From the DCOS CLI, uninstall Jenkins:
+1.  From the DC/OS CLI, uninstall Jenkins:
     
         $ dcos package uninstall jenkins
         

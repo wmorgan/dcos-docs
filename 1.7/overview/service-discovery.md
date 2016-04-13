@@ -1,6 +1,6 @@
-# Load Balancing in DCOS
+# Load Balancing in DC/OS
 
-DCOS also has an east-west load balancer that's meant to be used to enable multi-tier microservices architectures. It acts as a TCP Layer 4 load balancer, and it's tightly integrated with the kernel. 
+DC/OS also has an east-west load balancer that's meant to be used to enable multi-tier microservices architectures. It acts as a TCP Layer 4 load balancer, and it's tightly integrated with the kernel. 
 
 ## Usage
 You can use the layer 4 load balancer by specifying a VIP from the UI. The VIP must be specified in the format IP:port, for example: *1.2.3.4:5000*. Alternatively, you can create a label on the [port](https://github.com/apache/mesos/blob/b18f5bf48fda12bce9c2ac8e762a08f537ffb41d/include/mesos/mesos.proto#L1813) protocol buffer while launching a task on Mesos. This label's key must be in the format `VIP_$IDX`, where `$IDX` is replaced by a number, starting from 0. Once you create a task, or a set of tasks with a VIP, they will automatically become available to all nodes in the cluster, including the masters. 
@@ -93,7 +93,7 @@ If you begin to see the behaviour as described earlier where the connection tabl
 More information about these sysctls can be found here: `https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt`. 
 
 ## Debugging
-The load balancer exposes a few endpoints on every node in the DCOS cluster that can be used for gathering statistics. The URI for these metrics are: `http://localhost:61421/metrics`. This includes data about the backends, and the dataplane runtime. 
+The load balancer exposes a few endpoints on every node in the DC/OS cluster that can be used for gathering statistics. The URI for these metrics are: `http://localhost:61421/metrics`. This includes data about the backends, and the dataplane runtime. 
 
 You can find out data about just the VIPs at the endpoint `http://localhost:61421/vips`. If you want to find information about just one VIP you can go to the endpoint `http://localhost:61421/vips/${IP}`. 
 

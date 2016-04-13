@@ -10,16 +10,16 @@ page_options_show_link_unauthenticated: false
 hide_from_navigation: false
 hide_from_related: false
 ---
-HDFS can be used to store and distribute data across your entire Mesosphere DCOS cluster.
+HDFS can be used to store and distribute data across your entire Mesosphere DC/OS cluster.
 
-# <a name="hdfsinstall"></a>Installing HDFS on DCOS
+# <a name="hdfsinstall"></a>Installing HDFS on DC/OS
 
 **Prerequisites**
 
-*   The DCOS CLI must be [installed][1].
-*   A DCOS cluster with a minimum of 5 private agents with at least 2 CPUs and 8 GB of RAM available for the HDFS Service.
+*   The DC/OS CLI must be [installed][1].
+*   A DC/OS cluster with a minimum of 5 private agents with at least 2 CPUs and 8 GB of RAM available for the HDFS Service.
 
-1.  Install the HDFS DCOS service by using the default or custom installation:
+1.  Install the HDFS DC/OS service by using the default or custom installation:
     
     *   Default installation:
         
@@ -63,7 +63,7 @@ HDFS can be used to store and distribute data across your entire Mesosphere DCOS
 
 # <a name="uninstall"></a>Uninstalling HDFS
 
-1.  From the DCOS CLI, enter this command:
+1.  From the DC/OS CLI, enter this command:
     
         $ dcos package uninstall hdfs
         
@@ -90,13 +90,13 @@ HDFS can be used to store and distribute data across your entire Mesosphere DCOS
 
 3.  For a complete uninstall, you must delete the data directories for HDFS in the individual agent nodes.
     
-    1.  Identify the HDFS agent nodes to delete by using the DCOS web interface [Nodes tab][4]. For example, to identify all of the HDFS agent nodes choose the the **hdfs** filter on the Nodes tab:
+    1.  Identify the HDFS agent nodes to delete by using the DC/OS web interface [Nodes tab][4]. For example, to identify all of the HDFS agent nodes choose the the **hdfs** filter on the Nodes tab:
         
         <a href="/wp-content/uploads/2015/12/nodeshdfs.png" rel="attachment wp-att-1571"><img src="/wp-content/uploads/2015/12/nodeshdfs-600x419.png" alt="nodeshdfs" width="300" height="210" class="alignnone size-medium wp-image-1571" /></a>
     
     2.  [SSH to your agent node][2].
     
-    3.  Navigate to your data directory in the agent node. In DCOS, the default location for HDFS data directories is `/var/lib/hdfs`.
+    3.  Navigate to your data directory in the agent node. In DC/OS, the default location for HDFS data directories is `/var/lib/hdfs`.
         
             $ cd /var/lib
             

@@ -10,13 +10,13 @@ page_options_show_link_unauthenticated: false
 hide_from_navigation: false
 hide_from_related: false
 ---
-**Disclaimer:** This document provides the DCOS Service requirements, but is not the complete DCOS service certification. For the complete DCOS Service Specification, send an email to <a href="mailto:partnerships@mesosphere.io" target="_blank">partnerships@mesosphere.io</a>.
+**Disclaimer:** This document provides the DC/OS Service requirements, but is not the complete DC/OS service certification. For the complete DC/OS Service Specification, send an email to <a href="mailto:partnerships@mesosphere.io" target="_blank">partnerships@mesosphere.io</a>.
 
-This document is intended for a developer creating a Mesosphere DCOS Service. It is assumed the you are familiar with <a href="http://mesos.apache.org/documentation/latest/app-framework-development-guide/" target="_blank">Mesos framework development</a>.
+This document is intended for a developer creating a Mesosphere DC/OS Service. It is assumed the you are familiar with <a href="http://mesos.apache.org/documentation/latest/app-framework-development-guide/" target="_blank">Mesos framework development</a>.
 
 The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <a href="https://www.ietf.org/rfc/rfc2119.txt" target="_blank">RFC 2119</a>.
 
-By completing the requirements below, you can integrate with DCOS and have your Service certified by Mesosphere.
+By completing the requirements below, you can integrate with DC/OS and have your Service certified by Mesosphere.
 
 ## Terminology
 
@@ -32,16 +32,16 @@ If the service isn’t running because it is missing license information, that f
 
 ### 02\. Service MUST be uninstallable.
 
-A DCOS user can uninstall your service with this command:
+A DC/OS user can uninstall your service with this command:
 
     $ dcos package uninstall <service name>
     
 
 # Packaging
 
-### 03\. Service MUST use standard DCOS packaging.
+### 03\. Service MUST use standard DC/OS packaging.
 
-A DCOS user must be able to install your service by running this command:
+A DC/OS user must be able to install your service by running this command:
 
     $ dcos package install <service name>
     
@@ -50,11 +50,11 @@ For this to work, the metadata for your service must be registered in the Mesosp
 
 ### 04\. Service SHOULD have a simple lowercase service name.
 
-The name of the service is the name provided in Universe. That name should be a simple name without reference to Mesos or DCOS. For example, the HDFS-Mesos framework is listed in the universe as `hdfs`. This name should also be the first level property of the <a href="https://github.com/mesosphere/universe/blob/version-2.x/repo/packages/H/hdfs/0/config.json#L4" target="_blank">config.json</a> file.
+The name of the service is the name provided in Universe. That name should be a simple name without reference to Mesos or DC/OS. For example, the HDFS-Mesos framework is listed in the universe as `hdfs`. This name should also be the first level property of the <a href="https://github.com/mesosphere/universe/blob/version-2.x/repo/packages/H/hdfs/0/config.json#L4" target="_blank">config.json</a> file.
 
 ### 05\. Service package MUST include a Marathon deployment descriptor file.
 
-Services in DCOS are started and managed by the native DCOS Marathon instance. Your DCOS service package MUST include a Marathon descriptor file (usually named `marathon.json`) which is used to launch the service. The Scheduler must be designed so that it can be launched by Marathon.
+Services in DC/OS are started and managed by the native DC/OS Marathon instance. Your DC/OS service package MUST include a Marathon descriptor file (usually named `marathon.json`) which is used to launch the service. The Scheduler must be designed so that it can be launched by Marathon.
 
 *   You MUST supply a <a href="https://github.com/mesosphere/universe#marathonjsonmustache" target="_blank">marathon.json.mustache</a> file as part of your Service metadata.
 *   Your long-running app MAY use a Docker image retrieved by using a Docker registry or a binary retrieved by using a CDN backed HTTP server.
@@ -116,7 +116,7 @@ The `resource.json` file is specified in the [Universe repository][5].
 
 The app running in Marathon to represent your service, usually the scheduler, MUST implement one or more [Marathon health checks][6].
 
-The output from these checks is used by the DCOS web interface to display your service health:
+The output from these checks is used by the DC/OS web interface to display your service health:
 
 *   If ALL of your health checks pass, your service is marked in green as Healthy.
 *   If ANY of your health checks fail, your service is marked in red as Sick. Your documentation must provide troubleshooting information for resolving the issue.
@@ -134,7 +134,7 @@ The scheduler MUST attempt to run executors/tasks with no external dependencies.
 
 Mesos can fetch binaries by using HTTP[S], FTP[S], HDFS, or Docker pull. Many frameworks run an HTTP server in the scheduler that can distribute the binaries, or just rely on pulling from a public or private Docker registry. Remember that some clusters do not have access to the public internet.
 
-URLs for downloads must be parameterized and externalized in the `config.json` file, with the exception of Docker images. The scheduler and executor MUST NOT use URLS without externalizing them and allowing them to be configurable. This requirement ensures that DCOS supports on-prem datacenter environments which do not have access to the public internet.
+URLs for downloads must be parameterized and externalized in the `config.json` file, with the exception of Docker images. The scheduler and executor MUST NOT use URLS without externalizing them and allowing them to be configurable. This requirement ensures that DC/OS supports on-prem datacenter environments which do not have access to the public internet.
 
 ### 13\. Configuration MUST be via CLI parameters or environment variables.
 
@@ -144,17 +144,17 @@ Secret or sensitive information should NOT include passwords as command-line par
 
 Secrets/tokens themselves may be passed around as URIs, task labels, or otherwise. A hook may place those credentials on disk somewhere and update the environment to point to the on-disk credentials.
 
-### 14\. Service MAY provide a DCOS CLI Subcommand.
+### 14\. Service MAY provide a DC/OS CLI Subcommand.
 
-Your Service MAY provide a custom DCOS subcommand. For the DCOS CLI Specification, send an email to <a href="mailto:partnerships@mesosphere.io" target="_blank">partnerships@mesosphere.io</a>.
+Your Service MAY provide a custom DC/OS subcommand. For the DC/OS CLI Specification, send an email to <a href="mailto:partnerships@mesosphere.io" target="_blank">partnerships@mesosphere.io</a>.
 
-### 15\. A Service with a DCOS CLI Subcommand MUST implement the minimum command set.
+### 15\. A Service with a DC/OS CLI Subcommand MUST implement the minimum command set.
 
-If providing a custom DCOS CLI subcommand, you must implement the minimum set of requirements.
+If providing a custom DC/OS CLI subcommand, you must implement the minimum set of requirements.
 
-### 16\. A Service with DCOS CLI MUST be driven by HTTP APIs.
+### 16\. A Service with DC/OS CLI MUST be driven by HTTP APIs.
 
-Custom subcommands must interact with your service by using HTTP. The supported method of interaction with your service is through the [DCOS Admin Router][7]. Your service will be exposed under the convention `<dcos>/service/<service-name>`.
+Custom subcommands must interact with your service by using HTTP. The supported method of interaction with your service is through the [DC/OS Admin Router][7]. Your service will be exposed under the convention `<dcos>/service/<service-name>`.
 
 ### 17\. In config.json all required properties MUST be specified as required.
 

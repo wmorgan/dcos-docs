@@ -18,8 +18,8 @@ marathon-lb-autoscale collects data from all HAProxy instances to determine the 
 
 **Prerequisites**
 
-*   A [running DCOS cluster][2].
-*   A [configured DCOS CLI][3].
+*   A [running DC/OS cluster][2].
+*   A [configured DC/OS CLI][3].
 *   An application running on the native Marathon instance.
 *   Ruby installed on your master node if you will run the application on the command line.
 

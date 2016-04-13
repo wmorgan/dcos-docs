@@ -10,13 +10,13 @@ page_options_show_link_unauthenticated: false
 hide_from_navigation: false
 hide_from_related: false
 ---
-The DCOS web interface provides a rich graphical view of your DCOS cluster. With the web interface you can view the current state of your entire cluster and DCOS services. The web interface is installed as a part of your DCOS installation.
+The DC/OS web interface provides a rich graphical view of your DC/OS cluster. With the web interface you can view the current state of your entire cluster and DC/OS services. The web interface is installed as a part of your DC/OS installation.
 
-There are three major views in the DCOS web interface: Dashboard, Services, and Nodes. Additionally, there are quick-launch icons on the lower-left navigation panel for starting the DCOS CLI, chat sessions, and the DCOS documentation.
+There are three major views in the DC/OS web interface: Dashboard, Services, and Nodes. Additionally, there are quick-launch icons on the lower-left navigation panel for starting the DC/OS CLI, chat sessions, and the DC/OS documentation.
 
 # <a name="dashboard"></a>Dashboard
 
-The dashboard is the home page of the DCOS web interface and provides an overview of your DCOS cluster.
+The dashboard is the home page of the DC/OS web interface and provides an overview of your DC/OS cluster.
 
 <a href="/wp-content/uploads/2015/12/ui-dashboard.gif" rel="attachment wp-att-4122"><img src="/wp-content/uploads/2015/12/ui-dashboard-800x431.gif" alt="ui-dashboard" width="800" height="431" class="alignnone size-large wp-image-4122" /></a>
 

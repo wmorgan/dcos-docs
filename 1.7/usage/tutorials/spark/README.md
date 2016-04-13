@@ -21,7 +21,7 @@ hide_from_related: false
 
 **Scope**:
 
-In the following tutorial you will learn about how to use Spark on DCOS, from the simple first steps
+In the following tutorial you will learn about how to use Spark on DC/OS, from the simple first steps
 of how to launch a Spark job to using Spark interactively with [Apache Zeppelin](https://zeppelin.incubator.apache.org/).
 
 # Installing
@@ -29,14 +29,14 @@ of how to launch a Spark job to using Spark interactively with [Apache Zeppelin]
 Assuming you have a DC/OS cluster up and running, the first step is to [install Spark](https://docs.mesosphere.com/manage-service/spark/). As the minimum cluster size for this tutorial I recommend at least three nodes with 2 CPUs and 2 GB of RAM available, each:
 
     $ dcos package install spark
-    Note that the Apache Spark DCOS Service is beta and there may be bugs, incomplete features, incorrect documentation or other discrepancies.
+    Note that the Apache Spark DC/OS Service is beta and there may be bugs, incomplete features, incorrect documentation or other discrepancies.
     We recommend a minimum of two nodes with at least 2 CPU and 2GB of RAM available for the Spark Service and running a Spark job.
     Note: The Spark CLI may take up to 5min to download depending on your connection.
     Continue installing? [yes/no] yes
     Installing Marathon app for package [spark] version [1.6.0]
     Installing CLI subcommand for package [spark] version [1.6.0]
     New command available: dcos spark
-    The Apache Spark DCOS Service has been successfully installed!
+    The Apache Spark DC/OS Service has been successfully installed!
 
     	Documentation: https://spark.apache.org/docs/latest/running-on-mesos.html
     	Issues: https://issues.apache.org/jira/browse/SPARK
