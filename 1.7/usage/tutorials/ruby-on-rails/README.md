@@ -31,69 +31,71 @@ TODO
 
 # Prerequisites
 
-- [Install](../install/README.md) to get a cluster up and running.
-- [Check Cluster Size](../getting-started/cluster-size/README.md). You'll need at least one public and one private node.
+*   [DC/OS](/administration/installing/) installed
+*   [DC/OS CLI](/usage/cli/install/) installed
+*   [Check Cluster Size](../getting-started/cluster-size/README.md): a minimum of one public and one private node.
+*   [DC/OS MySQL tutorial](../mysql/README.md)
 
 ## Installing the Database
 
 Redmine stores data in a SQL database.
-We'll use MySQL for this tutorial. Please see [MySQL](../mysql/README.md) for detailed installation instructions.
-We assume that MySQL is available at the VIP `3.3.0.6:3306`.
+We'll use MySQL for this tutorial. For detailed installation instructions, see the DC/OS MySQL [tutorial](../mysql/README.md).
+This Ruby on Rails tutorial assumes that MySQL is available at the default VIP `3.3.0.6:3306`.
 
 ## Create a Database and User
 
 Before we can run Redmine, we need to create a database and a user for it.
-To connect to MySQL, SSH into a cluster node (e.g. the master).
 
-```
-$ ssh <USER>@<MASTER_IP>
-```
+1.  Connect to MySQL by SSHing into a DC/OS cluster node (e.g. the master node).
 
-Then run a container with the MySQL client.
-Enter the root password from the [MySQL tutorial](../mysql/README.md) when prompted.
+    ```
+    $ ssh <USER>@<MASTER_IP>
+    ```
 
-```
-$ docker run -it mysql:5.6 mysql -u root -h 3.3.0.6 -p
-Enter password:
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 9
-Server version: 5.6.29 MySQL Community Server (GPL)
+1.  Then run a container with the MySQL client specified. Enter the root password from the [MySQL tutorial](../mysql/README.md) when prompted.
 
-Copyright (c) 2000, 2016, Oracle and/or its affiliates. All rights reserved.
+    ```
+    $ docker run -it mysql:5.6 mysql -u root -h 3.3.0.6 -p
+    Enter password:
+    Welcome to the MySQL monitor.  Commands end with ; or \g.
+    Your MySQL connection id is 9
+    Server version: 5.6.29 MySQL Community Server (GPL)
+    
+    Copyright (c) 2000, 2016, Oracle and/or its affiliates. All rights reserved.
+    
+    Oracle is a registered trademark of Oracle Corporation and/or its
+    affiliates. Other names may be trademarks of their respective
+    owners.
+    
+    Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+    
+    mysql>
+    ```
 
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-mysql>
-```
-
-From the MySQL CLI, run the following command to create the user 'redmine' with password 'DC/OS_Rocks'.
-
-```
-mysql> CREATE USER 'redmine'@'%' IDENTIFIED BY 'DC/OS_Rocks';
-Query OK, 0 rows affected (0.00 sec)
-```
-
-Then create the database.
-
-```
-mysql> CREATE DATABASE IF NOT EXISTS `redmine_production` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`;
-Query OK, 1 row affected (0.00 sec)
+1.  From the MySQL CLI, run this command to create the user `redmine` with password `DC/OS_Rocks`.
+    
+    ```
+    mysql> CREATE USER 'redmine'@'%' IDENTIFIED BY 'DC/OS_Rocks';
+    Query OK, 0 rows affected (0.00 sec)
 ```
 
-Finally, give the user access to it.
+1.  Then run this command to create a database named `redmine_production`.
 
-```
-mysql> GRANT SELECT, LOCK TABLES, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER ON `redmine_production`.* TO 'redmine'@'%';
-Query OK, 0 rows affected (0.00 sec)
-```
+    ```
+    mysql> CREATE DATABASE IF NOT EXISTS `redmine_production` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`;
+    Query OK, 1 row affected (0.00 sec)
+    ```
+
+1.  Finally, grant the user access to the database.
+
+    ```
+    mysql> GRANT SELECT, LOCK TABLES, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER ON `redmine_production`.* TO 'redmine'@'%';
+    Query OK, 0 rows affected (0.00 sec)
+    ```
 
 ## Install an Edge Load Balancer
 
-To route traffic to Redmine we need a load balancer. The `marathon-lb` package provides a load balancer that automatically updates itself when services are installed or updated on Marathon. Install it via the command line:
+To route traffic to Redmine we need a load balancer. The [`marathon-lb` package](https://github.com/dcos/marathon-lb) provides a load balancer that automatically updates itself when services are installed or updated on Marathon. Install it by using the DC/OS command line:
 
 ```
 $ dcos package install marathon-lb
@@ -101,7 +103,7 @@ $ dcos package install marathon-lb
 
 # Run Redmine
 
-To run Redmine, use the Marathon CLI to add the app defined in the [redmine.json](redmine.json) file.
+To run Redmine, add this [redmine.json](redmine.json) Marathon app definition file to DC/OS with this CLI command:
 
 ```
 $ dcos marathon app add redmine.json
@@ -116,7 +118,7 @@ Click the *Sign in* link in the top right corner, and use the default user `admi
 
 And you're done! Redmine is now ready to use.
 
-Should Redmine ever crash it will get restarted automatically by Marathon. If the server that it's running on crashes, Marathon will restart Redmine on a different one. It also periodically performs an HTTP health check (defined under the `healthChecks` key in the JSON file) to make sure that the application is responding.
+If Redmine ever crashes it will be restarted automatically by Marathon. If the server that it's running on crashes, Marathon will restart Redmine on a different one. It also periodically performs an HTTP health check (defined under the `healthChecks` key in the JSON file) to make sure that the application is responding.
 
 # Cleanup
 
