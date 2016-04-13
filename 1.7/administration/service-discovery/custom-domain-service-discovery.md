@@ -1,7 +1,7 @@
 ---
 UID: 56f98445813f6
 post_title: >
-  Using A Custom Domain For DCOS Service
+  Using A Custom Domain For DC/OS Service
   Discovery
 post_excerpt: ""
 layout: docs.jade
@@ -12,14 +12,14 @@ page_options_show_link_unauthenticated: false
 hide_from_navigation: false
 hide_from_related: false
 ---
-DCOS uses Mesos-DNS for internal service discovery. While the .mesos domain can be used to reach services in DCOS, an additional instance of Mesos-DNS must be running to support the use of custom suffixes. This tutorial outlines the steps for configuring and starting Mesos-DNS on DCOS and configuring your authoritative DNS appropriately. This tutorial is also useful when configuring DNS for DCOS clusters in multiple datacenters and environments.
+DC/OS uses Mesos-DNS for internal service discovery. While the .mesos domain can be used to reach services in DC/OS, an additional instance of Mesos-DNS must be running to support the use of custom suffixes. This tutorial outlines the steps for configuring and starting Mesos-DNS on DC/OS and configuring your authoritative DNS appropriately. This tutorial is also useful when configuring DNS for DC/OS clusters in multiple datacenters and environments.
 
 **Prerequisites**
 
-*   A functioning DCOS cluster.
+*   A functioning DC/OS cluster.
 *   A configurable authoritative DNS server.
 
-# DCOS Configuration
+# DC/OS Configuration
 
 1.  Create a configuration directory for the new Mesos-DNS instance:
     
@@ -86,7 +86,7 @@ DCOS uses Mesos-DNS for internal service discovery. While the .mesos domain can 
           </td>
           
           <td class="confluenceTd">
-            IP addresses of DCOS masters
+            IP addresses of DC/OS masters
           </td>
         </tr>
         
@@ -231,7 +231,7 @@ DCOS uses Mesos-DNS for internal service discovery. While the .mesos domain can 
           </td>
           
           <td class="confluenceTd">
-            IP Address of the Mesos Agent that Mesos-DNS is running on (<em>see DCOS Configuration, <a href="#four">Step 4</a>, <mesos_agent></em>).
+            IP Address of the Mesos Agent that Mesos-DNS is running on (<em>see DC/OS Configuration, <a href="#four">Step 4</a>, <mesos_agent></em>).
           </td>
         </tr>
       </tbody>
@@ -239,6 +239,6 @@ DCOS uses Mesos-DNS for internal service discovery. While the .mesos domain can 
 
 ## Example
 
-Here is a datacenter with DCOS clusters in development and production environments:
+Here is a datacenter with DC/OS clusters in development and production environments:
 
 <a href="/wp-content/uploads/2016/03/tutorial-cust-domain.png" rel="attachment wp-att-3898"><img src="/wp-content/uploads/2016/03/tutorial-cust-domain-800x330.png" alt="tutorial-cust-domain" width="800" height="330" class="alignnone size-large wp-image-3898" /></a>

@@ -16,9 +16,9 @@ You must have a single bootstrap node, Mesos master nodes, and Mesos agent nodes
 
 ## Bootstrap node
 
-1 node with 2 Cores, 16 GB RAM, 60 GB HDD. This is the node where DCOS installation is run. This bootstrap node must also have:
+1 node with 2 Cores, 16 GB RAM, 60 GB HDD. This is the node where DC/OS installation is run. This bootstrap node must also have:
 
-*   Python, pip, and virtualenv must be installed for the DCOS [CLI][1]. pip must be configured to pull packages from PyPI or your private PyPI, if applicable.
+*   Python, pip, and virtualenv must be installed for the DC/OS [CLI][1]. pip must be configured to pull packages from PyPI or your private PyPI, if applicable.
 *   A High-availability (HA) load balancer, such as HAProxy to balance the following TCP ports to all master nodes: 80, 443, 8080, 8181, 2181, 5050. </ul> 
     </li> </ul>
     
@@ -96,7 +96,7 @@ You must have a single bootstrap node, Mesos master nodes, and Mesos agent nodes
     
     ### Port Configuration
     
-    *   Each node has IP-to-IP connectivity from itself to all nodes in the DCOS cluster.
+    *   Each node has IP-to-IP connectivity from itself to all nodes in the DC/OS cluster.
     *   Each node has Network Time Protocol (NTP) for clock synchronization enabled.
     *   Each node has ICMP enabled.
     *   Each node has TCP and UDP enabled port 53 for DNS.
@@ -274,11 +274,11 @@ You must have a single bootstrap node, Mesos master nodes, and Mesos agent nodes
         
         ## Bootstrap node
         
-        Before installing DCOS, you must ensure that your bootstrap node has the following prerequisites.
+        Before installing DC/OS, you must ensure that your bootstrap node has the following prerequisites.
         
-        ### DCOS setup file
+        ### DC/OS setup file
         
-        Download and save the DCOS setup file to your bootstrap node. This file is used to create your customized DCOS build file. Contact your sales representative or sales@mesosphere.com to obtain the DCOS setup file.
+        Download and save the DC/OS setup file to your bootstrap node. This file is used to create your customized DC/OS build file. Contact your sales representative or sales@mesosphere.com to obtain the DC/OS setup file.
         
         ### Docker Nginx
         
@@ -289,7 +289,7 @@ You must have a single bootstrap node, Mesos master nodes, and Mesos agent nodes
         
         ## Cluster nodes
         
-        Before installing DCOS, you must ensure that all of your cluster nodes have the following prerequisites. The cluster nodes are designated Mesos masters and agents during installation.
+        Before installing DC/OS, you must ensure that all of your cluster nodes have the following prerequisites. The cluster nodes are designated Mesos masters and agents during installation.
         
         ### Data compression
         

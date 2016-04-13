@@ -10,22 +10,22 @@ page_options_show_link_unauthenticated: false
 hide_from_navigation: false
 hide_from_related: false
 ---
-**Disclaimer:** The Crate service is available at the alpha level and not recommended for Mesosphere DCOS production systems.
+**Disclaimer:** The Crate service is available at the alpha level and not recommended for Mesosphere DC/OS production systems.
 
 Crate is a distributed NoSQL database that you can use to query and compute data with SQL in real-time. It provides a distributed aggregation engine, native search, and super simple scalability. Crate's shared-nothing-architecture means it is optimized for distributed environments that allow horizontal scaling of applications.
 
-The Crate DCOS service is <a href="https://crate.io/docs/support/" target="_blank">supported</a> by a Crate Technology Gmbh.
+The Crate DC/OS service is <a href="https://crate.io/docs/support/" target="_blank">supported</a> by a Crate Technology Gmbh.
 
-*   [Installing Crate on DCOS][1]
+*   [Installing Crate on DC/OS][1]
 *   [Usage Examples][2]
 *   [Uninstalling Crate][3]
 
-## <a name="install"></a>Installing Crate on DCOS
+## <a name="install"></a>Installing Crate on DC/OS
 
 Prerequisite
-:   The DCOS CLI must be [installed][4].
+:   The DC/OS CLI must be [installed][4].
 
-To install Crate using the DCOS CLI:
+To install Crate using the DC/OS CLI:
 
 1.  Install Crate with this command:
     
@@ -34,17 +34,17 @@ To install Crate using the DCOS CLI:
 
 3.  Verify that Crate is successfully installed and running:
     
-    *   From the DCOS CLI:
+    *   From the DC/OS CLI:
         
         $ dcos package list NAME VERSION APP COMMAND DESCRIPTION crate 0.1.0 /crate --- A Mesos Framework that allows running and resizing one or multiple Crate database clusters.
     
-    *   From the DCOS web interface, go to the **Services** tab and confirm that Crate is running:
+    *   From the DC/OS web interface, go to the **Services** tab and confirm that Crate is running:
 
 <a href="/wp-content/uploads/2015/12/cratetask.png" rel="attachment wp-att-1515"><img src="/wp-content/uploads/2015/12/cratetask-800x47.png" alt="cratetask" width="800" height="47" class="alignnone size-large wp-image-1515" /></a>
 
 ## <a name="usage"></a>Usage Examples
 
-After installing, only a single Crate task is running on the DCOS cluster. To launch the Crate cluster you must use the Framework API and have enough resources to add Crate instances.
+After installing, only a single Crate task is running on the DC/OS cluster. To launch the Crate cluster you must use the Framework API and have enough resources to add Crate instances.
 
 *   [Launching/Resizing the Cluster][6]
 *   [Shutting Down the Cluster][7]
@@ -78,7 +78,7 @@ A single instance of the Crate framework can only run a single Crate cluster. To
 
 **Prerequisite:** You must [SSH into the agent node][9] that is running the Crate service.
 
-1.  Add `crate.framework-name` and `crate.cluster-name` to your options file. You must use a unique name for each cluster and set each framwork API port to a unique and available port (default is 4040). This is not exposed but is required to route the DCOS endpoints to the correct framework instance.
+1.  Add `crate.framework-name` and `crate.cluster-name` to your options file. You must use a unique name for each cluster and set each framwork API port to a unique and available port (default is 4040). This is not exposed but is required to route the DC/OS endpoints to the correct framework instance.
     
         {
           "crate": {
@@ -92,14 +92,14 @@ A single instance of the Crate framework can only run a single Crate cluster. To
         }
         
 
-2.  Run the install command with the DCOS CLI:
+2.  Run the install command with the DC/OS CLI:
     
         $ dcos package install crate --options=crate-options.json
         
 
 ## <a name="uninstall"></a>Uninstalling Crate
 
-1.  From the DCOS CLI, enter this command::
+1.  From the DC/OS CLI, enter this command::
     
         $ dcos package uninstall crate
         
@@ -119,7 +119,7 @@ A single instance of the Crate framework can only run a single Crate cluster. To
     
     3.  Click **OK** to confirm your deletion.
 
-3.  Optional: Clear your data directories. By default the Crate DCOS Service data and log directories are written into the Mesos task sandbox. The Mesos task sandbox is automatically purged periodically. You can change this by setting the `crate.data-directory` option when you install the Crate DCOS Service. You can find more information about how to use custom, persistent data paths in the [Crate framework documentation][11].
+3.  Optional: Clear your data directories. By default the Crate DC/OS Service data and log directories are written into the Mesos task sandbox. The Mesos task sandbox is automatically purged periodically. You can change this by setting the `crate.data-directory` option when you install the Crate DC/OS Service. You can find more information about how to use custom, persistent data paths in the [Crate framework documentation][11].
 
 ## Links
 

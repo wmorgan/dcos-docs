@@ -10,7 +10,7 @@ page_options_show_link_unauthenticated: false
 hide_from_navigation: false
 hide_from_related: true
 ---
-These configuration parameters are specified in [YAML][1] format in your config.yaml file. During DCOS installation the configuration file is used to generate a customized DCOS build. <!-- A config.yaml template file is available [here][2]. -->
+These configuration parameters are specified in [YAML][1] format in your config.yaml file. During DC/OS installation the configuration file is used to generate a customized DC/OS build. <!-- A config.yaml template file is available [here][2]. -->
 
 # Cluster Setup
 
@@ -21,7 +21,7 @@ These configuration parameters are specified in [YAML][1] format in your config.
 ### [config-yaml-cluster-name]
 
 ### **exhibitor_storage_backend**
-This parameter specifies the type of storage backend to use for Exhibitor. You can use internal DCOS storage (<code>static</code>) or specify an external storage system (<code>zookeeper</code>, <code>aws_s3</code>, and <code>shared_filesystem</code>) for configuring and orchestrating Zookeeper with Exhibitor on the master nodes. Exhibitor automatically configures your Zookeeper installation on the master nodes during your DCOS installation. 
+This parameter specifies the type of storage backend to use for Exhibitor. You can use internal DC/OS storage (<code>static</code>) or specify an external storage system (<code>zookeeper</code>, <code>aws_s3</code>, and <code>shared_filesystem</code>) for configuring and orchestrating Zookeeper with Exhibitor on the master nodes. Exhibitor automatically configures your Zookeeper installation on the master nodes during your DC/OS installation. 
 
 *   [config-yaml-zk-static]
 *   [config-yaml-zookeeper] 
@@ -83,7 +83,7 @@ This parameter specifies the type of storage backend to use for Exhibitor. You c
 
 # <a name="examples1"></a>Example Configurations
 
-#### DCOS cluster with 3 masters, an Exhibitor/Zookeeper backed by Zookeeper, and static master list specified.
+#### DC/OS cluster with 3 masters, an Exhibitor/Zookeeper backed by Zookeeper, and static master list specified.
 
     agent_list:
     - <agent-private-ip-1>
@@ -111,7 +111,7 @@ This parameter specifies the type of storage backend to use for Exhibitor. You c
     ssh_user: <username>
     
 
-#### <a name="shared"></a>DCOS cluster with 3 masters, an Exhibitor/Zookeeper shared filesystem storage backend, Internal DNS
+#### <a name="shared"></a>DC/OS cluster with 3 masters, an Exhibitor/Zookeeper shared filesystem storage backend, Internal DNS
 
     agent_list:
     - <agent-private-ip-1>
@@ -140,7 +140,7 @@ This parameter specifies the type of storage backend to use for Exhibitor. You c
     weights: slave_public=1
     
 
-#### <a name="aws"></a>DCOS Cluster with 3 masters, an Exhibitor/Zookeeper backed by an AWS S3 bucket, AWS DNS, and a public agent node
+#### <a name="aws"></a>DC/OS Cluster with 3 masters, an Exhibitor/Zookeeper backed by an AWS S3 bucket, AWS DNS, and a public agent node
 
     agent_list:
     - <agent-private-ip-1>
@@ -172,7 +172,7 @@ This parameter specifies the type of storage backend to use for Exhibitor. You c
     weights: slave_public=1
     
 
-#### <a name="zk"></a>DCOS cluster with 3 masters, an Exhibitor/Zookeeper backed by Zookeeper, VRRP master discovery, public agent node, and Google DNS
+#### <a name="zk"></a>DC/OS cluster with 3 masters, an Exhibitor/Zookeeper backed by Zookeeper, VRRP master discovery, public agent node, and Google DNS
 
     agent_list:
     - <agent-private-ip-1>

@@ -16,9 +16,9 @@ You must have a single bootstrap node, Mesos master nodes, and Mesos agent nodes
 
 ## Bootstrap node
 
-1 node with 2 Cores, 16 GB RAM, 60 GB HDD. This is the node where DCOS installation is run. This bootstrap node must also have:
+1 node with 2 Cores, 16 GB RAM, 60 GB HDD. This is the node where DC/OS installation is run. This bootstrap node must also have:
 
-*   Python, pip, and virtualenv must be installed for the DCOS [CLI][1]. pip must be configured to pull packages from PyPI or your private PyPI, if applicable.
+*   Python, pip, and virtualenv must be installed for the DC/OS [CLI][1]. pip must be configured to pull packages from PyPI or your private PyPI, if applicable.
 *   A High-availability (HA) load balancer, such as HAProxy to balance the following TCP ports to all master nodes: 80, 443, 8080, 8181, 2181, 5050. 
 *  An unencrypted SSH key that can be used to authenticate with the cluster nodes over SSH. Encrypted SSH keys are not supported.
     
@@ -98,7 +98,7 @@ Here are the agent node hardware requirements.
 
 *   Each node is network accessible from the bootstrap node.
 *   Each node has SSH enabled and ports open from the bootstrap node.
-*   Each node has IP-to-IP connectivity from itself to all nodes in the DCOS cluster.
+*   Each node has IP-to-IP connectivity from itself to all nodes in the DC/OS cluster.
 *   Each node has Network Time Protocol (NTP) for clock synchronization enabled.
 *   Each node has ICMP enabled.
 *   Each node has TCP and UDP enabled port 53 for DNS.
@@ -277,11 +277,11 @@ Your bootstrap and cluster nodes must have Docker version 1.9 or greater install
 
 ## Bootstrap node
 
-The bootstrap node is a permanent part of your cluster and is required for DCOS recovery. The leader state and leader election of your Mesos masters is maintained in Exhibitor ZooKeeper. Before installing DCOS, you must ensure that your bootstrap node has the following prerequisites.
+The bootstrap node is a permanent part of your cluster and is required for DC/OS recovery. The leader state and leader election of your Mesos masters is maintained in Exhibitor ZooKeeper. Before installing DC/OS, you must ensure that your bootstrap node has the following prerequisites.
 
-### DCOS setup file
+### DC/OS setup file
 
-Download and save the DCOS setup file to your bootstrap node. This file is used to create your customized DCOS build file. Contact your sales representative or <sales@mesosphere.com> to obtain the DCOS setup file.
+Download and save the DC/OS setup file to your bootstrap node. This file is used to create your customized DC/OS build file. Contact your sales representative or <sales@mesosphere.com> to obtain the DC/OS setup file.
 
 </li> </ul></li> </ul>
         

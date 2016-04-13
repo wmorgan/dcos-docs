@@ -2,7 +2,7 @@
 post_title: Examples
 layout: docs.jade
 ---
-These are examples of how to run popular services on DCOS.
+These are examples of how to run popular services on DC/OS.
 
 TODO:
 

@@ -10,19 +10,19 @@ page_options_show_link_unauthenticated: false
 hide_from_navigation: false
 hide_from_related: false
 ---
-**Disclaimer:** Kubernetes is available at the alpha level and is not recommended for Mesosphere DCOS production systems.
+**Disclaimer:** Kubernetes is available at the alpha level and is not recommended for Mesosphere DC/OS production systems.
 
-Kubernetes is an open-source container orchestration project introduced by Google. With the Mesosphere DCOS, you can deploy Kubernetes in your own datacenter or in the cloud. The Kubernetes service on DCOS [adds several benefits to standalone Kubernetes][1], including high availability, easy installation, and easy maintenance. Kubernetes on DCOS runs reliably alongside other popular next-generation services on the same cluster without competing for resources.
+Kubernetes is an open-source container orchestration project introduced by Google. With the Mesosphere DC/OS, you can deploy Kubernetes in your own datacenter or in the cloud. The Kubernetes service on DC/OS [adds several benefits to standalone Kubernetes][1], including high availability, easy installation, and easy maintenance. Kubernetes on DC/OS runs reliably alongside other popular next-generation services on the same cluster without competing for resources.
 
-The current Kubernetes alpha <a href="https://github.com/mesosphere/kubernetes/releases/tag/v0.7.2-v1.1.5" target="_blank">DCOS package v0.7.2-v1.1.5</a> is based on <a href="https://github.com/GoogleCloudPlatform/kubernetes/releases/tag/v1.1.5" target="_blank">Kubernetes v1.1.5</a>. For more information see the <a href="https://github.com/mesosphere/kubernetes-mesos" target="_blank">Kubernetes-Mesos project on GitHub</a>. There are behavioral differences between the Kubernetes DCOS service and standalone Kubernetes, notably the [behavior of the scheduler][2].
+The current Kubernetes alpha <a href="https://github.com/mesosphere/kubernetes/releases/tag/v0.7.2-v1.1.5" target="_blank">DC/OS package v0.7.2-v1.1.5</a> is based on <a href="https://github.com/GoogleCloudPlatform/kubernetes/releases/tag/v1.1.5" target="_blank">Kubernetes v1.1.5</a>. For more information see the <a href="https://github.com/mesosphere/kubernetes-mesos" target="_blank">Kubernetes-Mesos project on GitHub</a>. There are behavioral differences between the Kubernetes DC/OS service and standalone Kubernetes, notably the [behavior of the scheduler][2].
 
-# <a name="install"></a>Installing Kubernetes on DCOS
+# <a name="install"></a>Installing Kubernetes on DC/OS
 
 **Prerequisite**
 
-*   The DCOS CLI must be [installed][3].
+*   The DC/OS CLI must be [installed][3].
 
-1.  Install the [etcd-mesos][4] service, which provides failover for etcd. By default, the Kubernetes DCOS service installs a single-node etcd cluster.
+1.  Install the [etcd-mesos][4] service, which provides failover for etcd. By default, the Kubernetes DC/OS service installs a single-node etcd cluster.
     
         $ dcos package install etcd
         
@@ -34,7 +34,7 @@ The current Kubernetes alpha <a href="https://github.com/mesosphere/kubernetes/r
         etcd  0.0.1    /etcd  ---      A distributed consistent key-value store for shared configuration and service discovery.
         
 
-4.  Create a Kubernetes JSON configuration file that specifies the etcd-mesos services and save as `options.json`. This file is specified during DCOS Kubernetes installation.
+4.  Create a Kubernetes JSON configuration file that specifies the etcd-mesos services and save as `options.json`. This file is specified during DC/OS Kubernetes installation.
     
         {
           "kubernetes": {
@@ -43,21 +43,21 @@ The current Kubernetes alpha <a href="https://github.com/mesosphere/kubernetes/r
         }
         
 
-5.  From the DCOS CLI, install Kubernetes with the `options.json` file specified:
+5.  From the DC/OS CLI, install Kubernetes with the `options.json` file specified:
     
         $ dcos package install --options=options.json kubernetes
         
 
 6.  Verify that Kubernetes is installed and healthy. The Kubernetes cluster takes a few minutes to deploy.
     
-    *   From the DCOS CLI, enter this command to show the installed packages:
+    *   From the DC/OS CLI, enter this command to show the installed packages:
         
                 $ dcos package list
                 NAME VERSION APP COMMAND DESCRIPTION
                 kubernetes v0.7.2-v1.1.5-alpha /kubernetes kubernetes Kubernetes is an open source system for managing containerized applications across multiple hosts, providing basic mechanisms for deployment, maintenance, and scaling of applications.
             
     
-    *   From the DCOS web interface, go to the Services tab and confirm that Kubernetes is running at <hostname>/#/services/.
+    *   From the DC/OS web interface, go to the Services tab and confirm that Kubernetes is running at <hostname>/#/services/.
         
         <a href="/wp-content/uploads/2015/12/kubernetestask.png" rel="attachment wp-att-1401"><img src="/wp-content/uploads/2015/12/kubernetestask.png" alt="kubernetestask" width="721" height="48" class="alignnone size-full wp-image-1401" /></a>
     
@@ -67,7 +67,7 @@ The current Kubernetes alpha <a href="https://github.com/mesosphere/kubernetes/r
     
     *   Open a browser and navigate to the Mesos web interface at `<hostname>/mesos`. Verify that the Kubernetes framework has registered and is starting tasks.
 
-7.  Install the kubectl DCOS subcommand:
+7.  Install the kubectl DC/OS subcommand:
     
         $ dcos kubectl
         
@@ -82,7 +82,7 @@ The current Kubernetes alpha <a href="https://github.com/mesosphere/kubernetes/r
     
     **Tip:** Names and versions may vary.
 
-Now that Kubernetes is installed on DCOS, you can explore the [Kubernetes Samples][5] or the [Kubernetes User Guide][6].
+Now that Kubernetes is installed on DC/OS, you can explore the [Kubernetes Samples][5] or the [Kubernetes User Guide][6].
 
 # <a name="uninstall"></a>Uninstalling Kubernetes
 
@@ -116,7 +116,7 @@ Now that Kubernetes is installed on DCOS, you can explore the [Kubernetes Sample
     *   [Documentation][10]
     *   [Architecture][11]
     *   [Known Issues][12]
-    *   [DCOS Package Source][13]
+    *   [DC/OS Package Source][13]
 
  [1]: https://github.com/kubernetes/kubernetes/blob/release-1.1/contrib/mesos/README.md
  [2]: https://github.com/kubernetes/kubernetes/blob/master/contrib/mesos/docs/scheduler.md

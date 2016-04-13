@@ -10,11 +10,11 @@ page_options_show_link_unauthenticated: false
 hide_from_navigation: false
 hide_from_related: false
 ---
-By default, Mesosphere DCOS runs everything inside Docker containers in order to minimize dependencies on the underlying host operating system and to offer resilience in the event of a machine failure. When using Velocity, the underlying Mesos scheduler in DCOS creates new Jenkins agents that run as Mesos tasks within a Docker container. User-configured builds are then run inside the same container.
+By default, Mesosphere DC/OS runs everything inside Docker containers in order to minimize dependencies on the underlying host operating system and to offer resilience in the event of a machine failure. When using Velocity, the underlying Mesos scheduler in DC/OS creates new Jenkins agents that run as Mesos tasks within a Docker container. User-configured builds are then run inside the same container.
 
 Since builds typically have steps that invoke the Docker utility, such as `docker build` or `docker push`, we provide the [mesosphere/jenkins-dind][1] Docker image and configure Velocity to use this by default. The `mesosphere/jenkins-dind` image also includes several other well-known tools. For a complete list, see the [Dockerfile][2].
 
-However, in many cases you will have your own dependencies to specify for your applications and environment. As such, we expect that our customers will create custom Docker images for their Jenkins build agents with their environment-specific packages and configurations. Below, you'll find several common scenarios and a recipe for each. Once your new Docker image is built, you can then push it to Docker Hub or your own private Docker registry. This registry must be accessible by each of the DCOS agents.
+However, in many cases you will have your own dependencies to specify for your applications and environment. As such, we expect that our customers will create custom Docker images for their Jenkins build agents with their environment-specific packages and configurations. Below, you'll find several common scenarios and a recipe for each. Once your new Docker image is built, you can then push it to Docker Hub or your own private Docker registry. This registry must be accessible by each of the DC/OS agents.
 
 At a minimum, a custom agent requires the following packages:
 

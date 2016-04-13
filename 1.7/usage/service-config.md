@@ -10,7 +10,7 @@ page_options_show_link_unauthenticated: false
 hide_from_navigation: false
 hide_from_related: false
 ---
-You can customize your DCOS service during installation with a JSON configuration file. Otherwise, the services are installed by using default values.
+You can customize your DC/OS service during installation with a JSON configuration file. Otherwise, the services are installed by using default values.
 
 The general process is as follows:
 
@@ -51,7 +51,7 @@ The general process is as follows:
         }
         
 
-4.  From the DCOS CLI, install the DCOS service with the custom options file specified:
+4.  From the DC/OS CLI, install the DC/OS service with the custom options file specified:
     
         $ dcos package install --options=marathon-config.json marathon
         

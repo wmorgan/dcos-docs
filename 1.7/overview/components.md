@@ -25,7 +25,7 @@ If you log into any host in the DC/OS cluster, you can view the currently runnin
 ## Admin Router Service
 Admin router is our core internal load balancer. Admin router is a customized [Nginx](https://www.nginx.com/resources/wiki/) which allows us to proxy all the internal services on :80. 
 
-Without admin router being up, you could not access the DCOS UI. Admin router is a core component of the DC/OS ecosystem. 
+Without admin router being up, you could not access the DC/OS UI. Admin router is a core component of the DC/OS ecosystem. 
 
 ```
 [Unit]
@@ -60,7 +60,7 @@ The cluster-id service runs an internal tool called `zk-value-consensus` which u
 
 ```
 [Unit]
-Description=Cluster ID: Generates anonymous DCOS Cluster ID
+Description=Cluster ID: Generates anonymous DC/OS Cluster ID
 [Service]
 Type=oneshot
 EnvironmentFile=/opt/mesosphere/environment
@@ -73,7 +73,7 @@ The Cosmos service is our internal packaging API service. You access this servic
 
 ```
 [Unit]
-Description=Package Service: DCOS Packaging API
+Description=Package Service: DC/OS Packaging API
 After=dcos-mesos-master.service
 After=dcos-gen-resolvconf.service
 
@@ -98,7 +98,7 @@ From this complete list of cluster hosts, it queries all 3DT health endpoints (`
 
 ```
 [Unit]
-Description=Diagnostics: DCOS Distributed Diagnostics Tool Master API and Aggregation Service
+Description=Diagnostics: DC/OS Distributed Diagnostics Tool Master API and Aggregation Service
 [Service]
 EnvironmentFile=/opt/mesosphere/environment
 Restart=always
@@ -112,7 +112,7 @@ The erlang port mapper is designed to support our internal layer 4 load balancer
 
 ```
 [Unit]
-Description=Erlang Port Mapping Daemon: DCOS Erlang Port Mapping Daemon
+Description=Erlang Port Mapping Daemon: DC/OS Erlang Port Mapping Daemon
 
 [Service]
 Restart=always
@@ -171,7 +171,7 @@ The history service provides a simple service for storing stateful information a
 
 ```
 [Unit]
-Description=Mesos History: DCOS Resource Metrics History Service/API
+Description=Mesos History: DC/OS Resource Metrics History Service/API
 After=dcos-mesos-master.service
 [Service]
 Restart=always
@@ -201,7 +201,7 @@ Marathon shouldn't need any introduction, it's the distributed init system for t
 
 ```
 [Unit]
-Description=Marathon: DCOS Init System
+Description=Marathon: DC/OS Init System
 After=dcos-mesos-master.service
 [Service]
 Restart=always
@@ -237,7 +237,7 @@ This is our internal layer 4 loadbalancer.
 
 ```
 [Unit]
-Description=Layer 4 Load Balancer: DCOS Layer 4 Load Balancing Service
+Description=Layer 4 Load Balancer: DC/OS Layer 4 Load Balancing Service
 After=dcos-gen-resolvconf.service
 After=dcos-epmd.service
 BindsTo=dcos-epmd.service
@@ -261,7 +261,7 @@ The DC/OS signal service queries the diagnostics service `/system/health/v1/repo
 
 ```
 [Unit]
-Description=Signal Service: DCOS Telemetry and Support Utility
+Description=Signal Service: DC/OS Telemetry and Support Utility
 After=dcos-mesos-master.service
 [Service]
 EnvironmentFile=/opt/mesosphere/environment

@@ -12,21 +12,21 @@ hide_from_related: false
 ---
 Cassandra is an open source distributed database management system designed to handle large amounts of data across many commodity servers, providing high availability with no single point of failure. Cassandra is well suited to run on Mesos due to its peer-to-peer architecture. Cassandra has great features that back today’s web applications with its horizontal scalability, no single point of failure, and a simple query language (CQL).
 
-For information about how Mesos DNS is implemented for the Cassandra DCOS service, see the <a href="http://mesosphere.github.io/cassandra-mesos/docs/mesos-dns.html" target="_blank">Cassandra-Mesos documentation</a>.
+For information about how Mesos DNS is implemented for the Cassandra DC/OS service, see the <a href="http://mesosphere.github.io/cassandra-mesos/docs/mesos-dns.html" target="_blank">Cassandra-Mesos documentation</a>.
 
-# <a name="cassandrainstall"></a>Installing Cassandra on DCOS
+# <a name="cassandrainstall"></a>Installing Cassandra on DC/OS
 
 **Prerequisite**
 
-*   The DCOS CLI must be [installed][1].
-*   A DCOS cluster with at least 3 private nodes, each with 0.3 CPU shares, 1184MB of memory and 272MB of disk.
+*   The DC/OS CLI must be [installed][1].
+*   A DC/OS cluster with at least 3 private nodes, each with 0.3 CPU shares, 1184MB of memory and 272MB of disk.
 
-1.  From the DCOS CLI, enter this command:
+1.  From the DC/OS CLI, enter this command:
     
         $ dcos package install cassandra
         
     
-    **Tip:** It can take up to 6 minutes for the Cassandra ring to bootstrap. During this time, the DCOS web interface may show the service as Unhealthy.
+    **Tip:** It can take up to 6 minutes for the Cassandra ring to bootstrap. During this time, the DC/OS web interface may show the service as Unhealthy.
 
 2.  [verify-service-install]
 
@@ -45,7 +45,7 @@ For information about how Mesos DNS is implemented for the Cassandra DCOS servic
 
 # <a name="uninstall"></a>Uninstalling Cassandra
 
-1.  From the DCOS CLI, enter this command:
+1.  From the DC/OS CLI, enter this command:
     
         $ dcos package uninstall cassandra
         
@@ -64,7 +64,7 @@ For information about how Mesos DNS is implemented for the Cassandra DCOS servic
     
     4.  Click **OK** to confirm your deletion.
 
-3.  Clear your data directories. By default the Cassandra DCOS Service data and log directories are written into the Mesos task sandbox. You can change this by setting the `cassandra.data-directory` option when you install the Cassandra DCOS Service.
+3.  Clear your data directories. By default the Cassandra DC/OS Service data and log directories are written into the Mesos task sandbox. You can change this by setting the `cassandra.data-directory` option when you install the Cassandra DC/OS Service.
 
 For more information:
 

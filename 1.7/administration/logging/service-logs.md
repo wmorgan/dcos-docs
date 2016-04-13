@@ -10,7 +10,7 @@ page_options_show_link_unauthenticated: false
 hide_from_navigation: false
 hide_from_related: false
 ---
-The DCOS services run as Mesos tasks and print their logs to `stdout` and `stderr`. The log content varies from service to service, but usually includes task launches, resource accepts, and resource rejects.
+The DC/OS services run as Mesos tasks and print their logs to `stdout` and `stderr`. The log content varies from service to service, but usually includes task launches, resource accepts, and resource rejects.
 
 You can access these logs in two ways:
 
