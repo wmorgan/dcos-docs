@@ -11,8 +11,8 @@ hide_from_related: false
 ---
 
 ArangoDB is a distributed, multi-model database featuring JSON
-documents, graphs and key/value pairs. It has a unified query language (AQL)
-that allows to mix all three data models and supports joins and
+documents, graphs, and key/value pairs. It has a unified query language (AQL)
+that allows you to mix all three data models and supports joins and
 transactions.
 
 **Time Estimate**:
@@ -21,84 +21,82 @@ transactions.
 
 **Target Audience**:
 
-Anyone that wants to deploy a distributed multi model database on DC/OS. Beginner level.
+Anyone who wants to deploy a distributed multi-model database on DC/OS. Beginner level.
 
 **Scope**:
 
-This tutorial covers the basics to get you started with ArangoDB on DC/OS.
-
-# Table of Contents
+This tutorial covers the basics in order to get you started with ArangoDB on DC/OS.
 
 ## Prerequisites
 
-This tutorial assumes that you have a DC/OS cluster up and running and that you have installed the `dcos` command on your computer.
+- A running DC/OS cluster
+- [DC/OS CLI](https://docs.mesosphere.com/usage/cli/install/) installed
 
-## Installation of ArangoDB on DC/OS
+## Install ArangoDB on DC/OS
 
-The dcos command line utility provides a very convenient way to deploy applications on your DC/OS cluster.
+The DC/OS CLI provides a convenient way to deploy applications on your DC/OS cluster.
 
-Using the dcos command line utility deploying ArangoDB is as easy as:
+Deploying ArangoDB via the DC/OS CLI is as easy as:
 
     dcos package install arangodb
 
-This will install the dcos subcommand and start an instance of the ArangoDB framework/service with its default configuration under its standard name "arangodb" via Marathon.
+This command installs the `arangodb` subcommand and starts an instance of the ArangoDB service with its default configuration under its standard name, "arangodb" via Marathon.
 
-When you open the DC/OS UI in the browser you can now watch your ArangoDB cluster starting up on your Open DC/OS cluster when you access the “Services” tab:
+Open the DC/OS web interface in your browser and click the Services tab to watch ArangoDB start up on your Open DC/OS cluster:
 
 ![Services](img/services.png)
 
-Clicking on the ArangoDB task will reveal the involved subtask that the framework has started:
+Click the ArangoDB task to reveal the subtask that the framework has started:
 
 ![Tasks](img/tasks.png)
 
-Clicking on “Open Service” will open the ArangoDB Cluster Dashboard:
+Click “Open Service” to open the ArangoDB dashboard:
 
 ![Dashboard](img/dashboard.png)
 
-By default ArangoDB will not expose itself to the outside. The IPs listed here are the internal IPs in the cluster. To access the nodes from the outside we recommend to use sshuttle (https://github.com/sshuttle/sshuttle).
+By default, ArangoDB will not expose itself to the outside. The IPs listed here are the internal IPs in the cluster. To access the nodes from the outside, we recommend using [sshuttle](https://github.com/sshuttle/sshuttle).
 
 The exact way to dig a tunnel using sshuttle varies from infrastructure to infrastructure. The following is an example for an AWS cluster:
 
     sshuttle --python /opt/mesosphere/bin/python3.4 -r core@54.171.143.132 10.0.0.0/8
 
-The IP may be extracted from the top left corner in the DC/OS UI:
+The IP may be extracted from the top left corner of the DC/OS web interface:
 
 ![Dashboard](img/ip.png)
 
-Note: Some sshuttle versions had problems during our tests. Version 0.77.3 worked properly for us.
+**Note:** Some sshuttle versions had problems during our tests. Version 0.77.3 worked properly for us.
 
-Afterwards you should be able to access the internal IPs and clicking on the coordinator link in the ArangoDB cluster UI should open the ArangoDB coordinator:
+Afterwards, you should be able to access the internal IPs from outside. Click the coordinator link in the ArangoDB web interface to open the ArangoDB coordinator:
 
 ![Dashboard](img/arangodb.png)
 
-Congratulations. You now have ArangoDB running on DC/OS.
-
+Congratulations! You now have ArangoDB running on DC/OS.
 
 ## Further reading
 
 ### Service discovery
 
-ArangoDB integrates with DC/OS service discovery (https://docs.mesosphere.com/administration/service-discovery/mesos-dns/service-naming/). From within the cluster you should use this to talk to the coordinator. To find out the IP of the coordinator do a standard DNS lookup for arangodb-coordinator1.arangodb.mesos.
+ArangoDB integrates with DC/OS service discovery (https://docs.mesosphere.com/administration/service-discovery/mesos-dns/service-naming/). You should use this to talk to the coordinator from within the cluster. To find out the IP of the coordinator, do a standard DNS lookup for `arangodb-coordinator1.arangodb.mesos`.
 
-Then issue a SRV DNS request to arangodb-coordinator1.arangodb.mesos to find out the port.
+Then, issue a SRV DNS request to `arangodb-coordinator1.arangodb.mesos` to find out the port.
 
 ### Deinstallation/Shutdown
 
-To shutdown and delete your ArangoDB framework/service and to remove the
-command line tool, do the following two commands:
+Use the following commands to shut down and delete your ArangoDB service and the
+command line tool:
 
-    dcos arangodb uninstall ; dcos package uninstall arangodb
+    dcos arangodb uninstall; dcos package uninstall arangodb
 
-The first one uses the "arangodb" subcommand to gracefully shut down and
+The first command uses the `arangodb` subcommand to gracefully shut down and
 delete all instances of your ArangoDB service. The framework scheduler
-itself will run in a silent mode for another 120 seconds. This enables
-the second command to remove the "arangodb" subcommand and the entry in
+itself will run in silent mode for another 120 seconds. This enables
+the second command to remove the `arangodb` subcommand and the entry in
 Marathon that would otherwise restart the framework scheduler
 automatically.
 
 ### Configuration options
 
-There are a number of options, which can be specified in the following
+There are a number of configuration options, which can be specified in the following
 way:
 
     dcos package install --config=<JSON_FILE> arangodb
@@ -108,13 +106,13 @@ attribute values and their documentation see
 
     dcos package describe --config arangodb
 
-### Further Infos
+### Further Information
 
-For further infos please visit
+For further information, visit:
 
     https://github.com/arangoDB/arangodb-mesos-framework
 
-It is distributed in binary form as a Docker image
+The ArrangoDB service is also distributed in binary form as a Docker image:
 
     arangodb/arangodb-mesos-framework
     
@@ -125,7 +123,7 @@ configured.
 
 ### Support and bug reports
 
-The ArangoDB Mesos framework as well as the DCOS subcommand are
+The ArangoDB Mesos framework and the DC/OS subcommand are
 supported by ArangoDB GmbH, the company behind ArangoDB. If you get
 stuck, need help or have questions, just ask via one of the following
 channels:
@@ -137,10 +135,10 @@ channels:
   - `frank@arangodb.com`: direct email to Frank Celler
   - `mop@arangodb.com`: direct email to Andreas Streichardt
 
-Additionally, we track issues, bug reports and questions via the github
+Additionally, we track issues, bug reports, and questions via the github
 issue trackers at
 
   - [arangodb-dcos](https://github.com/ArangoDB/arangodb-dcos/issues):
-    the DCOS subcommand
+    The DCOS subcommand
   - [arangodb-mesos](https://github.com/arangodb/arangodb-mesos/issues):
-    the ArangoDB framework/service
+    The ArangoDB service
