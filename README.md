@@ -5,6 +5,8 @@ These documents are used as source to generate <dcos.io>.
 
 **Prior to official release of DC/OS, the contents of this repo are under NDA. See [License and Authors](#license-and-authors) for more details.**
 
+[![Build Status](https://travis-ci.com/dcos/dcos-docs.svg?token=yAREgxuvuzZLg282ZE3m&branch=master)](https://travis-ci.com/dcos/dcos-docs)
+
 ## Versions
 
 - [1.7](1.7) (latest)
