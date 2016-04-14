@@ -1,7 +1,6 @@
 ---
 post_title: Install DC/OS on AWS
 layout: docs.jade
-published: true
 ---
 
 You can create a DC/OS cluster for Amazon Web Services (AWS) by using the DC/OS template on AWS CloudFormation.
@@ -27,25 +26,25 @@ The AWS key pair uses public-key cryptography to provide secure login to your AW
 
 First, select your region; this should be the same region where you will create your cluster:
 
-![Select region](aws/img/dcos-aws-step1a.png)
+![Select region](img/dcos-aws-step1a.png)
 
 In the navigation pane, under `Network & Security`, click `Key Pairs` and then click the `Create Key Pair` button:
 
-![Create key pair](aws/img/dcos-aws-step1b.png)
+![Create key pair](img/dcos-aws-step1b.png)
 
 Save the `.pem` file locally for use later. Note that this is the only chance to save file!
 
 ## Step 2: Launching a DC/OS cluster
 
 1.  Launch the <a href="http://dcos.io/amazon/setup" target="_blank">DC/OS template</a> on CloudFormation and select the region and number of masters. You must have a key pair for your selected region.
-    
-    **Important:** The DC/OS template is configured for running DC/OS. If you modify the template you might be unable to run certain packages on your DC/OS cluster. 
-    
-    ![Configure template](aws/img/dcos-aws-step2a.png)
+
+    **Important:** The DC/OS template is configured for running DC/OS. If you modify the template you might be unable to run certain packages on your DC/OS cluster.
+
+    ![Configure template](img/dcos-aws-step2a.png)
 
 2.  On the **Select Template** page, accept the defaults and click **Next**.
 
-    ![Launch stack](aws/img/dcos-aws-step2b.png)
+    ![Launch stack](img/dcos-aws-step2b.png)
 
 3.  On the **Specify Details** page, specify a cluster name (`Stack name
 `), accept the EULA (AcceptEULA), SSH key (`KeyName`), the number of public (`PublicSlaveInstanceCount`) and private (`SlaveInstanceCount
@@ -53,18 +52,18 @@ Save the `.pem` file locally for use later. Note that this is the only chance to
 
     Here is the recommended cluster configuration:
     *   5 Mesos private agent nodes
-    *   1 Mesos public agent node 
-    
-    ![Create stack](aws/img/dcos-aws-step2c.png)
+    *   1 Mesos public agent node
+
+    ![Create stack](img/dcos-aws-step2c.png)
 
 4.  On the **Options** page, accept the defaults and click **Next**.
-    
+
     **Tip:** You can choose whether to rollback on failure. By default this option is set to **Yes**.
-    
-    ![Confirm stack](aws/img/dcos-aws-step2d.png)
+
+    ![Confirm stack](img/dcos-aws-step2d.png)
 
 5.  On the **Review** page, check the acknowledgement box and then click **Create**.
-    
+
     **Tip:** If the **Create New Stack** page is shown, either AWS is still processing your request or you’re looking at a different region. Navigate to the correct region and refresh the page to see your stack.
 
 # Monitor the DC/OS cluster convergence process
@@ -84,14 +83,14 @@ Launch the DC/OS web interface by entering the Mesos Master hostname:
 1.  From the <a href="https://console.aws.amazon.com/cloudformation/home" target="_blank">Amazon CloudFormation Management</a> page, click to check the box next to your stack.
 
 2.  Click on the **Outputs** tab and copy/paste the Mesos Master hostname into your browser to open the DC/OS web interface. The interface runs on the standard HTTP port 80, so you do not need to specify a port number after the hostname.
-    
+
     **Tip:** You might need to resize your window to see this tab. You can find your DC/OS hostname any time from the <a href="https://console.aws.amazon.com/cloudformation/home" target="_blank">Amazon CloudFormation Management</a> page.
-    
+
     ![Monitor stack creation](aws/img/dcos-aws-step3a.png)
 
 # Next steps
 
-- [Install the DC/OS Command-Line Interface (CLI)][5]. 
+- [Install the DC/OS Command-Line Interface (CLI)][5].
 - [Scaling considerations](https://aws.amazon.com/autoscaling/)
 
  [1]: /administration/managing-a-dcos-cluster-in-aws/
