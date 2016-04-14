@@ -86,7 +86,7 @@ Launch the DC/OS web interface by entering the Mesos Master hostname:
 
     **Tip:** You might need to resize your window to see this tab. You can find your DC/OS hostname any time from the <a href="https://console.aws.amazon.com/cloudformation/home" target="_blank">Amazon CloudFormation Management</a> page.
 
-    ![Monitor stack creation](aws/img/dcos-aws-step3a.png)
+    ![Monitor stack creation](img/dcos-aws-step3a.png)
 
 # Next steps
 
