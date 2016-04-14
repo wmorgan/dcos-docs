@@ -27,7 +27,7 @@ Approximately 20 minutes.
 
 **Target Audience**:
 
-This tutorial is for developers who want to run stateful services on DC/OS. This tutorial does not cover data replication and persistent volume functionality is not considered highly available or ready for production.
+This tutorial is for developers who want to run stateful services on DC/OS. **Note:** The DC/OS persistent volume feature is still in beta and is not ready for production use without a data replication strategy to guard against data loss.
 
 **Terminology**:
 
