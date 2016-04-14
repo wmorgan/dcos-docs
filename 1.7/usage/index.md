@@ -13,7 +13,7 @@ hide_from_related: false
 
 ## Baby steps
 
-It looks like you just [installed](/administration/installing//) DC/OS. Welcome aboard! Now that you  have the DC/OS CLI set up on your local machine, you might be looking at the DC/OS Dashboard wondering, 'What now?'. You probably already know how to use `docker run ...` to launch a web server, right? You can  do the same thing with DC/OS, but with a deployment that is production-ready from the start. DC/OS will keep the web server running if it crashes, allow you to scale it, update the config at runtime, and much more!. Ready? Let's launch a production-grade containerized web server with command from the DC/OS CLI:
+It looks like you just [installed](https://dcos.io/install/) DC/OS. Welcome aboard! Now that you  have the DC/OS CLI set up on your local machine, you might be looking at the DC/OS Dashboard wondering, 'What now?'. You probably already know how to use `docker run ...` to launch a web server, right? You can  do the same thing with DC/OS, but with a deployment that is production-ready from the start. DC/OS will keep the web server running if it crashes, allow you to scale it, update the config at runtime, and much more!. Ready? Let's launch a production-grade containerized web server with command from the DC/OS CLI:
 
     $ curl -sO http://dcos.io/docs/resources/nginx.json && dcos marathon app add nginx.json
 
