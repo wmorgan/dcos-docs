@@ -147,7 +147,7 @@ $ dcos marathon app update postgres instances=2
 
 # Scale down
 
-Suppose you now want to scale down again and will no long need the data for the second task. Follow two steps to scale down your app and clear the repository:
+Suppose you now want to scale down again and will no longer need the data for the second task. Follow two steps to scale down your app and clear the repository:
 
 1. scale down to 1 task:
 
@@ -166,7 +166,7 @@ The task will be wiped from the Marathon state, its reserved resources will be u
 
 # Cleanup
 
-In order to completely remove the above setup, you delete the service:
+In order to restore the state of your cluster as it was before installing the stateful service, you delete the service:
 
 ```shell
 $ dcos marathon app remove postgres
