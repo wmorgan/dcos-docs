@@ -1,7 +1,6 @@
 ---
 post_title: Install DC/OS on Azure
 layout: docs.jade
-published: true
 ---
 
 # Overview
@@ -14,7 +13,7 @@ TIP: In order to get support on Azure Marketplace-related questions, you can joi
 
 ## Hardware
 
-In order to [use](/docs/latest/usage/) all of the services offered in DC/OS you should choose at least five Mesos Agents using `Standard_D2` [Virtual Machines](https://azure.microsoft.com/en-us/pricing/details/virtual-machines/), which is the default size in the DC/OS Azure Marketplace offering.
+In order to [use](/docs/1.7/usage/) all of the services offered in DC/OS you should choose at least five Mesos Agents using `Standard_D2` [Virtual Machines](https://azure.microsoft.com/en-us/pricing/details/virtual-machines/), which is the default size in the DC/OS Azure Marketplace offering.
 
 Selecting smaller-sized VMs is not recommended, and selecting fewer VMs will likely cause certain resource-intensive services such as distributed datastores not to work properly (from installation issues to operational limitations).
 
@@ -78,5 +77,8 @@ Now you can visit `http://localhost:8000` on your local machine and find the DC/
 
 # Next steps
 
-- [Scaling considerations](https://azure.microsoft.com/en-us/documentation/articles/best-practices-auto-scaling/)
-- Storage-TBD
+- [Install the DC/OS Command-Line Interface (CLI)][1].
+- [Scaling considerations][2]
+
+[1]: /docs/1.7/usage/cli/install/
+[3]: https://azure.microsoft.com/en-us/documentation/articles/best-practices-auto-scaling/
