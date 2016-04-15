@@ -10,6 +10,8 @@ The automated GUI installation method provides a simple graphical interface that
 
 1.  Download the [DC/OS installer][1]
 
+        $ curl -O https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
+
 1.  From your terminal, start the DC/OS GUI installer with this command.
 
         $ sudo bash dcos_generate_config.ee.sh --web
@@ -95,7 +97,7 @@ The automated GUI installation method provides a simple graphical interface that
 - [Install the DC/OS Command-Line Interface (CLI)][5]
 - [Using your cluster][6]
 
-[1]: FIXME
+[1]: https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
 [2]: /docs/1.7/overview/service-discovery/
 [3]: ../system-requirements/
 [4]: FIXME

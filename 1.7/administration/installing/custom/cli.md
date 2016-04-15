@@ -140,7 +140,7 @@ To install DC/OS:
 
 1.  Download the [DC/OS installer][5]
 
-        $ curl -O https://FIXME
+        $ curl -O https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
 
 1.  From your home directory, run the DC/OS installer shell script on your bootstrapping master nodes to generate a customized DC/OS build. The setup script extracts a Docker container that uses the generic DC/OS install files to create customized DC/OS build files for your cluster. The build files are output to `./genconf/serve/`.
 
@@ -274,5 +274,5 @@ After DC/OS is installed and deployed across your cluster, you can add more agen
  [2]: /docs/1.7/usage/cli/install/
  [3]: ../advanced/
  [4]: ../system-requirements/
- [5]: FIXME
+ [5]: https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
  [6]: ../configuration-parameters/
