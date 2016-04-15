@@ -6,7 +6,11 @@ layout: docs.jade
 
 ## Baby steps
 
-It looks like you just [installed](https://dcos.io/install/) DC/OS. Welcome aboard! Now that you  have the DC/OS CLI set up on your local machine, you might be looking at the DC/OS Dashboard wondering, 'What now?'. You probably already know how to use `docker run ...` to launch a web server, right? You can  do the same thing with DC/OS, but with a deployment that is production-ready from the start. DC/OS will keep the web server running if it crashes, allow you to scale it, update the config at runtime, and much more!. Ready? Let's launch a production-grade containerized web server with command from the DC/OS CLI:
+It looks like you've just [installed](https://dcos.io/install/) DC/OS. Welcome aboard! Now that you have the DC/OS CLI set up on your local machine, you might be looking at the DC/OS Dashboard wondering, 'What now?'.
+
+You probably already know how to use `docker run ...` to launch a web server, right? You can  do the same thing with DC/OS but in a way that is production ready, right off the bat. DC/OS will keep your application running if it crashes, and allow you to scale it, update its config at runtime and much more!
+
+Ready? Let's launch a production-grade containerized web server with this command from the DC/OS CLI:
 
     $ dcos marathon app add https://dcos.io/docs/latest/usage/nginx.json
 
@@ -14,7 +18,7 @@ Now go to the DC/OS Dashboard and open the Marathon service. You should [see](im
 
 ## Beginners
 
-Once you've had a good look around in the DC/OS Dashboard and familiarized yourself with the DC/OS CLI, here are a few more things that you might want to check out:
+Once you've had a good look around in the DC/OS Dashboard and familiarized yourself with the DC/OS CLI, here are a few more exercises that you might want to try:
 
 - If you have a DevOps role:
   - How to run [NGINX](/usage/tutorials/nginx/)
