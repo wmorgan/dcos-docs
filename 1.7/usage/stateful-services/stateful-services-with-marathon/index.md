@@ -45,14 +45,14 @@ This will teach you how to set up and manage a stateful service on DC/OS.
 
 # Install a stateful service
 
-1. Install the official PostgresSQL Docker image using the provided [JSON configuration](postgres.marathon.json):
+Install the official PostgresSQL Docker image using the provided [JSON configuration](postgres.marathon.json):
 
 ```shell
 $ dcos marathon app add postgres.marathon.json
 ```
 The task will eventually become healthy and ready to use.
 
-1. List all tasks:
+List all tasks:
 
 ```shell
 $ dcos marathon task list
@@ -60,7 +60,7 @@ APP        HEALTHY          STARTED              HOST     ID
 /postgres    True   2016-04-13T17:25:08.301Z  10.0.1.223  postgres.f2419e31-018a-11e6-b721-0261677b407a  
 ```
 
-1. Inspect the details of the stateful service you created:
+Inspect the details of the stateful service you created:
 
 ```
 $ dcos marathon task show postgres.f2419e31-018a-11e6-b721-0261677b407a
@@ -98,6 +98,7 @@ This command displays all information about the task along with the created volu
 # Stop the service
 
 Now, stop the service:
+
 ```shell
 $ dcos marathon app stop postgres
 ```
@@ -149,15 +150,14 @@ $ dcos marathon app update postgres instances=2
 
 Suppose you now want to scale down again and will no longer need the data for the second task. Follow two steps to scale down your app and clear the repository:
 
-1. scale down to 1 task:
+Scale down to 1 task:
 
 ```shell
 $ dcos marathon app update postgres instances=1
 ```
 You will still see the second task, as you did before when scaling to 0.
 
-1. In order to get rid of the task and its persistent data, you need to now explicitly `wipe` the state off the internal repository:
-
+In order to get rid of the task and its persistent data, you need to now explicitly `wipe` the state off the internal repository:
 ```
 $ dcos marathon task stop postgres.53ab8733-fd96-11e5-8e70-76a1c19f8c3d --wipe
 ```
@@ -176,4 +176,4 @@ $ dcos marathon app remove postgres
 
 For further information on stateful services in DC/OS on Marathon, see:
 
-- [Marathon API Documentation](https://mesosphere.github.io/marathon/docs/persistent-volumes.html)
+- [Marathon Documentation](https://mesosphere.github.io/marathon/docs/persistent-volumes.html) on stateful services with persistent volumes
