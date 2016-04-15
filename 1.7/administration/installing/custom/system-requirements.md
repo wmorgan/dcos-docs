@@ -262,7 +262,6 @@ Your bootstrap and cluster nodes must have Docker version 1.9 or greater install
 
         $ sudo docker ps
 
-
     Do not use use Docker `devicemapper` storage driver for loopback. For more information, see <a href="https://docs.docker.com/engine/userguide/storagedriver/device-mapper-driver/" target="_blank">Docker and the Device Mapper storage driver</a>.
 
 ## Bootstrap node
@@ -271,14 +270,43 @@ The bootstrap node is a permanent part of your cluster and is required for DC/OS
 
 ### DC/OS setup file
 
-Download and save the DC/OS setup file to your bootstrap node. This file is used to create your customized DC/OS build file. Contact your sales representative or <sales@mesosphere.com> to obtain the DC/OS setup file.
+Download and save the [DC/OS setup file](FIXME) to your bootstrap node. This file is used to create your customized DC/OS build file.
 
 </li> </ul></li> </ul>
 
+## Cluster nodes
+
+Before installing DC/OS, you must ensure that all of your cluster nodes have the following prerequisites. The cluster nodes are designated Mesos masters and agents during installation.
+
+### Data compression
+
+You must have the <a href="http://www.info-zip.org/UnZip.html" target="_blank">UnZip</a>, <a href="https://www.gnu.org/software/tar/" target="_blank">GNU tar</a>, and <a href="http://tukaani.org/xz/" target="_blank">XZ Utils</a> data compression utilities installed on your cluster nodes.
+
+To install these utilities on CentOS7 and RHEL7:
+
+    $ sudo yum install -y tar xz unzip curl
+
+### Cluster permissions
+
+On each of your cluster nodes, use the following command to:
+
+*   Disable SELinux or set it to permissive mode.
+*   Add nogroup to each of your Mesos masters and agents.</li>
+*   Disable IPV6. For more information see <a href="https://wiki.centos.org/FAQ/CentOS7#head-8984faf811faccca74c7bcdd74de7467f2fcd8ee" target="_blank">How do I disable IPv6</a>.</li>
+*   Reboot your cluster for the changes to take affect</p>
+
+        $ sudo sed -i s/SELINUX=enforcing/SELINUX=permissive/g /etc/selinux/config &&
+         sudo groupadd nogroup &&
+         sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1 &&
+         sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1 &&
+         sudo reboot
+
+    **Tip:** It may take a few minutes for your node to come back online after reboot.
+
 # Next step
 
-- [Install the DC/OS Command-Line Interface (CLI)][1].
+- [Install DC/OS via. the GUI installer][1]
+- [Install DC/OS via. the CLI installer][2]
 
-Choose [GUI](/gui-install/) or [Command Line](cli-install) installation.
-
- [1]: /usage/cli/
+[1]: ../gui/
+[2]: ../cli/
