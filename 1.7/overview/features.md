@@ -28,11 +28,11 @@ This is a high-level look at the features that make DCOS more than the sum of it
 
 ## High Resource Utilization
 
-DC/OS makes is easy to get the most out of your resources.
+DC/OS makes it easy to get the most out of your compute resources.
 
-Deciding where to run processes to best utilize cluster resources is hard, NP-hard. Deciding where to place long-running services that change their resource usage over time is even harder. The reality is that there's no single scheduler that can efficiently and effectively place all types of tasks. There's no way for a single scheduler to be infinitely configurable, universally portable, lightning fast, and easy to use all at the same time.
+Deciding where to run processes to best utilize cluster resources is hard, NP-hard in-fact. Deciding where to place long-running services which have changing resource requirements over time is even harder. The reality is that there's no single scheduler that can efficiently and effectively place all types of tasks. There's no way for a single scheduler to be infinitely configurable, universally portable, lightning fast, and easy to use - all at the same time.
 
-DC/OS tackles this problem by separating resource management from task scheduling. Mesos manages CPU, memory, disk, and GPU resources, but delegates process placement decisions to higher level schedulers that know more about their task's requirements and constraints. This two-level scheduling enables multiple workloads to be colocated efficiently.
+DC/OS tackles this problem by separating resource management from task scheduling. Mesos manages CPU, memory, disk, and GPU resources, but delegates the process of placing tasks to higher level schedulers that know more about their task's specific requirements and constraints. This model, known as two-level scheduling, enables multiple workloads to be colocated efficiently.
 
 
 ## Mixed Workload Colocation
