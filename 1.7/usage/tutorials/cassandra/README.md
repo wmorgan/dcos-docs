@@ -20,11 +20,36 @@ hide_from_related: false
 
 **Scope**:
 
-In the following tutorial you will learn about how to use Cassandra on DCOS, from the simple first steps of launching a Cassandra cluster on DC/OS, immediately followed by a brief primer on connecting to Cassandra and performing CRUD operations.
+In this tutorial you will learn:
+* How to install the Cassandra service
+* How to use the enhanced DC/OS CLI operations for Cassandra
+* How to validate that the service is up and running
+* How to connect to Cassandra and perform CRUD operations
+s
+# Table of Contents
 
-# Installing
+  * [Prerequisites](#prerequisites)
+  * [Installing Cassandra](#installing-cassandra)
+    * [Typical installation](#typical-installation)
+    * [Custom manual installation procedure](#custom-manual-installation-procedure)
+    * [Manual installation via the web interface](#manual-installation-via-the-web-interface)
+    * [Validate installation](#validate-installation)
+  * [Cassandra CRUD operations](#cassandra-crud-operations)
+  * [Cleanup](#cleanup)
+  * [API Reference](#api-reference)
 
-Assuming you have a DC/OS cluster up and running, the first step is to [install Cassandra](https://docs.mesosphere.com/manage-service/cassandra/):
+# Prerequisites
+
+- A running DC/OS cluster with three nodes, each with 2 CPUs and 2 GB of RAM available
+- [DC/OS CLI](https://docs.mesosphere.com/usage/cli/install/) installed
+
+# Installing Cassandra
+
+Assuming you have a DC/OS cluster up and running, the first step is to [install Cassandra](https://docs.mesosphere.com/manage-service/cassandra/)
+
+## Typical installation
+
+Install Cassandra using the DC/OS CLI:
 
     $ dcos package install cassandra
     Installing Marathon app for package [cassandra] version [1.0.0-2.2.5]
@@ -32,7 +57,36 @@ Assuming you have a DC/OS cluster up and running, the first step is to [install 
     New command available: dcos cassandra
     DCOS Cassandra Service is being installed.
 
-While the DC/OS command line interface (CLI) is immediately available it takes a few moments until Cassandra is actually running in the cluster. Let's first check the DC/OS CLI and its new subcommand `cassandra`:
+While the DC/OS command line interface (CLI) is immediately available it takes a few moments until Cassandra is actually running in the cluster.
+
+## Custom manual installation procedure
+
+1. Verify existing DC/OS repositories:
+
+    $ dcos package repo list
+    Universe: https://universe.mesosphere.com/repo
+
+1. Identify available versions for the Cassandra service
+
+You can either list all available versions for Cassandra:
+
+    $ dcos package list cassandra
+
+Or you can search for a particular one:
+
+    $ dcos package search cassandra
+
+1. Install a specific version of the Cassandra package:
+
+    $ dcos package install --yes --force --package-version=<package_version> Cassandra`
+
+## Manual installation via the web interface
+
+You can also install the Cassandra service from [DC/OS Universe dashboard](http://<dcos-master-dns>/#/universe/packages/)
+
+## Validate installation
+
+Validate that the installation added the enhanced DC/OS CLI for Cassandra:
 
     $ dcos cassandra --help
     Usage: dcos-cassandra cassandra [OPTIONS] COMMAND [ARGS]...
@@ -50,12 +104,11 @@ While the DC/OS command line interface (CLI) is immediately available it takes a
       restore     Restore Cassandra cluster from backup
       seeds       Retrieve seed node information
 
-Now, let's check if Cassandra is running and healthy, in the cluster itself. For this, go to the DC/OS dashboard and you should see Cassandra there:
-
+Now, let's validate that the Cassandra service is running and healthy. For this, go to the DC/OS dashboard and you should see Cassandra there:
 <TODO: Get the image>
 ![Cassandra in the dashboard](img/cassandra-dashboard.png)
 
-# Using Cassandra to perform CRUD operations
+# Cassandra CRUD operations
 
 Now that you've a Cassandra cluster up and running, it's time to connect to our Cassandra cluster and perform some CRUD operations. 
 
@@ -110,6 +163,16 @@ Let's query again to ensure that the row was deleted successfully:
 
     cqlsh> SELECT * FROM demo.map;
     
+# Cleanup
+
+## Uninstalling:
+
+    $ dcos package uninstall cassandra
+
+## Purge/clean up persisted state:
+
+[Cassandra uninstall](https://docs.mesosphere.com/usage/services/cassandra/#uninstall)
+
 **Further resources**:
 For more information, please refer to following resources:
 
