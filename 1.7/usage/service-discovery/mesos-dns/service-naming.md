@@ -1,14 +1,7 @@
 ---
-UID: 56f98446c351e
 post_title: Service Naming
 post_excerpt: ""
 layout: docs.jade
-published: true
-menu_order: 2
-page_options_require_authentication: false
-page_options_show_link_unauthenticated: false
-hide_from_navigation: false
-hide_from_related: false
 ---
 Mesos-DNS defines the DNS top-level domain `.mesos` for Mesos tasks that are running on DC/OS. Tasks and services are discovered by looking up A and, optionally, SRV records within this Mesos domain.
 
@@ -24,36 +17,34 @@ When a task is launched by a DC/OS service, Mesos-DNS generates an A record for 
 For example, other DC/OS tasks can discover the IP address for a task named `search` launched by the `marathon` service with a lookup for `search.marathon.mesos`:
 
     $ dig search.marathon.mesos
-    
+
     ; <<>> DiG 9.8.4-rpz2+rl005.12-P1 <<>> search.marathon.mesos
     ;; global options: +cmd
     ;; Got answer:
     ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 24471
     ;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 0
-    
+
     ;; QUESTION SECTION:
     ;search.marathon.mesos.         IN  A
-    
+
     ;; ANSWER SECTION:
     search.marathon.mesos.      60  IN  A   10.9.87.94
-    
 
 If the Mesos containerizer that launches the task provides a container IP `10.0.4.1` for the task `search.marathon.mesos`, then the lookup result is:
 
     $ dig search.marathon.mesos
-    
+
     ; <<>> DiG 9.8.4-rpz2+rl005.12-P1 <<>> search.marathon.mesos
     ;; global options: +cmd
     ;; Got answer:
     ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 24471
     ;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 0
-    
+
     ;; QUESTION SECTION:
     ;search.marathon.mesos.         IN  A
-    
+
     ;; ANSWER SECTION:
     search.marathon.mesos.      60  IN  A   10.0.4.1
-    
 
 In addition to the `<task>.<service>.mesos` syntax shown above, Mesos-DNS also generates A records that contain the IP addresses of the agent nodes that are running the task: `<task>.<service>.slave.mesos`.
 
@@ -68,19 +59,18 @@ For a task named `mytask` launched by a service named `myservice`, Mesos-DNS gen
 For example, other Mesos tasks can discover a task named `search` launched by the `marathon` service with a query for `_search._tcp.marathon.mesos`:
 
     $ dig _search._tcp.marathon.mesos SRV
-    
+
     ;  DiG 9.8.4-rpz2+rl005.12-P1 &lt;&lt;&gt;&gt; _search._tcp.marathon.mesos SRV
     ;; global options: +cmd
     ;; Got answer:
     ;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 33793
     ;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
-    
+
     ;; QUESTION SECTION:
     ;_search._tcp.marathon.mesos.   IN SRV
-    
+
     ;; ANSWER SECTION:
     _search._tcp.marathon.mesos.    60 IN SRV 0 0 31302 10.254.132.41.
-    
 
 Mesos-DNS supports the use of a task's DiscoveryInfo for SRV record generation.
 
@@ -94,155 +84,155 @@ The following table shows the rules that govern SRV generation:
       <th>
         Service
       </th>
-      
+
       <th>
         Container IP Known
       </th>
-      
+
       <th>
         DiscoveryInfo Provided
       </th>
-      
+
       <th>
         Target Host
       </th>
-      
+
       <th>
         Target Port
       </th>
-      
+
       <th>
         A Record Target IP
       </th>
     </tr>
   </thead>
-  
+
   <tbody>
     <tr>
       <td>
         _mytask._protocol.myservice.mesos
       </td>
-      
+
       <td>
         No
       </td>
-      
+
       <td>
         No
       </td>
-      
+
       <td>
         mytask.myservice.slave.mesos
       </td>
-      
+
       <td>
         Host Port
       </td>
-      
+
       <td>
         Agent IP
       </td>
     </tr>
-    
+
     <tr>
       <td>
         _mytask._protocol.myservice.mesos
       </td>
-      
+
       <td>
         Yes
       </td>
-      
+
       <td>
         No
       </td>
-      
+
       <td>
         mytask.myservice.slave.mesos
       </td>
-      
+
       <td>
         Host Port
       </td>
-      
+
       <td>
         Agent IP
       </td>
     </tr>
-    
+
     <tr>
       <td>
         _mytask._protocol.myservice.mesos
       </td>
-      
+
       <td>
         No
       </td>
-      
+
       <td>
         Yes
       </td>
-      
+
       <td>
         mytask.myservice.mesos
       </td>
-      
+
       <td>
         DiscoveryInfo Port
       </td>
-      
+
       <td>
         Agent IP
       </td>
     </tr>
-    
+
     <tr>
       <td>
         _mytask._protocol.myservice.mesos
       </td>
-      
+
       <td>
         Yes
       </td>
-      
+
       <td>
         Yes
       </td>
-      
+
       <td>
         mytask.myservice.mesos
       </td>
-      
+
       <td>
         DiscoveryInfo Port
       </td>
-      
+
       <td>
         Container IP
       </td>
     </tr>
-    
+
     <tr>
       <td>
         mytask.protocol.myservice.slave.mesos
       </td>
-      
+
       <td>
         N/A
       </td>
-      
+
       <td>
         N/A
       </td>
-      
+
       <td>
         mytask.myservice.slave.mesos
       </td>
-      
+
       <td>
         Host Port
       </td>
-      
+
       <td>
         Agent IP
       </td>
@@ -281,6 +271,6 @@ If a service launches multiple tasks with the same name, the DNS lookup will ret
 
 **Caution:** It is possible to have a name collision if *different* services launch tasks that have the same hostname. If different services launch tasks with identical Mesos-DNS hostnames, or if Mesos-DNS truncates app IDs to create identical Mesos-DNS hostnames, applications will communicate with the wrong agent nodes and fail unpredictably.
 
- [1]: /overview/concepts/
- [2]: /administration/service-discovery/faq-troubleshooting/#leader
+ [1]: /docs/1.7/overview/concepts/
+ [2]: ../troubleshooting/#leader
  [3]: https://tools.ietf.org/html/rfc952

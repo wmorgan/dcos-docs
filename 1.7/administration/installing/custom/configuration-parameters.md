@@ -1,14 +1,7 @@
 ---
-UID: 56f984452f28e
 post_title: Configuration parameters
 post_excerpt: ""
 layout: docs.jade
-published: true
-menu_order: 100
-page_options_require_authentication: false
-page_options_show_link_unauthenticated: false
-hide_from_navigation: false
-hide_from_related: true
 ---
 These configuration parameters are specified in [YAML][1] format in your config.yaml file. During DC/OS installation the configuration file is used to generate a customized DC/OS build. <!-- A config.yaml template file is available [here][2]. -->
 
@@ -21,10 +14,10 @@ These configuration parameters are specified in [YAML][1] format in your config.
 ### [config-yaml-cluster-name]
 
 ### **exhibitor_storage_backend**
-This parameter specifies the type of storage backend to use for Exhibitor. You can use internal DC/OS storage (<code>static</code>) or specify an external storage system (<code>zookeeper</code>, <code>aws_s3</code>, and <code>shared_filesystem</code>) for configuring and orchestrating Zookeeper with Exhibitor on the master nodes. Exhibitor automatically configures your Zookeeper installation on the master nodes during your DC/OS installation. 
+This parameter specifies the type of storage backend to use for Exhibitor. You can use internal DC/OS storage (<code>static</code>) or specify an external storage system (<code>zookeeper</code>, <code>aws_s3</code>, and <code>shared_filesystem</code>) for configuring and orchestrating Zookeeper with Exhibitor on the master nodes. Exhibitor automatically configures your Zookeeper installation on the master nodes during your DC/OS installation.
 
 *   [config-yaml-zk-static]
-*   [config-yaml-zookeeper] 
+*   [config-yaml-zookeeper]
     *   [config-yaml-exhibitor-zk-hosts]
     *   [config-yaml-exhibitor-zk-path]
 *   [config-yaml-aws-s3]
@@ -32,9 +25,9 @@ This parameter specifies the type of storage backend to use for Exhibitor. You c
 
 ### [config-yaml-master-discovery]
 
-*   [config-yaml-static] 
+*   [config-yaml-static]
     *   [config-yaml-master-list]
-*   [config-yaml-vrrp] 
+*   [config-yaml-vrrp]
     *   [config-yaml-keepalived-router-id]
     *   [config-yaml-keepalived-interface]
     *   [config-yaml-keepalived-pass]
@@ -97,7 +90,7 @@ This parameter specifies the type of storage backend to use for Exhibitor. You c
     exhibitor_zk_hosts: <host1>:<port1>
     exhibitor_zk_path: /dcos
     log_directory: /genconf/logs
-    master_discovery: static 
+    master_discovery: static
     master_list:
     - <master-private-ip-1>
     - <master-private-ip-2>
@@ -109,7 +102,7 @@ This parameter specifies the type of storage backend to use for Exhibitor. You c
     ssh_key_path: /genconf/ssh-key
     ssh_port: '<port-number>'
     ssh_user: <username>
-    
+
 
 #### <a name="shared"></a>DC/OS cluster with 3 masters, an Exhibitor/Zookeeper shared filesystem storage backend, Internal DNS
 
@@ -138,7 +131,7 @@ This parameter specifies the type of storage backend to use for Exhibitor. You c
     ssh_port: '<port-number>'
     ssh_user: <username>
     weights: slave_public=1
-    
+
 
 #### <a name="aws"></a>DC/OS Cluster with 3 masters, an Exhibitor/Zookeeper backed by an AWS S3 bucket, AWS DNS, and a public agent node
 
@@ -161,7 +154,7 @@ This parameter specifies the type of storage backend to use for Exhibitor. You c
     - <master-private-ip-2>
     - <master-private-ip-3>
     process_timeout: 120
-    resolvers: 
+    resolvers:
     - 169.254.169.253
     roles: slave_public
     s3_bucket: mybucket
@@ -170,7 +163,7 @@ This parameter specifies the type of storage backend to use for Exhibitor. You c
     ssh_port: '<port-number>'
     ssh_user: <username>
     weights: slave_public=1
-    
+
 
 #### <a name="zk"></a>DC/OS cluster with 3 masters, an Exhibitor/Zookeeper backed by Zookeeper, VRRP master discovery, public agent node, and Google DNS
 
@@ -193,7 +186,7 @@ This parameter specifies the type of storage backend to use for Exhibitor. You c
     master_discovery: vrrp
     num_masters: 3
     process_timeout: 120
-    resolvers: 
+    resolvers:
     - 8.8.4.4
     - 8.8.8.8
     roles: slave_public
