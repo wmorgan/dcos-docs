@@ -1,35 +1,52 @@
 ---
-UID: 56f9844a1a15f
-post_title: Service Logging
+post_title: Service and Task Logging
 post_excerpt: ""
 layout: docs.jade
-published: true
-menu_order: 2
-page_options_require_authentication: false
-page_options_show_link_unauthenticated: false
-hide_from_navigation: false
-hide_from_related: false
 ---
-The DC/OS services run as Mesos tasks and print their logs to `stdout` and `stderr`. The log content varies from service to service, but usually includes task launches, resource accepts, and resource rejects.
 
-You can access these logs in two ways:
+As soon as you move from one machine to many, accessing and aggregating logs becomes difficult. Once you hit a certain scale, keeping these logs and making them available to others can add massive overhead to your cluster. After watching how users interact with their logs, we’ve scoped the problem to two primary use cases. This allows you to pick the solution with the lowest overhead that solves your specific problem.
 
-*   The `dcos service log` command. For example, enter this command to view the Chronos logs:
-    
-          dcos service log chronos
-        
-    
-    For more information, see [dcos service log][1].
+# Debugging
 
-*   The Mesos web interface:
-    
-    1.  Go to the Mesos web interface at `<hostname>/mesos`, where `<hostname>` is the [Mesos Master hostname][2].
-    
-    2.  Find the row for your desired service and click the **Sandbox** link to view or download the logs.
-        
-        **Tip:** You can use the filters to narrow the scope.
-        
-        <a href="/wp-content/uploads/2015/12/mesos-sandbox-log.png" rel="attachment wp-att-1559"><img src="/wp-content/uploads/2015/12/mesos-sandbox-log.png" alt="mesos-sandbox-log" width="898" height="311" class="alignnone size-full wp-image-1559" /></a>
+When things go wrong, you need to see the logs to understand how to fix it. DC/OS services and tasks write `stdout` and `stderr` files in their sandboxes by default. Traditionally, log aggregation has been the solution here. Write the logs locally and then ship all that data elsewhere for someone to actually access. Moving data around is expensive, especially when it ends up being written multiple times.
 
- [1]: /usage/cli/command-reference/#scrollNav-5
- [2]: /administration/installing/awscluster#launchdcos
+For most debugging tasks, log aggregation ends up being a particularly heavy solution for a simple task. All you want is to see the logs, where they come from doesn’t actually matter. By scoping the debugging task down to this level, we’ve been able to provide a couple simple solutions that work for most use cases.
+
+DC/OS knows where every task has run in your cluster. It is also able to stream every file your application outputs. By combining these two features, you’re able to use the CLI or GUI to access historical and current logs such as stdout/stderr from your local machine.
+
+Let’s say that you’ve got a service misbehaving. For some reason, it is continually crashing and you need to figure out why. You don’t need to SSH to a specific machine to find the logs and start to understand this problem. Instead, you can use the CLI or GUI to immediately get access to the files that your service is creating.
+
+## CLI
+
+If you’ve created a service named `service` in marathon and would like to see stdout for every instance of that in real time, you can run the following:
+
+```
+$ dcos task log --follow service
+```
+
+For more advanced usage, you can check out the CLI documentation:
+
+- [Debugging Services][4]
+- [DC/OS CLI Usage][1]
+
+## GUI
+
+For those who are more comfortable with the GUI, we have a solution as well! By going to `Services -> Marathon -> service` in the DC/OS UI, you’ll be able to download all the files your service has produced as well as watch stdout/stderr via. the `Log Viewer`.
+
+Check out some of the DC/OS UI documentation for more details:
+
+- [Debugging Services][4]
+- [DC/OS UI][5]
+
+# Compliance
+
+Unfortunately, streaming logs from machines in your cluster isn’t always viable. Sometimes, you need the logs stored somewhere else as a history of what’s happened. This is where log aggregation really is required. Check out how to get it setup with some of the most common solutions:
+
+- [ELK][2]
+- [Splunk][3]
+
+[1]: /docs/1.7/usage/cli/
+[2]: ../elk/
+[3]: ../splunk/
+[4]: FIXME
+[5]: FIXME
