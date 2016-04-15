@@ -13,12 +13,12 @@ hide_from_related: false
 
 ## What is DC/OS?
 
-Welcome to DC/OS docs. But wait, [what is?](/docs/latest/overview/what-is-dcos/)
+Welcome to DC/OS docs. But wait, [what is DC/OS?](/docs/latest/overview/what-is-dcos/)
 
 
 ## First Steps
 
-You know what DC/OS is now. Why not make some [first steps](https://dcos.io/docs/latest/usage/) now?
+Now that you know what DC/OS is, why not take some [first steps](https://dcos.io/docs/latest/usage/)?
 
 
 [Install](http://dcos.io/install) | [Support](/docs/latest/support/) | [Contribute](http://dcos.io/contribute)
