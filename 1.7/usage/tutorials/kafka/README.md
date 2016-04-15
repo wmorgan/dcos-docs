@@ -54,7 +54,7 @@ In this tutorial you will learn:
 
 # Prerequisites
 
-- [Install](../../cli/install.md)
+- [Install DC/OS](../../cli/install.md)
 - A running DC/OS cluster with three nodes, each with 2 CPUs and 2 GB of RAM available
 - [DC/OS CLI](https://docs.mesosphere.com/usage/cli/install/) installed
 
