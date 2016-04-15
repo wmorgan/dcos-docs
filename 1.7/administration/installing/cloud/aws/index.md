@@ -1,5 +1,6 @@
 ---
 post_title: Install DC/OS on AWS
+post_excerpt: ""
 layout: docs.jade
 ---
 
