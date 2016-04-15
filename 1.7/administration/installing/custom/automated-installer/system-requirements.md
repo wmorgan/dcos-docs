@@ -1,14 +1,7 @@
 ---
-UID: 5703eac5ec464
 post_title: System Requirements
 post_excerpt: ""
 layout: docs.jade
-published: true
-menu_order: 1
-page_options_require_authentication: false
-page_options_show_link_unauthenticated: false
-hide_from_navigation: false
-hide_from_related: false
 ---
 # Hardware Prerequisites
 
@@ -269,6 +262,7 @@ Your bootstrap and cluster nodes must have Docker version 1.9 or greater install
 
         $ sudo docker ps
 
+
     Do not use use Docker `devicemapper` storage driver for loopback. For more information, see <a href="https://docs.docker.com/engine/userguide/storagedriver/device-mapper-driver/" target="_blank">Docker and the Device Mapper storage driver</a>.
 
 ## Bootstrap node
@@ -282,6 +276,8 @@ Download and save the DC/OS setup file to your bootstrap node. This file is used
 </li> </ul></li> </ul>
 
 # Next step
+
+- [Install the DC/OS Command-Line Interface (CLI)][1].
 
 Choose [GUI](/gui-install/) or [Command Line](cli-install) installation.
 
