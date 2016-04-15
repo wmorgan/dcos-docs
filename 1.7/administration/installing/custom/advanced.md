@@ -177,9 +177,6 @@ To install DC/OS:
 
 1.  Launch the DC/OS web interface at: `http://<master-node-public-ip>/`.
 
-8.  Click **Log In To DC/OS**.
-
-    ![alt text](../img/ui-installer-success1.png) FIXME
 
 ### Next Steps
 

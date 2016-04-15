@@ -243,10 +243,6 @@ To install DC/OS:
 
 7.  Launch the DC/OS web interface at: `http://<public-master-ip>/`.
 
-8.  Click **Log In To DC/OS**.
-
-    ![alt text](../img/ui-installer-success1.png)
-
 # Next Steps
 
 - [Install the DC/OS Command-Line Interface (CLI)][2]
