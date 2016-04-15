@@ -43,7 +43,7 @@ The DC/OS installation creates these folders:
 
     In this step you create an IP detect script to broadcast the IP address of each node across the cluster. Each node in a DC/OS cluster has a unique IP address that is used to communicate between nodes in the cluster. The IP detect script prints the unique IPv4 address of a node to STDOUT each time DC/OS is started on the node.
 
-    **Important:** The IP address of a node must not change after DC/OS is installed on the node. For example, the IP address must not change when a node is rebooted or if the DHCP lease is renewed. If the IP address of a node does change, the node must be [wiped and reinstalled][1].
+    **Important:** The IP address of a node must not change after DC/OS is installed on the node. For example, the IP address must not change when a node is rebooted or if the DHCP lease is renewed. If the IP address of a node does change, the node must be [wiped and reinstalled][5].
 
     Create an IP detection script for your environment and save as `genconf/ip-detect`. You can use the examples below.
 
@@ -105,9 +105,9 @@ In this step you create a custom DC/OS build file on your bootstrap node and the
 
 To install DC/OS:
 
-1.  Download the [DC/OS installer][9]
+1.  Download the [DC/OS installer][4]
 
-        $ curl -O https://FIXME
+        $ curl -O https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
 
 1.  From the bootstrap node, run the DC/OS installer shell script to generate a customized DC/OS build file. The setup script extracts a Docker container that uses the generic DC/OS install files to create customized DC/OS build files for your cluster. The build files are output to `./genconf/serve/`.
 
@@ -183,6 +183,8 @@ To install DC/OS:
 - [Install the DC/OS Command-Line Interface (CLI)][2]
 - [Use your cluster][3]
 
-[1]: FIXME
+[1]: ../configuration-parameters/
 [2]: /docs/1.7/usage/cli/install/
 [3]: /docs/1.7/usage/
+[4]: https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
+[5]: FIXME

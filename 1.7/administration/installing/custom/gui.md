@@ -10,6 +10,8 @@ The automated GUI installation method provides a simple graphical interface that
 
 1.  Download the [DC/OS installer][1]
 
+        $ curl -O https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
+
 1.  From your terminal, start the DC/OS GUI installer with this command.
 
         $ sudo bash dcos_generate_config.ee.sh --web
@@ -28,7 +30,7 @@ The automated GUI installation method provides a simple graphical interface that
 
 3.  Click **Begin Installation**.
 
-    ![alt text](../img/ui-installer-begin.png) FIXME
+    ![Begin Install](../img/dcos-gui-install.png)
 
 4.  Specify your Deployment and DC/OS Environment settings:
 
@@ -66,7 +68,7 @@ The automated GUI installation method provides a simple graphical interface that
 
 5.  Click **Run Pre-Flight**. The preflight script installs the cluster prerequisites and validates that your cluster is installable. For a list of cluster prerequisites, see the scripted installer [prerequisites][3]. This step can take up to 15 minutes to complete. If errors any errors are found, fix and then click **Retry**.
 
-    ![alt text](../img/ui-installer-pre-flight1.png) FIXME
+    ![preflight](../img/dcos-gui-preflight.png)
 
     > **Important:** If you exit your GUI installation before launching DC/OS, you must do this before reinstalling:
 
@@ -75,29 +77,29 @@ The automated GUI installation method provides a simple graphical interface that
 
 6.  Click **Deploy** to install DC/OS on your cluster. If errors any errors are found, fix and then click **Retry**.
 
-    ![alt text](../img/ui-installer-deploy1.png) FIXME
+    ![deploy](../img/dcos-gui-deploy.png)
 
     **Tip:** This step might take a few minutes, depending on the size of your cluster.
 
 7.  Click **Run Post-Flight**. If errors any errors are found, fix and then click **Retry**.
 
-    ![alt text](../img/ui-installer-post-flight1.png) FIXME
+    ![postflight](../img/dcos-gui-postflight.png)
 
     **Tip:** You can click **Download Logs** to view your logs locally.
     **Tip:** If this takes longer than about 10 minutes, you've probably misconfigured your cluster. Go checkout the [debugging documentation][4]
 
 8.  Click **Log In To DC/OS**.
 
-    ![alt text](../img/ui-installer-success1.png) FIXME
+    ![login](../img/dcos-gui-login.png)
 
 ## Next Steps
 
 - [Install the DC/OS Command-Line Interface (CLI)][5]
 - [Using your cluster][6]
 
-[1]: FIXME
-[2]: FIXME/administration/service-discovery/
-[3]: FIXME/scripted-installer/system-requirements/#scrollNav-2
+[1]: https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
+[2]: /docs/1.7/overview/service-discovery/
+[3]: ../system-requirements/
 [4]: FIXME
 [5]: /docs/1.7/usage/cli/install/
 [6]: /docs/1.7/usage/

@@ -68,7 +68,7 @@ The automated command line installation method provides a guided installation of
 
     In this step you create a YAML configuration file that is customized for your environment. DC/OS uses this configuration file during installation to generate your cluster installation files.
 
-    You can use this template to get started. This template specifies 3 Mesos masters, 5 Mesos agents, and SSH configuration specified. If your servers are installed with a domain name in your `/etc/resolv.conf`, you should add `dns_search` to your `config.yaml` file. For parameters descriptions and configuration examples, see the [documentation][2].
+    You can use this template to get started. This template specifies 3 Mesos masters, 5 Mesos agents, and SSH configuration specified. If your servers are installed with a domain name in your `/etc/resolv.conf`, you should add `dns_search` to your `config.yaml` file. For parameters descriptions and configuration examples, see the [documentation][6].
 
         agent_list:
         - <agent-private-ip-1>
@@ -93,7 +93,7 @@ The automated command line installation method provides a guided installation of
 
     **Important:** You cannot use an NFS mount for Exhibitor storage with the automated command line installation method. To use an NFS mount for Exhibitor storage (`exhibitor_storage_backend: shared_filesystem`), you must use the [advanced installation method][3].
 
-3.  Copy your private SSH key to `genconf/ssh_key`. For more information, see the [ssh_key_path][2] parameter.
+3.  Copy your private SSH key to `genconf/ssh_key`. For more information, see the [ssh_key_path][6] parameter.
 
         $ cp <path-to-key> genconf/ssh_key && chmod 0600 genconf/ssh_key
 
@@ -138,9 +138,9 @@ You can view all of the automated command line installer options with the `--hel
 
 To install DC/OS:
 
-1.  Download the [DC/OS installer][9]
+1.  Download the [DC/OS installer][5]
 
-        $ curl -O https://FIXME
+        $ curl -O https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
 
 1.  From your home directory, run the DC/OS installer shell script on your bootstrapping master nodes to generate a customized DC/OS build. The setup script extracts a Docker container that uses the generic DC/OS install files to create customized DC/OS build files for your cluster. The build files are output to `./genconf/serve/`.
 
@@ -248,20 +248,16 @@ To install DC/OS:
 - [Install the DC/OS Command-Line Interface (CLI)][2]
 - [Use your cluster][3]
 
-### Add DC/OS users
-
-You can assign user roles and grant access to DC/OS services. For more information, see the [documentation][5].
-
 ### Add more agent nodes
 
 After DC/OS is installed and deployed across your cluster, you can add more agent nodes.
 
 **Prerequisite:**
 
-*   The agent nodes must meet the [hardware][6] and [software][7] prerequisites.
+*   The agent nodes must meet the hardware and software prerequisites.
 
 1.  Update the `config.yaml` file with the additional agent nodes. For parameters descriptions and configuration examples, see the [documentation][2].
-2.  Run the installation steps beginning with [installing the cluster][8] prerequisites:
+2.  Run the installation steps beginning with [installing the cluster][4] prerequisites:
 
         $ sudo bash dcos_generate_config.sh --install-prereqs
 
@@ -274,12 +270,9 @@ After DC/OS is installed and deployed across your cluster, you can add more agen
         18:17:14::
         18:17:14:: ====> 10.10.0.160:22 FAILED
 
- [1]: FIXME /concepts/installing/installing-enterprise-edition/dcos-cleanup-script/
- [2]: FIXME /concepts/installing/installing-enterprise-edition/configuration-parameters/
+ [1]: FIXME
+ [2]: /docs/1.7/usage/cli/install/
  [3]: ../advanced/
- [4]: FIXME /concepts/installing/installing-enterprise-edition/manual-installation/#scrollNav-2
- [5]: FIXME /administration/security-and-authentication/managing-authorization/
- [6]: #hardware FIXME
- [7]: #software FIXME
- [8]: #two FIXME
- [9]: FIXME
+ [4]: ../system-requirements/
+ [5]: https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
+ [6]: ../configuration-parameters/
