@@ -93,9 +93,9 @@ Launch the DC/OS web interface by entering the Mesos Master hostname:
 - [Install the DC/OS Command-Line Interface (CLI)][5].
 - [Scaling considerations](https://aws.amazon.com/autoscaling/)
 
- [1]: /docs/1.7/administration/managing-a-dcos-cluster-in-aws/
- [2]: /docs/1.7/overview/security/#scrollNav-1
- [3]: /docs/1.7/overview/security/#scrollNav-2
- [4]: /docs/1.7/overview/security/#scrollNav-3
- [5]: /docs/1.7/usage/cli/install/
- [6]: /docs/1.7/usage/tutorials/containerized-app/
+ [1]: /docs/latest/administration/managing-a-dcos-cluster-in-aws/
+ [2]: /docs/latest/overview/security/#scrollNav-1
+ [3]: /docs/latest/overview/security/#scrollNav-2
+ [4]: /docs/latest/overview/security/#scrollNav-3
+ [5]: /docs/latest/usage/cli/install/
+ [6]: /docs/latest/usage/tutorials/containerized-app/
