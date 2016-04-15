@@ -1,13 +1,14 @@
 ---
-UID: 56f9844a9b57d
 post_title: Overview
 post_excerpt: ""
 layout: docs.jade
-published: true
-menu_order: 29
-page_options_require_authentication: false
-page_options_show_link_unauthenticated: false
-hide_from_navigation: false
-hide_from_related: false
 ---
-This section covers the high level overview of DC/OS: what it is, what it does, its architecture, its design, what its primary features are, and what makes it stand out from other comparable solutions.
+
+DC/OS is a distributed operating system based on the Apache Mesos distributed systems kernel. It enables the management of multiple machines as if they were a single computer. It automates resource management, schedules process placement, facilitates inter-process communication, and simplifies the installation and management of distributed services. Its included web interface and available command-line interface (CLI) facilitate remote management and monitoring of the cluster and its services.
+
+To get a better feeling for what DC/OS is and what it does, jump into some of the other sections:
+
+- [Get Started](https://dcos.io/get-started/)
+- [Architecture](architecture/)
+- [DC/OS Features](features/)
+- [What is DC/OS?](what-is-dcos/)

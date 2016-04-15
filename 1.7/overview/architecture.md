@@ -2,17 +2,9 @@
 post_title: The Architecture of DC/OS
 post_excerpt: "Explains the Architecture of DC/OS, boot sequence and distributed process management"
 layout: docs.jade
-published: true
-menu_order: 1
-page_options_require_authentication: false
-page_options_show_link_unauthenticated: false
-hide_from_navigation: false
-hide_from_related: false
 ---
 
-# The Architecture of DC/OS
-
-An operating system abstracts resources such as CPU, RAM and networking and provides common services to applications. DC/OS is a distributed operating system that abstracts the resources of a cluster of machines and provides common services, such as running processes across a number of nodes, service discovery, and package management, just to name a few. In the following, we have a look at the architecture of DC/OS and the interaction of its components. 
+An operating system abstracts resources such as CPU, RAM and networking and provides common services to applications. DC/OS is a distributed operating system that abstracts the resources of a cluster of machines and provides common services, such as running processes across a number of nodes, service discovery, and package management, just to name a few. In the following, we have a look at the architecture of DC/OS and the interaction of its components.
 
 In order to simplify the understanding of DC/OS, we will re-use terminology known from traditional operating system such as Linux, for example kernel and user space. The kernel space is a protected space that is inaccessible for users and involves low-level operations such as resource allocation, security, and process isolation. The user space is where the user applications and higher order services live, for example the GUI of your OS.
 
@@ -20,7 +12,7 @@ In order to simplify the understanding of DC/OS, we will re-use terminology know
 
 DC/OS, as many operating systems, differentiates between the kernel space, comprising Mesos Masters and Mesos Agents and the user space, spanning System Components (such as Mesos-DNS or Spartan) as well services like Marathon or Spark and processes managed by said services (for example a Marathon application).
 
-![DC/OS architecture 100,000ft view](img/dcos-architecture-100000ft.png)
+![DC/OS architecture 100,000ft view](../img/dcos-architecture-100000ft.png)
 
 ### Kernel space
 
@@ -35,12 +27,12 @@ In DC/OS, the kernel space is responsible for the resource allocation across the
 
 The DC/OS user space spans System Components and Services (like Chronos or Kafka):
 
-- [System Components](components.md) are installed and are running by default in the DC/OS cluster and include (but are not limited to) the following:
+- [System Components](../components/) are installed and are running by default in the DC/OS cluster and include (but are not limited to) the following:
   - The Admin router is an open source NGNIX configuration that provides central authentication and proxy to DC/OS services.
   - Exhibitor automatically configures Zookeeper during installation and provides a usable Web UI to Zookeeper.
   - Mesos-DNS provides service discovery, allowing apps and services to find each other by using the domain name system (DNS).
-  - Minuteman is the internal layer 4 load balancer. 
-  - Spartan is the internal DNS dispater. 
+  - Minuteman is the internal layer 4 load balancer.
+  - Spartan is the internal DNS dispater.
   - System Marathon, the native Marathon instance that is the 'init system' for DC/OS, starts and monitors DC/OS services.
   - Zookeeper, a high-performance coordination service that manages the DC/OS services.
 - Services
@@ -97,22 +89,22 @@ Before we dive into the details of the interaction between different DC/OS compo
 - Master: this is the leading Mesos Master in the DC/OS cluster (`leader.mesos`).
 - Scheduler: the scheduler component of a service, for example the Marathon scheduler.
 - User: also known as Client, is a cluster-external or internal app that kicks off a process, for example a human user that submits a Marathon app spec.
-- Agent: a private or public Mesos Agent; originally was called Mesos Slave and you might still see references to it in the codebase. 
+- Agent: a private or public Mesos Agent; originally was called Mesos Slave and you might still see references to it in the codebase.
 - Executor: is part of a service running on an Agent, managing one or more tasks
 - Task: a Mesos task, the unit of execution in DC/OS.
 - Process: a logical collection of tasks initiated by a Client, for example a Marathon app or a Chronos job.
 
 On a high level, the following interaction takes place between the DC/OS components when a User requests to launch a process. Note that communication takes place between the different layers (such as the User interacting with the Scheduler) as well as within a layer, for example, a Master communicating with Agents.
 
-![Concept of distributed process management in DC/OS](img/dcos-architecture-distributed-process-management-concept.png)
+![Concept of distributed process management in DC/OS](../img/dcos-architecture-distributed-process-management-concept.png)
 
 Let’s now have a look at a concrete example, using the Marathon service and a User wanting to launch a container based on a Docker image:
 
-![Example of distributed process management in DC/OS](img/dcos-architecture-distributed-process-management-example.png)
+![Example of distributed process management in DC/OS](../img/dcos-architecture-distributed-process-management-example.png)
 
 From a timing perspective, the interaction between above components looks as follows (note that Executors and Task are folded into one block since in practice this is often the case):
 
-![Sequence diagram for distributed process management in DC/OS](img/dcos-architecture-distributed-process-management-seq-diagram.png)
+![Sequence diagram for distributed process management in DC/OS](../img/dcos-architecture-distributed-process-management-seq-diagram.png)
 
 The steps in detail are:
 
