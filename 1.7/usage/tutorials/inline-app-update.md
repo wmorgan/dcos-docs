@@ -26,7 +26,7 @@ The [Marathon `env` variable][2] can be updated by specifying a JSON string in a
         dcos marathon app show test-app | jq '.env'
         
 
-# Update all Environment Variable
+# Update all Environment Variables
 
 The [Marathon `env` variable][1] can also be updated by specifying a JSON file in a command argument.
 
