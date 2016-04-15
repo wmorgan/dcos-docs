@@ -37,7 +37,7 @@ Save the `.pem` file locally for use later. Note that this is the only chance to
 
 ## Step 2: Launching a DC/OS cluster
 
-1.  Launch the <a href="http://dcos.io/amazon/setup" target="_blank">DC/OS template</a> on CloudFormation and select the region and number of masters. You must have a key pair for your selected region.
+1.  Launch the <a href="https://downloads.dcos.io/dcos/EarlyAccess/aws.html" target="_blank">DC/OS template</a> on CloudFormation and select the region and number of masters. You must have a key pair for your selected region.
 
     **Important:** The DC/OS template is configured for running DC/OS. If you modify the template you might be unable to run certain packages on your DC/OS cluster.
 
