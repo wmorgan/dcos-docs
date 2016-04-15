@@ -2,12 +2,6 @@
 post_title: DC/OS Features
 post_excerpt: ""
 layout: docs.jade
-published: true
-menu_order: 3
-page_options_require_authentication: false
-page_options_show_link_unauthenticated: false
-hide_from_navigation: false
-hide_from_related: false
 ---
 This is a high-level look at the features that make DCOS more than the sum of its parts.
 

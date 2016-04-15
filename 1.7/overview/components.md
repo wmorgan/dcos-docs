@@ -1,10 +1,9 @@
 ---
 layout: docs.jade
 post_title: "An Introduction to DC/OS Components"
-date: 2016-04-10 13:20:36 -0700
-comments: true
-categories:
+post_excerpt: ""
 ---
+
 ```
 ip-10-0-6-126 system # ls dcos.target.wants/
 dcos-adminrouter-reload.service  dcos-exhibitor.service        dcos-marathon.service
@@ -270,7 +269,7 @@ ExecStart=/opt/mesosphere/bin/dcos-signal --write_key=51ybGTeFEFU1xo6u10XMDrr6kA
 ```
 
 ## Spartan Service
-Spartan is our internal DNS dispater. It conforms to RFC5625 as a DNS forwarder for DC/OS cluster services.
+Spartan is our internal DNS dispatcher. It conforms to RFC5625 as a DNS forwarder for DC/OS cluster services.
 
 ```
 [Unit]
