@@ -1,9 +1,9 @@
 ---
 layout: docs.jade
-title: "An Introduction to DC/OS Components"
+post_title: "An Introduction to DC/OS Components"
 date: 2016-04-10 13:20:36 -0700
 comments: true
-categories: 
+categories:
 ---
 ```
 ip-10-0-6-126 system # ls dcos.target.wants/
@@ -23,9 +23,9 @@ By components, we're referring to the services which work together to bring the 
 If you log into any host in the DC/OS cluster, you can view the currently running services by inspecting `/etc/systemd/system/dcos.target.wants/`.
 
 ## Admin Router Service
-Admin router is our core internal load balancer. Admin router is a customized [Nginx](https://www.nginx.com/resources/wiki/) which allows us to proxy all the internal services on :80. 
+Admin router is our core internal load balancer. Admin router is a customized [Nginx](https://www.nginx.com/resources/wiki/) which allows us to proxy all the internal services on :80.
 
-Without admin router being up, you could not access the DC/OS UI. Admin router is a core component of the DC/OS ecosystem. 
+Without admin router being up, you could not access the DC/OS UI. Admin router is a core component of the DC/OS ecosystem.
 
 ```
 [Unit]
@@ -54,9 +54,9 @@ KillMode=mixed
 ```
 
 ## Cluster ID Service
-The cluster-id service allows us to generate a UUID for each cluster. We use this ID to track cluster health remotely (if enabled). This remote tracking allows our support team to better assist our customers. 
+The cluster-id service allows us to generate a UUID for each cluster. We use this ID to track cluster health remotely (if enabled). This remote tracking allows our support team to better assist our customers.
 
-The cluster-id service runs an internal tool called `zk-value-consensus` which uses our internal Zookeeper to generate a UUID that all the masters agree on. Once an agreement is reached, the ID is written to disk at `/var/lib/dcos/cluster-id`. We write it to `/var/lib/dcos` so the ID is ensured to persist cluster upgrades without changing. 
+The cluster-id service runs an internal tool called `zk-value-consensus` which uses our internal Zookeeper to generate a UUID that all the masters agree on. Once an agreement is reached, the ID is written to disk at `/var/lib/dcos/cluster-id`. We write it to `/var/lib/dcos` so the ID is ensured to persist cluster upgrades without changing.
 
 ```
 [Unit]
@@ -92,9 +92,9 @@ ExecStart=/opt/mesosphere/bin/java -Xmx2G -jar "/opt/mesosphere/packages/cosmos-
 ```
 
 ## Diagnostics (DDT) Service
-The diagnostics service (also known as 3DT or dcos-ddt.service, no relationship to the pesticide!) is our diagnostics utility for DC/OS systemd components. This service runs on every host, tracking the internal state of the systemd unit. The service runs in two modes, with or without the `-pull` argument. If running on a master host, it executes `/opt/mesosphere/bin/3dt -pull` which queries MesosDNS for a list of known masters in the cluster, then queries a master (usually itself) `:5050/statesummary` and gets a list of slaves. 
+The diagnostics service (also known as 3DT or dcos-ddt.service, no relationship to the pesticide!) is our diagnostics utility for DC/OS systemd components. This service runs on every host, tracking the internal state of the systemd unit. The service runs in two modes, with or without the `-pull` argument. If running on a master host, it executes `/opt/mesosphere/bin/3dt -pull` which queries MesosDNS for a list of known masters in the cluster, then queries a master (usually itself) `:5050/statesummary` and gets a list of slaves.
 
-From this complete list of cluster hosts, it queries all 3DT health endpoints (`:1050/system/health/v1/health`). This endpoint returns health state for the DC/OS systemd units on that host. The master 3DT processes, along with doing this aggregation also expose `/system/health/v1/` endpoints to feed this data by `unit` or `node` IP to the DC/OS user interface. 
+From this complete list of cluster hosts, it queries all 3DT health endpoints (`:1050/system/health/v1/health`). This endpoint returns health state for the DC/OS systemd units on that host. The master 3DT processes, along with doing this aggregation also expose `/system/health/v1/` endpoints to feed this data by `unit` or `node` IP to the DC/OS user interface.
 
 ```
 [Unit]
@@ -108,7 +108,7 @@ ExecStart=/opt/mesosphere/bin/3dt -pull
 ```
 
 ## Erlang Port Mapper (EPMD) Service
-The erlang port mapper is designed to support our internal layer 4 load balancer we call `minuteman`. 
+The erlang port mapper is designed to support our internal layer 4 load balancer we call `minuteman`.
 
 ```
 [Unit]
@@ -147,7 +147,7 @@ ExecStart=/usr/bin/unshare --mount /opt/mesosphere/packages/exhibitor--8b9dac1cd
 ```
 
 ## Generate resolv.conf (gen-resolvconf) Serivce
-The gen-resolvconf service allows us to dynamically provision `/etc/resolv.conf` for your cluster hosts. 
+The gen-resolvconf service allows us to dynamically provision `/etc/resolv.conf` for your cluster hosts.
 
 ```
 [Unit]
@@ -217,7 +217,7 @@ ExecStart=/opt/mesosphere/bin/java -Xmx2G -jar "/opt/mesosphere/packages/maratho
 ```
 
 ## MesosDNS Service
-MesosDNS is the internal DNS service for the DC/OS cluster. MesosDNS provides the namespace `$service.mesos` to all cluster hosts. For example, you can login to your leading mesos master with `ssh leader.mesos`. 
+MesosDNS is the internal DNS service for the DC/OS cluster. MesosDNS provides the namespace `$service.mesos` to all cluster hosts. For example, you can login to your leading mesos master with `ssh leader.mesos`.
 
 ```
 [Unit]
@@ -233,7 +233,7 @@ ExecStart=/opt/mesosphere/bin/mesos-dns --config=/opt/mesosphere/etc/mesos-dns.j
 ```
 
 ## Minuteman Service
-This is our internal layer 4 loadbalancer. 
+This is our internal layer 4 loadbalancer.
 
 ```
 [Unit]
@@ -257,7 +257,7 @@ Environment=HOME=/opt/mesosphere
 ```
 
 ## Signal Service
-The DC/OS signal service queries the diagnostics service `/system/health/v1/report` endpoint on the leading master and sends this data to SegmentIO for use in tracking metrics and customer support. 
+The DC/OS signal service queries the diagnostics service `/system/health/v1/report` endpoint on the leading master and sends this data to SegmentIO for use in tracking metrics and customer support.
 
 ```
 [Unit]
@@ -270,7 +270,7 @@ ExecStart=/opt/mesosphere/bin/dcos-signal --write_key=51ybGTeFEFU1xo6u10XMDrr6kA
 ```
 
 ## Spartan Service
-Spartan is our internal DNS dispater. It conforms to RFC5625 as a DNS forwarder for DC/OS cluster services. 
+Spartan is our internal DNS dispater. It conforms to RFC5625 as a DNS forwarder for DC/OS cluster services.
 
 ```
 [Unit]

@@ -1,6 +1,6 @@
 ---
 post_title: Installing DCOS by using XXX
-layout: page
+layout: docs.jade
 published: true
 ---
 
@@ -21,7 +21,7 @@ The recommended software.
 Explain the usage of each step. Screen shots and detailed command line instructions are highly encouraged. There is an outline that should be used for each step:
 
 - Walk through the sub-steps required.
-- Provide a "Success" step. For every step, the user should be able to verify what happened during this step. 
+- Provide a "Success" step. For every step, the user should be able to verify what happened during this step.
 
 # Next steps
 

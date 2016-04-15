@@ -1,7 +1,7 @@
 ---
 post_title: Running PostgreSQL on DC/OS
 post_excerpt: ""
-layout: page
+layout: docs.jade
 published: true
 menu_order: 1
 page_options_require_authentication: false
@@ -27,7 +27,7 @@ This tutorial is for developers who want to test their software and use Postgres
 
 # Install Postgres from official Docker image
 
-Create a Marathon app definition file named [postgres.marathon.json](postgres.marathon.json) with the following Marathon application descriptor. A Marathon app definition file specifies the required parameters for launching an app with Marathon. Specified in this app definition is the PostgreSQL Docker container, the PostgreSQL password, the resources required, Marathon health checks, and Marathon [upgrade strategy](https://mesosphere.github.io/marathon/docs/rest-api.html). 
+Create a Marathon app definition file named [postgres.marathon.json](postgres.marathon.json) with the following Marathon application descriptor. A Marathon app definition file specifies the required parameters for launching an app with Marathon. Specified in this app definition is the PostgreSQL Docker container, the PostgreSQL password, the resources required, Marathon health checks, and Marathon [upgrade strategy](https://mesosphere.github.io/marathon/docs/rest-api.html).
 
 <pre>
 {
@@ -85,10 +85,10 @@ Create a Marathon app definition file named [postgres.marathon.json](postgres.ma
 
 Add the Marathon app definition to DC/OS with this CLI command:
 <pre>
-dcos marathon app add postgres.marathon.json 
+dcos marathon app add postgres.marathon.json
 </pre>
 
-This command installs the PostgreSQL server on your DC/OS cluster and makes it available on VIP `5.4.3.2` and standard Postgres port `5432`. 
+This command installs the PostgreSQL server on your DC/OS cluster and makes it available on VIP `5.4.3.2` and standard Postgres port `5432`.
 
 # Test installation
 

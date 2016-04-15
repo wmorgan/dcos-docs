@@ -1,9 +1,9 @@
 ---
 layout: docs.jade
-title: "Monitoring DC/OS"
+post_title: "Monitoring DC/OS"
 date: 2016-03-25 10:04:54 -0700
 comments: true
-categories: 
+categories:
 ---
 Monitoring the health of all the pieces that make up DC/OS is vital to data center operators and for troubleshoooting hard-to-diagnose bugs. In DC/OS v1.7 we released a new system health API to monitor the core DC/OS components (more on the terminology of 'components' later). In the futrue we're hoping to expand the usage of the system health API to other metrics as well as exposing a plugins-style architecture to allow operators to customize system health monitoring.
 <!-- More -->
@@ -30,7 +30,7 @@ You can debug more by clicking the node, where you'll be able to see the unhealt
 ![log](https://dl.dropboxusercontent.com/u/77193293/systemHealthScreens/sys_unhealthy.png)
 
 ## Components
-What we refer to as components are in fact the [systemd units](https://www.freedesktop.org/wiki/Software/systemd/) that make up the core of the DC/OS application. These systemd 'components' are monitored by our internal diagnostics utility (dcos-diagnostics.service). This utility scans all the DC/OS units, and then exposes an HTTP API on each host. 
+What we refer to as components are in fact the [systemd units](https://www.freedesktop.org/wiki/Software/systemd/) that make up the core of the DC/OS application. These systemd 'components' are monitored by our internal diagnostics utility (dcos-diagnostics.service). This utility scans all the DC/OS units, and then exposes an HTTP API on each host.
 
 You can query this HTTP API for any host in the cluster:
 
