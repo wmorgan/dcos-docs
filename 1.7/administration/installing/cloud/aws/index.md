@@ -90,7 +90,7 @@ Launch the DC/OS web interface by entering the Mesos Master hostname:
 
 # Next steps
 
-- [Install the DC/OS Command-Line Interface (CLI)][2].
+- [Install the DC/OS Command-Line Interface (CLI)][2]
 - [Using your cluster][3]
 - [Scaling considerations][4]
 

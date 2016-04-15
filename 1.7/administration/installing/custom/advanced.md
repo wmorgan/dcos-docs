@@ -1,5 +1,5 @@
 ---
-post_title: Configure and install DC/OS
+post_title: Advanced
 post_excerpt: ""
 layout: docs.jade
 ---
@@ -105,6 +105,10 @@ In this step you create a custom DC/OS build file on your bootstrap node and the
 
 To install DC/OS:
 
+1.  Download the [DC/OS installer][9]
+
+        $ curl -O https://FIXME
+
 1.  From the bootstrap node, run the DC/OS installer shell script to generate a customized DC/OS build file. The setup script extracts a Docker container that uses the generic DC/OS install files to create customized DC/OS build files for your cluster. The build files are output to `./genconf/serve/`.
 
     At this point your directory structure should resemble:
@@ -167,22 +171,21 @@ To install DC/OS:
 
     **Tip:** This process can take about 10 minutes. During this time you will see the Master nodes become visible on the Exhibitor consoles and come online, eventually showing a green light.
 
-    ![alt text](img/chef-zk-status.png)
+    ![alt text](../img/chef-zk-status.png)
 
     When the status icons are green, you can access the DC/OS web interface.
 
 1.  Launch the DC/OS web interface at: `http://<master-node-public-ip>/`.
 
-1.  Create the first user account for your cluster.
+8.  Click **Log In To DC/OS**.
 
-    ![alt text](FIXME)
-
-    You are done!
-
-    ![alt text](FIXME)
+    ![alt text](../img/ui-installer-success1.png) FIXME
 
 ### Next Steps
 
-- [Install the DC/OS Command-Line Interface (CLI)][1]
+- [Install the DC/OS Command-Line Interface (CLI)][2]
+- [Use your cluster][3]
 
-[1]: /docs/1.7/usage/cli/install/
+[1]: FIXME
+[2]: /docs/1.7/usage/cli/install/
+[3]: /docs/1.7/usage/
