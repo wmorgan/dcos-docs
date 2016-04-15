@@ -1,15 +1,9 @@
 ---
-UID: 56f98446d83f7
-post_title: 'FAQ &#038; Troubleshooting'
+post_title: 'Troubleshooting'
 post_excerpt: ""
 layout: docs.jade
-published: true
-menu_order: 4
-page_options_require_authentication: false
-page_options_show_link_unauthenticated: false
-hide_from_navigation: false
-hide_from_related: false
 ---
+
 # How can I check the Mesos-DNS version?
 
 You can check the Mesos-DNS version with `mesos-dns -version`.
@@ -40,4 +34,4 @@ If you try to connect to `master.mesos` using HTTP, you will be automatically re
 
 However, if you try to query or connect to `master.mesos` using any method other than HTTP, the results will be unpredictable because the name will resolve to a random master node. For example, a service that attempts to register with `master.mesos` may communicate with a non-leading master node and will be unable to register as a service on the cluster.
 
- [1]: /administration/installing/installing-enterprise-edition/#config-json
+ [1]: /docs/1.7/administration/installing/custom/configuration-parameters/
