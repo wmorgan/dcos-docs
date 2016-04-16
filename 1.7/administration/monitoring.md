@@ -1,8 +1,7 @@
 ---
 post_title: Monitoring
-post_excerpt: ""
-layout: docs.jade
 ---
+
 Monitoring the health of all the pieces that make up DC/OS is vital to data center operators and for troubleshoooting hard-to-diagnose bugs. In DC/OS v1.7 we released a new system health API to monitor the core DC/OS components (more on the terminology of 'components' later). In the futrue we're hoping to expand the usage of the system health API to other metrics as well as exposing a plugins-style architecture to allow operators to customize system health monitoring.
 <!-- More -->
 

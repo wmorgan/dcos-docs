@@ -1,12 +1,10 @@
 ---
 post_title: Telemetry
-post_excerpt: ""
-layout: docs.jade
 ---
 
 To continuously improve the DC/OS experience, we have included a telemetry component that reports anonymous usage data back to us. We use this data to monitor the reliability of core DC/OS components, successful installations and to find out which features are most popular. There are two sections that have the telemetry component implemented:
 
-# System
+## System
 
 You will see a ping to `segment.com` once per hour with this data:
 
@@ -81,7 +79,7 @@ You will see a ping to `segment.com` once per hour with this data:
 
 Along with the health of each system component in your cluster, this also tells us which version you are running.
 
-# User Interface
+## User Interface
 
 When using the DC/OS UI, we receive two types of notifications:
 
@@ -90,6 +88,6 @@ The pages you’ve viewed while navigating the UI
 
 <hr>
 
-# Opt-Out
+## Opt-Out
 
 - [Instructions](../opt-out/)

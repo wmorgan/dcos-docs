@@ -1,10 +1,8 @@
 ---
 post_title: Managing AWS Clusters
-post_excerpt: ""
-layout: docs.jade
 ---
 
-# Finding your public node hostname
+## Finding your public node hostname
 
 The DC/OS AWS CloudFormation template creates 1 Mesos agent node in the [public zone][1].
 
@@ -18,7 +16,7 @@ To find your your public node IP:
 
     **Tip:** You might have to refresh your browser to see your deployed app.
 
-# Scaling an AWS cluster
+## Scaling an AWS cluster
 
 The DC/OS AWS CloudFormation template is optimized to run DC/OS, but you might want to change the number of agent nodes based on your needs.
 
@@ -33,7 +31,7 @@ To change the number of agent nodes with AWS:
 
 Your new machines will take a few minutes to initialize; you can watch them in the EC2 console. The DC/OS web interface will update as soon as the new nodes register.
 
-# Upgrading a DC/OS cluster in AWS
+## Upgrading a DC/OS cluster in AWS
 
 You can update an existing DC/OS cluster or services to use the latest DC/OS template.
 
