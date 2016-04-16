@@ -1,6 +1,5 @@
 ---
 post_title: System Requirements
-post_excerpt: ""
 layout: docs.jade
 ---
 # Hardware Prerequisites
@@ -45,7 +44,7 @@ Here are the master node hardware requirements.
   </tr>
   <tr>
      <td colspan="2">
-      <p>There are many mixed workloads on the masters, for example Mesos replicated log and Zookeeper. Some of these require fsync()ing every so often, and this can generate a lot of very expensive random I/O. We recommend the following: <ul><li>Solid-state drive (SSD)</li><li>RAID controllers with a BBU</li><li>RAID controller cache configured in writeback mode</li></ul></p>
+      <p>There are many mixed workloads on the masters, for example Mesos replicated log and ZooKeeper. Some of these require fsync()ing every so often, and this can generate a lot of very expensive random I/O. We recommend the following: <ul><li>Solid-state drive (SSD)</li><li>RAID controllers with a BBU</li><li>RAID controller cache configured in writeback mode</li></ul></p>
       </td>
       </tr>
 </table>
@@ -275,7 +274,7 @@ The bootstrap node is a permanent part of your cluster and is required for DC/OS
 
 ### DC/OS setup file
 
-Download and save the [DC/OS setup file](FIXME) to your bootstrap node. This file is used to create your customized DC/OS build file.
+Download and save the [DC/OS setup file][3] to your bootstrap node. This file is used to create your customized DC/OS build file.
 
 ### Docker Nginx (advanced installer)
 
@@ -283,7 +282,7 @@ For advanced install only, install the Docker Nginx image with this command:
 
     $ sudo docker pull nginx
 
-## Cluster nodes 
+## Cluster nodes
 
 For advanced install only, your cluster nodes must have the following prerequisites. The cluster nodes are designated as Mesos masters and agents during installation.
 
@@ -294,30 +293,33 @@ You must have the <a href="http://www.info-zip.org/UnZip.html" target="_blank">U
 To install these utilities on CentOS7 and RHEL7:
 
     $ sudo yum install -y tar xz unzip curl
-    
+
 
 ### Cluster permissions (advanced installer)
 
 On each of your cluster nodes, use the following command to:
 
 *   Disable SELinux or set it to permissive mode.
-*   Add nogroup to each of your Mesos masters and agents.</li> 
-*   Disable IPV6. For more information see <a href="https://wiki.centos.org/FAQ/CentOS7#head-8984faf811faccca74c7bcdd74de7467f2fcd8ee" target="_blank">How do I disable IPv6</a>.</li> 
-*   Reboot your cluster for the changes to take affect</p> 
-    
+*   Add nogroup to each of your Mesos masters and agents.</li>
+*   Disable IPV6. For more information see <a href="https://wiki.centos.org/FAQ/CentOS7#head-8984faf811faccca74c7bcdd74de7467f2fcd8ee" target="_blank">How do I disable IPv6</a>.</li>
+*   Reboot your cluster for the changes to take affect</p>
+
         $ sudo sed -i s/SELINUX=enforcing/SELINUX=permissive/g /etc/selinux/config &&
          sudo groupadd nogroup &&
          sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1 &&
          sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1 &&
          sudo reboot
-        
-    
+
+
     **Tip:** It may take a few minutes for your node to come back online after reboot.
 
 # Next step
 
-- [Install DC/OS via. the GUI installer][1]
-- [Install DC/OS via. the CLI installer][2]
+- [GUI DC/OS Installation Guide][1]
+- [CLI DC/OS Installation Guide][2]
+- [Advanced DC/OS Installation Guide][4]
 
 [1]: ../gui/
 [2]: ../cli/
+[3]: https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
+[4]: ../advanced/

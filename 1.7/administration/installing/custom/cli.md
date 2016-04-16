@@ -1,6 +1,6 @@
 ---
-post_title: Command Line
-post_excerpt: ""
+post_title: CLI DC/OS Installation Guide
+nav_title: CLI
 layout: docs.jade
 ---
 The automated CLI installer provides a guided installation of DC/OS from the command line. With this method you can choose from the complete set of DC/OS configuration options.
@@ -28,7 +28,7 @@ The DC/OS installation creates these folders:
 
     In this step you create an IP detect script to broadcast the IP address of each node across the cluster. Each node in a DC/OS cluster has a unique IP address that is used to communicate between nodes in the cluster. The IP detect script prints the unique IPv4 address of a node to STDOUT each time DC/OS is started on the node.
 
-    **Important:** The IP address of a node must not change after DC/OS is installed on the node. For example, the IP address must not change when a node is rebooted or if the DHCP lease is renewed. If the IP address of a node does change, the node must be [wiped and reinstalled][1].
+    **Important:** The IP address of a node must not change after DC/OS is installed on the node. For example, the IP address must not change when a node is rebooted or if the DHCP lease is renewed. If the IP address of a node does change, the node must be [wiped and reinstalled][7].
 
     Create an IP detection script for your environment and save as `genconf/ip-detect`. You can use the examples below.
 
@@ -62,7 +62,7 @@ The DC/OS installation creates these folders:
             #!/usr/bin/env bash
             set -o nounset -o errexit
             export PATH=/usr/sbin:/usr/bin:$PATH
-            echo $(ip addr show eth0 | grep -Eo '[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}' | head -1)
+            echo $(ip addr show eth0 | grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -1)
 
     *   #### Use the network route to the Mesos master
 
@@ -147,7 +147,7 @@ You can view all of the automated command line installer options with the `--hel
       --validate-config     Validate the configuration in config.yaml
       --test                Performs tests on the dcos_installer application
 
-**Tip:** If something goes wrong and you want to rerun your setup, use these cluster [cleanup instructions][1].
+**Tip:** If something goes wrong and you want to rerun your setup, use these cluster [cleanup instructions][7].
 
 To install DC/OS:
 
@@ -157,7 +157,7 @@ To install DC/OS:
 
 1.  From your home directory, run the DC/OS installer shell script on your bootstrapping master nodes to generate a customized DC/OS build. The setup script extracts a Docker container that uses the generic DC/OS install files to create customized DC/OS build files for your cluster. The build files are output to `./genconf/serve/`.
 
-        $ sudo bash dcos_generate_config.ee.sh --genconf
+        $ sudo bash dcos_generate_config.sh --genconf
 
     Here is an example of the output.
 
@@ -175,13 +175,12 @@ To install DC/OS:
         │   ├── ip-detect
 
 2.  <a name="two"></a>Install the cluster prerequisites, including system updates, compression utilities (UnZip, GNU tar, and XZ Utils), and cluster permissions. For a full list of cluster prerequisites, see this [documentation][4].
-    
-        $ sudo bash dcos_generate_config.ee.sh --install-prereqs
-        
-    
+
+        $ sudo bash dcos_generate_config.sh --install-prereqs
+
     Here is an example of the output.
-    
-        Running mesosphere/dcos-genconf docker with BUILD_DIR set to /home/centos/genconf 
+
+        Running mesosphere/dcos-genconf docker with BUILD_DIR set to /home/centos/genconf
         ====> dcos_installer.action_lib.prettyprint:: ====> EXECUTING INSTALL PREREQUISITES
         ====> dcos_installer.action_lib.prettyprint:: ====> START install_prereqs
         ====> dcos_installer.action_lib.prettyprint:: ====> STAGE install_prereqs
@@ -189,15 +188,13 @@ To install DC/OS:
         ====> dcos_installer.action_lib.prettyprint:: ====> END install_prereqs with returncode: 0
         ====> dcos_installer.action_lib.prettyprint:: ====> SUMMARY
         ====> dcos_installer.action_lib.prettyprint:: 2 out of 2 hosts successfully completed install_prereqs stage.
-        
 
 3.  Run a preflight script to validate that your cluster is installable.
-    
-        $ sudo bash dcos_generate_config.ee.sh --preflight
-        
-    
+
+        $ sudo bash dcos_generate_config.sh --preflight
+
     Here is an example of the output.
-    
+
         Running mesosphere/dcos-genconf docker with BUILD_DIR set to /home/centos/genconf
         ====> dcos_installer.action_lib.prettyprint:: ====> EXECUTING PREFLIGHT
         ====> dcos_installer.action_lib.prettyprint:: ====> START run_preflight
@@ -208,17 +205,15 @@ To install DC/OS:
         ====> dcos_installer.action_lib.prettyprint:: ====> END run_preflight with returncode: 0
         ====> dcos_installer.action_lib.prettyprint:: ====> SUMMARY
         ====> dcos_installer.action_lib.prettyprint:: 2 out of 2 hosts successfully completed run_preflight stage.
-        
-    
-    **Tip:** For a detailed view, you can append log level debug (`-v`) to your command. For example `sudo bash dcos_generate_config.ee.sh --preflight -v`.
+
+    **Tip:** For a detailed view, you can append log level debug (`-v`) to your command. For example `sudo bash dcos_generate_config.sh --preflight -v`.
 
 4.  Install DC/OS on your cluster.
-    
-        $ sudo bash dcos_generate_config.ee.sh --deploy
-        
-    
+
+        $ sudo bash dcos_generate_config.sh --deploy
+
     Here is an example of the output.
-    
+
         Running mesosphere/dcos-genconf docker with BUILD_DIR set to /home/centos/genconf
         ====> dcos_installer.action_lib.prettyprint:: ====> EXECUTING DC/OS INSTALLATION
         ====> dcos_installer.action_lib.prettyprint:: ====> START deploy_master
@@ -233,15 +228,13 @@ To install DC/OS:
         ====> dcos_installer.action_lib.prettyprint:: ====> END deploy_agent with returncode: 0
         ====> dcos_installer.action_lib.prettyprint:: ====> SUMMARY
         ====> dcos_installer.action_lib.prettyprint:: 1 out of 1 hosts successfully completed deploy_agent stage.
-        
 
 5.  Run the DC/OS diagnostic script to verify that services are up and running.
-    
-        $ sudo bash dcos_generate_config.ee.sh --postflight
-        
-    
+
+        $ sudo bash dcos_generate_config.sh --postflight
+
     Here is an example of the output.
-    
+
         Running mesosphere/dcos-genconf docker with BUILD_DIR set to /home/centos/genconf
         ====> dcos_installer.action_lib.prettyprint:: ====> EXECUTING POSTFLIGHT
         ====> dcos_installer.action_lib.prettyprint:: ====> START run_postflight
@@ -252,14 +245,13 @@ To install DC/OS:
         ====> dcos_installer.action_lib.prettyprint:: ====> END run_postflight with returncode: 0
         ====> dcos_installer.action_lib.prettyprint:: ====> SUMMARY
         ====> dcos_installer.action_lib.prettyprint:: 2 out of 2 hosts successfully completed run_postflight stage.
-        
 
 6.  Monitor Exhibitor and wait for it to converge at `http://<master-public-ip>:8181/exhibitor/v1/ui/index.html`.
-    
+
     **Tip:** This process can take about 10 minutes. During this time you will see the Master nodes become visible on the Exhibitor consoles and come online, eventually showing a green light.
-    
-    ![alt text][5]
-    
+
+    ![alt text](../img/chef-zk-status.png)
+
     When the status icons are green, you can access the DC/OS web interface.
 
 7.  Launch the DC/OS web interface at: `http://<public-master-ip>/`.
@@ -268,6 +260,7 @@ To install DC/OS:
 
 - [Install the DC/OS Command-Line Interface (CLI)][2]
 - [Use your cluster][3]
+- [Uninstalling DC/OS][7]
 
 ### Add more agent nodes
 
@@ -291,26 +284,10 @@ After DC/OS is installed and deployed across your cluster, you can add more agen
         18:17:14::
         18:17:14:: ====> 10.10.0.160:22 FAILED
 
- ### Uninstalling DC/OS
- 
- 1.  From the bootstrap node, enter this command:
-     
-         $ sudo bash dcos_generate_config.sh --uninstall
-         Running mesosphere/dcos-genconf docker with BUILD_DIR set to /home/centos/genconf
-         ====> EXECUTING UNINSTALL
-         This will uninstall DC/OS on your cluster. You may need to manually remove /var/lib/zookeeper in some cases after this completes, please see our documentation for details. Are you ABSOLUTELY sure you want to proceed? [ (y)es/(n)o ]: yes
-         ====> START uninstall_dcos
-         ====> STAGE uninstall
-         ====> STAGE uninstall
-         ====> OUTPUT FOR uninstall_dcos
-         ====> END uninstall_dcos with returncode: 0
-         ====> SUMMARY FOR uninstall_dcos
-         2 out of 2 hosts successfully completed uninstall_dcos stage.
-         ====> END OF SUMMARY FOR uninstall_dcos
-
- [1]: FIXME
  [2]: /docs/1.7/usage/cli/install/
  [3]: ../advanced/
  [4]: ../system-requirements/
  [5]: https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
  [6]: ../configuration-parameters/
+ [7]: ../uninstall/
+

@@ -27,7 +27,7 @@ You can assign a VIP to one of your services by following these steps. For some 
 
         curl 1.1.1.1:5000
 
-# Mesos DNS
+# Mesos-DNS
 
 Every task started by DC/OS gets a well known DNS name. If you're interested in how to figure this out past marathon services, check out [mesos-dns][4]. For a marathon service named "testing", you can find where it is running via:
 

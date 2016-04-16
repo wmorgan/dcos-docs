@@ -1,6 +1,6 @@
 ---
-post_title: Advanced
-post_excerpt: ""
+post_title: Advanced DC/OS Installation Guide
+nav_title: Advanced
 layout: docs.jade
 ---
 With this installation method, you package the DC/OS distribution yourself and connect to every node manually to run the DC/OS installation commands. This installation method is recommended if you want to integrate with an existing system or if you don’t have SSH access to your cluster.
@@ -90,7 +90,7 @@ The DC/OS installation creates these folders:
             #!/usr/bin/env bash
             set -o nounset -o errexit
             export PATH=/usr/sbin:/usr/bin:$PATH
-            echo $(ip addr show eth0 | grep -Eo '[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}' | head -1)
+            echo $(ip addr show eth0 | grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -1)
 
     *   #### Use the network route to the Mesos master
 
@@ -126,7 +126,7 @@ To install DC/OS:
 
     At this point your directory structure should resemble:
 
-        ├── dcos-genconf.<hash>.tar
+        ├── dcos-genconf.<HASH>.tar
         ├── dcos_generate_config.sh
         ├── genconf
         │   ├── config.yaml
@@ -176,11 +176,11 @@ To install DC/OS:
 
             $ curl -O http://<bootstrap-ip>:<your_port>/dcos_install.sh
 
-    4.  Run this command to install DC/OS on your agent nodes. You must designate your agent nodes as [public](/overview/concepts/#public) or [private](/overview/concepts/#private). 
-    
+    4.  Run this command to install DC/OS on your agent nodes. You must designate your agent nodes as [public][6] or [private][7].
+
         *  Private agent nodes:
            <pre>$ sudo bash dcos_install.sh slave</pre>
-              
+
         *  Public agent nodes:
            <pre>$ sudo bash dcos_install.sh slave_public</pre>
 
@@ -194,14 +194,17 @@ To install DC/OS:
 
 1.  Launch the DC/OS web interface at: `http://<master-node-public-ip>/`.
 
-
 ### Next Steps
 
 - [Install the DC/OS Command-Line Interface (CLI)][2]
 - [Use your cluster][3]
+- [Uninstalling DC/OS][8]
 
 [1]: ../configuration-parameters/
 [2]: /docs/1.7/usage/cli/install/
 [3]: /docs/1.7/usage/
 [4]: https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
 [5]: FIXME
+[6]: /docs/1.7/overview/concepts/#public
+[7]: /docs/1.7/overview/concepts/#private
+[8]: ../uninstall/
