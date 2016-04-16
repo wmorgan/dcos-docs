@@ -1,9 +1,8 @@
 ---
-post_title: Concepts
-post_excerpt: ""
-layout: docs.jade
+post_title: The Concepts of DC/OS
+nav_title: Concepts
 ---
-This page contains terms and definitions for the Mesosphere DC/OS.
+This page contains terms and definitions for DC/OS.
 
 # Admin router
 
@@ -55,7 +54,7 @@ DC/OS uses ZooKeeper, a high-performance coordination service to manage the inst
 
 # Framework
 
-A Mesos framework is the combination of a Mesos scheduler and an optional custom executor. A framework receives resource offers describing CPU, RAM, etc., and allocates them for discrete tasks that can be launched on Mesos agent nodes. Mesosphere-certified Mesos frameworks, called DC/OS services, are packaged and available from public [GitHub package repositories][7]. DC/OS services include Mesosphere-certified Mesos frameworks and other applications.
+A Mesos framework is the combination of a Mesos scheduler and an optional custom executor. A framework receives resource offers describing CPU, RAM, etc., and allocates them for discrete tasks that can be launched on Mesos agent nodes. Mesosphere-certified Mesos frameworks, called DC/OS services, are packaged and available from public [GitHub package repositories][5]. DC/OS services include Mesosphere-certified Mesos frameworks and other applications.
 
 # Master
 
@@ -107,7 +106,6 @@ DC/OS uses ZooKeeper, a high-performance coordination service to manage the inst
 [4]: http://mesos.apache.org/documentation/latest/containerizer/
 [5]: https://github.com/mesosphere/universe
 [6]: http://mesos.apache.org/documentation/latest/app-framework-development-guide/
-[7]: https://github.com/mesosphere/universe
 [8]: #agent
 [9]: http://mesos.apache.org/documentation/latest/configuration/
 [10]: https://github.com/dcos/mesos-dns
