@@ -1,7 +1,6 @@
 ---
 post_title: High Availability in DC/OS
-post_excerpt: "Describes high availability in DC/OS"
-layout: docs.jade
+nav_title: High Availability
 ---
 
 This document will discuss some of the high availability features in DC/OS, in
@@ -88,7 +87,9 @@ clusters for separate services. With DCOS, there's an [Exhibitor
 package](https://github.com/mesosphere/exhibitor-dcos) included which makes this
 easy:
 
-``` $ dcos package install exhibitor ```
+```
+$ dcos package install exhibitor
+```
 
 Other common single points of failure include: single database instances (like a
 MySQL), one-off services, and non-HA load balancers.

@@ -1,7 +1,6 @@
 ---
-post_title: Network Security
-post_excerpt: ""
-layout: docs.jade
+post_title: Network Security in DC/OS
+nav_title: Network Security
 ---
 DC/OS provides the admin, private, and public security zones.
 

@@ -1,7 +1,6 @@
 ---
-layout: docs.jade
 post_title: "An Introduction to DC/OS Components"
-post_excerpt: ""
+nav_title: Components
 ---
 
 ```
@@ -268,7 +267,7 @@ EnvironmentFile=-/opt/mesosphere/etc/cfn_signal_metadata
 ExecStart=/opt/mesosphere/bin/dcos-signal --write_key=51ybGTeFEFU1xo6u10XMDrr6kATFyRyh
 ```
 
-## Distributed DNS Proxy 
+## Distributed DNS Proxy
 Distributed DNS Proxy is our internal DNS dispatcher. It conforms to RFC5625 as a DNS forwarder for DC/OS cluster services.
 
 ```

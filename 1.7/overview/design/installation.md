@@ -1,8 +1,7 @@
 ---
 post_title: >
     Design: Installation
-post_excerpt: ""
-layout: docs.jade
+nav_title: Installation
 ---
 
 Building, installing and operating DC/OS must be a repeatable process. Even small error rates are unacceptable when you’re working with 10,000 hosts. Because DC/OS is comprised of more than 30 different libraries, services and support packages, a non-standard approach is required. Trying to treat each of those components as independent artifacts to install and configure on target hosts would introduce failures that would get in the way of relying on the system.
@@ -40,7 +39,7 @@ All the components in DC/OS are built into a single tarball that eventually gets
 
 The master artifact needs to be assembled somehow. As it is made up of a changing list of components, the build tooling ends up looking like its own little package manager. Each component needs to be built from source, configured in a repeatable fashion and then added into the master artifact.
 
-A DC/OS package is defined by two files: [`build`]() and [`buildinfo.json`](). These state what needs to be downloaded and how to build it. At build time, the toolchain takes care of building, packaging and including all the artifacts required into the master tarball.
+A DC/OS package is defined by two files: [`build`][1] and [`buildinfo.json`][2]. These state what needs to be downloaded and how to build it. At build time, the toolchain takes care of building, packaging and including all the artifacts required into the master tarball.
 
 
 ## Installing
@@ -49,7 +48,7 @@ Now that there’s a single package containing all the built components to run D
 
 With the configuration tool, all components are built into a package that contains everything to get the cluster running. You’ll pick from a small list of details like DNS configuration and bootstrap information. This then gets added to the single tarball that was built previously. You then have a package that is customized for your hardware and will repeatably create clusters of any size over and over.
 
-Orchestrating the rollout of an installation is difficult, particularly when you need to do things in a certain order. To keep everything as simple as possible, at the host level DC/OS makes no assumptions about the state of the cluster. You can install [agents and then masters]() or even install both at the same time!
+Orchestrating the rollout of an installation is difficult, particularly when you need to do things in a certain order. To keep everything as simple as possible, at the host level DC/OS makes no assumptions about the state of the cluster. You can install agents and then masters or even install both at the same time!
 
 Once your package is built, you can get going by running `dcos_install.sh` on every host. This script only does three things:
 
@@ -116,3 +115,6 @@ Host images are a great way to distribute and install DC/OS. By providing the ba
 The components included in DC/OS have a significant amount of configuration options. We have spent a long time piecing the correct ones together. These are guaranteed to give you the best operations in production at scale. If we were to expose these options, it would increase the amount of knowledge required to run an DC/OS cluster.
 
 Remember that clusters need to look mostly the same for package install to work. As soon as configuration parameters that the frameworks rely on change, we cannot guarantee that a package can install or run reliably.
+
+[1]: https://github.com/dcos/dcos/blob/master/packages/mesos/build
+[2]: https://github.com/dcos/dcos/blob/master/packages/mesos/buildinfo.json
