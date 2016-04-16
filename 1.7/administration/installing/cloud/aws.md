@@ -1,6 +1,6 @@
 ---
-post_title: Install DC/OS on AWS
-post_excerpt: ""
+post_title: AWS DC/OS Installation Guide
+nav_title: AWS
 layout: docs.jade
 ---
 
