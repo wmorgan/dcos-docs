@@ -1,13 +1,7 @@
 ---
 post_title: Running Stateful Services on DC/OS via Marathon
 post_excerpt: ""
-layout: page
-published: true
-menu_order: 1
-page_options_require_authentication: false
-page_options_show_link_unauthenticated: false
-hide_from_navigation: false
-hide_from_related: false
+layout: docs.jade
 ---
 
 A stateful service acts on persistent data. Simple, stateless services in Marathon run in an empty sandbox each time they are launched. In contrast, stateful services on Marathon make use of persistent volumes that reside on agents in a cluster until explicitly destroyed.
@@ -56,8 +50,8 @@ List all tasks:
 
 ```shell
 $ dcos marathon task list
-APP        HEALTHY          STARTED              HOST     ID                                             
-/postgres    True   2016-04-13T17:25:08.301Z  10.0.1.223  postgres.f2419e31-018a-11e6-b721-0261677b407a  
+APP        HEALTHY          STARTED              HOST     ID
+/postgres    True   2016-04-13T17:25:08.301Z  10.0.1.223  postgres.f2419e31-018a-11e6-b721-0261677b407a
 ```
 
 Inspect the details of the stateful service you created:
@@ -107,7 +101,7 @@ This command scales the `instances` count down to 0 and kills all runing tasks. 
 
 ```shell
 $ dcos marathon task list
-APP        HEALTHY  STARTED     HOST     ID                                             
+APP        HEALTHY  STARTED     HOST     ID
 /postgres    True     N/A    10.0.1.223  postgres.f2419e31-018a-11e6-b721-0261677b407a
 
 $ dcos marathon task show postgres.f2419e31-018a-11e6-b721-0261677b407a

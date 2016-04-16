@@ -1,13 +1,7 @@
 ---
 post_title: Running Ruby on Rails on DC/OS
 post_excerpt: ""
-layout: page
-published: true
-menu_order: 1
-page_options_require_authentication: false
-page_options_show_link_unauthenticated: false
-hide_from_navigation: false
-hide_from_related: false
+layout: docs.jade
 ---
 
 [Ruby on Rails](http://rubyonrails.org/) is a popular web application framework written in Ruby.
@@ -60,20 +54,20 @@ Before we can run Redmine, we need to create a database and a user for it.
     Welcome to the MySQL monitor.  Commands end with ; or \g.
     Your MySQL connection id is 9
     Server version: 5.6.29 MySQL Community Server (GPL)
-    
+
     Copyright (c) 2000, 2016, Oracle and/or its affiliates. All rights reserved.
-    
+
     Oracle is a registered trademark of Oracle Corporation and/or its
     affiliates. Other names may be trademarks of their respective
     owners.
-    
+
     Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-    
+
     mysql>
     ```
 
 1.  From the MySQL CLI, run this command to create the user `redmine` with password `DC/OS_Rocks`.
-    
+
     ```
     mysql> CREATE USER 'redmine'@'%' IDENTIFIED BY 'DC/OS_Rocks';
     Query OK, 0 rows affected (0.00 sec)

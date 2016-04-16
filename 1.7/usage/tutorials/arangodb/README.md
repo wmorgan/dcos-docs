@@ -1,13 +1,7 @@
 ---
 post_title: Running ArangoDB on DC/OS
 post_excerpt: ""
-layout: page
-published: true
-menu_order: 1
-page_options_require_authentication: false
-page_options_show_link_unauthenticated: false
-hide_from_navigation: false
-hide_from_related: false
+layout: docs.jade
 ---
 
 ArangoDB is a distributed, multi-model database featuring JSON
@@ -115,7 +109,7 @@ For further information, visit:
 The ArrangoDB service is also distributed in binary form as a Docker image:
 
     arangodb/arangodb-mesos-framework
-    
+
 See the [README.md](https://github.com/ArangoDB/arangodb-mesos-framework)
 in the framework repository for details on how the framework scheduler is
 configured.
