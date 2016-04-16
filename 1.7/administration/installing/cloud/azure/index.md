@@ -27,7 +27,7 @@ Also, in order to access nodes in the DC/OS cluster you will need `ssh` installe
 
 ## Step 1: Deploying the template
 
-In order to deploy DC/OS using an [Azure Resource Manager](https://azure.microsoft.com/en-us/documentation/articles/resource-group-overview/) template, first go to [portal.azure.com](https://portal.azure.com/), click on `+ New` and enter `dcos`:
+In order to deploy DC/OS using an [Azure Resource Manager](https://azure.microsoft.com/en-us/documentation/articles/resource-group-overview/) template, first go to [portal.azure.com](https://portal.azure.com/), click on `+ New` and enter `DC/OS`:
 
 ![Searching for DC/OS template](img/dcos-azure-marketplace-step1a.png)
 
@@ -57,21 +57,21 @@ Now you have deployed DC/OS using an Azure Resource Manager template, congrats! 
 
 Due to security considerations the DC/OS cluster in Azure is locked down per default. You need to use an `ssh` tunnel to access the DC/OS Dashboard.
 
-First, look up `master-lb-hostname` in the outputs of the deployment. To find that, click on the link under `Last deployment` (which is `4/11/2016 (Succeeded)` here) and you should see this:
+First, look up `master-lb-hostname` in the outputs of the deployment. To find that, click on the link under `Last deployment` (which is `4/15/2016 (Succeeded)` here) and you should see this:
 
 ![Deployment history](img/dcos-azure-marketplace-step2a.png)
 
-Click on the latest deployment and copy the value of `master-lb-hostname` in the `Outputs` section:
+Click on the latest deployment and copy the value of `MASTERFQDN` in the `Outputs` section:
 
 ![Deployment output](img/dcos-azure-marketplace-step2b.png)
 
-Use the value of `master-lb-hostname` you found in the `Outputs` section in the previous step and paste it in the following command:
+Use the value of `MASTERFQDN` you found in the `Outputs` section in the previous step and paste it in the following command:
 
-    $ ssh azureuser@master-lb-hostname -p 2200 -L 8000:localhost:80
+    $ ssh azureuser@masterfqdn -p 2200 -L 8000:localhost:80
 
 For example, in my case:
 
-    $ ssh azureuser@test123mlb.westus.cloudapp.azure.com -p 2200 -L 8000:localhost:80
+    $ ssh azure@dcosmaster.westus.cloudapp.azure.com -p 2200 -L 8000:localhost:80
 
 Now you can visit `http://localhost:8000` on your local machine and find the DC/OS Dashboard there.
 
