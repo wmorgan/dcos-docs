@@ -1,6 +1,6 @@
 ---
-post_title: GUI
-post_excerpt: ""
+post_title: GUI DC/OS Installation Guide
+nav_title: GUI
 layout: docs.jade
 ---
 The automated GUI installer provides a simple graphical interface that guides you through the installation of DC/OS. The automated installer provides a basic installation that is suitable for demonstrations and POCs. Only a subset of the configuration options are available with the GUI method. This is the fastest way to get started with DC/OS.
@@ -27,7 +27,7 @@ The DC/OS installation creates these folders:
 
 1.  From your terminal, start the DC/OS GUI installer with this command.
 
-        $ sudo bash dcos_generate_config.ee.sh --web
+        $ sudo bash dcos_generate_config.sh --web
 
     Here is an example of the output.
 
@@ -37,7 +37,7 @@ The DC/OS installation creates these folders:
 
     **Tip:** You can add the verbose (`-v`) flag to see the debug output:
 
-        $ sudo bash dcos_generate_config.ee.sh --web -v
+        $ sudo bash dcos_generate_config.sh --web -v
 
 2.  Launch the DC/OS web installer in your browser at: `http://<bootstrap-node-public-ip>:9000`.
 
@@ -109,23 +109,7 @@ The DC/OS installation creates these folders:
 
 - [Install the DC/OS Command-Line Interface (CLI)][5]
 - [Using your cluster][6]
-
-### Uninstalling DC/OS
-
-1.  From the bootstrap node, enter this command:
-    
-        $ sudo bash dcos_generate_config.sh --uninstall
-        Running mesosphere/dcos-genconf docker with BUILD_DIR set to /home/centos/genconf
-        ====> EXECUTING UNINSTALL
-        This will uninstall DC/OS on your cluster. You may need to manually remove /var/lib/zookeeper in some cases after this completes, please see our documentation for details. Are you ABSOLUTELY sure you want to proceed? [ (y)es/(n)o ]: yes
-        ====> START uninstall_dcos
-        ====> STAGE uninstall
-        ====> STAGE uninstall
-        ====> OUTPUT FOR uninstall_dcos
-        ====> END uninstall_dcos with returncode: 0
-        ====> SUMMARY FOR uninstall_dcos
-        2 out of 2 hosts successfully completed uninstall_dcos stage.
-        ====> END OF SUMMARY FOR uninstall_dcos
+- [Uninstall DC/OS][7]
 
 [1]: https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
 [2]: /docs/1.7/overview/service-discovery/
@@ -133,3 +117,4 @@ The DC/OS installation creates these folders:
 [4]: FIXME
 [5]: /docs/1.7/usage/cli/install/
 [6]: /docs/1.7/usage/
+[7]: ../uninstall/

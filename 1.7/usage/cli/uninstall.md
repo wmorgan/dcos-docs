@@ -1,14 +1,6 @@
 ---
-UID: 56f9844a5dadc
 post_title: Uninstalling the CLI
-post_excerpt: ""
 layout: docs.jade
-published: true
-menu_order: 106
-page_options_require_authentication: false
-page_options_show_link_unauthenticated: false
-hide_from_navigation: false
-hide_from_related: false
 ---
 1.  Delete your DC/OS CLI installation directory.
 
