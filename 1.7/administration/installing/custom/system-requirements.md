@@ -43,6 +43,11 @@ Here are the master node hardware requirements.
       Nodes: 3<br />OS: Enterprise Linux 7 kernel 3.10.0-327 or CoreOS Stable<br />Processor: 4 cores<br />Memory: 32 GB RAM<br />Hard disk space: 120 GB
     </td>
   </tr>
+  <tr>
+     <td colspan="2">
+      <p>There are many mixed workloads on the masters, for example Mesos replicated log and Zookeeper. Some of these require fsync()ing every so often, and this can generate a lot of very expensive random I/O. We recommend the following: <ul><li>Solid-state drive (SSD)</li><li>RAID controllers with a BBU</li><li>RAID controller cache configured in writeback mode</li></ul></p>
+      </td>
+      </tr>
 </table>
 
 ### Agent nodes
@@ -272,35 +277,41 @@ The bootstrap node is a permanent part of your cluster and is required for DC/OS
 
 Download and save the [DC/OS setup file](FIXME) to your bootstrap node. This file is used to create your customized DC/OS build file.
 
-</li> </ul></li> </ul>
+### Docker Nginx (advanced installer)
 
-## Cluster nodes
+For advanced install only, install the Docker Nginx image with this command:
 
-Before installing DC/OS, you must ensure that all of your cluster nodes have the following prerequisites. The cluster nodes are designated Mesos masters and agents during installation.
+    $ sudo docker pull nginx
 
-### Data compression
+## Cluster nodes 
+
+For advanced install only, your cluster nodes must have the following prerequisites. The cluster nodes are designated as Mesos masters and agents during installation.
+
+### Data compression (advanced installer)
 
 You must have the <a href="http://www.info-zip.org/UnZip.html" target="_blank">UnZip</a>, <a href="https://www.gnu.org/software/tar/" target="_blank">GNU tar</a>, and <a href="http://tukaani.org/xz/" target="_blank">XZ Utils</a> data compression utilities installed on your cluster nodes.
 
 To install these utilities on CentOS7 and RHEL7:
 
     $ sudo yum install -y tar xz unzip curl
+    
 
-### Cluster permissions
+### Cluster permissions (advanced installer)
 
 On each of your cluster nodes, use the following command to:
 
 *   Disable SELinux or set it to permissive mode.
-*   Add nogroup to each of your Mesos masters and agents.</li>
-*   Disable IPV6. For more information see <a href="https://wiki.centos.org/FAQ/CentOS7#head-8984faf811faccca74c7bcdd74de7467f2fcd8ee" target="_blank">How do I disable IPv6</a>.</li>
-*   Reboot your cluster for the changes to take affect</p>
-
+*   Add nogroup to each of your Mesos masters and agents.</li> 
+*   Disable IPV6. For more information see <a href="https://wiki.centos.org/FAQ/CentOS7#head-8984faf811faccca74c7bcdd74de7467f2fcd8ee" target="_blank">How do I disable IPv6</a>.</li> 
+*   Reboot your cluster for the changes to take affect</p> 
+    
         $ sudo sed -i s/SELINUX=enforcing/SELINUX=permissive/g /etc/selinux/config &&
          sudo groupadd nogroup &&
          sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1 &&
          sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1 &&
          sudo reboot
-
+        
+    
     **Tip:** It may take a few minutes for your node to come back online after reboot.
 
 # Next step
