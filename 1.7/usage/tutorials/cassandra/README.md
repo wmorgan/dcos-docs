@@ -1,13 +1,7 @@
 ---
 post_title: How to use Apache Cassandra
 post_excerpt: ""
-layout: page
-published: true
-menu_order: 1
-page_options_require_authentication: false
-page_options_show_link_unauthenticated: false
-hide_from_navigation: false
-hide_from_related: false
+layout: docs.jade
 ---
 
 [Apache Cassandra](https://cassandra.apache.org/) is a decentralized structured distributed storage system. Cassandra clusters are highly available, scalable, performant, and fault tolerant. DC/OS Cassandra allows you to quickly configure, install and manage Apache Cassandra. Multiple Cassandra clusters can also be installed on DC/OS and managed independently, so you can offer Cassandra as a managed service to your organization.
@@ -90,12 +84,12 @@ Validate that the installation added the enhanced DC/OS CLI for Cassandra:
 
     $ dcos cassandra --help
     Usage: dcos-cassandra cassandra [OPTIONS] COMMAND [ARGS]...
-    
+
     Options:
       --info / --no-info
       --framework-name TEXT  Name of the Cassandra instance to query
       --help                 Show this message and exit.
-    
+
     Commands:
       backup      Backup Cassandra data
       cleanup     Cleanup old token mappings
@@ -110,7 +104,7 @@ Now, let's validate that the Cassandra service is running and healthy. For this,
 
 # Cassandra CRUD operations
 
-Now that you've a Cassandra cluster up and running, it's time to connect to our Cassandra cluster and perform some CRUD operations. 
+Now that you've a Cassandra cluster up and running, it's time to connect to our Cassandra cluster and perform some CRUD operations.
 
 Let's retrieve the connection information using following command:
 
@@ -126,43 +120,43 @@ Let's retrieve the connection information using following command:
 Now, let's SSH into our DC/OS cluster, so that we can connect to our Cassandra cluster.
 
     $ dcos node ssh --master-proxy --leader
-    core@ip-10-0-6-153 ~ $ 
+    core@ip-10-0-6-153 ~ $
 
 At this point, we are now inside our DC/OS cluster and can connect to Cassandra cluster directly. Let's connect to the cluster using cqlsh client. Here's the general usage of this command:
 
     core@ip-10-0-6-153 ~ $ docker run cassandra:2.2.5 cqlsh <HOST>
-    
+
 Replace `<HOST>` with the actual host, information that we retrieved by running `dcos cassandra node connection` command above. Example:
 
     core@ip-10-0-6-153 ~ $ docker run -ti cassandra:2.2.5 cqlsh 10.0.2.136
     cqlsh>
-    
+
 And, now we are connected to our Cassandra cluster. Let's create a sample keyspace called `demo`:
 
     cqlsh> CREATE KEYSPACE demo WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 3 };
-    
+
 Next, let's create a sample table called `map` in our `demo` keyspace:
 
     cqlsh> USE demo;CREATE TABLE map (key varchar, value varchar, PRIMARY KEY(key));
-    
+
 Let's insert some data in our table:
 
     cqlsh> INSERT INTO demo.map(key, value) VALUES('Cassandra', 'Rocks!');
     cqlsh> INSERT INTO demo.map(key, value) VALUES('StaticInfrastructure', 'BeGone!');
     cqlsh> INSERT INTO demo.map(key, value) VALUES('Buzz', 'DC/OS is the new black!');
-    
+
 Now we have inserted some data, let's query it back to make sure it's persisted correctly:
 
     cqlsh> SELECT * FROM demo.map;
-    
+
 Let's delete some data:
 
     cqlsh> DELETE FROM demo.map where key = 'StaticInfrastructure';
-    
+
 Let's query again to ensure that the row was deleted successfully:
 
     cqlsh> SELECT * FROM demo.map;
-    
+
 # Cleanup
 
 ## Uninstalling:
