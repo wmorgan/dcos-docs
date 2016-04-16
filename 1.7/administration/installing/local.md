@@ -1,7 +1,7 @@
 ---
 post_title: Install DC/OS on Vagrant
+nav_title: Vagrant
 layout: docs.jade
-published: true
 ---
 This installation method creates a cluster of virtual machines on your local machine that can be used for demos, development, and testing.
 
@@ -9,7 +9,7 @@ This installation method creates a cluster of virtual machines on your local mac
 
 Download the [DC/OS 1.7.0 Installer](https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh)
 
-Or see the [DC/OS Installer Release List](https://dcos.io/releases/) for other versions.
+Or see the [DC/OS Installer Release List](/releases/) for other versions.
 
 # Install DC/OS Vagrant
 
