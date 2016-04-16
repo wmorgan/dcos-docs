@@ -1,11 +1,10 @@
 ---
 post_title: Logging
-post_excerpt: ""
-layout: docs.jade
 ---
+
 DC/OS cluster nodes generate logs that contain diagnostic and status information for DC/OS core components and DC/OS services. There are a couple different types of logs in DC/OS and each of them is managed differently.
 
-# Service and Task Logs
+## Service and Task Logs
 
 If you're running something on top of DC/OS, then let's get started right away by running the CLI command listed below. For more in depth documents on background and more methods of getting access to your logs, check out [service and task logs][1].
 
@@ -15,7 +14,7 @@ $ dcos task log --follow my-service-name
 
 Take a look at the [CLI installation documentation][2] if you’re not already running the CLI.
 
-# System Logs
+## System Logs
 
 For most use cases, you’re normally interested in the logs for unhealthy components. These can be found in the DC/OS UI under `System`.
 
@@ -27,7 +26,7 @@ All the DC/OS components use journald to store their logs. If you'd like to [SSH
 
         journalctl -u "dcos-*" -b
 
-# Next Steps
+## Next Steps
 
 - [Service and Task logs][1]
 - Log Aggregation

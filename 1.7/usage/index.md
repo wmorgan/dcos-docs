@@ -2,7 +2,7 @@
 post_title: Usage
 ---
 
-## Baby steps
+## Baby Steps
 
 It looks like you've just [installed](https://dcos.io/install/) DC/OS. Welcome aboard! Now that you have the DC/OS CLI set up on your local machine, you might be looking at the DC/OS Dashboard wondering, 'What now?'.
 
@@ -40,9 +40,10 @@ If you have a data engineering or data scientists role:
 
 If you a DC/OS administrator role:
 
+- How to [manage users](/docs/1.7/administration/user-management/)
+- How to [monitor](/docs/1.7/administration/monitoring/)a DC/OS cluster
 - How to [resize](/docs/1.7/administration/resizing/) a DC/OS cluster
 - How to [upgrade](/docs/1.7/administration/upgrading/) a DC/OS cluster
-- How to [monitor](/docs/1.7/administration/monitoring/) a DC/OS cluster
 
 ## Intermediate
 
