@@ -57,7 +57,7 @@ Now you have deployed DC/OS using an Azure Resource Manager template, congrats! 
 
 Due to security considerations the DC/OS cluster in Azure is locked down per default. You need to use an `ssh` tunnel to access the DC/OS Dashboard.
 
-First, look up `master-lb-hostname` in the outputs of the deployment. To find that, click on the link under `Last deployment` (which is `4/15/2016 (Succeeded)` here) and you should see this:
+First, look up `MASTERFQDN` in the outputs of the deployment. To find that, click on the link under `Last deployment` (which is `4/15/2016 (Succeeded)` here) and you should see this:
 
 ![Deployment history](img/dcos-azure-marketplace-step2a.png)
 
