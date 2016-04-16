@@ -7,7 +7,7 @@ menu_order: 1
 
 ### First Users (Admin)
 
-So you've [installed](/docs/1.7/administration/installing/) your DC/OS cluster, opened the Dashboard URL in your favourite browser and now should be looking at something like this:
+So you've [installed](/docs/1.7/administration/installing/) your DC/OS cluster, opened the Dashboard URL in your favorite browser and now should be looking at something like this:
 
 ![First time accessing the Dashboard](img/user-management-step1.png)
 
@@ -60,4 +60,4 @@ With this, your colleague has access to the cluster and as the admin you can rep
 ## Next Steps
 
 - Understand DC/OS [security](/docs/1.7/overview/security/)
-- Learn how to [monitor](/docs/1.7/administration/monitoring/)a DC/OS cluster
+- Learn how to [monitor](/docs/1.7/administration/monitoring/) a DC/OS cluster
