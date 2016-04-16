@@ -1,7 +1,11 @@
 ---
 post_title: Usage
-post_excerpt: ""
+nav_title: Usage
+post_excerpt: "USAGE EXCERPT"
 layout: docs.jade
+lunr: true
+tags: usage, tutorials, "first steps"
+search_blurb: "DC/OS usage including first steps and an overview of available tutorials."
 ---
 
 ## Baby steps
