@@ -25,29 +25,29 @@ Once you've had a good look around in the DC/OS Dashboard and familiarized yours
 
 If you have a DevOps role:
 
-- How to run [NGINX](/1.7/usage/tutorials/nginx/)
-- How to run a [Ruby on Rails](/1.7/usage/tutorials/ruby-on-rails/) app
-- How to run a [.NET](/1.7/usage/tutorials/asp-dot-net/) app
-- How to run [Tomcat](/1.7/usage/tutorials/tomcat/)
-- How to run [Jekyll](/1.7/usage/tutorials/jekyll/)
-- How to run [MySQL](/1.7/usage/tutorials/mysql/)
-- How to run [PostgreSQL](/1.7/usage/tutorials/postgres/)
-- How to run [Wordpress](/1.7/usage/tutorials/wordpress/)
-- How to run [Jenkins](/1.7/usage/tutorials/jenkins/)
+- How to run [NGINX](/docs/1.7/usage/tutorials/nginx/)
+- How to run a [Ruby on Rails](/docs/1.7/usage/tutorials/ruby-on-rails/) app
+- How to run a [.NET](/docs/1.7/usage/tutorials/asp-dot-net/) app
+- How to run [Tomcat](/docs/1.7/usage/tutorials/tomcat/)
+- How to run [Jekyll](/docs/1.7/usage/tutorials/jekyll/)
+- How to run [MySQL](/docs/1.7/usage/tutorials/mysql/)
+- How to run [PostgreSQL](/docs/1.7/usage/tutorials/postgres/)
+- How to run [Wordpress](/docs/1.7/usage/tutorials/wordpress/)
+- How to run [Jenkins](/docs/1.7/usage/tutorials/jenkins/)
 
 If you have a data engineering or data scientists role:
 
-- How to run [Spark](/1.7/usage/tutorials/spark/)
-- How to run [Cassandra](/1.7/usage/tutorials/cassandra/)
-- How to run [Kafka](/1.7/usage/tutorials/kafka/)
-- How to run [Elasticsearch](/1.7/usage/tutorials/elasticsearch/)
-- How to run [Redis](/1.7/usage/tutorials/redis/)
+- How to run [Spark](/docs/1.7/usage/tutorials/spark/)
+- How to run [Cassandra](/docs/1.7/usage/tutorials/cassandra/)
+- How to run [Kafka](/docs/1.7/usage/tutorials/kafka/)
+- How to run [Elasticsearch](/docs/1.7/usage/tutorials/elasticsearch/)
+- How to run [Redis](/docs/1.7/usage/tutorials/redis/)
 
 If you a DC/OS administrator role:
 
-- How to [resize](/1.7/administration/resizing/) a DC/OS cluster
-- How to [upgrade](/1.7/administration/upgrading/) a DC/OS cluster
-- How to [monitor](/1.7/administration/monitoring/) a DC/OS cluster
+- How to [resize](/docs/1.7/administration/resizing/) a DC/OS cluster
+- How to [upgrade](/docs/1.7/administration/upgrading/) a DC/OS cluster
+- How to [monitor](/docs/1.7/administration/monitoring/) a DC/OS cluster
 
 ## Intermediate
 
@@ -55,28 +55,28 @@ Check these out if you've been playing around with DC/OS for a bit and want a de
 
 If you want to learn more about how DC/OS works:
 
-- Check out the [DC/OS Architecture](/1.7/overview/architecture/)
-- Check out the [High Availability](/1.7/overview/high-availability/) characteristics of DC/OS
-- Check out the [Security](/1.7/overview/security/) characteristics of DC/OS
-- Check out [Container Operations](/1.7/overview/container-operations/) using DC/OS
+- Check out the [DC/OS Architecture](/docs/1.7/overview/architecture/)
+- Check out the [High Availability](/docs/1.7/overview/high-availability/) characteristics of DC/OS
+- Check out the [Security](/docs/1.7/overview/security/) characteristics of DC/OS
+- Check out [Container Operations](/docs/1.7/overview/container-operations/) using DC/OS
 
 If you have a DevOps role:
 
-- How to implement a [microservices](/1.7/usage/tutorials/microservices/) architecture
-- How to deal with [service discovery](/1.7/usage/tutorials/service-discovery/)
-- How to [debug](/1.7/usage/tutorials/debugging/) your app
-- How to run [MySQL HA](/1.7/usage/tutorials/mysql-ha/)
-- How to run [PostgreSQL HA](/1.7/usage/tutorials/postgres-ha/)
+- How to implement a [microservices](/docs/1.7/usage/tutorials/microservices/) architecture
+- How to deal with [service discovery](/docs/1.7/usage/tutorials/service-discovery/)
+- How to [debug](/docs/1.7/usage/tutorials/debugging/) your app
+- How to run [MySQL HA](/docs/1.7/usage/tutorials/mysql-ha/)
+- How to run [PostgreSQL HA](/docs/1.7/usage/tutorials/postgres-ha/)
 
 If you a DC/OS administrator role:
 
-- How to run a [Docker registry](/1.7/usage/tutorials/docker-registry/)
-- How to run a [Vault](/1.7/usage/tutorials/vault/)
-- How to run [Consul](/1.7/usage/tutorials/consul/)
-- How to handle [logging](/1.7/usage/tutorials/logging/)
-- How to handle [monitoring](/1.7/usage/tutorials/monitoring/)
-- How to handle [auto-scaling](/1.7/usage/tutorials/autoscaling/)
-- How to handle [load-balancing](/1.7/usage/tutorials/load-balancing/)
+- How to run a [Docker registry](/docs/1.7/usage/tutorials/docker-registry/)
+- How to run a [Vault](/docs/1.7/usage/tutorials/vault/)
+- How to run [Consul](/docs/1.7/usage/tutorials/consul/)
+- How to handle [logging](/docs/1.7/usage/tutorials/logging/)
+- How to handle [monitoring](/docs/1.7/usage/tutorials/monitoring/)
+- How to handle [auto-scaling](/docs/1.7/usage/tutorials/autoscaling/)
+- How to handle [load-balancing](/docs/1.7/usage/tutorials/load-balancing/)
 
 ## Advanced
 
@@ -84,13 +84,15 @@ Check these out if you are now a seasoned DC/OS user and want to adapt, extend a
 
 If you have a DevOps role:
 
-- How to handle [stateful services](/1.7/usage/tutorials/stateful-services/)
-- How to [package](/1.7/usage/tutorials/packaging/) your service
-- How do I [migrate](/1.7/overview/migration/) an existing app to DC/OS
+- How to handle [stateful services](/docs/1.7/usage/tutorials/stateful-services/)
+- How to [package](/docs/1.7/usage/tutorials/packaging/) your service
+- How do I [migrate](/docs/1.7/overview/migration/) an existing app to DC/OS
 
 If you a DC/OS administrator role:
 
-- Understand the [system components](/1.7/administration/system-components/) of DC/OS
-- Understand DC/OS [telemetry](/1.7/administration/telemetry/)
-- How to monitor DC/OS using [Nagios](/1.7/administration/monitoring/nagios/)
-- How to set up a [proxy](/1.7/administration/proxy/)
+- Understand the [system components](/docs/1.7/administration/system-components/) of DC/OS
+- Understand DC/OS [telemetry](/docs/1.7/administration/telemetry/)
+- How to monitor DC/OS using [Nagios](/docs/1.7/administration/monitoring/nagios/)
+- How to set up a [proxy](/docs/1.7/administration/proxy/)
+
+We hope you have a good time with DC/OS and enjoy using it as much as we are having creating it.
