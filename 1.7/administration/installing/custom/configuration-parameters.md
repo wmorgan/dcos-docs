@@ -17,18 +17,18 @@ This required parameter specifies the URI path for the DC/OS installer to store 
 This parameter specifies the name of your cluster.
 
 ### exhibitor_storage_backend
-This parameter specifies the type of storage backend to use for Exhibitor. You can use internal DC/OS storage (`static`) or specify an external storage system (`zookeeper`, `aws_s3`, and `shared_filesystem`) for configuring and orchestrating Zookeeper with Exhibitor on the master nodes. Exhibitor automatically configures your Zookeeper installation on the master nodes during your DC/OS installation. 
+This parameter specifies the type of storage backend to use for Exhibitor. You can use internal DC/OS storage (`static`) or specify an external storage system (`zookeeper`, `aws_s3`, and `shared_filesystem`) for configuring and orchestrating Zookeeper with Exhibitor on the master nodes. Exhibitor automatically configures your Zookeeper installation on the master nodes during your DC/OS installation.
 
 *   `exhibitor_storage_backend: static`
     This option specifies that the Exhibitor storage backend is managed internally within your cluster.
 *   `exhibitor_storage_backend: zookeeper`
-    This option specifies a ZooKeeper instance for shared storage. If you use a ZooKeeper instance to bootstrap Exhibitor, this ZooKeeper instance must be separate from your DC/OS cluster. You must have at least 3 ZooKeeper instances running at all times for high availability. If you specify `zookeeper`, you must also specify these parameters. 
+    This option specifies a ZooKeeper instance for shared storage. If you use a ZooKeeper instance to bootstrap Exhibitor, this ZooKeeper instance must be separate from your DC/OS cluster. You must have at least 3 ZooKeeper instances running at all times for high availability. If you specify `zookeeper`, you must also specify these parameters.
     *   **exhibitor_zk_hosts**
         This parameter specifies a comma-separated list of one or more ZooKeeper node IP addresses to use for configuring the internal Exhibitor instances. Exhibitor uses this ZooKeeper cluster to orchestrate it's configuration. Multiple ZooKeeper instances are recommended for failover in production environments.
     *   **exhibitor_zk_path**
         This parameter specifies the filepath that Exhibitor uses to store data, including the `zoo.cfg` file.
 *   `exhibitor_storage_backend: aws_s3`
-    This option specifies an Amazon Simple Storage Service (S3) bucket for shared storage. If you specify `aws_s3`, you must also specify these parameters: 
+    This option specifies an Amazon Simple Storage Service (S3) bucket for shared storage. If you specify `aws_s3`, you must also specify these parameters:
     *  **aws_access_key_id**
        This parameter specifies AWS key ID.
     *  **aws_region**
@@ -36,7 +36,7 @@ This parameter specifies the type of storage backend to use for Exhibitor. You c
     *  **aws_secret_access_key**
        This parameter specifies AWS secret access key.
     *  **exhibitor_explicit_keys**
-       This parameter specifies whether you are using AWS API keys to grant Exhibitor access to S3. 
+       This parameter specifies whether you are using AWS API keys to grant Exhibitor access to S3.
         *  `exhibitor_explicit_keys: true`
            If you're  using AWS API keys to manually grant Exhibitor access.
         *  `exhibitor_explicit_keys: false`
@@ -45,12 +45,12 @@ This parameter specifies the type of storage backend to use for Exhibitor. You c
        This parameter specifies name of your S3 bucket.
     *  **s3_prefix**
        This parameter specifies S3 prefix to be used within your S3 bucket to be used by Exhibitor.
-       
+
 *   `exhibitor_storage_backend: shared_filesystem`
-    This option specifies a Network File System (NFS) mount for shared storage. If you specify `shared_filesystem`, you must also specify this parameter: 
+    This option specifies a Network File System (NFS) mount for shared storage. If you specify `shared_filesystem`, you must also specify this parameter:
     *  **exhibitor_fs_config_dir**
        This parameter specifies the absolute path to the folder that Exhibitor uses to coordinate its configuration. This should be a directory inside of a Network File System (NFS) mount. For example, if every master has `/fserv` mounted via NFS, set as `exhibitor_fs_config_dir: /fserv/dcos-exhibitor`.
-       
+
        **Important:** With `shared_filesystem`, all masters must must have the NFS volume mounted and `exhibitor_fs_config_dir` must be inside of it. If any of your servers are missing the mount, the DC/OS cluster will not start.
 
 ### <a name="master"></a>master_discovery
@@ -72,14 +72,14 @@ This option specifies that Keepalived with a VIP is used to discover the master.
     *  **keepalived_pass**
        If you've set your `auth_type` to `PASS`, this parameter specifies the password that you set for `auth_pass` in your Keepalived configuration file.
     *  **keepalived_virtual_ipaddress**
-       This parameter specifies the VIP in use by your Keepalived cluster. 
+       This parameter specifies the VIP in use by your Keepalived cluster.
     *  **num_masters**
-       This parameter specifies the number of Mesos masters in your DC/OS cluster. If `master_discovery: static`, do not use the `num_masters` parameter. 
+       This parameter specifies the number of Mesos masters in your DC/OS cluster. If `master_discovery: static`, do not use the `num_masters` parameter.
 
 ## Security and Authentication
 
 ### auth_cookie_secure_flag
-This parameter specifies whether to allow web browsers to send the DC/OS authentication cookie through a non-HTTPS connection. 
+This parameter specifies whether to allow web browsers to send the DC/OS authentication cookie through a non-HTTPS connection.
 
 *  `auth_cookie_secure_flag: false` Send the DC/OS authentication cookie through non-HTTPS connections.  If you are accessing the DC/OS cluster through an HTTP connection, this is the required setting. This is the default value.
 *  `auth_cookie_secure_flag: true` Require an HTTPS connection to send the DC/OS authentication cookie. If you are accessing the DC/OS cluster through only HTTPS connections, this is the recommended setting.
@@ -118,7 +118,7 @@ This parameter specifies the amount of time to wait before removing the Docker i
 This parameter specifies the maximum amount of time to wait before cleaning up the executor directories. It is recommended that you accept the default value of 2 days.
 
 ### <a name="log_directory"></a>log_directory
-This parameter specifies the path to the installer host logs from the SSH processes. By default this is set to `/genconf/logs`. In most cases this should not be changed because `/genconf` is local to the container that is running the installer, and is a mounted volume. 
+This parameter specifies the path to the installer host logs from the SSH processes. By default this is set to `/genconf/logs`. In most cases this should not be changed because `/genconf` is local to the container that is running the installer, and is a mounted volume.
 
 ### <a name="process_timeout"></a>process_timeout
 This parameter specifies the allowable amount of time, in seconds, for an action to begin after the process forks. This parameter is not the complete process time. The default value is 120 seconds.
@@ -130,23 +130,87 @@ This parameter specifies the allowable amount of time, in seconds, for an action
 This parameter specifies the Mesos roles to delegate to a node. For more information, see <a href="https://open.mesosphere.com/reference/mesos-master/#roles" target="_blank">Mesos roles</a>. The available options are `slave_public`, ` master `, and `slave`.
 
 *  `roles: slave_public`
-   Runs the public agent node. This is the default value. 
+   Runs the public agent node. This is the default value.
 *  `roles: master`
-   Runs the master node. 
+   Runs the master node.
 *  `roles: slave`
-   Runs the private agent node. 
-   
+   Runs the private agent node.
+
    -->
 
-<!-- 
+<!--
 ### <a name="weights"></a>weights
 This parameter specifies the priority of the role. For more information, see <a href="https://open.mesosphere.com/reference/mesos-master/#weights" target="_blank">Mesos weights</a>.
-
 -->
+
+### [config-yaml-bootstrap-url]
+
+### [config-yaml-cluster-name]
+
+### **exhibitor_storage_backend**
+This parameter specifies the type of storage backend to use for Exhibitor. You can use internal DC/OS storage (<code>static</code>) or specify an external storage system (<code>zookeeper</code>, <code>aws_s3</code>, and <code>shared_filesystem</code>) for configuring and orchestrating ZooKeeper with Exhibitor on the master nodes. Exhibitor automatically configures your ZooKeeper installation on the master nodes during your DC/OS installation.
+
+*   [config-yaml-zk-static]
+*   [config-yaml-zookeeper]
+    *   [config-yaml-exhibitor-zk-hosts]
+    *   [config-yaml-exhibitor-zk-path]
+*   [config-yaml-aws-s3]
+*   [config-yaml-shared-filesystem]
+
+### [config-yaml-master-discovery]
+
+*   [config-yaml-static]
+    *   [config-yaml-master-list]
+*   [config-yaml-vrrp]
+    *   [config-yaml-keepalived-router-id]
+    *   [config-yaml-keepalived-interface]
+    *   [config-yaml-keepalived-pass]
+    *   [config-yaml-keepalived-virtual-ipaddress]
+    *   [config-yaml-num-masters]
+
+### [config-yaml-rexray-config-method]
+
+# Security and Authentication
+
+### [config-yaml-auth-cookie-secure-flag]
+
+### [config-yaml-ssh-key-path]
+
+### [config-yaml-ssh-port]
+
+### [config-yaml-ssh-user]
+
+### [config-yaml-superuser-password-hash]
+
+### [config-yaml-superuser-username]
+
+# Networking
+
+### [config-yaml-dns-search]
+
+### [config-yaml-resolvers]
+
+# Performance and Tuning
+
+### [config-yaml-docker-remove-delay]
+
+### [config-yaml-gc-delay]
+
+### [config-yaml-log-directory]
+
+### [config-yaml-process-timeout]
+
+### [config-yaml-roles]
+
+*   [config-yaml-slave-public]
+*   [config-yaml-master]
+*   [config-yaml-slave]
+
+### [config-yaml-weights]
 
 # <a name="examples1"></a>Example Configurations
 
-#### DC/OS cluster with 3 masters, an Exhibitor/Zookeeper backed by Zookeeper, and static master list specified.
+#### DC/OS cluster with 3 masters, an Exhibitor/ZooKeeper backed by ZooKeeper, and static master list specified.
 
     agent_list:
     - <agent-private-ip-1>
@@ -160,7 +224,7 @@ This parameter specifies the priority of the role. For more information, see <a 
     exhibitor_zk_hosts: <host1>:<port1>
     exhibitor_zk_path: /dcos
     log_directory: /genconf/logs
-    master_discovery: static 
+    master_discovery: static
     master_list:
     - <master-private-ip-1>
     - <master-private-ip-2>
@@ -172,9 +236,9 @@ This parameter specifies the priority of the role. For more information, see <a 
     ssh_key_path: /genconf/ssh-key
     ssh_port: '<port-number>'
     ssh_user: <username>
-    
 
-#### <a name="shared"></a>DC/OS cluster with 3 masters, an Exhibitor/Zookeeper shared filesystem storage backend, Internal DNS
+
+#### <a name="shared"></a>DC/OS cluster with 3 masters, an Exhibitor/ZooKeeper shared filesystem storage backend, Internal DNS
 
     agent_list:
     - <agent-private-ip-1>
@@ -201,9 +265,9 @@ This parameter specifies the priority of the role. For more information, see <a 
     ssh_port: '<port-number>'
     ssh_user: <username>
     weights: slave_public=1
-    
 
-#### <a name="aws"></a>DC/OS Cluster with 3 masters, an Exhibitor/Zookeeper backed by an AWS S3 bucket, AWS DNS, and a public agent node
+
+#### <a name="aws"></a>DC/OS Cluster with 3 masters, an Exhibitor/ZooKeeper backed by an AWS S3 bucket, AWS DNS, and a public agent node
 
     agent_list:
     - <agent-private-ip-1>
@@ -224,7 +288,7 @@ This parameter specifies the priority of the role. For more information, see <a 
     - <master-private-ip-2>
     - <master-private-ip-3>
     process_timeout: 120
-    resolvers: 
+    resolvers:
     - 169.254.169.253
     roles: slave_public
     s3_bucket: mybucket
@@ -233,9 +297,9 @@ This parameter specifies the priority of the role. For more information, see <a 
     ssh_port: '<port-number>'
     ssh_user: <username>
     weights: slave_public=1
-    
 
-#### <a name="zk"></a>DC/OS cluster with 3 masters, an Exhibitor/Zookeeper backed by Zookeeper, VRRP master discovery, public agent node, and Google DNS
+
+#### <a name="zk"></a>DC/OS cluster with 3 masters, an Exhibitor/ZooKeeper backed by ZooKeeper, VRRP master discovery, public agent node, and Google DNS
 
     agent_list:
     - <agent-private-ip-1>
@@ -256,7 +320,7 @@ This parameter specifies the priority of the role. For more information, see <a 
     master_discovery: vrrp
     num_masters: 3
     process_timeout: 120
-    resolvers: 
+    resolvers:
     - 8.8.4.4
     - 8.8.8.8
     roles: slave_public

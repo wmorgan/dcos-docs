@@ -55,7 +55,7 @@ KillMode=mixed
 ## Cluster ID Service
 The cluster-id service allows us to generate a UUID for each cluster. We use this ID to track cluster health remotely (if enabled). This remote tracking allows our support team to better assist our customers.
 
-The cluster-id service runs an internal tool called `zk-value-consensus` which uses our internal Zookeeper to generate a UUID that all the masters agree on. Once an agreement is reached, the ID is written to disk at `/var/lib/dcos/cluster-id`. We write it to `/var/lib/dcos` so the ID is ensured to persist cluster upgrades without changing.
+The cluster-id service runs an internal tool called `zk-value-consensus` which uses our internal ZooKeeper to generate a UUID that all the masters agree on. Once an agreement is reached, the ID is written to disk at `/var/lib/dcos/cluster-id`. We write it to `/var/lib/dcos` so the ID is ensured to persist cluster upgrades without changing.
 
 ```
 [Unit]
@@ -91,7 +91,7 @@ ExecStart=/opt/mesosphere/bin/java -Xmx2G -jar "/opt/mesosphere/packages/cosmos-
 ```
 
 ## Diagnostics (DDT) Service
-The diagnostics service (also known as 3DT or dcos-ddt.service, no relationship to the pesticide!) is our diagnostics utility for DC/OS systemd components. This service runs on every host, tracking the internal state of the systemd unit. The service runs in two modes, with or without the `-pull` argument. If running on a master host, it executes `/opt/mesosphere/bin/3dt -pull` which queries MesosDNS for a list of known masters in the cluster, then queries a master (usually itself) `:5050/statesummary` and gets a list of slaves.
+The diagnostics service (also known as 3DT or dcos-ddt.service, no relationship to the pesticide!) is our diagnostics utility for DC/OS systemd components. This service runs on every host, tracking the internal state of the systemd unit. The service runs in two modes, with or without the `-pull` argument. If running on a master host, it executes `/opt/mesosphere/bin/3dt -pull` which queries Mesos-DNS for a list of known masters in the cluster, then queries a master (usually itself) `:5050/statesummary` and gets a list of slaves.
 
 From this complete list of cluster hosts, it queries all 3DT health endpoints (`:1050/system/health/v1/health`). This endpoint returns health state for the DC/OS systemd units on that host. The master 3DT processes, along with doing this aggregation also expose `/system/health/v1/` endpoints to feed this data by `unit` or `node` IP to the DC/OS user interface.
 
@@ -124,11 +124,11 @@ Environment=HOME=/opt/mesosphere
 ```
 
 ## Exhibitor Service
-Exhibitor is a project from [netflix](https://github.com/Netflix/exhibitor) that allows us to manage and automate the deployment of Zookeeper.
+Exhibitor is a project from [netflix](https://github.com/Netflix/exhibitor) that allows us to manage and automate the deployment of ZooKeeper.
 
 ```
 [Unit]
-Description=Exhibitor: Zookeeper Supervisor Service
+Description=Exhibitor: ZooKeeper Supervisor Service
 After=network-online.target
 [Service]
 StandardOutput=journal
@@ -150,7 +150,7 @@ The gen-resolvconf service allows us to dynamically provision `/etc/resolv.conf`
 
 ```
 [Unit]
-Description=Generate Resolv.conf: Update systemd-resolved for MesosDNS
+Description=Generate Resolv.conf: Update systemd-resolved for Mesos-DNS
 After=dcos-spartan.service
 
 [Service]
@@ -215,12 +215,12 @@ ExecStartPre=/bin/bash -c 'echo "LIBPROCESS_IP=$($MESOS_IP_DISCOVERY_COMMAND)" >
 ExecStart=/opt/mesosphere/bin/java -Xmx2G -jar "/opt/mesosphere/packages/marathon--fbc1c97b180500cd4ec6d26520c1db9e105879f8/usr/marathon.jar" --zk zk://localhost:2181/marathon --master zk://localhost:2181/mesos --hostname "$MARATHON_HOSTNAME" --default_accepted_resource_roles "*" --mesos_role "slave_public" --max_tasks_per_offer 100 --task_launch_timeout 86400000 --decline_offer_duration 300000 --revive_offers_for_new_apps --zk_compression --mesos_leader_ui_url "/mesos" --enable_features "vips,task_killing" --mesos_authentication_principal "marathon"
 ```
 
-## MesosDNS Service
-MesosDNS is the internal DNS service for the DC/OS cluster. MesosDNS provides the namespace `$service.mesos` to all cluster hosts. For example, you can login to your leading mesos master with `ssh leader.mesos`.
+## Mesos-DNS Service
+Mesos-DNS is the internal DNS service for the DC/OS cluster. Mesos-DNS provides the namespace `$service.mesos` to all cluster hosts. For example, you can login to your leading mesos master with `ssh leader.mesos`.
 
 ```
 [Unit]
-Description=Mesos DNS: DNS based Service Discovery
+Description=Mesos-DNS: DNS based Service Discovery
 After=dcos-mesos-master.service
 [Service]
 Restart=always
@@ -268,8 +268,8 @@ EnvironmentFile=-/opt/mesosphere/etc/cfn_signal_metadata
 ExecStart=/opt/mesosphere/bin/dcos-signal --write_key=51ybGTeFEFU1xo6u10XMDrr6kATFyRyh
 ```
 
-## Spartan Service
-Spartan is our internal DNS dispatcher. It conforms to RFC5625 as a DNS forwarder for DC/OS cluster services.
+## Distributed DNS Proxy 
+Distributed DNS Proxy is our internal DNS dispatcher. It conforms to RFC5625 as a DNS forwarder for DC/OS cluster services.
 
 ```
 [Unit]

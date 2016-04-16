@@ -12,7 +12,7 @@ hide_from_related: false
 
 [Apache Kafka](https://kafka.apache.org/) is a distributed high-throughput publish-subscribe messaging system with strong ordering guarantees. Kafka clusters are highly available, fault tolerant, and very durable. DC/OS Kafka gives you direct access to the Kafka API so that existing producers and consumers can interoperate. You can configure and install DC/OS Kafka in moments. Multiple Kafka clusters can be installed on DC/OS and managed independently, so you can offer Kafka as a managed service to your organization.
 
-Kafka uses [Apache Zookeeper](https://zookeeper.apache.org/) for coordination. Kafka serves real-time data ingestion systems with high-throughput and low-latency. Kafka is written in Scala.
+Kafka uses [Apache ZooKeeper](https://zookeeper.apache.org/) for coordination. Kafka serves real-time data ingestion systems with high-throughput and low-latency. Kafka is written in Scala.
 
 **Time Estimate**:
 

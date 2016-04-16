@@ -45,7 +45,7 @@ The [Cassandra][3] database is used on the back end to store the Oinker app data
 
 # Install the Marathon load balancer
 
-In this step you install the Marathon load balancer. The Marathon load balancer (marathon-lb) is a supplementary service discovery tool that can work in conjunction with native Mesos DNS. For more information, see the [Marathon Load Balancer][4] GitHub repository.
+In this step you install the Marathon load balancer. The Marathon load balancer (marathon-lb) is a supplementary service discovery tool that can work in conjunction with native Mesos-DNS. For more information, see the [Marathon Load Balancer][4] GitHub repository.
 
 **Important:** Do not install Marathon Load Balancer until the Cassandra DC/OS service is installed and shows status of Healthy in the DC/OS web interface.
 
@@ -142,7 +142,7 @@ In this step you deploy the Oinker containerized app. For more information, see 
         
         <a href="/wp-content/uploads/2015/12/ec2-health-check.png" rel="attachment wp-att-2826"><img src="/wp-content/uploads/2015/12/ec2-health-check.png" alt="ec2-health-check" width="916" height="223" class="alignnone size-full wp-image-2826" /></a>
 
-**Tip:** Mesos DNS generates a hostname for your internal Marathon LB. You can access internal services this command. You must be [SSH'd into your cluster][6].
+**Tip:** Mesos-DNS generates a hostname for your internal Marathon LB. You can access internal services this command. You must be [SSH'd into your cluster][6].
 
     $ curl http://marathon-lb.marathon.mesos:10000/
     

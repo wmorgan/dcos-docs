@@ -49,9 +49,9 @@ DC/OS services are applications that are packaged and available from the public 
 
 A framework running on top of Mesos consists of two components: a scheduler that registers with the master to be offered resources, and an executor process that is launched on slave nodes to run the framework’s tasks. For more information about framework schedulers and executors, see the [App/Framework development guide][6].
 
-# Exhibitor for Zookeeper
+# Exhibitor for ZooKeeper
 
-DC/OS uses ZooKeeper, a high-performance coordination service to manage the installed DC/OS services. Exhibitor automatically configures your Zookeeper installation on the master nodes during your DC/OS installation.
+DC/OS uses ZooKeeper, a high-performance coordination service to manage the installed DC/OS services. Exhibitor automatically configures your ZooKeeper installation on the master nodes during your DC/OS installation.
 
 # Framework
 
@@ -61,9 +61,9 @@ A Mesos framework is the combination of a Mesos scheduler and an optional custom
 
 A Mesos master aggregates resource offers from all [agent nodes][8] and provides them to registered frameworks. For more details about the Mesos master, read about [Mesos Master Configuration][9].
 
-# Mesos DNS
+# Mesos-DNS
 
-[Mesos DNS][10] is a DC/OS component that provides service discovery within the cluster. Mesos-DNS allows applications and services that are running on Mesos to find each other by using the domain name system (DNS), similar to how services discover each other throughout the Internet.
+[Mesos-DNS][10] is a DC/OS component that provides service discovery within the cluster. Mesos-DNS allows applications and services that are running on Mesos to find each other by using the domain name system (DNS), similar to how services discover each other throughout the Internet.
 
 # Package repository
 
