@@ -1,10 +1,5 @@
 ---
 post_title: Usage
-nav_title: Usage
-layout: docs.jade
-lunr: true
-tags: usage, tutorials, "first steps"
-search_blurb: "DC/OS usage including first steps and an overview of available tutorials."
 ---
 
 ## Baby steps
