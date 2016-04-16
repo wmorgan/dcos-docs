@@ -1,5 +1,6 @@
 ---
 post_title: Install DC/OS on Azure
+nav_title: Azure
 layout: docs.jade
 ---
 

@@ -28,7 +28,7 @@ The DC/OS installation creates these folders:
 
     In this step you create an IP detect script to broadcast the IP address of each node across the cluster. Each node in a DC/OS cluster has a unique IP address that is used to communicate between nodes in the cluster. The IP detect script prints the unique IPv4 address of a node to STDOUT each time DC/OS is started on the node.
 
-    **Important:** The IP address of a node must not change after DC/OS is installed on the node. For example, the IP address must not change when a node is rebooted or if the DHCP lease is renewed. If the IP address of a node does change, the node must be [wiped and reinstalled][1].
+    **Important:** The IP address of a node must not change after DC/OS is installed on the node. For example, the IP address must not change when a node is rebooted or if the DHCP lease is renewed. If the IP address of a node does change, the node must be [wiped and reinstalled][7].
 
     Create an IP detection script for your environment and save as `genconf/ip-detect`. You can use the examples below.
 
@@ -147,7 +147,7 @@ You can view all of the automated command line installer options with the `--hel
       --validate-config     Validate the configuration in config.yaml
       --test                Performs tests on the dcos_installer application
 
-**Tip:** If something goes wrong and you want to rerun your setup, use these cluster [cleanup instructions][1].
+**Tip:** If something goes wrong and you want to rerun your setup, use these cluster [cleanup instructions][7].
 
 To install DC/OS:
 
@@ -284,7 +284,6 @@ After DC/OS is installed and deployed across your cluster, you can add more agen
         18:17:14::
         18:17:14:: ====> 10.10.0.160:22 FAILED
 
- [1]: FIXME
  [2]: /docs/1.7/usage/cli/install/
  [3]: ../advanced/
  [4]: ../system-requirements/
