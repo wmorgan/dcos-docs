@@ -136,13 +136,6 @@ This parameter specifies the Mesos roles to delegate to a node. For more informa
 *  `roles: slave`
    Runs the private agent node.
 
-   -->
-
-<!--
-### <a name="weights"></a>weights
-This parameter specifies the priority of the role. For more information, see <a href="https://open.mesosphere.com/reference/mesos-master/#weights" target="_blank">Mesos weights</a>.
--->
-
 ### [config-yaml-bootstrap-url]
 
 ### [config-yaml-cluster-name]
