@@ -95,7 +95,7 @@ DC/OS uses Mesos-DNS for internal service discovery. While the .mesos domain can
           </td>
 
           <td class="confluenceTd">
-            IP Addresses of Zookeeper servers
+            IP Addresses of ZooKeeper servers
           </td>
         </tr>
       </tbody>
