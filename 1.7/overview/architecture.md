@@ -10,7 +10,7 @@ In order to simplify the understanding of DC/OS, we will re-use terminology know
 
 ## 100,000ft view
 
-DC/OS, as many operating systems, differentiates between the kernel space, comprising Mesos Masters and Mesos Agents and the user space, spanning System Components (such as Mesos-DNS or Spartan) as well services like Marathon or Spark and processes managed by said services (for example a Marathon application).
+DC/OS, as many operating systems, differentiates between the kernel space, comprising Mesos Masters and Mesos Agents and the user space, spanning System Components (such as Mesos-DNS or Distributed DNS Proxy) as well services like Marathon or Spark and processes managed by said services (for example a Marathon application).
 
 ![DC/OS architecture 100,000ft view](../img/dcos-architecture-100000ft.png)
 
@@ -29,12 +29,12 @@ The DC/OS user space spans System Components and Services (like Chronos or Kafka
 
 - [System Components](../components/) are installed and are running by default in the DC/OS cluster and include (but are not limited to) the following:
   - The Admin router is an open source NGNIX configuration that provides central authentication and proxy to DC/OS services.
-  - Exhibitor automatically configures Zookeeper during installation and provides a usable Web UI to Zookeeper.
+  - Exhibitor automatically configures ZooKeeper during installation and provides a usable Web UI to ZooKeeper.
   - Mesos-DNS provides service discovery, allowing apps and services to find each other by using the domain name system (DNS).
   - Minuteman is the internal layer 4 load balancer.
-  - Spartan is the internal DNS dispater.
+  - Distributed DNS Proxy is the internal DNS dispater.
   - System Marathon, the native Marathon instance that is the 'init system' for DC/OS, starts and monitors DC/OS services.
-  - Zookeeper, a high-performance coordination service that manages the DC/OS services.
+  - ZooKeeper, a high-performance coordination service that manages the DC/OS services.
 - Services
   - A service in DC/OS is consists of a Scheduler (responsible for scheduling tasks on behalf of a user) and an Executor (running Tasks on Agents)
   - User-level applications, for example an NGINX webserver launched through Marathon
@@ -49,14 +49,14 @@ Note that the following is post-install, that is it assumes that all System Comp
 
 On each Master node the following happens, in chronological order:
 
-1. [Exhibitor](https://github.com/mesosphere/exhibitor-dcos) starts up, creates Zookeeper configuration and launches Zookeeper
-1. Mesos Master are launched, registers with local Zookeeper, discovers other Masters
+1. [Exhibitor](https://github.com/mesosphere/exhibitor-dcos) starts up, creates ZooKeeper configuration and launches ZooKeeper
+1. Mesos Master are launched, registers with local ZooKeeper, discovers other Masters
 1. Mesos-DNS is launched on the master nodes
 1. Mesos-DNS keeps hitting `master/state.json` via leading Mesos Master `leader.mesos`
-1. Spartan (DNS proxy) runs on all nodes (master/agents) and forward to MesosDNS
+1. Distributed DNS Proxy runs on all nodes (master/agents) and forward to Mesos-DNS
 1. System Marathon is launched
-1. System Marathon goes to localhost for Zookeeper, discovers leading Master `leader.mesos` and registers with it
-1. Admin router depends on Master, MesosDNS and Spartan and runs on each of the master nodes (== DC/OS UI)
+1. System Marathon goes to localhost for ZooKeeper, discovers leading Master `leader.mesos` and registers with it
+1. Admin router depends on Master, Mesos-DNS and Distributed DNS Proxy and runs on each of the master nodes (== DC/OS UI)
 1. DC/OS UI, Mesos UI, Marathon UI, and Exhibitor UI become externally accessible
 1. Auth is managed by OAuth (only masters)
 1. History services provides the data for the graphs in the UI (only masters)
@@ -66,7 +66,7 @@ On each Master node the following happens, in chronological order:
 
 On each Agent node the following happens, in chronological order:
 
-1. Mesos Agent starts up and discovers the leading Mesos Master `leader.mesos` via Zookeeper
+1. Mesos Agent starts up and discovers the leading Mesos Master `leader.mesos` via ZooKeeper
 1. Mesos Agent registers with the leading Mesos Master `leader.mesos`
 1. Mesos Master confirms and Mesos Agent starts sending status reports (what resources are available) to Mesos Master
 1. DC/OS nodes become visible in the DC/OS UI
@@ -75,9 +75,9 @@ On each Agent node the following happens, in chronological order:
 
 For each service:
 
-- Service scheduler starts up and discovers the leading Mesos Master via Zookeeper
+- Service scheduler starts up and discovers the leading Mesos Master via ZooKeeper
 - Service scheduler registers with leading Mesos Master
-- Mesos Master confirms and scheduler stores service ID in Zookeeper
+- Mesos Master confirms and scheduler stores service ID in ZooKeeper
 - Once a service is registered the resource offer cycle between Mesos Master and  scheduler kicks in (details in next section).
 
 ## Distributed process management
