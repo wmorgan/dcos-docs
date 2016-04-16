@@ -3,7 +3,20 @@ post_title: GUI
 post_excerpt: ""
 layout: docs.jade
 ---
-The automated GUI installation method provides a simple graphical interface that guides you through the installation of DC/OS. The automated installer provides a basic installation that is suitable for demonstrations and POCs. Only a subset of the configuration options are available with the GUI method. This is the fastest way to get started with DC/OS.
+The automated GUI installer provides a simple graphical interface that guides you through the installation of DC/OS. The automated installer provides a basic installation that is suitable for demonstrations and POCs. Only a subset of the configuration options are available with the GUI method. This is the fastest way to get started with DC/OS.
+
+This installation method uses a bootstrap node to administer the DC/OS installation across your cluster. The bootstrap node uses an SSH key to connect to each node in your cluster to automate the DC/OS installation.
+
+The DC/OS installation creates these folders:
+
+*   `/opt/mesosphere`
+    :   Contains all the DC/OS binaries, libraries, cluster configuration. Do not modify.
+
+*   `/etc/systemd/system/dcos.target.wants`
+    :   Contains the systemd services which start the things that make up systemd. They must live outside of `/opt/mesosphere` because of systemd constraints.
+
+*   Various units prefixed with `dcos` in `/etc/systemd/system`
+    :   Copies of the units in `/etc/systemd/system/dcos.target.wants`. They must be at the top folder as well as inside `dcos.target.wants`.
 
 
 # Install DC/OS
@@ -96,6 +109,23 @@ The automated GUI installation method provides a simple graphical interface that
 
 - [Install the DC/OS Command-Line Interface (CLI)][5]
 - [Using your cluster][6]
+
+### Uninstalling DC/OS
+
+1.  From the bootstrap node, enter this command:
+    
+        $ sudo bash dcos_generate_config.sh --uninstall
+        Running mesosphere/dcos-genconf docker with BUILD_DIR set to /home/centos/genconf
+        ====> EXECUTING UNINSTALL
+        This will uninstall DC/OS on your cluster. You may need to manually remove /var/lib/zookeeper in some cases after this completes, please see our documentation for details. Are you ABSOLUTELY sure you want to proceed? [ (y)es/(n)o ]: yes
+        ====> START uninstall_dcos
+        ====> STAGE uninstall
+        ====> STAGE uninstall
+        ====> OUTPUT FOR uninstall_dcos
+        ====> END uninstall_dcos with returncode: 0
+        ====> SUMMARY FOR uninstall_dcos
+        2 out of 2 hosts successfully completed uninstall_dcos stage.
+        ====> END OF SUMMARY FOR uninstall_dcos
 
 [1]: https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
 [2]: /docs/1.7/overview/service-discovery/

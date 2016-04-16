@@ -3,6 +3,13 @@ post_title: Advanced
 post_excerpt: ""
 layout: docs.jade
 ---
+With this installation method, you package the DC/OS distribution yourself and connect to every node manually to run the DC/OS installation commands. This installation method is recommended if you want to integrate with an existing system or if you don’t have SSH access to your cluster.
+
+The advanced installer requires:
+
+*   The bootstrap node must be network accessible from the cluster nodes.
+*   The bootstrap node must have the HTTP(S) ports open from the cluster nodes.
+
 The DC/OS installation creates these folders:
 
 *   `/opt/mesosphere`
@@ -24,8 +31,14 @@ The DC/OS installation creates these folders:
 
     In this step you create a YAML configuration file that is customized for your environment. DC/OS uses this configuration file during installation to generate your cluster installation files.
 
-    You can use this template to get started. This template specifies 3 Mesos masters, 3 ZooKeeper instances for Exhibitor storage, static master discovery list, and Google DNS resolvers. If your servers are installed with a domain name in your `/etc/resolv.conf`, you should add `dns_search` to your `config.yaml` file. For parameters descriptions and configuration examples, see the [documentation][1].
+    You can use this template to get started. This template specifies 5 Mesos agents, 3 Mesos masters, 3 ZooKeeper instances for Exhibitor storage, static master discovery list, and Google DNS resolvers. If your servers are installed with a domain name in your `/etc/resolv.conf`, you should add `dns_search` to your `config.yaml` file. For parameters descriptions and configuration examples, see the [documentation][1].
 
+        agent_list:
+        - <agent-private-ip-1>
+        - <agent-private-ip-2>
+        - <agent-private-ip-3>
+        - <agent-private-ip-4>
+        - <agent-private-ip-5>
         bootstrap_url: http://<bootstrap_public_ip>:<your_port>
         cluster_name: '<cluster-name>'
         exhibitor_storage_backend: static
@@ -163,9 +176,13 @@ To install DC/OS:
 
             $ curl -O http://<bootstrap-ip>:<your_port>/dcos_install.sh
 
-    4.  Run this command to install DC/OS on your agent nodes:
-
-            $ sudo bash dcos_install.sh slave
+    4.  Run this command to install DC/OS on your agent nodes. You must designate your agent nodes as [public](/overview/concepts/#public) or [private](/overview/concepts/#private). 
+    
+        *  Private agent nodes:
+           <pre>$ sudo bash dcos_install.sh slave</pre>
+              
+        *  Public agent nodes:
+           <pre>$ sudo bash dcos_install.sh slave_public</pre>
 
 1.  Monitor Exhibitor and wait for it to converge at `http://<master-ip>:8181/exhibitor/v1/ui/index.html`.
 
