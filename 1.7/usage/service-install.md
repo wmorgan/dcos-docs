@@ -1,16 +1,7 @@
 ---
-UID: 56f9844a6d586
 post_title: Installing Services
-post_excerpt: ""
-layout: docs.jade
-published: true
-menu_order: 4
-page_options_require_authentication: false
-page_options_show_link_unauthenticated: false
-hide_from_navigation: false
-hide_from_related: false
 ---
-You can install datacenter application packages directly from the DC/OS package [repository][1].
+You can install services directly from the DC/OS package [repository][1].
 
 **Prerequisite:**
 
@@ -20,21 +11,21 @@ You can install datacenter application packages directly from the DC/OS package 
 To install a DC/OS service:
 
 1.  Install the datacenter service with this command:
-    
+
          dcos package install <servicename>
-        
-    
+
     For example, to install Chronos:
-    
+
          dcos package install chronos
-        
 
 2.  Verify that the service is successfully installed:
-    
-    *   From the DC/OS CLI: `dcos package list`
-    *   From the Mesosphere DC/OS web interface: Go to the Services tab and confirm that the datacenter services are running. <a href="/wp-content/uploads/2015/12/services.png" rel="attachment wp-att-1126"><img src="/wp-content/uploads/2015/12/services-800x486.png" alt="Services page" width="800" height="486" class="alignnone size-large wp-image-1126" /></a>
-    *   From the Mesos web interface at `<hostname>/mesos`, verify that the service has registered and is starting tasks.
 
- [1]: /usage/package-repo/
- [2]: /administration/installing/
- [3]: /usage/cli/install/
+    *   From the DC/OS CLI: `dcos package list`
+    *   From the Mesosphere DC/OS web interface: Go to the Services tab and confirm that the datacenter services are running.
+    ![services]()
+
+    <a href="/wp-content/uploads/2015/12/services.png" rel="attachment wp-att-1126"><img src="/wp-content/uploads/2015/12/services-800x486.png" alt="Services page" width="800" height="486" class="alignnone size-large wp-image-1126" /></a>
+
+ [1]: /docs/1.7/usage/package-repo/
+ [2]: /docs/1.7/administration/installing/
+ [3]: /docs/1.7/usage/cli/install/
