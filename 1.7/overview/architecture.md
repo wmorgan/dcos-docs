@@ -1,7 +1,5 @@
 ---
 post_title: The Architecture of DC/OS
-post_excerpt: "Explains the Architecture of DC/OS, boot sequence and distributed process management"
-layout: docs.jade
 ---
 
 An operating system abstracts resources such as CPU, RAM and networking and provides common services to applications. DC/OS is a distributed operating system that abstracts the resources of a cluster of machines and provides common services, such as running processes across a number of nodes, service discovery, and package management, just to name a few. In the following, we have a look at the architecture of DC/OS and the interaction of its components.
@@ -50,14 +48,14 @@ Note that the following is post-install, that is it assumes that all System Comp
 On each Master node the following happens, in chronological order:
 
 1. [Exhibitor](https://github.com/mesosphere/exhibitor-dcos) starts up, creates ZooKeeper configuration and launches ZooKeeper
-1. Mesos Master are launched, registers with local ZooKeeper, discovers other Masters
-1. Mesos-DNS is launched on the master nodes
-1. Mesos-DNS keeps hitting `master/state.json` via leading Mesos Master `leader.mesos`
-1. Distributed DNS Proxy runs on all nodes (master/agents) and forward to Mesos-DNS
-1. System Marathon is launched
-1. System Marathon goes to localhost for ZooKeeper, discovers leading Master `leader.mesos` and registers with it
-1. Admin router depends on Master, Mesos-DNS and Distributed DNS Proxy and runs on each of the master nodes (== DC/OS UI)
-1. DC/OS UI, Mesos UI, Marathon UI, and Exhibitor UI become externally accessible
+1. The Mesos Masters are launched, they register with the local ZooKeeper (127.0.0.1) and discover the other Masters
+1. Mesos-DNS is launched on every master node
+1. Mesos-DNS keeps hitting `leader.mesos:5050/master/state.json`. The DNS entry `leader.mesos` is special and points to the currently leading Mesos Master
+1. The Distributed DNS Proxy runs on all nodes (master/agents) and forwards DNS lookups to Mesos-DNS
+1. System Marathon is launched. It starts on every master node
+1. System Marathon connects to the local ZooKeeper (127.0.0.1), discovers leading Mesos Master (aka. `leader.mesos`) and registers as a framework with it
+1. Admin router depends on the Mesos Master, Mesos-DNS and the Distributed DNS Proxy. It runs on each of the master nodes. This is what serves the DC/OS UI and proxies external admin connections into the cluster
+1. DC/OS UI, Mesos UI, Marathon UI, and Exhibitor UI become externally accessible as these are all made available via. admin router.
 1. Auth is managed by OAuth (only masters)
 1. History services provides the data for the graphs in the UI (only masters)
 1. DC/OS diagnostics (also systemd service, on every node)
@@ -66,9 +64,11 @@ On each Master node the following happens, in chronological order:
 
 On each Agent node the following happens, in chronological order:
 
-1. Mesos Agent starts up and discovers the leading Mesos Master `leader.mesos` via ZooKeeper
-1. Mesos Agent registers with the leading Mesos Master `leader.mesos`
-1. Mesos Master confirms and Mesos Agent starts sending status reports (what resources are available) to Mesos Master
+1. The Mesos Agent waits until it can ping `leader.mesos`
+1. The Mesos Agent starts up and discovers the leading Mesos Master (aka. `leader.mesos`) via ZooKeeper
+1. The Mesos Agent registers as an agent with the leading Mesos Master (aka. `leader.mesos`)
+1. The Mesos Master confirms by trying to connect back to it with the IP the agent registered with.
+1. The Mesos Agent becomes available for launching new tasks on
 1. DC/OS nodes become visible in the DC/OS UI
 
 ### Services
