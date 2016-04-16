@@ -1,7 +1,6 @@
 ---
 post_title: Opt-Out
-post_excerpt: ""
-layout: docs.jade
+menu_order: 3
 ---
 
 ## Authentication
