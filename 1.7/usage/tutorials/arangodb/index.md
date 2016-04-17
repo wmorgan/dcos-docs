@@ -1,7 +1,7 @@
 ---
 post_title: Running ArangoDB on DC/OS
-post_excerpt: ""
-layout: docs.jade
+nav_title: ArangoDB
+menu_order: 1
 ---
 
 ArangoDB is a distributed, multi-model database featuring JSON
@@ -24,7 +24,7 @@ This tutorial covers the basics in order to get you started with ArangoDB on DC/
 ## Prerequisites
 
 - A running DC/OS cluster
-- [DC/OS CLI](https://docs.mesosphere.com/usage/cli/install/) installed
+- [DC/OS CLI](/docs/1.7/usage/cli/install/) installed
 
 ## Install ArangoDB on DC/OS
 
@@ -122,17 +122,15 @@ supported by ArangoDB GmbH, the company behind ArangoDB. If you get
 stuck, need help or have questions, just ask via one of the following
 channels:
 
-  - [Slack](http://slack.arangodb.com)
-  - [Google Group](https://groups.google.com/forum/#!forum/arangodb)
-  - `hackers@arangodb.com`: developer mailing list of ArangoDB
-  - `max@arangodb.com`: direct email to Max Neunhöffer
-  - `frank@arangodb.com`: direct email to Frank Celler
-  - `mop@arangodb.com`: direct email to Andreas Streichardt
+- [Slack](http://slack.arangodb.com)
+- [Google Group](https://groups.google.com/forum/#!forum/arangodb)
+- `hackers@arangodb.com`: developer mailing list of ArangoDB
+- `max@arangodb.com`: direct email to Max Neunhöffer
+- `frank@arangodb.com`: direct email to Frank Celler
+- `mop@arangodb.com`: direct email to Andreas Streichardt
 
-Additionally, we track issues, bug reports, and questions via the github
+Additionally, we track issues, bug reports, and questions via the GitHub
 issue trackers at
 
-  - [arangodb-dcos](https://github.com/ArangoDB/arangodb-dcos/issues):
-    The DC/OS subcommand
-  - [arangodb-mesos](https://github.com/arangodb/arangodb-mesos/issues):
-    The ArangoDB service
+- [arangodb-dcos](https://github.com/ArangoDB/arangodb-dcos/issues): The DC/OS subcommand
+- [arangodb-mesos](https://github.com/arangodb/arangodb-mesos/issues): The ArangoDB service
