@@ -10,7 +10,7 @@ You probably already know how to use `docker run ...` to launch a web server, ri
 
 Ready? Let's launch a production-grade containerized web server with this command from the DC/OS CLI:
 
-    $ dcos marathon app add https://dcos.io/docs/latest/usage/res/nginx.json
+    $ dcos marathon app add https://dcos.io/docs/latest/usage/tutorials/nginx/nginx.json
 
 Now go to the DC/OS Dashboard and open the Marathon service and you should see the web server up and running and ready to serve traffic.
 
