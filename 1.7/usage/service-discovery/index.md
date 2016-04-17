@@ -1,6 +1,7 @@
 ---
 post_title: Service Discovery and Load Balancing in DC/OS
 nav_title: Service Discovery
+menu_order: 3
 ---
 
 In a dynamic environment, actually discovering where a service is currently running is difficult. There are many different ways to go about this, but we strongly recommend using [VIPs][1].
@@ -21,4 +22,4 @@ If you're unable to use Mesos-DNS or VIPs, you can use a [load balanced solution
 [2]: mesos-dns/
 [3]: marathon-lb/
 [4]: load-balancing/
-[5]: ../dns-naming/
+[5]: dns-naming/
