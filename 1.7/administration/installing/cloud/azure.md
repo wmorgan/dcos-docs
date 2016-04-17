@@ -3,8 +3,6 @@ post_title: Install DC/OS on Azure
 nav_title: Azure
 ---
 
-# Overview
-
 This document explains how to install DC/OS via the [Azure Marketplace](https://azure.microsoft.com/en-us/marketplace/).
 
 TIP: In order to get support on Azure Marketplace-related questions, you can join the respective [Slack community](http://join.marketplace.azure.com).
@@ -67,11 +65,15 @@ Click on the latest deployment and copy the value of `MASTERFQDN` in the `Output
 
 Use the value of `MASTERFQDN` you found in the `Outputs` section in the previous step and paste it in the following command:
 
-    $ ssh azureuser@masterfqdn -p 2200 -L 8000:localhost:80
+```bash
+$ ssh azureuser@masterfqdn -p 2200 -L 8000:localhost:80
+```
 
 For example, in my case:
 
-    $ ssh azure@dcosmaster.westus.cloudapp.azure.com -p 2200 -L 8000:localhost:80
+```bash
+$ ssh azure@dcosmaster.westus.cloudapp.azure.com -p 2200 -L 8000:localhost:80
+```
 
 Now you can visit `http://localhost:8000` on your local machine and find the DC/OS Dashboard there.
 

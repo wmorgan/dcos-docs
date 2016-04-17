@@ -2,6 +2,7 @@
 post_title: Advanced DC/OS Installation Guide
 nav_title: Advanced
 ---
+
 With this installation method, you package the DC/OS distribution yourself and connect to every node manually to run the DC/OS installation commands. This installation method is recommended if you want to integrate with an existing system or if you don’t have SSH access to your cluster.
 
 The advanced installer requires:
@@ -24,7 +25,9 @@ The DC/OS installation creates these folders:
 
 1.  Create a directory named `genconf` on your bootstrap node and navigate to it.
 
-        $ mkdir -p genconf
+    ```bash
+    $ mkdir -p genconf
+    ```
 
 1.  Create a configuration file and save as `genconf/config.yaml`.
 
@@ -32,30 +35,33 @@ The DC/OS installation creates these folders:
 
     You can use this template to get started. This template specifies 5 Mesos agents, 3 Mesos masters, 3 ZooKeeper instances for Exhibitor storage, static master discovery list, and Google DNS resolvers. If your servers are installed with a domain name in your `/etc/resolv.conf`, you should add `dns_search` to your `config.yaml` file. For parameters descriptions and configuration examples, see the [documentation][1].
 
-        agent_list:
-        - <agent-private-ip-1>
-        - <agent-private-ip-2>
-        - <agent-private-ip-3>
-        - <agent-private-ip-4>
-        - <agent-private-ip-5>
-        bootstrap_url: http://<bootstrap_public_ip>:<your_port>
-        cluster_name: '<cluster-name>'
-        exhibitor_storage_backend: static
-        ip_detect_filename: /genconf/ip-detect
-        master_discovery: static
-        master_list:
-        - <master-private-ip-1>
-        - <master-private-ip-2>
-        - <master-private-ip-3>
-        resolvers:
-        - 8.8.4.4
-        - 8.8.8.8
+    ```yaml
+    ---
+    agent_list:
+    - <agent-private-ip-1>
+    - <agent-private-ip-2>
+    - <agent-private-ip-3>
+    - <agent-private-ip-4>
+    - <agent-private-ip-5>
+    bootstrap_url: http://<bootstrap_public_ip>:<your_port>
+    cluster_name: '<cluster-name>'
+    exhibitor_storage_backend: static
+    ip_detect_filename: /genconf/ip-detect
+    master_discovery: static
+    master_list:
+    - <master-private-ip-1>
+    - <master-private-ip-2>
+    - <master-private-ip-3>
+    resolvers:
+    - 8.8.4.4
+    - 8.8.8.8
+    ```
 
 2. Create a `ip-detect` script
 
     In this step you create an IP detect script to broadcast the IP address of each node across the cluster. Each node in a DC/OS cluster has a unique IP address that is used to communicate between nodes in the cluster. The IP detect script prints the unique IPv4 address of a node to STDOUT each time DC/OS is started on the node.
 
-    **Important:** The IP address of a node must not change after DC/OS is installed on the node. For example, the IP address must not change when a node is rebooted or if the DHCP lease is renewed. If the IP address of a node does change, the node must be [wiped and reinstalled][5].
+    **Important:** The IP address of a node must not change after DC/OS is installed on the node. For example, the IP address must not change when a node is rebooted or if the DHCP lease is renewed. If the IP address of a node does change, the node must be wiped and reinstalled.
 
     Create an IP detection script for your environment and save as `genconf/ip-detect`. You can use the examples below.
 
@@ -63,22 +69,26 @@ The DC/OS installation creates these folders:
 
         This method uses the AWS Metadata service to get the IP address:
 
-            #!/bin/sh
-            # Example ip-detect script using an external authority
-            # Uses the AWS Metadata Service to get the node's internal
-            # ipv4 address
-            curl -fsSL http://169.254.169.254/latest/meta-data/local-ipv4
+        ```bash
+        #!/bin/sh
+        # Example ip-detect script using an external authority
+        # Uses the AWS Metadata Service to get the node's internal
+        # ipv4 address
+        curl -fsSL http://169.254.169.254/latest/meta-data/local-ipv4
+        ```
 
     *   #### Use the GCE Metadata Server
 
         This method uses the GCE Metadata Server to get the IP address:
 
-            #!/bin/sh
-            # Example ip-detect script using an external authority
-            # Uses the GCE metadata server to get the node's internal
-            # ipv4 address
+        ```bash
+        #!/bin/sh
+        # Example ip-detect script using an external authority
+        # Uses the GCE metadata server to get the node's internal
+        # ipv4 address
 
-            curl -fsSl -H "Metadata-Flavor: Google" http://169.254.169.254/computeMetadata/v1/instance/network-interfaces/0/ip
+        curl -fsSl -H "Metadata-Flavor: Google" http://169.254.169.254/computeMetadata/v1/instance/network-interfaces/0/ip
+        ```
 
     *   #### Use the IP address of an existing interface
 
@@ -86,10 +96,12 @@ The DC/OS installation creates these folders:
 
         If you have multiple generations of hardware with different internals, the interface names can change between hosts. The IP detection script must account for the interface name changes. The example script could also be confused if you attach multiple IP addresses to a single interface, or do complex Linux networking, etc.
 
-            #!/usr/bin/env bash
-            set -o nounset -o errexit
-            export PATH=/usr/sbin:/usr/bin:$PATH
-            echo $(ip addr show eth0 | grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -1)
+        ```bash
+        #!/usr/bin/env bash
+        set -o nounset -o errexit
+        export PATH=/usr/sbin:/usr/bin:$PATH
+        echo $(ip addr show eth0 | grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -1)
+        ```
 
     *   #### Use the network route to the Mesos master
 
@@ -97,12 +109,14 @@ The DC/OS installation creates these folders:
 
         In this example, we assume that the Mesos master has an IP address of `172.28.128.3`. You can use any language for this script. Your Shebang line must be pointed at the correct environment for the language used and the output must be the correct IP address.
 
-            #!/usr/bin/env bash
-            set -o nounset -o errexit
+        ```bash
+        #!/usr/bin/env bash
+        set -o nounset -o errexit
 
-            MASTER_IP=172.28.128.3
+        MASTER_IP=172.28.128.3
 
-            echo $(/usr/sbin/ip route show to match 172.28.128.3 | grep -Eo '[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}' | tail -1)
+        echo $(/usr/sbin/ip route show to match 172.28.128.3 | grep -Eo '[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}' | tail -1)
+        ```
 
 # Install DC/OS
 
@@ -119,7 +133,9 @@ To install DC/OS:
 
 1.  Download the [DC/OS installer][4]
 
-        $ curl -O https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
+    ```bash
+    $ curl -O https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
+    ```
 
 1.  From the bootstrap node, run the DC/OS installer shell script to generate a customized DC/OS build file. The setup script extracts a Docker container that uses the generic DC/OS install files to create customized DC/OS build files for your cluster. The build files are output to `./genconf/serve/`.
 
@@ -133,13 +149,17 @@ To install DC/OS:
 
 1.  Run this command to generate your customized DC/OS build file:
 
-        $ sudo bash dcos_generate_config.sh
+    ```bash
+    $ sudo bash dcos_generate_config.sh
+    ```
 
     **Tip:** For the install script to work, you must have created `genconf/config.yaml` and `genconf/ip-detect`.
 
 1.  From your home directory, run this command to host the DC/OS install package through an nginx Docker container. For `<your-port>`, specify the port value that is used in the `bootstrap_url`.
 
-        $ sudo docker run -d -p <your-port>:80 -v $PWD/genconf/serve:/usr/share/nginx/html:ro nginx
+    ```bash
+    $ sudo docker run -d -p <your-port>:80 -v $PWD/genconf/serve:/usr/share/nginx/html:ro nginx
+    ```
 
 1.  Run these commands on each of your master nodes in succession to install DC/OS using your custom build file.
 
@@ -147,41 +167,61 @@ To install DC/OS:
 
     1.  SSH to your master nodes:
 
-            $ ssh <master-ip>
+        ```bash
+        $ ssh <master-ip>
+        ```
 
     2.  Make a new directory and navigate to it:
 
-            $ mkdir /tmp/dcos && cd /tmp/dcos
+        ```bash
+        $ mkdir /tmp/dcos && cd /tmp/dcos
+        ```
 
     3.  Download the DC/OS installer from the nginx Docker container, where `<bootstrap-ip>` and `<your_port>` are specified in `bootstrap_url`:
 
-            $ curl -O http://<bootstrap-ip>:<your_port>/dcos_install.sh
+        ```bash
+        $ curl -O http://<bootstrap-ip>:<your_port>/dcos_install.sh
+        ```
 
     4.  Run this command to install DC/OS on your master nodes:
 
-            $ sudo bash dcos_install.sh master
+        ```bash
+        $ sudo bash dcos_install.sh master
+        ```
 
 1.  Run these commands on each of your agent nodes to install DC/OS using your custom build file.
 
     1.  SSH to your agent nodes:
 
-            $ ssh <agent-ip>
+        ```bash
+        $ ssh <agent-ip>
+        ```
 
     2.  Make a new directory and navigate to it:
 
-            $ mkdir /tmp/dcos && cd /tmp/dcos
+        ```bash
+        $ mkdir /tmp/dcos && cd /tmp/dcos
+        ```
 
     3.  Download the DC/OS installer from the nginx Docker container, where `<bootstrap-ip>` and `<your_port>` are specified in `bootstrap_url`:
 
-            $ curl -O http://<bootstrap-ip>:<your_port>/dcos_install.sh
+        ```bash
+        $ curl -O http://<bootstrap-ip>:<your_port>/dcos_install.sh
+        ```
 
     4.  Run this command to install DC/OS on your agent nodes. You must designate your agent nodes as [public][6] or [private][7].
 
         *  Private agent nodes:
-           <pre>$ sudo bash dcos_install.sh slave</pre>
+
+            ```bash
+            $ sudo bash dcos_install.sh slave
+            ```
 
         *  Public agent nodes:
-           <pre>$ sudo bash dcos_install.sh slave_public</pre>
+
+           ```bash
+           $ sudo bash dcos_install.sh slave_public
+           ```
 
 1.  Monitor Exhibitor and wait for it to converge at `http://<master-ip>:8181/exhibitor/v1/ui/index.html`.
 
@@ -205,7 +245,6 @@ To install DC/OS:
 [2]: /docs/1.7/usage/cli/install/
 [3]: /docs/1.7/usage/
 [4]: https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
-[5]: FIXME
 [6]: /docs/1.7/overview/concepts/#public
 [7]: /docs/1.7/overview/concepts/#private
 [8]: ../uninstall/
