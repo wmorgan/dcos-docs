@@ -31,7 +31,9 @@ The DC/OS CLI provides a convenient way to deploy applications on your DC/OS clu
 
 Deploying ArangoDB via the DC/OS CLI is as easy as:
 
-    dcos package install arangodb
+```bash
+$ dcos package install arangodb
+```
 
 This command installs the `arangodb` subcommand and starts an instance of the ArangoDB service with its default configuration under its standard name, "arangodb" via Marathon.
 
@@ -51,7 +53,9 @@ By default, ArangoDB will not expose itself to the outside. The IPs listed here 
 
 The exact way to dig a tunnel using sshuttle varies from infrastructure to infrastructure. The following is an example for an AWS cluster:
 
-    sshuttle --python /opt/mesosphere/bin/python3.4 -r core@54.171.143.132 10.0.0.0/8
+```bash
+$ sshuttle --python /opt/mesosphere/bin/python3.4 -r core@54.171.143.132 10.0.0.0/8
+```
 
 The IP may be extracted from the top left corner of the DC/OS web interface:
 
@@ -69,7 +73,7 @@ Congratulations! You now have ArangoDB running on DC/OS.
 
 ### Service discovery
 
-ArangoDB integrates with DC/OS service discovery (https://docs.mesosphere.com/administration/service-discovery/mesos-dns/service-naming/). You should use this to talk to the coordinator from within the cluster. To find out the IP of the coordinator, do a standard DNS lookup for `arangodb-coordinator1.arangodb.mesos`.
+ArangoDB integrates with [DC/OS service discovery](/docs/1.7/usage/service-discovery/mesos-dns/service-naming/). You should use this to talk to the coordinator from within the cluster. To find out the IP of the coordinator, do a standard DNS lookup for `arangodb-coordinator1.arangodb.mesos`.
 
 Then, issue a SRV DNS request to `arangodb-coordinator1.arangodb.mesos` to find out the port.
 
@@ -78,7 +82,9 @@ Then, issue a SRV DNS request to `arangodb-coordinator1.arangodb.mesos` to find 
 Use the following commands to shut down and delete your ArangoDB service and the
 command line tool:
 
-    dcos arangodb uninstall; dcos package uninstall arangodb
+```bash
+$ dcos arangodb uninstall; dcos package uninstall arangodb
+```
 
 The first command uses the `arangodb` subcommand to gracefully shut down and
 delete all instances of your ArangoDB service. The framework scheduler
@@ -92,27 +98,26 @@ automatically.
 There are a number of configuration options, which can be specified in the following
 way:
 
-    dcos package install --config=<JSON_FILE> arangodb
+```bash
+$ dcos package install --config=<JSON_FILE> arangodb
+```
 
 where `JSON_FILE` is the path to a JSON file. For a list of possible
 attribute values and their documentation see
 
-    dcos package describe --config arangodb
+```bash
+$ dcos package describe --config arangodb
+```
 
 ### Further Information
 
-For further information, visit:
+For further information, visit: https://github.com/arangoDB/arangodb-mesos-framework
 
-    https://github.com/arangoDB/arangodb-mesos-framework
-
-The ArrangoDB service is also distributed in binary form as a Docker image:
-
-    arangodb/arangodb-mesos-framework
+The ArrangoDB service is also distributed in binary form as a Docker image: arangodb/arangodb-mesos-framework
 
 See the [README.md](https://github.com/ArangoDB/arangodb-mesos-framework)
 in the framework repository for details on how the framework scheduler is
 configured.
-
 
 ### Support and bug reports
 
