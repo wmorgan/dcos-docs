@@ -3,7 +3,7 @@ post_title: High Availability in DC/OS
 nav_title: High Availability
 ---
 
-This document discusses the high availability features in DC/OS and best 
+This document discusses the high availability features in DC/OS and best
 practices for building highly available applications on DC/OS.
 
 ## General concepts of high availability
@@ -108,7 +108,7 @@ When failures do occur, failover [should be as fast as possible](https://en.wiki
 can be achieved by:
  * Using an HA load balancer like
    [marathon-lb](https://github.com/mesosphere/marathon-lb), or
-   [Minuteman](https://github.com/mesosphere/minuteman) for internal layer 4
+   [Minuteman](https://github.com/dcos/minuteman) for internal layer 4
    load balancing.
  * Building apps in accordance with the [12-factor app](http://12factor.net/)
    manifesto.
