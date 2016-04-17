@@ -25,7 +25,6 @@ If you have a DevOps role:
 - How to run a [Ruby on Rails](/docs/1.7/usage/tutorials/ruby-on-rails/) app
 - How to run [Tomcat](/docs/1.7/usage/tutorials/tomcat/)
 - How to run [Jekyll](/docs/1.7/usage/tutorials/jekyll/)
-- How to run [MySQL](/docs/1.7/usage/tutorials/mysql/)
 - How to run [PostgreSQL](/docs/1.7/usage/tutorials/postgres/)
 - How to run [Marathon](/docs/1.7/usage/tutorials/marathon/)
 - How to run [Chronos](/docs/1.7/usage/tutorials/chronos/)
@@ -37,7 +36,6 @@ If you have a data engineering or data scientists role:
 - How to run [Cassandra](/docs/1.7/usage/tutorials/cassandra/)
 - How to run [Kafka](/docs/1.7/usage/tutorials/kafka/)
 - How to run [ArangoDB](/docs/1.7/usage/tutorials/arangodb/)
-- How to run [Redis](/docs/1.7/usage/tutorials/redis/)
 
 If you a DC/OS administrator role:
 

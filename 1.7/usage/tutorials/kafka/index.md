@@ -32,7 +32,7 @@ In this tutorial you will learn:
 * How to use the enhanced DC/OS CLI operations for Kafka
 * How to use Kafka on DC/OS to launch brokers and publish/consume messages
 
-# Table of Contents
+## Table of Contents
 
   * [Prerequisites](#prerequisites)
   * [Install Kafka](#install-kafka)
@@ -45,15 +45,14 @@ In this tutorial you will learn:
   * [API Reference](#api-reference)
 
 
-# Prerequisites
+## Prerequisites
 
-- [Install DC/OS](../../cli/install.md)
 - A running DC/OS cluster with three nodes, each with 2 CPUs and 2 GB of RAM available
-- [DC/OS CLI](https://docs.mesosphere.com/usage/cli/install/) installed
+- [DC/OS CLI](/docs/1.7/usage/cli/install/) installed
 
-# Install Kafka
+## Install Kafka
 
-## Typical installation
+### Typical installation
 
 Install Kafka using the DC/OS CLI:
 
@@ -71,7 +70,7 @@ The Apache Kafka DC/OS Service is installed:
 
 While the DC/OS command line interface (CLI) is immediately available, it takes a few minutes for the Kafka service to start.
 
-## Custom manual installation procedure
+### Custom manual installation procedure
 
 1. Verify existing DC/OS repositories:
 
@@ -93,11 +92,11 @@ Or you can search for a particular one:
 
 `dcos package install --yes --force --package-version=<package_version> kafka`
 
-## Manual installation via the web interface
+### Manual installation via the web interface
 
 You can also install the Kafka service from [DC/OS Universe dashboard](http://<dcos-master-dns>/#/universe/packages/)
 
-## Validate installation
+### Validate installation
 
 Validate that the installation added the enhanced DC/OS CLI for Kafka:
 
@@ -108,7 +107,7 @@ Validate that Kafka service is healthy:
 ![DC/OS dashboard services status](img/dcos-dashboard-kafka-service-status.png)
 ![DC/OS services status](img/dcos-services-kafka-service-status.png)
 
-# DC/OS Kafka operations
+## DC/OS Kafka operations
 
 - Add brokers:
 
@@ -198,16 +197,16 @@ This is a message
 This is another message
 ```
 
-# Cleanup
+## Cleanup
 
-## Uninstall:
+### Uninstall
 
 `dcos package uninstall kafka`
 
-## Purge/clean up persisted state:
+### Purge/clean up persisted state:
 
 [Kafka uninstall](http://docs.mesosphere.com/services/kafka/#uninstall)
 
-# API Reference
+## API Reference
 
 - [https://kafka.apache.org/documentation.html](https://kafka.apache.org/documentation.html)
