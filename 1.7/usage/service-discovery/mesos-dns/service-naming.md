@@ -1,9 +1,10 @@
 ---
 post_title: Service Naming
-post_excerpt: ""
-layout: docs.jade
 ---
+
 Mesos-DNS defines the DNS top-level domain `.mesos` for Mesos tasks that are running on DC/OS. Tasks and services are discovered by looking up A and, optionally, SRV records within this Mesos domain.
+
+To enumerate all the DNS records that mesos-dns will respond to, take a look at the [DNS naming documentation][4]
 
 # <a name="a-records"></a>A Records
 
@@ -274,3 +275,4 @@ If a service launches multiple tasks with the same name, the DNS lookup will ret
  [1]: /docs/1.7/overview/concepts/
  [2]: ../troubleshooting/#leader
  [3]: https://tools.ietf.org/html/rfc952
+ [4]: /docs/1.7/usage/dns-naming/

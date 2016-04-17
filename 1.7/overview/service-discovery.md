@@ -1,7 +1,5 @@
 ---
 post_title: Service Discovery
-post_excerpt: ""
-layout: docs.jade
 ---
 
 There are two levels of service discovery in DC/OS. Along with every task that runs on DC/OS being provided a well known DNS name, anyone can request a well known VIP that enables clients to have a single configuration value.
@@ -29,15 +27,17 @@ You can assign a VIP to one of your services by following these steps. For some 
 
 # Mesos-DNS
 
-Every task started by DC/OS gets a well known DNS name. If you're interested in how to figure this out past marathon services, check out [mesos-dns][4]. For a marathon service named "testing", you can find where it is running via:
+Every task started by DC/OS gets a well known DNS name. You can even enumerate every [DNS name][5] in your cluster. For a marathon service named "testing", you can find where it is running via:
 
         dig testing.marathon.mesos
+
+Take a look at the [mesos-dns documentation][4] for a more in-depth look at how mesos-dns is working and what it is doing for you.
 
 [1]: /docs/1.7/usage/service-discovery/
 [2]: https://mesosphere.github.io/marathon/docs/ports.html
 [3]: /docs/1.7/administration/sshcluster/
 [4]: /docs/1.7/usage/service-discovery/mesos-dns/
-
+[5]: /docs/1.7/usage/dns-naming/
 
 
 

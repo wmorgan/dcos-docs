@@ -1,30 +1,19 @@
 ---
-UID: 56f9a5595fa87
-post_title: Viewing Registered Apps
-post_excerpt: ""
-layout: page
-published: true
-menu_order: 34
-page_options_require_authentication: false
-page_options_show_link_unauthenticated: false
-hide_from_navigation: true
-hide_from_related: true
+post_title: Discovering running service DNS entries
+nav_title: DNS Naming
 ---
 You can get a detailed view of which nodes in your cluster are running which service.
 
-**Prerequisites:**  
+**Prerequisites:**
 
-* <a href="https://docs.mesosphere.com/concepts/installing/">DCOS and DCOS CLI</a> are installed
+* [DCOS and DCOS CLI][2] are installed
 
-1.  SSH into your [master node][1].
+1.  Run this command:
 
-2.  Run this command from your master node to view the node details:
-    
-          $ curl http://master.mesos/mesos_dns/v1/enumerate
-        
-    
+          $ curl http://<dcos-url>/mesos_dns/v1/enumerate
+
     In this example Kafka and Chronos are installed:
-    
+
           $ curl http://master.mesos/mesos_dns/v1/enumerate
           {
             "frameworks": [
@@ -124,5 +113,3 @@ You can get a detailed view of which nodes in your cluster are running which ser
               "name": "marathon"
              }
             ]
-
- [1]: /1.7/administration/sshcluster/
