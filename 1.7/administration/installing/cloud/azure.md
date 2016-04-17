@@ -30,27 +30,27 @@ Also, in order to access nodes in the DC/OS cluster you will need `ssh` installe
 
 In order to deploy DC/OS using an [Azure Resource Manager](https://azure.microsoft.com/en-us/documentation/articles/resource-group-overview/) template, first go to [portal.azure.com](https://portal.azure.com/), click on `+ New` and enter `DC/OS`:
 
-![Searching for DC/OS template](img/dcos-azure-marketplace-step1a.png)
+![Searching for DC/OS template](../img/dcos-azure-marketplace-step1a.png)
 
 In the search result page, pick `DC/OS on Azure`:
 
-![Selecting DC/OS template](img/dcos-azure-marketplace-step1b.png)
+![Selecting DC/OS template](../img/dcos-azure-marketplace-step1b.png)
 
 In the template, click on `Create`:
 
-![Creating deployment using DC/OS template](img/dcos-azure-marketplace-step1c.png)
+![Creating deployment using DC/OS template](../img/dcos-azure-marketplace-step1c.png)
 
 Complete the installation wizard steps. Note: you only need to fill in the `Basic` section, rest is optional, however you SHOULD create a new resource group:
 
-![Filling in DC/OS template](img/dcos-azure-marketplace-step1d.png)
+![Filling in DC/OS template](../img/dcos-azure-marketplace-step1d.png)
 
 After you've clicked on the final `Create` button you should see something like the following (note that depending on the number of nodes you selected it may take several minutes until the cluster has been deployed, for example, for the default configuration of 5 nodes it takes usually some 15min):
 
-![Deploying DC/OS template](img/dcos-azure-marketplace-step1e.png)
+![Deploying DC/OS template](../img/dcos-azure-marketplace-step1e.png)
 
 Once the deployment succeeded, you should see the following (if not, delete the deployment and the resource group and start again):
 
-![DC/OS template successfully deployed](img/dcos-azure-marketplace-step1f.png)
+![DC/OS template successfully deployed](../img/dcos-azure-marketplace-step1f.png)
 
 Now you have deployed DC/OS using an Azure Resource Manager template, congrats! Next we will have a look at accessing the cluster.
 
@@ -60,11 +60,11 @@ Due to security considerations the DC/OS cluster in Azure is locked down per def
 
 First, look up `MASTERFQDN` in the outputs of the deployment. To find that, click on the link under `Last deployment` (which is `4/15/2016 (Succeeded)` here) and you should see this:
 
-![Deployment history](img/dcos-azure-marketplace-step2a.png)
+![Deployment history](../img/dcos-azure-marketplace-step2a.png)
 
 Click on the latest deployment and copy the value of `MASTERFQDN` in the `Outputs` section:
 
-![Deployment output](img/dcos-azure-marketplace-step2b.png)
+![Deployment output](../img/dcos-azure-marketplace-step2b.png)
 
 Use the value of `MASTERFQDN` you found in the `Outputs` section in the previous step and paste it in the following command:
 

@@ -1,7 +1,6 @@
 ---
-post_title: DC/OS Features
-post_excerpt: ""
-layout: docs.jade
+post_title: The Features of DC/OS
+nav_title: Features
 ---
 This is a high-level look at the features that make DCOS more than the sum of its parts.
 

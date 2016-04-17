@@ -27,11 +27,11 @@ The AWS key pair uses public-key cryptography to provide secure login to your AW
 
 First, select your region; this should be the same region where you will create your cluster:
 
-![Select region](img/dcos-aws-step1a.png)
+![Select region](../img/dcos-aws-step1a.png)
 
 In the navigation pane, under `Network & Security`, click `Key Pairs` and then click the `Create Key Pair` button:
 
-![Create key pair](img/dcos-aws-step1b.png)
+![Create key pair](../img/dcos-aws-step1b.png)
 
 Save the `.pem` file locally for use later. Note that this is the only chance to save file!
 
@@ -41,11 +41,11 @@ Save the `.pem` file locally for use later. Note that this is the only chance to
 
     **Important:** The DC/OS template is configured for running DC/OS. If you modify the template you might be unable to run certain packages on your DC/OS cluster.
 
-    ![Configure template](img/dcos-aws-step2a.png)
+    ![Configure template](../img/dcos-aws-step2a.png)
 
 2.  On the **Select Template** page, accept the defaults and click **Next**.
 
-    ![Launch stack](img/dcos-aws-step2b.png)
+    ![Launch stack](../img/dcos-aws-step2b.png)
 
 3.  On the **Specify Details** page, specify a cluster name (`Stack name
 `), accept the EULA (AcceptEULA), SSH key (`KeyName`), the number of public (`PublicSlaveInstanceCount`) and private (`SlaveInstanceCount
@@ -55,13 +55,13 @@ Save the `.pem` file locally for use later. Note that this is the only chance to
     *   5 Mesos private agent nodes
     *   1 Mesos public agent node
 
-    ![Create stack](img/dcos-aws-step2c.png)
+    ![Create stack](../img/dcos-aws-step2c.png)
 
 4.  On the **Options** page, accept the defaults and click **Next**.
 
     **Tip:** You can choose whether to rollback on failure. By default this option is set to **Yes**.
 
-    ![Confirm stack](img/dcos-aws-step2d.png)
+    ![Confirm stack](../img/dcos-aws-step2d.png)
 
 5.  On the **Review** page, check the acknowledgement box and then click **Create**.
 
@@ -87,7 +87,7 @@ Launch the DC/OS web interface by entering the Mesos Master hostname:
 
     **Tip:** You might need to resize your window to see this tab. You can find your DC/OS hostname any time from the <a href="https://console.aws.amazon.com/cloudformation/home" target="_blank">Amazon CloudFormation Management</a> page.
 
-    ![Monitor stack creation](img/dcos-aws-step3a.png)
+    ![Monitor stack creation](../img/dcos-aws-step3a.png)
 
 # Next steps
 
