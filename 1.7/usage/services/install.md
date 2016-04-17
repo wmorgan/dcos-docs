@@ -1,6 +1,8 @@
 ---
 post_title: Installing Services
+nav_title: Installing
 ---
+
 You can install services directly from the DC/OS package [repository][1], both via the web UI and the CLI.
 
 **Prerequisite:**
@@ -12,11 +14,15 @@ You can install services directly from the DC/OS package [repository][1], both v
 
 1.  Install the datacenter service with this command:
 
-         dcos package install <servicename>
+    ```bash
+    $ dcos package install <servicename>
+    ```
 
     For example, to install Chronos:
 
-         dcos package install chronos
+    ```bash
+    dcos package install chronos
+    ```
 
 ## Install a service with the web UI
 
@@ -30,7 +36,7 @@ You can install services directly from the DC/OS package [repository][1], both v
 
 *  From the DC/OS CLI:
 
-```
+```bash
 dcos package list
 ```
 
@@ -38,6 +44,6 @@ dcos package list
 
    ![services](../img/services-installed.png)
 
- [1]: /docs/1.7/usage/package-repo/
+ [1]: /docs/1.7/usage/services/repo/
  [2]: /docs/1.7/administration/installing/
  [3]: /docs/1.7/usage/cli/install/

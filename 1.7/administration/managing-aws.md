@@ -1,5 +1,5 @@
 ---
-post_title: Managing AWS Clusters
+post_title: Managing AWS
 menu_order: 9
 ---
 
