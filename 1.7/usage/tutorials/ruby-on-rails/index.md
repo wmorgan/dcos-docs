@@ -83,7 +83,7 @@ Before we can run Redmine, we need to create a database and a user for it.
 
 ## Install an Edge Load Balancer
 
-To route traffic to Redmine we need a load balancer. The [`marathon-lb` package](https://github.com/dcos/marathon-lb) provides a load balancer that automatically updates itself when services are installed or updated on Marathon. Install it by using the DC/OS command line:
+To route traffic to Redmine we need a load balancer. The [`marathon-lb` package](https://github.com/mesosphere/marathon-lb) provides a load balancer that automatically updates itself when services are installed or updated on Marathon. Install it by using the DC/OS command line:
 
 ```
 $ dcos package install marathon-lb
