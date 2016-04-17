@@ -1,8 +1,8 @@
 ---
 post_title: Install DC/OS on Vagrant
 nav_title: Vagrant
-layout: docs.jade
 ---
+
 This installation method creates a cluster of virtual machines on your local machine that can be used for demos, development, and testing.
 
 # Download DC/OS Installer

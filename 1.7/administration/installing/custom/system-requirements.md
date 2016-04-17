@@ -237,36 +237,44 @@ Your bootstrap and cluster nodes must have Docker version 1.9 or greater install
 
     1.  Add the Docker yum repo to your node:
 
-            $ sudo tee /etc/yum.repos.d/docker.repo <<-'EOF'
-            [dockerrepo]
-            name=Docker Repository
-            baseurl=https://yum.dockerproject.org/repo/main/centos/$releasever/
-            enabled=1
-            gpgcheck=1
-            gpgkey=https://yum.dockerproject.org/gpg
-            EOF
+        ```bash
+        $ sudo tee /etc/yum.repos.d/docker.repo <<-'EOF'
+        [dockerrepo]
+        name=Docker Repository
+        baseurl=https://yum.dockerproject.org/repo/main/centos/$releasever/
+        enabled=1
+        gpgcheck=1
+        gpgkey=https://yum.dockerproject.org/gpg
+        EOF
+        ```
 
     2.  Create Docker systemd drop-in files:
 
-            $ sudo mkdir -p /etc/systemd/system/docker.service.d && sudo tee /etc/systemd/system/docker.service.d/override.conf <<- EOF
-            [Service]
-            ExecStart=
-            ExecStart=/usr/bin/docker daemon --storage-driver=overlay -H fd://
-            EOF
+        ```bash
+        $ sudo mkdir -p /etc/systemd/system/docker.service.d && sudo tee /etc/systemd/system/docker.service.d/override.conf <<- EOF
+        [Service]
+        ExecStart=
+        ExecStart=/usr/bin/docker daemon --storage-driver=overlay -H fd://
+        EOF
+        ```
 
     3.  Install the Docker engine, daemon, and service:
 
-            $ sudo yum install -y docker-engine &&
-             sudo systemctl start docker &&
-              sudo systemctl enable docker
+        ```bash
+        $ sudo yum install -y docker-engine &&
+         sudo systemctl start docker &&
+          sudo systemctl enable docker
+        ```
 
         This can take a few minutes. This is what the end of the process should look like: Complete! Created symlink from /etc/systemd/system/multi-user.target.wants/docker.service to /usr/lib/systemd/system/docker.service.
 
     You can test that your Docker build is properly installed with this command:
 
-        $ sudo docker ps
+    ```bash
+    $ sudo docker ps
+    ```
 
-    Do not use use Docker `devicemapper` storage driver for loopback. For more information, see <a href="https://docs.docker.com/engine/userguide/storagedriver/device-mapper-driver/" target="_blank">Docker and the Device Mapper storage driver</a>.
+    Do not use use Docker `devicemapper` storage driver for loopback. For more information, see [Docker and the Device Mapper storage driver](https://docs.docker.com/engine/userguide/storagedriver/device-mapper-driver/).
 
 ## Bootstrap node
 
@@ -280,7 +288,9 @@ Download and save the [DC/OS setup file][3] to your bootstrap node. This file is
 
 For advanced install only, install the Docker Nginx image with this command:
 
-    $ sudo docker pull nginx
+```bash
+$ sudo docker pull nginx
+```
 
 ## Cluster nodes
 
@@ -292,7 +302,9 @@ You must have the <a href="http://www.info-zip.org/UnZip.html" target="_blank">U
 
 To install these utilities on CentOS7 and RHEL7:
 
-    $ sudo yum install -y tar xz unzip curl
+```bash
+$ sudo yum install -y tar xz unzip curl
+```
 
 
 ### Cluster permissions (advanced installer)
@@ -304,12 +316,13 @@ On each of your cluster nodes, use the following command to:
 *   Disable IPV6. For more information see <a href="https://wiki.centos.org/FAQ/CentOS7#head-8984faf811faccca74c7bcdd74de7467f2fcd8ee" target="_blank">How do I disable IPv6</a>.</li>
 *   Reboot your cluster for the changes to take affect</p>
 
-        $ sudo sed -i s/SELINUX=enforcing/SELINUX=permissive/g /etc/selinux/config &&
-         sudo groupadd nogroup &&
-         sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1 &&
-         sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1 &&
-         sudo reboot
-
+    ```bash
+    $ sudo sed -i s/SELINUX=enforcing/SELINUX=permissive/g /etc/selinux/config &&
+      sudo groupadd nogroup &&
+      sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1 &&
+      sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1 &&
+      sudo reboot
+    ```
 
     **Tip:** It may take a few minutes for your node to come back online after reboot.
 

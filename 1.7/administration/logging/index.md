@@ -8,7 +8,7 @@ DC/OS cluster nodes generate logs that contain diagnostic and status information
 
 If you're running something on top of DC/OS, then let's get started right away by running the CLI command listed below. For more in depth documents on background and more methods of getting access to your logs, check out [service and task logs][1].
 
-```
+```bash
 $ dcos task log --follow my-service-name
 ```
 
@@ -24,7 +24,9 @@ As you can imagine, it is also possible to aggregate your system logs. Take a lo
 
 All the DC/OS components use journald to store their logs. If you'd like to [SSH into a node][5], you'll be able to see them by running the following command:
 
-        journalctl -u "dcos-*" -b
+```bash
+$ journalctl -u "dcos-*" -b
+```
 
 ## Next Steps
 
