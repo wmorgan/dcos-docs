@@ -1,20 +1,16 @@
-# How to use Jenkins
+---
+post_title: How to use Jenkins on DC/OS
+nav_title: Jenkins
+menu_order: 5
+---
 
-TODO: apply new template and refer to https://docs.mesosphere.com/manage-service/velocity/
+## How to use Jenkins
 
 [Jenkins](https://jenkins-ci.org/) is a popular automation server with hundreds of plugins (GitHub, Docker, etc.) available.
-
-**Terminology**:
-
-- XXX
 
 **Scope**:
 
 In the following how-to you will learn about how to use Jenkins on DC/OS.
-
-**Further resources**:
-
-- TBD
 
 ## Preparation
 

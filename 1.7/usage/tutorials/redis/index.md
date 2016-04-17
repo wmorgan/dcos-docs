@@ -1,14 +1,9 @@
 ---
 post_title: Running Redis on DC/OS
-post_excerpt: ""
-layout: docs.jade
-published: true
-menu_order: 1
-page_options_require_authentication: false
-page_options_show_link_unauthenticated: false
-hide_from_navigation: false
-hide_from_related: false
+nav_title: Redis
+menu_order: 9
 ---
+
 Take Redis and run it on DC/OS.
 
 ### Time Estimate

@@ -1,13 +1,7 @@
 ---
 post_title: Running Tomcat in Docker on DC/OS
-post_excerpt: ""
-layout: docs.jade
-published: true
-menu_order: 1
-page_options_require_authentication: false
-page_options_show_link_unauthenticated: false
-hide_from_navigation: false
-hide_from_related: false
+nav_title: Tomcat
+menu_order: 13
 ---
 
 [Apache Tomcat](http://tomcat.apache.org/index.html) provides implementations of Servlet, JSP, EL and WebSocket from the Java EE Web Application Container specification.
@@ -15,16 +9,19 @@ hide_from_related: false
 ## Run the container
 
 Assuming you have a DC/OS cluster up and running, the first step is to download the marathon.json. As the minimum cluster size for this tutorial I recommend at least one node running with the `slave_public` role having 1 CPU, 512mb RAM and port 80 free.
+
 ```
 curl -O https://dcos.io/latest/usage/tutorials/tomcat/marathon.json
 ```
 
 Lets inspect the marathon.json:
+
 ```
 cat marathon.json
 ```
 
 It should like similar to the following:
+
 ```json
 {
   "id": "/tomcat",
@@ -62,15 +59,24 @@ It should like similar to the following:
 }
 ```
 
-Here we've defined the app (`.id`) to be `/tomcat` all applications run on Marathon must have a unique id. We want Marathon to run one instance of Tomcat for us on our cluster, each instance will require one cpu share (`.cpus`), 512 MB of ram (`.mem`) and port 80 (`.container.docker.portMappings[0].hostPort`). We then tell Marathon the container image we want Tomcat to be ran from, in this case we're running `tomcat:8.5` from [DockerHub](https://hub.docker.com/_/tomcat/) (`.container.docker.image`). We've specified that Marathon should run the Docker image using [Bridge Networking](https://docs.docker.com/engine/userguide/networking/dockernetworks/#the-default-bridge-network-in-detail) (`.container.docker.network`), and specified that TCP port 80 on the host (`.container.docker.portMappings[0].hostPort`) should be forwarded to TCP port 8080 inside the container (`.container.docker.portMappings[0].containerPort`). We next tell Marathon that we have to run on port 80 by setting `.requirePorts` to true. To ensure that we can get to Tomcat on the internet we instruct Marathon to only run Tomcat on a node that has the role `slave_public`. Next we define the `JAVA_OPTS` that Tomcat will start with (`.env.JAVA_OPTS`). Finally we define a health check for Tomcat, Marathon will use this health check to automatically restart our container if Tomcat becomes unhealthy or unresponsive.
+Here we've defined the app (`.id`) to be `/tomcat` all applications run on Marathon must have a unique id. We want Marathon to run one instance of Tomcat for us on our cluster, each instance will require one cpu share (`.cpus`), 512 MB of ram (`.mem`) and port 80 (`.container.docker.portMappings[0].hostPort`). We then tell Marathon the container image we want Tomcat to be ran from, in this case we're running `tomcat:8.5` from [DockerHub](https://hub.docker.com/_/tomcat/) (`.container.docker.image`).
 
+We've specified that Marathon should run the Docker image using [Bridge Networking](https://docs.docker.com/engine/userguide/networking/dockernetworks/#the-default-bridge-network-in-detail) (`.container.docker.network`), and specified that TCP port 80 on the host (`.container.docker.portMappings[0].hostPort`) should be forwarded to TCP port 8080 inside the container (`.container.docker.portMappings[0].containerPort`).
+
+We next tell Marathon that we have to run on port 80 by setting `.requirePorts` to true.
+
+To ensure that we can get to Tomcat on the internet we instruct Marathon to only run Tomcat on a node that has the role `slave_public`.
+
+Next we define the `JAVA_OPTS` that Tomcat will start with (`.env.JAVA_OPTS`). Finally we define a health check for Tomcat, Marathon will use this health check to automatically restart our container if Tomcat becomes unhealthy or unresponsive.
 
 Deploy to Marathon:
+
 ```
 dcos marathon app add marathon.json
 ```
 
 Verify that the app is added:
+
 ```
 $ dcos marathon app list
 ID       MEM  CPUS  TASKS  HEALTH  DEPLOYMENT  CONTAINER  CMD
@@ -79,7 +85,7 @@ ID       MEM  CPUS  TASKS  HEALTH  DEPLOYMENT  CONTAINER  CMD
 
 ## View Tomcat
 
-To view Apache Tomcat running, navigate to `http://<public_agent_public_ip>` and see the install success page. See [How to Locate Public Agent ip](../../../overview/concepts#term-public-agent) for guidance on what `<public_slave_public_ip>` is for your cluster.
+To view Apache Tomcat running, navigate to `http://<public_agent_public_ip>` and see the install success page. See [How to Locate Public Agent ip](/docs/1.7/overview/concepts#term-public-agent) for guidance on what `<public_slave_public_ip>` is for your cluster.
 
 ![Apache Tomcat Install Success](img/tomcat-screenshot.png)
 
@@ -100,11 +106,13 @@ Click on the Log Viewer Tab
 ### View task logs with DC/OS CLI
 
 Run this command to tail the stderr file of the Tomcat task.
+
 ```
 dcos task log --follow tomcat stderr
 ```
 
 And should result in output similar to the following:
+
 ```
 I0408 06:06:58.100162  7391 exec.cpp:143] Version: 0.28.1
 I0408 06:06:58.104168  7396 exec.cpp:217] Executor registered on slave 6925aee0-fc8e-4143-8cff-775d7c0bb4a5-S0
@@ -158,4 +166,3 @@ dcos marathon app remove /tomcat
 ```
 
 The log files automatically generated when running the container will be automatically cleaned up by the Mesos Agent.
-
