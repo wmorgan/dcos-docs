@@ -107,7 +107,7 @@ The DC/OS installation creates these folders:
     ![postflight](../img/dcos-gui-postflight.png)
 
     **Tip:** You can click **Download Logs** to view your logs locally.
-    **Tip:** If this takes longer than about 10 minutes, you've probably misconfigured your cluster. Go checkout the [debugging documentation][4]
+    **Tip:** If this takes longer than about 10 minutes, you've probably misconfigured your cluster. Go checkout the [troubleshooting documentation][9]
 
 8.  Click **Log In To DC/OS**. If this doesn't work, take a look at the [troubleshooting docs][9]
 
@@ -124,7 +124,6 @@ The DC/OS installation creates these folders:
 [1]: https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
 [2]: /docs/1.7/overview/service-discovery/
 [3]: ../system-requirements/
-[4]: FIXME
 [5]: /docs/1.7/usage/cli/install/
 [6]: /docs/1.7/usage/
 [7]: ../uninstall/

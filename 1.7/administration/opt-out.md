@@ -11,7 +11,7 @@ You can opt-out of the provided authentication by disabling it for your cluster.
 auth_enabled: 'false'
 ```
 
-Note that if you’ve already installed your cluster and would like to disable this in-place, you can go through an [upgrade][3] with the same parameter set.
+Note that if you’ve already installed your cluster and would like to disable this in-place, you can go through an upgrade with the same parameter set.
 
 ## Telemetry
 
@@ -25,5 +25,4 @@ Note that if you’ve already installed your cluster and would like to disable t
 
 [1]: /docs/1.7/administration/installing/custom/cli/
 [2]: /docs/1.7/administration/installing/custom/advanced/
-[3]: FIXME
 [4]: /docs/1.7/administration/installing/custom/configuration-parameters/
