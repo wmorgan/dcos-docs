@@ -1,7 +1,5 @@
 ---
 post_title: Marathon-LB
-post_excerpt: ""
-layout: docs.jade
 ---
 
 After you boot a DC/OS cluster, all tasks can be discovered using Mesos-DNS. Discovery through DNS, however, has some limitations that include:

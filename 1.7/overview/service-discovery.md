@@ -37,7 +37,4 @@ Take a look at the [mesos-dns documentation][4] for a more in-depth look at how 
 [2]: https://mesosphere.github.io/marathon/docs/ports.html
 [3]: /docs/1.7/administration/sshcluster/
 [4]: /docs/1.7/usage/service-discovery/mesos-dns/
-[5]: /docs/1.7/usage/dns-naming/
-
-
-
+[5]: /docs/1.7/usage/service-discovery/dns-naming/
