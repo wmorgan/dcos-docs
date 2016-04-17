@@ -1,142 +1,147 @@
 ---
-UID: 56f98445a9ae4
 post_title: Service Requirements Specification
-post_excerpt: ""
-layout: docs.jade
-published: true
-menu_order: 100
-page_options_require_authentication: false
-page_options_show_link_unauthenticated: false
-hide_from_navigation: false
-hide_from_related: false
+menu_order: 2
 ---
-**Disclaimer:** This document provides the DC/OS Service requirements, but is not the complete DC/OS service certification. For the complete DC/OS Service Specification, send an email to <a href="mailto:partnerships@mesosphere.io" target="_blank">partnerships@mesosphere.io</a>.
 
-This document is intended for a developer creating a Mesosphere DC/OS Service. It is assumed the you are familiar with <a href="http://mesos.apache.org/documentation/latest/app-framework-development-guide/" target="_blank">Mesos framework development</a>.
 
-The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <a href="https://www.ietf.org/rfc/rfc2119.txt" target="_blank">RFC 2119</a>.
+**Note:** This document provides the DC/OS service requirements, but is not the complete DC/OS service certification. For the complete DC/OS Service Specification, send an email to [help@dcos.io](mailto:help@dcos.io)
 
-By completing the requirements below, you can integrate with DC/OS and have your Service certified by Mesosphere.
+This document is intended for a developer creating a DC/OS service and we assume you are familiar with the [Mesos framework development](http://mesos.apache.org/documentation/latest/app-framework-development-guide/) process.
+
+The keywords `MUST`, `MUST NOT`, `REQUIRED`, `SHALL`, `SHALL NOT`, `SHOULD`, `SHOULD NOT`, `RECOMMENDED`, `MAY`, and `OPTIONAL` in this document are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
+
+By completing the requirements below, you can integrate with DC/OS and have your service certified by Mesosphere.
 
 ## Terminology
 
-[term-universe][term-dcos-service][term-framework][term-dcos-marathon][term-state-abstraction]
+**Universe**
 
-# Service Framework
+The Universe contains packages that are installable as services in a DC/OS cluster.
 
-### 01\. Service MUST be able to install the service without supplying a configuration.
+**Service**
 
-Your service must be installable by using default values. The `options.json` must not be required for installation. There are cases where a service might require a license to work. Your service must provide a CLI option to pass the license information to the service to enable it.
+Services are certified packages that can be installed, and are available from a package repositories. Services include certified Mesos frameworks and other applications. A Mesos framework is the combination of a scheduler and an optional custom executor.
 
-If the service isn’t running because it is missing license information, that fact MUST be logged through stdout or stderr.
+**Marathon**
 
-### 02\. Service MUST be uninstallable.
+Marathon is a [DC/OS system component](/docs/1.7/overview/architecture/) acting as a distributed init system for the cluster, launching and monitoring applications and services.
+
+**State abstraction**
+
+Through Mesos, DC/OS provides an abstraction for accessing storage. This abstraction is available for schedulers written in the Java and C++ programming languages, only and constitutes the preferred method to access Zookeeper.
+
+
+## Service Framework
+
+### 01\. Service MUST be able to install without supplying a configuration
+
+Your service must be installable by using default values. In other words, you `MUST NOT` require the user to provide a `options.json` file for installation.
+
+There are cases where a service might require a license to work. Your service must provide a CLI option to pass the license information to the service to enable it.
+
+If the service isn’t running because it is missing license information, that fact `MUST` be logged through stdout or stderr.
+
+### 02\. Service MUST be able to uninstall
 
 A DC/OS user can uninstall your service with this command:
 
     $ dcos package uninstall <service name>
-    
 
-# Packaging
+## Packaging
 
-### 03\. Service MUST use standard DC/OS packaging.
+### 03\. Service MUST use standard DC/OS packaging
 
 A DC/OS user must be able to install your service by running this command:
 
     $ dcos package install <service name>
-    
 
-For this to work, the metadata for your service must be registered in the Mesosphere Universe package repository. The metadata format is defined in the <a href="https://github.com/mesosphere/universe#mesosphere-universe-" target="_blank">Universe repository README</a>.
+For this to work, the metadata for your service must be registered in the Universe package repository. The metadata format is defined in the Universe repository.
 
-### 04\. Service SHOULD have a simple lowercase service name.
+### 04\. Service SHOULD have a simple lowercase service name
 
-The name of the service is the name provided in Universe. That name should be a simple name without reference to Mesos or DC/OS. For example, the HDFS-Mesos framework is listed in the universe as `hdfs`. This name should also be the first level property of the <a href="https://github.com/mesosphere/universe/blob/version-2.x/repo/packages/H/hdfs/0/config.json#L4" target="_blank">config.json</a> file.
+The name of the service is the name provided in Universe. That name should be a simple name without reference to Mesos or DC/OS. For example, the HDFS-Mesos framework is listed in the universe as `hdfs`. This name should also be the first level property of [config.json](https://github.com/mesosphere/universe/blob/version-2.x/repo/packages/H/hdfs/0/config.json#L4).
 
-### 05\. Service package MUST include a Marathon deployment descriptor file.
+### 05\. Package MUST include a Marathon deployment descriptor file
 
-Services in DC/OS are started and managed by the native DC/OS Marathon instance. Your DC/OS service package MUST include a Marathon descriptor file (usually named `marathon.json`) which is used to launch the service. The Scheduler must be designed so that it can be launched by Marathon.
+Services in DC/OS are started and managed by the system Marathon instance. Your DC/OS service package `MUST` include a Marathon descriptor file (usually named `marathon.json`) which is used to launch the service. The scheduler must be designed so that it can be launched by Marathon.
 
-*   You MUST supply a <a href="https://github.com/mesosphere/universe#marathonjsonmustache" target="_blank">marathon.json.mustache</a> file as part of your Service metadata.
-*   Your long-running app MAY use a Docker image retrieved by using a Docker registry or a binary retrieved by using a CDN backed HTTP server.
+- You `MUST` supply a [marathon.json.mustache](https://github.com/mesosphere/universe#marathonjsonmustache) file as part of your service metadata.
+- Your long-running app `MAY` use a Docker image retrieved by using a registry or a binary retrieved by using a CDN backed HTTP server.
 
-All resource configurations MUST be parameterized.
+All resource configurations `MUST` be parameterized.
 
-### 06\. Service package MUST specify install-time configuration in a config.json file.
+### 06\. Package MUST specify install-time configuration in a config.json file
 
-The Marathon descriptor file (`marathon.json.mustache`) must be templatized, following the examples in the Universe repository. All variables must be defined in the `config.json` file.
+The Marathon descriptor file `marathon.json.mustache` must be templatized, following the examples in the Universe repository. All variables must be defined in the `config.json` file.
 
-Any components that are dynamically configured, for example the Mesos master or ZooKeeper configuration, MUST be available as command line parameters or environment variables to the service executable. This allows the parameters to be passed to the scheduler during package installation.
+Any components that are dynamically configured, for example the Mesos master or Zookeeper configuration, `MUST` be available as command line parameters or environment variables to the service executable; this allows the parameters to be passed to the scheduler during package installation.
 
-### 07\. Service package MUST specify framework-name in a config.json file.
+### 07\.  Package MUST specify framework-name in a config.json file
 
-The `framework-name` property is required. The `framework-name` property:
+The `framework-name` property is required; it:
 
-*   MUST be a second-level property under the service property. For example, see the HDFS <a href="https://github.com/mesosphere/universe/blob/version-2.x/repo/packages/H/hdfs/1/config.json#L11-L15" target="_blank">config.json</a> file.
-*   MUST default to the service name.
-*   SHOULD be used as the `app-id` in the `marathon.json` file. For example, see the Spark <a href="https://github.com/mesosphere/universe/blob/version-2.x/repo/packages/S/spark/2/marathon.json.mustache#L2" target="_blank">marathon.json.mustache</a> file.
+- `MUST` be a second-level property under the service property. For example, see the HDFS [config.json](https://github.com/mesosphere/universe/blob/version-2.x/repo/packages/H/hdfs/1/config.json#L11-L15) file.
+- `MUST` default to the service name.
+- `SHOULD` be used as the `app-id` in the `marathon.json` file. For example, see the Spark [marathon.json.mustache](https://github.com/mesosphere/universe/blob/version-2.x/repo/packages/S/spark/2/marathon.json.mustache#L2) file.
 
-### 08\. All URIs used by the scheduler and executor MUST be specified in config.json.
+### 08\. All URIs used by the scheduler and executor MUST be specified in config.json
 
-All URIs that are used by the service MUST be specified in the `config.json` file. Any URL that is accessed by the service must be overridable and specified in the the `config.json` file, including:
+All URIs that are used by the service `MUST` be specified in the `config.json` file. Any URL that is accessed by the service must be overridable and specified in the the `config.json` file, including:
 
-*   URLs required in the `marathon.json` file
-*   URLs that retrieve the executor (if not supplied by the scheduler)
-*   URLs required by the executors, except for URLs that are for the scheduler; or a process launched by the scheduler for retrieving artifacts or executors that are local to the cluster.
+- URLs required in the `marathon.json` file
+- URLs that retrieve the executor (if not supplied by the scheduler)
+- URLs required by the executors, except for URLs that are for the scheduler; or a process launched by the scheduler for retrieving artefacts or executors that are local to the cluster.
 
 All URLs that are used by the service must be passed in by using the command line or provided as environment variables to the scheduler at startup time.
 
-### 09\. Service MUST provide a package.json file.
+### 09\. Service MUST provide a package.json file
 
-The `package.json` file MUST have:
+The `package.json` `file` MUST have:
 
-*   The [name field][1] in `package.json` must match the package name in Universe and the default value for the `framework-name` parameter in `config.json`. See the [Chronos package][2] in Universe as an example. 
-*   Contact email address of owner
-*   Description
-*   Indication of whether this is a framework
-*   Tags
-*   All images 
-*   License information
-*   Pre-install notes that indicate required resources
-*   Post-install notes that indicate documentation, tutorials, and how to get support
-*   Post-uninstall notes that indicate any documentation for a full uninstallation
+- The [name field][1] in `package.json` must match the package name in Universe and the default value for the `framework-name` parameter in `config.json`. See the [Chronos package][2] in Universe as an example. 
+- Contact email address of owner
+- Description
+- Indication of whether this is a framework
+- Tags
+- All images 
+- License information
+- Pre-install notes that indicate required resources
+- Post-install notes that indicate documentation, tutorials, and how to get support
+- Post-uninstall notes that indicate any documentation for a full uninstallation
 
 For a reference example, see the [Marathon package][3].
 
-### 10\. Service MAY provide a command.json file.
+### 10\. Service MAY provide a command.json file
 
 The `command.json` file is required when a command line subcommand is provided by the service. This file specifies a Python wheel package for subcommand installation. For a reference example, see the [Spark package][4].
 
-### 11\. Service MAY provide a resource.json file.
+### 11\. Service MAY provide a resource.json file
 
 The `resource.json` file is specified in the [Universe repository][5].
 
-# Scheduler Framework
+## Scheduler Framework
 
-### 11\. Scheduler MUST provide a health check.
+### 12\. Scheduler MUST provide a health check
 
-The app running in Marathon to represent your service, usually the scheduler, MUST implement one or more [Marathon health checks][6].
+The app running in Marathon to represent your service, usually the scheduler, MUST implement one or more [Marathon health checks][6]. The output from these checks is used by the DC/OS web interface to display your service health:
 
-The output from these checks is used by the DC/OS web interface to display your service health:
+- If `ALL` of your health checks pass, your service is marked in green as `Healthy`.
+- If `ANY` of your health checks fail, your service is marked in red as Sick. Your documentation must provide troubleshooting information for resolving the issue.
+- If your service has no tasks running in Marathon, your service is marked in yellow as `Idle`. This state is normally temporary and occurs only when your service is launching. 
 
-*   If ALL of your health checks pass, your service is marked in green as Healthy.
-*   If ANY of your health checks fail, your service is marked in red as Sick. Your documentation must provide troubleshooting information for resolving the issue.
-*   If your Service has no tasks running in Marathon, your service is marked in yellow as Idle. This state is normally temporary and occurs only when your service is launching. 
-
-<a href="/wp-content/uploads/2015/12/services.png" rel="attachment wp-att-1126"><img src="/wp-content/uploads/2015/12/services-600x365.png" alt="Services page" width="500" height="383" class="alignnone size-medium wp-image-1126" /></a>
-
-Your app MAY set `maxConsecutiveFailures=0` on any of your health checks to prevent Marathon from terminating your app if the failure threshold of the health check is reached.
+Your app `MAY` set `maxConsecutiveFailures=0` on any of your health checks to prevent Marathon from terminating your app if the failure threshold of the health check is reached.
 
 Services must have Health checks configured in the `marathon.json` file.
 
-### 12\. Scheduler MUST distribute its own binaries for executor and tasks.
+### 13\. Scheduler MUST distribute its own binaries for executor and tasks
 
-The scheduler MUST attempt to run executors/tasks with no external dependencies. If an executor/task requires custom dependencies, the scheduler should bundle the dependencies and configure the Mesos fetcher to download the dependencies from the scheduler or run executors/tasks in a preconfigured Docker image.
+The scheduler `MUST` attempt to run executors/tasks with no external dependencies. If an executor/task requires custom dependencies, the scheduler should bundle the dependencies and configure the Mesos fetcher to download the dependencies from the scheduler or run executors/tasks in a preconfigured Docker image.
 
 Mesos can fetch binaries by using HTTP[S], FTP[S], HDFS, or Docker pull. Many frameworks run an HTTP server in the scheduler that can distribute the binaries, or just rely on pulling from a public or private Docker registry. Remember that some clusters do not have access to the public internet.
 
-URLs for downloads must be parameterized and externalized in the `config.json` file, with the exception of Docker images. The scheduler and executor MUST NOT use URLS without externalizing them and allowing them to be configurable. This requirement ensures that DC/OS supports on-prem datacenter environments which do not have access to the public internet.
+URLs for downloads must be parameterized and externalized in the `config.json` file, with the exception of Docker images. The scheduler and executor `MUST NOT` use URLS without externalizing them and allowing them to be configurable. This requirement ensures that DC/OS supports on-prem datacenter environments which do not have access to the public internet.
 
-### 13\. Configuration MUST be via CLI parameters or environment variables.
+### 14\. Configuration MUST be via CLI parameters or environment variables
 
 If your service requires configuration, the scheduler and executors MUST implement this by passing parameters on the command line or setting environment variables.
 
@@ -144,23 +149,23 @@ Secret or sensitive information should NOT include passwords as command-line par
 
 Secrets/tokens themselves may be passed around as URIs, task labels, or otherwise. A hook may place those credentials on disk somewhere and update the environment to point to the on-disk credentials.
 
-### 14\. Service MAY provide a DC/OS CLI Subcommand.
+### 15\. Service MAY provide a DC/OS CLI Subcommand
 
-Your Service MAY provide a custom DC/OS subcommand. For the DC/OS CLI Specification, send an email to <a href="mailto:partnerships@mesosphere.io" target="_blank">partnerships@mesosphere.io</a>.
+Your service MAY provide a custom DC/OS subcommand. For the DC/OS CLI Specification, send an email to <a href="mailto:partnerships@mesosphere.io" target="_blank">partnerships@mesosphere.io</a>.
 
-### 15\. A Service with a DC/OS CLI Subcommand MUST implement the minimum command set.
+### 16\. A Service with a DC/OS CLI Subcommand MUST implement the minimum command set
 
 If providing a custom DC/OS CLI subcommand, you must implement the minimum set of requirements.
 
-### 16\. A Service with DC/OS CLI MUST be driven by HTTP APIs.
+### 17\. A Service with DC/OS CLI MUST be driven by HTTP APIs
 
 Custom subcommands must interact with your service by using HTTP. The supported method of interaction with your service is through the [DC/OS Admin Router][7]. Your service will be exposed under the convention `<dcos>/service/<service-name>`.
 
-### 17\. In config.json all required properties MUST be specified as required.
+### 18\. In config.json all required properties MUST be specified as required
 
 Any property that is used by the `marathon.json` file that is required MUST be specified in its appropriate required block. For an example, see Marathon’s [optional HTTPS mode][8] which makes the `marathon.https-port` parameter optional.
 
-ALL properties that are used in the `marathon.json` file that are not in a conditional block must be defined as required.
+All properties that are used in the `marathon.json` file that are not in a conditional block `MUST` be defined as required.
 
  [1]: https://github.com/mesosphere/universe/blob/version-2.x/repo/packages/C/chronos/0/package.json#L2
  [2]: https://github.com/mesosphere/universe/blob/version-2.x/repo/packages/C/chronos/0/config.json#L98
@@ -168,5 +173,5 @@ ALL properties that are used in the `marathon.json` file that are not in a condi
  [4]: https://github.com/mesosphere/universe/blob/version-1.x/repo/packages/S/spark/2/command.json
  [5]: https://github.com/mesosphere/universe#resourcejson
  [6]: https://mesosphere.github.io/marathon/docs/health-checks.html
- [7]: /overview/components/
+ [7]: /docs/1.7/overview/components/
  [8]: https://github.com/mesosphere/universe/blob/version-1.x/repo/packages/M/marathon/4/marathon.json#L10-L12
