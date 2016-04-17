@@ -1,7 +1,6 @@
 ---
 post_title: Advanced DC/OS Installation Guide
 nav_title: Advanced
-layout: docs.jade
 ---
 With this installation method, you package the DC/OS distribution yourself and connect to every node manually to run the DC/OS installation commands. This installation method is recommended if you want to integrate with an existing system or if you don’t have SSH access to your cluster.
 
@@ -196,6 +195,7 @@ To install DC/OS:
 
 ### Next Steps
 
+- [Add users to your cluster][10]
 - [Install the DC/OS Command-Line Interface (CLI)][2]
 - [Troubleshooting DC/OS installation][9]
 - [Use your cluster][3]
@@ -210,3 +210,4 @@ To install DC/OS:
 [7]: /docs/1.7/overview/concepts/#private
 [8]: ../uninstall/
 [9]: ../troubleshooting/
+[10]: /docs/1.7/administration/user-management/
