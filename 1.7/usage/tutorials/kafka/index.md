@@ -36,10 +36,12 @@ In this tutorial you will learn:
 
   * [Prerequisites](#prerequisites)
   * [Install Kafka](#install-kafka)
+
     * [Typical installation](#typical-installation)
     * [Custom manual installation procedure](#custom-manual-installation-procedure)
     * [Manual installation via the web interface](#manual-installation-via-the-web-interface)
     * [Validate installation](#validate-installation)
+
   * [DC/OS Kafka operations](#dcos-kafka-operations)
   * [Cleanup](#cleanup)
   * [API Reference](#api-reference)
@@ -56,8 +58,8 @@ In this tutorial you will learn:
 
 Install Kafka using the DC/OS CLI:
 
-```
-dcos package install kafka
+```bash
+$ dcos package install kafka
 This will install Apache Kafka DC/OS Service.
 Continue installing? [yes/no] yes
 Installing Marathon app for package [kafka] version [0.9.4.0]
@@ -74,33 +76,42 @@ While the DC/OS command line interface (CLI) is immediately available, it takes 
 
 1. Verify existing DC/OS repositories:
 
-`dcos package repo list
-Universe: https://universe.mesosphere.com/repo
-`
+    ```bash
+    $ dcos package repo list
+    Universe: https://universe.mesosphere.com/repo
+    ```
 
 1. Identify available versions for the Kafka service
 
-You can either list available version:
+    You can either list available version:
 
-`dcos package list kafka`
+    ```bash
+    $ dcos package list kafka
+    ```
 
-Or you can search for a particular one:
+    Or you can search for a particular one:
 
-`dcos package search kafka`
+    ```bash
+    $ dcos package search kafka
+    ```
 
 1. Install or upgrade to a specific version of the Kafka package:
 
-`dcos package install --yes --force --package-version=<package_version> kafka`
+    ```bash
+    $ dcos package install --yes --force --package-version=<package_version> kafka
+    ```
 
 ### Manual installation via the web interface
 
-You can also install the Kafka service from [DC/OS Universe dashboard](http://<dcos-master-dns>/#/universe/packages/)
+You can also install the Kafka service from DC/OS Universe dashboard - http://dcos-cluster/#/universe/packages/.
 
 ### Validate installation
 
 Validate that the installation added the enhanced DC/OS CLI for Kafka:
 
-`dcos package list kafka; dcos kafka help`
+```bash
+$ dcos package list kafka; dcos kafka help
+```
 
 Validate that Kafka service is healthy:
 
@@ -111,37 +122,50 @@ Validate that Kafka service is healthy:
 
 - Add brokers:
 
-`dcos kafka broker add 0..2`
+```bash
+$ dcos kafka broker add 0..2
+```
 
 - Start brokers:
 
-`dcos kafka broker start 0..2`
+```bash
+$ dcos kafka broker start 0..2
+```
 
 - Remove brokers:
 
-`dcos kafka broker stop 1..2`
-`dcos kafka broker remove 1..2`
+```bash
+$ dcos kafka broker stop 1..2
+$ dcos kafka broker remove 1..2
+```
 
 **Note:** Brokers have to be stopped before removal.
 
 Expected outcome:
-`brokers 1,2 removed`
+
+```bash
+brokers 1,2 removed
+```
 
 - List Kafka brokers
-`dcos kafka broker list`
+
+```bash
+$ dcos kafka broker list
+```
 
 - Update broker:
 
+```bash
+$ dcos kafka broker stop 0 &&\
+$ dcos kafka broker update 0 --mem 128 --heap 64 &&\
+$ dcos kafka broker start 0
 ```
-dcos kafka broker stop 0 &&\
-dcos kafka broker update 0 --mem 128 --heap 64 &&\
-dcos kafka broker start 0
-```
+
 **Note:** A broker needs to be stopped in order to be updated.
 
 Expected outcome:
 
-```
+```bash
 broker started:
   id: 0
   active: true
@@ -154,15 +178,18 @@ broker started:
     state: running
     endpoint: 192.168.65.121:1025
 ```
+
 ![Kafka service single broker status](img/dcos-kafka-single-broker-status.png)
 
 - Add a broker with options provided:
 
-`dcos kafka broker add 1 --mem 128 --heap 64 && dcos kafka broker start 1`
+```bash
+$ dcos kafka broker add 1 --mem 128 --heap 64 && dcos kafka broker start 1
+```
 
 Expected outcome:
 
-```
+```bash
 broker started:
   id: 1
   active: true
@@ -180,19 +207,21 @@ broker started:
 
 - Add a topic:
 
-`dcos kafka topic add t0 --broker 0`
+```bash
+$ dcos kafka topic add t0 --broker 0
+```
 
 - Publish and consume messages:
 
-```
-dcos kafka topic create topic1 --partitions 3 --replication 3
-dcos kafka connection
-dcos node ssh --master-proxy --master
-docker run -it mesosphere/kafka-client
-./kafka-console-producer.sh --broker-list ip-10-0-3-230.us-west-2.compute.internal:9092 --topic test
+```bash
+$ dcos kafka topic create topic1 --partitions 3 --replication 3
+$ dcos kafka connection
+$ dcos node ssh --master-proxy --master
+$ docker run -it mesosphere/kafka-client
+$ ./kafka-console-producer.sh --broker-list ip-10-0-3-230.us-west-2.compute.internal:9092 --topic test
 This is a message
 This is another message
-./kafka-console-consumer.sh --zookeeper master.mesos:2181/kafka --topic test --from-beginning
+$ ./kafka-console-consumer.sh --zookeeper master.mesos:2181/kafka --topic test --from-beginning
 This is a message
 This is another message
 ```
@@ -201,7 +230,9 @@ This is another message
 
 ### Uninstall
 
-`dcos package uninstall kafka`
+```bash
+$ dcos package uninstall kafka
+```
 
 ### Purge/clean up persisted state:
 
