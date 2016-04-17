@@ -1,7 +1,6 @@
 ---
 post_title: DC/OS Cloud Installation Options
 nav_title: Cloud
-layout: docs.jade
 ---
 
 Looking to install DC/OS on your cloud of choice? Look no further! You can either use a template or do something a little bit more custom with our custom installer.

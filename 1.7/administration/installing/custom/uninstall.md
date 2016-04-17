@@ -1,6 +1,7 @@
 ---
 post_title: Uninstall DC/OS
 nav_title: Uninstall
+menu_order: 6
 ---
 
 From the bootstrap node, enter this command:
