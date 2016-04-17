@@ -1,8 +1,8 @@
 ---
 post_title: Install a DC/OS cluster
 nav_title: Install
-layout: docs.jade
 ---
+
 DC/OS can be installed on any cluster of physical or virtual machines.
 
 # [Local Installation][1]

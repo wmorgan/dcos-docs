@@ -2,6 +2,7 @@
 post_title: GUI DC/OS Installation Guide
 nav_title: GUI
 ---
+
 The automated GUI installer provides a simple graphical interface that guides you through the installation of DC/OS. The automated installer provides a basic installation that is suitable for demonstrations and POCs. Only a subset of the configuration options are available with the GUI method. This is the fastest way to get started with DC/OS.
 
 This installation method uses a bootstrap node to administer the DC/OS installation across your cluster. The bootstrap node uses an SSH key to connect to each node in your cluster to automate the DC/OS installation.
@@ -22,21 +23,29 @@ The DC/OS installation creates these folders:
 
 1.  Download the [DC/OS installer][1]
 
-        $ curl -O https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
+    ```bash
+    $ curl -O https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
+    ```
 
 1.  From your terminal, start the DC/OS GUI installer with this command.
 
-        $ sudo bash dcos_generate_config.sh --web
+    ```bash
+    $ sudo bash dcos_generate_config.sh --web
+    ```
 
     Here is an example of the output.
 
-        Running mesosphere/dcos-genconf docker with BUILD_DIR set to /home/centos/genconf
-        16:36:09 dcos_installer.action_lib.prettyprint:: ====> Starting DC/OS installer in web mode
-        16:36:09 root:: Starting server ('0.0.0.0', 9000)
+    ```bash
+    Running mesosphere/dcos-genconf docker with BUILD_DIR set to /home/centos/genconf
+    16:36:09 dcos_installer.action_lib.prettyprint:: ====> Starting DC/OS installer in web mode
+    16:36:09 root:: Starting server ('0.0.0.0', 9000)
+    ```
 
     **Tip:** You can add the verbose (`-v`) flag to see the debug output:
 
-        $ sudo bash dcos_generate_config.sh --web -v
+    ```bash
+    $ sudo bash dcos_generate_config.sh --web -v
+    ```
 
 2.  Launch the DC/OS web installer in your browser at: `http://<bootstrap-node-public-ip>:9000`.
 
