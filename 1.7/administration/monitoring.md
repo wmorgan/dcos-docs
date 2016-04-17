@@ -96,9 +96,6 @@ This is a service that helps the agent nodes locate the master nodes.<!-- dcos-g
 ### Generate resolv.conf Timer
 Periodically updates the systemd-resolved for Mesos DNS.<!-- dcos-gen-resolvconf.timer/ -->
 
-### Identity and Access Management
-Enterprise DC/OS access control service. For more information, see the [documentation](/1.7/administration/security-and-authentication/).
-
 ### Keepalived
 Runs keepalived to make a VRRP load balancer that can be used to access the masters.<!-- dcos-keepalived.service/ -->
   

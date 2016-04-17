@@ -1,5 +1,5 @@
 ---
-post_title: Installing DCOS by using XXX
+post_title: Installing DC/OS by using XXX
 layout: docs.jade
 published: true
 ---

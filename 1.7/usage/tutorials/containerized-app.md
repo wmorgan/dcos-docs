@@ -73,7 +73,7 @@ In this step you deploy the Oinker containerized app. For more information, see 
 
 2.  Add this content to your `oinker-with-marathon-lb.json` file, where `<your-elb-hostname>` is your AWS ELB **DNS Name**. Specified in this snippet is the Oinker Docker container, the resources required by Oinker, Marathon health checks, the Marathon load balancer settings, and a command to initialize the Cassandra database. <!-- Add link to AWS doc for ELB hostname -->
     
-    **Tip:** DC/OS Community Edition clusters are deployed by using an AWS CloudFormation template. The ELB is created automatically.
+    **Tip:** DC/OS cloud clusters are deployed by using an AWS CloudFormation template. The ELB is created automatically.
     
         {
             "id": "/oinker-with-marathon-lb",

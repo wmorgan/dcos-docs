@@ -133,6 +133,6 @@ Additionally, we track issues, bug reports, and questions via the github
 issue trackers at
 
   - [arangodb-dcos](https://github.com/ArangoDB/arangodb-dcos/issues):
-    The DCOS subcommand
+    The DC/OS subcommand
   - [arangodb-mesos](https://github.com/arangodb/arangodb-mesos/issues):
     The ArangoDB service
