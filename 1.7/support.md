@@ -1,20 +1,21 @@
 ---
 post_title: Support and Feedback
-menu_order: 1
+nav_title: Support
+menu_order: 5
 ---
-DC/OS is a free, open source, community supported product.
+
+DC/OS is a free and open source project and community-supported product.
 
 
-# Project Management
+## Project Management
 
-- [Issue Tracking](http://jira.dcos.io)
+- [Issue Tracking](https://dcosjira.atlassian.net)
 - [Roadmap](http://dcos.io/roadmap)
 
-
-# Community Support
+## Community Support
 
 - [Slack](http://chat.dcos.io/)
-- [Stack Overflow](http://stackoverflow.com/questions/tagged/mesosphere)
+- [Stack Overflow](http://stackoverflow.com/questions/tagged/dcos)
 
 
 # Professional Support
