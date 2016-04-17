@@ -1,18 +1,12 @@
 ---
-UID: 5705936c00b4a
 post_title: Listing Tasks
-post_excerpt: ""
-layout: docs.jade
-published: true
-menu_order: 0
-page_options_require_authentication: false
-page_options_show_link_unauthenticated: false
-hide_from_navigation: false
-hide_from_related: false
+nav_title: Listing Tasks
+menu_order: 999
 ---
+
 The [DC/OS CLI][1] allows you to easily view completed tasks.
 
-# Completed Tasks
+## Completed Tasks
 
 In this example, all completed HDFS tasks are shown:
 
@@ -31,4 +25,4 @@ In this example, all completed HDFS tasks are shown:
      hdfs  root    F    hdfs.8ac02f4d-00a6-11e5-9926-56847afe9799
      hdfs  root    F    hdfs.8e54528e-00a6-11e5-9926-56847afe9799
 
- [1]: /usage/cli/
+ [1]: /docs/1.7/usage/cli/

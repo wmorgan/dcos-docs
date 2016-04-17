@@ -1,17 +1,9 @@
 ---
-UID: 56f98447d3573
-post_title: >
-  Adding a Containerized Docker App to
-  Marathon
-post_excerpt: ""
-layout: docs.jade
-published: true
-menu_order: 105
-page_options_require_authentication: false
-page_options_show_link_unauthenticated: false
-hide_from_navigation: false
-hide_from_related: false
+post_title: Deploying a Docker-based Application to Marathon
+nav_title: Docker App in Marathon
+menu_order: 999
 ---
+
 In this tutorial, a custom Docker app is created and added to Marathon.
 
 ### Prerequisites
@@ -21,7 +13,7 @@ In this tutorial, a custom Docker app is created and added to Marathon.
 *   [DC/OS][3] installed
 *   [DC/OS CLI][4] installed
 
-# Create a custom Docker container
+## Create a custom Docker container
 
 1.  In the `dcos` directory created by the DC/OS CLI installation script, create a new directory named `simple-docker-tutorial` and navigate to it:
     
@@ -69,7 +61,7 @@ In this tutorial, a custom Docker app is created and added to Marathon.
         $ docker push <username>/simple-docker
         
 
-# Add your Docker app to Marathon
+## Add your Docker app to Marathon
 
 1.  Create a file named `nginx.json` by using nano, or another text editor of your choice:
     
@@ -77,42 +69,42 @@ In this tutorial, a custom Docker app is created and added to Marathon.
         
 
 2.  Paste the following into the `nginx.json` file. If you’ve created your own Docker container, replace the image name mesosphere with your Docker Hub username:
-    
-        {
-            "id": "nginx",
-            "container": {
-            "type": "DOCKER",
-            "docker": {
-                  "image": "mesosphere/simple-docker",
-                  "network": "BRIDGE",
-                  "portMappings": [
-                    { "hostPort": 80, "containerPort": 80, "protocol": "tcp"}
-                  ]
-                }
-            },
-            "acceptedResourceRoles": ["slave_public"],
-            "instances": 1,
-            "cpus": 0.1,
-            "mem": 64
+
+```json
+{
+    "id": "nginx",
+    "container": {
+    "type": "DOCKER",
+    "docker": {
+          "image": "mesosphere/simple-docker",
+          "network": "BRIDGE",
+          "portMappings": [
+            { "hostPort": 80, "containerPort": 80, "protocol": "tcp"}
+          ]
         }
-        
-    
-    This file specifies a simple Marathon application called “nginx” that runs one instance of itself on a public node.
+    },
+    "acceptedResourceRoles": ["slave_public"],
+    "instances": 1,
+    "cpus": 0.1,
+    "mem": 64
+}
+```
+
+This file specifies a simple Marathon application called “nginx” that runs one instance of itself on a public node.
 
 3.  Add the nginx Docker container to Marathon by using the DC/OS command:
     
-        $ dcos marathon app add nginx.json
-        
-    
-    If this is added successfully, there is no output.
+    $ dcos marathon app add nginx.json
+
+If this is added successfully, there is no output.
 
 4.  Verify that the app is added:
-    
-        $ dcos marathon app list
-        ID      MEM  CPUS  TASKS  HEALTH  DEPLOYMENT  CONTAINER  CMD                        
-        /nginx   64  0.1    0/1    ---      scale       DOCKER   None
+
+    $ dcos marathon app list
+    ID      MEM  CPUS  TASKS  HEALTH  DEPLOYMENT  CONTAINER  CMD 
+    /nginx   64  0.1    0/1    ---      scale       DOCKER   None
 
  [1]: https://www.docker.com
  [2]: https://hub.docker.com
- [3]: /administration/installing/
- [4]: /usage/cli/install/
+ [3]: /docs/1.7/administration/installing/
+ [4]: /docs/1.7/usage/cli/install/
