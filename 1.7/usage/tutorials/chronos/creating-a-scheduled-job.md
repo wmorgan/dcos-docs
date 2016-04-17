@@ -17,7 +17,7 @@ We're going to create a job that runs every 10 seconds and prints the current da
 
 ### Prerequisites
 
-- [Install Chronos](../README/)
+- [Install Chronos][1]
 - The job needs at least 128MB of RAM and 0.1 CPU cores available in the cluster.
 
 # <a name="chronosinstall"></a>Installing Chronos on DC/OS
@@ -76,4 +76,7 @@ We're going to create a job that runs every 10 seconds and prints the current da
 
 # Appendix: Next Steps
 
-- [Chronos documentation on Github](http://mesos.github.io/chronos/)
+- [Chronos documentation on Github][2]
+
+ [1]: /docs/1.7/usage/tutorials/chronos/
+ [2]: http://mesos.github.io/chronos/

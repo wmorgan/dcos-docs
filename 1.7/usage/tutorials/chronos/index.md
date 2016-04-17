@@ -23,8 +23,8 @@ Chronos is the "cron" for your Mesosphere DC/OS. It is a highly-available distri
 
 ### Prerequisites
 
-- [Install](../install/README.md)
-- The DC/OS CLI must be [installed][3].
+- [DC/OS][5] installed
+- [DC/OS CLI][3] installed
 - Chronos needs at least 1GB of RAM and 1 CPU core available in the cluster.
 
 # <a name="chronosinstall"></a>Installing Chronos on DC/OS
@@ -35,7 +35,7 @@ Chronos is the "cron" for your Mesosphere DC/OS. It is a highly-available distri
     $ dcos package install chronos
     ```
 
-    **Tip:** You can specify a JSON configuration file along with the Chronos installation command: `dcos package install chronos --option <config_file>`. For more information, see the [dcos package section of the CLI command reference][4].
+    **Tip:** You can specify a JSON configuration file along with the Chronos installation command: `dcos package install chronos --options=<config_file>`. For more information, see the [dcos package section of the CLI command reference][4].
 
 2.  Verify that Chronos is successfully installed
 
@@ -43,7 +43,7 @@ Chronos is the "cron" for your Mesosphere DC/OS. It is a highly-available distri
 
     Go to the **Services** tab and verify that Chronos shows up in the list as **Healthy**.
 
-    ![Chronos in the services view](../img/ui-services-chronos.png)
+    ![Chronos in the services view](img/ui-services-chronos.png)
 
     ### DC/OS CLI
 
@@ -72,20 +72,21 @@ Chronos is the "cron" for your Mesosphere DC/OS. It is a highly-available distri
 
     1.  Click on the **Explorer** tab and navigate to the `chronos` folder.
 
-        ![Exhibitor status view](../img/chef-zk-status.png)
+        ![Exhibitor status view](img/chef-zk-status.png)
 
     2.  Choose Type **Delete**, enter the required **Username**, **Ticket/Code**, and **Reason** fields, and click **Next**.
 
-        ![Delete the Chronos path from Zookeeper](../img/zkchronosdelete.png)
+        ![Delete the Chronos path from Zookeeper](img/zkchronosdelete.png)
 
     3.  Click **OK** to confirm your deletion.
 
 # Appendix: Next Steps
 
-- [Creating a scheduled job](../creating-a-scheduled-job/)
+- [Creating a scheduled job][6]
 
  [1]: #chronosinstall
  [2]: #uninstall
  [3]: /docs/1.7/usage/cli/install/
  [4]: /docs/1.7/usage/cli/command-reference/
  [5]: /docs/1.7/administration/installing/
+ [6]: /docs/1.7/usage/tutorials/chronos/creating-a-scheduled-job/
