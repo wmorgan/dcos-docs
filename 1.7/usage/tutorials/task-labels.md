@@ -1,6 +1,5 @@
 ---
 post_title: Labeling Tasks
-nav_title: Labeling Tasks
 ---
 
 This tutorial illustrates how labels can be defined using the Marathon web interface and HTTP API, and how information pertaining to applications that are running can be queried based on label value criteria.
@@ -21,7 +20,9 @@ The figure above shows a second application being deployed using the Marathon we
 
 You can also specify the label values when you deploy the application using the DC/OS CLI like this:
 
-    dcos marathon app add <my json file>
+```bash
+$ dcos marathon app add <my json file>
+```
 
 In the following figure you see the JSON format to use with the DC/OS command to deploy an application using Marathon. Just as on the Marathon web interface, you can specify more than one label, but each label can only have one value:
 
