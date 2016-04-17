@@ -1,15 +1,9 @@
 ---
-UID: 56f9844a74f88
 post_title: Installing the CLI
-post_excerpt: ""
-layout: docs.jade
-published: true
+nav_title: Installation
 menu_order: 1
-page_options_require_authentication: false
-page_options_show_link_unauthenticated: false
-hide_from_navigation: false
-hide_from_related: false
 ---
+
 *   [Installing the DC/OS CLI on Unix, Linux, and OS X][1]
 *   [Installing the DC/OS CLI on Windows][2]
 

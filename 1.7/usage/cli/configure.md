@@ -1,15 +1,9 @@
 ---
-UID: 570586787f3be
 post_title: Configuring the CLI
-post_excerpt: ""
-layout: docs.jade
-published: true
+nav_title: Configuration
 menu_order: 2
-page_options_require_authentication: false
-page_options_show_link_unauthenticated: false
-hide_from_navigation: false
-hide_from_related: false
 ---
+
 The DC/OS CLI configuration can be seen using the following command:
 
     $ dcos config show
