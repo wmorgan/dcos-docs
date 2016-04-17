@@ -1,13 +1,7 @@
 ---
 post_title: Running PostgreSQL on DC/OS
-post_excerpt: ""
-layout: docs.jade
-published: true
-menu_order: 1
-page_options_require_authentication: false
-page_options_show_link_unauthenticated: false
-hide_from_navigation: false
-hide_from_related: false
+nav_title: PostgreSQL
+menu_order: 8
 ---
 
 [PostgreSQL](http://www.postgresql.org/) is an object-relational database management system with an emphasis on extensibility and standards-compliance.
