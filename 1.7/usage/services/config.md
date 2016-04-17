@@ -1,5 +1,5 @@
 ---
-post_title: Configuring Services
+post_title: Configuring
 ---
 
 You can customize your DC/OS service during installation with a JSON configuration file. Otherwise, the services are installed by using default values.
@@ -54,4 +54,4 @@ The general process is as follows:
 
 For more information, see the [dcos package][1] documentation.
 
- [1]: /docs/latest/usage/cli/command-reference/
+ [1]: /docs/1.7/usage/cli/command-reference/
