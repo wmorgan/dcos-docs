@@ -37,15 +37,15 @@ In the template, click on `Create`:
 
 ![Creating deployment using DC/OS template](../img/dcos-azure-marketplace-step1c.png)
 
-Complete the installation wizard steps. Note: you only need to fill in the `Basic` section, rest is optional, however you SHOULD create a new resource group:
+Complete the installation wizard steps. Note: you only need to fill in the `Basic` section, rest is optional, however you it is strongly recommended to create a new resource group (simplifies also cluster teardown):
 
 ![Filling in DC/OS template](../img/dcos-azure-marketplace-step1d.png)
 
-After you've clicked on the final `Create` button you should see something like the following (note that depending on the number of nodes you selected it may take several minutes until the cluster has been deployed, for example, for the default configuration of 5 nodes it takes usually some 15min):
+After you've clicked on the final `Create` button you should see something like the below. The default 5 node configuration takes about 15 minutes to deploy.
 
 ![Deploying DC/OS template](../img/dcos-azure-marketplace-step1e.png)
 
-Once the deployment succeeded, you should see the following (if not, delete the deployment and the resource group and start again):
+Once the deployment succeeded, click on the resource group (`mydcoscluster` here) and you should get to the resource group. If you don't see it, try searching for your research group and if the deployment failed, delete the deployment as well as the resource group and start again:
 
 ![DC/OS template successfully deployed](../img/dcos-azure-marketplace-step1f.png)
 
@@ -77,7 +77,39 @@ $ ssh azure@dcosmaster.westus.cloudapp.azure.com -p 2200 -L 8000:localhost:80
 
 Now you can visit `http://localhost:8000` on your local machine and find the DC/OS Dashboard there.
 
-# Next steps
+### Caveats
+
+Some caveats around SSH access:
+
+- For connections to `http://localhost:8000` to work, the SSH command must be run on your local machine, and not inside a Virtual Machine.
+- In the example above, port `8000` is assumed to be available on your local machine.
+- Above commands only work on Mac or Linux; for Windows use [Putty](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) with a similar port-forwarding configuration, see also [How to Use SSH with Windows on Azure](https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-linux-ssh-from-windows/).
+- If you want to learn more about SSH key generation check out this [GitHub tutorial](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/).
+
+The DC/OS Web UI will not show the correct IP address or CLI install commands when connected via an SSH tunnel.
+
+Note that the following commands can be used to run the DC/OS CLI directly on the master node:
+
+    # Connect to master node with ssh
+    $ ssh -p2200 azureuser@MASTER_LOAD_BALANCER -L 8000:localhost:80
+    
+    # Install virtualenv
+    $ sudo apt-get -y install virtualenv
+    
+    # Install CLI on the master node and configure with http://localhost
+    $ mkdir -p dcos && cd dcos && 
+    $ curl -O https://downloads.dcos.io/dcos-cli/install-optout.sh && \
+       bash ./install-optout.sh . http://localhost && \
+       source ./bin/env-setup
+    
+    # Now you can use the DC/OS CLI:   
+    $ dcos package search
+
+## Tear Down the DC/OS cluster
+
+If you've created a new resource group in the deployment step, it is as easy as this to tear down the cluster and release all resources: just delete the resource group. If you have deployed the cluster into an existing resource group, you'll need to identify all resources that belong to the DC/OS cluster and manually delete them, step by step.
+
+## Next steps
 
 - [Add users to your cluster][10]
 - [Install the DC/OS Command-Line Interface (CLI)][1]
