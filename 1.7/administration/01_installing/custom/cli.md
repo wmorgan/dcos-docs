@@ -254,11 +254,12 @@ To install DC/OS:
 
     When the status icons are green, you can access the DC/OS web interface.
 
-7.  Launch the DC/OS web interface at: `http://<public-master-ip>/`.
+7.  Launch the DC/OS web interface at: `http://<public-master-ip>/`. If this doesn't work, take a look at the [troubleshooting docs][9]
 
 # Next Steps
 
 - [Install the DC/OS Command-Line Interface (CLI)][2]
+- [Troubleshooting DC/OS installation][9]
 - [Use your cluster][3]
 - [Uninstalling DC/OS][7]
 
@@ -290,4 +291,4 @@ After DC/OS is installed and deployed across your cluster, you can add more agen
  [5]: https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
  [6]: ../configuration-parameters/
  [7]: ../uninstall/
-
+ [9]: ../troubleshooting/
