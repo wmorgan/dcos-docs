@@ -1,6 +1,6 @@
 ---
-post_title: Updating Marathon App Inline
-nav_title: Inline App Update
+post_title: Updating Marathon Services Inline
+nav_title: Inline Update
 ---
 
 The [DC/OS CLI][1] Marathon plugin allows you to easily view and update the configuration of existing applications.
@@ -11,11 +11,15 @@ The [Marathon `env` variable][2] can be updated by specifying a JSON string in a
 
 Specify this CLI command with the JSON string included:
 
-    dcos marathon app update test-app env='{"APISERVER_PORT":"25502"}'
+```bash
+$ dcos marathon app update test-app env='{"APISERVER_PORT":"25502"}'
+```
 
 Now run the command below to see the result of your update:
 
-    dcos marathon app show test-app | jq '.env'
+```bash
+$ dcos marathon app show test-app | jq '.env'
+```
 
 ## Update all Environment Variables
 
@@ -23,24 +27,33 @@ The [Marathon `env` variable][1] can also be updated by specifying a JSON file i
 
 First, save the existing environment variables to a file:
 
-    dcos marathon app show test-app | jq .env >env_vars.json
+```bash
+$ dcos marathon app show test-app | jq .env >env_vars.json
+```
 
 The file will look like this:
 
-    { "SCHEDULER_DRIVER_PORT": "25501", }
-
+```json
+{ "SCHEDULER_DRIVER_PORT": "25501", }
+```
 
 Now edit the `env_vars.json` file. Make the JSON a valid object by enclosing the file contents with `{ "env" :}` and add your update:
 
-    { "env" : { "APISERVER_PORT" : "25502", "SCHEDULER_DRIVER_PORT" : "25501" } }
+```json
+{ "env" : { "APISERVER_PORT" : "25502", "SCHEDULER_DRIVER_PORT" : "25501" } }
+```
 
 Specify this CLI command with the JSON file specified:
 
-    dcos marathon app update test-app < env_vars.json
+```bash
+$ dcos marathon app update test-app < env_vars.json
+```
 
 View the results of your update:
 
-    dcos marathon app show test-app | jq '.env'
+```bash
+$ dcos marathon app show test-app | jq '.env'
+```
 
  [1]: /docs/1.7/usage/cli/
  [2]: https://mesosphere.github.io/marathon/docs/task-environment-vars.html
