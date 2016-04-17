@@ -1,25 +1,17 @@
 ---
-UID: 56f9844599c70
 post_title: Overview
-post_excerpt: ""
-layout: docs.jade
-published: true
-menu_order: 100
-page_options_require_authentication: false
-page_options_show_link_unauthenticated: false
-hide_from_navigation: false
-hide_from_related: false
+menu_order: 1
 ---
 
-# <a name="universe"></a>Package Repositories
+## <a name="universe"></a>Package Repositories
 
-The DC/OS Universe contains all services that are installable DC/OS. For more information on DC/OS Universe, see the [GitHub Universe repository][1].
+In DC/OS, the [Universe][1] contains packages that are installable as services in a cluster. We differentiate between selected and community packages. The selected ones are packages have undergone a certification process, everyone is welcome and encourage to submit a community package.
 
-All services in the package repositories are required to meet a certain standard as defined by Mesosphere. For details on submitting a DC/OS service, see [Contributing a package][3].
+All services in the package repositories are required to meet a standard as defined by the DC/OS project team. For details on submitting a DC/OS service, see [Contributing a package][2].
 
-# <a name="adminrouter"></a>Admin Router and web interface integration
+## <a name="adminrouter"></a>Admin Router and Web Interface Integration
 
-By default, a DC/OS service is deployed on a [private agent node][4]. To allow configuration control or monitoring of a service by a user, the admin router proxies calls on the master node to the service in a private node on the cluster. The HTTP service endpoint requires relative paths for artifacts and resources. The service endpoint can provide a web interface, a RESTful endpoint, or both. When creating a DC/OS CLI subcommand it is common to have a RESTful endpoint to communicate with the scheduler service.
+By default, a DC/OS service is deployed on a [private agent node][3]. To allow configuration control or monitoring of a service by a user, the admin router proxies calls on the master node to the service in a private node on the cluster. The HTTP service endpoint requires relative paths for artefacts and resources. The service endpoint can provide a web interface, a RESTful endpoint, or both. When creating a DC/OS CLI subcommand it is common to have a RESTful endpoint to communicate with the scheduler service.
 
 The integration to the admin router is automatic when a framework scheduler registers a `webui_url` during the registration process with the Mesos master. There are a couple of limitations:
 
@@ -28,9 +20,9 @@ The integration to the admin router is automatic when a framework scheduler regi
 
 When the `webui_url` is provided, the service is listed on the DC/OS web interface as a service with a link. That link is the admin router proxy URL name that is based on a naming convention of: `/service/<service_name>`. For example, `<dcos_host>/service/unicorn` is the proxy to the `webui_url`. If you provide a web interface, it will be integrated with the DC/OS web interface and users can click the link for quick access to your service.
 
-Service health check information is provided from the DC/OS service tab when:
+Service health check information is provided from the DC/OS service tab in the following cases.
 
-*   There are service health checks defined in the `marathon.json` file. For example:
+1. There are service health checks defined in the `marathon.json` file, for example:
 
 >      "healthChecks": [
 >      {
@@ -44,46 +36,32 @@ Service health check information is provided from the DC/OS service tab when:
 >      
 >     
 
-*   The `framework-name` property in the `marathon.json` file is valid. For example:
-    
-          "id": "{{kafka.framework-name}}"
-        
+2. The `framework-name` property in the `marathon.json` file is valid, for example:
 
-*   The framework property in the `package.json` file is set to true. For example:
+          "id": "{{kafka.framework-name}}"
+
+3. The framework property in the `package.json` file is set to true, for example:
     
           "framework": true
-        
 
 You can provide public access to your service through the admin router or by deploying your own proxy or router to the public agent node. It is recommend to use the admin router for scheduler configuration and control allowing integration with the DC/OS web interface. It is also recommended to provide a CLI subcommand for command-line control of a RESTful service endpoint for the scheduler.
 
-# DC/OS Service structure
+## Package Structure
 
-Each DC/OS service contains `package.json`, `config.json`, and `marathon.json` files. The contents of these files are described in the DC/OS Service specification.
+Each DC/OS package contains `package.json`, `config.json`, and `marathon.json`; the contents of these files are described in the DC/OS Service specification.
 
-<!-- This information should be replaced with link to service spec. JSH 11/23/15 -->
+### package.json
+    
+- The `"name": "cassandra",` parameter specified here defines the DC/OS service name in the package repository. The must be the first parameter in the file. 
+- Focus the description on your service. Assume that all users are familiar with DC/OS and Mesos.
+- The `tags` parameter is used for user searches (`dcos package search <criteria>`). Add tags that distinguish your service in some way. Avoid the following terms: Mesos, Mesosphere, DC/OS, and datacenter. For example, the unicorns service could have: `"tags": ["rainbows", "mythical"]`.
+- The `preInstallNotes` parameter gives the user information they'll need before starting the installation process. For example, you could explain what the resource requirements are for your service: `"preInstallNotes":"Unicorns take 7 nodes with 1 core each and 1TB of ram."`
+- The `postInstallNotes` parameter gives the user information they'll need after the installation. Focus on providing a documentation URL, a tutorial, or both. For example:"postInstallNotes": "Thank you for installing the Unicorn service.\n\n\tDocumentation: http://<your-url>\n\tIssues: https://github.com/",
+        
 
-*   **package.json**
+*   The `postUninstallNotes` parameter gives the user information they'll need after an uninstall. For example, further cleanup before reinstalling again and a link to the details. A common issue is cleaning up ZooKeeper entries. For example:
     
-    *   The `"name": "cassandra",` parameter specified here defines the DC/OS service name in the package repository. The must be the first parameter in the file. 
-    *   Focus the description on your service. Assume that all users are familiar with DC/OS and Mesos.
-    *   The `tags` parameter is used for user searches (`dcos package search <criteria>`). Add tags that distinguish your service in some way. Avoid the following terms: Mesos, Mesosphere, DC/OS, and datacenter. For example, the unicorns service could have:
-        
-              "tags": ["rainbows", "mythical"]
-            
-    
-    *   The `preInstallNotes` parameter gives the user information they'll need before starting the installation process. For example, you could explain what the resource requirements are for your service.
-        
-              "preInstallNotes":"Unicorns take 7 nodes with 1 core each and 1TB of ram."
-            
-    
-    *   The `postInstallNotes` parameter gives the user information they'll need after the installation. Focus on providing a documentation URL, a tutorial, or both. For example:
-        
-              "postInstallNotes": "Thank you for installing the Unicorn service.\n\n\tDocumentation: http://<your-url>\n\tIssues: https://github.com/",
-            
-    
-    *   The `postUninstallNotes` parameter gives the user information they'll need after an uninstall. For example, further cleanup before reinstalling again and a link to the details. A common issue is cleaning up ZooKeeper entries. For example:
-        
-              postUninstallNotes": "The Unicorn DC/OS Service has been uninstalled and will no longer run.\nPlease follow the instructions at http://<your-URL> to clean up any persisted state" }
+          postUninstallNotes": "The Unicorn DC/OS Service has been uninstalled and will no longer run.\nPlease follow the instructions at http://<your-URL> to clean up any persisted state" }
             
 
 *   **config.json**
@@ -154,21 +132,7 @@ Run the package repository scripts in numerical order. If a script passes you ca
 
 For more information about the JSON files, see the [Universe Readme][1] page.
 
-<!-- 
-### <a name="dcoscli"></a>DC/OS CLI
 
- The 
-
-command.json
-schema
-access the service endpoint
-
-Developer notes:   There currently is no support for service dependencies
-
-over riding the framework-name (service endpoint)?
--->
-
- [1]: https://github.com/mesosphere/universe
- [2]: https://github.com/mesosphere/multiverse
- [3]: https://github.com/mesosphere/universe#contributing-a-package
- [4]: /overview/security/#scrollNav-2
+ [1]: http://mesosphere.github.io/universe/
+ [2]: http://mesosphere.github.io/universe/#contributing-a-package
+ [3]: /docs/1.7/overview/security/
