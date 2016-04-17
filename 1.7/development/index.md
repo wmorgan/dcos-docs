@@ -25,17 +25,15 @@ Service health check information is provided from the DC/OS service tab in the f
 
 1. There are service health checks defined in the `marathon.json` file, for example:
 
->      "healthChecks": [
->      {
->        "path": "/",
->        "portIndex": 1,
->        "protocol": "HTTP",
->        "gracePeriodSeconds": 5,
->        "intervalSeconds": 60,
->        "timeoutSeconds": 10,
->        "maxConsecutiveFailures": 3
->
->
+        "healthChecks": [
+        {
+            "path": "/",
+            "portIndex": 1,
+            "protocol": "HTTP",
+            "gracePeriodSeconds": 5,
+            "intervalSeconds": 60,
+            "timeoutSeconds": 10,
+            "maxConsecutiveFailures": 3
 
 2. The `framework-name` property in the `marathon.json` file is valid, for example:
 
@@ -82,24 +80,28 @@ All URLs used by the service must be passed to the service by using command line
 
 Here is a detailed  workflow for creating a DC/OS service:
 
-**[A]** Fork the Universe [GitHub repository][4].
+1. Fork the Universe [GitHub repository][4].
 
-**[B]** Create a DC/OS service in your local repository.
+1. Create a DC/OS service in your local repository.
 
-1. Name your service, say, `unicorn`. The DC/OS package repository directory structure is: `repo/packages/<initial-letter>/<service-name>/<version>` where:
-  *   `<initial-letter>` is the uppercase first letter of your service name.
-  *   `<service-name>` is the lowercase service name. Do not use keywords such as Apache, Mesos or DC/OS in your service name.
-  *   `<version>` is the service version number.
-1. Create a directory under `repo/packages` for your service. For example, `repo/packages/U/unicorn`.
-1. Create a version index directory. For example, `repo/packages/U/unicorn/0`.
-1. Add `package.json`, `config.json`, and `marathon.json` to your index directory.
-1. If you have a CLI subcommand, create a `command.json` file and add to your index directory.
+    * Name your service, say, `unicorn`. The DC/OS package repository directory structure is: `repo/packages/<initial-letter>/<service-name>/<version>` where:
+      *   `<initial-letter>` is the uppercase first letter of your service name.
+      *   `<service-name>` is the lowercase service name. Do not use keywords such as Apache, Mesos or DC/OS in your service name.
+      *   `<version>` is the service version number.
 
-**[C]** Test your service on DC/OS:
+    * Create a directory under `repo/packages` for your service. For example, `repo/packages/U/unicorn`.
 
-Configure DC/OS to point to your local repository. For example, if your forked repository to `https://github.com/example/universe` and using the `version-2.x` branch, add it to your DC/OS configuration with this command:
+    * Create a version index directory. For example, `repo/packages/U/unicorn/0`.
 
-    $ dcos package repo add my-repo https://github.com/example/universe/archive/version-2.x.zip
+    * Add `package.json`, `config.json`, and `marathon.json` to your index directory.
+
+    * If you have a CLI subcommand, create a `command.json` file and add to your index directory.
+
+1. Test your service on DC/OS:
+
+    Configure DC/OS to point to your local repository. For example, if your forked repository to `https://github.com/example/universe` and using the `version-2.x` branch, add it to your DC/OS configuration with this command:
+
+        $ dcos package repo add my-repo https://github.com/example/universe/archive/version-2.x.zip
 
 ## Naming and Directory Structure
 
