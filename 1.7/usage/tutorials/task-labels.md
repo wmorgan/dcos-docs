@@ -1,7 +1,6 @@
 ---
 post_title: Labeling Tasks
 nav_title: Labeling Tasks
-menu_order: 999
 ---
 
 This tutorial illustrates how labels can be defined using the Marathon web interface and HTTP API, and how information pertaining to applications that are running can be queried based on label value criteria.

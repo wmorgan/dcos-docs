@@ -1,8 +1,6 @@
 ---
 post_title: Running Ruby on Rails on DC/OS
 nav_title: Ruby on Rails
-menu_order: 11
-
 ---
 
 [Ruby on Rails](http://rubyonrails.org/) is a popular web application framework written in Ruby.
