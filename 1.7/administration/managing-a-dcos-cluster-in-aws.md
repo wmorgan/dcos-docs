@@ -13,7 +13,7 @@ To find your your public node IP:
 
 2.  Click on the **Outputs** tab.
 
-    <a href="../img/awsec2privatedns.png" rel="attachment wp-att-1496"><img src="../img/awsec2privatedns-800x197.png" alt="awsec2privatedns" width="800" height="197" class="alignnone size-large wp-image-1496" /></a>
+    ![Private DNS](../img/awsec2privatedns.png)
 
     **Tip:** You might have to refresh your browser to see your deployed app.
 
@@ -25,7 +25,7 @@ The DC/OS AWS CloudFormation template is optimized to run DC/OS, but you might w
 
 To change the number of agent nodes with AWS:
 
-1.  From <a href="https://console.aws.amazon.com/cloudformation/home" target="blank">AWS CloudFormation Management</a> page, select your DC/OS cluster and click **Update Stack**.
+1.  From [AWS CloudFormation Management][3] page, select your DC/OS cluster and click **Update Stack**.
 2.  Click through to the **Specify Parameters** page, and you can specify new values for the **PublicSlaveInstanceCount** and **SlaveInstanceCount**.
 3.  On the **Options** page, accept the defaults and click **Next**. **Tip:** You can choose whether to rollback on failure. By default this option is set to **Yes**.
 4.  On the **Review** page, check the acknowledgement box and then click **Create**.
@@ -50,6 +50,7 @@ To upgrade a DC/OS cluster:
 
 3.  Shutdown your existing DC/OS cluster.
 
- [1]: /overview/security/#scrollNav-3FIXME
+ [1]: /docs/1.7/overview/network-security/
  [2]: /docs/latest/administration/installing/cloud/aws/
+ [3]: https://console.aws.amazon.com/cloudformation/home
 
