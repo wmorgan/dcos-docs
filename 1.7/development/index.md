@@ -1,5 +1,6 @@
 ---
-post_title: Overview
+post_title: Developing DC/OS Services
+nav_title: Developing Services
 menu_order: 1
 ---
 
@@ -33,15 +34,15 @@ Service health check information is provided from the DC/OS service tab in the f
 >        "intervalSeconds": 60,
 >        "timeoutSeconds": 10,
 >        "maxConsecutiveFailures": 3
->      
->     
+>
+>
 
 2. The `framework-name` property in the `marathon.json` file is valid, for example:
 
           "id": "{{kafka.framework-name}}"
 
 3. The framework property in the `package.json` file is set to true, for example:
-    
+
           "framework": true
 
 You can provide public access to your service through the admin router or by deploying your own proxy or router to the public agent node. It is recommend to use the admin router for scheduler configuration and control allowing integration with the DC/OS web interface. It is also recommended to provide a CLI subcommand for command-line control of a RESTful service endpoint for the scheduler.
@@ -52,7 +53,7 @@ Each DC/OS package contains `package.json`, `config.json`, and `marathon.json`; 
 
 ### package.json
 
-- The `"name": "cassandra",` parameter specified here defines the DC/OS service name in the package repository. The must be the first parameter in the file. 
+- The `"name": "cassandra",` parameter specified here defines the DC/OS service name in the package repository. The must be the first parameter in the file.
 - Focus the description on your service. Assume that all users are familiar with DC/OS and Mesos.
 - The `tags` parameter is used for user searches (`dcos package search <criteria>`). Add tags that distinguish your service in some way. Avoid the following terms: Mesos, Mesosphere, DC/OS, and datacenter. For example, the unicorns service could have: `"tags": ["rainbows", "mythical"]`.
 - The `preInstallNotes` parameter gives the user information they'll need before starting the installation process. For example, you could explain what the resource requirements are for your service: `"preInstallNotes":"Unicorns take 7 nodes with 1 core each and 1TB of ram."`
@@ -86,9 +87,9 @@ Here is a detailed  workflow for creating a DC/OS service:
 **[B]** Create a DC/OS service in your local repository.
 
 1. Name your service, say, `unicorn`. The DC/OS package repository directory structure is: `repo/packages/<initial-letter>/<service-name>/<version>` where:
-  *   `<initial-letter>` is the uppercase first letter of your service name. 
+  *   `<initial-letter>` is the uppercase first letter of your service name.
   *   `<service-name>` is the lowercase service name. Do not use keywords such as Apache, Mesos or DC/OS in your service name.
-  *   `<version>` is the service version number. 
+  *   `<version>` is the service version number.
 1. Create a directory under `repo/packages` for your service. For example, `repo/packages/U/unicorn`.
 1. Create a version index directory. For example, `repo/packages/U/unicorn/0`.
 1. Add `package.json`, `config.json`, and `marathon.json` to your index directory.
