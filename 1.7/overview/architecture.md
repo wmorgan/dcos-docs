@@ -38,7 +38,7 @@ The DC/OS user space spans System Components and Services (like Chronos or Kafka
   - A service in DC/OS is consists of a Scheduler (responsible for scheduling tasks on behalf of a user) and an Executor (running Tasks on Agents)
   - User-level applications, for example an NGINX webserver launched through Marathon
 
-## Boot sequence
+## <a name="boot"></a>Boot sequence
 
 In the following, we have a look at how a DC/OS cluster boots up, this means, we have a cluster of nodes with DC/OS installed and switch on the power. What happens?
 

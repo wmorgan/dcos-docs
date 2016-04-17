@@ -101,13 +101,14 @@ The DC/OS installation creates these folders:
     **Tip:** You can click **Download Logs** to view your logs locally.
     **Tip:** If this takes longer than about 10 minutes, you've probably misconfigured your cluster. Go checkout the [debugging documentation][4]
 
-8.  Click **Log In To DC/OS**.
+8.  Click **Log In To DC/OS**. If this doesn't work, take a look at the [troubleshooting docs][9]
 
     ![login](../img/dcos-gui-login.png)
 
 ## Next Steps
 
 - [Install the DC/OS Command-Line Interface (CLI)][5]
+- [Troubleshooting DC/OS installation][9]
 - [Using your cluster][6]
 - [Uninstall DC/OS][7]
 
@@ -118,3 +119,5 @@ The DC/OS installation creates these folders:
 [5]: /docs/1.7/usage/cli/install/
 [6]: /docs/1.7/usage/
 [7]: ../uninstall/
+[9]: ../troubleshooting/
+

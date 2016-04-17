@@ -1,7 +1,5 @@
 ---
 post_title: Custom TLDs
-post_excerpt: ""
-layout: docs.jade
 ---
 DC/OS uses Mesos-DNS for internal service discovery. While the .mesos domain can be used to reach services in DC/OS, an additional instance of Mesos-DNS must be running to support the use of custom suffixes. This tutorial outlines the steps for configuring and starting Mesos-DNS on DC/OS and configuring your authoritative DNS appropriately. This tutorial is also useful when configuring DNS for DC/OS clusters in multiple datacenters and environments.
 

@@ -192,11 +192,12 @@ To install DC/OS:
 
     When the status icons are green, you can access the DC/OS web interface.
 
-1.  Launch the DC/OS web interface at: `http://<master-node-public-ip>/`.
+1.  Launch the DC/OS web interface at: `http://<master-node-public-ip>/`. If this doesn't work, take a look at the [troubleshooting docs][9]
 
 ### Next Steps
 
 - [Install the DC/OS Command-Line Interface (CLI)][2]
+- [Troubleshooting DC/OS installation][9]
 - [Use your cluster][3]
 - [Uninstalling DC/OS][8]
 
@@ -208,3 +209,4 @@ To install DC/OS:
 [6]: /docs/1.7/overview/concepts/#public
 [7]: /docs/1.7/overview/concepts/#private
 [8]: ../uninstall/
+[9]: ../troubleshooting/
