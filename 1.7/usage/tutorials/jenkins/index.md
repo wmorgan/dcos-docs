@@ -1,7 +1,6 @@
 ---
 post_title: How to use Jenkins on DC/OS
 nav_title: Jenkins
-menu_order: 5
 ---
 
 ## How to use Jenkins

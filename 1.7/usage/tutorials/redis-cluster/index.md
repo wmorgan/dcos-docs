@@ -1,7 +1,6 @@
 ---
 post_title: Running Redis Cluster on DC/OS
 nav_title: Redis Cluster
-menu_order: 10
 ---
 
 Create a redis cluster on DC/OS.

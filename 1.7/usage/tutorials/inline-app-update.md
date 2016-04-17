@@ -1,7 +1,6 @@
 ---
 post_title: Updating Marathon App Inline
 nav_title: Inline App Update
-menu_order: 999
 ---
 
 The [DC/OS CLI][1] Marathon plugin allows you to easily view and update the configuration of existing applications.

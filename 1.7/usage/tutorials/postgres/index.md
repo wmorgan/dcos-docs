@@ -1,7 +1,6 @@
 ---
 post_title: Running PostgreSQL on DC/OS
 nav_title: PostgreSQL
-menu_order: 8
 ---
 
 [PostgreSQL](http://www.postgresql.org/) is an object-relational database management system with an emphasis on extensibility and standards-compliance.

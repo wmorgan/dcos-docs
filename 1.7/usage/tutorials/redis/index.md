@@ -1,7 +1,6 @@
 ---
 post_title: Running Redis on DC/OS
 nav_title: Redis
-menu_order: 9
 ---
 
 Take Redis and run it on DC/OS.

@@ -1,7 +1,6 @@
 ---
 post_title: Running ArangoDB on DC/OS
 nav_title: ArangoDB
-menu_order: 1
 ---
 
 ArangoDB is a distributed, multi-model database featuring JSON
