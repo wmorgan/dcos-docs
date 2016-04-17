@@ -1,6 +1,6 @@
 ---
 post_title: Managing AWS Clusters
-menu_order: 6
+menu_order: 9
 ---
 
 ## Finding your public node hostname

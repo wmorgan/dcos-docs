@@ -1,6 +1,6 @@
 ---
 post_title: Opt-Out
-menu_order: 3
+menu_order: 6
 ---
 
 ## Authentication
