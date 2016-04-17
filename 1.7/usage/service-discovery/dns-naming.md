@@ -1,7 +1,9 @@
 ---
 post_title: Discovering running service DNS entries
 nav_title: DNS Naming
+menu_order: 1
 ---
+
 You can get a detailed view of which nodes in your cluster are running which service.
 
 **Prerequisites:**
