@@ -2,7 +2,7 @@
 post_title: The Features of DC/OS
 nav_title: Features
 ---
-This is a high-level look at the features that make DCOS more than the sum of its parts.
+This is an overview of the features that make DC/OS more than the sum of its parts.
 
 - [High Resource Utilization](#high-resource-utilization)
 - [Mixed Workload Colocation](#mixed-workload-colocation)
@@ -23,9 +23,9 @@ This is a high-level look at the features that make DCOS more than the sum of it
 
 DC/OS makes it easy to get the most out of your compute resources.
 
-Deciding where to run processes to best utilize cluster resources is hard, NP-hard in-fact. Deciding where to place long-running services which have changing resource requirements over time is even harder. The reality is that there's no single scheduler that can efficiently and effectively place all types of tasks. There's no way for a single scheduler to be infinitely configurable, universally portable, lightning fast, and easy to use - all at the same time.
+Deciding where to run processes to best utilize cluster resources is hard, NP-hard in-fact. Deciding where to place long-running services which have changing resource requirements over time is even harder. In reality there's no single scheduler that can efficiently and effectively place all types of tasks. There's no way for a single scheduler to be infinitely configurable, universally portable, lightning fast, and easy to use - all at the same time.
 
-DC/OS tackles this problem by separating resource management from task scheduling. Mesos manages CPU, memory, disk, and GPU resources, but delegates the process of placing tasks to higher level schedulers that know more about their task's specific requirements and constraints. This model, known as two-level scheduling, enables multiple workloads to be colocated efficiently.
+DC/OS manages this problem by separating resource management from task scheduling. Mesos manages CPU, memory, disk, and GPU resources. Task placement is delegated to higher level schedulers that are more aware of their task's specific requirements and constraints. This model, known as two-level scheduling, enables multiple workloads to be colocated efficiently.
 
 
 ## Mixed Workload Colocation
@@ -43,9 +43,9 @@ For complex custom workloads, you can even write your own scheduler to optimize 
 
 DC/OS provides easy-to-use container orchestration right out of the box.
 
-Docker provides a great development experience, but trying to run Docker containers in production presents significant challenges. To overcome these challenges, DC/OS includes Marathon as a core component, giving you a production-ready, battle-hardened scheduler capable of orchestrating both containerized and non-containerized workloads.
+Docker provides a great development experience, but trying to run Docker containers in production presents significant challenges. To overcome these challenges, DC/OS includes Marathon as a core component, giving you a production-grade, battle-hardened scheduler that is capable of orchestrating both containerized and non-containerized workloads.
 
-With Marathon, you have the ability to reach extreme scale, scheduling tens of thousands of tasks across thousands of nodes. Use highly configurable declarative application definitions to enforce advanced placement constraints with node, cluster, and grouping affinities.
+With Marathon, you have the ability to reach extreme scale, scheduling tens of thousands of tasks across thousands of nodes. You can use highly configurable declarative application definitions to enforce advanced placement constraints with node, cluster, and grouping affinities.
 
 
 ## Extensible Resource Isolation
@@ -54,7 +54,7 @@ DC/OS makes it possible to configure multiple resource isolation zones.
 
 Not all tasks have the same requirements. Some require maximum isolation for security or performance guarantees. Others are ephemeral, public, or easily restarted. And most are somewhere in between.
 
-The simplest isolation method is to just delegate to Docker. It’s trivial to run Docker containers on DC/OS, but Docker is a bit of a blunt instrument when it comes to isolation. The Mesos containerizer is much more flexible, with multiple independently configurable isolators, and pluggable custom isolators. The Mesos containerizer can even run Docker containers without being chained to the fragility of `dockerd`.
+The simplest isolation method is to just delegate to Docker. It’s trivial to run Docker containers on DC/OS, but Docker is a bit of a blunt instrument when it comes to isolation. The [Mesos containerizer](http://mesos.apache.org/documentation/latest/mesos-containerizer/) is much more flexible, with multiple independently configurable isolators, and pluggable custom isolators. The Mesos containerizer can even run Docker containers without being chained to the fragility of `dockerd`.
 
 
 ## Stateful Storage Support
@@ -83,11 +83,11 @@ DC/OS also supports installing from multiple package repositories: you can host 
 
 The DC/OS Installer makes it easy to install DC/OS on any cluster of physical or virtual machines.
 
-For users with their own on-premise hardware or virtual machine provisioning infrastructure, the GUI Installer provides a quick, intuitive way to install DC/OS.
+For users with their own on-premise hardware or virtual machine provisioning infrastructure, the GUI or CLI Installer provides a quick, intuitive way to install DC/OS.
 
 For users deploying to the public cloud, DC/OS offers several configurable cloud provisioning templates for AWS, Azure, and Packet.
 
-For the advanced user, the Command Line Installer provides a scriptable, automatable interface to integrate with your prefered configuration management system.
+For the advanced user, the Advanced Installer provides a scriptable, automatable interface to integrate with your prefered configuration management system.
 
 
 ## Web and Command Line Interfaces
@@ -96,12 +96,12 @@ The DC/OS web and command line interfaces make it easy to monitor and manage the
 
 The DC/OS web interface lets you monitor resource allocation, running services, current tasks, component health, available packages, and more with intuitive browser-based navigation, real-time graphs, and interactive debugging tools.
 
-The DC/OS command line tool lets you control DC/OS from the comfort of a terminal. It’s powerful, yet easily scriptable, with handy plugins to interact with installed services.
+The DC/OS command line interface provides control of DC/OS from the comfort of a terminal. It’s powerful, yet easily scriptable, with handy plugins to interact with installed services.
 
 
 ## Elastic Scalability
 
-DC/OS lets you easily scale your services up and down with the turn of a dial.
+DC/OS gives you the power to easily scale your services up and down with the turn of a dial.
 
 Horizontal scaling is trivial in Marathon, as long as your service supports it. You can change the number of service instances at any time. DC/OS even lets you autoscale the number of instances based on session count, using the Marathon Load Balancer.
 
@@ -112,7 +112,7 @@ Adding nodes to a DC/OS cluster is a snap too. The DC/OS Installer uses immutabl
 
 ## High Availability
 
-DC/OS itself is highly available and makes it easy for your services to be highly available too.
+DC/OS is highly available and makes it easy for your services to be highly available too.
 
 Mission-critical services require health monitoring, self-healing, and fault tolerance both for themselves and the platform and infrastructure they run on. DC/OS gives you multiple layers of protection.
 

@@ -106,7 +106,7 @@ You can also install the Kafka service from [DC/OS Universe dashboard](http://<d
 
 ## Validate installation
 
-Validate that the installation added the enhanced DCOS CLI for Kafka:
+Validate that the installation added the enhanced DC/OS CLI for Kafka:
 
 `dcos package list kafka; dcos kafka help`
 

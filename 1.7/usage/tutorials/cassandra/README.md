@@ -49,7 +49,7 @@ Install Cassandra using the DC/OS CLI:
     Installing Marathon app for package [cassandra] version [1.0.0-2.2.5]
     Installing CLI subcommand for package [cassandra] version [1.0.0-2.2.5]
     New command available: dcos cassandra
-    DCOS Cassandra Service is being installed.
+    DC/OS Cassandra Service is being installed.
 
 While the DC/OS command line interface (CLI) is immediately available it takes a few moments until Cassandra is actually running in the cluster.
 

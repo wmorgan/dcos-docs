@@ -3,8 +3,8 @@ post_title: High Availability in DC/OS
 nav_title: High Availability
 ---
 
-This document will discuss some of the high availability features in DC/OS, in
-addition to best practices for building highly available applications on DC/OS.
+This document discusses the high availability features in DC/OS and best 
+practices for building highly available applications on DC/OS.
 
 ## General concepts of high availability
 
@@ -14,7 +14,7 @@ A common pattern in highly available systems is the leader/follower concept.
 This is also sometimes referred to as: master/slave, primary/replica, or some
 combination thereof. Generally speaking, this architecture is used when you have
 one authoritative process, with N standby processes. In some systems, the
-standby processes may also be capable of serving requests or performing other
+standby processes might also be capable of serving requests or performing other
 operations. For example, when running a database like MySQL with a master and
 replica, the replica is able to serve read-only requests, but it cannot accept
 writes (only the master will accept writes).
@@ -83,7 +83,7 @@ For example, web services should be decoupled from databases and shared caches.
 Single points of failure come in many forms. A service like ZooKeeper, for
 example, can become a single point of failure when every service in your system
 shares one ZooKeeper cluster. You can reduce risks by running multiple ZooKeeper
-clusters for separate services. With DCOS, there's an [Exhibitor
+clusters for separate services. With DC/OS, there's an [Exhibitor
 package](https://github.com/mesosphere/exhibitor-dcos) included which makes this
 easy:
 
@@ -115,6 +115,6 @@ can be achieved by:
  * Following REST best-practices when building services: in particular,
    avoiding storing client state on the server between requests.
 
-A number of DCOS services follow the fail-fast pattern in the event of errors.
+A number of DC/OS services follow the fail-fast pattern in the event of errors.
 Specifically, both Mesos and Marathon will shut down in the case of
 unrecoverable conditions such as losing leadership.
