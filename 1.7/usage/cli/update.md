@@ -1,15 +1,9 @@
 ---
-UID: 56f9844a53401
 post_title: Updating the CLI
-post_excerpt: ""
-layout: docs.jade
-published: true
-menu_order: 26
-page_options_require_authentication: false
-page_options_show_link_unauthenticated: false
-hide_from_navigation: false
-hide_from_related: false
+nav_title: Updates
+menu_order: 3
 ---
+
 You can update the DC/OS CLI to the latest version or downgrade to an older version.
 
 # Upgrade the CLI
