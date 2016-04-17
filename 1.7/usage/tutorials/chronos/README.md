@@ -1,0 +1,93 @@
+---
+post_title: Installing Chronos on DC/OS
+post_excerpt: ""
+layout: page
+published: true
+menu_order: 1
+page_options_require_authentication: false
+page_options_show_link_unauthenticated: false
+hide_from_navigation: false
+hide_from_related: false
+---
+Chronos is the "cron" for your Mesosphere DC/OS. It is a highly-available distributed job scheduler, providing the most robust way to run batch jobs in your datacenter. Chronos schedules jobs across the Mesos cluster and manages dependencies between jobs in an intelligent way.
+
+### Time Estimate
+
+10 Minutes
+
+### Target Audience
+
+- Data Infrastructure Engineers
+- Data Scientists
+- Devops Engineers
+
+### Table of Contents
+
+- [Installing Chronos on DC/OS][1]
+- [Uninstalling Chronos][2]
+
+### Prerequisites
+
+- [Install](../install/README.md)
+- The DC/OS CLI must be [installed][3].
+- Chronos needs at least 1GB of RAM and 1 CPU core available in the cluster.
+
+# <a name="chronosinstall"></a>Installing Chronos on DC/OS
+
+1.  From the DC/OS CLI, enter this command:
+
+        $ dcos package install chronos
+
+
+    **Tip:** You can specify a JSON configuration file along with the Chronos installation command: `dcos package install chronos --option <config_file>`. For more information, see the [dcos package section of the CLI command reference][4].
+
+2.  Verify that Chronos is successfully installed
+
+    ### DC/OS Web Interface
+
+    Go to the **Services** tab and verify that Chronos shows up in the list as **Healthy**.
+
+    ![Chronos in the services view](img/ui-services-chronos.png)
+
+    ### DC/OS CLI
+
+    Run this command to view installed services:
+
+        $ dcos package list
+
+    You should see Chronos in the output:
+
+        NAME     VERSION  APP               COMMAND  DESCRIPTION
+        chronos  2.4.0    /chronos          ---      A fault tolerant job scheduler for Mesos which handles dependencies and ISO8601 based schedules.
+
+
+# <a name="uninstall"></a>Uninstalling Chronos
+
+1.  From the DC/OS CLI, enter this command:
+
+        $ dcos package uninstall chronos
+
+
+2.  Open the Zookeeper Exhibitor web interface at `<hostname>/exhibitor`, where `<hostname>` is the [Mesos Master hostname][5].
+
+    1.  Click on the **Explorer** tab and navigate to the `chronos` folder.
+
+        ![Exhibitor status view](img/chef-zk-status.png)
+
+    2.  Choose Type **Delete**, enter the required **Username**, **Ticket/Code**, and **Reason** fields, and click **Next**.
+
+        ![Delete the Chronos path from Zookeeper](img/zkchronosdelete.png)
+
+    3.  Click **OK** to confirm your deletion.
+
+# Appendix: Next Steps
+
+- [Creating a scheduled job](creating-a-scheduled-job)
+- [Debugging](../debugging/README.md)
+- [Operating](../operating/README.md)
+
+ [1]: #chronosinstall
+ [2]: #uninstall
+ [3]: /usage/cli/install/
+ [4]: /usage/cli/command-reference/
+ [5]: /administration/installing/awscluster#launchdcos
