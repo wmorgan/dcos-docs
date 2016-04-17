@@ -1,6 +1,6 @@
 ---
-post_title: Deploying a Docker-based Application to Marathon
-nav_title: Docker App in Marathon
+post_title: Deploying a Docker-based Service to Marathon
+nav_title: Docker Service
 ---
 
 In this tutorial, a custom Docker app is created and added to Marathon.
