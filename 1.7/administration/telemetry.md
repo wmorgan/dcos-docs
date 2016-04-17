@@ -1,6 +1,6 @@
 ---
 post_title: Telemetry
-menu_order: 5
+menu_order: 7
 ---
 
 To continuously improve the DC/OS experience, we have included a telemetry component that reports anonymous usage data back to us. We use this data to monitor the reliability of core DC/OS components, installations, and to find out which features are most popular. There are two sections that have the telemetry component implemented:
