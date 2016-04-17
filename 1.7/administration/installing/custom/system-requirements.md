@@ -1,6 +1,6 @@
 ---
 post_title: System Requirements
-layout: docs.jade
+menu_order: 1
 ---
 # Hardware Prerequisites
 

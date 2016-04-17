@@ -1,6 +1,7 @@
 ---
 post_title: Install a DC/OS cluster
 nav_title: Install
+menu_order: 1
 ---
 
 DC/OS can be installed on any cluster of physical or virtual machines.

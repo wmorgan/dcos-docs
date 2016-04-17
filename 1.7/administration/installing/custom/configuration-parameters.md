@@ -1,6 +1,9 @@
 ---
-post_title: Configuration parameters
+post_title: Install Configuration Parameters
+nav_title: Config
+menu_order: 7
 ---
+
 These configuration parameters are specified in [YAML][1] format in your config.yaml file. During DC/OS installation the configuration file is used to generate a customized DC/OS build. <!-- A config.yaml template file is available [here][2]. -->
 
 # Cluster Setup

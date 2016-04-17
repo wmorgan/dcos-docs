@@ -1,6 +1,6 @@
 ---
 post_title: Monitoring
-menu_order: 3
+menu_order: 4
 ---
 
 Monitoring the health of all the pieces that make up DC/OS is vital to datacenter operators and for troubleshoooting hard-to-diagnose bugs. You can monitor the health of your cluster components from the DC/OS UI component health page. The component health page displays information from the system health API, which monitors the core DC/OS components.

@@ -1,6 +1,6 @@
 ---
 post_title: User Management
-menu_order: 4
+menu_order: 2
 ---
 
 In the following, we will walk you through user management aspects of DC/OS: how to perform the initial authentication and how to give other users access to the cluster.
