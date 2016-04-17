@@ -229,4 +229,4 @@ DC/OS uses Mesos-DNS for internal service discovery. While the `.mesos` domain c
 
 Here is a datacenter with DC/OS clusters in development and production environments:
 
-![Custom TLD example](img/cust-domain.png)
+![Custom TLD example](../img/cust-domain.png)
