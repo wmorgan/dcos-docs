@@ -1,7 +1,6 @@
 ---
 post_title: CLI DC/OS Installation Guide
 nav_title: CLI
-layout: docs.jade
 ---
 The automated CLI installer provides a guided installation of DC/OS from the command line. With this method you can choose from the complete set of DC/OS configuration options.
 
@@ -258,9 +257,10 @@ To install DC/OS:
 
 # Next Steps
 
+- [Add users to your cluster][10]
 - [Install the DC/OS Command-Line Interface (CLI)][2]
 - [Troubleshooting DC/OS installation][9]
-- [Use your cluster][3]
+- [Use your cluster][8]
 - [Uninstalling DC/OS][7]
 
 ### Add more agent nodes
@@ -291,4 +291,6 @@ After DC/OS is installed and deployed across your cluster, you can add more agen
  [5]: https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
  [6]: ../configuration-parameters/
  [7]: ../uninstall/
+ [8]: /docs/1.7/usage/
  [9]: ../troubleshooting/
+ [10]: /docs/1.7/administration/user-management/

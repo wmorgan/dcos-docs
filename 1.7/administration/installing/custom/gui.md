@@ -1,7 +1,6 @@
 ---
 post_title: GUI DC/OS Installation Guide
 nav_title: GUI
-layout: docs.jade
 ---
 The automated GUI installer provides a simple graphical interface that guides you through the installation of DC/OS. The automated installer provides a basic installation that is suitable for demonstrations and POCs. Only a subset of the configuration options are available with the GUI method. This is the fastest way to get started with DC/OS.
 
@@ -107,6 +106,7 @@ The DC/OS installation creates these folders:
 
 ## Next Steps
 
+- [Add users to your cluster][10]
 - [Install the DC/OS Command-Line Interface (CLI)][5]
 - [Troubleshooting DC/OS installation][9]
 - [Using your cluster][6]
@@ -120,4 +120,5 @@ The DC/OS installation creates these folders:
 [6]: /docs/1.7/usage/
 [7]: ../uninstall/
 [9]: ../troubleshooting/
+[10]: /docs/1.7/administration/user-management/
 

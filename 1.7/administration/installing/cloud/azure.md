@@ -1,7 +1,6 @@
 ---
 post_title: Install DC/OS on Azure
 nav_title: Azure
-layout: docs.jade
 ---
 
 # Overview
@@ -78,8 +77,12 @@ Now you can visit `http://localhost:8000` on your local machine and find the DC/
 
 # Next steps
 
-- [Install the DC/OS Command-Line Interface (CLI)][1].
+- [Add users to your cluster][10]
+- [Install the DC/OS Command-Line Interface (CLI)][1]
+- [Use your cluster][4]
 - [Scaling considerations][2]
 
 [1]: /docs/1.7/usage/cli/install/
 [3]: https://azure.microsoft.com/en-us/documentation/articles/best-practices-auto-scaling/
+[4]: /docs/1.7/usage/
+[10]: /docs/1.7/administration/user-management/

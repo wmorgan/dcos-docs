@@ -1,7 +1,6 @@
 ---
 post_title: AWS DC/OS Installation Guide
 nav_title: AWS
-layout: docs.jade
 ---
 
 You can create a DC/OS cluster for Amazon Web Services (AWS) by using the DC/OS template on AWS CloudFormation.
@@ -91,6 +90,7 @@ Launch the DC/OS web interface by entering the Mesos Master hostname:
 
 # Next steps
 
+- [Add users to your cluster][10]
 - [Install the DC/OS Command-Line Interface (CLI)][2]
 - [Using your cluster][3]
 - [Scaling considerations][4]
@@ -99,3 +99,5 @@ Launch the DC/OS web interface by entering the Mesos Master hostname:
  [2]: /docs/1.7/usage/cli/install/
  [3]: /docs/1.7/usage/
  [4]: https://aws.amazon.com/autoscaling/
+ [10]: /docs/1.7/administration/user-management/
+
