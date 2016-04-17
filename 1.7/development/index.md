@@ -1,7 +1,6 @@
 ---
-post_title: Developing DC/OS Services
-nav_title: Developing Services
-menu_order: 1
+post_title: Development of DC/OS Services
+nav_title: Development
 ---
 
 ## <a name="universe"></a>Package Repositories
