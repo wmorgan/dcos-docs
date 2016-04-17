@@ -1,35 +1,25 @@
 ---
-UID: 56f984485c373
 post_title: >
-  Autoscaling based on memory and CPU
-  metrics
-post_excerpt: ""
-layout: docs.jade
-published: true
-menu_order: 1
-page_options_require_authentication: false
-page_options_show_link_unauthenticated: false
-hide_from_navigation: false
-hide_from_related: false
+  Autoscaling Marathon services via. CPU/memory
+nav_title: CPU/Memory
 ---
-A Python application, marathon-autoscale.py, autoscales your Marathon application based on the utilization metrics Mesos reports.
 
-The application runs on any system that has Python 3 installed and has access to the Marathon server via HTTP TCP Port 80 and the Mesos Agent nodes over TCP port 5051. marathon-autoscale.py is intended to demonstrate what is possible when you run your applications on Marathon and Mesos. It periodically monitors the aggregate CPU and memory utilization for all the individual tasks running on the Mesos agents that make up the specified Marathon application. When the threshold you set for these metrics is reached, marathon-autoscale.py adds instances to the application based on the multiplier you specify.
+A Python service, `marathon-autoscale.py`, autoscales your Marathon application based on the utilization metrics which Mesos reports. You can run this service from within your DC/OS cluster. `marathon-autoscale.py` is intended to demonstrate what is possible when you run your services on DC/OS.
+
+Periodially, `marathon-autoscale.py` will monitor the aggregate CPU and memory utilization for all tasks that make up the specified Marathon service. When your threshold is hit, `marathon-autoscale.py` will increase the number of tasks for your Marathon service.
 
 **Prerequisites**
 
 *   A [running DC/OS cluster][1].
-*   Python 3 installed on the system you will run marathon-autoscale.py. **Note:** This can be one of the Mesos master nodes.
-*   An application running on the native Marathon instance that you intend to autoscale.
-*   TCP Port 80 open to the Marathon instance and TCP Port 5051 open to the Mesos Agent hosts.
+*   A service running on Marathon that you'd like to autoscale.
 
 # Install the application
 
 SSH to the system where you will run marathon-autoscale.py and install it:
 
-        $ git clone https://github.com/mesosphere/marathon-autoscale.git 
+        $ dcos node ssh --master
+        $ git clone https://github.com/mesosphere/marathon-autoscale.git
         $ cd marathon-autoscale
-    
 
 # Run the application
 
@@ -43,7 +33,7 @@ When you run the application, you'll be prompted for the following parameters:
 *   **autoscale_multiplier (float)** - The number by which current instances will be multiplied to determine how many instances to add during scaleout.
 *   **max_instances (int)** - The ceiling for the number of instances to stop scaling out EVEN if thresholds are crossed.
 
-    $ python marathon-autoscale.py
+    $ /opt/mesosphere/bin/python marathon-autoscale.py
     Enter the DNS hostname or IP of your Marathon Instance : ip-**-*-*-***
     Enter the Marathon Application Name to Configure Autoscale for from the Marathon UI : testing
     Enter the Max percent of Mem Usage averaged across all Application Instances to trigger Autoscale (ie. 80) : 5
@@ -52,4 +42,4 @@ When you run the application, you'll be prompted for the following parameters:
     Enter Autoscale multiplier for triggered Autoscale (ie 1.5) : 2
     Enter the Max instances that should ever exist for this application (ie. 20) : 10
 
- [1]: /administration/installing/awscluster/
+ [1]: /docs/1.7/administration/installing/

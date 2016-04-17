@@ -1,27 +1,20 @@
 ---
-UID: 56f9844863e83
-post_title: Autoscaling based on app request rate
-post_excerpt: ""
-layout: docs.jade
-published: true
-menu_order: 2
-page_options_require_authentication: false
-page_options_show_link_unauthenticated: false
-hide_from_navigation: false
-hide_from_related: false
+post_title: >
+  Autoscaling via. requests/second
+nav_title: Requests/Second
 ---
+
 You can use the [marathon-lb-autoscale][1] application to implement request rate-based autoscaling with Marathon. The marathon-lb-autoscale application works with any application that uses TCP traffic and can be routed through HAProxy.
 
-marathon-lb-autoscale collects data from all HAProxy instances to determine the current RPS (requests per second) for your apps. The autoscale controller then attempts to maintain a defined target number of requests per second per app instance. marathon-lb-autoscale makes API calls to Marathon to scale the app.
+marathon-lb-autoscale collects data from all HAProxy instances to determine the current RPS (requests per second) for your apps. The autoscale controller then attempts to maintain a defined target number of requests per second per service instance. marathon-lb-autoscale makes API calls to Marathon to scale the app.
 
-<a href="/wp-content/uploads/2015/12/marathon-lb-autoscale-1.png" rel="attachment wp-att-1259"><img src="/wp-content/uploads/2015/12/marathon-lb-autoscale-1.png" alt="marathon-lb-autoscale" width="552" height="604" class="alignnone size-full wp-image-1259" /></a>
+![marathon-lb-autoscale-1.png](../img/marathon-lb-autoscale-1.png)
 
 **Prerequisites**
 
 *   A [running DC/OS cluster][2].
 *   A [configured DC/OS CLI][3].
-*   An application running on the native Marathon instance.
-*   Ruby installed on your master node if you will run the application on the command line.
+*   A service running on the native Marathon instance.
 
 **Application Parameters**
 
@@ -41,12 +34,11 @@ Common options: -h, --help - Show this message
 **Run marathon-lb-autoscale on Marathon**
 
 1.  Create a JSON file
-    
+
         $ nano marathon-lb-autoscale.json
-        
 
 2.  Paste this into the file. Edit the arguments to your your desired parameters:
-    
+
         {
           "id": "marathon-lb-autoscale",
           "args":[
@@ -66,20 +58,15 @@ Common options: -h, --help - Show this message
             }
           }
         }
-        
 
 3.  Add the app to Marathon
-    
+
         $ dcos marathon app add marathon-lb-autoscale.json
-        
 
 4.  Verify that the app has been added:
-    
-        $ dcos marathon app list
-        
 
-**Note:** You can also run autoscale.rb from the command line of your master node if you have Ruby installed.
+        $ dcos marathon app list
 
  [1]: https://github.com/mesosphere/marathon-lb-autoscale
- [2]: /administration/installing/awscluster/
- [3]: /usage/cli/install/
+ [2]: /docs/1.7/administration/installing/
+ [3]: /docs/1.7/usage/cli/install/
