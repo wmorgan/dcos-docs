@@ -301,11 +301,11 @@ To install DC/OS:
 
 7.  Launch the DC/OS web interface at `http://<public-master-ip>/` and login. If this doesn't work, take a look at the [troubleshooting docs][9]
 
-    ![alt text](/img/ui-installer-login.gif)
+    ![alt text](../img/ui-installer-login.gif)
     
     You are done!
         
-    ![dashboard](/img/ui-dashboard.gif)
+    ![dashboard](../img/ui-dashboard.gif)
 
 # Next Steps
 

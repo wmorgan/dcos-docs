@@ -116,7 +116,7 @@ The DC/OS installation creates these folders:
     
     You are done!
     
-    ![dashboard](/img/ui-dashboard.gif)
+    ![dashboard](../img/ui-dashboard.gif)
 
 ## Next Steps
 

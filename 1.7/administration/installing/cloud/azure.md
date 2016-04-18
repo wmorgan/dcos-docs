@@ -77,7 +77,7 @@ $ ssh azure@dcosmaster.westus.cloudapp.azure.com -p 2200 -L 8000:localhost:80
 
 Now you can visit `http://localhost:8000` on your local machine and view the DC/OS Dashboard.
 
-![DC/OS dashboard](/img/ui-dashboard.gif)
+![DC/OS dashboard](../img/ui-dashboard.gif)
 
 ### Caveats
 

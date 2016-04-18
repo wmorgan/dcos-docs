@@ -87,11 +87,11 @@ Launch the DC/OS web interface by entering the Mesos Master hostname:
 
     ![Monitor stack creation](../img/dcos-aws-step3a.png)
     
-    ![DC/OS dashboard](/img/ui-dashboard.gif)
+    ![DC/OS dashboard](../img/ui-dashboard.gif)
     
 1.  Click the dropup menu on the lower-left side to install the DC/OS [Command-Line Interface (CLI)][2]. You must install the CLI to administer your DCOS cluster.
 
-    ![install CLI](/img/ui-dashboard-install-cli.gif)
+    ![install CLI](../img/ui-dashboard-install-cli.gif)
     
 
 

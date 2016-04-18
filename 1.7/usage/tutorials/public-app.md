@@ -3,10 +3,10 @@ post_title: Deploying Public Services
 nav_title: Public Services
 ---
 
-DC/OS agent nodes can be designated as [public](/overview/concepts/#public) or [private](/overview/concepts/#private) during [advanced](/administration/installing/custom/) or [cloud](/administration/installing/cloud/) installations. Public agent nodes provide public access to your DC/OS applications. By default apps are launched on private agent nodes. To launch an app on a public node, you must create a Marathon app definition with the `"acceptedResourceRoles":["slave_public"]` parameter specified.
+DC/OS agent nodes can be designated as [public](/docs/1.7/overview/concepts/#public) or [private](/docs/1.7/overview/concepts/#private) during [advanced](/docs/1.7/administration/installing/custom/) or [cloud](/docs/1.7/administration/installing/cloud/) installations. Public agent nodes provide public access to your DC/OS applications. By default apps are launched on private agent nodes. To launch an app on a public node, you must create a Marathon app definition with the `"acceptedResourceRoles":["slave_public"]` parameter specified.
 
 
-1.  Install DC/OS and DC/OS CLI by using the [advanced installation](/administration/installing/custom/) or [cloud installation](/administration/installing/cloud/) instructions. You must declare at least one agent node as public. 
+1.  Install DC/OS and DC/OS CLI by using the [advanced installation](/docs/1.7/administration/installing/custom/) or [cloud installation](/docs/1.7/administration/installing/cloud/) instructions. You must declare at least one agent node as public. 
 
     For example, with advanced installation you can designate an agent node with this command:
 
@@ -14,7 +14,7 @@ DC/OS agent nodes can be designated as [public](/overview/concepts/#public) or [
         
     For example, with the AWS cloud installation, you can specify a public agent node with the `PublicSlaveInstanceCount` box:
    
-    ![alt text](/img/dcos-aws-step2c.png)
+    ![alt text](../img/dcos-aws-step2c.png)
         
 1.  Create a Marathon app definition with the `"acceptedResourceRoles":["slave_public"]` parameter specified. For example:
     
@@ -50,7 +50,7 @@ DC/OS agent nodes can be designated as [public](/overview/concepts/#public) or [
         ID      MEM  CPUS  TASKS  HEALTH  DEPLOYMENT  CONTAINER  CMD                        
         /nginx   64  0.1    0/1    ---      scale       DOCKER   None
 
- [1]: /tutorials/containerized-app/
- [3]: /administration/installing/
- [4]: /usage/cli/install/
+ [1]: /docs/1.7/tutorials/containerized-app/
+ [3]: /docs/1.7/administration/installing/
+ [4]: /docs/1.7/usage/cli/install/
 ```
