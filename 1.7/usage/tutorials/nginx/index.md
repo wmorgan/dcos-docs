@@ -65,3 +65,15 @@ nginx  10.0.0.161  root    R    nginx.b1e20ff3-0500-11e6-83da-8a8d57d7c81f
 Let's try to access the hello-world website that our NGINX server is now hosting by opening following URL: `http://<YOUR-DCOS-MASTER-HOSTNAME>/service/nginx`. You should see a webpage similar to this:
 
 ![Hello World NGINX on DC/OS](img/hello-nginx-dcos.png)
+
+## Uninstalling NGINX
+
+To uninstall NGINX, run following command:
+
+```bash
+dcos package uninstall nginx
+```
+
+## Further resources
+
+* [NGINX Website](nginx.com)
