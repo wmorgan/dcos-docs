@@ -9,221 +9,124 @@ Kafka uses [Apache ZooKeeper](https://zookeeper.apache.org/) for coordination. K
 
 **Time Estimate**:
 
-Approximately 20 minutes.
+Approximately 10 minutes.
 
 **Target Audience**:
 
-- Anyone interested in automated administration
+- Anyone interested in Kafka
 
 **Terminology**:
 
-- **pub/sub:** Publish/Subscribe messaging pattern
 - **Broker:** A Kafka message broker that routes messages to one or more topics
 - **Topic:** A Kafka topic is message filtering mechanism in the pub/sub systems. Subscribers register to receive/consume messages from topics
-- **Publisher:** An application that publishes messages on Kafka
-- **Consumer:** An application that consumes messages from Kafka
-- **Universe:** The default DC/OS repository
+- **Producer:** An application that producers messages to a Kafka topic
+- **Consumer:** An application that consumes messages from a Kafka topic
 
 **Scope**:
 
 In this tutorial you will learn:
 * How to install the Kafka service
-* How to validate that the service is up and running
-* How to use the enhanced DC/OS CLI operations for Kafka
-* How to use Kafka on DC/OS to launch brokers and publish/consume messages
+* How to use the enhanced DC/OS CLI to create Kafka topics
+* How to use Kafka on DC/OS to produce and consume messages
 
 ## Table of Contents
 
   * [Prerequisites](#prerequisites)
   * [Install Kafka](#install-kafka)
-
     * [Typical installation](#typical-installation)
-    * [Custom manual installation procedure](#custom-manual-installation-procedure)
-    * [Manual installation via the web interface](#manual-installation-via-the-web-interface)
-    * [Validate installation](#validate-installation)
+    * [Minimal installation](#minimal-installation)
 
-  * [DC/OS Kafka operations](#dcos-kafka-operations)
+  * [Topic Management](#topic-management)
+     * [Add a topic](#add-a-topic)
+     
+  * [Produce and consume messages](#produce-and-consume-messages)
+     * [List Kafka client endpoints](#list-kafka-client-endpoints)
+     * [Produce a message](#produce-a-message)
+     * [Consume a message](#consume-a-message)
+     
   * [Cleanup](#cleanup)
-  * [API Reference](#api-reference)
-
+     * [Uninstall](#uninstall)
+     
+  * [Kafka API Reference](#api-reference)
 
 ## Prerequisites
 
-- A running DC/OS cluster with three nodes, each with 2 CPUs and 2 GB of RAM available
+- A running DC/OS cluster with 3 nodes, each with 2 CPUs and 2 GB of RAM available
 - [DC/OS CLI](/docs/1.7/usage/cli/install/) installed
 
 ## Install Kafka
 
 ### Typical installation
 
-Install Kafka using the DC/OS CLI:
+Install a Kafka cluster with 3 brokers using the DC/OS CLI:
 
 ```bash
 $ dcos package install kafka
-This will install Apache Kafka DC/OS Service.
-Continue installing? [yes/no] yes
-Installing Marathon app for package [kafka] version [0.9.4.0]
-Installing CLI subcommand for package [kafka] version [0.9.4.0]
+Installing Marathon app for package [kafka] version [1.0.0-0.9.0.1]
+Installing CLI subcommand for package [kafka] version [1.0.0-0.9.0.1]
 New command available: dcos kafka
-The Apache Kafka DC/OS Service is installed:
-  docs   - https://github.com/mesos/kafka
-  issues - https://github.com/mesos/kafka/issues
+DC/OS Kafka Service is being installed.
+
+	Documentation: https://docs.mesosphere.com/kafka-1-7/
+	Issues: https://docs.mesosphere.com/support/
 ```
 
 While the DC/OS command line interface (CLI) is immediately available, it takes a few minutes for the Kafka service to start.
 
-### Custom manual installation procedure
+### Minimal installation
 
-1. Verify existing DC/OS repositories:
-
-    ```bash
-    $ dcos package repo list
-    Universe: https://universe.mesosphere.com/repo
-    ```
-
-1. Identify available versions for the Kafka service
-
-    You can either list available version:
-
-    ```bash
-    $ dcos package list kafka
-    ```
-
-    Or you can search for a particular one:
-
-    ```bash
-    $ dcos package search kafka
-    ```
-
-1. Install or upgrade to a specific version of the Kafka package:
-
-    ```bash
-    $ dcos package install --yes --force --package-version=<package_version> kafka
-    ```
-
-### Manual installation via the web interface
-
-You can also install the Kafka service from DC/OS Universe dashboard - http://dcos-cluster/#/universe/packages/.
-
-### Validate installation
-
-Validate that the installation added the enhanced DC/OS CLI for Kafka:
-
+To start a minimal cluster with a single broker, create a JSON options file named kafka-minimal.json:
+```json
+{
+    "brokers": {
+        "count": 1,
+        "mem": 512,
+        "disk": 1000
+    }
+}
+```
 ```bash
-$ dcos package list kafka; dcos kafka help
+$ dcos package install kafka --options=kafka-minimal.json
 ```
 
-Validate that Kafka service is healthy:
+## Topic management
 
-![DC/OS dashboard services status](img/dcos-dashboard-kafka-service-status.png)
-![DC/OS services status](img/dcos-services-kafka-service-status.png)
-
-## DC/OS Kafka operations
-
-- Add brokers:
-
+### Add a topic:
 ```bash
-$ dcos kafka broker add 0..2
+$ dcos kafka topic create topic1 --partitions 1 --replication 1
 ```
 
-- Start brokers:
+## Produce and consume messages
 
+### List Kafka client endpoints
 ```bash
-$ dcos kafka broker start 0..2
-```
-
-- Remove brokers:
-
-```bash
-$ dcos kafka broker stop 1..2
-$ dcos kafka broker remove 1..2
-```
-
-**Note:** Brokers have to be stopped before removal.
-
-Expected outcome:
-
-```bash
-brokers 1,2 removed
-```
-
-- List Kafka brokers
-
-```bash
-$ dcos kafka broker list
-```
-
-- Update broker:
-
-```bash
-$ dcos kafka broker stop 0 &&\
-$ dcos kafka broker update 0 --mem 128 --heap 64 &&\
-$ dcos kafka broker start 0
-```
-
-**Note:** A broker needs to be stopped in order to be updated.
-
-Expected outcome:
-
-```bash
-broker started:
-  id: 0
-  active: true
-  state: running
-  resources: cpus:1.00, mem:128, heap:64, port:auto
-  failover: delay:1m, max-delay:10m
-  stickiness: period:10m, hostname:192.168.65.121
-  task:
-    id: broker-0-52ca36ad-d34b-48fc-8692-ac438e76c130
-    state: running
-    endpoint: 192.168.65.121:1025
-```
-
-![Kafka service single broker status](img/dcos-kafka-single-broker-status.png)
-
-- Add a broker with options provided:
-
-```bash
-$ dcos kafka broker add 1 --mem 128 --heap 64 && dcos kafka broker start 1
-```
-
-Expected outcome:
-
-```bash
-broker started:
-  id: 1
-  active: true
-  state: running
-  resources: cpus:1.00, mem:128, heap:64, port:auto
-  failover: delay:1m, max-delay:10m
-  stickiness: period:10m, hostname:192.168.65.121
-  task:
-    id: broker-1-40276308-8122-4e9c-b645-b6b98b46b5f1
-    state: running
-    endpoint: 192.168.65.121:1026
-```
-
-![Kafka service multi brokers status](img/dcos-kafka-multi-brokers-status.png)
-
-- Add a topic:
-
-```bash
-$ dcos kafka topic add t0 --broker 0
-```
-
-- Publish and consume messages:
-
-```bash
-$ dcos kafka topic create topic1 --partitions 3 --replication 3
 $ dcos kafka connection
-$ dcos node ssh --master-proxy --master
-$ docker run -it mesosphere/kafka-client
-$ ./kafka-console-producer.sh --broker-list ip-10-0-3-230.us-west-2.compute.internal:9092 --topic test
-This is a message
-This is another message
-$ ./kafka-console-consumer.sh --zookeeper master.mesos:2181/kafka --topic test --from-beginning
-This is a message
-This is another message
+{
+    "address": [
+        "10.0.0.211:9843"
+    ],
+    "dns": [
+        "broker-0.kafka.mesos:9843"
+    ],
+    "zookeeper": "master.mesos:2181/kafka"
+}
+```
+
+### Produce a message
+```bash
+$ dcos node ssh --master-proxy --leader
+```
+```bash
+core@ip-10-0-6-153 ~ $ docker run -it mesosphere/kafka-client
+```
+```bash
+root@7d0aed75e582:/bin# echo "Hello, World." | ./kafka-console-producer.sh --broker-list 10.0.0.211:9843 --topic topic1
+```
+
+### Consume a message
+```bash
+root@7d0aed75e582:/bin# ./kafka-console-consumer.sh --zookeeper master.mesos:2181/kafka --topic topic1 --from-beginning
+Hello, World.
 ```
 
 ## Cleanup
@@ -231,13 +134,13 @@ This is another message
 ### Uninstall
 
 ```bash
-$ dcos package uninstall kafka
+$ dcos package uninstall --app-id=kafka
 ```
 
 ### Purge/clean up persisted state:
 
 [Kafka uninstall](http://docs.mesosphere.com/services/kafka/#uninstall)
 
-## API Reference
+## Kafka API Reference
 
-- [https://kafka.apache.org/documentation.html](https://kafka.apache.org/documentation.html)
+[https://kafka.apache.org/documentation.html](https://kafka.apache.org/documentation.html)
