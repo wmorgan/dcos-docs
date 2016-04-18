@@ -20,10 +20,14 @@ The initial focus will be on networking, and integrating the Marathon API.
 The [Container Network Interface (CNI)](https://github.com/appc/cni) is a proposed standard for configuring network interfaces for Linux containers.
 [Design doc](https://docs.google.com/document/d/1FFZwPHPZqS17cRQvsbbWyQbZpwIoHFR_N6AAApRv514/edit).
 
+### Virtual Networks in DC/OS levaraging CNI & VxLAN
+DC/OS Virtual Networking Service builds on the CNI standard and provides IP per Container capability to workloads running on top of DC/OS.
+[Design doc](https://docs.google.com/document/d/1Ped26pNOoET5H-QM--D6aPiCpG3qgvknNUbZJLz-rao/edit).
+
 ### Edge load balancing
-A load balancer that routes incoming web traffic to services running on DC/OS.
+A load balancer that routes incoming North-South web traffic to services running on DC/OS.
 Previous solutions on DC/OS were based on HAProxy.
-This effort plans to integrate edge load balancing into the [DC/OS service discovery](/docs/1.7/usage/service-discovery/) layer, without the need for HAProxy.
+This effort plans to integrate edge load balancing into the [DC/OS service discovery](/docs/1.7/usage/service-discovery/) layer, without the need for individually managed HAProxy.
 
 ### Pluggable External Volumes
 Support for pluggable external volume providers such as [REX-Ray](https://github.com/emccode/rexray), [Flocker](https://github.com/ClusterHQ/flocker), etc.
