@@ -132,7 +132,7 @@ In this step you create a custom DC/OS build file on your bootstrap node and the
 
 To install DC/OS:
 
-1.  Download the [DC/OS installer][4]
+1.  Download the [DC/OS installer][4].
 
     ```bash
     $ curl -O https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh

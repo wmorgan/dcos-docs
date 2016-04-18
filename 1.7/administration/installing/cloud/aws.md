@@ -36,11 +36,10 @@ Save the `.pem` file locally for use later. Note that this is the only chance to
 
 ## Step 2: Launching a DC/OS cluster
 
-1.  Launch the <a href="https://downloads.dcos.io/dcos/EarlyAccess/aws.html" target="_blank">DC/OS template</a> on CloudFormation and select the region and number of masters. You must have a key pair for your selected region.
+1.  Launch the <a href="https://downloads.dcos.io/dcos/EarlyAccess/aws.html" target="_blank">DC/OS template</a> on CloudFormation and select the region and number of masters (1 or 3). You must have a key pair for your selected region.
 
     **Important:** The DC/OS template is configured for running DC/OS. If you modify the template you might be unable to run certain packages on your DC/OS cluster.
 
-    ![Configure template](../img/dcos-aws-step2a.png)
 
 2.  On the **Select Template** page, accept the defaults and click **Next**.
 
@@ -87,11 +86,18 @@ Launch the DC/OS web interface by entering the Mesos Master hostname:
     **Tip:** You might need to resize your window to see this tab. You can find your DC/OS hostname any time from the <a href="https://console.aws.amazon.com/cloudformation/home" target="_blank">Amazon CloudFormation Management</a> page.
 
     ![Monitor stack creation](../img/dcos-aws-step3a.png)
+    
+    ![DC/OS dashboard](/img/ui-dashboard.gif)
+    
+1.  Click the dropup menu on the lower-left side to install the DC/OS [Command-Line Interface (CLI)][2]. You must install the CLI to administer your DCOS cluster.
+
+    ![install CLI](/img/ui-dashboard-install-cli.gif)
+    
+
 
 # Next steps
 
 - [Add users to your cluster][10]
-- [Install the DC/OS Command-Line Interface (CLI)][2]
 - [Using your cluster][3]
 - [Scaling considerations][4]
 

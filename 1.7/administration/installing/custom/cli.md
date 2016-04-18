@@ -114,7 +114,7 @@ The DC/OS installation creates these folders:
     resolvers:
     - 8.8.4.4
     - 8.8.8.8
-    ssh_port: '22'
+    ssh_port: 22
     ssh_user: <username>
     ```
 
@@ -169,7 +169,7 @@ optional arguments:
 
 To install DC/OS:
 
-1.  Download the [DC/OS installer][5]
+1.  Download the [DC/OS installer][5] to your root directory.
 
     ```bash
     $ curl -O https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
@@ -184,9 +184,10 @@ To install DC/OS:
     Here is an example of the output.
 
     ```bash
-    Extracking docker container from this script
-    dcos-genconf.4543c7745c7e-2af26a89fa52-cb932597d7b992.tar
-    Loading container into Docker daemon
+    Extracting image from this script and loading into docker daemon, this step can take a few minutes
+    dcos-genconf.e060aa49ac4ab62d5e-1e14856f55e5d5d07b.tar
+    Running mesosphere/dcos-genconf docker with BUILD_DIR set to /home/centos/genconf
+    ====> EXECUTING CONFIGURATION GENERATION
     ...
     ```
 
@@ -197,6 +198,10 @@ To install DC/OS:
         ├── genconf
         │   ├── config.yaml
         │   ├── ip-detect
+        │   ├── cluster_packages.json
+        │   ├── serve
+        │   ├── ssh_key
+        │   ├── state          
 
 2.  <a name="two"></a>Install the cluster prerequisites, including system updates, compression utilities (UnZip, GNU tar, and XZ Utils), and cluster permissions. For a full list of cluster prerequisites, see this [documentation][4].
 
