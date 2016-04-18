@@ -24,7 +24,6 @@ $ dcos task log --follow service
 
 For more advanced usage, you can check out the CLI documentation:
 
-- [Debugging Services][4]
 - [DC/OS CLI Usage][1]
 
 ## GUI
@@ -33,7 +32,6 @@ For those who are more comfortable with the GUI, we have a solution as well! By 
 
 Check out some of the DC/OS UI documentation for more details:
 
-- [Debugging Services][4]
 - [DC/OS UI][5]
 
 # Compliance
@@ -46,5 +44,3 @@ Unfortunately, streaming logs from machines in your cluster isn’t always viabl
 [1]: /docs/1.7/usage/cli/
 [2]: ../elk/
 [3]: ../splunk/
-[4]: FIXME
-[5]: FIXME
