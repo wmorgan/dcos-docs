@@ -53,7 +53,7 @@ Congratulations, you have now deployed DC/OS by using an Azure Resource Manager 
 
 ## Step 2: Accessing DC/OS
 
-Because to security considerations, the DC/OS cluster in Azure is locked down by default. You must use an `ssh` tunnel to access the DC/OS Dashboard.
+Because of security considerations, the DC/OS cluster in Azure is locked down by default. You must use an `ssh` tunnel to access the DC/OS Dashboard.
 
 First, look up `MASTERFQDN` in the outputs of the deployment. To find that, click on the link under `Last deployment` (which is `4/15/2016 (Succeeded)` here) and you should see this:
 
