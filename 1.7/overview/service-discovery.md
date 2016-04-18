@@ -1,5 +1,6 @@
 ---
 post_title: Service Discovery
+menu_order: 8
 ---
 
 There are two levels of service discovery in DC/OS. Along with every task that runs on DC/OS being provided a well known DNS name, anyone can request a well known VIP that enables clients to have a single configuration value.

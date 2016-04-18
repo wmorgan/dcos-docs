@@ -1,6 +1,7 @@
 ---
 post_title: The Architecture of DC/OS
 nav_title: Architecture
+menu_order: 2
 ---
 
 An operating system abstracts resources such as CPU, RAM and networking and provides common services to applications. DC/OS is a distributed operating system that abstracts the resources of a cluster of machines and provides common services, such as running processes across a number of nodes, service discovery, and package management, just to name a few. In the following, we have a look at the architecture of DC/OS and the interaction of its components.

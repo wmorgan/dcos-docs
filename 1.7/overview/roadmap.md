@@ -1,6 +1,7 @@
 ---
 post_title: DC/OS Roadmap
 nav_title: Roadmap
+menu_order: 9
 ---
 
 The roadmap provides a high level overview of the themes that the project is planning to focus on in the near, medium and long term.

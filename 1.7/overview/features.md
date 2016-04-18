@@ -1,6 +1,7 @@
 ---
 post_title: The Features of DC/OS
 nav_title: Features
+menu_order: 3
 ---
 This is an overview of the features that make DC/OS more than the sum of its parts.
 

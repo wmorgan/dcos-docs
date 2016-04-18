@@ -1,6 +1,7 @@
 ---
 post_title: The Concepts of DC/OS
 nav_title: Concepts
+menu_order: 5
 ---
 This page contains terms and definitions for DC/OS.
 

@@ -1,6 +1,7 @@
 ---
 post_title: "An Introduction to DC/OS Components"
 nav_title: Components
+menu_order: 4
 ---
 
 ```
