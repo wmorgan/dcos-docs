@@ -203,7 +203,7 @@ cqlsh> SELECT * FROM demo.map;
 $ dcos package uninstall cassandra
 ```
 
-Then, use the [framework cleaner](https://docs.mesosphere.com/framework_cleaner/) script to remove your cassandra instance from Zookeeper and to destroy all data associated with it. The script require several arguments, the values for which are derived from your service name:
+Then, use the [framework cleaner](https://docs.mesosphere.com/framework_cleaner/) script to remove your cassandra instance from Zookeeper and to destroy all data associated with it. The script requires several arguments, the values for which are derived from your service name:
 
 `framework-role` is `cassandra-role`
 `framework-principal` is `cassandra-principal`
