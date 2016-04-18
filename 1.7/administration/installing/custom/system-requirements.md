@@ -303,7 +303,7 @@ You must have the <a href="http://www.info-zip.org/UnZip.html" target="_blank">U
 To install these utilities on CentOS7 and RHEL7:
 
 ```bash
-$ sudo yum install -y tar xz unzip curl
+$ sudo yum install -y tar xz unzip curl ipset
 ```
 
 
