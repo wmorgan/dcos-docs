@@ -75,7 +75,7 @@ While the DC/OS command line interface (CLI) is immediately available, it takes 
 
 ### Minimal installation
 
-To start a minimal cluster with a single broker, create a JSON options file named kafka-minimal.json:
+To start a minimal cluster with a single broker, create a JSON options file named `kafka-minimal.json`:
 ```json
 {
     "brokers": {
@@ -85,6 +85,7 @@ To start a minimal cluster with a single broker, create a JSON options file name
     }
 }
 ```
+Install the Kafka cluster:
 ```bash
 $ dcos package install kafka --options=kafka-minimal.json
 ```
@@ -130,7 +131,6 @@ Hello, World.
 ## Cleanup
 
 ### Uninstall
-
 ```bash
 $ dcos package uninstall --app-id=kafka
 ```
