@@ -38,7 +38,12 @@ Assuming you have a DC/OS cluster up and running, we are going to install NGINX 
 }
 ```
 
-Using above `options.json` file we are going to spin up a NGINX docker container using 1 CPU (`cpus` param), 1024 MB RAM (`mem` param), using docker `BRIDGE` mode networking (`bridge` param). We are also configuring a URL to an archive of static website that we would like to serve using NGINX, specified via `contentUrl` param. And, `contentDir` param is the name of the directory that gets created when the `contentUrl` file is download and uncompressed.
+Here's how the above `options.json` file configures our NGINX docker container:
+* `cpus`: This parameter configures the number of CPU share to allocate to NGINX.
+* `mem`: This parameter configures the amount of RAM to allocate to NGINX.
+* `bridge`: This parameter configures whether the container should use `BRIDGE` mode networking or not. If this parameter is false, NGINX will be launched using `HOST` mode networking for docker. For more details, please refer to [Docker documentation](https://docs.docker.com/).
+* `contentUrl`: This parameter is the URL to a file archive of a static website that we would like to serve using NGINX.
+* `contentDir`: This parameter is the name of the directory that gets created when the file specified using `contentUrl` is downloaded and uncompressed.
 
 Next, we are going to install nginx using this `options.json` file:
 
