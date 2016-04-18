@@ -1,0 +1,11 @@
+{
+    "id": "/hello-dcos",
+    "cpus": 0.1,
+    "mem": 32,
+    "container": {
+        "type": "DOCKER",
+        "docker": {
+            "image": "mhausenblas/hello-dcos"
+        }
+    }
+}
