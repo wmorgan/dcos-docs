@@ -13,8 +13,8 @@ hide_from_related: false
 
 # DC/OS Security
 
-This document will discuss some of the security features in DC/OS, in addition
-to best practices for deploying DC/OS securely.
+This document discusses some of the security features in DC/OS, in addition to
+best practices for deploying DC/OS securely.
 
 ## General security concepts
 
@@ -34,25 +34,22 @@ deployment, namely the admin, private, and public security zones.
 
 The **admin** zone is accessible via HTTP/HTTPS and SSH connections, and
 provides access to the master nodes. It also provides reverse proxy access to
-the other nodes in the cluster via URL routing. For security, you can
-configure a whitelist during cluster creation so that only specific IP address
-ranges are permitted to access the admin zone. The DC/OS template creates 1, 3
-or 5 master nodes in the admin zone.
+the other nodes in the cluster via URL routing. For security, the DC/OS cloud
+template allows configuring a whitelist so that only specific IP address
+ranges are permitted to access the admin zone.
 
 ### Private zone
 
 The **private** zone is a non-routable network that is only accessible from
 the admin zone or through the edge router from the public zone. Deployed
 services are run in the private zone. This zone is where the majority of agent
-nodes are run. By default, the DC/OS cloud template creates 5 agent nodes in
-the private zone
+nodes are run.
 
 ### Public zone
 
 The optional **public** zone is where publicly accessible applications are
 run. Generally, only a small number of agent nodes are run in this zone. The
-edge router forwards traffic to applications running in the private zone. By
-default, the DC/OS cloud template creates 1 agent node in the public zone.
+edge router forwards traffic to applications running in the private zone.
 
 The agent nodes in the public zone are labeled with a special role so that
 only specific tasks can be scheduled here. These agent nodes have both public
@@ -67,7 +64,7 @@ A typical AWS deployment including AWS Load Balancers is shown below:
 
 ## Admin Router
 
-Access to the Admin zone is controlled by the Admin Router.
+Access to the admin zone is controlled by the Admin Router.
 
 HTTP requests incoming to your DC/OS cluster are proxied through the Admin
 Router (using [Nginx](http://nginx.org) with
@@ -92,9 +89,10 @@ is an open, industry standard ([RFC
 7519](https://tools.ietf.org/html/rfc7519)) method for securely representing
 claims between two parties.
 
-JWT tokens are obtained using [OpenID Connect 1.0](https://openid.net/specs
-/openid-connect-core-1_0.html), which is a simple identity layer built on top
-of the [OAuth 2.0](http://oauth.net/2/) protocol.
+JWTs are obtained using
+[OpenID Connect 1.0](https://openid.net/specs/openid-connect-core-1_0.html),
+which is a simple identity layer built on top of the
+[OAuth 2.0](http://oauth.net/2/) protocol.
 
 We've set up an OpenID Connect 1.0 endpoint at
 [dcos.auth0.com](https://dcos.auth0.com/.well-known/openid-configuration) (in
@@ -104,16 +102,17 @@ DC/OS installations included out of the box.
 
 An authentication operation via the DC/OS UI proceeds as follows:
 
-1. The user opens the cluster front page URL in their browser
+1. The user opens the cluster front page URL in their browser.
 2. If the user has a valid authentication token cookie (checked by Admin Router)
    they may proceed to the cluster front page. If not, they are redirected to
    the login page.
 3. The login page in the DC/OS UI loads the login page at `dcos.auth0.com`,
-   which presents the user a choice of identity providers, including Google.
-   GitHub and Microsoft account.
-4. The user selects an identity provider and completes the OAuth protocol
-   flow in a popup window that returns a RS256 JWT token for the user. The token is
-   currently issued to be valid for 5 days, based on the standard `exp` claim.
+   which presents the user a choice of identity providers, including Google,
+   GitHub, and Microsoft account.
+4. The user selects an identity provider and completes the OAuth protocol flow
+   in a popup window that returns an RS256-signed JWT for the user. The
+   token is currently issued to be valid for 5 days, based on the standard
+   `exp` claim.
 5. The login page dispatches a request with the user token to the
    `/acs/api/v1/auth/login` Admin Router endpoint which forwards it to the
    [dcos-oauth](https://github.com/dcos/dcos-oauth) service. If the user is the
@@ -121,40 +120,41 @@ An authentication operation via the DC/OS UI proceeds as follows:
    subsequent users must be added by any other user in the cluster as described
    in the [User Management](../administration/user-management) page.
    If the user logging into the cluster is determined to be valid, they are
-   issued with a HS256 JWT token containing a `uid` claim which is specific to
+   issued with a HS256-signed JWT containing a `uid` claim which is specific to
    the cluster they are logging in to.
 
 For the dcos-oauth service to validate tokens it receives during login operations,
 it needs to have access to `dcos.auth0.com` to fetch required public keys via
 HTTPS. Using a proxy to make this request is not currently supported.
 
-The shared secret used to sign the HS256 cluster specific tokens is stored at
+The shared secret used to sign the cluster-specific tokens with the HS256
+algorithm is generated during cluster boot and stored at
 `/var/lib/dcos/auth-token-secret` on each master node and in the
 `/dcos/auth-token-secret` znode in ZooKeeper.
 
 As noted above, to ease the setup process, DC/OS will automatically add the first
 user that logs in to the DC/OS cluster. Care should be taken to restrict network
-access to the cluster until the first user has been configured. A future releas
+access to the cluster until the first user has been configured. A future release
 will allow users to be provisioned at installation time.
 
-Care should be taken to protect these authentication tokens, as an unauthorized
+Care should be taken to protect authentication tokens, as an unauthorized
 third party may use them to log in to your cluster if obtained. Invalidation
 of individual tokens is not currently supported. In case a token is exposed,
 it is recommended that the affected user be removed from the cluster.
 
-The [JWT.IO](https://jwt.io) service can be used to decode JWT tokens to
-inspect their contents.
+The [JWT.IO](https://jwt.io) service can be used to decode JWTs to inspect
+their contents.
 
 ## Authentication via CLI
 
 To login, run `dcos auth login`.
 
-- You will be prompted with "Please go to the following link in your browser"
+- You will be prompted with "Please go to the following link in your browser".
 - Open the given link and authenticate with your account. Once you
-  authenticate, you should see a JWT token
-- Copy the token from the browser to your CLI
-- If you correctly entered your token you should see "Login successful!"
-- Your CLI is now authenticated and can be used normally
+  authenticate, you should see a JSON Web Token.
+- Copy the token from the browser to your CLI.
+- If you correctly entered your token you should see "Login successful!".
+- Your CLI is now authenticated and can be used normally.
 
 To logout, run `dcos auth logout`.
 
@@ -178,7 +178,7 @@ or `sudo journalctl -u dcos-oauth.service`, respectively.
 The DC/OS user database is currently persisted in ZooKeeper running on the
 master nodes in znodes under the path `/dcos/users`.
 
-## HTTP Authorization Headers
+## HTTP Authorization Header
 
 Tokens sent to DC/OS in a HTTP Authorization header must be of the format
 `token=<token>` instead of the more common `Bearer <token>`. The latter format
@@ -186,19 +186,18 @@ will be supported in addition to the current format in a future release.
 
 ## Improved security
 
+## Use your own certificate for Admin Router
+
+We encourage administrators to replace the SSL certificate used by Admin Router on the
+master nodes. Refer to the [Nginx documentation](http://nginx.org/en/docs/http/configuring_https_servers.html)
+and the Admin Router configuration file at
+`/opt/mesosphere/active/adminrouter/nginx/conf/nginx.conf` on the master nodes.
+
+### Your own Auth0 account
+
 For improved security, administrators may choose to configure their own Auth0
 account or integrate directly with the OpenID Connect endpoints provided by
 Google, GitHub, Microsoft Accounts, Azure Active Directory and many others.
-
-Instructions for configuring the latter will be provided in an upcoming
-release.
-
-Administrators may also wish to replace the SSL certificate used by Admin Router on the
-master nodes. Refer to the [Nginx documentation](http://nginx.org/en/docs/http/configuring_https_servers.html)
-and the Admin Router configuration file at `/opt/mesosphere/active/adminrouter/nginx/conf/nginx.conf`
-on the master nodes.
-
-### Your own Auth0 account
 
 If you are performing a custom advanced installation, you may configure DC/OS
 to use an alternative Auth0 account by adding the following directive to
@@ -212,18 +211,19 @@ oauth_auth_host: https://youraccount.auth0.com
 ```
 
 To obtain the client ID, complete the following steps:
-- Sign up for Auth0
-- Create a new Application your Auth0 dashboard
-- Skip the Quick Start documentation and switch to the Settings tab to obtain
-  the client ID
-- Add `https://youraccount.auth0.com` to the Allowed Origins (CORS) setting
-- Show Advanced Settings at the bottom of the Settings page and change the
-  JWT Token Signature Algorithm in the OAuth tab to RS256
-- Create a custom Login Page in Auth0, using the
-  [DC/OS login page source](view-source:https://dcos.auth0.com/login?client=3yF5TOSzdlI45Q1xspxzeoGBe9fNxm9m).
+
+1. Sign up for [Auth0](https://auth0.com/).
+2. Create a new application in your Auth0 dashboard.
+3. Skip the Quick Start documentation and switch to the Settings tab to obtain
+   the client ID.
+4. Add `https://youraccount.auth0.com` to the Allowed Origins (CORS) setting.
+5. Show Advanced Settings at the bottom of the Settings page and change the
+   JWT Signature Algorithm in the OAuth tab to RS256.
+6. Create a custom Login Page in Auth0, using the HTML/JavaScript source of
+   the [DC/OS login page](https://dcos.auth0.com/login?client=3yF5TOSzdlI45Q1xspxzeoGBe9fNxm9m).
 
 The custom login page is currently required to work with the current version
-of the DCOS UI. A future release will remove the need for a custom login page
+of the DC/OS UI. A future release will remove the need for a custom login page
 when using your own Auth0 account or using another identity provider directly,
 but will require configuring a callback URL specific to your cluster.
 
@@ -233,15 +233,15 @@ be made available in a future release.
 ## Authentication opt-out
 
 If you are performing a custom advanced installation, you may opt out of
-authentication by adding the following directive to `genconf/config.yaml`
-(note that the quotes are currently required):
+Auth0-based authentication by adding the following directive to
+`genconf/config.yaml` (note that the quotes are currently required):
 
 ```
 oauth_enabled: 'false'
 ```
 
 On AWS, when creating a stack, at the Specify Details step, you may choose to
-set the OAuthEnabled option to `false` to disable authentication for the DC/OS
+set the `OAuthEnabled` option to `false` to disable authentication for the DC/OS
 installation.
 
 The same option is not currently available when installing DC/OS through the
@@ -251,7 +251,7 @@ options to customize authentication.
 ## Ad Blockers and the DC/OS UI
 
 During testing, we have observed issues with loading the DC/OS UI login page
-when some ad blockers like HTTP Switchboard or Privacy Badger are active.
+when certain ad blockers such as HTTP Switchboard or Privacy Badger are active.
 Other ad blockers like uBlock Origin are known to work.
 
 ## Further reading
@@ -262,5 +262,5 @@ Other ad blockers like uBlock Origin are known to work.
 
 ## Future work
 
-We are looking forward to working with the DC/OS community on building many
-more security features in the coming releases.
+We are looking forward to working with the DC/OS community on improving existing
+security features as well as on introducing new ones in the coming releases.
