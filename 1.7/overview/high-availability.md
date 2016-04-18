@@ -1,6 +1,7 @@
 ---
 post_title: High Availability in DC/OS
 nav_title: High Availability
+menu_order: 6
 ---
 
 This document discusses the high availability features in DC/OS and best

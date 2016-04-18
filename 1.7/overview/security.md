@@ -1,7 +1,7 @@
 ---
 post_title: Security in DC/OS
 nav_title: Security
-menu_order: 4
+menu_order: 7
 ---
 
 This document discusses some of the security features in DC/OS, in addition to
