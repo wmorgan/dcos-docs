@@ -3,7 +3,7 @@ post_title: How to use NGINX
 nav_title: NGINX
 ---
 
-[NGINX](https://www.nginx.com) is a high-performance HTTP server, reverse proxy, and an IMAP/POP3 proxy server. NGINX is known for its high performance, stability, rich feature set, simple configuration, and low resource consumption. DC/OS allows you to quickly configure, install and manage NGINX. 
+[NGINX](https://www.nginx.com) is a high-performance HTTP server, reverse proxy, and an IMAP/POP3 proxy server. NGINX is known for its high performance, stability, rich feature set, simple configuration, and low resource consumption. DC/OS allows you to quickly configure, install and manage NGINX.
 
 **Terminology**
 
@@ -19,7 +19,7 @@ In this tutorial you will learn:
 ## Prerequisites
 
 - A running DC/OS cluster, with atleast 1 node having atleast 1 CPUs and 1 GB of RAM available.
-- [DC/OS CLI](https://docs.mesosphere.com/usage/cli/install/) installed
+- [DC/OS CLI](/docs/1.7/usage/cli/install/) installed
 
 ## Installing NGINX to serve a static website
 
@@ -80,4 +80,4 @@ dcos package uninstall nginx
 
 ## Further resources
 
-* [NGINX Website](nginx.com)
+* [NGINX Website](https://nginx.com)
