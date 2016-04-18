@@ -97,14 +97,16 @@ Usage: dcos-cassandra cassandra [OPTIONS] COMMAND [ARGS]...
 
 Options:
   --info / --no-info
-  --framework-name TEXT  Name of the Cassandra instance to query
-  --help                 Show this message and exit.
+  --name TEXT         Name of the Cassandra instance to query.
+  --config-schema     Prints the config schema for Cassandra.
+  --help              Show this message and exit.
 
 Commands:
   backup      Backup Cassandra data
   cleanup     Cleanup old token mappings
   connection  Provides connection information
   node        Manage Cassandra nodes
+  repair      Perform primary range repair.
   restore     Restore Cassandra cluster from backup
   seeds       Retrieve seed node information
 ```
@@ -122,10 +124,15 @@ Let's retrieve the connection information using following command:
 ```bash
 $ dcos cassandra connection
 {
-    "nodes": [
-        "10.0.2.136:9042",
-        "10.0.2.138:9042",
-        "10.0.2.137:9042"
+    "address": [
+        "10.0.2.66:9042",
+        "10.0.2.65:9042",
+        "10.0.2.64:9042"
+    ],
+    "dns": [
+        "node-1.cassandra.mesos:9042",
+        "node-2.cassandra.mesos:9042",
+        "node-3.cassandra.mesos:9042"
     ]
 }
 ```
@@ -146,7 +153,7 @@ core@ip-10-0-6-153 ~ $ docker run cassandra:2.2.5 cqlsh <HOST>
 Replace `<HOST>` with the actual host, information that we retrieved by running `dcos cassandra node connection` command above. Example:
 
 ```bash
-core@ip-10-0-6-153 ~ $ docker run -ti cassandra:2.2.5 cqlsh 10.0.2.136
+core@ip-10-0-6-153 ~ $ docker run -ti cassandra:2.2.5 cqlsh 10.0.2.66
 cqlsh>
 ```
 
