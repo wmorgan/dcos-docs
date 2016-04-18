@@ -213,6 +213,50 @@ $ parallel-ssh -O StrictHostKeyChecking=no -l azureuser -h pssh_agents "if [ ! -
 $ parallel-ssh -O StrictHostKeyChecking=no -l azureuser -h pssh_agents "mount -t cifs //mh9storage.file.core.windows.net/jenkins /mnt/jenkins -o vers=3.0,username=REDACTED,password=REDACTED,dir_mode=0777,file_mode=0777"
 ```
 
+## Building a Docker image and deploying it to Marathon
+
+*Note: for this example, I'll assume you already have your own Docker Hub
+account or access to a Docker image registry.*
+
+By default, the Jenkins package is configured with a Docker-in-Docker agent
+that allows you to build Docker images on top of DC/OS. Nothing else is needed
+on your part!
+
+Mesosphere maintains an open source Marathon plugin for Jenkins, which allows
+you to easily deploy an application to Marathon. To install it, perform the
+following steps:
+
+  1. Download the .hpi file for the latest Marathon plugin here:
+  https://github.com/mesosphere/jenkins-marathon-plugin/releases
+  2. Upload the `.hpi` plugin file via the "Advanced" tab within the Jenkins
+  plugin manager:
+  ![Jenkins plugin installation](img/jenkins-plugin-install.png)
+  3. Restart Jenkins to load the new plugin.
+
+Next, you'll configure a Jenkins job that clones a repository, builds the
+image, pushes it to Docker Hub, and deploys it to Marathon.
+
+![Configure Git repository](img/jenkins-scm-repo.png)
+
+For the build step, you may use (or adapt) the following build script:
+
+```bash
+#!/bin/bash
+IMAGE_NAME="${DOCKER_USERNAME}/${JOB_NAME}:${GIT_COMMIT}"
+
+docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD} -e ${DOCKER_EMAIL}
+docker build -t $IMAGE_NAME .
+docker push $IMAGE_NAME
+```
+
+Finally, configure a post-build step using the Marathon plugin:
+
+![Marathon deployment post-build step](img/jenkins-marathon-post-build-step.png)
+
+An example of a Marathon deployment follows:
+
+![Marathon deployment post-build configuration](img/jenkins-marathon-post-build-config.png)
+
 ## Uninstalling Jenkins
 
 Using the DC/OS CLI, run the following command:
