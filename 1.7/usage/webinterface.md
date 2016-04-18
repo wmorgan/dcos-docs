@@ -53,3 +53,19 @@ You can switch to **Grid** view to see a "donuts" percentage visualization.
 ![Nodes](../img/dcos-donuts-1.7.png)
 
 Clicking on a node opens the Nodes side panel, which provides CPU, memory, and disk usage graphs and lists all tasks on the node. Use the dropdown or a custom filter to sort tasks and click on details for more information. Click on a task listed on the Nodes side panel to see detailed information about the task’s CPU, memory, and disk usage and the task’s files and directory tree.
+
+# <a name="universe"></a>Universe
+
+The Universe page shows all of the available DC/OS services. You can install packages from the DC/OS Universe with a single click. The packages can be installed with defaults or customized directly in the web interface. 
+
+![universe](../img/ui-dashboard-universe.gif)
+
+# <a name="system"></a>System
+
+The System page provides access to the administration controls of DC/OS. From this page you can:
+ 
+- View the system health of your DC/OS components
+- Manage your DC/OS package repositories
+- Manage user access 
+
+![system](../img/ui-dashboard-system1.gif)
