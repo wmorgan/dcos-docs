@@ -23,11 +23,11 @@ To specify a global template:
 
 2.  Tar or zip the file. [Here’s a handy script you can use to do this][1].
 
-    Take the file you created (`templates.tgz` if you use the script), and make it available from an HTTP server. If you’d like to use the sample one, use this URI: <https://downloads.mesosphere.io/marathon/marathon-lb/templates.tgz>
+    Take the file you created (`templates.tgz` if you use the script), and make it available from an HTTP server. If you’d like to use the sample one, use this URI: <https://downloads.mesosphere.com/marathon/marathon-lb/templates.tgz>
 
 3.  Augment the marathon-lb config by saving the following JSON in a file called `options.json`:
 
-        { "marathon-lb":{ "template-url":"https://downloads.mesosphere.io/marathon/marathon-lb/templates.tgz" } }
+        { "marathon-lb":{ "template-url":"https://downloads.mesosphere.com/marathon/marathon-lb/templates.tgz" } }
 
 4.  Launch the new marathon-lb:
 

@@ -30,7 +30,7 @@ Contribute to the docs using one of the following options:
 
 ## License and Authors
 
-Copyright:: 2016 Mesosphere, Inc.
+Copyright: 2016 Mesosphere, Inc.
 
 The contents of this repository are solely licensed under the terms described in the [LICENSE file](./LICENSE) included in this repository.
 

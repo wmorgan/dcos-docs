@@ -17,7 +17,7 @@ The DC/OS installation creates these folders:
     :   Contains all the DC/OS binaries, libraries, cluster configuration. Do not modify.
 
 *   `/etc/systemd/system/dcos.target.wants`
-    :   Contains the systemd services which start the things that make up systemd. They must live outside of `/opt/mesosphere` because of systemd constraints.
+    :   Contains the systemd service units which start the things that make up DC/OS. They must live outside of `/opt/mesosphere` because of systemd constraints.
 
 *   Various units prefixed with `dcos` in `/etc/systemd/system`
     :   Copies of the units in `/etc/systemd/system/dcos.target.wants`. They must be at the top folder as well as inside `dcos.target.wants`.
