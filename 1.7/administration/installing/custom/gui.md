@@ -113,6 +113,10 @@ The DC/OS installation creates these folders:
 8.  Click **Log In To DC/OS**. If this doesn't work, take a look at the [troubleshooting docs][9]
 
     ![login](../img/dcos-gui-login.png)
+    
+    You are done!
+    
+    ![dashboard](../img/ui-dashboard.gif)
 
 ## Next Steps
 

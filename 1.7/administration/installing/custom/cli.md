@@ -114,10 +114,10 @@ The DC/OS installation creates these folders:
     resolvers:
     - 8.8.4.4
     - 8.8.8.8
-    ssh_port: '22'
+    ssh_port: 22
     ssh_user: <username>
     ```
-
+    
     **Important:** You cannot use an NFS mount for Exhibitor storage with the automated command line installation method. To use an NFS mount for Exhibitor storage (`exhibitor_storage_backend: shared_filesystem`), you must use the [advanced installation method][3].
 
 3.  Copy your private SSH key to `genconf/ssh_key`. For more information, see the [ssh_key_path][6] parameter.
@@ -169,7 +169,7 @@ optional arguments:
 
 To install DC/OS:
 
-1.  Download the [DC/OS installer][5]
+1.  Download the [DC/OS installer][5] to your root directory.
 
     ```bash
     $ curl -O https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
@@ -184,9 +184,10 @@ To install DC/OS:
     Here is an example of the output.
 
     ```bash
-    Extracking docker container from this script
-    dcos-genconf.4543c7745c7e-2af26a89fa52-cb932597d7b992.tar
-    Loading container into Docker daemon
+    Extracting image from this script and loading into docker daemon, this step can take a few minutes
+    dcos-genconf.e060aa49ac4ab62d5e-1e14856f55e5d5d07b.tar
+    Running mesosphere/dcos-genconf docker with BUILD_DIR set to /home/centos/genconf
+    ====> EXECUTING CONFIGURATION GENERATION
     ...
     ```
 
@@ -197,6 +198,10 @@ To install DC/OS:
         ├── genconf
         │   ├── config.yaml
         │   ├── ip-detect
+        │   ├── cluster_packages.json
+        │   ├── serve
+        │   ├── ssh_key
+        │   ├── state          
 
 2.  <a name="two"></a>Install the cluster prerequisites, including system updates, compression utilities (UnZip, GNU tar, and XZ Utils), and cluster permissions. For a full list of cluster prerequisites, see this [documentation][4].
 
@@ -294,7 +299,13 @@ To install DC/OS:
 
     When the status icons are green, you can access the DC/OS web interface.
 
-7.  Launch the DC/OS web interface at: `http://<public-master-ip>/`. If this doesn't work, take a look at the [troubleshooting docs][9]
+7.  Launch the DC/OS web interface at `http://<public-master-ip>/` and login. If this doesn't work, take a look at the [troubleshooting docs][9]
+
+    ![alt text](../img/ui-installer-login.gif)
+    
+    You are done!
+        
+    ![dashboard](../img/ui-dashboard.gif)
 
 # Next Steps
 

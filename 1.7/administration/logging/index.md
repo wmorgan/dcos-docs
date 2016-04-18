@@ -19,7 +19,7 @@ Take a look at the [CLI installation documentation][2] if you’re not already r
 
 For most use cases, you’re normally interested in the logs for unhealthy components. These can be found in the DC/OS UI under `System`.
 
-![DC/OS Components](assets/components.png "DC/OS Components") FIXME
+![system health](../img/ui-system-health-logging.gif)
 
 As you can imagine, it is also possible to aggregate your system logs. Take a look at our [ELK][3] and [Splunk][4] tutorials if you're interested.
 
