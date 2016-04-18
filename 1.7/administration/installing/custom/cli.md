@@ -117,7 +117,7 @@ The DC/OS installation creates these folders:
     ssh_port: 22
     ssh_user: <username>
     ```
-
+    
     **Important:** You cannot use an NFS mount for Exhibitor storage with the automated command line installation method. To use an NFS mount for Exhibitor storage (`exhibitor_storage_backend: shared_filesystem`), you must use the [advanced installation method][3].
 
 3.  Copy your private SSH key to `genconf/ssh_key`. For more information, see the [ssh_key_path][6] parameter.
@@ -299,7 +299,13 @@ To install DC/OS:
 
     When the status icons are green, you can access the DC/OS web interface.
 
-7.  Launch the DC/OS web interface at: `http://<public-master-ip>/`. If this doesn't work, take a look at the [troubleshooting docs][9]
+7.  Launch the DC/OS web interface at `http://<public-master-ip>/` and login. If this doesn't work, take a look at the [troubleshooting docs][9]
+
+    ![alt text](/img/ui-installer-login.gif)
+    
+    You are done!
+        
+    ![dashboard](/img/ui-dashboard.gif)
 
 # Next Steps
 
