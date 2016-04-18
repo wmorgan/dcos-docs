@@ -141,7 +141,9 @@ their contents.
 To login, run `dcos auth login`.
 
 - You will be prompted with "Please go to the following link in your browser".
-- Open the given link and authenticate with your account. Once you
+- Open the given link and authenticate with your account. Note that you will
+  be redirected from the login page on your cluster to `dcos.auth0.com`,
+  which is the federating identity provider used in DC/OS by default. Once you
   authenticate, you should see a JSON Web Token.
 - Copy the token from the browser to your CLI.
 - If you correctly entered your token you should see "Login successful!".
