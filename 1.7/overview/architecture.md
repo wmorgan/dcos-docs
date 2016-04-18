@@ -28,7 +28,7 @@ In DC/OS, the kernel space is responsible for the resource allocation across the
 The DC/OS user space spans System Components and Services (like Chronos or Kafka):
 
 - [System Components](../components/) are installed and are running by default in the DC/OS cluster and include (but are not limited to) the following:
-  - The Admin router is an open source NGNIX configuration that provides central authentication and proxy to DC/OS services.
+  - The Admin Router is an open source NGNIX configuration that provides central authentication and proxy to DC/OS services.
   - Exhibitor automatically configures ZooKeeper during installation and provides a usable Web UI to ZooKeeper.
   - Mesos-DNS provides service discovery, allowing apps and services to find each other by using the domain name system (DNS).
   - Minuteman is the internal layer 4 load balancer.
@@ -56,8 +56,8 @@ On each Master node the following happens, in chronological order:
 1. The Distributed DNS Proxy runs on all nodes (master/agents) and forwards DNS lookups to Mesos-DNS
 1. System Marathon is launched. It starts on every master node
 1. System Marathon connects to the local ZooKeeper (127.0.0.1), discovers leading Mesos Master (aka. `leader.mesos`) and registers as a framework with it
-1. Admin router depends on the Mesos Master, Mesos-DNS and the Distributed DNS Proxy. It runs on each of the master nodes. This is what serves the DC/OS UI and proxies external admin connections into the cluster
-1. DC/OS UI, Mesos UI, Marathon UI, and Exhibitor UI become externally accessible as these are all made available via. admin router.
+1. Admin Router depends on the Mesos Master, Mesos-DNS and the Distributed DNS Proxy. It runs on each of the master nodes. This is what serves the DC/OS UI and proxies external admin connections into the cluster
+1. DC/OS UI, Mesos UI, Marathon UI, and Exhibitor UI become externally accessible as these are all made available via. Admin Router.
 1. Auth is managed by OAuth (only masters)
 1. History services provides the data for the graphs in the UI (only masters)
 1. DC/OS diagnostics (also systemd service, on every node)

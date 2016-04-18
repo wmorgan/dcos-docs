@@ -12,14 +12,14 @@ All services in the package repositories are required to meet a standard as defi
 
 ## <a name="adminrouter"></a>Admin Router and Web Interface Integration
 
-By default, a DC/OS service is deployed on a [private agent node][3]. To allow configuration control or monitoring of a service by a user, the admin router proxies calls on the master node to the service in a private node on the cluster. The HTTP service endpoint requires relative paths for artefacts and resources. The service endpoint can provide a web interface, a RESTful endpoint, or both. When creating a DC/OS CLI subcommand it is common to have a RESTful endpoint to communicate with the scheduler service.
+By default, a DC/OS service is deployed on a [private agent node][3]. To allow configuration control or monitoring of a service by a user, the Admin Router proxies calls on the master node to the service in a private node on the cluster. The HTTP service endpoint requires relative paths for artefacts and resources. The service endpoint can provide a web interface, a RESTful endpoint, or both. When creating a DC/OS CLI subcommand it is common to have a RESTful endpoint to communicate with the scheduler service.
 
-The integration to the admin router is automatic when a framework scheduler registers a `webui_url` during the registration process with the Mesos master. There are a couple of limitations:
+The integration to the Admin Router is automatic when a framework scheduler registers a `webui_url` during the registration process with the Mesos master. There are a couple of limitations:
 
 *   The URL must NOT end with a backslash (/). For example, this is good `internal.dcos.host.name:10000`, and this is bad `internal.dcos.host.name:10000/`.
 *   DC/OS supports 1 URL and port.
 
-When the `webui_url` is provided, the service is listed on the DC/OS web interface as a service with a link. That link is the admin router proxy URL name that is based on a naming convention of: `/service/<service_name>`. For example, `<dcos_host>/service/unicorn` is the proxy to the `webui_url`. If you provide a web interface, it will be integrated with the DC/OS web interface and users can click the link for quick access to your service.
+When the `webui_url` is provided, the service is listed on the DC/OS web interface as a service with a link. That link is the Admin Router proxy URL name that is based on a naming convention of: `/service/<service_name>`. For example, `<dcos_host>/service/unicorn` is the proxy to the `webui_url`. If you provide a web interface, it will be integrated with the DC/OS web interface and users can click the link for quick access to your service.
 
 Service health check information is provided from the DC/OS service tab in the following cases.
 
@@ -43,7 +43,7 @@ Service health check information is provided from the DC/OS service tab in the f
 
           "framework": true
 
-You can provide public access to your service through the admin router or by deploying your own proxy or router to the public agent node. It is recommend to use the admin router for scheduler configuration and control allowing integration with the DC/OS web interface. It is also recommended to provide a CLI subcommand for command-line control of a RESTful service endpoint for the scheduler.
+You can provide public access to your service through the Admin Router or by deploying your own proxy or router to the public agent node. It is recommend to use the Admin Router for scheduler configuration and control allowing integration with the DC/OS web interface. It is also recommended to provide a CLI subcommand for command-line control of a RESTful service endpoint for the scheduler.
 
 ## Package Structure
 

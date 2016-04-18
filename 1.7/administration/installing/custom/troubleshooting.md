@@ -120,7 +120,7 @@ DC/OS Marathon is started on the master nodes. The native Marathon instance that
 
 # Admin Router
 
-The Admin router is started on the master nodes. The admin router provides central authentication and proxy to DC/OS services within the cluster. This allows you to administer your cluster from outside the network without VPN or a SSH tunnel. For HA, an optional load balancer can be configured in front of each master node, load balancing port 80, to provide failover and load balancing.
+The Admin Router is started on the master nodes. The Admin Router provides central authentication and proxy to DC/OS services within the cluster. This allows you to administer your cluster from outside the network without VPN or a SSH tunnel. For HA, an optional load balancer can be configured in front of each master node, load balancing port 80, to provide failover and load balancing.
 
 **Troubleshooting:**
 
@@ -130,7 +130,7 @@ The Admin router is started on the master nodes. The admin router provides centr
     $ journalctl -u dcos-nginx -b
     ```
 
-    For example, here is a snippet of the Admin router log as it converges to a successful state:
+    For example, here is a snippet of the Admin Router log as it converges to a successful state:
 
     ```bash
     systemd[1]: Starting A high performance web server and a reverse proxy server...
