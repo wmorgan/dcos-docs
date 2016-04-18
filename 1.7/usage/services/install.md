@@ -44,6 +44,8 @@ dcos package list
 
    ![services](../img/services-installed.png)
 
+Note that some services from the "Community Packages" section of the Universe will not show up in the DC/OS service listing. For these, inspect the service's Marathon app in the Marathon UI to verify that the service is running and healthy.
+
  [1]: /docs/1.7/usage/services/repo/
  [2]: /docs/1.7/administration/installing/
  [3]: /docs/1.7/usage/cli/install/
