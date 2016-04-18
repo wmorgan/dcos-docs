@@ -219,5 +219,5 @@ Now, if you navigate to the ELB public DNS address in your browser, you should s
 
  [1]: /docs/1.7/administration/installing/
  [2]: /docs/1.7/usage/cli/install/
- [3]: /docs/1.7/administration/managing-a-dcos-cluster-in-aws/#scrollNav-1
+ [3]: /docs/1.7/administration/managing-aws/
  [4]: /docs/1.7/administration/sshcluster/
