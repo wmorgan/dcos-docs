@@ -14,7 +14,7 @@ nav_title: Uninstalling
     For example, to uninstall Chronos:
 
     ```bash
-    dcos package uninstall chronos
+    $ dcos package uninstall chronos
     ```
 
 ## Uninstall a service with the web UI
