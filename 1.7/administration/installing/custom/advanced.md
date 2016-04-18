@@ -117,7 +117,7 @@ The DC/OS installation creates these folders:
 
 In this step you create a custom DC/OS build file on your bootstrap node and then install DC/OS onto your cluster. With this method you package the DC/OS distribution yourself and connect to every server manually and run the commands.
 
-**Tip:** If something goes wrong and you want to rerun your setup, use these cluster [cleanup instructions][2].
+**Tip:** If something goes wrong and you want to rerun your setup, use these cluster [cleanup instructions][8].
 
 **Prerequisites**
 
