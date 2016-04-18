@@ -5,7 +5,7 @@ nav_title: Packet
 
 You can create a DCOS cluster on Packet bare metal by using Terraform.
 
-The included Terraform templates are configured to run Mesosphere DC/OS on Packet. Depending on the DC/OS services that you install, or the amount of computing power your workload needs, you might have to modify the templates to suit your needs. You can modify the Terraform templates, but Mesosphere cannot assist in troubleshooting. If you require support, please email help@packet.net, visit the Packet IRC channel (#packethost on freenode) or consider the DCOS Enterprise Edition. 
+The included Terraform templates are configured to run Mesosphere DC/OS on Packet. Depending on the DC/OS services that you install, or the amount of computing power your workload needs, you might have to modify the templates to suit your needs. You can modify the Terraform templates, but Mesosphere cannot assist in troubleshooting. If you require support, please email help@packet.net, visit the Packet IRC channel (#packethost on freenode) or consider the DCOS Enterprise Edition.
 
 ## Hardware
 
@@ -32,9 +32,17 @@ The included Terraform templates are configured to run Mesosphere DC/OS on Packe
 
 2.  Download the DCOS Terraform manifests from github (https://github.com/mesosphere/packet-terraform) into a local  directory.
 
-3.  From that directory, generate an ssh keypair: ssh-keygen -t rsa -f ./packet-key
+    ```bash
+    $ git clone https://github.com/mesosphere/packet-terraform
+    ```
 
-4.  Copy the sample.terraform.tfvars file to a new file named terraform.tfvars, and edit the new file, filling in the values as desired. The following are blank and if not filled in, you will be prompted by terraform when necessary:
+3.  From that directory, generate an ssh keypair:
+
+    ```bash
+    $ ssh-keygen -t rsa -f ./packet-key
+    ```
+
+4.  Copy `sample.terraform.tfvars` to a new file named `terraform.tfvars`, and edit the new file, filling in the values as desired. The following are blank and if not filled in, you will be prompted by terraform when necessary:
 
     - packet_api_key - Your packet API key
 
@@ -45,16 +53,16 @@ The included Terraform templates are configured to run Mesosphere DC/OS on Packe
 
     The following have default values and may be changed depending on your requirements:
 
-    - packet_facility - Packet facility: [ewr1|sjc1|ams1]  
+    - packet_facility - Packet facility: [ewr1|sjc1|ams1]
       ewr1 is New Jersey, ams1 is Amsterdam, sjc1 is San Jose - default sjc1
 
-    - packet_agent_type - Type of Packet Server to use for the DCOS Agents: [baremetal_0|baremetal_1|baremetal_3]  
+    - packet_agent_type - Type of Packet Server to use for the DCOS Agents: [baremetal_0|baremetal_1|baremetal_3]
       Choose the Packet Server type to use for the DCOS Private Agents - default baremetal_0
 
-    - packet_master_type - Type of Packet Server to use for the DCOS Master: [baremetal_0|baremetal_1|baremetal_3]  
+    - packet_master_type - Type of Packet Server to use for the DCOS Master: [baremetal_0|baremetal_1|baremetal_3]
       Choose the Packet Server type to use for the DCOS Master Nodes - default baremetal_0
 
-    - packet_boot_type - Type of Packet Server to use for the DCOS Boot Node: [baremetal_0|baremetal_1|baremetal_3]  
+    - packet_boot_type - Type of Packet Server to use for the DCOS Boot Node: [baremetal_0|baremetal_1|baremetal_3]
       Choose the Packet Server type to use for the DCOS Boot Server - default baremetal_0
 
     - dcos_cluster_name - the name of your DCOS cluster - defaults to packet-dcos
@@ -69,25 +77,24 @@ The included Terraform templates are configured to run Mesosphere DC/OS on Packe
 
 5.  Also from that same directory, run terraform apply which will deploy the servers into your project at Packet, and run the DCOS installation routine. When it completes, you will see output similar to the following, but with the IP addresses assigned to your servers:
 
-    ![terraform apply output](../../img/packet_terraform_output.png)
+    ![terraform apply output](../../../img/packet_terraform_output.png)
 
-You may need to wait a few minutes from this point for all the DCOS services to become active and the control panel available on the master node.  If shit goes completely wrong, see the [Mesosphere Knowledge Base](https://support.mesosphere.com/hc/en-us).
+You may need to wait a few minutes from this point for all the DCOS services to become active and the control panel available on the master node. After 15 or 20 minutes, you'll want to check out the [troubleshooting](../../custom/troubleshooting/) documentation.
 
 # Launch DCOS
 Launch the DCOS web interface by entering the Mesos Master ip address:
 
 1.  Cut/paste the link provided by after running terraform apply, or by running terraform output from the same directory, into your browser to open the DCOS web interface. The interface runs on the standard HTTP port 80, so you do not need to specify a port number after the hostname.
 
-2.  Install the DCOS Command-Line Interface (CLI). You can install the CLI to administer your DCOS cluster.
-You can access the documentation at any time by clicking the caret icon in the lower left corner.
+2.  Install the DCOS Command-Line Interface (CLI). You can install the CLI to administer your DCOS cluster. You can access the documentation at any time by clicking the caret icon in the lower left corner.
 
-    ![dcos help link](../../img/packet_help_link.png)
+    ![dcos help link](../../../img/packet_help_link.png)
 
 ## Next steps
 
 - Adding and removing nodes:
 
-  - Run terraform apply -var ‘dcos_agent_count=N’ to change the private agent count to the number specified. (‘dcos_public_agent_count’ is also available)
+  - Run `terraform apply -var ‘dcos_agent_count=N’` to change the private agent count to the number specified. (`‘dcos_public_agent_count’` is also available)
 
   - Increasing node count is fast, safe, and fun!
 
