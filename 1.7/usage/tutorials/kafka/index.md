@@ -115,11 +115,9 @@ $ dcos kafka connection
 ### Produce a message
 ```bash
 $ dcos node ssh --master-proxy --leader
-```
-```bash
+
 core@ip-10-0-6-153 ~ $ docker run -it mesosphere/kafka-client
-```
-```bash
+
 root@7d0aed75e582:/bin# echo "Hello, World." | ./kafka-console-producer.sh --broker-list 10.0.0.211:9843 --topic topic1
 ```
 
