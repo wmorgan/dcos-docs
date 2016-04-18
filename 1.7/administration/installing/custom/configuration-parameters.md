@@ -107,81 +107,9 @@ This parameter specifies the allowable amount of time, in seconds, for an action
 
 **Tip:** If have a slower network environment, consider changing to `process_timeout: 600`.
 
-<!--
-### <a name="roles"></a>roles
-This parameter specifies the Mesos roles to delegate to a node. For more information, see <a href="https://open.mesosphere.com/reference/mesos-master/#roles" target="_blank">Mesos roles</a>. The available options are `slave_public`, ` master `, and `slave`.
+<!-- ### <a name="roles"></a>roles This parameter specifies the Mesos roles to delegate to a node. For more information, see <a href="https://open.mesosphere.com/reference/mesos-master/#roles" target="_blank">Mesos roles</a>. The available options are `slave_public`, ` master `, and `slave`. *  `roles: slave_public` Runs the public agent node. This is the default value. *  `roles: master` Runs the master node. *  `roles: slave` Runs the private agent node. -->
 
-*  `roles: slave_public`
-   Runs the public agent node. This is the default value.
-*  `roles: master`
-   Runs the master node.
-*  `roles: slave`
-   Runs the private agent node.
-
-### [config-yaml-bootstrap-url]
-
-### [config-yaml-cluster-name]
-
-### **exhibitor_storage_backend**
-This parameter specifies the type of storage backend to use for Exhibitor. You can use internal DC/OS storage (<code>static</code>) or specify an external storage system (<code>zookeeper</code>, <code>aws_s3</code>, and <code>shared_filesystem</code>) for configuring and orchestrating ZooKeeper with Exhibitor on the master nodes. Exhibitor automatically configures your ZooKeeper installation on the master nodes during your DC/OS installation.
-
-*   [config-yaml-zk-static]
-*   [config-yaml-zookeeper]
-    *   [config-yaml-exhibitor-zk-hosts]
-    *   [config-yaml-exhibitor-zk-path]
-*   [config-yaml-aws-s3]
-*   [config-yaml-shared-filesystem]
-
-### [config-yaml-master-discovery]
-
-*   [config-yaml-static]
-    *   [config-yaml-master-list]
-*   [config-yaml-vrrp]
-    *   [config-yaml-keepalived-router-id]
-    *   [config-yaml-keepalived-interface]
-    *   [config-yaml-keepalived-pass]
-    *   [config-yaml-keepalived-virtual-ipaddress]
-    *   [config-yaml-num-masters]
-
-### [config-yaml-rexray-config-method]
-
-# Security and Authentication
-
-### [config-yaml-auth-cookie-secure-flag]
-
-### [config-yaml-ssh-key-path]
-
-### [config-yaml-ssh-port]
-
-### [config-yaml-ssh-user]
-
-### [config-yaml-superuser-password-hash]
-
-### [config-yaml-superuser-username]
-
-# Networking
-
-### [config-yaml-dns-search]
-
-### [config-yaml-resolvers]
-
-# Performance and Tuning
-
-### [config-yaml-docker-remove-delay]
-
-### [config-yaml-gc-delay]
-
-### [config-yaml-log-directory]
-
-### [config-yaml-process-timeout]
-
-### [config-yaml-roles]
-
-*   [config-yaml-slave-public]
-*   [config-yaml-master]
-*   [config-yaml-slave]
-
-### [config-yaml-weights]
+<!-- ### <a name="weights"></a>weights This parameter specifies the priority of the role. For more information, see <a  href="https://open.mesosphere.com/reference/mesos-master/#weights" target="_blank">Mesos weights</a>. -->
 
 # <a name="examples1"></a>Example Configurations
 
