@@ -7,7 +7,7 @@ DC/OS is a distributed operating system based on the Apache Mesos distributed sy
 
 To get a better feeling for what DC/OS is and what it does, jump into some of the other sections:
 
-- [Get Started](https://dcos.io/get-started/)
-- [Architecture](architecture/)
-- [DC/OS Features](features/)
 - [What is DC/OS?](what-is-dcos/)
+- [DC/OS Architecture](architecture/)
+- [DC/OS Features](features/)
+- [DC/OS Security](security/)
