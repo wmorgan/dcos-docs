@@ -4,7 +4,7 @@ nav_title: Inline Update
 menu_order: 2
 ---
 
-The [DC/OS CLI][1] Marathon plugin allows you to easily view and update the configuration of existing applications.
+The [DC/OS CLI][1] Marathon sub-command allows you to easily view and update the configuration of existing applications.
 
 ## Update an Environment Variable
 
