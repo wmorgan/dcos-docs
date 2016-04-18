@@ -43,7 +43,7 @@ If you want to learn more about how DC/OS works:
 
 - Check out the [DC/OS Architecture](/docs/1.7/overview/architecture/)
 - Learn how [High Availability](/docs/1.7/overview/high-availability/) is achieved in DC/OS
-- Understand [Network Security](/docs/1.7/overview/network-security/) in DC/OS
+- Understand [Network Security](/docs/1.7/overview/security/) in DC/OS
 
 If you have a DevOps role:
 
