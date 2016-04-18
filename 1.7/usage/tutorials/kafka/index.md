@@ -139,9 +139,11 @@ Hello, World.
 $ dcos package uninstall --app-id=kafka
 ```
 
-### Purge/clean up persisted state:
+Then, use the [framework cleaner](https://docs.mesosphere.com/framework_cleaner/) script to remove your Kafka instance from Zookeeper and to destroy all data associated with it. The script requires several arguments, the values for which are derived from your service name:
 
-[Kafka uninstall](http://docs.mesosphere.com/services/kafka/#uninstall)
+`framework-role` is `kafka-role`
+`framework-principal` is `kafka-principal`
+`zk_path` is `kafka`
 
 ## Kafka API Reference
 
