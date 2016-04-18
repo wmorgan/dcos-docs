@@ -22,9 +22,9 @@ By components, we're referring to the services which work together to bring the 
 If you log into any host in the DC/OS cluster, you can view the currently running services by inspecting `/etc/systemd/system/dcos.target.wants/`.
 
 ## Admin Router Service
-Admin router is our core internal load balancer. Admin router is a customized [Nginx](https://www.nginx.com/resources/wiki/) which allows us to proxy all the internal services on :80.
+Admin Router is our core internal load balancer. Admin Router is a customized [Nginx](https://www.nginx.com/resources/wiki/) which allows us to proxy all the internal services on :80.
 
-Without admin router being up, you could not access the DC/OS UI. Admin router is a core component of the DC/OS ecosystem.
+Without Admin Router being up, you could not access the DC/OS UI. Admin Router is a core component of the DC/OS ecosystem.
 
 ```
 [Unit]

@@ -5,9 +5,9 @@ menu_order: 5
 ---
 This page contains terms and definitions for DC/OS.
 
-# Admin router
+# Admin Router
 
-The admin router runs on the DC/OS master servers to provide a proxy for the admin parts of the cluster.
+The Admin Router runs on the DC/OS master servers to provide a proxy for the admin parts of the cluster.
 
 # <a name="agent"></a> Agent node
 
