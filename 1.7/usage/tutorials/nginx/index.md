@@ -15,14 +15,14 @@ menu_order: 7
 In this tutorial you will learn:
 * How to install NGINX on DC/OS to serve a static website
 
-**Table of Contents**
+## Table of Contents
 
 ## Prerequisites
 
 - A running DC/OS cluster, with atleast 1 node having atleast 1 CPUs and 1 GB of RAM available.
 - [DC/OS CLI](https://docs.mesosphere.com/usage/cli/install/) installed
 
-### Installing NGINX to serve a static website
+## Installing NGINX to serve a static website
 
 Assuming you have a DC/OS cluster up and running, we are going to install NGINX on DC/OS to serve up a [hello-nginx website](http://mesosphere.github.io/hello-nginx/). Let's get started by creating a file called `options.json` with following contents:
 
@@ -37,6 +37,8 @@ Assuming you have a DC/OS cluster up and running, we are going to install NGINX 
   }
 }
 ```
+
+Using above `options.json` file we are going to spin up a NGINX docker container using 1 CPU (`cpus` param), 1024 MB RAM (`mem` param), using docker `BRIDGE` mode networking (`bridge` param). We are also configuring a URL to an archive of static website that we would like to serve using NGINX, specified via `contentUrl` param. And, `contentDir` param is the name of the directory that gets created when the `contentUrl` file is download and uncompressed.
 
 Next, we are going to install nginx using this `options.json` file:
 
@@ -60,6 +62,6 @@ NAME   HOST        USER  STATE  ID
 nginx  10.0.0.161  root    R    nginx.b1e20ff3-0500-11e6-83da-8a8d57d7c81f
 ```
 
-Let's try to access the hello-world website that our NGINX server is hosting by hitting the URL: http://<YOUR-DCOS-MASTER-HOSTNAME>/service/nginx. You should see a webpage similar to this:
+Let's try to access the hello-world website that our NGINX server is now hosting by opening following URL: `http://<YOUR-DCOS-MASTER-HOSTNAME>/service/nginx`. You should see a webpage similar to this:
 
 ![Hello World NGINX on DC/OS](img/hello-nginx-dcos.png)
