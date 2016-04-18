@@ -1,10 +1,8 @@
 ---
 post_title: Security in DC/OS
-nav_title: DC/OS Security
+nav_title: Security
 menu_order: 4
 ---
-
-# DC/OS Security
 
 This document discusses some of the security features in DC/OS, in addition to
 best practices for deploying DC/OS securely.
@@ -53,7 +51,7 @@ iptables firewall.
 
 A typical AWS deployment including AWS Load Balancers is shown below:
 
-![Security Zones](img/security-zones.jpg)
+![Security Zones](../img/security-zones.jpg)
 
 ## Admin Router
 
@@ -111,7 +109,7 @@ An authentication operation via the DC/OS UI proceeds as follows:
    [dcos-oauth](https://github.com/dcos/dcos-oauth) service. If the user is the
    first user accessing the cluster, an account is automatically created. Any
    subsequent users must be added by any other user in the cluster as described
-   in the [User Management](../administration/user-management) page.
+   in the [User Management](/docs/1.7/administration/user-management/) page.
    If the user logging into the cluster is determined to be valid, they are
    issued with a HS256-signed JWT containing a `uid` claim which is specific to
    the cluster they are logging in to.
@@ -152,7 +150,7 @@ To login, run `dcos auth login`.
 To logout, run `dcos auth logout`.
 
 Authentication is only supported for DC/OS CLI version 0.4.3 and above. See
-[here](../docs/usage/cli/update/) for upgrade instructions.
+[here](/docs/1.7/usage/cli/update/) for upgrade instructions.
 
 The DC/OS CLI stores the token in a configuration file in the `.dcos`
 directory under the home directory of the user running the CLI.
@@ -196,7 +194,7 @@ If you are performing a custom advanced installation, you may configure DC/OS
 to use an alternative Auth0 account by adding the following directive to
 `genconf/config.yaml`:
 
-```
+```yaml
 oauth_issuer_url: https://youraccount.auth0.com/
 oauth_client_id: <client id from application>
 oauth_auth_redirector: https://youraccount.auth0.com
@@ -229,7 +227,7 @@ If you are performing a custom advanced installation, you may opt out of
 Auth0-based authentication by adding the following directive to
 `genconf/config.yaml` (note that the quotes are currently required):
 
-```
+```yaml
 oauth_enabled: 'false'
 ```
 
