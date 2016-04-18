@@ -1,0 +1,77 @@
+---
+post_title: DC/OS Roadmap
+nav_title: Roadmap
+---
+
+The roadmap provides a high level overview of the themes that the project is planning to focus on in the near, medium and long term.
+Please see the design docs and JIRAs for details on each item.
+
+## Near Term
+
+### Unified DC/OS API
+DC/OS consists of a number of components that each serve a specialized function.
+Every component has its own API, with different syntax, conventions, and endpoints.
+The Unified DC/OS API brings all of these together under one umbrella. It’s the “POSIX” of DC/OS.
+The initial focus will be on networking, and integrating the Marathon API.
+[Design doc](/docs/1.7/overview/design/dcos-api/).
+
+### Support for Container Network Interface
+The [Container Network Interface (CNI)](https://github.com/appc/cni) is a proposed standard for configuring network interfaces for Linux containers.
+[Design doc](https://docs.google.com/document/d/1FFZwPHPZqS17cRQvsbbWyQbZpwIoHFR_N6AAApRv514/edit).
+
+### Edge load balancing
+A load balancer that routes incoming web traffic to services running on DC/OS.
+Previous solutions on DC/OS were based on HAProxy.
+This effort plans to integrate edge load balancing into the [DC/OS service discovery](/docs/1.7/usage/service-discovery/) layer, without the need for HAProxy.
+
+### Pluggable External Volumes
+Support for pluggable external volume providers such as [REX-Ray](https://github.com/emccode/rexray), [Flocker](https://github.com/ClusterHQ/flocker), etc.
+See the [design doc for external volumes in Mesos](https://docs.google.com/document/d/1sSgPh_0Muvdec0__q9Ecs8Uq0qvEuETs0AGinevOr3w/edit) and
+[external volumes in Marathon](https://mesosphere.github.io/marathon/docs/external-volumes.html).
+
+## Medium Term
+
+### Pods
+Pods enable the popular "sidecar" pattern where multiple containers get scheduled together on the same host and with shared resources.
+It allows co-scheduling of monitoring agents, service registration clients, etc. with the main application process.
+
+### Metrics API
+The Metrics API provides a way for any component of DC/OS to publish its own metrics.
+Metrics can be tagged with metadata such as the source component, task, hostname, user, etc. and forwarded to standard metrics aggregation tools such as Graphite, Grafana, InfluxDB, and Prometheus.
+
+### Unified Logging
+Aggregate logs from all parts of DC/OS via Journald. This includes master, agent, and service logs.
+Logs are tagged with metadata like service name, host, etc.
+Plugins and tutorials for integrating with log aggregation systems like Splunk or ELK.
+
+### System Services
+Run a service on every node in the cluster to support add-ons that need a daemon process to be present cluster-wide.
+Examples are monitoring agents, log ingestion, security monitoring and enforcement, networking.
+
+### Package Profiles
+Multiple configuration profiles in Universe packages, to support dev/prod configurations and small/medium/large setups.
+
+### Package Dependencies
+Support for dependencies in Universe packages.
+
+### GPU Support
+Support for discovery, isolation, and consumption of GPUs.
+Users will be able to request machines with GPU support for their tasks.
+DC/OS provides isolation so that multiple containers cannot interfere with each other.
+
+### DC/OS on Windows
+Support running DC/OS nodes on Windows machines, and support for scheduling workloads in Windows containers.
+
+
+## Long Term
+
+## Jobs
+Schedule run-to-completion jobs with DC/OS, such as ETL and system maintenance tasks.
+This is currently accomplished by the Chronos scheduler which needs to be installed separately.
+The goal of this project is to integrate this functionality into DC/OS itself.
+
+## Debugging
+Tools for debugging applications at runtime, and integrating with existing debugging tools such as gdb and IDEs.
+
+## Autoscaling
+Automatic scale-out of container-based applications based on configurable metrics such as response time and throughput.
