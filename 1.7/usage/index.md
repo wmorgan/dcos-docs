@@ -21,7 +21,6 @@ Once you've had a good look around in the DC/OS Dashboard and familiarized yours
 
 If you have a DevOps role:
 
-- How to run [NGINX](/docs/1.7/usage/tutorials/nginx/)
 - How to run a [Ruby on Rails app](/docs/1.7/usage/tutorials/ruby-on-rails/) app
 - How to run [Tomcat](/docs/1.7/usage/tutorials/tomcat/)
 
@@ -35,7 +34,6 @@ If you a DC/OS administrator role:
 
 - How to [manage users](/docs/1.7/administration/user-management/)
 - How to [monitor](/docs/1.7/administration/monitoring/)
-- How to [resize](/docs/1.7/administration/resizing/)
 
 ## Intermediate
 
@@ -55,7 +53,7 @@ If you have a DevOps role:
 
 If you a DC/OS administrator role:
 
-- How to handle [logging](/docs/1.7/usage/tutorials/logging/)
+- How to handle [logging](/docs/1.7/administration/logging/)
 - How to handle [auto-scaling](/docs/1.7/usage/tutorials/autoscaling/)
 - How to handle [load-balancing](/docs/1.7/usage/service-discovery/marathon-lb/)
 
