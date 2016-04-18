@@ -33,20 +33,24 @@ In this tutorial you will learn:
 
   * [Prerequisites](#prerequisites)
   * [Install Kafka](#install-kafka)
+
     * [Typical installation](#typical-installation)
     * [Minimal installation](#minimal-installation)
 
   * [Topic Management](#topic-management)
+
      * [Add a topic](#add-a-topic)
-     
+
   * [Produce and consume messages](#produce-and-consume-messages)
+
      * [List Kafka client endpoints](#list-kafka-client-endpoints)
      * [Produce a message](#produce-a-message)
      * [Consume a message](#consume-a-message)
-     
+
   * [Cleanup](#cleanup)
+
      * [Uninstall](#uninstall)
-     
+
   * [Kafka API Reference](#api-reference)
 
 ## Prerequisites
