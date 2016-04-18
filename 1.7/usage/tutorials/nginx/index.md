@@ -8,8 +8,7 @@ menu_order: 7
 
 **Terminology**
 
-- **Docker**: 
-- **BRIDGE mode**: 
+- **Docker**: Docker is a piece of software that helps package an application with all of its dependencies into a standardized unit for software development.
 
 **Scope**
 
@@ -32,8 +31,8 @@ Assuming you have a DC/OS cluster up and running, we are going to install NGINX 
   "nginx": {
     "cpus": 1,
     "mem": 1024,
-    "contentUrl":"https://github.com/mesosphere/hello-nginx/archive/master.zip",
     "bridge": true,
+    "contentUrl":"https://github.com/mesosphere/hello-nginx/archive/master.zip",
     "contentDir":"hello-nginx-master/"
   }
 }
@@ -44,3 +43,23 @@ Next, we are going to install nginx using this `options.json` file:
 ```bash
 dcos package install nginx --options=options.json
 ```
+
+Once you run above command, you'll see following output:
+
+```bash
+Preparing to install nginx.
+Installing Marathon app for package [nginx] version [1.8.1]
+Nginx is getting installed.
+```
+
+To verify that our NGINX instance is up and running, we can use `dcos task` command:
+
+```bash
+$ dcos task
+NAME   HOST        USER  STATE  ID
+nginx  10.0.0.161  root    R    nginx.b1e20ff3-0500-11e6-83da-8a8d57d7c81f
+```
+
+Let's try to access the hello-world website that our NGINX server is hosting by hitting the URL: http://<YOUR-DCOS-MASTER-HOSTNAME>/service/nginx. You should see a webpage similar to this:
+
+![Hello World NGINX on DC/OS](img/hello-nginx-dcos.png)
