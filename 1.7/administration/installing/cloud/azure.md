@@ -92,20 +92,22 @@ The DC/OS UI will not show the correct IP address or CLI install commands when c
 
 Note that the following commands can be used to run the DC/OS CLI directly on the master node:
 
-    # Connect to master node with ssh
-    $ ssh -p2200 azureuser@MASTER_LOAD_BALANCER -L 8000:localhost:80
-    
-    # Install virtualenv
-    $ sudo apt-get -y install virtualenv
-    
-    # Install CLI on the master node and configure with http://localhost
-    $ mkdir -p dcos && cd dcos && 
-    $ curl -O https://downloads.dcos.io/dcos-cli/install-optout.sh && \
-       bash ./install-optout.sh . http://localhost && \
-       source ./bin/env-setup
-    
-    # Now you can use the DC/OS CLI:   
-    $ dcos package search
+```bash
+# Connect to master node with ssh
+$ ssh -p2200 azureuser@MASTER_LOAD_BALANCER -L 8000:localhost:80
+
+# Install virtualenv
+$ sudo apt-get -y install virtualenv
+
+# Install CLI on the master node and configure with http://localhost
+$ mkdir -p dcos && cd dcos &&
+$ curl -O https://downloads.dcos.io/dcos-cli/install-optout.sh && \
+   bash ./install-optout.sh . http://localhost && \
+   source ./bin/env-setup
+
+# Now you can use the DC/OS CLI:
+$ dcos package search
+```
 
 ## Tear Down the DC/OS cluster
 
@@ -116,7 +118,7 @@ If you've created a new resource group in the deployment step, it is as easy as 
 - [Add users to your cluster][10]
 - [Install the DC/OS Command-Line Interface (CLI)][1]
 - [Use your cluster][4]
-- [Scaling considerations][2]
+- [Scaling considerations][3]
 
 [1]: /docs/1.7/usage/cli/install/
 [3]: https://azure.microsoft.com/en-us/documentation/articles/best-practices-auto-scaling/

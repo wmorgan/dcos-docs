@@ -85,8 +85,9 @@ A `search` line with the specified contents is added to the `/etc/resolv.conf` f
 
 In this example, `example.com` has public website `www.example.com` and all of the hosts in the datacenter have fully qualified domain names that end with `dc1.example.com`. One of the hosts in your datacenter has the hostname `foo.dc1.example.com`. If `dns_search` is set to &#8216;dc1.example.com example.com&#8217;, then every DC/OS host which does a name lookup of foo will get the A record for `foo.dc1.example.com`. If a machine looks up `www`, first `www.dc1.example.com` would be checked, but it does not exist, so the search would try the next domain, lookup `www.example.com`, find an A record, and then return it.
 
-    dns_search: dc1.example.com dc1.example.com example.com dc1.example.com dc2.example.com example.com
-
+```yaml
+dns_search: dc1.example.com dc1.example.com example.com dc1.example.com dc2.example.com example.com
+```
 ### resolvers
 This required parameter specifies a YAML nested list (`-`) of DNS resolvers for your DC/OS cluster nodes. You can specify a maximum of 3 resolvers. Set this parameter to the most authoritative nameservers that you have. If you want to resolve internal hostnames, set it to a nameserver that can resolve them. If you have no internal hostnames to resolve, you can set this to a public nameserver like Google or AWS. In the example file above, the <a href="https://developers.google.com/speed/public-dns/docs/using" target="_blank">Google Public DNS IP addresses (IPv4)</a> are specified (`8.8.8.8` and `8.8.4.4`).
 
@@ -107,129 +108,135 @@ This parameter specifies the allowable amount of time, in seconds, for an action
 
 **Tip:** If have a slower network environment, consider changing to `process_timeout: 600`.
 
-<!-- ### <a name="roles"></a>roles This parameter specifies the Mesos roles to delegate to a node. For more information, see <a href="https://open.mesosphere.com/reference/mesos-master/#roles" target="_blank">Mesos roles</a>. The available options are `slave_public`, ` master `, and `slave`. *  `roles: slave_public` Runs the public agent node. This is the default value. *  `roles: master` Runs the master node. *  `roles: slave` Runs the private agent node. -->
-
-<!-- ### <a name="weights"></a>weights This parameter specifies the priority of the role. For more information, see <a  href="https://open.mesosphere.com/reference/mesos-master/#weights" target="_blank">Mesos weights</a>. -->
-
 # <a name="examples1"></a>Example Configurations
 
 #### DC/OS cluster with 3 masters, an Exhibitor/ZooKeeper backed by ZooKeeper, and static master list specified.
 
-    agent_list:
-    - <agent-private-ip-1>
-    - <agent-private-ip-2>
-    - <agent-private-ip-3>
-    - <agent-private-ip-4>
-    - <agent-private-ip-5>
-    bootstrap_url: 'file:///opt/dcos_install_tmp'
-    cluster_name: '<cluster-name>'
-    exhibitor_storage_backend: zookeeper
-    exhibitor_zk_hosts: <host1>:<port1>
-    exhibitor_zk_path: /dcos
-    log_directory: /genconf/logs
-    master_discovery: static
-    master_list:
-    - <master-private-ip-1>
-    - <master-private-ip-2>
-    - <master-private-ip-3>
-    process_timeout: 120
-    resolvers:
-    - <dns-resolver-1>
-    - <dns-resolver-2>
-    ssh_key_path: /genconf/ssh-key
-    ssh_port: '<port-number>'
-    ssh_user: <username>
+```yaml
+---
+agent_list:
+- <agent-private-ip-1>
+- <agent-private-ip-2>
+- <agent-private-ip-3>
+- <agent-private-ip-4>
+- <agent-private-ip-5>
+bootstrap_url: 'file:///opt/dcos_install_tmp'
+cluster_name: '<cluster-name>'
+exhibitor_storage_backend: zookeeper
+exhibitor_zk_hosts: <host1>:<port1>
+exhibitor_zk_path: /dcos
+log_directory: /genconf/logs
+master_discovery: static
+master_list:
+- <master-private-ip-1>
+- <master-private-ip-2>
+- <master-private-ip-3>
+process_timeout: 120
+resolvers:
+- <dns-resolver-1>
+- <dns-resolver-2>
+ssh_key_path: /genconf/ssh-key
+ssh_port: '<port-number>'
+ssh_user: <username>
+```
 
 
 #### <a name="shared"></a>DC/OS cluster with 3 masters, an Exhibitor/ZooKeeper shared filesystem storage backend, Internal DNS
 
-    agent_list:
-    - <agent-private-ip-1>
-    - <agent-private-ip-2>
-    - <agent-private-ip-3>
-    - <agent-private-ip-4>
-    - <agent-private-ip-5>
-    bootstrap_url: file:///tmp/dcos
-    cluster_name: fs-example
-    exhibitor_fs_config_dir: /shared-mount
-    exhibitor_storage_backend: shared_filesystem
-    log_directory: /genconf/logs
-    master_discovery: static
-    master_list:
-    - <master-private-ip-1>
-    - <master-private-ip-2>
-    - <master-private-ip-3>
-    process_timeout: 120
-    resolvers:
-    - 0.10.5.1
-    - 10.10.6.1
-    roles: slave_public
-    ssh_key_path: /genconf/ssh-key
-    ssh_port: '<port-number>'
-    ssh_user: <username>
-    weights: slave_public=1
-
+```yaml
+---
+agent_list:
+- <agent-private-ip-1>
+- <agent-private-ip-2>
+- <agent-private-ip-3>
+- <agent-private-ip-4>
+- <agent-private-ip-5>
+bootstrap_url: file:///tmp/dcos
+cluster_name: fs-example
+exhibitor_fs_config_dir: /shared-mount
+exhibitor_storage_backend: shared_filesystem
+log_directory: /genconf/logs
+master_discovery: static
+master_list:
+- <master-private-ip-1>
+- <master-private-ip-2>
+- <master-private-ip-3>
+process_timeout: 120
+resolvers:
+- 0.10.5.1
+- 10.10.6.1
+roles: slave_public
+ssh_key_path: /genconf/ssh-key
+ssh_port: '<port-number>'
+ssh_user: <username>
+weights: slave_public=1
+```
 
 #### <a name="aws"></a>DC/OS Cluster with 3 masters, an Exhibitor/ZooKeeper backed by an AWS S3 bucket, AWS DNS, and a public agent node
 
-    agent_list:
-    - <agent-private-ip-1>
-    - <agent-private-ip-2>
-    - <agent-private-ip-3>
-    - <agent-private-ip-4>
-    - <agent-private-ip-5>
-    aws_access_key_id: AKIAIOSFODNN7EXAMPLE
-    aws_region: us-west-2
-    aws_secret_access_key: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
-    bootstrap_url: file:///tmp/dcos
-    cluster_name: s3-example
-    exhibitor_storage_backend: aws_s3
-    log_directory: /genconf/logs
-    master_discovery: static
-    master_list:
-    - <master-private-ip-1>
-    - <master-private-ip-2>
-    - <master-private-ip-3>
-    process_timeout: 120
-    resolvers:
-    - 169.254.169.253
-    roles: slave_public
-    s3_bucket: mybucket
-    s3_prefix: s3-example
-    ssh_key_path: /genconf/ssh-key
-    ssh_port: '<port-number>'
-    ssh_user: <username>
-    weights: slave_public=1
-
+```yaml
+---
+agent_list:
+- <agent-private-ip-1>
+- <agent-private-ip-2>
+- <agent-private-ip-3>
+- <agent-private-ip-4>
+- <agent-private-ip-5>
+aws_access_key_id: AKIAIOSFODNN7EXAMPLE
+aws_region: us-west-2
+aws_secret_access_key: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+bootstrap_url: file:///tmp/dcos
+cluster_name: s3-example
+exhibitor_storage_backend: aws_s3
+log_directory: /genconf/logs
+master_discovery: static
+master_list:
+- <master-private-ip-1>
+- <master-private-ip-2>
+- <master-private-ip-3>
+process_timeout: 120
+resolvers:
+- 169.254.169.253
+roles: slave_public
+s3_bucket: mybucket
+s3_prefix: s3-example
+ssh_key_path: /genconf/ssh-key
+ssh_port: '<port-number>'
+ssh_user: <username>
+weights: slave_public=1
+```
 
 #### <a name="zk"></a>DC/OS cluster with 3 masters, an Exhibitor/ZooKeeper backed by ZooKeeper, VRRP master discovery, public agent node, and Google DNS
 
-    agent_list:
-    - <agent-private-ip-1>
-    - <agent-private-ip-2>
-    - <agent-private-ip-3>
-    - <agent-private-ip-4>
-    - <agent-private-ip-5>
-    bootstrap_url: file:///tmp/dcos
-    cluster_name: zk-example
-    exhibitor_storage_backend: zookeeper
-    exhibitor_zk_hosts: 10.10.10.1:2181
-    exhibitor_zk_path: /zk-example
-    keepalived_interface: eth1
-    keepalived_pass: $MY_STRONG_PASSWORD
-    keepalived_router_id: 51
-    keepalived_virtual_ipaddress: 67.34.242.55
-    log_directory: /genconf/logs
-    master_discovery: vrrp
-    num_masters: 3
-    process_timeout: 120
-    resolvers:
-    - 8.8.4.4
-    - 8.8.8.8
-    roles: slave_public
-    ssh_key_path: /genconf/ssh-key
-    ssh_port: '<port-number>'
-    ssh_user: <username>
-    weights: slave_public=1
+```yaml
+---
+agent_list:
+- <agent-private-ip-1>
+- <agent-private-ip-2>
+- <agent-private-ip-3>
+- <agent-private-ip-4>
+- <agent-private-ip-5>
+bootstrap_url: file:///tmp/dcos
+cluster_name: zk-example
+exhibitor_storage_backend: zookeeper
+exhibitor_zk_hosts: 10.10.10.1:2181
+exhibitor_zk_path: /zk-example
+keepalived_interface: eth1
+keepalived_pass: $MY_STRONG_PASSWORD
+keepalived_router_id: 51
+keepalived_virtual_ipaddress: 67.34.242.55
+log_directory: /genconf/logs
+master_discovery: vrrp
+num_masters: 3
+process_timeout: 120
+resolvers:
+- 8.8.4.4
+- 8.8.8.8
+roles: slave_public
+ssh_key_path: /genconf/ssh-key
+ssh_port: '<port-number>'
+ssh_user: <username>
+weights: slave_public=1
+```
 
  [1]: https://en.wikipedia.org/wiki/YAML

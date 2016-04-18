@@ -117,7 +117,7 @@ The DC/OS installation creates these folders:
     ssh_port: 22
     ssh_user: <username>
     ```
-    
+
     **Important:** You cannot use an NFS mount for Exhibitor storage with the automated command line installation method. To use an NFS mount for Exhibitor storage (`exhibitor_storage_backend: shared_filesystem`), you must use the [advanced installation method][3].
 
 3.  Copy your private SSH key to `genconf/ssh_key`. For more information, see the [ssh_key_path][6] parameter.
@@ -193,15 +193,17 @@ To install DC/OS:
 
     At this point your directory structure should resemble:
 
-        ├── dcos-genconf.<HASH>.tar
-        ├── dcos_generate_config.sh
-        ├── genconf
-        │   ├── config.yaml
-        │   ├── ip-detect
-        │   ├── cluster_packages.json
-        │   ├── serve
-        │   ├── ssh_key
-        │   ├── state          
+    ```
+    ├── dcos-genconf.<HASH>.tar
+    ├── dcos_generate_config.sh
+    ├── genconf
+    │   ├── config.yaml
+    │   ├── ip-detect
+    │   ├── cluster_packages.json
+    │   ├── serve
+    │   ├── ssh_key
+    │   ├── state
+    ```
 
 2.  <a name="two"></a>Install the cluster prerequisites, including system updates, compression utilities (UnZip, GNU tar, and XZ Utils), and cluster permissions. For a full list of cluster prerequisites, see this [documentation][4].
 
@@ -302,9 +304,9 @@ To install DC/OS:
 7.  Launch the DC/OS web interface at `http://<public-master-ip>/` and login. If this doesn't work, take a look at the [troubleshooting docs][9]
 
     ![alt text](../img/ui-installer-login.gif)
-    
+
     You are done!
-        
+
     ![dashboard](../img/ui-dashboard.gif)
 
 # Next Steps

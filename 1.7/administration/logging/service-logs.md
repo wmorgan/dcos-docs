@@ -1,7 +1,5 @@
 ---
 post_title: Service and Task Logging
-post_excerpt: ""
-layout: docs.jade
 ---
 
 As soon as you move from one machine to many, accessing and aggregating logs becomes difficult. Once you hit a certain scale, keeping these logs and making them available to others can add massive overhead to your cluster. After watching how users interact with their logs, we’ve scoped the problem to two primary use cases. This allows you to pick the solution with the lowest overhead that solves your specific problem.

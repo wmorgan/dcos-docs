@@ -1,7 +1,6 @@
 ---
-post_title: Log Management with ELK
-post_excerpt: ""
-layout: docs.jade
+post_title: Log Management in DC/OS with ELK
+nav_title: ELK
 ---
 You can pipe system and application logs from a DC/OS cluster to your existing ElasticSearch, Logstash, and Kibana (ELK) server.
 
