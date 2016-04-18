@@ -1,7 +1,7 @@
 ---
 post_title: Running Stateful Services on DC/OS via Marathon
-nav_title: >
-  Stateful Services
+nav_title: Stateful Services
+menu_order: 3
 ---
 
 A stateful service acts on persistent data. Simple, stateless services in Marathon run in an empty sandbox each time they are launched. In contrast, stateful services on Marathon make use of persistent volumes that reside on agents in a cluster until explicitly destroyed.
@@ -32,13 +32,13 @@ This tutorial is for developers who want to run stateful services on DC/OS. **No
 
 This will teach you how to set up and manage a stateful service on DC/OS.
 
-# Prerequisites
+## Prerequisites
 
 * [DC/OS installed][1]
 * [DC/OS CLI installed][2]
 * [Cluster Size][3]: at least one agent node with 1 CPU, 1 GB of RAM and 1000 MB of disk space available.
 
-# Install a stateful service (PostgreSQL)
+## Install a stateful service (PostgreSQL)
 
 Take a look at a JSON configuration to start the official PostgreSQL docker image:
 
@@ -127,7 +127,7 @@ APP        HEALTHY  STARTED     HOST     ID
 /postgres    True     N/A    10.0.1.223  postgres.f2419e31-018a-11e6-b721-0261677b407a
 ```
 
-# Restart
+## Restart
 
 Start the stateful service again:
 
@@ -137,7 +137,7 @@ $ dcos marathon app start postgres
 
 The metadata of the previous `postgres` task is used to launch a new task that takes over the reservations and volumes of the previously stopped service. Inspect the running task again by repeating the command from the previous step. You will see that the same `persistenceId` is used and the running service task is using the same data as the previous one.
 
-# Cleanup
+## Cleanup
 
 In order to restore the state of your cluster as it was before installing the stateful service, you delete the service:
 
@@ -145,7 +145,7 @@ In order to restore the state of your cluster as it was before installing the st
 $ dcos marathon app remove postgres
 ```
 
-# Appendix
+## Appendix
 
 For further information on stateful services in DC/OS on Marathon, see:
 

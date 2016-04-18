@@ -14,21 +14,20 @@ nav_title: Cassandra
 **Scope**:
 
 In this tutorial you will learn:
-* How to install the Cassandra service
-* How to use the enhanced DC/OS CLI operations for Cassandra
-* How to validate that the service is up and running
-* How to connect to Cassandra and perform CRUD operations
+
+- How to install the Cassandra service
+- How to use the enhanced DC/OS CLI operations for Cassandra
+- How to validate that the service is up and running
+- How to connect to Cassandra and perform CRUD operations
 
 **Table of Contents**:
 
 - [Prerequisites](#prerequisites)
 - [Installing Cassandra](#installing-cassandra)
-
   - [Typical installation](#typical-installation)
   - [Custom manual installation procedure](#custom-manual-installation-procedure)
   - [Manual installation via the web interface](#manual-installation-via-the-web-interface)
   - [Validate installation](#validate-installation)
-
 - [Cassandra CRUD operations](#cassandra-crud-operations)
 - [Cleanup](#cleanup)
 
