@@ -38,9 +38,9 @@ This parameter specifies the type of storage backend to use for Exhibitor. You c
        This parameter specifies AWS secret access key.
     *  **exhibitor_explicit_keys**
        This parameter specifies whether you are using AWS API keys to grant Exhibitor access to S3.
-        *  `exhibitor_explicit_keys: true`
+        *  `exhibitor_explicit_keys: 'true'`
            If you're  using AWS API keys to manually grant Exhibitor access.
-        *  `exhibitor_explicit_keys: false`
+        *  `exhibitor_explicit_keys: 'false'`
            If you're using AWS Identity and Access Management (IAM) to grant Exhibitor access to s3.
     *  **s3_bucket**
        This parameter specifies name of your S3 bucket.
@@ -188,6 +188,7 @@ aws_secret_access_key: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 bootstrap_url: file:///tmp/dcos
 cluster_name: s3-example
 exhibitor_storage_backend: aws_s3
+exhibitor_explicit_keys: 'true'
 log_directory: /genconf/logs
 master_discovery: static
 master_list:
