@@ -128,9 +128,9 @@ You can learn about further options on how to run a Spark job via the [DC/OS doc
 
 To interactively work with Spark, you can use [Apache Zeppelin](https://zeppelin.incubator.apache.org/) and here's what you need to do to install it.
 
-You typically want to access Zeppelin via a web browser outside of the DC/OS cluster. To access the Zeppelin UI from outside of the DC/OS cluster you have a number of options available: from launching it on a public node to [using marathon-lb](https://mesosphere.com/blog/2015/12/04/dcos-marathon-lb/).
+You typically want to access Zeppelin via a web browser outside of the DC/OS cluster. To access the Zeppelin UI from outside of the DC/OS cluster you have a number of options available: from launching it on a public node to [using marathon-lb](/docs/1.7/usage/service-discovery/marathon-lb/).
 
-In the following I will show you how to launch Zeppelin on a public node and this is fine for testing but be aware that this is going to make Zeppelin available on the public Internet (access from `0.0.0.0`) and with it, everyone out there can access your data and launch Spark jobs on your DC/OS cluster.
+The following section will show you how to launch Zeppelin on a public node. This is fine for testing but be aware that this is going to make Zeppelin available on the public Internet (i.e. access from `0.0.0.0`) and with it, everyone out there can access your data and launch Spark jobs on your DC/OS cluster.
 
 To launch Zeppelin on a public node, create a JSON file `options.json` with the following content:
 
@@ -146,7 +146,6 @@ $ cat options.json
 Then, you can install Zeppelin like so:
 
 ```bash
-$ dcos package repo add multiverse https://github.com/mesosphere/multiverse/archive/version-2.x.zip
 $ dcos package install --options=options.json zeppelin
 Installing Marathon app for package [zeppelin] version [0.5.6]
 Zeppelin has been successfully installed!
@@ -155,16 +154,18 @@ Note that the service is experimental and there may be bugs, incomplete features
 
 After this, you should see Zeppelin running via the DC/OS dashboard (by clicking on the `marathon` service):
 
-![Zeppelin in the dashboard](../img/dcos-zeppelin-dashboard.png)
+![Zeppelin in the dashboard](img/dcos-zeppelin-dashboard.png)
 
-Since Zeppelin is launched, as all long-running applications, via Marathon you need to look up the port it has been scheduled on first. You will want the first (lower) port that you can either glean from the Marathon UI or via the following command, using the DC/OS CLI (ignore the IPs shown below, these are just the cluster-internal ones):
+Since Zeppelin is launched, as all long-running applications, via Marathon you need to look up the port it has been scheduled on first. You will want the first (lower) port that you can either glean from the Marathon UI or via the following commands using the DC/OS CLI (ignore the IPs shown below, these are just the cluster-internal ones):
 
 ```bash
 $ dcos marathon task list
 APP        HEALTHY          STARTED              HOST     ID
 /spark       True   2016-03-11T08:36:15.291Z  10.0.3.213  spark.30fb27f8-e764-11e5-957c-024211f85596
 /zeppelin    True   2016-03-11T10:28:28.343Z  10.0.4.239  zeppelin.cac2fe3a-e773-11e5-957c-024211f85596
+```
 
+```bash
 $ dcos marathon task show zeppelin.cac2fe3a-e773-11e5-957c-024211f85596
 {
   "appId": "/zeppelin",
@@ -196,13 +197,13 @@ $ dcos marathon task show zeppelin.cac2fe3a-e773-11e5-957c-024211f85596
 }
 ```
 
-In my case the lower port was `31753` and together with the public node IP this gives `http://52.10.197.225:31753/` and when I enter this in my browser I indeed have access to Zeppelin now:
+In this case the lower port was `31753` and together with the public node IP this gives `http://52.10.197.225:31753/`:
 
-![Zeppelin](../img/dcos-zeppelin.png)
+![Zeppelin](img/dcos-zeppelin.png)
 
 To get started with Zeppelin, check out the Zeppelin [docs](http://zeppelin.incubator.apache.org/docs/0.5.6-incubating/tutorial/tutorial.html) or simply walk through the built-in tutorial in form of a notebook called `Zeppelin Tutorial`:
 
-![Zeppelin Tutorial](../img/dcos-zeppelin-tutorial.png)
+![Zeppelin Tutorial](img/dcos-zeppelin-tutorial.png)
 
 **Further resources**:
 
