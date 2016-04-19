@@ -25,8 +25,8 @@ DC/OS Virtual Networking Service builds on the CNI standard and provides IP per 
 [Design doc](https://docs.google.com/document/d/1Ped26pNOoET5H-QM--D6aPiCpG3qgvknNUbZJLz-rao/edit).
 
 ### Edge load balancing
-A load balancer that routes incoming North-South web traffic to services running on DC/OS.
-Previous solutions on DC/OS were based on HAProxy.
+A Layer 7 On-ramp/Off-ramp with load balancing capabilities that routes incoming North-South web traffic to services running on DC/OS.
+[Design doc] (https://docs.google.com/document/d/1G7Pj9cqRZjQkJz89E343067-InfDqW7RtcX94F4w_So/edit#heading=h.28ogyrx55sfi)
 This effort plans to integrate edge load balancing into the [DC/OS service discovery](/docs/1.7/usage/service-discovery/) layer, without the need for individually managed HAProxy.
 
 ### Pluggable External Volumes
