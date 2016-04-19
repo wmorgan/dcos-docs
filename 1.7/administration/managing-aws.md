@@ -7,7 +7,7 @@ menu_order: 9
 
 The DC/OS AWS CloudFormation template creates 1 Mesos agent node in the [public zone][1].
 
-To find your your public node IP:
+To find your public node IP:
 
 1.  Select your stack from the [Amazon CloudFormation Management](https://console.aws.amazon.com/cloudformation/home) page.
 
