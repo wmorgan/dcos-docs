@@ -55,7 +55,7 @@ In this tutorial you will learn:
 
 ## Prerequisites
 
-- A running DC/OS cluster with 3 nodes, each with 2 CPUs and 2 GB of RAM available
+- A running DC/OS cluster with 3 private agents, each with 2 CPUs and 2 GB of RAM available
 - [DC/OS CLI](/docs/1.7/usage/cli/install/) installed
 
 ## Install Kafka
@@ -117,14 +117,20 @@ $ dcos kafka connection
 }
 ```
 
+The above shows an example of what a Kafka client endpoint will look like. Note the address and ports
+will be different from cluster to cluster, since these services are dynamically provisioned. Record the
+"address" value from your cluster for use in the next step.
+
 ### Produce a message
 ```bash
 $ dcos node ssh --master-proxy --leader
 
 core@ip-10-0-6-153 ~ $ docker run -it mesosphere/kafka-client
 
-root@7d0aed75e582:/bin# echo "Hello, World." | ./kafka-console-producer.sh --broker-list 10.0.0.211:9843 --topic topic1
+root@7d0aed75e582:/bin# echo "Hello, World." | ./kafka-console-producer.sh --broker-list KAFKA_ADDRESS:PORT --topic topic1
 ```
+
+Replace the above KAFKA_ADDRESS:PORT with the Kafka client endpoint address from your cluster.
 
 ### Consume a message
 ```bash
@@ -132,11 +138,17 @@ root@7d0aed75e582:/bin# ./kafka-console-consumer.sh --zookeeper master.mesos:218
 Hello, World.
 ```
 
+Hit CTRL-C to stop the Kafka consumer process.
+
 ## Cleanup
 
 ### Uninstall
+
+Return to the DC/OS CLI environment (exit the Docker container with CTRL-D, exit the SSH session on the master node with
+another CTRL-D).
+
 ```bash
-$ dcos package uninstall --app-id=kafka
+$ dcos package uninstall --app-id=kafka kafka
 ```
 
 Then, use the [framework cleaner](https://docs.mesosphere.com/framework_cleaner/) script to remove your Kafka instance from Zookeeper and to destroy all data associated with it. The script requires several arguments, the values for which are derived from your service name:
