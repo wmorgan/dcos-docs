@@ -108,6 +108,25 @@ This parameter specifies the allowable amount of time, in seconds, for an action
 
 **Tip:** If have a slower network environment, consider changing to `process_timeout: 600`.
 
+## Security And Authentication
+
+### oauth_enabled
+This parameter specifies whether to enable authentication for your cluster. <!-- DC/OS auth -->
+
+- `oauth_enabled: 'true'` Enable authentication for your cluster. This is the default value.
+- `oauth_enabled: 'false'` Disable authentication for your cluster.
+
+If you’ve already installed your cluster and would like to disable this in-place, you can go through an upgrade with the same parameter set.
+  
+### telemetry_enabled
+This parameter specifies whether to enable sharing of anonymous data for your cluster. <!-- DC/OS auth -->
+
+- `telemetry_enabled: 'true'` Enable anonymous data sharing. This is the default value.
+- `telemetry_enabled: 'false'` Disable anonymous data sharing.
+
+If you’ve already installed your cluster and would like to disable this in-place, you can go through an [upgrade][3] with the same parameter set.
+
+
 # <a name="examples1"></a>Example Configurations
 
 #### DC/OS cluster with 3 masters, an Exhibitor/ZooKeeper backed by ZooKeeper, and static master list specified.
