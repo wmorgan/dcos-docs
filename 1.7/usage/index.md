@@ -48,7 +48,6 @@ If you want to learn more about how DC/OS works:
 If you have a DevOps role:
 
 - Research all the [service discovery](/docs/1.7/usage/service-discovery/) options in DC/OS
-- How to run [PostgreSQL](/docs/1.7/usage/tutorials/postgres/)
 - How to run [ArangoDB](/docs/1.7/usage/tutorials/arangodb/)
 
 If you a DC/OS administrator role:
