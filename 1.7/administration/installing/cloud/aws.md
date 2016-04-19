@@ -59,11 +59,11 @@ Save the `.pem` file locally for use later. Note that this is the only chance to
 
     **Tip:** You can choose whether to rollback on failure. By default this option is set to **Yes**.
 
-    ![Confirm stack](../img/dcos-aws-step2d.png)
-
 5.  On the **Review** page, check the acknowledgement box and then click **Create**.
 
     **Tip:** If the **Create New Stack** page is shown, either AWS is still processing your request or you’re looking at a different region. Navigate to the correct region and refresh the page to see your stack.
+    
+    ![Confirm stack](../img/dcos-aws-step2d.png)
 
 # Monitor the DC/OS cluster convergence process
 
