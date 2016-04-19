@@ -48,6 +48,12 @@ The Azure Container Service implementation brings several more benefits to you:
 3. Potential to increase integration with Azure services if you decide it would benefit your deployments as the system moves forward.
 4. Complete support: Brings Microsoft support to the infrastructure to complement Mesosphere's support of DC/OS.
 
+The default ACS architecture looks like this:
+
+![Azure Container Service archictecture using DC/OS.](/img/dcos-acs.png)
+
+
+
 ## DC/OS component list
 
 The following list shows the components used by DC/OS. You'll note that the core components center around Mesos, marathon, python, and so on. 
