@@ -19,7 +19,7 @@ of how to launch a Spark job to using Spark interactively with [Apache Zeppelin]
 
 # Installing
 
-Assuming you have a DC/OS cluster up and running, the first step is to [install Spark](https://docs.mesosphere.com/manage-service/spark/). As the minimum cluster size for this tutorial I recommend at least three nodes with 2 CPUs and 2 GB of RAM available, each:
+Assuming you have a DC/OS cluster up and running, the first step is to install Spark. The minimum cluster size recommended for this tutorial is at least three nodes with 2 CPUs and 2 GB of RAM available, each:
 
 ```bash
 $ dcos package install spark
@@ -31,10 +31,10 @@ Installing Marathon app for package [spark] version [1.6.0]
 Installing CLI subcommand for package [spark] version [1.6.0]
 New command available: dcos spark
 The Apache Spark DC/OS Service has been successfully installed!
-```
 
-    	Documentation: https://spark.apache.org/docs/latest/running-on-mesos.html
-    	Issues: https://issues.apache.org/jira/browse/SPARK
+	Documentation: https://spark.apache.org/docs/latest/running-on-mesos.html
+	Issues: https://issues.apache.org/jira/browse/SPARK
+```
 
 While the DC/OS command line interface (CLI) is immediately available it takes a few minutes until Spark is actually running in the cluster. Let's first check the DC/OS CLI and its new subcommand `spark`:
 
@@ -60,11 +60,11 @@ Usage:
 
 Now, we check if Spark is running and healthy, in the cluster itself. For this, go to the DC/OS dashboard and you should see Spark there:
 
-![Spark in the dashboard](../img/dcos-spark-dashboard.png)
+![Spark in the dashboard](img/dcos-spark-dashboard.png)
 
 By clicking on the `Open Service` button, you can access the Spark drivers page where you will see the jobs listed in the next steps; alternatively you can get to this page by using the `dcos spark webui` command:
 
-![Spark Drivers page](../img/dcos-spark-drivers.png)
+![Spark Drivers page](img/dcos-spark-drivers.png)
 
 # Executing a Spark job
 
@@ -83,7 +83,7 @@ Run job succeeded. Submission id: driver-20160310064921-0001
 
 Note the submission id in the last line, above (in my case `driver-20160310064921-0001`): this allows to track the job via the CLI as we will see below. When you look at the Spark drivers page you should see the job as well (in my case the finished job, since it took less than a minute to execute):
 
-![Spark finished job](../img/dcos-spark-finished-job.png)
+![Spark finished job](img/dcos-spark-finished-job.png)
 
 Alternatively, you can use the CLI to verify the job status:
 
@@ -111,7 +111,9 @@ Now let's run the same job again and use `dcos spark log` to watch the execution
 ```bash
 $ dcos spark run --submit-args='-Dspark.mesos.coarse=true --driver-cores 1 --driver-memory 1024M --class org.apache.spark.examples.SparkPi https://downloads.mesosphere.com/spark/assets/spark-examples_2.10-1.4.0-SNAPSHOT.jar 30'
 Run job succeeded. Submission id: driver-20160310070130-0002
+```
 
+```bash
 $ dcos spark log driver-20160310070130-0002
 --container="mesos-1854723e-1060-4b28-a0df-1d21f2d18fea-S2.7e81a48a-bbc1-489a-b499-34f7131b5a35" --docker="docker" --docker_socket="/var/run/docker.sock" --help="false" --initialize_driver_logging="true" --launcher_dir="/opt/mesosphere/packages/mesos--be838ff64133ce38545b7d06f43c6348e5963188/libexec/mesos" --logbufsecs="0" --logging_level="INFO" --mapped_directory="/mnt/mesos/sandbox" --quiet="false" --sandbox_directory="/var/lib/mesos/slave/slaves/1854723e-1060-4b28-a0df-1d21f2d18fea-S2/frameworks/1854723e-1060-4b28-a0df-1d21f2d18fea-0001/executors/driver-20160310070130-0002/runs/7e81a48a-bbc1-489a-b499-34f7131b5a35" --stop_timeout="0ns"
 --container="mesos-1854723e-1060-4b28-a0df-1d21f2d18fea-S2.7e81a48a-bbc1-489a-b499-34f7131b5a35" --docker="docker" --docker_socket="/var/run/docker.sock" --help="false" --initialize_driver_logging="true" --launcher_dir="/opt/mesosphere/packages/mesos--be838ff64133ce38545b7d06f43c6348e5963188/libexec/mesos" --logbufsecs="0" --logging_level="INFO" --mapped_directory="/mnt/mesos/sandbox" --quiet="false" --sandbox_directory="/var/lib/mesos/slave/slaves/1854723e-1060-4b28-a0df-1d21f2d18fea-S2/frameworks/1854723e-1060-4b28-a0df-1d21f2d18fea-0001/executors/driver-20160310070130-0002/runs/7e81a48a-bbc1-489a-b499-34f7131b5a35" --stop_timeout="0ns"
