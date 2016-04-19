@@ -28,8 +28,8 @@ a Docker image on Marathon.
 ### Table of Contents
 
   * Prerequisites
-  * Installing Jenkins in a development environment (pinning to a single node)
-  * Installing Jenkins in production (backed by NFS)
+  * Installing Jenkins in a development environment
+  * Installing Jenkins in production
     * Creating a file share on Microsoft Azure
   * Building a Docker image and deploying it to Marathon
   * Uninstalling Jenkins
@@ -58,9 +58,10 @@ This Marathon instance will appear in the DC/OS dashboard as `marathon-user`.
 
 Jenkins works by persisting information about its configuration and build
 history as files on disk. Therefore, we have two options for deploying
-Jenkins on DC/OS: pin it to a single node, or use a network file system.
+Jenkins on DC/OS: pin it to a single node, or use a network file system such
+as NFS, CIFS, and so on.
 
-## Installing Jenkins in a development environment (pinning to a single node)
+## Installing Jenkins in a development environment
 
 If you only want to run Jenkins in a development environment, it's trivial
 to pin it to a single agent in the DC/OS cluster. Create the file
@@ -97,13 +98,14 @@ Jenkins has been installed.
 
 Once ready, Jenkins will appear as a service in the DC/OS dashboard.
 
-## Installing Jenkins in production (backed by NFS)
+## Installing Jenkins in production
 
 As mentioned previously, running Jenkins in a production environment will
-require that each machine in the cluster has a NFS share mounted at the same
-location. This will allow Jenkins to persist data to the external volume while
-still being able to run on any agent in the cluster, preventing against
-outages due to machine failure.
+require that each machine in the cluster has an external volume mounted at the
+same location. This external volume can be backed by any number of systems,
+including NFS, CIFS, Ceph, and others. This will allow Jenkins to persist data
+to the external volume while still being able to run on any agent in the
+cluster, preventing against outages due to machine failure.
 
 If you already have a mount point, great! Create an `options.json` file that
 resembles the following example:
@@ -127,8 +129,8 @@ $ dcos package install jenkins --options=options.json
 ```
 
 If you don't have a file share set up and are looking for a solution, continue
-with the next section for instructions on how to set one up using Microsoft
-Azure.
+with the next section for instructions on how to set up a CIFS share using
+Microsoft Azure.
 
 ### Creating a file share on Microsoft Azure
 First, you need to create a [Storage Account][azure-storage-account] in the
