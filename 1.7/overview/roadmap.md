@@ -42,11 +42,10 @@ It allows co-scheduling of monitoring agents, service registration clients, etc.
 
 ### Metrics API
 The Metrics API provides a way for any component of DC/OS to publish its own metrics.
-Metrics can be tagged with metadata such as the source component, task, hostname, user, etc. and forwarded to standard metrics aggregation tools such as Graphite, Grafana, InfluxDB, and Prometheus.
+Metrics can be forwarded to standard metrics aggregation tools such as Graphite, Grafana, InfluxDB, and Prometheus.
 
 ### Unified Logging
 Aggregate logs from all parts of DC/OS via Journald. This includes master, agent, and service logs.
-Logs are tagged with metadata like service name, host, etc.
 Plugins and tutorials for integrating with log aggregation systems like Splunk or ELK.
 
 ### System Services
