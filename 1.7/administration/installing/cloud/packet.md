@@ -3,9 +3,9 @@ post_title: Packet DC/OS Installation Guide
 nav_title: Packet
 ---
 
-You can create a DCOS cluster on Packet bare metal by using Terraform.
+You can create a DCOS cluster on Packet bare metal using Terraform.
 
-The included Terraform templates are configured to run Mesosphere DC/OS on Packet. Depending on the DC/OS services that you install, or the amount of computing power your workload needs, you might have to modify the templates to suit your needs. You can modify the Terraform templates, but Mesosphere cannot assist in troubleshooting. If you require support, please email help@packet.net, visit the Packet IRC channel (#packethost on freenode) or consider the DCOS Enterprise Edition.
+The included Terraform templates are configured to run Mesosphere DC/OS on Packet. Depending on the DC/OS services that you install, or the amount of computing power your workload needs, you might have to modify the templates to suit your needs. You can modify the Terraform templates, but Mesosphere cannot assist in troubleshooting. If you require support, please email help@packet.net, visit the Packet IRC channel (#packethost on freenode) or consider the Enterprise DC/OS.
 
 ## Hardware
 
@@ -19,7 +19,7 @@ The included Terraform templates are configured to run Mesosphere DC/OS on Packe
 
 # Create a DCOS cluster
 
-## Prerequisite:
+## Prerequisites:
 
 - [Packet API Key](https://www.packet.net/resources/kb/how-do-i-create-api-keys/)
 
@@ -27,10 +27,11 @@ The included Terraform templates are configured to run Mesosphere DC/OS on Packe
 
 - [Terraform by Hashicorp](https://www.terraform.io/intro/getting-started/install.html)
 
+## Installing DCOS
 
 1.  Download and install Terraform using the instructions on the link provided above
 
-2.  Download the DCOS Terraform manifests from github (https://github.com/mesosphere/packet-terraform) into a local  directory.
+2.  [Download the DCOS Terraform manifests from GitHub](https://github.com/mesosphere/packet-terraform) into a local  directory.
 
     ```bash
     $ git clone https://github.com/mesosphere/packet-terraform
@@ -44,7 +45,7 @@ The included Terraform templates are configured to run Mesosphere DC/OS on Packe
 
 4.  Copy `sample.terraform.tfvars` to a new file named `terraform.tfvars`, and edit the new file, filling in the values as desired. The following are blank and if not filled in, you will be prompted by terraform when necessary:
 
-    - packet_api_key - Your packet API key
+    - packet_api_key - Your Packet API key
 
     - packet_project_id - Packet Project ID
 
@@ -75,14 +76,14 @@ The included Terraform templates are configured to run Mesosphere DC/OS on Packe
 
     - key_file_path - The path to your ssh private key created in step 4 - defaults to ./packet-key
 
-5.  Also from that same directory, run terraform apply which will deploy the servers into your project at Packet, and run the DCOS installation routine. When it completes, you will see output similar to the following, but with the IP addresses assigned to your servers:
+5.  Also from that same directory, run `terraform apply` which will deploy the servers into your project at Packet, and run the DCOS installation routine. When it completes, you will see output similar to the following, but with the IP addresses assigned to your servers:
 
     ![terraform apply output](../../../img/packet_terraform_output.png)
 
 You may need to wait a few minutes from this point for all the DCOS services to become active and the control panel available on the master node. After 15 or 20 minutes, you'll want to check out the [troubleshooting](../../custom/troubleshooting/) documentation.
 
 # Launch DCOS
-Launch the DCOS web interface by entering the Mesos Master ip address:
+Launch the DCOS web interface by entering the Mesos master IP address:
 
 1.  Cut/paste the link provided by after running terraform apply, or by running terraform output from the same directory, into your browser to open the DCOS web interface. The interface runs on the standard HTTP port 80, so you do not need to specify a port number after the hostname.
 
