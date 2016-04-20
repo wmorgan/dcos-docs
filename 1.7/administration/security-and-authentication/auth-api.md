@@ -12,25 +12,7 @@ By default authentication tokens expire after 5 days. You can view the expiratio
 
 ### Request
 
-Log in with a POST request against `acs/api/v1/auth/login`.
-
-### Data
-
-Specify the user ID (`<user-id>`), password (`<password>`), and external hostname (`<master-host-name>`):
-
-    $ curl --data '{"uid":"<user-id>", "password":"<your-password>"}' \
-        --header "Content-Type:application/json" \
-        http://<master-host-name>/acs/api/v1/auth/login
-    
-
-### Response
-
-The response provides an authentication token that you can provide in the HTTP API `Authorization` header for subsequent requests:
-
-    {
-    "token": "<authtoken>"
-    }
-    
+Log in to the DC/OS CLI to obtain the auth [token](/administration/security-and-authentication/managing-authentication#log-in-cli).
 
 # Make HTTP request using the Authorization header
 

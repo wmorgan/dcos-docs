@@ -4,7 +4,7 @@ menu_order: 1
 ---
 
 ## Using your own certificate for Admin Router
-We encourage administrators to replace the SSL certificate used by Admin Router on the master nodes. Refer to the [Nginx documentation](http://nginx.org/en/docs/http/configuring_https_servers.html) and the Admin Router configuration file at `/opt/mesosphere/active/adminrouter/nginx/conf/nginx.conf` on the master nodes.
+We encourage administrators to replace the SSL certificate used by Admin Router on the master nodes. Refer to the [Nginx documentation](http://nginx.org/en/docs/http/configuring_https_servers.html) and the Admin Router configuration file at `/opt/mesosphere/active/adminrouter/nginx/conf/nginx.conf` on the master nodes. For more information on creating your certificate, see [Let's Encrypt](https://letsencrypt.org/).
 
 ### Using your own Auth0 account
 
