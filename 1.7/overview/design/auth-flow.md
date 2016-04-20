@@ -10,7 +10,7 @@ An authentication operation via the DC/OS UI proceeds as follows:
 2. If the user has a valid authentication token cookie (checked by Admin Router)
    they may proceed to the cluster front page. If not, they are redirected to
    the login page.
-3. The login page in the DC/OS UI loads the login page at `dcos.auth0.com`,
+3. The login page in the DC/OS UI loads the login page at `dcos.auth0.com` in an iframe,
    which presents the user a choice of identity providers, including Google,
    GitHub, and Microsoft account.
 4. The user selects an identity provider and completes the OAuth protocol flow
