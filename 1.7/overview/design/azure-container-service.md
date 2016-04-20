@@ -7,18 +7,14 @@ post_title: DC/OS reference implementation: The Azure Container Service
 This document briefly describes the
 
 - advantages of using DC/OS
-- Azure infrastructure and optimizations
-- bill of materials used to construct Azure Container Service clusters
+- Azure infrastructure and the implementation architecture
+- bill of materials used to construct DC/OS and therefore the ACS clusters
 
 ## Benefits of DC/OS
 
 DC/OS is powered by Apache Mesos used as the distributed kernel of a set of computers that you can treat as one unit, though you retain control of each and every one. In DC/OS, the kernel of the system is in fact any number of mesos masters and agents both publicly available and private; failed mesos masters are replaced by a standby master transparently, and handles leader election. Masters, of course, handle failed agents and processes.
 
 DC/OS applications function as system components in its distributed user space. The most obivous is the system marathon component, which is the distributed `init` for DC/OS; but this also includes the Admit Router service, the Mesos-DNS service, Exhibitor, and other system-wide components that are used by user processes and manage the masters and agents. 
-
-The following graphic is a very high level view of the structure of the system.
-
-![DC/OS abstract architecture](../img/dcos-architecture-100000ft.png)
 
 For a more comprehensive architecturel description of DC/OS, see [The Architecture of DC/OS](../architecture/); for a more complete discussion of components, see [An Introduction to DC/OS Components](../components).
 
@@ -32,6 +28,43 @@ Using Mesos directly is in fact what [many companies do successfully](https://me
 4. The real-time metrics "firehouse" is open for use by your favorite diagnostics and analytics packages.
 5. DC/OS has three ways to automate your distributed OS: a powerful CLI, a lovely UI, and a rich API.
 
+### The Universe of packages
+
+It's worth nothing that point 3, above, are the tools you need to use. Here's a list of what was in the universe on Day 1 of DC/OS, categorized by the type of license.
+
+#### Apache License V2
+
+- ArangoDB
+- Apache Cassandra
+- Crate
+- Elastic Search
+- Etcd
+- Exhibitor
+- Apache Hadoop
+- Hue
+- Jenkins
+- Apache Kafka
+- Linkerd
+- Mr Redis
+- Namerd
+- Quobyte
+- Riak
+- Spark Notebook
+- Apache Spark
+- Apache Storm
+- Docker Swarm
+- Apache Zeppelin
+ 
+#### Simplified BSD
+ 
+- Datadog
+- Nginx
+ 
+#### MIT
+ 
+- OpenVPN Admin
+- OpenVPN
+- Ruxit
 
 And while it's easy to think of using the universe of packages available with the DC/OS packaging system, you can also publish there to give your skills back to the community, too.
 
@@ -39,7 +72,7 @@ Deploying DC/OS yourself may also be what you want to do, but you can start with
 
 ## Azure Container Service infrastructure and optimizations
 
-The Azure Container Service is built with DC/OS as one of the critical orchestration options and the DC/OS implementation is optimized for easy creation and usage on Microsoft Azure and on-premise, eventually with Azure Stack, and is one of the best ways to get started with DC/OS, mesos, and a distributed cluster that can be used and managed like one large system.
+The Azure Container Service is built with DC/OS as one of the critical orchestration options and the DC/OS implementation is optimized for easy creation and usage on Microsoft Azure and on-premise, eventually with Azure Stack, and is one of the best ways to get started with DC/OS, mesos, and a distributed cluster that can be used and managed like one large system whether in your datacenter or in Azure.
 
 The Azure Container Service implementation brings several more benefits to you:
 
@@ -56,7 +89,7 @@ The default ACS architecture looks like this:
 
 ## DC/OS component list
 
-The following list shows the components used by DC/OS. You'll note that the core components center around Mesos, marathon, python, and so on. 
+The following list shows the components used by DC/OS itself. You'll note that the core components center around Mesos, marathon, python, and so on. 
 
 
 - 3dt
