@@ -3,19 +3,43 @@ post_title: Managing AWS
 menu_order: 9
 ---
 
-## Finding your public node hostname
+## Finding your public addresses
 
-The DC/OS AWS CloudFormation template creates 1 Mesos agent node in the [public zone][1].
+The DC/OS AWS CloudFormation template creates (by default) 1 Mesos agent node
+in the [public zone][1], which is also fronted by a public ELB.
 
-To find your public node IP:
+To find your public ELB hostname and public slave IPs:
 
-1.  Select your stack from the [Amazon CloudFormation Management](https://console.aws.amazon.com/cloudformation/home) page.
+1.  Find your
+    [Amazon EC2 Management](https://console.aws.amazon.com/ec2/home) page.
 
-2.  Click on the **Outputs** tab.
+2.  Navigate to the "Load Balancers" section, which you can find on the left
+    panel under "Load Balancing".
 
-    ![Private DNS](../img/awsec2privatedns.png)
+3.  Search for your cluster name in the search bar, and select the ELB which
+    contains the name "Public". The ELB hostname is visible under "DNS Name".
 
-    **Tip:** You might have to refresh your browser to see your deployed app.
+    ![Load Balancers](../img/aws-load-balancers.png)
+
+    In this example, the DNS A record is
+    `brenden-l-PublicSl-1CE9GBJKVK1NZ-1614104872.us-west-2.elb.amazonaws.com`.
+
+    **Tip**: you should always use the DNS A record, rather than pointing directly
+    to an IP (unless you attach an elastic IP). To use your own hostname with
+    the ELB, create a CNAME record pointing to the ELB A record.
+
+4.  Click on the "Instances" tab to view the list of instances in the LB pool.
+    All instances should be listed with a status of "InService".
+
+    ![Load Balancer Backend Instances](../img/aws-load-balancer-instances.png)
+
+
+5.  To get the public IP, click on one of the instances, and look in the lower
+    pane for the public hostname and IP.
+
+    ![Public Agent hostname and IP](../img/aws-public-agent.png)
+
+    In this exaple, the public IP is `54.187.143.120`.
 
 ## Scaling an AWS cluster
 
@@ -53,4 +77,3 @@ To upgrade a DC/OS cluster:
  [1]: /docs/1.7/overview/security/
  [2]: /docs/latest/administration/installing/cloud/aws/
  [3]: https://console.aws.amazon.com/cloudformation/home
-
