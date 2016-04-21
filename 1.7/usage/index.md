@@ -30,7 +30,7 @@ If you have a data engineering or data scientists role:
 - How to run [Cassandra](/docs/1.7/usage/tutorials/cassandra/)
 - How to run [Kafka](/docs/1.7/usage/tutorials/kafka/)
 
-If you a DC/OS administrator role:
+If you have a DC/OS administrator role:
 
 - How to [manage users](/docs/1.7/administration/user-management/)
 - How to [monitor](/docs/1.7/administration/monitoring/)
@@ -50,7 +50,7 @@ If you have a DevOps role:
 - Research all the [service discovery](/docs/1.7/usage/service-discovery/) options in DC/OS
 - How to run [ArangoDB](/docs/1.7/usage/tutorials/arangodb/)
 
-If you a DC/OS administrator role:
+If you have a DC/OS administrator role:
 
 - How to handle [logging](/docs/1.7/administration/logging/)
 - How to handle [auto-scaling](/docs/1.7/usage/tutorials/autoscaling/)
