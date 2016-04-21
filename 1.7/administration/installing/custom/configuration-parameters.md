@@ -129,7 +129,7 @@ If you’ve already installed your cluster and would like to disable this in-pla
 
 # <a name="examples1"></a>Example Configurations
 
-#### DC/OS cluster with 3 masters, an Exhibitor/ZooKeeper backed by ZooKeeper, and static master list specified.
+#### DC/OS cluster with 3 masters, 5 agents, and static master list specified.
 
 ```yaml
 ---
@@ -141,9 +141,6 @@ agent_list:
 - <agent-private-ip-5>
 bootstrap_url: 'file:///opt/dcos_install_tmp'
 cluster_name: '<cluster-name>'
-exhibitor_storage_backend: zookeeper
-exhibitor_zk_hosts: <host1>:<port1>
-exhibitor_zk_path: /dcos
 log_directory: /genconf/logs
 master_discovery: static
 master_list:

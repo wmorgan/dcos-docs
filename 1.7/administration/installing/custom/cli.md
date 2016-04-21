@@ -105,7 +105,6 @@ The DC/OS installation creates these folders:
     # Use this bootstrap_url value unless you have moved the DC/OS installer assets.
     bootstrap_url: file:///opt/dcos_install_tmp
     cluster_name: <cluster-name>
-    exhibitor_storage_backend: static
     master_discovery: static
     master_list:
     - <master-private-ip-1>
