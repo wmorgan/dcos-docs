@@ -1,5 +1,6 @@
 ---
-post_title: DC/OS reference implementation: The Azure Container Service
+post_title: >
+    DC/OS reference implementation: The Azure Container Service
 nav_title: Reference Implementation ACS
 ---
 
@@ -15,7 +16,7 @@ This document briefly describes the
 
 DC/OS is powered by Apache Mesos used as the distributed kernel of a set of computers that you can treat as one unit, though you retain control of each and every one. In DC/OS, the kernel of the system is in fact any number of mesos masters and agents both publicly available and private; failed mesos masters are replaced by a standby master transparently, and handles leader election. Masters, of course, handle failed agents and processes.
 
-DC/OS applications function as system components in its distributed user space. The most obivous is the system marathon component, which is the distributed `init` for DC/OS; but this also includes the Admit Router service, the Mesos-DNS service, Exhibitor, and other system-wide components that are used by user processes and manage the masters and agents. 
+DC/OS applications function as system components in its distributed user space. The most obivous is the system marathon component, which is the distributed `init` for DC/OS; but this also includes the Admit Router service, the Mesos-DNS service, Exhibitor, and other system-wide components that are used by user processes and manage the masters and agents.
 
 For a more comprehensive architecturel description of DC/OS, see [The Architecture of DC/OS](../architecture/); for a more complete discussion of components, see [An Introduction to DC/OS Components](../components).
 
@@ -55,14 +56,14 @@ It's worth nothing that point 3, above, are the tools you need to use. Here's a 
 - Apache Storm
 - Docker Swarm
 - Apache Zeppelin
- 
+
 #### Simplified BSD
- 
+
 - Datadog
 - Nginx
- 
+
 #### MIT
- 
+
 - OpenVPN Admin
 - OpenVPN
 - Ruxit
@@ -77,20 +78,20 @@ The Azure Container Service is built with DC/OS as one of the critical orchestra
 
 The Azure Container Service implementation brings several more benefits to you:
 
-1. Pretty much the easiest way to get started with DC/OS. Click a few buttons, provide a few parameters and you are ready to deploy your apps. If you have an Azure account, [try it]((https://aka.ms/acscreate).
+1. Pretty much the easiest way to get started with DC/OS. Click a few buttons, provide a few parameters and you are ready to deploy your apps. If you have an Azure account, [try it](https://aka.ms/acscreate).
 2. DC/OS deployments are vetted and optimize specifically for Azure: all VMs, storage, networks, load balancers, and so on are created and configured for a highly available DC/OS cluster: it just "happens".
 3. Potential to increase integration with Azure services if you decide it would benefit your deployments as the system moves forward.
 4. Complete support: Brings Microsoft support to the infrastructure to complement Mesosphere's support of DC/OS.
 
 The default ACS architecture looks like this:
 
-![Azure Container Service archictecture using DC/OS.](/img/dcos-acs.png)
+![Azure Container Service archictecture using DC/OS.](../img/dcos-acs.png)
 
 
 
 ## DC/OS component list
 
-The following list shows the components used by DC/OS itself. You'll note that the core components center around Mesos, marathon, python, and so on. 
+The following list shows the components used by DC/OS itself. You'll note that the core components center around Mesos, marathon, python, and so on.
 
 
 - 3dt
