@@ -1,6 +1,6 @@
 ---
-post_title: Security and Authentication
-menu_order: 2
+post_title: Security
+menu_order: 3
 ---
 You can enable authentication in your datacenter with DC/OS [oauth](https://github.com/dcos/dcos-oauth). Authentication is managed through the DC/OS web interface. The Admin Router enforces access control.
 
@@ -11,5 +11,5 @@ DC/OS uses the JSON Web Token (JWT) format for its authentication tokens. JWT is
 [OpenID Connect 1.0](https://openid.net/specs/openid-connect-core-1_0.html), which is a simple identity layer built on top of the
 [OAuth 2.0](http://oauth.net/2/) protocol.
 
-DC/OS oauth provides an HTTP API for managing local user in a RESTful fashion. 
+DC/OS oauth provides an HTTP API for managing local user in a RESTful fashion.
 
