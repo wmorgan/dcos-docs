@@ -18,25 +18,32 @@ These instructions explain how to set up an SSH connection to your DC/OS cluster
 
     **Important:** Your `.pem` file must be located in the `~/.ssh` directory.
 
-        chmod 600 <private-key>.pem
+    ```bash
+    $ chmod 600 <private-key>.pem
+    ```
 
 2.  SSH into the cluster.
 
     1.  From your terminal, add your new configuration to the `.pem` file, where `<private-key>` is your `.pem` file.
 
-            $ ssh-add ~/.ssh/<private-key>.pem
-
-            Identity added: /Users/<yourdir>/.ssh/<private-key>.pem (/Users/<yourdir>/.ssh/<private-key>.pem)
+        ```bash
+        $ ssh-add ~/.ssh/<private-key>.pem
+        Identity added: /Users/<yourdir>/.ssh/<private-key>.pem (/Users/<yourdir>/.ssh/<private-key>.pem)
+        ```
 
     *   **To SSH to a master node:**
 
         1.  From the DC/OS CLI, enter the following command:
 
-                $ dcos node ssh --master-proxy --leader
+            ```bash
+            $ dcos node ssh --master-proxy --leader
+            ```
 
             **Tip:** The default user is `core` for CoreOS. If you are using CentOS, enter:
 
-                $ dcos node ssh --master-proxy --leader --user=centos
+            ```bash
+            $ dcos node ssh --master-proxy --leader --user=centos
+            ```
 
     *   **To SSH to an agent node:**
 
@@ -46,7 +53,9 @@ These instructions explain how to set up an SSH connection to your DC/OS cluster
 
         2.  From the DC/OS CLI, enter the following command, where `<slave-id>` is your agent ID:
 
-                $ dcos node ssh --master-proxy --slave=<slave-id>
+            ```bash
+            $ dcos node ssh --master-proxy --slave=<slave-id>
+            ```
 
 
 ### <a name="windows"></a>SSH to your DC/OS cluster on Windows
@@ -73,9 +82,7 @@ To install these programs, download the Windows installer <a href="http://www.ch
 
     *   **To SSH to a master node:**
 
-        1.  From the DC/OS web interface, copy the IP address of the master node. The IP address is displayed beneath your cluster name.
-
-            ![Node Hostname](../img/nodehostname.png) FIXME
+        1.  From the DC/OS web interface, copy the IP address of the master node. It will be the IP address that you used to connect to the GUI.
 
         2.  Open PuTTY and enter the master node IP address in the **Host Name (or IP address)** field.
 

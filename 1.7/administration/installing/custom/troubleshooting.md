@@ -205,5 +205,5 @@ Publicly accessible applications are run in the public agent node. Public agent 
  [4]: /docs/1.7/overview/architecture/#boot
  [5]: ../configuration-parameters
  [6]: /docs/1.7/administration/sshcluster/
- [7]: /docs/1.7/overview/webinterface/#scrollNav-3
+ [7]: /docs/1.7/usage/webinterface/
 
