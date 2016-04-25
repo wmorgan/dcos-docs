@@ -51,10 +51,10 @@ These instructions explain how to set up an SSH connection to your DC/OS cluster
 
             ![Mesos Sandbox](../img/mesos-sandbox-slave-copy.png)
 
-        2.  From the DC/OS CLI, enter the following command, where `<slave-id>` is your agent ID:
+        2.  From the DC/OS CLI, enter the following command, where `<mesos-id>` is your agent ID:
 
             ```bash
-            $ dcos node ssh --master-proxy --slave=<slave-id>
+            $ dcos node ssh --master-proxy --mesos-id=<mesos-id>
             ```
 
 
