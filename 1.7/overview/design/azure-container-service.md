@@ -18,7 +18,7 @@ DC/OS is powered by Apache Mesos used as the distributed kernel of a set of comp
 
 DC/OS applications function as system components in its distributed user space. The most obivous is the system marathon component, which is the distributed `init` for DC/OS; but this also includes the Admit Router service, the Mesos-DNS service, Exhibitor, and other system-wide components that are used by user processes and manage the masters and agents.
 
-For a more comprehensive architecturel description of DC/OS, see [The Architecture of DC/OS](../architecture/); for a more complete discussion of components, see [An Introduction to DC/OS Components](../components).
+For a more comprehensive architecturel description of DC/OS, see [The Architecture of DC/OS](../../architecture/); for a more complete discussion of components, see [An Introduction to DC/OS Components](../../components/).
 
 ### Why DC/OS and not Mesos?
 

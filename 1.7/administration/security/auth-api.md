@@ -12,7 +12,7 @@ By default authentication tokens expire after 5 days. You can view the expiratio
 
 ### Request
 
-Log in to the DC/OS CLI to obtain the auth [token](/docs/1.7/administration/security-and-authentication/managing-authentication#log-in-cli).
+Log in to the DC/OS CLI to obtain the auth [token](/docs/1.7/administration/security/managing-authentication#log-in-cli).
 
 ![auth token](../img/auth-token.gif)
 

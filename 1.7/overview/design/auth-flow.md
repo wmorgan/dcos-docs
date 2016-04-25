@@ -7,7 +7,7 @@ menu_order: 1
 An authentication operation via the DC/OS UI proceeds as follows:
 
 1. The user opens the cluster front page URL in their browser.
-2. If the user has a valid [authentication token](/administration/security-and-authentication/managing-authentication#log-in-cli) cookie (checked by Admin Router)
+2. If the user has a valid [authentication token](/docs/1.7/administration/security/managing-authentication#log-in-cli) cookie (checked by Admin Router)
    they may proceed to the cluster front page. If not, they are redirected to
    the login page.
 3. The login page in the DC/OS UI loads the login page at `dcos.auth0.com` in an iframe,
