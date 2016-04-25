@@ -235,12 +235,12 @@ To install DC/OS:
 - [Use your cluster][3]
 - [Uninstalling DC/OS][8]
 
-[1]: ../configuration-parameters/
+[1]: /docs/1.7/administration/installing/custom/configuration-parameters/
 [2]: /docs/1.7/usage/cli/install/
 [3]: /docs/1.7/usage/
 [4]: https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
 [6]: /docs/1.7/overview/concepts/#public
 [7]: /docs/1.7/overview/concepts/#private
-[8]: ../uninstall/
-[9]: ../troubleshooting/
+[8]: /docs/1.7/administration/installing/custom/uninstall/
+[9]: /docs/1.7/administration/installing/custom/troubleshooting/
 [10]: /docs/1.7/administration/user-management/

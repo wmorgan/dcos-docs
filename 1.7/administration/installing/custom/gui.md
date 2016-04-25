@@ -128,10 +128,10 @@ The DC/OS installation creates these folders:
 
 [1]: https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
 [2]: /docs/1.7/overview/service-discovery/
-[3]: ../system-requirements/
+[3]: /docs/1.7/administration/installing/custom/system-requirements/
 [5]: /docs/1.7/usage/cli/install/
 [6]: /docs/1.7/usage/
-[7]: ../uninstall/
-[9]: ../troubleshooting/
+[7]: /docs/1.7/administration/installing/custom/uninstall/
+[9]: /docs/1.7/administration/installing/custom/troubleshooting/
 [10]: /docs/1.7/administration/user-management/
 
