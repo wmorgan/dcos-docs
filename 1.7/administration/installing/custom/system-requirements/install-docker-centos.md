@@ -10,7 +10,7 @@ Docker's <a href="https://docs.docker.com/engine/installation/linux/centos/" tar
 
 * Manage Docker on CentOS with systemd. systemd handles starting Docker on boot and restarting it when it crashes.
 
-* Use the OverlayFS storage driver on an XFS filesystem to configure Docker on CentOS. OverlayFS avoids known issues with `devicemapper` in loopback modes and allows containers to use docker-in-docker, if they want.
+* Configure Docker to use the OverlayFS storage driver on an XFS filesystem. OverlayFS avoids known issues with `devicemapper` in loopback modes and allows containers to use docker-in-docker, if they want.
 
 # Instructions
 
