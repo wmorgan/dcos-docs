@@ -2,7 +2,13 @@
 post_title: Install Docker on CentOS
 menu_order: 2
 ---
-Docker's <a href="https://docs.docker.com/engine/installation/linux/centos/" target="_blank">CentOS-specific installation instructions</a> are always going to be the most up to date for the latest version of Docker. However, because of the combination of using systemd and OverlayFS, it may be simpler to follow the following condensed steps.
+The recommended way to install Docker on CentOS is to use Docker's yum repository. This makes it easy to upgrade in the future and automatically manages installation of dependencies.
+
+The recommended way to run Docker on CentOS is to manage it with systemd. This handles starting docker on boot and restarting it when it crashes.
+
+The recommended way to configure Docker on CentOS is to use the OverlayFS storage driver on an XFS filesystem. This avoids known issues with `devicemapper` in loopback modes and allows containers to use docker-in-docker, if they want.
+
+Docker's <a href="https://docs.docker.com/engine/installation/linux/centos/" target="_blank">CentOS-specific installation instructions</a> are always going to be the most up to date for the latest version of Docker. However, the following simplified instructions make it easy to follow the above recommendations.
 
 1.  Configure yum to use the Docker yum repo:
 
@@ -35,18 +41,18 @@ Docker's <a href="https://docs.docker.com/engine/installation/linux/centos/" tar
       sudo systemctl enable docker
     ```
 
-    This can take a few minutes. This is what the end of the process should look like:
+    When the process completes, you should see:
 
     ```
     Complete!
     Created symlink from /etc/systemd/system/multi-user.target.wants/docker.service to /usr/lib/systemd/system/docker.service.
     ```
 
-You can test that Docker is properly installed with this command:
+4. Test that Docker is properly installed:
 
-```bash
-$ sudo docker ps
-```
+    ```bash
+    $ sudo docker ps
+    ```
 
 For more generic Docker requirements, see [System Requirements: Docker][1].
 
