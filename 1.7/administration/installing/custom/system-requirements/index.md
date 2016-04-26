@@ -227,54 +227,31 @@ Here are the agent node hardware requirements.
 
 ### Docker
 
-Your bootstrap and cluster nodes must have Docker version 1.9 or greater installed. You must run Docker commands as the root user (`sudo`). For more information, see <a href="http://docs.docker.com/engine/installation/" target="_blank">Docker installation</a>. Install Docker by using these commands for your Linux distribution.
+**Requirements**
 
-*   **CoreOS** Includes Docker natively.
+* Docker 1.7 or greater must be installed on all bootstrap and cluster nodes.
 
-*   **RHEL** Install Docker by using a subscription channel. For more information, see <a href="https://access.redhat.com/articles/881893" target="_blank">Docker Formatted Container Images on Red Hat Systems</a>. <!-- $ curl -sSL https://get.docker.com | sudo sh -->
+**Recommendations**
 
-*   **CentOS** CentOS Install Docker with OverlayFS.
+* Docker 1.9 or greater is recommended <a href="https://github.com/docker/docker/issues/9718" target="_blank">for stability reasons</a>.
 
-    1.  Add the Docker yum repo to your node:
+* Do not use use Docker `devicemapper` storage driver in `loop-lvm` mode. For more information, see [Docker and the Device Mapper storage driver](https://docs.docker.com/engine/userguide/storagedriver/device-mapper-driver/).
 
-        ```bash
-        $ sudo tee /etc/yum.repos.d/docker.repo <<-'EOF'
-        [dockerrepo]
-        name=Docker Repository
-        baseurl=https://yum.dockerproject.org/repo/main/centos/$releasever/
-        enabled=1
-        gpgcheck=1
-        gpgkey=https://yum.dockerproject.org/gpg
-        EOF
-        ```
+* Prefer `OverlayFS` or `devicemapper` in `direct-lvm` mode when choosing a production storage driver. For more more information, see Docker's <a href="https://docs.docker.com/engine/userguide/storagedriver/selectadriver/" target="_blank">Select a Storage Driver</a>.
 
-    2.  Create Docker systemd drop-in files:
+* Manage Docker on CentOS with systemd. systemd handles starting Docker on boot and restarting it when it crashes.
 
-        ```bash
-        $ sudo mkdir -p /etc/systemd/system/docker.service.d && sudo tee /etc/systemd/system/docker.service.d/override.conf <<- EOF
-        [Service]
-        ExecStart=
-        ExecStart=/usr/bin/docker daemon --storage-driver=overlay -H fd://
-        EOF
-        ```
+* Run Docker commands as the root user (with `sudo`) or as a user in the <a href="https://docs.docker.com/engine/installation/linux/centos/#create-a-docker-group" target="_blank">docker user group</a>.
 
-    3.  Install the Docker engine, daemon, and service:
+**Distribution-Specific Installation**
 
-        ```bash
-        $ sudo yum install -y docker-engine &&
-         sudo systemctl start docker &&
-          sudo systemctl enable docker
-        ```
+Each Linux distribution requires Docker to be installed in a specific way:
 
-        This can take a few minutes. This is what the end of the process should look like: Complete! Created symlink from /etc/systemd/system/multi-user.target.wants/docker.service to /usr/lib/systemd/system/docker.service.
+*   **CoreOS** - Comes with Docker pre-installed and pre-configured.
+*   **RHEL** - Install Docker by using a subscription channel. For more information, see <a href="https://access.redhat.com/articles/881893" target="_blank">Docker Formatted Container Images on Red Hat Systems</a>. <!-- $ curl -sSL https://get.docker.com | sudo sh -->
+*   **CentOS** - [Install Docker from Docker's yum repository][2].
 
-    You can test that your Docker build is properly installed with this command:
-
-    ```bash
-    $ sudo docker ps
-    ```
-
-    Do not use use Docker `devicemapper` storage driver for loopback. For more information, see [Docker and the Device Mapper storage driver](https://docs.docker.com/engine/userguide/storagedriver/device-mapper-driver/).
+For more more information, see Docker's <a href="http://docs.docker.com/engine/installation/" target="_blank">distribution-specific installation instructions</a>.
 
 ## Bootstrap node
 
@@ -328,11 +305,12 @@ On each of your cluster nodes, use the following command to:
 
 # Next step
 
-- [GUI DC/OS Installation Guide][1]
-- [CLI DC/OS Installation Guide][2]
-- [Advanced DC/OS Installation Guide][4]
+- [GUI DC/OS Installation Guide][4]
+- [CLI DC/OS Installation Guide][1]
+- [Advanced DC/OS Installation Guide][5]
 
-[1]: ../gui/
-[2]: ../cli/
+[1]: /docs/1.7/administration/installing/custom/cli/
+[2]: /docs/1.7/administration/installing/custom/system-requirements/install-docker-centos/
 [3]: https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
-[4]: ../advanced/
+[4]: /docs/1.7/administration/installing/custom/gui/
+[5]: /docs/1.7/administration/installing/custom/advanced/

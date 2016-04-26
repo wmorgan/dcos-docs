@@ -343,11 +343,11 @@ After DC/OS is installed and deployed across your cluster, you can add more agen
     ```
 
  [2]: /docs/1.7/usage/cli/install/
- [3]: ../advanced/
- [4]: ../system-requirements/
+ [3]: /docs/1.7/administration/installing/custom/advanced/
+ [4]: /docs/1.7/administration/installing/custom/system-requirements/
  [5]: https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
- [6]: ../configuration-parameters/
- [7]: ../uninstall/
+ [6]: /docs/1.7/administration/installing/custom/configuration-parameters/
+ [7]: /docs/1.7/administration/installing/custom/uninstall/
  [8]: /docs/1.7/usage/
- [9]: ../troubleshooting/
+ [9]: /docs/1.7/administration/installing/custom/troubleshooting/
  [10]: /docs/1.7/administration/user-management/
