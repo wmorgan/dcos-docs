@@ -2,7 +2,9 @@
 post_title: Install Docker on CentOS
 menu_order: 2
 ---
-## Recommendations
+Docker's <a href="https://docs.docker.com/engine/installation/linux/centos/" target="_blank">CentOS-specific installation instructions</a> are always going to be the most up to date for the latest version of Docker. However, the following recommendations and instructions should make it easier to manage the Docker installation over time and mitigate several known issues with various other configurations.
+
+# Recommendations
 
 * Use Docker's yum repository to install Docker on CentOS. The yum repository makes it easy to upgrade and automatically manages dependency installation.
 
@@ -10,7 +12,7 @@ menu_order: 2
 
 * Use the OverlayFS storage driver on an XFS filesystem to configure Docker on CentOS. OverlayFS avoids known issues with `devicemapper` in loopback modes and allows containers to use docker-in-docker, if they want.
 
-Docker's <a href="https://docs.docker.com/engine/installation/linux/centos/" target="_blank">CentOS-specific installation instructions</a> are always going to be the most up to date for the latest version of Docker. However, the following simplified instructions make it easy to follow the above recommendations.
+# Instructions
 
 1.  Configure yum to use the Docker yum repo:
 
