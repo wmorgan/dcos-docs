@@ -44,57 +44,57 @@ DC/OS uses Mesos-DNS for internal service discovery. While the `.mesos` domain c
           <th class="confluenceTh">
             Parameter
           </th>
-    
+
           <th class="confluenceTh">
             Description
           </th>
         </tr>
-    
+
         <tr>
           <td>
             domain
           </td>
-    
+
           <td class="confluenceTd">
             Your custom DNS suffix
           </td>
         </tr>
-    
+
         <tr>
           <td class="confluenceTd">
             listen_ip
           </td>
-    
+
           <td class="confluenceTd">
             IP to listen on (default 0.0.0.0)
           </td>
         </tr>
-    
+
         <tr>
           <td class="confluenceTd">
             dcos_master{1..3}
           </td>
-    
+
           <td class="confluenceTd">
             IP addresses of DC/OS masters
           </td>
         </tr>
-    
+
         <tr>
           <td class="confluenceTd">
             resolver{1..3}
           </td>
-    
+
           <td class="confluenceTd">
             Additional resolvers (at least one required)
           </td>
         </tr>
-    
+
         <tr>
           <td class="confluenceTd">
             dcos_zookeeper{1..3}
           </td>
-    
+
           <td class="confluenceTd">
             IP Addresses of ZooKeeper servers
           </td>
@@ -135,7 +135,7 @@ DC/OS uses Mesos-DNS for internal service discovery. While the `.mesos` domain c
           <th class="confluenceTh">
             Parameter
           </th>
-    
+
           <th class="confluenceTh">
             Definition
           </th>
@@ -144,7 +144,7 @@ DC/OS uses Mesos-DNS for internal service discovery. While the `.mesos` domain c
           <td class="confluenceTd">
             mesos_agent
           </td>
-    
+
           <td class="confluenceTd">
             A specific agent to pin Mesos-DNS to. Since Mesos-DNS will be acting as a delegate, its IP must remain static. For multiple Mesos-DNS instances (and redundancy), the LIKE constraint operator can be used to define hosts using regex. See <a href="https://mesosphere.github.io/marathon/docs/constraints.html" class="external-link" rel="nofollow">https://mesosphere.github.io/marathon/docs/constraints.html</a> for more information. As a best-practice, we also recommend using healthchecks to ensure that Mesos-DNS remains running.
           </td>
@@ -156,24 +156,23 @@ DC/OS uses Mesos-DNS for internal service discovery. While the `.mesos` domain c
 
         $ curl -X POST -H 'Content-Type: application/json' -d @mesos-dns-ext.json http://<marathon>:8080/v2/apps
 
-
     <table class="table">
       <tbody>
         <tr>
           <th class="confluenceTh">
             Parameter
           </th>
-    
+
           <th class="confluenceTh">
             Definition
           </th>
         </tr>
-    
+
         <tr>
           <td class="confluenceTd">
             marathon
           </td>
-    
+
           <td class="confluenceTd">
             IP/hostname of Marathon leader
           </td>
@@ -190,34 +189,33 @@ DC/OS uses Mesos-DNS for internal service discovery. While the `.mesos` domain c
         ns.<domain> IN A <mesos_dns_ext>
         <domain> IN NS ns1.<domain>
 
-
     <table class="table">
       <tbody>
         <tr>
           <th class="confluenceTh">
             Parameter
           </th>
-    
+
           <th class="confluenceTh">
             Definition
           </th>
         </tr>
-    
+
         <tr>
           <td class="confluenceTd">
             domain
           </td>
-    
+
           <td class="confluenceTd">
             <span>Your custom DNS suffix</span>
           </td>
         </tr>
-    
+
         <tr>
           <td class="confluenceTd">
             mesos_dns_ext
           </td>
-    
+
           <td class="confluenceTd">
             IP Address of the Mesos Agent that Mesos-DNS is running on (<em>see DC/OS Configuration, <a href="#four">Step 4</a>, <mesos_agent></em>).
           </td>
