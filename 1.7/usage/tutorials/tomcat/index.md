@@ -10,7 +10,7 @@ nav_title: Tomcat
 Assuming you have a DC/OS cluster up and running, the first step is to download the marathon.json. As the minimum cluster size for this tutorial I recommend at least one node running with the `slave_public` role having 1 CPU, 512mb RAM and port 80 free.
 
 ```
-curl -O https://dcos.io/1.7/usage/tutorials/tomcat/marathon.json
+curl -O https://dcos.io/docs/1.7/usage/tutorials/tomcat/marathon.json
 ```
 
 Lets inspect the marathon.json:
