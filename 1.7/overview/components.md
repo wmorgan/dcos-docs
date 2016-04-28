@@ -91,7 +91,7 @@ ExecStart=/opt/mesosphere/bin/java -Xmx2G -jar "/opt/mesosphere/packages/cosmos-
 ```
 
 ## Diagnostics (DDT) Service
-The diagnostics service (also known as 3DT or dcos-ddt.service, no relationship to the pesticide!) is our diagnostics utility for DC/OS systemd components. This service runs on every host, tracking the internal state of the systemd unit. The service runs in two modes, with or without the `-pull` argument. If running on a master host, it executes `/opt/mesosphere/bin/3dt -pull` which queries Mesos-DNS for a list of known masters in the cluster, then queries a master (usually itself) `:5050/statesummary` and gets a list of slaves.
+The diagnostics service (also known as 3DT or dcos-ddt.service, no relationship to the pesticide!) is our diagnostics utility for DC/OS systemd components. This service runs on every host, tracking the internal state of the systemd unit. The service runs in two modes, with or without the `-pull` argument. If running on a master host, it executes `/opt/mesosphere/bin/3dt -pull` which queries Mesos-DNS for a list of known masters in the cluster, then queries a master (usually itself) `:5050/statesummary` and gets a list of agents.
 
 From this complete list of cluster hosts, it queries all 3DT health endpoints (`:1050/system/health/v1/health`). This endpoint returns health state for the DC/OS systemd units on that host. The master 3DT processes, along with doing this aggregation also expose `/system/health/v1/` endpoints to feed this data by `unit` or `node` IP to the DC/OS user interface.
 

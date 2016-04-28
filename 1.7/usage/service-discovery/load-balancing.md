@@ -73,7 +73,7 @@ A Marathon app definition for this looks like:
 }
 ```
 
-This will run an HAProxy on the public slave, on port 80. If you'd like, you can make the number of instances equal to the number of public agents. Then, you can point your external load balancer at the pool of public agents on port 80. Adapting this would simply involve changing the backend entry, as well as the external port.
+This will run an HAProxy on the public agent, on port 80. If you'd like, you can make the number of instances equal to the number of public agents. Then, you can point your external load balancer at the pool of public agents on port 80. Adapting this would simply involve changing the backend entry, as well as the external port.
 
 ## Potential Roadblocks
 ### IP Overlay

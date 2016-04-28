@@ -47,7 +47,7 @@ DC/OS services are applications that are packaged and available from the public 
 
 # Executor
 
-A framework running on top of Mesos consists of two components: a scheduler that registers with the master to be offered resources, and an executor process that is launched on slave nodes to run the framework’s tasks. For more information about framework schedulers and executors, see the [App/Framework development guide][6].
+A framework running on top of Mesos consists of two components: a scheduler that registers with the master to be offered resources, and an executor process that is launched on agent nodes to run the framework’s tasks. For more information about framework schedulers and executors, see the [App/Framework development guide][6].
 
 # Exhibitor for ZooKeeper
 
