@@ -303,7 +303,7 @@ Options:
         --master-proxy
             Proxy the SSH connection through a master node. This can be useful when
             accessing DC/OS from a separate network. For example, in the default AWS
-            configuration, the private slaves are unreachable from the public
+            configuration, the private agents are unreachable from the public
             internet. You can access them using this option, which will first hop
             from the publicly available master.
         --mesos-id=<mesos-id>

@@ -16,7 +16,7 @@ To demonstrate marathon-lb, you can boot a DC/OS cluster on AWS to run an intern
 
         $ dcos package install marathon-lb
 
-    To check that marathon-lb is working, [find the IP for your public node][3] and navigate to `http://<public slave ip>:9090/haproxy?stats`. You willl see a statistics report page like this:
+    To check that marathon-lb is working, [find the IP for your public node][3] and navigate to `http://<public agent ip>:9090/haproxy?stats`. You willl see a statistics report page like this:
 
     ![lb2](../img/lb2.jpg)
 
