@@ -134,11 +134,11 @@ The DC/OS Marathon instance starts and monitors DC/OS applications and services.
 
 ### Mesos Agent
 
-The mesos-agent process for [private](/docs/1.7/overview/concepts/#private) agent nodes.<!-- dcos-mesos-agent.service/ -->
+The mesos-slave process for [private](/docs/1.7/overview/concepts/#private) agent nodes.<!-- dcos-mesos-agent.service/ -->
 
 ### Mesos Agent Public
 
-The mesos-agent process for [public](/docs/1.7/overview/concepts/#public) agent nodes.<!-- dcos-mesos-agent-public.service/ -->
+The mesos-slave process for [public](/docs/1.7/overview/concepts/#public) agent nodes.<!-- dcos-mesos-agent-public.service/ -->
 
 ### Mesos DNS
 
