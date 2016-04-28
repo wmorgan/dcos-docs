@@ -5,7 +5,7 @@ These documents are used as source to generate [dev.dcos.io/docs](https://dev.dc
 
 [![Build Status](https://travis-ci.com/dcos/dcos-docs.svg?token=yAREgxuvuzZLg282ZE3m&branch=master)](https://travis-ci.com/dcos/dcos-docs)
 
-**Issue tracking is moving to the [DCOS JIRA](https://dcosjira.atlassian.net/) ([dcos-docs component](https://dcosjira.atlassian.net/issues/?jql=project%20%3D%20DCOS%20AND%20component%20%3D%20dcos-docs)).
+**Issue tracking is moving to the [DCOS JIRA](https://dcosjira.atlassian.net/) ([docs component](https://dcosjira.atlassian.net/issues/?jql=project%20%3D%20DCOS%20AND%20component%20%3D%20dcos-docs)).
 Issues on Github will be disabled soon.**
 
 ## Versions
@@ -14,20 +14,20 @@ Issues on Github will be disabled soon.**
 
 ## Formatting
 
-Markdown in this repository is formatted for rendering with [Jekyll](https://jekyllrb.com/).
+Markdown in this repository is formatted for rendering by using [Jekyll](https://jekyllrb.com/).
 
-- Links should include the full path relative to the root of dcos.io to allow easy search/replace. These links will not work in the github code browser.
-- All page links will be directories instead of files.
-- Index pages should reside next to any child directory they parent (rather than using Github's README.md indexing).
-- Page tables of contents will be automatically generated based on top-level headers.
-- Directory tables of contents will be automatically generated based on post_titles and post_excerpts.
+- Links must include the full directory path, including version, relative to the root of dcos.io (e.g. `/docs/1.7/administration/sshcluster/`). Note that these links will not work in the GitHub code browser. It is recommended that you run a [local Jekyll build](https://jekyllrb.com/docs/quickstart/) to test links before submitting your PR.
+- Final page links are directory names, not filenames (e.g. `https://dcos.io/docs/latest/usage/service-discovery/mesos-dns/`).
+- You must have an `index.md` page for all parent directories (rather than using Github's README.md indexing). For example, the parent directory `/dcos-docs/1.7/administration/` must also contain `/dcos-docs/1.7/index.md`.
+- The table of contents of each page is automatically generated based on the top-level headers.
+- Directory tables of contents are automatically generated based on `post_title` and `post_excerpt` headers.
 
 ## Contributing
 
-Contribute to the docs using one of the following options:
+Contribute to the documentation by using one of these options:
 
-* Create a Github issue with a suggestion for a tutorial (for example: I'd like to see a tutorial on Apache Kafka).
-* Update or write a new doc yourself following the [Contributing Guidelines](CONTRIBUTING.md).
+* Create a GitHub issue with a suggestion for a tutorial (for example: I'd like to see a tutorial on Apache Kafka).
+* Update or write a new doc yourself by following the [Contributing Guidelines](CONTRIBUTING.md).
 
 ## License and Authors
 
