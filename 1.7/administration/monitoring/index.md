@@ -184,9 +184,9 @@ You can sort system health by systemd unit. However, this search can bring up mi
 
 ### Missing Cluster Hosts
 
-The system health API relies on Mesos-DNS to know about all the cluster hosts. It finds these hosts by combining a query from `mesos.master` A records as well as `leader.mesos:5050/agents` to get the complete list of hosts in the cluster.
+The system health API relies on Mesos-DNS to know about all the cluster hosts. It finds these hosts by combining a query from `mesos.master` A records as well as `leader.mesos:5050/slave` to get the complete list of hosts in the cluster.
 
-This system has a known bug where an agent will not show up in the list returned from `leader.mesos:5050/agents` if the Mesos agent service is not healthy. This means the system health API will not show this host.
+This system has a known bug where an agent will not show up in the list returned from `leader.mesos:5050/slave` if the Mesos agent service is not healthy. This means the system health API will not show this host.
 
 If you experience this behavior it's most likely your Mesos agent service on the missing host is unhealthy.
 
