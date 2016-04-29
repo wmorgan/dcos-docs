@@ -46,6 +46,8 @@ This parameter specifies the type of storage backend to use for Exhibitor. You c
        This parameter specifies name of your S3 bucket.
     *  **s3_prefix**
        This parameter specifies S3 prefix to be used within your S3 bucket to be used by Exhibitor.
+       
+       **Tip:** AWS EC2 Classic is not supported.
 
 *   `exhibitor_storage_backend: shared_filesystem`
     This option specifies a Network File System (NFS) mount for shared storage. If you specify `shared_filesystem`, you must also specify this parameter:
