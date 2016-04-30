@@ -1,7 +1,7 @@
 ---
 post_title: Frequently Asked Questions for Administrators
 nav_title: Admin FAQ
-menu_order: 7
+menu_order: 10
 ---
 
 ###### Q. Can I install DC/OS on an already running Mesos cluster?
