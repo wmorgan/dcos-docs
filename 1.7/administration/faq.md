@@ -5,7 +5,6 @@ menu_order: 7
 ---
 
 ###### Q. Can I install DC/OS on an already running Mesos cluster?
-
 - **A.** We recommend starting with a fresh cluster to ensure all defaults are set to expected values. This prevents unexpected conditions related to mismatched versions and configurations.
 
 ###### Q. What are the OS requirements of DC/OS?
