@@ -1,7 +1,7 @@
 ---
-post_title: Converting a Private Node to Public  
-layout: page
-published: true
+post_title: Creating a Public Agent
+nav_title: Public Agent
+menu_order: 8
 ---
 
 In DC/OS, we distinguish between agents that are accessible from the cloud and those which are not with the notion of "public agents". By default, agent nodes are designated as private during [GUI](/administration/installing/custom/gui/) or [CLI](/administration/installing/custom/cli/) installation.
