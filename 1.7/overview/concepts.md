@@ -11,11 +11,11 @@ The Admin Router runs on the DC/OS master servers to provide a proxy for the adm
 
 # <a name="agent"></a> Agent node
 
-A Mesos agent node runs a discrete Mesos task on behalf of a framework. It is a agent instance registered with the Mesos master. The synonym of agent node is worker or slave node. See also [private][1] and [public][2] agent nodes.
+A Mesos agent node runs a discrete Mesos task on behalf of a framework. It is an agent instance registered with the Mesos master. The synonym of agent node is worker or slave node. See also [private][1] and [public][2] agent nodes.
 
 # Cloud template
 
-The [cloud templates][3] are optimized to run DC/OS. The templates are a JSON-formatted text files that describe the resources and properties.
+The [cloud templates][3] are optimized to run DC/OS. The templates are JSON-formatted text files that describe the resources and properties.
 
 # Mesos Containerizer
 
@@ -55,7 +55,7 @@ DC/OS uses ZooKeeper, a high-performance coordination service to manage the inst
 
 # Framework
 
-A Mesos framework is the combination of a Mesos scheduler and an optional custom executor. A framework receives resource offers describing CPU, RAM, etc., and allocates them for discrete tasks that can be launched on Mesos agent nodes. Mesosphere-certified Mesos frameworks, called DC/OS services, are packaged and available from public [GitHub package repositories][5]. DC/OS services include Mesosphere-certified Mesos frameworks and other applications.
+A Mesos framework is the combination of a Mesos scheduler and an optional custom executor. A framework receives resource offers describing CPU, RAM, etc. from the leading Mesos master, and allocates them for discrete tasks that can be launched on Mesos agent nodes. Mesosphere-certified Mesos frameworks, called DC/OS services, are packaged and available from public [GitHub package repositories][5]. DC/OS services include Mesosphere-certified Mesos frameworks and other applications.
 
 # Master
 
@@ -71,7 +71,7 @@ DC/OS services are applications that are packaged and available from the public 
 
 # Offer
 
-An offer represents available resources (e.g. cpu, disk, memory) which an agent offers to the master and the master hands to the registered frameworks in some order.
+An offer represents available resources (e.g. cpu, disk, memory) which an agent reports to the master and the master offers to the registered frameworks in some order.
 
 # <a name="private"></a> Private agent node
 
@@ -83,15 +83,15 @@ Public agent nodes run DC/OS apps and services in a publicly accessible network.
 
 # Slave
 
-The synonym of slave node is worker or agent node. A Mesos agent node runs a discrete Mesos task on behalf of a framework. It is a agent instance registered with the Mesos master.
+The synonym of slave node is worker or agent node. A Mesos agent node runs a discrete Mesos task on behalf of a framework. It is an agent instance registered with the Mesos master.
 
 # State abstraction
 
-Mesos provides an abstraction for accessing storage for schedulers for Java and C++ only. This is the preferred method to access ZooKeeper.
+Mesos provides an abstraction for accessing storage for schedulers for Java and C++ only. This is the preferred method to access ZooKeeper for DC/OS services.
 
 # Task
 
-A unit of work scheduled by a Mesos framework and executed on a Mesos agent. In Hadoop terminology, this is a “job”. In MySQL terminology, this is a “query” or “statement”. A task may simply be a Bash command or a Python script.
+A unit of work scheduled by a Mesos framework and executed on a Mesos agent. In Hadoop terminology, this is a “job”. In MySQL terminology, this is a “query” or “statement”. A task may simply be a Bash command, a Python script, or a [complex AI application][12].
 
 # Working directory
 
@@ -111,4 +111,4 @@ DC/OS uses ZooKeeper, a high-performance coordination service to manage the inst
 [9]: http://mesos.apache.org/documentation/latest/configuration/
 [10]: https://github.com/dcos/mesos-dns
 [11]: ../security/
-
+[12]: https://en.wikipedia.org/wiki/Dynamic_Analysis_and_Replanning_Tool
