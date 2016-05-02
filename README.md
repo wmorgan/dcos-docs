@@ -15,10 +15,7 @@ Issues on Github will be disabled soon.**
 
 ## Contributing
 
-Contribute to the documentation by using one of these options:
-
-* Create a GitHub issue with a suggestion for a tutorial (for example: I'd like to see a tutorial on Apache Kafka).
-* Update or write a new doc yourself by following the [Contributing Guidelines](CONTRIBUTING.md).
+Contribute to the documentation by following the [Contributing Guidelines](CONTRIBUTING.md).
 
 ## License and Authors
 

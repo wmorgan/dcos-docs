@@ -19,7 +19,7 @@ Markdown in this repository is formatted for rendering by using [Metalsmith](htt
 
 ## Make your update
 
-1. Create a [new issue](https://github.com/dcos/dcos-docs/issues) in this repo (`dcos-docs`) and label it with the type of documentation that you're writing. For example, [tutorial](https://github.com/dcos/dcos-docs/labels/tutorial).
+1. Create a [JIRA issue](https://dcosjira.atlassian.net/secure/CreateIssue!default.jspa) with `dcos-dcos` as the component.
 1. [Fork](https://help.github.com/articles/fork-a-repo/) this repo, `dcos-docs` (you only have to do this once).
 1. Create your content. In most cases you should be able to create your content within the existing directory structure. 
 
@@ -86,5 +86,5 @@ If you're unsure about what exactly should go into the tutorial, you can always 
     
 ## Submit a pull request
 
-1. When you're done, submit a [pull request](https://help.github.com/articles/using-pull-requests/) to the original repo, `dcos-docs`.
+1. When you're done, submit a [pull request](https://help.github.com/articles/using-pull-requests/) to the original repo, `dcos-docs`, and add a link to this PR in your [JIRA issue](https://dcosjira.atlassian.net/).
 1. For all contributions that include hands-on instructions, such as found in `usage/` or `administration/`, the community managers will test-drive and validate before merging. They might come back to you asking you to fix things. All communication strictly via your pull request on GitHub.  
