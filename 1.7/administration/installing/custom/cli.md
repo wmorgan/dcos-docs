@@ -304,10 +304,6 @@ To install DC/OS:
 
     ![alt text](../img/ui-installer-login.gif)
 
-    You are done!
-
-    ![dashboard](../img/ui-dashboard.gif)
-
 8. Archive your installer files for safe-keeping. You'll need this archive to make new agents, including the [public agent][11].
 
     ```bash
@@ -316,6 +312,11 @@ To install DC/OS:
     $ sudo tar cf dcos-install.tar *
     # Move the dcos-install.tar file to a safe place
     ```
+    
+    You are done!
+
+    ![dashboard](../img/ui-dashboard.gif)
+
 
 # Next Steps
 
