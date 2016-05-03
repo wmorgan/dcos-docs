@@ -46,7 +46,7 @@ This parameter specifies the type of storage backend to use for Exhibitor. You c
        This parameter specifies name of your S3 bucket.
     *  **s3_prefix**
        This parameter specifies S3 prefix to be used within your S3 bucket to be used by Exhibitor.
-       
+
        **Tip:** AWS EC2 Classic is not supported.
 
 *   `exhibitor_storage_backend: shared_filesystem`
@@ -119,7 +119,7 @@ This parameter specifies whether to enable authentication for your cluster. <!--
 - `oauth_enabled: 'false'` Disable authentication for your cluster.
 
 If you’ve already installed your cluster and would like to disable this in-place, you can go through an upgrade with the same parameter set.
-  
+
 ### telemetry_enabled
 This parameter specifies whether to enable sharing of anonymous data for your cluster. <!-- DC/OS auth -->
 
@@ -181,7 +181,7 @@ master_list:
 - <master-private-ip-3>
 process_timeout: 120
 resolvers:
-- 0.10.5.1
+- 10.10.5.1
 - 10.10.6.1
 roles: slave_public
 ssh_key_path: /genconf/ssh-key
