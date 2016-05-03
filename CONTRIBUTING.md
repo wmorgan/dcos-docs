@@ -57,19 +57,16 @@ If you're unsure about what exactly should go into the tutorial, you can always 
 
 - Ruby
 - Git
-- npm - Installation instructions below
-- node.js - Installation instructions below
-- Metalsmith - Installation instructions below
 
 1.  Create a repo [fork](https://guides.github.com/activities/forking/) of the `dcos/dcos-website` repo. 
 1.  [Clone](https://help.github.com/articles/cloning-a-repository/) the `dcos/dcos-website` repo.
-1.  Add repo fork as remote repo:
+1.  Add the  `dcos/dcos-website` repo fork as remote repo:
 
     ```
     $ git remote add fork https://github.com/<github-user>/dcos-website
     $ git fetch fork
     ```
-1.  Checkout the develop branch:
+1.  Checkout the `develop` branch:
 
     ```
     $ git checkout develop
@@ -79,16 +76,13 @@ If you're unsure about what exactly should go into the tutorial, you can always 
     ```
     $ git submodule update --init --recursive
     ```
-1.  [Install Node](https://docs.npmjs.com/getting-started/installing-node) and dependencies. 
+1.  [Install Node](https://docs.npmjs.com/getting-started/installing-node).
+ 
+ 
+1.  Install dependencies. 
 
     ```
-    $ sudo npm install npm -g && npm install
-    ```
-    
-1.  Install Metalsmith:
-
-    ```
-    $ npm install metalsmith
+    $ npm install
     ```
 
 1.  Launch local dev server:
