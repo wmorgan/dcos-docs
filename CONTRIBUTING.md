@@ -54,11 +54,12 @@ If you're unsure about what exactly should go into the tutorial, you can always 
 ## <a name="test-local"></a>Test your content locally
 
 **Prerequisites:**
-The latest versions of:
 
-- npm
-- node.js
-- Metalsmith
+- Ruby
+- Git
+- npm - Installation instructions below
+- node.js - Installation instructions below
+- Metalsmith - Installation instructions below
 
 1.  Create a repo [fork](https://guides.github.com/activities/forking/) of the `dcos/dcos-website` repo. 
 1.  [Clone](https://help.github.com/articles/cloning-a-repository/) the `dcos/dcos-website` repo.
@@ -73,12 +74,12 @@ The latest versions of:
     ```
     $ git checkout develop
     ```
-1.  Update the dcos-docs submodule:
+1.  Update the `dcos-docs` submodule:
 
     ```
     $ git submodule update --init --recursive
     ```
-1.  [Install Node](https://docs.npmjs.com/getting-started/installing-node) and dependencies. You can see your version with `node -v`.
+1.  [Install Node](https://docs.npmjs.com/getting-started/installing-node) and dependencies. 
 
     ```
     $ sudo npm install npm -g && npm install
@@ -87,7 +88,7 @@ The latest versions of:
 1.  Install Metalsmith:
 
     ```
-    $ sudo npm install metalsmith
+    $ npm install metalsmith
     ```
 
 1.  Launch local dev server:
