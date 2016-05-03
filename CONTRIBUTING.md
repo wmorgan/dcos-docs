@@ -8,9 +8,9 @@ Markdown in this repository is formatted for rendering by using [Metalsmith](htt
 
 - Links must include the full directory path, including version, relative to the root of dcos.io (e.g. `/docs/1.7/administration/sshcluster/`). Note that these links will not work in the GitHub code browser. It is recommended that you test your content [locally](#test-local) before submitting your PR.
 - Final page links are directory names, not filenames (e.g. `https://dcos.io/docs/latest/usage/service-discovery/mesos-dns/`).
-- You must have an `index.md` page for all parent directories (rather than using Github's README.md indexing). For example, the parent directory `/dcos-docs/1.7/administration/` must also contain `/dcos-docs/1.7/index.md`.
+- You must have an `index.md` page for all parent directories (rather than using Github's README.md indexing). For example, the parent directory `/dcos-docs/1.7/administration/index.md` must also contain `/dcos-docs/1.7/index.md`.
 - The table of contents of each page is automatically generated based on the top-level headers.
-- Directory tables of contents are automatically generated based on `post_title` and `post_excerpt` headers.
+- Directory tables of contents are automatically generated based on `post_title` (or `nav_title`) and `post_excerpt` headers.
 
 ## Style guidelines
 
@@ -25,7 +25,7 @@ Markdown in this repository is formatted for rendering by using [Metalsmith](htt
 
     - To create a single page:
         1. Create a markdown file `{post_slug}.md` where `post_slug` is your file name. File names become URIs. If you want this page to be a child of another page, place the `.md` file in the parent folder.
-        1. Add your page content, including the required metadata (`post_title`, `nav_title`, `menu_order`). Do not include any other metadata.
+        1. Add your page content, including the required metadata `post_title` and optional `nav_title` and `menu_order`. Do not include any other metadata.
         
                ```
                ---
@@ -35,7 +35,7 @@ Markdown in this repository is formatted for rendering by using [Metalsmith](htt
                ```
     - To create a page with hierarchy:
         1. Create a new directory in the appropriate location of the correctly versioned release (e.g. `/1.7/foo`) and a child page within this folder named `index.md` (e.g. `/1.7/foo/index.md`). The actual URL of your page will be `/1.7/foo/`, not `/1.7/foo/index`. For example, if it's a tutorial for 1.7, create a new directory here `/1.7/usage/tutorials/foo/`.
-        1. Add your page content, including the required metadata (`post_title`, `nav_title`, `menu_order`). Do not include any other metadata.
+        1. Add your page content, including the required metadata `post_title` and optional `nav_title` and `menu_order`. Do not include any other metadata.
                 
                ```
                ---
@@ -53,34 +53,47 @@ If you're unsure about what exactly should go into the tutorial, you can always 
 
 ## <a name="test-local"></a>Test your content locally
 
-1. [Create a repo fork in GitHub](https://guides.github.com/activities/forking/)
-1. [Clone the dcos/dcos-website repo](https://help.github.com/articles/cloning-a-repository/)
-1. Add repo fork as remote repo:
+**Prerequisites:**
+The latest versions of:
+
+- npm
+- node.js
+- Metalsmith
+
+1.  Create a repo [fork](https://guides.github.com/activities/forking/) of the `dcos/dcos-website` repo. 
+1.  [Clone](https://help.github.com/articles/cloning-a-repository/) the `dcos/dcos-website` repo.
+1.  Add repo fork as remote repo:
 
     ```
-    git remote add fork https://github.com/<github-user>/dcos-website
-    git fetch fork
+    $ git remote add fork https://github.com/<github-user>/dcos-website
+    $ git fetch fork
     ```
-1. Checkout the develop branch:
+1.  Checkout the develop branch:
 
     ```
-    git checkout develop
+    $ git checkout develop
     ```
-1. Update the dcos-docs submodule:
+1.  Update the dcos-docs submodule:
 
     ```
-    git submodule update --init --recursive
+    $ git submodule update --init --recursive
     ```
-1. [Install Node](https://docs.npmjs.com/getting-started/installing-node)
-1. Install dependencies:
+1.  [Install Node](https://docs.npmjs.com/getting-started/installing-node) and dependencies. You can see your version with `node -v`.
 
     ```
-    npm install
+    $ sudo npm install npm -g && npm install
     ```
-1. Launch local dev server:
+    
+1.  Install Metalsmith:
 
     ```
-    npm start
+    $ sudo npm install metalsmith
+    ```
+
+1.  Launch local dev server:
+
+    ```
+    $ npm start
     ```
     (opens dev server in browser)
     
