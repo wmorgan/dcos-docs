@@ -3,7 +3,6 @@ Documentation for the Datacenter Operating System (DC/OS)
 
 These documents are used as source to generate [dev.dcos.io/docs](https://dev.dcos.io/docs) (staging) and [dcos.io/docs](https://dcos.io/docs) (production). They are submoduled into [dcos-website](https://github.com/dcos/dcos-website) for deployment.
 
-[![Build Status](https://travis-ci.com/dcos/dcos-docs.svg?token=yAREgxuvuzZLg282ZE3m&branch=master)](https://travis-ci.com/dcos/dcos-docs)
 
 **Issue tracking is moving to the [DCOS JIRA](https://dcosjira.atlassian.net/) ([docs component](https://dcosjira.atlassian.net/issues/?jql=project%20%3D%20DCOS%20AND%20component%20%3D%20dcos-docs)).
 Issues on Github will be disabled soon.**
