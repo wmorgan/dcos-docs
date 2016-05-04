@@ -78,10 +78,10 @@ If you're unsure about what exactly should go into the tutorial, you can always 
     ```
 1.  [Install Node](https://docs.npmjs.com/getting-started/installing-node).
  
- 
-1.  Install dependencies. 
+1.  Make sure npm is up-do-date and install dependencies. 
 
     ```
+    $ sudo npm install npm@latest -g
     $ npm install
     ```
 
