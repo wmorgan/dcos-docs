@@ -28,5 +28,7 @@ function reindex() {
   done
 }
 
-cd "${REPO_ROOT}/latest"
-reindex
+for version_dir in "${REPO_ROOT}/"[0-9]\.[0-9]*; do
+  cd "${version_dir}"
+  reindex
+done
