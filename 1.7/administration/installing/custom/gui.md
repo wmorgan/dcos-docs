@@ -22,13 +22,13 @@ The DC/OS installation creates these folders:
 
 # Install DC/OS
 
-1.  Download the [DC/OS installer][1]
+1.  Download the [DC/OS installer][1] to your bootstrap node.
 
     ```bash
     $ curl -O https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
     ```
 
-1.  From your terminal, start the DC/OS GUI installer with this command.
+1.  From your terminal, start the DC/OS GUI installer with this command. 
 
     ```bash
     $ sudo bash dcos_generate_config.sh --web
@@ -110,22 +110,35 @@ The DC/OS installation creates these folders:
     **Tip:** You can click **Download Logs** to view your logs locally.
     **Tip:** If this takes longer than about 10 minutes, you've probably misconfigured your cluster. Go checkout the [troubleshooting documentation][9]
 
-8.  Click **Log In To DC/OS**. If this doesn't work, take a look at the [troubleshooting docs][9]
+8.  Click **Log In To DC/OS**. If this doesn't work, take a look at the [troubleshooting docs][9].
 
     ![login](../img/dcos-gui-login.png)
 
-9. Archive your installer files for safe-keeping. You'll need this archive to make new agents, including the [public agent][4].
+    You are done!
+
+    ![dashboard](../img/ui-dashboard.gif)
+    
+# <a name="backup"></a>(Optional) Backup your DC/OS installer files
+It is recommended that you save your DC/OS installer file immediately after installation completes and before you start using DC/OS. These installer files can be used to add more agent nodes to your cluster, including the [public agent][4] node.
+
+1.  From your bootstrap node, navigate to the `genconf/serve` directory and package the contents as `dcos-install.tar`:
 
     ```bash
     # <Ctrl-C> to exit installer
     $ cd genconf/serve
     $ sudo tar cf dcos-install.tar *
-    # Move the dcos-install.tar file to a safe place
     ```
+    
+1.  Copy the `dcos-install.tar` file to another location for backup. For example, you can use Secure Copy (scp) to copy `dcos-install.tar` to your home directory:
 
-    You are done!
-
-    ![dashboard](../img/ui-dashboard.gif)
+    ```
+    $ scp -i dev.pem $username@$node-ip:~/genconf/serve/dcos-install.tar ~
+    ```
+    And then copy to your agent node:
+    
+    ```
+    $ scp -i dev.pem ~/dcos-install.tar $username@$node-ip:~/dcos-install.tar
+    ```
 
 ## Next Steps
 
