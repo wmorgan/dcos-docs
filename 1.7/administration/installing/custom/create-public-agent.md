@@ -6,10 +6,10 @@ menu_order: 8
 
 In DC/OS, agent nodes that are publicly accessible are designated as public and those that are not are designated as private. By default, agent nodes are designated as private during [GUI][1] or [CLI][2] installation.
 
-You can determine how many public agent nodes are in your cluster by running the following command. A result of 0 means that you do not have a public agent:
+You can determine how many public agent nodes are in your cluster by running the following command from the DC/OS CLI. A result of `0` indicates that you do not have a public agent. A result of `1` means that you have one or more public agents.
 
-```
-$ curl -skSL -H "Authorization: token=$(dcos config show core.dcos_acs_token)" $(dcos config show core.dcos_url)/mesos/master/slaves | jq '.slaves[] | .reserved_resources' | grep slave_public | wc -l
+```bash
+$ curl -skSL -H "Authorization: token=$(dcos config show core.dcos_acs_token)" $(dcos config show core.dcos_url)/mesos/master/slaves | grep slave_public | wc -l
            0
 ```
 
@@ -81,10 +81,10 @@ Copy the archived DC/OS installer file (`dcos-install.tar`) to the node that tha
     $ sudo bash /opt/dcos_install_tmp/dcos_install.sh slave_public
     ``` 
 
-4.  Verify that your new agent node is public by running this command from DC/OS CLI.
+4.  Verify that your new agent node is public by running this command from the DC/OS CLI. You should see a result of `1`, which indicates that you have a public node. 
     
-    ```
-    $ curl -skSL -H "Authorization: token=$(dcos config show core.dcos_acs_token)" $(dcos config show core.dcos_url)/mesos/master/slaves | jq '.slaves[] | .reserved_resources' | grep slave_public | wc -l
+    ```bash
+    $ curl -skSL -H "Authorization: token=$(dcos config show core.dcos_acs_token)" $(dcos config show core.dcos_url)/mesos/master/slaves | grep slave_public | wc -l
     ```
         
     You should see an output greater than zero to indicate at least one public agent.
