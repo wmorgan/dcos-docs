@@ -36,14 +36,14 @@ The DC/OS user space spans System Components and Services (like Chronos or Kafka
   - System Marathon, the native Marathon instance that is the 'init system' for DC/OS, starts and monitors DC/OS services.
   - ZooKeeper, a high-performance coordination service that manages the DC/OS services.
 - Services
-  - A service in DC/OS is consists of a Scheduler (responsible for scheduling tasks on behalf of a user) and an Executor (running Tasks on Agents)
+  - A service in DC/OS consists of a Scheduler (responsible for scheduling tasks on behalf of a user) and an Executor (running Tasks on Agents)
   - User-level applications, for example an NGINX webserver launched through Marathon
 
 ## <a name="boot"></a>Boot sequence
 
 In the following, we have a look at how a DC/OS cluster boots up, this means, we have a cluster of nodes with DC/OS installed and switch on the power. What happens?
 
-Note that the following is post-install, that is it assumes that all System Components and DC/OS kernel-level software has been installed on the nodes in a DC/OS cluster.
+Note that the following is post-install, that is it assumes that all System Components and DC/OS kernel-level software have been installed on the nodes in a DC/OS cluster.
 
 ### Master nodes
 
@@ -122,5 +122,5 @@ The steps in detail are:
 | 8    | Mesos Agent launches tasks via Executor |
 | 9    | Executor reports task status to Mesos Agent |
 | 10   | Mesos Agent reports task status to Mesos Master |
-| 11   | Mesos Master report task status to scheduler |
+| 11   | Mesos Master reports task status to scheduler |
 | 12   | Scheduler reports process status to client |
