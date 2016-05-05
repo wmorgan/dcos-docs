@@ -1,26 +1,37 @@
-# Contributing to the DC/OS Documentation
+# DC/OS documentation contribution guidelines
 
-Use these guidelines to contribute to the DC/OS documentation.
+## Styling and formatting your contribution
 
-## Format guidelines
-
-Markdown in this repository is formatted for rendering by using [Metalsmith](http://www.metalsmith.io/).
-
-- Links must include the full directory path, including version, relative to the root of dcos.io (e.g. `/docs/1.7/administration/sshcluster/`). Note that these links will not work in the GitHub code browser. It is recommended that you test your content [locally](#test-local) before submitting your PR.
-- Final page links are directory names, not filenames (e.g. `https://dcos.io/docs/latest/usage/service-discovery/mesos-dns/`).
-- You must have an `index.md` page for all parent directories (rather than using Github's README.md indexing). For example, the parent directory `/dcos-docs/1.7/administration/index.md` must also contain `/dcos-docs/1.7/index.md`.
+- Use [GitHub-flavored markdown](https://help.github.com/enterprise/11.10.340/user/articles/github-flavored-markdown/).
+- Each directory must contain an `index.md` file. This acts as the base-level topic for each folder in the site (required).
+- Do not include file names in your paths. Our site converts any files not named `index.md` into directory names. For example, the directory `/docs/1.7/administration/` contains a file named `user-management.md`. To visit this content on the live site, you would use the following path: `/docs/1.7/administration/user-management/`.  
+- Use relative links.
+- Begin all links at the root `docs` level and include the version number subdirectory. (e.g., `/docs/1.7/administration/sshcluster/`).
 - The table of contents of each page is automatically generated based on the top-level headers.
 - Directory tables of contents are automatically generated based on `post_title` (or `nav_title`) and `post_excerpt` headers.
+- Use active voice whenever possible.
+- Use sentence-style capitalization for headings.
 
-## Style guidelines
+## Making your contribution
 
-- Use active voice wherever possible, which tells who or what is performing the action.
-- Use sentence-style capitalization for headings in most cases.
+### Modifying the content
 
-## Make your update
+1. Create a [JIRA issue](https://dcosjira.atlassian.net/secure/CreateIssue!default.jspa) and select **docs** as the component.
 
-1. Create a [JIRA issue](https://dcosjira.atlassian.net/secure/CreateIssue!default.jspa) with `dcos-dcos` as the component.
-1. [Fork](https://help.github.com/articles/fork-a-repo/) this repo, `dcos-docs` (you only have to do this once).
+1. [Fork](https://help.github.com/articles/fork-a-repo/) the [dcos-docs](https://github.com/dcos/dcos-docs) repo (you only have to do this once).
+
+1. Clone your fork of the [dcos-docs](https://github.com/dcos/dcos-docs) repo.
+
+    ```
+    $ git clone https://github.com/<your-user-name>/dcos-docs
+    ```
+
+1. Create a branch on your fork using your JIRA number as the name.
+
+    ```
+    $ git checkout -b dcos-nnn
+    ```
+
 1. Create your content. In most cases you should be able to create your content within the existing directory structure. 
 
     - To create a single page:
@@ -34,7 +45,7 @@ Markdown in this repository is formatted for rendering by using [Metalsmith](htt
                Post markdown goes here.
                ```
     - To create a page with hierarchy:
-        1. Create a new directory in the appropriate location of the correctly versioned release (e.g. `/1.7/foo`) and a child page within this folder named `index.md` (e.g. `/1.7/foo/index.md`). The actual URL of your page will be `/1.7/foo/`, not `/1.7/foo/index`. For example, if it's a tutorial for 1.7, create a new directory here `/1.7/usage/tutorials/foo/`.
+        1. Create a new directory in the appropriate location of the correctly versioned release (e.g., `/1.7/foo`) and a child page within this folder named `index.md` (e.g. `/1.7/foo/index.md`). The actual URI of your page will be `/1.7/foo/`, not `/1.7/foo/index`. For example, if it's a tutorial for 1.7, create a new directory here `/1.7/usage/tutorials/foo/`.
         1. Add your page content, including the required metadata `post_title` and optional `nav_title` and `menu_order`. Do not include any other metadata.
                 
                ```
@@ -44,55 +55,71 @@ Markdown in this repository is formatted for rendering by using [Metalsmith](htt
                Post markdown goes here.
                ```
 
-    **Tip:** There are templates available for some content types. For example, if it's a tutorial you can copy [templates/tutorial.md](templates/tutorial.md) into `foo/` and rename it to `foo/index.md`. Adapt the sections in your new `foo/index.md` to the specifics of your content.
+    **Tip:** Check the `templates` directory to see if there is a template that corresponds to the type of content you are creating. For example, if it's a tutorial you can copy [templates/tutorial.md](templates/tutorial.md) into `foo/` and rename it to `foo/index.md`. Adapt the sections in your new `foo/index.md` to the specifics of your content.
 1. Add images in a child `foo/img/` directory.  
 1. Include all required assets in your `/foo` directory, for example, Marathon app spec, JSON docs, or a Dockerfile.
 
+    **Tip**: If you're unsure about what exactly should go into a tutorial, you can always check out [spark/](/1.7/usage/tutorials/spark/) for reference.
 
-If you're unsure about what exactly should go into the tutorial, you can always check out [spark/](/1.7/usage/tutorials/spark/) for reference.
-
-## <a name="test-local"></a>Test your content locally
-
-**Prerequisites:**
-
-- Ruby
-- Git
-
-1.  Create a repo [fork](https://guides.github.com/activities/forking/) of the `dcos/dcos-website` repo. 
-1.  [Clone](https://help.github.com/articles/cloning-a-repository/) the `dcos/dcos-website` repo.
-1.  Add the  `dcos/dcos-website` repo fork as remote repo:
+1. Push your changes into the feature branch of your remote.
 
     ```
-    $ git remote add fork https://github.com/<github-user>/dcos-website
-    $ git fetch fork
+    $ git add .
+    $ git commit -m "Addresses issue DCOS-nnn"
+    $ git push origin dcos-nnn
     ```
-1.  Checkout the `develop` branch:
+
+### <a name="test-local"></a>Building and testing your content locally
+
+We've implemented the [dcos-docs](https://github.com/dcos/dcos-docs) repo as a [submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) of the [dcos-website](https://github.com/dcos/dcos-website) repo. Before submitting your pull request against the [dcos-docs](https://github.com/dcos/dcos-docs) repo, fork the parent [dcos-website](https://github.com/dcos/dcos-website) repo and build the site locally. This will allow you to confirm that your content renders correctly and that all of your links work. 
+
+1. Make sure you have the following: 
+    - [Ruby](https://www.ruby-lang.org/en/documentation/installation/)
+    - [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+    - [Node](https://docs.npmjs.com/getting-started/installing-node)
+
+1. [Fork](https://guides.github.com/activities/forking/) the [dcos-website](https://github.com/dcos/dcos-website) repo. 
+
+1. [Clone](https://help.github.com/articles/cloning-a-repository/) your fork of the [dcos-website](https://github.com/dcos/dcos-website) repo.
+
+    ```
+    $ git clone https://github.com/<your-user-name>/dcos-website
+    ```
+
+1. Check out the `develop` branch.
 
     ```
     $ git checkout develop
     ```
-1.  Update the `dcos-docs` submodule:
+1. Initialize the `dcos-docs` submodule.
+ 
+    ```
+    $ git submodule init
+    ```
+
+1. Merge the changes from your [dcos-docs](https://github.com/dcos/dcos-docs) feature branch into your fork of the [dcos-website](https://github.com/dcos/dcos-website) repo.
 
     ```
     $ git submodule update --init --recursive
     ```
-1.  [Install Node](https://docs.npmjs.com/getting-started/installing-node).
- 
-1.  Make sure npm is up-to-date and install dependencies. 
+
+1. Make sure npm is up-to-date and install dependencies. 
 
     ```
     $ sudo npm install npm@latest -g
     $ npm install
     ```
 
-1.  Launch local dev server:
+1. Launch the local web server to view your changes.
 
     ```
     $ npm start
     ```
-    (opens dev server in browser)
     
-## Submit a pull request
+### Submitting your pull request
 
-1. When you're done, submit a [pull request](https://help.github.com/articles/using-pull-requests/) to the original repo, `dcos-docs`, and add a link to this PR in your [JIRA issue](https://dcosjira.atlassian.net/).
-1. For all contributions that include hands-on instructions, such as found in `usage/` or `administration/`, the community managers will test-drive and validate before merging. They might come back to you asking you to fix things. All communication strictly via your pull request on GitHub.  
+1. When you're done, submit a [pull request](https://help.github.com/articles/using-pull-requests/) against the [dcos-docs](https://github.com/dcos/dcos-docs) repo.
+
+1. Add a link to this PR in your [JIRA issue](https://dcosjira.atlassian.net/).
+
+For all contributions that include hands-on instructions, such as found in `usage/` or `administration/`, the community managers will test-drive and validate before merging. They might come back to you asking you to fix things. All communications should take place within your pull request on GitHub.  
