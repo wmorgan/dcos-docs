@@ -60,7 +60,7 @@ What we refer to as components are in fact the [systemd units](https://www.freed
 You can query this HTTP API for any host in the cluster:
 
 ```bash
-curl <host_ip>:1050/api/v1/health
+curl <host_ip>:1050/system/health/v1
 ```
 
 Here is an explanation of the components shown in the UI.
