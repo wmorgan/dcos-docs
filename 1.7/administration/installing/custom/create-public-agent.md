@@ -23,7 +23,7 @@ These steps must be performed on a machine that is configured as a DC/OS node. A
 ### Uninstall the DC/OS private agent software
 
 1.  Uninstall the current DC/OS software on the agent node.
-    
+
     ```bash
     $ sudo -i /opt/mesosphere/bin/pkgpanda uninstall
     $ sudo systemctl stop dcos-mesos-slave
@@ -31,13 +31,13 @@ These steps must be performed on a machine that is configured as a DC/OS node. A
     ```
 
 2.  Remove the old directory structures on the agent node.
-    
+
     ```bash
-    $ sudo rm -rf /opt/mesosphere /var/lib/mesos
+    $ sudo rm -rf /etc/mesosphere /opt/mesosphere /var/lib/mesos
     ```
 
 3.  Restart the machine.
-    
+
     ```bash
     $ sudo reboot
     ```        
@@ -45,48 +45,44 @@ These steps must be performed on a machine that is configured as a DC/OS node. A
 ### Install DC/OS and convert to a public agent node
 Copy the archived DC/OS installer file (`dcos-install.tar`) to the node that that is being converted to a public agent. This archive is created during the GUI or CLI [installation](/1.7/administration/installing/custom/gui/#backup) method.
 
-1.  SSH to your agent node:
-    
-    ```bash
-    $ ssh -i dev.pem $USER@$AGENT 
-    ```
-
-1.  Create a directory on your agent node for the installer files:
-
-    ```bash
-     $ sudo mkdir -p /opt/dcos_install_tmp
-     ```
-
 1.  Copy the files to your agent node. For example, you can use Secure Copy (scp) to copy `dcos-install.tar` to your home directory:
 
     ```
-    $ scp -i dev.pem ~/dcos-install.tar $username@$node-ip:/opt/dcos_install_tmp/dcos-install.tar
+    $ scp ~/dcos-install.tar $username@$node-ip:~/dcos-install.tar
     ```
-    
+
 2.  SSH to the machine:
-    
+
     ```bash
     $ ssh $USER@$AGENT
     ```
 
+1.  Create a directory for the installer files:
+
+     ```bash
+     $ sudo mkdir -p /opt/dcos_install_tmp
+     ```
+
 1.  Unpackage the `dcos-install.tar` file:
 
     ```bash
-    $ tar xvf ~/opt/dcos_install_tmp/dcos-install.tar
+    $ sudo mv dcos-install.tar /opt/dcos_install_tmp
+    $ cd /opt/dcos_install_tmp
+    $ sudo tar xvf ~/opt/dcos_install_tmp/dcos-install.tar
     ```
 
 3.  Install DC/OS as a public agent:
-    
+
     ```bash
     $ sudo bash /opt/dcos_install_tmp/dcos_install.sh slave_public
-    ``` 
+    ```
 
-4.  Verify that your new agent node is public by running this command from the DC/OS CLI. You should see a result of `1`, which indicates that you have a public node. 
-    
+4.  Verify that your new agent node is public by running this command from a workstation with the DC/OS CLI. You should see a result of `1`, which indicates that you have at least one public node.
+
     ```bash
     $ curl -skSL -H "Authorization: token=$(dcos config show core.dcos_acs_token)" $(dcos config show core.dcos_url)/mesos/master/slaves | grep slave_public | wc -l
     ```
-        
+
     You should see an output greater than zero to indicate at least one public agent.
 
  [1]: /docs/1.7/administration/installing/custom/gui/

@@ -28,7 +28,7 @@ The DC/OS installation creates these folders:
     $ curl -O https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
     ```
 
-1.  From your terminal, start the DC/OS GUI installer with this command. 
+1.  From your terminal, start the DC/OS GUI installer with this command.
 
     ```bash
     $ sudo bash dcos_generate_config.sh --web
@@ -117,7 +117,7 @@ The DC/OS installation creates these folders:
     You are done!
 
     ![dashboard](../img/ui-dashboard.gif)
-    
+
 # <a name="backup"></a>(Optional) Backup your DC/OS installer files
 It is recommended that you save your DC/OS installer file immediately after installation completes and before you start using DC/OS. These installer files can be used to add more agent nodes to your cluster, including the [public agent][4] node.
 
@@ -128,16 +128,12 @@ It is recommended that you save your DC/OS installer file immediately after inst
     $ cd genconf/serve
     $ sudo tar cf dcos-install.tar *
     ```
-    
+
 1.  Copy the `dcos-install.tar` file to another location for backup. For example, you can use Secure Copy (scp) to copy `dcos-install.tar` to your home directory:
 
-    ```
+    ```bash
+    $ exit
     $ scp -i dev.pem $username@$node-ip:~/genconf/serve/dcos-install.tar ~
-    ```
-    And then copy to your agent node:
-    
-    ```
-    $ scp -i dev.pem ~/dcos-install.tar $username@$node-ip:~/dcos-install.tar
     ```
 
 ## Next Steps
