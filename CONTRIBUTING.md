@@ -2,7 +2,7 @@
 
 Use these guidelines to contribute to the DC/OS documentation:
 
-1. Create a [new issue](https://github.com/dcos/dcos-docs/issues) in this repo (`dcos-docs`) and label it with the type of documentation that you're writing. For example, [tutorial](https://github.com/dcos/dcos-docs/labels/tutorial).
+1. Create a [new issue](https://dcosjira.atlassian.net) in Jira, label it with component `docs` and assign it to yourself. If you can't assign it to yourself, ask for help on the [DC/OS Communnity Slack](http://http://chat.dcos.io/).
 1. [Fork](https://help.github.com/articles/fork-a-repo/) this repo, `dcos-docs` (you only have to do this once).
 1. Create your content.
 
