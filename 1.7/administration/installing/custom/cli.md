@@ -310,9 +310,14 @@ To install DC/OS:
     # <Ctrl-C> to exit installer
     $ cd genconf/serve
     $ sudo tar cf dcos-install.tar *
-    # Move the dcos-install.tar file to a safe place
+
+1.  Copy the `dcos-install.tar` file to another location for backup. For example, you can use Secure Copy (scp) to copy `dcos-install.tar` to your home directory:
+
+    ```bash
+    $ exit
+    $ scp $username@$node-ip:~/genconf/serve/dcos-install.tar ~    
     ```
-    
+
     You are done!
 
     ![dashboard](../img/ui-dashboard.gif)
