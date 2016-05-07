@@ -46,9 +46,9 @@ $ curl <host_ip>:1050/system/health/v1
 Aggregation of the cluster health endpoints is accomplished by the same diagnostics application, but is only run on the master nodes. You can explore this API further by making a few queries to any master in your cluster:
 
 ```bash
-$ curl <master_ip>:1050/api/v1/health/units
-$ curl <master_ip>:1050/api/v1/health/nodes
-$ curl <master_ip>:1050/api/v1/health/report
+$ curl <master_ip>:1050/system/health/v1/units
+$ curl <master_ip>:1050/system/health/v1/nodes
+$ curl <master_ip>:1050/system/health/v1/report
 ```
 
 The DC/OS user interface uses these aggregation endpoints to generate the data you explore in the system health console.
@@ -60,7 +60,7 @@ What we refer to as components are in fact the [systemd units](https://www.freed
 You can query this HTTP API for any host in the cluster:
 
 ```bash
-curl <host_ip>:1050/api/v1/health
+curl <host_ip>:1050/system/health/v1
 ```
 
 Here is an explanation of the components shown in the UI.
