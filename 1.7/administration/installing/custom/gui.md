@@ -11,13 +11,13 @@ This installation method uses a bootstrap node to administer the DC/OS installat
 The DC/OS installation creates these folders:
 
 *   `/opt/mesosphere`
-    :   Contains all the DC/OS binaries, libraries, cluster configuration. Do not modify.
+    Contains all the DC/OS binaries, libraries, cluster configuration. Do not modify.
 
 *   `/etc/systemd/system/dcos.target.wants`
-    :   Contains the systemd service units which start the things that make up DC/OS. They must live outside of `/opt/mesosphere` because of systemd constraints.
+    Contains the systemd service units which start the things that make up DC/OS. They must live outside of `/opt/mesosphere` because of systemd constraints.
 
 *   Various units prefixed with `dcos` in `/etc/systemd/system`
-    :   Copies of the units in `/etc/systemd/system/dcos.target.wants`. They must be at the top folder as well as inside `dcos.target.wants`.
+    Copies of the units in `/etc/systemd/system/dcos.target.wants`. They must be at the top folder as well as inside `dcos.target.wants`.
 
 
 # Install DC/OS
