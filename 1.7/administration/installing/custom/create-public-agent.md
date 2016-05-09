@@ -66,7 +66,7 @@ Copy the archived DC/OS installer file (`dcos-install.tar`) to the node that tha
 1.  Unpackage the `dcos-install.tar` file:
 
     ```bash
-    $ tar xf dcos-install.tar -C /opt/dcos_install_tmp
+    $ sudo tar xf dcos-install.tar -C /opt/dcos_install_tmp
     ```
 
 3.  Install DC/OS as a public agent:

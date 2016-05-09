@@ -133,7 +133,7 @@ It is recommended that you save your DC/OS installer file immediately after inst
 
     ```bash
     $ exit
-    $ scp -i dev.pem $username@$node-ip:~/genconf/serve/dcos-install.tar ~
+    $ scp -i $username@$node-ip:~/genconf/serve/dcos-install.tar ~
     ```
 
 ## Next Steps
