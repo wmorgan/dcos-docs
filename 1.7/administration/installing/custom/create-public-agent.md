@@ -47,7 +47,7 @@ Copy the archived DC/OS installer file (`dcos-install.tar`) to the node that tha
 
 1.  Copy the files to your agent node. For example, you can use Secure Copy (scp) to copy `dcos-install.tar` to your home directory:
 
-    ```
+    ```bash
     $ scp ~/dcos-install.tar $username@$node-ip:~/dcos-install.tar
     ```
 
@@ -66,9 +66,7 @@ Copy the archived DC/OS installer file (`dcos-install.tar`) to the node that tha
 1.  Unpackage the `dcos-install.tar` file:
 
     ```bash
-    $ sudo mv dcos-install.tar /opt/dcos_install_tmp
-    $ cd /opt/dcos_install_tmp
-    $ sudo tar xvf ~/opt/dcos_install_tmp/dcos-install.tar
+    $ tar xf dcos-install.tar -C /opt/dcos_install_tmp
     ```
 
 3.  Install DC/OS as a public agent:
@@ -81,6 +79,7 @@ Copy the archived DC/OS installer file (`dcos-install.tar`) to the node that tha
 
     ```bash
     $ curl -skSL -H "Authorization: token=$(dcos config show core.dcos_acs_token)" $(dcos config show core.dcos_url)/mesos/master/slaves | grep slave_public | wc -l
+               1
     ```
 
     You should see an output greater than zero to indicate at least one public agent.
