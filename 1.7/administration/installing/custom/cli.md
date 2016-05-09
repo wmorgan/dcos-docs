@@ -304,24 +304,27 @@ To install DC/OS:
 
     ![alt text](../img/ui-installer-login.gif)
 
-8. Archive your installer files for safe-keeping. You'll need this archive to make new agents, including the [public agent][11].
+    You are done!
+
+    ![dashboard](../img/ui-dashboard.gif)
+
+# <a name="backup"></a>(Optional) Backup your DC/OS installer files
+It is recommended that you save your DC/OS installer file immediately after installation completes and before you start using DC/OS. These installer files can be used to add more agent nodes to your cluster, including the [public agent][4] node.
+
+1.  From your bootstrap node, navigate to the `genconf/serve` directory and package the contents as `dcos-install.tar`:
 
     ```bash
     # <Ctrl-C> to exit installer
     $ cd genconf/serve
     $ sudo tar cf dcos-install.tar *
+    ```
 
 1.  Copy the `dcos-install.tar` file to another location for backup. For example, you can use Secure Copy (scp) to copy `dcos-install.tar` to your home directory:
 
     ```bash
     $ exit
-    $ scp $username@$node-ip:~/genconf/serve/dcos-install.tar ~    
+    $ scp -i dev.pem $username@$node-ip:~/genconf/serve/dcos-install.tar ~
     ```
-
-    You are done!
-
-    ![dashboard](../img/ui-dashboard.gif)
-
 
 # Next Steps
 
