@@ -76,6 +76,17 @@ If you're unsure about what exactly should go into the tutorial, you can always 
     ```
     $ git submodule update --init --recursive
     ```
+1.  Pull in the changed content from your local branch of `dcos/dcos-docs` to the `dcos/dcos-website/dcos-docs` subdirectory. By default, the `dcos-website` project contains the upstream `dcos-docs` submodule of the live site. You can pull in this content by using either of these methods:
+    
+    - Create a symlink from your local `dcos-docs` branch to `dcos-website`. For example, from the `/Users/username/projects/dcos-website/` directory, issue this command to create a symlink to `dcos-docs`:
+      
+      ```
+      ln -s ~/projects/dcos-docs
+      ```
+    
+    - Copy your local `dcos-docs` directory into the `dcos/dcos-website/dcos-docs` folder. 
+    
+ 
 1.  [Install Node](https://docs.npmjs.com/getting-started/installing-node).
  
 1.  Make sure npm is up-to-date and install dependencies. 
@@ -85,12 +96,12 @@ If you're unsure about what exactly should go into the tutorial, you can always 
     $ npm install
     ```
 
-1.  Launch local dev server:
+1.  Launch local dev server with this command: 
 
     ```
     $ npm start
     ```
-    (opens dev server in browser)
+    The local copy of the website will open in a browser. Any changes to the local content will be updated automatically in your browser.
     
 ## Submit a pull request
 
