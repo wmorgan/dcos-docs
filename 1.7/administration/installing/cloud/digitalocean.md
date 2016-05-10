@@ -3,7 +3,7 @@ post_title: DigitalOcean DC/OS Installation Guide
 nav_title: DigitalOcean
 ---
 
-You can create a DCOS cluster on DigitalOcean using Terraform.
+You can create a DC/OS cluster on DigitalOcean using Terraform.
 
 The included Terraform templates are configured to run Mesosphere DC/OS on DigitalOcean. Depending on the DC/OS services that you install, or the amount of computing power your workload needs, you might have to modify the templates to suit your needs. You can modify the Terraform templates, but Mesosphere cannot assist in troubleshooting. If you require support, please email support@digitalocean.com, visit the unofficial DigitalOcean IRC channel (#digitalocean on freenode) or consider the Enterprise DC/OS.
 
@@ -17,7 +17,7 @@ The included Terraform templates are configured to run Mesosphere DC/OS on Digit
 
 - DigitalOcean 4GB (or more) Droplets
 
-# Create a DCOS cluster
+# Create a DC/OS cluster
 
 ## Prerequisites:
 
@@ -25,11 +25,11 @@ The included Terraform templates are configured to run Mesosphere DC/OS on Digit
 
 - [Terraform by Hashicorp](https://www.terraform.io/intro/getting-started/install.html)
 
-## Installing DCOS
+## Installing DC/OS
 
 1.  Download and install Terraform using the instructions on the link provided above
 
-2.  [Download the DCOS Terraform manifests from GitHub](https://github.com/jmarhee/digitalocean-dcos-terraform) into a local  directory.
+2.  [Download the DC/OS Terraform manifests from GitHub](https://github.com/jmarhee/digitalocean-dcos-terraform) into a local  directory.
 
     ```bash
     $ git clone https://github.com/jmarhee/digitalocean-dcos-terraform
@@ -47,7 +47,7 @@ The included Terraform templates are configured to run Mesosphere DC/OS on Digit
     
     - ssh_key_fingerprint - Your SSH public key, or fingerprint
 
-    - dcos_installer_url - Where to get DCOS
+    - dcos_installer_url - Where to get DC/OS
       https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
 
     The following have default values and may be changed depending on your requirements:
@@ -55,16 +55,16 @@ The included Terraform templates are configured to run Mesosphere DC/OS on Digit
     - region - DigitalOcean facility: [NYC1|NYC2|NYC3|SGP1|LON1|AMS2|AMS3|SFO1|TOR1|FRA1]
       Choose the DigitalOcean datacenter for your cluster - default NYC2
 
-    - agent_size - Size of DigitalOcean Droplet to use for the DCOS Agents: [4GB|8GB|16GB|32GB|48GB|64GB]
-      Choose the DigitalOcean droplet size to use for the DCOS Private Agents - default 4GB
+    - agent_size - Size of DigitalOcean Droplet to use for the DC/OS Agents: [4GB|8GB|16GB|32GB|48GB|64GB]
+      Choose the DigitalOcean droplet size to use for the DC/OS Private Agents - default 4GB
 
-    - master_size - Size of DigitalOcean Droplet to use for the DCOS Master: [4GB|8GB|16GB|32GB|48GB|64GB]
-      Choose the DigitalOcean droplet size to use for the DCOS Master Nodes - default 4GB
+    - master_size - Size of DigitalOcean Droplet to use for the DC/OS Master: [4GB|8GB|16GB|32GB|48GB|64GB]
+      Choose the DigitalOcean droplet size to use for the DC/OS Master Nodes - default 4GB
 
-    - boot_size - Size of DigitalOcean Droplet to use for the DCOS Boot Node: [4GB|8GB|16GB|32GB|48GB|64GB]
-      Choose the DigitalOcean droplet size to use for the DCOS Boot Server - default 4GB
+    - boot_size - Size of DigitalOcean Droplet to use for the DC/OS Boot Node: [4GB|8GB|16GB|32GB|48GB|64GB]
+      Choose the DigitalOcean droplet size to use for the DC/OS Boot Server - default 4GB
 
-    - dcos_cluster_name - the name of your DCOS cluster - defaults to digitalocean-dcos
+    - dcos_cluster_name - the name of your DC/OS cluster - defaults to digitalocean-dcos
 
     - dcos_agent_count - Number of private agents to deploy - defaults to  4
 
@@ -74,20 +74,20 @@ The included Terraform templates are configured to run Mesosphere DC/OS on Digit
 
     - key_file_path - The path to your ssh private key created in step 4 - defaults to ./do-key
 
-5.  Also from that same directory, run `terraform apply` which will deploy the servers into your project at DigitalOcean, and run the DCOS installation routine. When it completes, you will see output similar to the following, but with the IP addresses assigned to your servers:
+5.  Also from that same directory, run `terraform apply` which will deploy the servers into your project at DigitalOcean, and run the DC/OS installation routine. When it completes, you will see output similar to the following, but with the IP addresses assigned to your servers:
 
-    ![terraform apply output](../../../img/packet_terraform_output.png)
+    ![terraform apply output](../../../img/digitalocean_terraform_output.png)
 
-You may need to wait a few minutes from this point for all the DCOS services to become active and the control panel available on the master node. After 15 or 20 minutes, you'll want to check out the [troubleshooting](../../custom/troubleshooting/) documentation.
+You may need to wait a few minutes from this point for all the DC/OS services to become active and the control panel available on the master node. After 15 or 20 minutes, you'll want to check out the [troubleshooting](../../custom/troubleshooting/) documentation.
 
-# Launch DCOS
-Launch the DCOS web interface by entering the Mesos master IP address:
+# Launch DC/OS
+Launch the DC/OS web interface by entering the Mesos master IP address:
 
-1.  Cut/paste the link provided by after running terraform apply, or by running terraform output from the same directory, into your browser to open the DCOS web interface. The interface runs on the standard HTTP port 80, so you do not need to specify a port number after the hostname.
+1.  Cut/paste the link provided by after running terraform apply, or by running terraform output from the same directory, into your browser to open the DC/OS web interface. The interface runs on the standard HTTP port 80, so you do not need to specify a port number after the hostname.
 
-2.  Install the DCOS Command-Line Interface (CLI). You can install the CLI to administer your DCOS cluster. You can access the documentation at any time by clicking the caret icon in the lower left corner.
+2.  Install the DC/OS Command-Line Interface (CLI). You can install the CLI to administer your DC/OS cluster. You can access the documentation at any time by clicking the caret icon in the lower left corner.
 
-    ![dcos help link](../../../img/packet_help_link.png)
+    ![dcos help link](../../../img/digitalocean_help_link.png)
 
 ## Next steps
 
