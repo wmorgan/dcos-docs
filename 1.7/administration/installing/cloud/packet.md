@@ -29,6 +29,8 @@ The included Terraform templates are configured to run Mesosphere DC/OS on Packe
 
 ## Installing DCOS
 
+#### With this method, the network is open by default. Because of this, network security is a concern and should be addressed as soon as possible by the administrator.
+
 1.  Download and install Terraform using the instructions on the link provided above
 
 2.  [Download the DCOS Terraform manifests from GitHub](https://github.com/dcos/packet-terraform) into a local  directory.
