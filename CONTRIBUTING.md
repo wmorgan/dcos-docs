@@ -3,13 +3,21 @@
 ## Styling and formatting your contribution
 
 - Use [GitHub-flavored markdown](https://help.github.com/enterprise/11.10.340/user/articles/github-flavored-markdown/).
-- Each directory must contain an `index.md` file. This acts as the base-level topic for each folder in the site (required).
-- Do not include file names in your paths. Our site converts any files not named `index.md` into directory names. For example, the directory `/docs/1.7/administration/` contains a file named `user-management.md`. To visit this content on the live site, you would use the following path: `/docs/1.7/administration/user-management/`.  
+
 - Use relative links.
+
 - Begin all links at the root `docs` level and include the version number subdirectory. (e.g., `/docs/1.7/administration/sshcluster/`).
+
+- Each directory must contain an `index.md` file. This acts as the base-level topic for each folder in the site (required).
+
+- Do not include file names in your paths. Our site converts any files not named `index.md` into directory names. For example, the directory `/docs/1.7/administration/` contains a file named `user-management.md`. To link to this content on the live site, you would use the following path: `/docs/1.7/administration/user-management/`.
+
 - The table of contents of each page is automatically generated based on the top-level headers.
+
 - Directory tables of contents are automatically generated based on `post_title` (or `nav_title`) and `post_excerpt` headers.
+
 - Use active voice whenever possible.
+
 - Use sentence-style capitalization for headings.
 
 ## Making your contribution
@@ -55,11 +63,14 @@
                Post markdown goes here.
                ```
 
-    **Tip:** Check the `templates` directory to see if there is a template that corresponds to the type of content you are creating. For example, if it's a tutorial you can copy [templates/tutorial.md](templates/tutorial.md) into `foo/` and rename it to `foo/index.md`. Adapt the sections in your new `foo/index.md` to the specifics of your content.
-1. Add images in a child `foo/img/` directory.  
-1. Include all required assets in your `/foo` directory, for example, Marathon app spec, JSON docs, or a Dockerfile.
+    - **Tips:** 
+        * Check the `templates` directory to see if there is a template that corresponds to the type of content you are creating. For example, if it's a tutorial you can copy [templates/tutorial.md](templates/tutorial.md) into `foo/` and rename it to `foo/index.md`. Adapt the sections in your new `foo/index.md` to the specifics of your content.
 
-    **Tip**: If you're unsure about what exactly should go into a tutorial, you can always check out [spark/](/1.7/usage/tutorials/spark/) for reference.
+        * Add images in a child `foo/img/` directory.  
+
+        * Include all required assets in your `/foo` directory, for example, Marathon app spec, JSON docs, or a Dockerfile.
+
+        * If you're unsure about what exactly should go into a tutorial, you can always check out [spark/](/1.7/usage/tutorials/spark/) for reference.
 
 1. Push your changes into the feature branch of your remote.
 
@@ -78,30 +89,37 @@ We've implemented the [dcos-docs](https://github.com/dcos/dcos-docs) repo as a [
     - [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
     - [Node](https://docs.npmjs.com/getting-started/installing-node)
 
-1. [Fork](https://guides.github.com/activities/forking/) the [dcos-website](https://github.com/dcos/dcos-website) repo. 
-
-1. [Clone](https://help.github.com/articles/cloning-a-repository/) your fork of the [dcos-website](https://github.com/dcos/dcos-website) repo.
+1. Clone the dcos-website repo.
 
     ```
-    $ git clone https://github.com/<your-user-name>/dcos-website
+    $ git clone https://github.com/dcos/dcos-website
     ```
 
-1. Check out the `develop` branch.
+1. Check out the develop branch.
 
     ```
     $ git checkout develop
     ```
-1. Initialize the `dcos-docs` submodule.
- 
-    ```
-    $ git submodule init
-    ```
 
-1. Merge the changes from your [dcos-docs](https://github.com/dcos/dcos-docs) feature branch into your fork of the [dcos-website](https://github.com/dcos/dcos-website) repo.
+1. Initialize the dcos-docs submodule with the content from the upstream master.
 
     ```
     $ git submodule update --init --recursive
     ```
+1. Replace the content from the upstream master with the content from your local dcos-docs repo using one of the following methods.
+
+  - Delete the `dcos-website/dcos-dcos` directory and replace it with a symlink to your local dcos-docs repo. 
+
+     ```
+     $ rm -r dcos-docs
+     $ ln -s ~/dcos-docs
+     ```
+    
+  - Copy the contents of your local dcos-docs repo into the `/dcos-website/dcos-docs` folder.
+
+     ```
+     $ cp -rf ~/dcos-docs ~/dcos-website
+     ``` 
 
 1. Make sure npm is up-to-date and install dependencies. 
 
