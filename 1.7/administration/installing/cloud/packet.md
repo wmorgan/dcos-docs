@@ -31,10 +31,10 @@ The included Terraform templates are configured to run Mesosphere DC/OS on Packe
 
 1.  Download and install Terraform using the instructions on the link provided above
 
-2.  [Download the DCOS Terraform manifests from GitHub](https://github.com/mesosphere/packet-terraform) into a local  directory.
+2.  [Download the DCOS Terraform manifests from GitHub](https://github.com/dcos/packet-terraform) into a local  directory.
 
     ```bash
-    $ git clone https://github.com/mesosphere/packet-terraform
+    $ git clone https://github.com/dcos/packet-terraform
     ```
 
 3.  From that directory, generate an ssh keypair:
@@ -100,4 +100,3 @@ Launch the DCOS web interface by entering the Mesos master IP address:
   - Increasing node count is fast, safe, and fun!
 
   - We recommend against reducing the node count in production. Stateful DC/OS apps and services may suffer outages and failures if nodes are not put into maintenance mode, and their tasks rescheduled through their respective schedulers.
-
