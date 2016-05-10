@@ -99,3 +99,6 @@ Launch the DC/OS web interface by entering the Mesos master IP address:
 
   - We recommend against reducing the node count in production. Stateful DC/OS apps and services may suffer outages and failures if nodes are not put into maintenance mode, and their tasks rescheduled through their respective schedulers.
 
+## Security
+
+- Keep in mind that all nodes are Internet-facing by default after deploying via Terraform and are not secured out-of-the-box. Additional configuration will be required to put master and agent nodes into a security group. 
