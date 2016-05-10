@@ -106,6 +106,7 @@ We've implemented the [dcos-docs](https://github.com/dcos/dcos-docs) repo as a [
     ```
     $ git submodule update --init --recursive
     ```
+
 1. Replace the content from the upstream master with the content from your local dcos-docs repo using one of the following methods.
 
   - Delete the `dcos-website/dcos-dcos` directory and replace it with a symlink to your local dcos-docs repo. 
@@ -122,7 +123,7 @@ We've implemented the [dcos-docs](https://github.com/dcos/dcos-docs) repo as a [
      ``` 
 
 1. Make sure npm is up-to-date and install dependencies. 
-
+    
     ```
     $ sudo npm install npm@latest -g
     $ npm install
