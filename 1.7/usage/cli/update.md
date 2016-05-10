@@ -13,5 +13,6 @@ You can upgrade an existing DC/OS CLI installation to the latest build. Before r
 1.  From your DC/OS CLI installation directory, enter this command to update the DC/OS CLI:
 
     ```bash
-    $ sudo pip install -U dcoscli
+    $ source bin/activate
+    $ pip install -U dcoscli
     ```
