@@ -119,7 +119,7 @@ Now, stop the service:
 $ dcos marathon app stop postgres
 ```
 
-This command scales the `instances` count down to 0 and kills all runing tasks. If you inspect the tasks list again, you will notice that the task is still there, however, containing the information about which agent it was placed on and which persistent volume it had attached, but without a `startedAt` value:
+This command scales the `instances` count down to 0 and kills all running tasks. If you inspect the tasks list again, you will notice that the task is still there, however, containing the information about which agent it was placed on and which persistent volume it had attached, but without a `startedAt` value:
 
 ```
 $ dcos marathon task list
