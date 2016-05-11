@@ -7,10 +7,10 @@ nav_title: Tomcat
 
 **Prerequisites**
 
-- A DC/OS cluster with at least 1 master and 1 [public agent](/1.7/overview/concepts/#public) node
+- A DC/OS cluster with at least 1 master and 1 [public agent](/docs/1.7/overview/concepts/#public) node
 - DC/OS CLI
 - [jQuery](https://github.com/stedolan/jq/wiki/Installation)
-- [SSH](/1.7/administration/sshcluster/)
+- [SSH](/docs/1.7/administration/sshcluster/)
 
 ## Run the container
 

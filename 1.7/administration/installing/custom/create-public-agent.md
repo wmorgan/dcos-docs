@@ -18,7 +18,7 @@ These steps must be performed on a machine that is configured as a DC/OS node. A
 ### Prerequisites:
 
 *   DC/OS is installed and you have deployed at least one master and one private agent node.
-*   The archived DC/OS installer file (`dcos-install.tar`) from your [installation](/1.7/administration/installing/custom/gui/#backup).     
+*   The archived DC/OS installer file (`dcos-install.tar`) from your [installation](/docs/1.7/administration/installing/custom/gui/#backup).     
 
 ### Uninstall the DC/OS private agent software
 
