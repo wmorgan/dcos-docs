@@ -12,22 +12,27 @@ By default authentication tokens expire after 5 days. You can view the expiratio
 
 ### Request
 
-Log in to the DC/OS CLI to obtain the auth [token](/docs/1.7/administration/security/managing-authentication#log-in-cli).
+Log in to the DC/OS CLI to obtain your auth [token](/docs/1.7/administration/security/managing-authentication#log-in-cli).
 
 ![auth token](../img/auth-token.gif)
 
+After you login successfully, you can run this command to inspect your `dcos_acs_token`:
+```bash
+$ dcos config show core.dcos_acs_token
+```
+
 # Make HTTP request using the Authorization header
 
-To authenticate an HTTP request against a DC/OS component, specify the `<authtoken>` in the request header.
+To authenticate an HTTP request against a DC/OS component, specify `$(dcos config show core.dcos_acs_token)` in the request header.
 
 For example, to access the Marathon API:
 
 ```bash
-$ curl --header "Authorization: token=<authtoken>" http://<master-host-name>/service/marathon/v2/apps
+$ curl --header "Authorization: token=$(dcos config show core.dcos_acs_token)" http://<master-host-name>/service/marathon/v2/apps
 ```
 
 For example, to access the Mesos API:
 
 ```bash
-$ curl --header "Authorization: token=<authtoken>" http://<master-host-name>/mesos/master/state.json
+$ curl --header "Authorization: token=$(dcos config show core.dcos_acs_token)" http://<master-host-name>/mesos/master/state.json
 ```

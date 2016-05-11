@@ -84,17 +84,17 @@ The configuration settings are stored in the `dcos.toml` file. You can modify th
 
 **reporting** Indicate whether to report usage events to Mesosphere. By default this is set to `True`. For example, to set to false:
 
-    dcos config set core.reporting=False
+    dcos config set core.reporting False
     
 
 **ssl_verify** Indicates whether to verify SSL certs for HTTPS or path to certs. By default this is set to `False`. For example, to set to true:
 
-    dcos config set core.ssl_verify=True
+    dcos config set core.ssl_verify True
     
 
 **timeout** Request timeout in seconds, with a minimum value of 1 second. By default this is set to 5 seconds. For example, to set to 3 seconds:
 
-    dcos config set core.timeout=3
+    dcos config set core.timeout 3
     
 
 **token** The OAuth access token. For example, to change the OAuth token:

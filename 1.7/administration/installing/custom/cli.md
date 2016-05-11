@@ -57,7 +57,7 @@ The DC/OS installation creates these folders:
         # Uses the GCE metadata server to get the node's internal
         # ipv4 address
 
-        curl -fsSl -H "Metadata-Flavor: Google" http://169.254.169.254/computeMetadata/v1/instance/network-interfaces/0/ip
+        curl -fsSL -H "Metadata-Flavor: Google" http://169.254.169.254/computeMetadata/v1/instance/network-interfaces/0/ip
         ```
 
     *   #### Use the IP address of an existing interface
@@ -93,6 +93,8 @@ The DC/OS installation creates these folders:
     In this step you create a YAML configuration file that is customized for your environment. DC/OS uses this configuration file during installation to generate your cluster installation files.
 
     You can use this template to get started. This template specifies 3 Mesos masters, 5 Mesos agents, and SSH configuration specified. If your servers are installed with a domain name in your `/etc/resolv.conf`, you should add `dns_search` to your `config.yaml` file. For parameters descriptions and configuration examples, see the [documentation][6].
+    
+    **Tip:** If Google DNS is not available in your country, you can replace the Google DNS servers `8.8.8.8` and `8.8.4.4` with your local DNS servers.
 
     ```yaml
     ---
@@ -308,9 +310,28 @@ To install DC/OS:
 
     ![dashboard](../img/ui-dashboard.gif)
 
+# <a name="backup"></a>(Optional) Backup your DC/OS installer files
+It is recommended that you save your DC/OS installer file immediately after installation completes and before you start using DC/OS. These installer files can be used to add more agent nodes to your cluster, including the [public agent][4] node.
+
+1.  From your bootstrap node, navigate to the `genconf/serve` directory and package the contents as `dcos-install.tar`:
+
+    ```bash
+    # <Ctrl-C> to exit installer
+    $ cd genconf/serve
+    $ sudo tar cf dcos-install.tar *
+    ```
+
+1.  Copy the `dcos-install.tar` file to another location for backup. For example, you can use Secure Copy (scp) to copy `dcos-install.tar` to your home directory:
+
+    ```bash
+    $ exit
+    $ scp -i $username@$node-ip:~/genconf/serve/dcos-install.tar ~
+    ```
+
 # Next Steps
 
 - [Add users to your cluster][10]
+- [Add a public agent][11]
 - [Install the DC/OS Command-Line Interface (CLI)][2]
 - [Troubleshooting DC/OS installation][9]
 - [Use your cluster][8]
@@ -351,3 +372,4 @@ After DC/OS is installed and deployed across your cluster, you can add more agen
  [8]: /docs/1.7/usage/
  [9]: /docs/1.7/administration/installing/custom/troubleshooting/
  [10]: /docs/1.7/administration/user-management/
+ [11]: /docs/1.7/administration/installing/custom/create-public-agent/
