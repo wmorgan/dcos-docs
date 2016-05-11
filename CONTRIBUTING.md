@@ -1,32 +1,45 @@
 # Contributing to the DC/OS Documentation
 
-Use these guidelines to contribute to the DC/OS documentation:
+Use these guidelines to contribute to the DC/OS documentation.
 
-1. Create a [new issue](https://dcosjira.atlassian.net) in Jira, label it with component `docs` and assign it to yourself. If you can't assign it to yourself, ask for help on the [DC/OS Communnity Slack](http://http://chat.dcos.io/).
+## Format guidelines
+
+Markdown in this repository is formatted for rendering by using [Metalsmith](http://www.metalsmith.io/).
+
+- Links must include the full directory path, including version, relative to the root of dcos.io (e.g. `/docs/1.7/administration/sshcluster/`). Note that these links will not work in the GitHub code browser. It is recommended that you test your content [locally](#test-local) before submitting your PR.
+- Final page links are directory names, not filenames (e.g. `https://dcos.io/docs/latest/usage/service-discovery/mesos-dns/`).
+- You must have an `index.md` page for all parent directories (rather than using Github's README.md indexing). For example, the parent directory `/dcos-docs/1.7/administration/index.md` must also contain `/dcos-docs/1.7/index.md`.
+- The table of contents of each page is automatically generated based on the top-level headers.
+- Directory tables of contents are automatically generated based on `post_title` (or `nav_title`) and `post_excerpt` headers.
+
+## Style guidelines
+
+- Use active voice wherever possible, which tells who or what is performing the action.
+- Use sentence-style capitalization for headings in most cases.
+
+## Make your update
+
+1. Create a [JIRA issue](https://dcosjira.atlassian.net/secure/CreateIssue!default.jspa) with `dcos-dcos` as the component.
 1. [Fork](https://help.github.com/articles/fork-a-repo/) this repo, `dcos-docs` (you only have to do this once).
-1. Create your content.
+1. Create your content. In most cases you should be able to create your content within the existing directory structure. 
 
     - To create a single page:
         1. Create a markdown file `{post_slug}.md` where `post_slug` is your file name. File names become URIs. If you want this page to be a child of another page, place the `.md` file in the parent folder.
-        1. Add your page content, including the required metadata (`post_title`, `nav_title`, `menu_order`). Do not include any other metadata.
+        1. Add your page content, including the required metadata `post_title` and optional `nav_title` and `menu_order`. Do not include any other metadata.
         
                ```
                ---
                post_title: The Title
-               nav_title: The Title
-               menu_order: 1
                ---
                Post markdown goes here.
                ```
     - To create a page with hierarchy:
         1. Create a new directory in the appropriate location of the correctly versioned release (e.g. `/1.7/foo`) and a child page within this folder named `index.md` (e.g. `/1.7/foo/index.md`). The actual URL of your page will be `/1.7/foo/`, not `/1.7/foo/index`. For example, if it's a tutorial for 1.7, create a new directory here `/1.7/usage/tutorials/foo/`.
-        1. Add your page content, including the required metadata (`post_title`, `nav_title`, `menu_order`). Do not include any other metadata.
+        1. Add your page content, including the required metadata `post_title` and optional `nav_title` and `menu_order`. Do not include any other metadata.
                 
                ```
                ---
                post_title: The Title
-               nav_title: The Title
-               menu_order: 1
                ---
                Post markdown goes here.
                ```
@@ -34,7 +47,63 @@ Use these guidelines to contribute to the DC/OS documentation:
     **Tip:** There are templates available for some content types. For example, if it's a tutorial you can copy [templates/tutorial.md](templates/tutorial.md) into `foo/` and rename it to `foo/index.md`. Adapt the sections in your new `foo/index.md` to the specifics of your content.
 1. Add images in a child `foo/img/` directory.  
 1. Include all required assets in your `/foo` directory, for example, Marathon app spec, JSON docs, or a Dockerfile.
-1. When you're done, submit a [pull request](https://help.github.com/articles/using-pull-requests/) to the original repo, `dcos-docs`.
-1. For all contributions that include hands-on instructions, such as found in `usage/` or `administration/`, the community managers will test-drive and validate before merging. They might come back to you asking you to fix things. All communication strictly via your pull request on GitHub.  
+
 
 If you're unsure about what exactly should go into the tutorial, you can always check out [spark/](/1.7/usage/tutorials/spark/) for reference.
+
+## <a name="test-local"></a>Test your content locally
+
+**Prerequisites:**
+
+- Ruby
+- Git
+
+1.  Create a repo [fork](https://guides.github.com/activities/forking/) of the `dcos/dcos-website` repo. 
+1.  [Clone](https://help.github.com/articles/cloning-a-repository/) the `dcos/dcos-website` repo.
+1.  Add the  `dcos/dcos-website` repo fork as remote repo:
+
+    ```
+    $ git remote add fork https://github.com/<github-user>/dcos-website
+    $ git fetch fork
+    ```
+1.  Checkout the `develop` branch:
+
+    ```
+    $ git checkout develop
+    ```
+1.  Update the `dcos-docs` submodule:
+
+    ```
+    $ git submodule update --init --recursive
+    ```
+1.  Pull in the changed content from your local branch of `dcos/dcos-docs` to the `dcos/dcos-website/dcos-docs` subdirectory. By default, the `dcos-website` project contains the upstream `dcos-docs` submodule of the live site. You can pull in this content by using either of these methods:
+    
+    - Create a symlink from your local `dcos-docs` branch to `dcos-website`. For example, from the `/Users/username/projects/dcos-website/` directory, issue this command to create a symlink to `dcos-docs`:
+      
+      ```
+      ln -s ~/projects/dcos-docs
+      ```
+    
+    - Copy your local `dcos-docs` directory into the `dcos/dcos-website/dcos-docs` folder. 
+    
+ 
+1.  [Install Node](https://docs.npmjs.com/getting-started/installing-node).
+ 
+1.  Make sure npm is up-to-date and install dependencies. 
+
+    ```
+    $ sudo npm install npm@latest -g
+    $ npm install
+    ```
+
+1.  Launch local dev server with this command: 
+
+    ```
+    $ npm start
+    ```
+    The local copy of the website will open in a browser. Any changes to the local content will be updated automatically in your browser.
+    
+## Submit a pull request
+
+1. When you're done, submit a [pull request](https://help.github.com/articles/using-pull-requests/) to the original repo, `dcos-docs`, and add a link to this PR in your [JIRA issue](https://dcosjira.atlassian.net/).
+1. For all contributions that include hands-on instructions, such as found in `usage/` or `administration/`, the community managers will test-drive and validate before merging. They might come back to you asking you to fix things. All communication strictly via your pull request on GitHub.  
