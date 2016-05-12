@@ -100,7 +100,7 @@ $ echo "curl -s ifconfig.co" | dcos node ssh --master-proxy --mesos-id=$(dcos ta
 **Tip:** Due to a known issue with SSH, you might have to make an initial SSH connection to your public agent node before running this command. To find the private IP of your private agent, run this command: 
 
 ```
-$ ssh-add 
+$ dcos node ssh --master-proxy --leader
 $ dcos node --json | jq "map(select(.attributes.public_ip).hostname)"
 ```
 
