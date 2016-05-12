@@ -91,10 +91,17 @@ ID       MEM  CPUS  TASKS  HEALTH  DEPLOYMENT  CONTAINER  CMD
 
 ## View Tomcat
 
-To view Apache Tomcat running, navigate to `http://<public_agent_public_ip>` and see the install success page. You can find your public agent IP by running this command from the DC/OS CLI:
+To view Apache Tomcat running, navigate to `http://<public_agent_public_ip>` and see the install success page. You can find your public agent IP by running this command from the DC/OS CLI.
 
 ```
 $ echo "curl -s ifconfig.co" | dcos node ssh --master-proxy --mesos-id=$(dcos task --json | jq --raw-output '.[] | select(.name == "tomcat") | .slave_id') 2>/dev/null
+```
+
+**Tip:** Due to a known issue with SSH, you might have to make an initial SSH connection to your public agent node before running this command. To find the private IP of your private agent, run this command: 
+
+```
+$ ssh-add 
+$ dcos node --json | jq "map(select(.attributes.public_ip).hostname)"
 ```
 
 In this example the public IP address is `52.39.29.79`:
