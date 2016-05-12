@@ -47,7 +47,6 @@ You must have an Amazon EC2 Key Pair for the same region as your cluster. Key pa
 
     **Tip:** If the **Create New Stack** page is shown, either AWS is still processing your request or you’re looking at a different region. Navigate to the correct region and refresh the page to see your stack.
     
-    ![Confirm stack](../img/dcos-aws-step2d.png)
 
 # Monitor the DC/OS cluster convergence process
 
