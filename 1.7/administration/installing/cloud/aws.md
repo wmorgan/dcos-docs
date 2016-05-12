@@ -13,6 +13,10 @@ Depending on the DC/OS services that you install, you might have to modify the D
 
 An Amazon EC2 <a href="https://aws.amazon.com/ec2/pricing/" target="_blank">m3.xlarge</a> instance.  Selecting smaller-sized VMs is not recommended, and selecting fewer VMs will likely cause certain resource-intensive services, such as distributed datastores, to not work properly.
 
+*   You have the option of 1 or 3 Mesos master nodes.
+*   5 [private](/1.7/overview/concepts/#private) Mesos agent nodes is the default. 
+*   1 [public](/1.7/overview/concepts/#public) Mesos agent node is the default. 
+
 ## Software
 
 - An AWS account.
@@ -20,38 +24,18 @@ An Amazon EC2 <a href="https://aws.amazon.com/ec2/pricing/" target="_blank">m3.x
 
 # Install DC/OS
 
-## Step 1: Creating a SSH key pair
-
-The AWS key pair uses public-key cryptography to provide secure login to your AWS cluster. In order to create the key pair, go to [console.aws.amazon.com/ec2](https://console.aws.amazon.com/ec2/):
-
-First, select your region; this should be the same region where you will create your cluster:
-
-![Select region](../img/dcos-aws-step1a.png)
-
-In the navigation pane, under `Network & Security`, click `Key Pairs` and then click the `Create Key Pair` button:
-
-![Create key pair](../img/dcos-aws-step1b.png)
-
-Save the `.pem` file locally for use later. Note that this is the only chance to save file!
-
-## Step 2: Launching a DC/OS cluster
+**Prerequisite:**
+You must have an Amazon EC2 Key Pair for the same region as your cluster. Key pairs cannot be shared across regions. The AWS key pair uses public-key cryptography to provide secure login to your AWS cluster. For more information about creating an Amazon EC2 Key Pair, see the <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair" target="_blank">documentation</a>. 
 
 1.  Launch the <a href="https://downloads.dcos.io/dcos/EarlyAccess/aws.html" target="_blank">DC/OS template</a> on CloudFormation and select the region and number of masters (1 or 3). You must have a key pair for your selected region.
-
-    **Important:** The DC/OS template is configured for running DC/OS. If you modify the template you might be unable to run certain packages on your DC/OS cluster.
-
 
 2.  On the **Select Template** page, accept the defaults and click **Next**.
 
     ![Launch stack](../img/dcos-aws-step2b.png)
 
-3.  On the **Specify Details** page, specify a cluster name (`Stack name
-`), accept the EULA (AcceptEULA), SSH key (`KeyName`), the number of public (`PublicSlaveInstanceCount`) and private (`SlaveInstanceCount
-`) agents and click **Next**. The other parameters are optional.
+3.  On the **Specify Details** page, specify a cluster name (`Stack name`), Key Pair (`KeyName`), authentication (`OAuthEnabled`), public agent (`PublicSlaveInstanceCount`), private agent (`SlaveInstanceCount`), and click **Next**. 
 
-    Here is the recommended cluster configuration:
-    *   5 Mesos private agent nodes
-    *   1 Mesos public agent node
+    **Important:** The DC/OS template is configured for running DC/OS. If you modify the template you might be unable to run certain packages on your DC/OS cluster.
 
     ![Create stack](../img/dcos-aws-step2c.png)
 
