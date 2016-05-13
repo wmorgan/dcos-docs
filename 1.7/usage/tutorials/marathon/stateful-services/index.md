@@ -36,7 +36,7 @@ This will teach you how to set up and manage a stateful service on DC/OS.
 
 * [DC/OS installed][1]
 * [DC/OS CLI installed][2]
-* [Cluster Size][3]: at least one agent node with 1 CPU, 1 GB of RAM and 1000 MB of disk space available.
+* Cluster Size: at least one agent node with 1 CPU, 1 GB of RAM and 1000 MB of disk space available.
 
 ## Install a stateful service (PostgreSQL)
 
@@ -153,5 +153,4 @@ For further information on stateful services in DC/OS on Marathon, see:
 
 [1]: /docs/1.7/administration/installing/
 [2]: /docs/1.7/usage/cli/install/
-[3]: /docs/1.7/administration/cluster-size/
 [4]: postgres.marathon.json
