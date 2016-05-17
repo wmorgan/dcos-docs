@@ -23,7 +23,7 @@ You can can configure marathon-lb with various topologies. Here are some example
 
 Here, we discuss the fourth option above in order to highlight the features of marathon-lb.
 
-![lb1](img/lb1.jpg)
+![lb1](img/lb1.png)
 
 # Next Steps
 
