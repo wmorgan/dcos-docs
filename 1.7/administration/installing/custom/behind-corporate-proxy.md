@@ -4,17 +4,17 @@ nav_title: Behind a proxy
 menu_order: 9
 ---
 
-If your DC/OS cluster is behind a corporate proxy, you will not have access to Internet and thus won't be able to login or use the Universe official repository. For now the DC/OS CLI installer does not feature nor support proxy options so all following steps must be manually performed on your nodes.
+If your DC/OS cluster is behind a corporate proxy and you do not have access to the internet, you won't be able to login or use the [DC/OS Universe repository](/1.7/usage/services/repo/). The current DC/OS CLI installer does not support proxy options so all of these steps must be manually performed on your nodes.
 
-Placeholders must be replaced with the values which match your network:
+You must replace these variables with the values that match your network:
 
-*    `proxy-protocol`, `proxy-ip`, `proxy-port` are self-explanatory
-*    `no-proxy-list` is a comma-separated list of addresses for which you want to bypass the proxy (basically `localhost`, `127.0.0.1`, your cluster and internal services addresses)
-*    `no-proxy-list-java` is the same list of exceptions but for Java-based software and thus elements are separated by a vertical bar (`|`), wildcards are supported
-*    `cacert-file` is the location of the PEM certificate of your corporate proxy
+*    `proxy-protocol`, `proxy-ip`, `proxy-port` is your proxy protocol, IP, and port.
+*    `no-proxy-list` is a comma-separated list of addresses that will bypass the proxy (basically `localhost`, `127.0.0.1`, your cluster and internal services addresses).
+*    `no-proxy-list-java` is a vertical bar (`|`) separated list of addresses that will bypass the proxy for Java-based software. Wildcards are supported.
+*    `cacert-file` is the location of the PEM certificate of your corporate proxy.
 
 # Disclaimer
-Proxy support is not official in DC/OS meaning this documentation has been put together by trial and error. It might not be complete or up-to-date and some steps are not necessarily required.
+Proxy support is not officially supported in DC/OS and this documentation was put together by trial and error. It might not be complete or up-to-date and some steps might not be required.
 
 # Proxy configuration
 ## Yum
@@ -26,7 +26,7 @@ proxy=<proxy-protocol>://<proxy-ip>:<proxy-port>
 ```
 
 ## Docker
-These settings only allows Docker to pull images from Docker Hub. Containers must be separately configured.
+These settings only allow Docker to pull images from Docker Hub. Your containers must be separately configured.
 
 1. Create Docker systemd directory.
 
@@ -49,7 +49,7 @@ These settings only allows Docker to pull images from Docker Hub. Containers mus
     $ sudo systemctl restart docker
     ```
 
-Detailed steps can be found in the Docker official documentation: [Control and configure Docker with systemd](https://docs.docker.com/engine/admin/systemd/).
+You can find more detailed steps in the official Docker documentation: [Control and configure Docker with systemd](https://docs.docker.com/engine/admin/systemd/).
 
 ## Environment variables
 
@@ -65,28 +65,27 @@ HTTPS_PROXY="<proxy-protocol>://<proxy-ip>:<proxy-port>"
 NO_PROXY="<no-proxy-list>"
 ```
 
-**Warning:** those environment variables canno't be placed in `/opt/mesosphere/environment` nor `/opt/mesosphere/environment.export` because 3DT (dcos-ddt.service) does actually read `http_proxy` environment variable but not `no_proxy` which completely breaks the web UI.
+**Warning:** Do not place these environment variables in `/opt/mesosphere/environment` or `/opt/mesosphere/environment.export` because 3DT (`dcos-ddt.service`) will read `http_proxy` environment variable, but not `no_proxy`. This will completely break the DC/OS web UI.
 
 ## Cosmos
 
-1. Open `/opt/mesosphere/packages/cosmos-[...]/dcos.target.wants_master/dcos-cosmos.service` or `/etc/systemd/system/dcos-cosmos.service`
+1. Open `/opt/mesosphere/packages/cosmos-[...]/dcos.target.wants_master/dcos-cosmos.service` or `/etc/systemd/system/dcos-cosmos.service`.
 
-2. Locate the last `ExecStart` command
+2. Locate the last `ExecStart` command.
 
-3. Add before `-classpath` :
+3. Add this string before `-classpath`:
 
     ```
     -Dhttp.proxyHost=<proxy-ip> -Dhttp.proxyPort=<proxy-port> -Dhttp.nonProxyHosts=<no-proxy-list-java> -Dhttps.proxyHost=<proxy-ip> -Dhttps.proxyPort=<proxy-port> -Dhttps.nonProxyHosts=<no-proxy-list-java>
     ```
-
-4. It should look like:
+    It should look like:
 
     ```
     ExecStart=/opt/mesosphere/bin/java -Xmx2G -Dhttp.proxyHost=<proxy-ip> -Dhttp.proxyPort=<proxy-port> -Dhttp.nonProxyHosts=<no-proxy-list-java> -Dhttps.proxyHost=<proxy-ip> -Dhttps.proxyPort=<proxy-port> -Dhttps.nonProxyHosts=<no-proxy-list-java> -classpath /opt/mesosphere/packages/cosmos--25d98ad8c31c73550a40c8e1022c08f2e53976c4/lib/:/opt/mesosphere/packages/cosmos--25d98ad8c31c73550a40c8e1022c08f2e53976c4/usr/cosmos.jar com.simontuffs.onejar.Boot
     ```
 
 # Self-signed certificate configuration
-Most of the corporate proxies also decrypt SSL connections via a man-in-the-middle mechanism and a SSL certificate pre-installed on the company computers. DC/OS includes a few different trust stores to which we need to add the proxy certificate.
+Most corporate proxies also decrypt SSL connections via a man-in-the-middle mechanism and a SSL certificate pre-installed on the company computers. You must add the proxy certificate to the various DC/OS trust stores.
 
 ## CA bundle
 
@@ -100,7 +99,7 @@ $ sudo update-ca-trust extract
 ## DC/OS packages
 ### Java
 
-1. Locate `keytool`, it should be in:
+1. Locate `keytool`:
 
     ```
     /opt/mesosphere/packages/java-[...]/usr/java/bin/keytool
@@ -112,14 +111,14 @@ $ sudo update-ca-trust extract
     /opt/mesosphere/packages/java-[...]/usr/java/jre/lib/security/cacerts
     ```
 
-3. Add certificate to keystore:
+3. Add the certificate to keystore:
 
     ```
     keytool -keystore cacerts -importcert -alias corporate_proxy -file <cacert-file>
     ```
 
 ### Other packages
-Append your certificate to the following list of CA bundles with
+Append your certificate to the following list of CA bundles with this command:
 
 ```
 $ sudo su -c "cat <cacert-file> >> cacert.pem"
