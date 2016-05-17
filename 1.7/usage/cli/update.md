@@ -28,7 +28,6 @@ You can downgrade an existing DC/OS CLI installation to an older version.
     ```bash
     $ sudo rm -rf dcos && rm -rf ~/.dcos
     ```
-        
 
 2.  Install the legacy version of the DC/OS CLI, where <public-master-ip> is the public IP of your master node:
     
