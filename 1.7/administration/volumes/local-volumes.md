@@ -3,15 +3,13 @@ post_title: Local Volumes
 menu_order: 1
 ---
 
-### Mount Disk Resources
-
-#### Overview
+#  Local Volumes Using Mount Disk Resources
 
 Mesos Volume Mounts give services the ability to reserve dedicated disk space throughout the cluster. This is particularly useful for stateful services like Kafka and Cassandra.
 
 In DC/OS it is possible to configure [Mesos Mount disk resources][1] across the cluster by simply mounting storage resources on Agents using a well-known path. When a DC/OS agent starts for the first time it will scan for volumes matching the pattern `/dcos/volumeN`, where N is an integer, and automatically configure the Mesos Agent to offer these disk resources to other services.
 
-##### Example using loopback device
+## Example using loopback device
 
 The example below shows how to add a disk resource to a DC/OS agent post-install on a running cluster. The same steps can be used pre-install, but in that scenario it is not necessary to stop services or clear the Mesos Agent state.
 
@@ -99,7 +97,7 @@ The example below shows how to add a disk resource to a DC/OS agent post-install
   May 05 19:18:58 dcos-agent-public-01234567000001 mesos-slave[1891]: " --oversubscribed_resources_interval="15secs" --perf_duration="10secs" --perf_interval="1mins" --port="5051" --qos_correction_interval_min="0ns" --quiet="false" --recover="reconnect" --recovery_timeout="15mins" --registration_backoff_factor="1secs" --resources="[{"name": "ports", "type": "RANGES", "ranges": {"range": [{"end": 21, "begin": 1}, {"end": 5050, "begin": 23}, {"end": 32000, "begin": 5052}]}}, {"name": "disk", "type": "SCALAR", "disk": {"source": {"mount": {"root": "/dcos/volume0"}, "type": "MOUNT"}}, "role": "*", "scalar": {"value": 74}}, {"name": "disk", "type": "SCALAR", "role": "*", "scalar": {"value": 47540}}]" --revocable_cpu_low_priority="true" --sandbox_directory="/mnt/mesos/sandbox" --slave_subsystems="cpu,memory" --strict="true" --switch_user="true" --systemd_enable_support="true" --systemd_runtime_directory="/run/systemd/system" --version="false" --work_dir="/var/lib/mesos/slave"
   ```
 
-##### Cloud Provider Resources
+## Cloud Provider Resources
 
 Cloud provider storage services are typically used to back DC/OS Mount Volumes. The following reference material may be useful when desiging a production DC/OS deployment:
 
@@ -107,7 +105,7 @@ Cloud provider storage services are typically used to back DC/OS Mount Volumes. 
 * [Azure: About disks and VHDs for Azure virtual machines][3]
 * [Azure: Introduction to Microsoft Azure storage][4] (see *Blob Storage* section on Page blobs)
 
-##### Best Practices
+## Best Practices
 
 Disk Mount Resources are primarily for stateful services like Kafka and Cassandra which can benefit from having dedicated storage available throughout the cluster. Any service utilizing a Disk Mount Resource will have exclusive access to the reserved resource. However, it is still important to take into consideration performance and reliability requirements for the service. The performance of a Disk Mount Resource is based on the characteristic of the underlying storage and DC/OS does not provide any data replication services. With this in mind:
 
