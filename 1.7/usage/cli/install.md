@@ -1,6 +1,6 @@
 ---
 post_title: Installing the CLI
-nav_title: Installation
+nav_title: Installing
 menu_order: 1
 ---
 

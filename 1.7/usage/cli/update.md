@@ -1,6 +1,6 @@
 ---
 post_title: Updating the CLI
-nav_title: Updates
+nav_title: Updating
 menu_order: 3
 ---
 
