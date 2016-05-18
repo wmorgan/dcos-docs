@@ -15,6 +15,8 @@ $ dcos marathon app add https://dcos.io/docs/1.7/usage/nginx.json
 
 Now go to the DC/OS Dashboard and open the Marathon service and you should see the web server up and running and ready to serve traffic.
 
+# Getting Started
+
 ## Beginners
 
 Once you've had a good look around in the DC/OS Dashboard and familiarized yourself with the DC/OS CLI, here are a few more exercises that you might want to try.
