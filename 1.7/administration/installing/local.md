@@ -18,7 +18,7 @@ See the [DC/OS Installer Release List](/releases/) for other versions.
 
 DC/OS Vagrant installation and usage instructions are maintained in the dcos-vagrant GitHub repository.
 
-Follow the the [DC/OS Vagrant 0.6.0](https://github.com/dcos/dcos-vagrant/tree/v0.6.0) instructions to set up your host machine correctly and to install DC/OS.
+Follow the the [DC/OS Vagrant 0.7.0](https://github.com/dcos/dcos-vagrant/tree/v0.7.0) instructions to set up your host machine correctly and to install DC/OS.
 
 Note that you will require at least 5GB of free memory to run DC/OS via this method.
 
