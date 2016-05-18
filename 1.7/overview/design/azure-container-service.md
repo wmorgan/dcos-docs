@@ -91,7 +91,7 @@ The default ACS architecture looks like this:
 
 ## DC/OS component list
 
-The following list shows the components used by DC/OS itself. You'll note that the core components center around Mesos, marathon, python, and so on.
+The following list shows the components used by DC/OS itself. You'll note that the core components center around Mesos, Marathon, Python, and so on.
 
 
 - 3dt
