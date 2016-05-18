@@ -38,7 +38,6 @@ For more information, see the [design doc for external volumes (Docker Volume Dr
 ### Pods
 Pods enable the popular "sidecar" pattern where multiple containers are scheduled together on the same host and with shared resources.
 Pods allows co-scheduling of monitoring agents, service registration clients, and more with the main application process.
-Pods allows co-scheduling of monitoring agents, service registration clients, and more with the main application process.
 
 ### Metrics API
 The Metrics API provides a way for any component of DC/OS to publish its own metrics.
