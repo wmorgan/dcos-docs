@@ -1,5 +1,5 @@
 ---
-post_title: DC/OS API Design Doc
+post_title: DC/OS API
 nav_title: API
 ---
 
