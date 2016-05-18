@@ -2,7 +2,7 @@
 post_title: Viewing node details
 nav_title: Node details
 ---
-You can get a comprehensive list of the apps being run on your DC/OS cluster nodes. 
+You can get a comprehensive list of the apps running on your DC/OS cluster nodes. 
 
 **Prerequisites:** [DC/OS and DC/OS CLI][1] are installed
 
@@ -12,14 +12,14 @@ You can get a comprehensive list of the apps being run on your DC/OS cluster nod
     $ dcos node ssh --leader --master-proxy
     ```
     
-    For more information, the SSH [documentation][2].
+    For more information, see the SSH [documentation][2].
     
 2.  Run this command from your master node to view the node details:
     
     ```bash
     $ curl http://master.mesos:8123/v1/enumerate
     ```
-    In this example Kafka and Chronos are installed:
+    In this example, Kafka and Chronos are installed:
     
     ```bash
     $ curl http://master.mesos:8123/v1/enumerate
