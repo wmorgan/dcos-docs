@@ -59,7 +59,7 @@ You can specify an external volume in your Marathon app definition. [Learn more 
 
 In the app definition above:
 
-- `containerPath` specifies where the volume is mounted inside the container. For Mesos external volumes, this must be a path relative to the container and it cannot begin contain a forward slash (`/`). For Docker external volumes, this path must be absolute. For more information, see [the REX-Ray documentation on data directories](https://rexray.readthedocs.org/en/v0.3.2/user-guide/config/#data-directories).
+- `containerPath` specifies where the volume is mounted inside the container. For Mesos external volumes, this must be a single-level path relative to the container; it cannot contain a forward slash (`/`). For Docker external volumes, this path must be absolute. For more information, see [the REX-Ray documentation on data directories](https://rexray.readthedocs.org/en/v0.3.2/user-guide/config/#data-directories).
 
 - `name` is the name that your volume driver uses to look up your volume. When your task is staged on an agent, the volume driver queries the storage service for a volume with this name. If one does not exist, it is [created implicitly](#implicit-vol). Otherwise, the existing volume is reused.
 - The `external.options["dvdi/driver"]` option specifies which Docker volume driver to use for storage. If you are running Marathon on DC/OS, this value is probably `rexray`. [Learn more about REX-Ray](https://rexray.readthedocs.org/en/v0.3.2/user-guide/schedulers/).
@@ -70,7 +70,7 @@ In the app definition above:
 
 - Volume parameters cannot be changed after you create the application.
 
-  **Important:** Marathon will not launch apps with external volumes if  `upgradeStrategy.minimusHealthCapacity` is less than 0.5, or if `upgradeStrategy.maximumOverCapacity` does not equal 0.
+  **Important:** Marathon will not launch apps with external volumes if  `upgradeStrategy.minimumHealthCapacity` is greater than 0.5, or if `upgradeStrategy.maximumOverCapacity` does not equal 0.
 
 <a name="implicit-vol"></a>
 #### Implicit Volumes
