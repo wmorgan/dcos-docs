@@ -1,9 +1,9 @@
 ---
-post_title: "An Introduction to DC/OS Components"
+post_title: An Introduction to DC/OS Components
 nav_title: Components
 menu_order: 4
 ---
-DC/OS core components are the many services that together comprise DC/OS. The kernel of DC/OS is [Apache Mesos](http://mesos.apache.org/) but the DC/OS is actually made of of *many* more services than just this.
+The DC/OS core components are individual services that work together to provide a single datacenter operating system. The kernel of DC/OS is [Apache Mesos](http://mesos.apache.org/) but the DC/OS is actually made up of *many* more services, including a native Marathon instance to manage processes and installable services, and Mesos-DNS for service discovery.
 
 If you log into any host in the DC/OS cluster, you can view the currently running services by inspecting `/etc/systemd/system/dcos.target.wants/`.
 
@@ -19,9 +19,8 @@ dcos-epmd.service                dcos-logrotate.timer          dcos-spartan.serv
 ```
 
 ## Admin Router Service
-Admin Router is our core internal load balancer. Admin Router is a customized [Nginx](https://www.nginx.com/resources/wiki/) which allows us to proxy all the internal services on :80.
+The admin router is our core internal load balancer that provides central authentication and proxy to DC/OS services within the cluster. Admin Router is a customized [Nginx](https://www.nginx.com/resources/wiki/) which allows us to proxy all the internal services on port `80`.
 
-Without Admin Router being up, you could not access the DC/OS UI. Admin Router is a core component of the DC/OS ecosystem.
 
 ```
 [Unit]
@@ -50,7 +49,7 @@ KillMode=mixed
 ```
 
 ## Cluster ID Service
-The cluster-id service allows us to generate a UUID for each cluster. We use this ID to track cluster health remotely (if enabled). This remote tracking allows our support team to better assist our customers.
+The Cluster ID service allows us to generate a UUID for each cluster. If enabled, we can then use this ID to track cluster health remotely. This remote tracking allows our support team to better assist customers.
 
 The cluster-id service runs an internal tool called `zk-value-consensus` which uses our internal ZooKeeper to generate a UUID that all the masters agree on. Once an agreement is reached, the ID is written to disk at `/var/lib/dcos/cluster-id`. We write it to `/var/lib/dcos` so the ID is ensured to persist cluster upgrades without changing.
 
@@ -65,7 +64,7 @@ ExecStart=/bin/sh -c "/opt/mesosphere/bin/python -c 'import uuid; print(uuid.uui
 ```
 
 ## Cosmos Service
-The Cosmos service is our internal packaging API service. You access this service everytime you run `dcos package install...` from the CLI. This API allows us to deploy DC/OS packages from the DC/OS universe to your DC/OS cluster.
+The Cosmos service is our internal packaging API service. You access this service each time that you run the `dcos package install` command from the CLI. This API allows us to deploy DC/OS packages from the [DC/OS universe](/1.7/usage/services/repo/) to your DC/OS cluster.
 
 ```
 [Unit]
@@ -87,8 +86,8 @@ ExecStartPre=-/bin/mkdir -p /var/lib/cosmos
 ExecStart=/opt/mesosphere/bin/java -Xmx2G -jar "/opt/mesosphere/packages/cosmos--e5b42c8cd703c1eb7b83868b1
 ```
 
-## Diagnostics (DDT) Service
-The diagnostics service (also known as 3DT or dcos-ddt.service, no relationship to the pesticide!) is our diagnostics utility for DC/OS systemd components. This service runs on every host, tracking the internal state of the systemd unit. The service runs in two modes, with or without the `-pull` argument. If running on a master host, it executes `/opt/mesosphere/bin/3dt -pull` which queries Mesos-DNS for a list of known masters in the cluster, then queries a master (usually itself) `:5050/statesummary` and gets a list of agents.
+## Diagnostic (3DT) Service
+The Diagnostics service (3DT) is our diagnostics utility for DC/OS systemd components. This service runs on every host, tracking the internal state of the systemd unit. The service runs in two modes, with or without the `-pull` argument. If running on a master host, it executes `/opt/mesosphere/bin/3dt -pull` which queries Mesos-DNS for a list of known masters in the cluster, then queries a master (usually itself) `:5050/statesummary` and gets a list of agents.
 
 From this complete list of cluster hosts, it queries all 3DT health endpoints (`:1050/system/health/v1/health`). This endpoint returns health state for the DC/OS systemd units on that host. The master 3DT processes, along with doing this aggregation also expose `/system/health/v1/` endpoints to feed this data by `unit` or `node` IP to the DC/OS user interface.
 
@@ -104,7 +103,7 @@ ExecStart=/opt/mesosphere/bin/3dt -pull
 ```
 
 ## Erlang Port Mapper (EPMD) Service
-The erlang port mapper is designed to support our internal layer 4 load balancer we call `minuteman`.
+The Erlang port mapper is designed to support our internal layer 4 load balancer called `minuteman`.
 
 ```
 [Unit]
@@ -121,7 +120,7 @@ Environment=HOME=/opt/mesosphere
 ```
 
 ## Exhibitor Service
-Exhibitor is a project from [netflix](https://github.com/Netflix/exhibitor) that allows us to manage and automate the deployment of ZooKeeper.
+Exhibitor is a project from [Netflix](https://github.com/Netflix/exhibitor) that allows us to manage and automate the deployment of ZooKeeper.
 
 ```
 [Unit]
@@ -163,7 +162,7 @@ ExecStart=/opt/mesosphere/bin/gen_resolvconf.py /etc/resolv.conf
 ```
 
 ## History Service
-The history service provides a simple service for storing stateful information about your DC/OS cluster. This data is stored on disk for 24 hours. Along with storing this data, the history service also exposes a HTTP API for the DC/OS user interface to query. All DC/OS cluster stats which involve memory, CPU and disk usage are driven by this service (including the donuts!).
+The history service stores stateful information about your DC/OS cluster. This data is stored on disk for 24 hours. The history service also exposes a HTTP API for the DC/OS user interface to query. All DC/OS cluster statistics which involve memory, CPU, and disk usage are driven by this service.
 
 ```
 [Unit]
@@ -179,7 +178,7 @@ ExecStart=/opt/mesosphere/bin/dcos-history
 ```
 
 ## Logrotate Service
-This service does what you think it does: ensures DC/OS services don't blow up cluster hosts with to much log data on disk.
+The Logrotate service allows for the automatic rotation compression, removal, and mailing of log files.
 
 ```
 [Unit]
@@ -193,7 +192,7 @@ ExecStart=/opt/mesosphere/packages/logrotate--52aee4fc02aab1082880abd4411d782514
 ```
 
 ## Marathon Service
-Marathon shouldn't need any introduction, it's the distributed init system for the DC/OS cluster. We run an internal marathon for packages and other DC/OS services.
+Marathon is the distributed init system for the DC/OS cluster. We run an internal Marathon for packages and other DC/OS services.
 
 ```
 [Unit]
@@ -229,7 +228,7 @@ ExecStart=/opt/mesosphere/bin/mesos-dns --config=/opt/mesosphere/etc/mesos-dns.j
 ```
 
 ## Minuteman Service
-This is our internal layer 4 loadbalancer.
+The Minuteman service is an east-west layer 4 load balancer that enables multi-tier microservices architectures.
 
 ```
 [Unit]
