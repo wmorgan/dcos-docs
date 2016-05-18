@@ -196,7 +196,7 @@ ExecStart=/opt/mesosphere/packages/logrotate--52aee4fc02aab1082880abd4411d782514
 ```
 
 ## Marathon Service
-Marathon shouldn't need any introduction, it's the distributed init system for the DC/OS cluster. We run an internal marathon for packages and other DC/OS services.
+Marathon shouldn't need any introduction, it's the distributed init system for the DC/OS cluster. We run an internal Marathon for packages and other DC/OS services.
 
 ```
 [Unit]

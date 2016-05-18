@@ -5,11 +5,11 @@ layout: docs.jade
 ---
 ## HAProxy configuration
 
-Marathon-lb works by automatically generating configuration for HAProxy and then reloading HAProxy as needed. Marathon-lb generates the HAProxy configuration based on application data available from the Marathon REST API. It can also subscribe to the [Marathon Event Bus][10] for real-time updates. When an application starts, stops, relocates or has any change in health status, marathon-lb will automatically regenerate the HAProxy configuration and reload HAProxy.
+marathon-lb works by automatically generating configuration for HAProxy and then reloading HAProxy as needed. marathon-lb generates the HAProxy configuration based on application data available from the Marathon REST API. It can also subscribe to the [Marathon Event Bus][10] for real-time updates. When an application starts, stops, relocates or has any change in health status, marathon-lb will automatically regenerate the HAProxy configuration and reload HAProxy.
 
 ## Templates
 
-Marathon-lb has a templating feature for specifying custom HAProxy configuration parameters. Templates can be set either globally (for all apps), or on a per-app basis using labels. Let’s demonstrate an example of how to specify our own global template. Here’s the template we’ll use:
+marathon-lb has a templating feature for specifying custom HAProxy configuration parameters. Templates can be set either globally (for all apps), or on a per-app basis using labels. Let’s demonstrate an example of how to specify our own global template. Here’s the template we’ll use:
 
 ### Global Template
 
@@ -27,7 +27,7 @@ To specify a global template:
 
 3.  Augment the marathon-lb config by saving the following JSON in a file called `options.json`:
 
-        { "marathon-lb":{ "template-url":"https://downloads.mesosphere.com/marathon/marathon-lb/templates.tgz" } }
+        { "marathon-lb":{ "template-url":"https://downloads.mesosphere.com/Marathon/marathon-lb/templates.tgz" } }
 
 4.  Launch the new marathon-lb:
 
@@ -81,7 +81,7 @@ Other options you may want to specify include enabling the [sticky option][3], [
 
 ## SSL Support
 
-Marathon-lb supports SSL, and you may specify multiple SSL certificates per frontend. Additional SSL certificates can be included by passing a list of paths with the extra `--ssl-certs` command line flag. You can inject your own SSL certificates into the marathon-lb config by specifying the `HAPROXY_SSL_CERT` environment variable in your application definition.
+marathon-lb supports SSL, and you may specify multiple SSL certificates per frontend. Additional SSL certificates can be included by passing a list of paths with the extra `--ssl-certs` command line flag. You can inject your own SSL certificates into the marathon-lb config by specifying the `HAPROXY_SSL_CERT` environment variable in your application definition.
 
 If you do not specify an SSL certificate, marathon-lb will generate a self-signed certificate at startup. If you are using multiple SSL certificates, you can select the SSL certificate per app service port by specifying the `HAPROXY_{n}_SSL_CERT` parameter, which corresponds to the file path for the SSL certificates specified. For example, you might have:
 
@@ -114,12 +114,12 @@ To demonstrate autoscaling, we’re going to use 3 separate Marathon apps:
 
 1.  Begin by running marathon-lb-autoscale. The JSON app definition [can be found here][7]. Save the file and launch it on Marathon:
 
-        $ dcos marathon app add https://gist.githubusercontent.com/brndnmtthws/2ca7e10b985b2ce9f8ee/raw/66cbcbe171afc95f8ef49b70034f2842bfdb0aca/marathon-lb-autoscale.json
+        $ dcos Marathon app add https://gist.githubusercontent.com/brndnmtthws/2ca7e10b985b2ce9f8ee/raw/66cbcbe171afc95f8ef49b70034f2842bfdb0aca/marathon-lb-autoscale.json
 
     The JSON app definition passes 2 important arguments to the tool: `--target-rps` tells marathon-lb-autoscale identifies the target RPS and `--apps` is a comma-separated list of the Marathon apps and service ports to monitor, concatenated with `_`. Each app could expose multiple service ports to the load balancer if configured to do so, and marathon-lb-autoscale will scale the app to meet the greatest common denominator for the number of required instances.
 
         "args":[
-          "--marathon", "http://leader.mesos:8080",
+          "--Marathon", "http://leader.mesos:8080",
           "--haproxy", "http://marathon-lb.marathon.mesos:9090",
           "--target-rps", "100",
           "--apps", "nginx_10000"
@@ -129,11 +129,11 @@ To demonstrate autoscaling, we’re going to use 3 separate Marathon apps:
 
 2.  Launch your nginx test instance. The JSON app definition [can be found here][8]. Save the file, and launch with:
 
-        $ dcos marathon app add https://gist.githubusercontent.com/brndnmtthws/84d0ab8ac057aaacba05/raw/d028fa9477d30b723b140065748e43f8fd974a84/nginx.json
+        $ dcos Marathon app add https://gist.githubusercontent.com/brndnmtthws/84d0ab8ac057aaacba05/raw/d028fa9477d30b723b140065748e43f8fd974a84/nginx.json
 
 3.  Launch siege, a tool for generating HTTP request traffic. The JSON app definition [can be found here][9]. Save the file, and launch with:
 
-        $ dcos marathon app add https://gist.githubusercontent.com/brndnmtthws/fe3fb0c13c19a96c362e/raw/32280a39e1a8a6fe2286d746b0c07329fedcb722/siege.json
+        $ dcos Marathon app add https://gist.githubusercontent.com/brndnmtthws/fe3fb0c13c19a96c362e/raw/32280a39e1a8a6fe2286d746b0c07329fedcb722/siege.json
 
     Now, if you check the HAProxy status page, you should see requests hitting the nginx instance:
 
@@ -143,7 +143,7 @@ To demonstrate autoscaling, we’re going to use 3 separate Marathon apps:
 
 4.  Scale the siege app so that we generate a large number of HTTP requests:
 
-        $ dcos marathon app update /siege instances=15
+        $ dcos Marathon app update /siege instances=15
 
     After a few minutes you will see that the nginx app has been automatically scaled up to serve the increased traffic.
 
@@ -158,4 +158,4 @@ To demonstrate autoscaling, we’re going to use 3 separate Marathon apps:
  [7]: https://gist.github.com/brndnmtthws/2ca7e10b985b2ce9f8ee
  [8]: https://gist.github.com/brndnmtthws/84d0ab8ac057aaacba05
  [9]: https://gist.github.com/brndnmtthws/fe3fb0c13c19a96c362e
- [10]: https://mesosphere.github.io/marathon/docs/event-bus.html
+ [10]: https://mesosphere.github.io/Marathon/docs/event-bus.html
