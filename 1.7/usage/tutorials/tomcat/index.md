@@ -84,7 +84,7 @@ ID       MEM  CPUS  TASKS  HEALTH  DEPLOYMENT  CONTAINER  CMD
 
 ## View Tomcat
 
-To view Apache Tomcat running, navigate to `http://<public_agent_public_ip>` and see the install success page. See [How to Locate Public Agent ip](/docs/1.7/overview/concepts#term-public-agent) for guidance on what `<public_slave_public_ip>` is for your cluster.
+To view Apache Tomcat running, navigate to `http://<public_agent_public_ip>` and see the install success page. 
 
 ![Apache Tomcat Install Success](img/tomcat-screenshot.png)
 
