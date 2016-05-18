@@ -110,6 +110,19 @@ This parameter specifies the allowable amount of time, in seconds, for an action
 
 **Tip:** If have a slower network environment, consider changing to `process_timeout: 600`.
 
+### <a name="rexray-config"></a>rexray_config_method
+This parameter specifies the <a href="https://rexray.readthedocs.org/en/v0.3.2/user-guide/config/" target="_blank">REX-Ray</a> configuration method for enabling external persistent volumes in Marathon. REX-Ray is a storage orchestration engine. For more information, see the external persistent volumes [documentation](/docs/1.7/usage/services/marathon/external-volumes/).
+
+- `rexray_config_method: empty` An empty REX-ray configuration. This is the default value.
+- `aws` A REX-Ray configuration that is set up for AWS EC2 (EBS) and AWS Identity and Access Management (IAM).
+- `rexray_config_method: file` Specify the path to a REX-Ray configuration file with `rexray_config_filename`.
+ 
+    - `rexray_config_filename` The path of a REX-Ray configuration file. For example: 
+    
+      ```
+      rexray_config_filename: genconf/rexray.yaml
+      ```
+
 ## Security And Authentication
 
 ### oauth_enabled
