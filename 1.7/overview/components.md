@@ -64,7 +64,7 @@ ExecStart=/bin/sh -c "/opt/mesosphere/bin/python -c 'import uuid; print(uuid.uui
 ```
 
 ## Cosmos Service
-The Cosmos service is our internal packaging API service. You access this service each time that you run the `dcos package install` command from the CLI. This API allows us to deploy DC/OS packages from the [DC/OS universe](/1.7/usage/services/repo/) to your DC/OS cluster.
+The Cosmos service is our internal packaging API service. You access this service each time that you run the `dcos package install` command from the CLI. This API allows us to deploy DC/OS packages from the [DC/OS universe](/docs/1.7/usage/services/repo/) to your DC/OS cluster.
 
 ```
 [Unit]
