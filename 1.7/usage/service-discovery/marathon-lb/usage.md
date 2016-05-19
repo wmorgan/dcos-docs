@@ -168,15 +168,11 @@ To demonstrate marathon-lb, you can boot a DC/OS cluster on AWS to run an intern
 
 An important feature of marathon-lb is support for virtual hosts. This allows you to route HTTP traffic for multiple hosts (FQDNs) and route requests to the correct endpoint. For example, you could have two distinct web properties, `ilovesteak.com` and `steaknow.com`, with DNS for both pointing to the same LB on the same port, and HAProxy will route traffic to the correct endpoint based on the domain name.
 
-To test the vhost feature, navigate to the AWS console and look for your public ELB. We’re going to make 2 changes to the public ELB in order to test it. First, we’ll modify the health checks to use HAProxy’s built in health check:
-
-![lb4](../img/lb4.jpg)
-
-Change the health check to ping the hosts on port 9090, at the path `/_haproxy_health_check`. Now, if you navigate to the instances tab, you should see the instances listed as `InService`, like this:
+To test the vhost feature, navigate to the AWS console and look for your public ELB. Now, if you navigate to the instances tab, you should see the instances listed as `InService`, like this:
 
 ![lb5](../img/lb5.jpg)
 
-Now our ELB is able to route traffic to HAProxy. Next, let’s modify our nginx app to expose our service. To do this, you’ll need to get the public DNS name for the ELB from the `Description` tab. In this example, my public DNS name is `brenden-j-PublicSl-1LTLKZEH6B2G6-1145355943.us-west-2.elb.amazonaws.com`.
+Our ELB is able to route traffic to HAProxy. Next, let’s modify our nginx app to expose our service. To do this, you’ll need to get the public DNS name for the ELB from the `Description` tab. In this example, my public DNS name is `brenden-j-PublicSl-1LTLKZEH6B2G6-1145355943.us-west-2.elb.amazonaws.com`.
 
 Modify the external nginx app to look like this:
 
@@ -211,7 +207,7 @@ Modify the external nginx app to look like this:
       }
     }
 
-We’ve added the label `HAPROXY_0_VHOST`, which tells marathon-lb to expose nginx on the external load balancer with a vhost. The `0` in the label key corresponds to the servicePort index, beginning from 0. If you had multiple servicePort definitions, you would iterate them as 0, 1, 2, and so on.
+We’ve added the label `HAPROXY_0_VHOST`, which tells marathon-lb to expose nginx on the external load balancer with a virtual host. The `0` in the label key corresponds to the servicePort index, beginning from 0. If you had multiple servicePort definitions, you would iterate them as 0, 1, 2, and so on. Note that if you _do_ specify a vhost, you don't strictly need to provide a service port—Marathon will assign one for you.
 
 Now, if you navigate to the ELB public DNS address in your browser, you should see the following:
 
