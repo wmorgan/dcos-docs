@@ -1,12 +1,15 @@
 ---
 post_title: Configuring the CLI
-nav_title: Configuration
+nav_title: Configuring  
 menu_order: 2
 ---
 
-The DC/OS CLI configuration can be seen using the following command:
+You can access DC/OS CLI configuration with this command:
 
     $ dcos config show
+    
+You should see this output:
+    
     core.dcos_url=http://dcos.example.com
     core.email=jdoe@example.com
     core.reporting=False
@@ -16,30 +19,30 @@ The DC/OS CLI configuration can be seen using the following command:
 
 This configuration is stored in the `~/./dcos/dcos.toml` configuration file.
 
-# Configure DC/OS URL
+# Configuring the DC/OS URL
 
-If you are using multiple DC/OS installations (e.g. dev, test, prod), it may be necessary to reconfigure the CLI to point to a new cluster. This can be done by changing the value of the `dcos_url` configuration field.
+If you are using multiple DC/OS installations (e.g. dev, test, prod), you might have to reconfigure the CLI to point to a new cluster. This can be done by changing the value of the `dcos_url` configuration field.
 
-*   See the current value of `dcos_url`:
+*   View the current value of `dcos_url` with this command:
     
         $ dcos config show core.dcos_url
         http://example.com
         
 
-*   Update the value of `dcos_url`:
+*   Update the value of `dcos_url` with this command:
     
         $ dcos config set core.dcos_url http://example.com
         
     
-    Once changed, subsequent commands will be issued to the new URL.
+    Subsequent commands will now be issued to the updated URL.
 
-# Configure HTTP Proxy
+# Configuring HTTP Proxy
 
-If you use a proxy server to connect to the Internet, you can configure the CLI to use your proxy server.
+If you use a proxy server to connect to the internet, you can configure the CLI to use your proxy server.
 
 **Prerequisites**
 
-*   pip version 7.1.0 or greater
+*   pip version 7.1.0 or greater.
 *   The `http_proxy` and `https_proxy` environment variables are defined to use pip.
 
 To configure a proxy for the CLI:
