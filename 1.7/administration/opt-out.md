@@ -5,7 +5,7 @@ menu_order: 6
 
 ## Authentication
 
-You can opt-out of the provided authentication by disabling it for your cluster. To disable authentication, add this parameter to your [`config.yaml`][4] file during installation (note this requires using the [CLI][1] or [advanced][2] installers):
+You can opt-out of the provided authentication by disabling it for your cluster. To disable authentication, add this parameter to your [`config.yaml`](/docs/1.7/administration/installing/custom/configuration-parameters/) file during installation (note this requires using the [CLI][1] or [advanced][2] installers):
 
 ```yaml
 oauth_enabled: 'false'
@@ -26,3 +26,4 @@ Note that if you’ve already installed your cluster and would like to disable t
 [1]: ../installing/custom/cli/
 [2]: ../installing/custom/advanced/
 [3]: ../installing/custom/configuration-parameters/
+
