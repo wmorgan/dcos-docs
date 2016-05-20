@@ -129,25 +129,26 @@ The following commands should provide insight into upgrade issues:
 
 ### On All Cluster Nodes
 
-`$ sudo journalctl -u dcos-download`
-
-`$ sudo journalctl -u dcos-spartan`
-
-`$ sudo systemctl | grep dcos`
+```
+$ sudo journalctl -u dcos-download
+$ sudo journalctl -u dcos-spartan
+$ sudo systemctl | grep dcos
+```
 
 ### On DC/OS Masters
 
-`$ sudo journalctl -u dcos-exhibitor`
-
-`$ less  /opt/mesosphere/active/exhibitor/usr/zookeeper/zookeeper.out`
-
-`$ sudo journalctl -u dcos-mesos-dns`
-
-`$ sudo journalctl -u dcos-mesos-master`
+```
+$ sudo journalctl -u dcos-exhibitor
+$ less /opt/mesosphere/active/exhibitor/usr/zookeeper/zookeeper.out
+$ sudo journalctl -u dcos-mesos-dns
+$ sudo journalctl -u dcos-mesos-master
+```
 
 ### On DC/OS Agents
 
-`$ sudo journalctl -u dcos-mesos-slave`
+```
+$ sudo journalctl -u dcos-mesos-slave
+```
 
 ## Notes:
 
