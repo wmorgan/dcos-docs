@@ -107,11 +107,13 @@ The DC/OS installation creates these folders:
 
         ```bash
         #!/usr/bin/env bash
-        set -o nounset -o errexit
+        set -o nounset -o errexit -o pipefail
+        export PATH=/sbin:/usr/sbin:/bin:/usr/bin:$PATH
 
         MASTER_IP=172.28.128.3
+        INTERFACE_IP=$(ip r g ${MASTER_IP:-8.8.8.8} | awk 'BEGIN {ec=1} {if($6=="src") {print $7; ec=0; exit}} END {exit ec}')
 
-        echo $(/usr/sbin/ip route show to match 172.28.128.3 | grep -Eo '[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}' | tail -1)
+        echo $INTERFACE_IP
         ```
 
 # Install DC/OS
