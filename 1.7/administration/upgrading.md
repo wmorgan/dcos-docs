@@ -4,126 +4,121 @@ post_title: Upgrading
 
 ## Summary
 
-#### These steps provide instructions for upgrading a DC/OS cluster from DC/OS 1.6 to 1.7.  If performed on a supported OS with all prerequisites fulfilled, this upgrade _should_ preserve the state of running tasks on the cluster.  This guide follows some of the steps outlined in the Advanced DC/OS Installation Guide:
-https://dcos.io/docs/1.7/administration/installing/custom/advanced/
+This document provides instructions for upgrading a DC/OS cluster from version 1.6 to 1.7. If this upgrade is performed on a supported OS with all prerequisites fulfilled, this upgrade _should_ preserve the state of running tasks on the cluster.  This document reuses portions of the [Advanced DC/OS Installation Guide](/docs/1.7/administration/installing/custom/advanced/).
 
-#### The Advanced Installation method is the only recommended upgrade path for DC/OS.  Please familiarize yourself with the Advanced DC/OS Installation Guide before proceeding.
+**Important:** The Advanced Installation method is the _only_ recommended upgrade path for DC/OS. It is recommended that you familiarize yourself with the [Advanced DC/OS Installation Guide](/docs/1.7/administration/installing/custom/advanced/) before proceeding.
 
 ## Prerequisites
 
 - Mesos, Mesos Frameworks, Marathon, Docker and all running tasks in the cluster should be stable and in a known healthy state.
--  You must have access to copies of the config files used with DCOS 1.6: `config.yaml` and `ip-detect`
-- You must be using systemd 218 or newer to maintain task state
-- Be sure that all hosts (masters and agents) can communicate with all other hosts on port `53|UDP`
-- In CentOS|RedHat, `$ sudo yum install -y ipset` (used in some IP detect scripts)
-- You must be familiar with using `systemctl` and `journalctl` command line tools to review and monitor service status. Troubleshooting notes can be found at the end of this document.
+- For Mesos compatibility reasons, we recommend upgrading any running Marathon-on-Marathon instances to version Marathon 0.16.0-RC3 before proceeding with this DC/OS upgrade.
+- You must have access to copies of the config files used with DCOS 1.6: `config.yaml` and `ip-detect`.
+- You must be using systemd 218 or newer to maintain task state.
+- All hosts (masters and agents) must be able to communicate with all other hosts on port `53|UDP`.
+- In CentOS or RedHat, install IP sets with this command (used in some IP detect scripts): `$ sudo yum install -y ipset`
+- You must be familiar with using `systemctl` and `journalctl` command line tools to review and monitor service status. Troubleshooting notes can be found at the end of this [document](#troubleshooting).
+- You must be familiar with the [Advanced DC/OS Installation Guide](/docs/1.7/administration/installing/custom/advanced/).
 
 ## Instructions
 
-These upgrade instructions follow the general procedural patterns of the Advanced DC/OS Installation Guide.  Please familiarize yourself with the Advanced DC/OS Installation Guide before performing an upgrade of DC/OS:
-https://dcos.io/docs/1.7/administration/installing/custom/advanced/
+### Bootstrap Nodes
 
-### Bootstrap Node(s)
+1.  Copy and update the DC/OS 1.6 `config.yaml` and `ip-detect` files to a new, clean folder on your bootstrap node. 
 
-#### Copy and Update config.yaml and ip-detect
+    **Important:** You cannot change the `exhibitor_zk_backend` setting during an upgrade.
 
-Copy the DC/OS 1.6 config.yaml and ip-detect script to a new, clean folder on your bootstrap node. 
+    Please note, the syntax of the DC/OS 1.7 `config.yaml` differs from that of DC/OS 1.6. For a detailed description of the 1.7 `config.yaml` syntax and parameters, see the [documentation](/docs/1.7/administration/installing/custom/configuration-parameters/).
 
-**IT IS NOT POSSIBLE TO CHANGE THE `exhibitor_zk_backend` SETTING DURING AN UPGRADE**
+1.  After you have merged your 1.6 `config.yaml` into the 1.7 `config.yaml` format, you can build your installer package:
 
-Please note, the syntax of the DC/OS 1.7 config.yaml differs from that of DC/OS 1.6.  For a detailed description of config.yaml syntax and parameters, see:
-https://dcos.io/docs/1.7/administration/installing/custom/configuration-parameters/
+    1.  Download the file `dcos_generate_config.sh`.
+    1.  Generate the installation files.
+    1.  Disable Docker restarts in `dcos_install.sh` by using this command:
 
-#### Continue Bootstrap Setup
+        ```
+        sed -i -e "s/systemctl restart systemd-journald//g" -e "s/systemctl restart docker//g" genconf/serve/dcos_install.sh
+        ```
+        
+        **Important:** This step is critical to prevent task restarts.
 
-Once you have merged your config.yaml into the config.yaml for the new version, proceed to build your installer package:
-
-- Download the file dcos_generate_config.sh.
-- Generate the installation files.
-- Disable Docker restarts in `dcos_install.sh` *This step is critical to prevent task restarts*
-
-```
-sed -i -e "s/systemctl restart systemd-journald//g" -e "s/systemctl restart docker//g" genconf/serve/dcos_install.sh
-```
-
-- Run the nginx container to serve the installation files.
+    1.  Run the nginx container to serve the installation files.
 
 ### DC/OS Masters
 
 Identify your Mesos leader node. This node should be the last master node that you upgrade. Proceed with upgrading every master node using the following procedure. When you complete each upgrade, monitor the logs to ensure the unit has re-joined the cluster and completed reconciliation.
 
-#### Download the dcos_install.sh script
+1.  Download the `dcos_install.sh` script:
 
-```
-$ curl -O <bootstrap_url>/dcos_install.sh
-```
+    ```
+    $ curl -O <bootstrap_url>/dcos_install.sh
+    ```
 
-#### Uninstall pkgpanda
+1.  Uninstall pkgpanda:
 
-```
-$ sudo -i /opt/mesosphere/bin/pkgpanda uninstall 
-```
+    ```
+    $ sudo -i /opt/mesosphere/bin/pkgpanda uninstall 
+    ```
 
-#### Remove The DC/OS 1.6 Data Directory
+1.  Remove the DC/OS 1.6 data directory:
 
-```
-$ sudo rm -rf /opt/mesosphere /etc/mesosphere
-```
+    ```
+    $ sudo rm -rf /opt/mesosphere /etc/mesosphere
+    ```
 
-#### Install DC/OS 1.7
+1. Install DC/OS 1.7:
 
-```
-$  sudo bash dcos_install.sh -d master
-```
+    ```
+    $  sudo bash dcos_install.sh -d master
+    ```
 
-#### Validate The Upgrade
+1.  Validate The Upgrade
 
-- Monitor the Exhibitor UI to confirm that the Master re-joins the Zookeeper quorum successfully (status indicator will turn green).  The Exhibitor UI is available at http://<dcos_master>:8181/.
-- Verify that  http://<dcos_master>/mesos indicates that the upgraded Master is running Mesos 0.28.0.
+    - Monitor the Exhibitor UI to confirm that the Master re-joins the ZooKeeper quorum successfully (the status indicator will turn green).  The Exhibitor UI is available at `http://<dcos_master>:8181/`.
+    - Verify that `http://<dcos_master>/mesos` indicates that the upgraded master is running Mesos 0.28.0.
 
 ### DC/OS Agents
 
-When re-installing on agent nodes, it is important to consider that there is a 75 second timeout for the agent to respond to health check pings from the mesos-masters before it is considered lost and its tasks are given up for dead.
+**Important:** When reinstalling on agent nodes, there is a 75 second timeout for the agent to respond to health check pings from the mesos-masters before it is considered lost and its tasks are given up for dead.
 
 ### On all DC/OS Agents:
 
-#### Download The dcos_install.sh Script
+1.  Download The dcos_install.sh Script
 
-```
-$ curl -O <bootstrap_url>/dcos_install.sh
-```
+    ```
+    $ curl -O <bootstrap_url>/dcos_install.sh
+    ```
 
-#### Uninstall pkgpanda
+1.  Uninstall pkgpanda
 
-```
-$ sudo -i /opt/mesosphere/bin/pkgpanda uninstall 
-```
+    ```
+    $ sudo -i /opt/mesosphere/bin/pkgpanda uninstall 
+    ```
 
-#### Remove The DC/OS 1.6 Data Directory
+1.  Remove The DC/OS 1.6 Data Directory
 
-```
-$ sudo rm -rf /opt/mesosphere
-```
+    ```
+    $ sudo rm -rf /opt/mesosphere
+    ```
 
-#### Install DC/OS 1.7
+1.  Install DC/OS 1.7
 
-##### For Private Agents (default)
+    -  [Private](/docs/1.7/overview/concepts/#private) agents (default)
+    
+       ```
+       $ sudo bash dcos_install.sh -d slave
+       ```
 
-```
-$ sudo bash dcos_install.sh -d slave
-```
+    -  [Public](/docs/1.7/overview/concepts/#public) Agents
+    
+       ```
+       $ sudo bash dcos_install.sh -d slave_public
+       ```
 
-##### For Public Agents
+1.  Validate yhe upgrade
 
-```
-$ sudo bash dcos_install.sh -d slave_public
-```
+    Monitor the Mesos UI to verify that the upgraded node re-joins the DC/OS cluster and that tasks are reconciled (`http://<dcos_master>/mesos`).
 
-#### Validate The Upgrade
-
-Monitor the Mesos UI to verify that the upgraded node re-joins the DC/OS cluster and that tasks are reconciled (http://<dcos_master>/mesos).
-
-## Troubleshooting Recommendations
+## <a name="troubleshooting"></a>Troubleshooting Recommendations
 
 The following commands should provide insight into upgrade issues:
 
@@ -152,6 +147,5 @@ $ sudo journalctl -u dcos-mesos-slave
 
 ## Notes:
 
-- Packages available in the DC/OS 1.7 Universe are newer than those in the DC/OS 1.6 Universe.  While frameworks will not be automatically upgraded when installing DC/OS 1.7, not all DC/OS frameworks have upgrade paths that will preserve existing state.
-- For Mesos compatibility reasons, we recommend upgrading any running Marathon-on-Marathon instances to version 0.16.0-RC3 before proceeding with this DC/OS upgrade.
+- Packages available in the DC/OS 1.7 Universe are newer than those in the DC/OS 1.6 Universe. Services are not automatically upgraded when  DC/OS 1.7 is installed because not all DC/OS services have upgrade paths that will preserve existing state.
 
