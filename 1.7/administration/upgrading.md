@@ -23,7 +23,7 @@ This document provides instructions for upgrading a DC/OS cluster from version 1
 
 ### Bootstrap Nodes
 
-1.  Copy and update the DC/OS 1.6 `config.yaml` and `ip-detect` files to a new, clean folder on your bootstrap node. 
+1.  Copy and update the DC/OS 1.6 `config.yaml` and `ip-detect` files to a new, clean folder on your bootstrap node.
 
     **Important:** You cannot change the `exhibitor_zk_backend` setting during an upgrade.
 
@@ -38,7 +38,7 @@ This document provides instructions for upgrading a DC/OS cluster from version 1
         ```
         sed -i -e "s/systemctl restart systemd-journald//g" -e "s/systemctl restart docker//g" genconf/serve/dcos_install.sh
         ```
-        
+
         **Important:** This step is critical to prevent task restarts.
 
     1.  Run the nginx container to serve the installation files.
@@ -56,7 +56,7 @@ Identify your Mesos leader node. This node should be the last master node that y
 1.  Uninstall pkgpanda:
 
     ```
-    $ sudo -i /opt/mesosphere/bin/pkgpanda uninstall 
+    $ sudo -i /opt/mesosphere/bin/pkgpanda uninstall
     ```
 
 1.  Remove the DC/OS 1.6 data directory:
@@ -91,25 +91,25 @@ Identify your Mesos leader node. This node should be the last master node that y
 1.  Uninstall pkgpanda
 
     ```
-    $ sudo -i /opt/mesosphere/bin/pkgpanda uninstall 
+    $ sudo -i /opt/mesosphere/bin/pkgpanda uninstall
     ```
 
 1.  Remove The DC/OS 1.6 Data Directory
 
     ```
-    $ sudo rm -rf /opt/mesosphere
+    $ sudo rm -rf /opt/mesosphere /etc/mesosphere
     ```
 
 1.  Install DC/OS 1.7
 
     -  [Private](/docs/1.7/overview/concepts/#private) agents (default)
-    
+
        ```
        $ sudo bash dcos_install.sh -d slave
        ```
 
     -  [Public](/docs/1.7/overview/concepts/#public) Agents
-    
+
        ```
        $ sudo bash dcos_install.sh -d slave_public
        ```
@@ -148,4 +148,3 @@ $ sudo journalctl -u dcos-mesos-slave
 ## Notes:
 
 - Packages available in the DC/OS 1.7 Universe are newer than those in the DC/OS 1.6 Universe. Services are not automatically upgraded when  DC/OS 1.7 is installed because not all DC/OS services have upgrade paths that will preserve existing state.
-
