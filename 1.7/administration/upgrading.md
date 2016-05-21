@@ -71,7 +71,7 @@ Identify your Mesos leader node. This node should be the last master node that y
     $  sudo bash dcos_install.sh -d master
     ```
 
-1.  Validate The Upgrade
+1.  Validate the upgrade
 
     - Monitor the Exhibitor UI to confirm that the Master re-joins the ZooKeeper quorum successfully (the status indicator will turn green).  The Exhibitor UI is available at `http://<dcos_master>:8181/`.
     - Verify that `http://<dcos_master>/mesos` indicates that the upgraded master is running Mesos 0.28.0.
@@ -114,7 +114,7 @@ Identify your Mesos leader node. This node should be the last master node that y
        $ sudo bash dcos_install.sh -d slave_public
        ```
 
-1.  Validate yhe upgrade
+1.  Validate the upgrade
 
     Monitor the Mesos UI to verify that the upgraded node re-joins the DC/OS cluster and that tasks are reconciled (`http://<dcos_master>/mesos`).
 
