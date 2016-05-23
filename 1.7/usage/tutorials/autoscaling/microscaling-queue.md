@@ -105,7 +105,7 @@ You can use the Marathon UI to scale the number of Producer tasks up or down, an
 
 ## Uninstall the Marathon Apps
 
-You can use the marathon-uninstall command to remove the demo apps from your cluster.
+You can use the marathon-uninstall command to remove the demo apps from your cluster. (This command needs the MSS_MARATHON_API environment variable to be set as above.)
 ```
 ./marathon-uninstall
 ```
