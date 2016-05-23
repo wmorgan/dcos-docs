@@ -3,11 +3,14 @@ post_title: Microscaling based on queue length
 nav_title: Microscaling
 ---
 
-While autoscaling adjusts the size of your compute cluster when you need more (or fewer) resources, [microscaling](http://microscaling.org) 
-adjusts the balance of tasks running within your existing compute cluster. This allows your infrastructure to react within 
-seconds to a change in demand, which is much faster than waiting several minutes for a new virtual machine. 
+[Microscaling](http://microscaling.org) adjusts the balance of tasks running within your compute cluster. 
+This allows your infrastructure to automatically reallocate 
+resources from lower priority to higher priority tasks, reacting within seconds to a change in demand. 
+Microscaling monitors whether the higher priority task is meeting a performance target - in this case, keeping the 
+length of a queue near a configured value. The higher priority task is scaled up when the target is not being met, 
+and down when it is being exceeded, and the lower priority task can use spare resources.  
 
-This tutorial walks through setting up a microscaling demonstration from [Microscaling Systems](http://microscaling.com). 
+This tutorial walks through setting up a microscaling demonstration from [Microscaling Systems](http://microscaling.com) on a DC/OS cluster. 
 
 **Time Estimate**:
 
@@ -30,7 +33,7 @@ The demo creates four Marathon Apps that run as Docker containers.
 # Prerequisites
 
 * A [Microsoft Azure](http://azure.microsoft.com) account. Your DC/OS cluster can be running anywhere (it doesn't have to be running on Azure) 
-but the demo uses an Azure Storage Queue. If you don't already have an account you can get a [free trial](https://azure.microsoft.com/en-us/pricing/free-trial/?WT.mc_id=AA4C1C935). 
+but the demo uses an Azure Storage Queue. If you don't already have an account you can get a [free trial](https://azure.microsoft.com/en-us/pricing/free-trial/). 
 * A [running DC/OS cluster](/docs/1.7/administration/installing/). If you don't already have one, you can follow these [instructions for setting up a DC/OS cluster on Azure](https://azure.microsoft.com/en-us/documentation/articles/container-service-deployment/). 
 * You'll need the Marathon REST API address. If you set up an [SSH tunnel on port 80 to your Marathon master node](https://github.com/Azure/azure-quickstart-templates/blob/master/101-acs-dcos/docs/SSHKeyManagement.md#create-port-80-tunnel-to-the-master) you can access the Marathon REST API at http://localhost/marathon.
 * You'll need [Ruby](https://www.ruby-lang.org/en/documentation/installation/) on your local machine to run the demo scripts 
