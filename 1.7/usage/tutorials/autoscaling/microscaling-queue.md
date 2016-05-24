@@ -3,14 +3,14 @@ post_title: Microscaling based on queue length
 nav_title: Microscaling
 ---
 
-[Microscaling](http://microscaling.org) adjusts the balance of tasks running within your compute cluster. 
+[Microscaling][1] adjusts the balance of tasks running within your compute cluster. 
 This allows your infrastructure to automatically reallocate 
 resources from lower priority to higher priority tasks, reacting within seconds to a change in demand. 
 Microscaling monitors whether the higher priority task is meeting a performance target - in this case, keeping the 
 length of a queue near a configured value. The higher priority task is scaled up when the target is not being met, 
 and down when it is being exceeded, and the lower priority task can use spare resources.  
 
-This tutorial walks through setting up a microscaling demonstration from [Microscaling Systems](http://microscaling.com) on a DC/OS cluster. 
+This tutorial walks through setting up a microscaling demonstration from [Microscaling Systems][2] on a DC/OS cluster. 
 
 **Time Estimate**:
 
@@ -32,15 +32,15 @@ The demo creates four Marathon Apps that run as Docker containers.
 
 # Prerequisites
 
-* A [Microsoft Azure](http://azure.microsoft.com) account. Your DC/OS cluster can be running anywhere (it doesn't have to be running on Azure) 
-but the demo uses an Azure Storage Queue. If you don't already have an account you can get a [free trial](https://azure.microsoft.com/en-us/pricing/free-trial/). 
-* A [running DC/OS cluster](/docs/1.7/administration/installing/). If you don't already have one, you can follow these [instructions for setting up a DC/OS cluster on Azure](https://azure.microsoft.com/en-us/documentation/articles/container-service-deployment/). 
-* You'll need the Marathon REST API address. If you set up an [SSH tunnel on port 80 to your Marathon master node](https://github.com/Azure/azure-quickstart-templates/blob/master/101-acs-dcos/docs/SSHKeyManagement.md#create-port-80-tunnel-to-the-master) you can access the Marathon REST API at http://localhost/marathon.
-* You'll need [Ruby](https://www.ruby-lang.org/en/documentation/installation/) on your local machine to run the demo scripts 
+* A [Microsoft Azure][3] account. Your DC/OS cluster can be running anywhere (it doesn't have to be running on Azure) 
+but the demo uses an Azure Storage Queue. If you don't already have an account you can get a [free trial][4]. 
+* A [running DC/OS cluster][5]. If you don't already have one, you can follow these [instructions for setting up a DC/OS cluster on Azure][6]. 
+* You'll need the Marathon REST API address. If you set up an [SSH tunnel on port 80 to your Marathon master node][7] you can access the Marathon REST API at http://localhost/marathon.
+* You'll need [Ruby][8] on your local machine to run the demo scripts 
 
 # Set up an Azure Storage Account
 
-* Sign in to the [Azure Portal](http://portal.azure.com).
+* Sign in to the [Azure Portal][9].
 * Navigate to New -> Data + Storage -> Storage Account
 * Create a storage account with the following settings:
 
@@ -54,7 +54,7 @@ Once the storage account has been created navigate to Settings -> Access Keys an
 
 # Set up Microscaling-in-a-box
 
-* Go to the [Microscaling-in-a-box](http://app.microscaling.com) site and sign up for an account if you don't have one already.
+* Go to the [Microscaling-in-a-box][10] site and sign up for an account if you don't have one already.
 * In Step 1, pick the Mesos / Marathon option
 
 ![microscaling-step-1.png](../img/microscaling-step-1.png)
@@ -68,30 +68,30 @@ Once the storage account has been created navigate to Settings -> Access Keys an
 
 We have prepared some scripts to configure and start the four apps in Marathon. Go to a terminal on your local machine and get these scripts with the following command.
 
-```
-git clone http://github.com/microscaling/queue-demo
+``` bash
+$ git clone http://github.com/microscaling/queue-demo
 ```
 
 Move into the queue-demo directory.
 
-```
-cd queue-demo
+``` bash
+$ cd queue-demo
 ```
 
 # Run the microscaling install script
 
 Set up the following environment variables 
 
-```
-export AZURE_STORAGE_ACCOUNT_NAME=<storage account name>
-export AZURE_STORAGE_ACCOUNT_KEY=<storage account key>
-export AZURE_STORAGE_QUEUE_NAME=<queue name>
-export MSS_USER_ID=<user ID>
-export MSS_MARATHON_API=http://localhost/marathon
+``` bash
+$ export AZURE_STORAGE_ACCOUNT_NAME=<storage account name>
+$ export AZURE_STORAGE_ACCOUNT_KEY=<storage account key>
+$ export AZURE_STORAGE_QUEUE_NAME=<queue name>
+$ export MSS_USER_ID=<user ID>
+$ export MSS_MARATHON_API=http://localhost/marathon
 ```
 You're now ready to run the demo: 
-```
-./marathon-install
+``` bash
+$ ./marathon-install
 ```
 
 This script starts all four tasks. You can view these in the Marathon web UI.  
@@ -109,15 +109,16 @@ You can use the Marathon UI to scale the number of Producer tasks up or down, an
 ## Uninstall the Marathon Apps
 
 You can use the marathon-uninstall command to remove the demo apps from your cluster. (This command needs the MSS_MARATHON_API environment variable to be set as above.)
-```
-./marathon-uninstall
+
+``` bash
+$ ./marathon-uninstall
 ```
 
 ## Delete the Azure Resources
 
 Once you've finished with the demo you'll want to delete the Azure resources so that you don't get charged. 
 
-* Sign in to the [Azure Portal](http://portal.azure.com).
+* Sign in to the [Azure Portal][9].
 * Select Resource Groups from the left hand menu.
 * Find and delete the Resource Group you created for the Azure Queue.
 * If you created an ACS cluster for this demo, you'll want to delete the Resource Group for that too. 
@@ -126,5 +127,17 @@ Once you've finished with the demo you'll want to delete the Azure resources so 
 
 - Try modifying some of the configuration settings in Step 3 of Microscaling-in-a-Box before you run the demo. You'll need to stop the tasks (manually or by running `./marathon-uninstall`) and restart them again with `./marathon-install` to pick up configuration changes. 
 - See the settings for each of the Marathon apps in JSON files contained within the `marathon-apps` directory.
-- Here's the [microscaling engine code](http://github.com/microscaling/microscaling). 
-- Find more information about microscaling on the [Microscaling Systems website](http://microscaling.com).
+- Here's the [microscaling engine code][11]. 
+- Find more information about microscaling on the [Microscaling Systems website][2].
+
+[1]: http://microscaling.org
+[2]: http://microscaling.com
+[3]: http://azure.microsoft.com
+[4]: https://azure.microsoft.com/en-us/pricing/free-trial/
+[5]: /docs/1.7/administration/installing/
+[6]: https://azure.microsoft.com/en-us/documentation/articles/container-service-deployment/
+[7]: https://github.com/Azure/azure-quickstart-templates/blob/master/101-acs-dcos/docs/SSHKeyManagement.md#create-port-80-tunnel-to-the-master
+[8]: https://www.ruby-lang.org/en/documentation/installation/
+[9]: http://portal.azure.com
+[10]: http://app.microscaling.com
+[11]: http://github.com/microscaling/microscaling
