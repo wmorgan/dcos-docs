@@ -182,7 +182,7 @@ ExecStart=/opt/mesosphere/bin/dcos-history
 ```
 
 ## Logrotate Service
-This service does what you think it does: ensures DC/OS services don't blow up cluster hosts with to much log data on disk.
+This service does what you think it does: ensures DC/OS services don't blow up cluster hosts with too much log data on disk.
 
 ```
 [Unit]
