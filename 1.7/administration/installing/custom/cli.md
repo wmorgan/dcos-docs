@@ -83,10 +83,23 @@ The DC/OS installation creates these folders:
         #!/usr/bin/env bash
         set -o nounset -o errexit -o pipefail
         export PATH=/sbin:/usr/sbin:/bin:/usr/bin:$PATH
-
-        MASTER_IP=172.28.128.3
-        INTERFACE_IP=$(ip r g ${MASTER_IP:-8.8.8.8} | awk 'BEGIN {ec=1} {if($6=="src") {print $7; ec=0; exit}} END {exit ec}')
-
+        MASTER_IP=$(dig +short master.mesos || true)
+        MASTER_IP=${MASTER_IP:-172.28.128.3}
+        INTERFACE_IP=$(ip r g ${MASTER_IP} | \
+        awk -v master_ip=${MASTER_IP} '
+        BEGIN { ec = 1 }
+        {
+          if($1 == master_ip) {
+            print $7
+            ec = 0
+          } else if($1 == "local") {
+            print $6
+            ec = 0
+          }
+          if (ec == 0) exit;
+        }
+        END { exit ec }
+        ')
         echo $INTERFACE_IP
         ```
 
