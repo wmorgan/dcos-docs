@@ -29,9 +29,10 @@ This document provides instructions for upgrading a DC/OS cluster from version 1
 
 1.  Copy and update the DC/OS 1.6 `config.yaml` and `ip-detect` files to a new, clean folder on your bootstrap node.
 
-    **Important:** You cannot change the `exhibitor_zk_backend` setting during an upgrade.
-
-    Please note, the syntax of the DC/OS 1.7 `config.yaml` differs from that of DC/OS 1.6. For a detailed description of the 1.7 `config.yaml` syntax and parameters, see the [documentation](/docs/1.7/administration/installing/custom/configuration-parameters/).
+    **Important:** 
+    
+    *  You cannot change the `exhibitor_zk_backend` setting during an upgrade.
+    *  The syntax of the DC/OS 1.7 `config.yaml` differs from that of DC/OS 1.6. For a detailed description of the 1.7 `config.yaml` syntax and parameters, see the [documentation](/docs/1.7/administration/installing/custom/configuration-parameters/).
 
 1.  After you have merged your 1.6 `config.yaml` into the 1.7 `config.yaml` format, you can build your installer package:
 
