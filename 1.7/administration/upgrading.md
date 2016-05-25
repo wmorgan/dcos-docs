@@ -7,9 +7,10 @@ menu_order: 11
 
 This document provides instructions for upgrading a DC/OS cluster from version 1.6 to 1.7. If this upgrade is performed on a supported OS with all prerequisites fulfilled, this upgrade _should_ preserve the state of running tasks on the cluster.  This document reuses portions of the [Advanced DC/OS Installation Guide](/docs/1.7/administration/installing/custom/advanced/).
 
-**Important:** The Advanced Installation method is the _only_ recommended upgrade path for DC/OS. It is recommended that you familiarize yourself with the [Advanced DC/OS Installation Guide](/docs/1.7/administration/installing/custom/advanced/) before proceeding.
+**Important:** 
 
-**Important** The new VIP features require ports [32768-65535] inclusive to be open between all agent and master nodes for both TCP and UDP; as this is a new requirement for 1.7, special attention must be given to this change.
+- The Advanced Installation method is the _only_ recommended upgrade path for DC/OS. It is recommended that you familiarize yourself with the [Advanced DC/OS Installation Guide](/docs/1.7/administration/installing/custom/advanced/) before proceeding.
+- The [VIP features](https://dcos.io/docs/1.7/usage/service-discovery/virtual-ip-addresses/), added in DC/OS 1.7, require that ports 32768 - 65535 are open between all agent and master nodes for both TCP and UDP. 
 
 ## Prerequisites
 
