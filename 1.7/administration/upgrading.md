@@ -1,5 +1,6 @@
 ---
 post_title: Upgrading
+menu_order: 11
 ---
 
 ## Summary
@@ -43,7 +44,7 @@ This document provides instructions for upgrading a DC/OS cluster from version 1
 
         **Important:** This step is critical to prevent task restarts.
 
-    1.  Run the nginx container to serve the installation files.
+    1.  Run the [nginx](/docs/1.7/installing/custom/advanced#nginx) container to serve the installation files.
 
 ### DC/OS Masters
 
