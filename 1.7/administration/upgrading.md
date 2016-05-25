@@ -8,6 +8,8 @@ This document provides instructions for upgrading a DC/OS cluster from version 1
 
 **Important:** The Advanced Installation method is the _only_ recommended upgrade path for DC/OS. It is recommended that you familiarize yourself with the [Advanced DC/OS Installation Guide](/docs/1.7/administration/installing/custom/advanced/) before proceeding.
 
+**Important** The new VIP features require ports [32768-65535] inclusive to be open between all agent and master nodes for both TCP and UDP; as this is a new requirement for 1.7, special attention must be given to this change.
+
 ## Prerequisites
 
 - Mesos, Mesos Frameworks, Marathon, Docker and all running tasks in the cluster should be stable and in a known healthy state.
