@@ -1,5 +1,5 @@
 ---
-post_title: An Introduction to DC/OS Components
+post_title: "An Introduction to DC/OS Components"
 nav_title: Components
 menu_order: 4
 ---
@@ -49,7 +49,7 @@ KillMode=mixed
 ```
 
 ## Cluster ID Service
-The Cluster ID service allows us to generate a UUID for each cluster. If enabled, we can then use this ID to track cluster health remotely. This remote tracking allows our support team to better assist customers.
+The Cluster ID service allows us to generate a UUID for each cluster. If enabled, we can then use this ID to monitor cluster health remotely. This remote tracking allows our support team to better assist customers.
 
 The cluster-id service runs an internal tool called `zk-value-consensus` which uses our internal ZooKeeper to generate a UUID that all the masters agree on. Once an agreement is reached, the ID is written to disk at `/var/lib/dcos/cluster-id`. We write it to `/var/lib/dcos` so the ID is ensured to persist cluster upgrades without changing.
 
@@ -64,7 +64,7 @@ ExecStart=/bin/sh -c "/opt/mesosphere/bin/python -c 'import uuid; print(uuid.uui
 ```
 
 ## Cosmos Service
-The Cosmos service is our internal packaging API service. You access this service each time that you run the `dcos package install` command from the CLI. This API allows us to deploy DC/OS packages from the [DC/OS universe](/docs/1.7/usage/services/repo/) to your DC/OS cluster.
+The Cosmos service is our internal packaging API service. You access this service each time that you run the `dcos package install` command from the CLI. This API allows us to deploy DC/OS packages from the [DC/OS universe][1] to your DC/OS cluster.
 
 ```
 [Unit]
@@ -288,3 +288,5 @@ ExecStartPre=-/usr/bin/env ip addr add 198.51.100.3/32 dev spartan
 ExecStart=/opt/mesosphere/active/spartan/spartan/bin/spartan foreground
 Environment=HOME=/opt/mesosphere
 ```
+
+[1]: /docs/1.7/usage/services/repo/
