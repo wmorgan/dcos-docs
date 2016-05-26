@@ -7,8 +7,6 @@ menu_order: 6
 This document discusses the high availability features in DC/OS and best
 practices for building highly available applications on DC/OS.
 
-## General concepts of high availability
-
 ### Leader/follower architecture
 
 A common pattern in highly available systems is the leader/follower concept.
