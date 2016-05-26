@@ -1,5 +1,5 @@
 ---
-post_title: Getting Started with Marathon-lb
+post_title: Getting Started with marathon-lb
 nav_title: Getting Started
 menu_order: 1
 ---

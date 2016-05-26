@@ -16,7 +16,7 @@ This document briefly describes the
 
 DC/OS is powered by Apache Mesos used as the distributed kernel of a set of computers that you can treat as one unit, though you retain control of each and every one. In DC/OS, the kernel of the system is in fact any number of mesos masters and agents both publicly available and private; failed mesos masters are replaced by a standby master transparently, and handles leader election. Masters, of course, handle failed agents and processes.
 
-DC/OS applications function as system components in its distributed user space. The most obivous is the system marathon component, which is the distributed `init` for DC/OS; but this also includes the Admit Router service, the Mesos-DNS service, Exhibitor, and other system-wide components that are used by user processes and manage the masters and agents.
+DC/OS applications function as system components in its distributed user space. The most obivous is the system Marathon component, which is the distributed `init` for DC/OS; but this also includes the Admit Router service, the Mesos-DNS service, Exhibitor, and other system-wide components that are used by user processes and manage the masters and agents.
 
 For a more comprehensive architecturel description of DC/OS, see [The Architecture of DC/OS](../../architecture/); for a more complete discussion of components, see [An Introduction to DC/OS Components](../../components/).
 
@@ -91,7 +91,7 @@ The default ACS architecture looks like this:
 
 ## DC/OS component list
 
-The following list shows the components used by DC/OS itself. You'll note that the core components center around Mesos, marathon, python, and so on.
+The following list shows the components used by DC/OS itself. You'll note that the core components center around Mesos, Marathon, python, and so on.
 
 
 - 3dt

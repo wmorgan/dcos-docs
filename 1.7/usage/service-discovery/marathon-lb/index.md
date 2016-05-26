@@ -12,7 +12,7 @@ After you boot a DC/OS cluster, all tasks can be discovered using Mesos-DNS. Dis
 
 For many applications, you can address these concerns with [VIPs][1]. For those that are unable to take advantage of VIPS, we provide a tool for Marathon called Marathon Load Balancer, or marathon-lb for short.
 
-Marathon-lb is based on HAProxy, a rapid proxy and load balancer. HAProxy provides proxying and load balancing for TCP and HTTP based applications, with features such as SSL support, HTTP compression, health checking, Lua scripting and more. Marathon-lb subscribes to Marathon’s event bus and updates the HAProxy configuration in real time.
+marathon-lb is based on HAProxy, a rapid proxy and load balancer. HAProxy provides proxying and load balancing for TCP and HTTP based applications, with features such as SSL support, HTTP compression, health checking, Lua scripting and more. marathon-lb subscribes to Marathon’s event bus and updates the HAProxy configuration in real time.
 
 You can can configure marathon-lb with various topologies. Here are some examples of how you might use marathon-lb:
 
