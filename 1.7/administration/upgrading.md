@@ -5,12 +5,12 @@ menu_order: 11
 
 ## Summary
 
-This document provides instructions for upgrading a DC/OS cluster from version 1.6 to 1.7. If this upgrade is performed on a supported OS with all prerequisites fulfilled, this upgrade _should_ preserve the state of running tasks on the cluster.  This document reuses portions of the [Advanced DC/OS Installation Guide](/docs/1.7/administration/installing/custom/advanced/).
+This document provides instructions for upgrading a DC/OS cluster from version 1.6 to 1.7. If this upgrade is performed on a supported OS with all prerequisites fulfilled, this upgrade _should_ preserve the state of running tasks on the cluster.  This document reuses portions of the [Advanced DC/OS Installation Guide][advanced-install].
 
-**Important:** 
+**Important:**
 
-- The Advanced Installation method is the _only_ recommended upgrade path for DC/OS. It is recommended that you familiarize yourself with the [Advanced DC/OS Installation Guide](/docs/1.7/administration/installing/custom/advanced/) before proceeding.
-- The [VIP features](/docs/1.7/usage/service-discovery/virtual-ip-addresses/), added in DC/OS 1.7, require that ports 32768 - 65535 are open between all agent and master nodes for both TCP and UDP. 
+- The Advanced Installation method is the _only_ recommended upgrade path for DC/OS. It is recommended that you familiarize yourself with the [Advanced DC/OS Installation Guide][advanced-install] before proceeding.
+- The [VIP features](/docs/1.7/usage/service-discovery/virtual-ip-addresses/), added in DC/OS 1.7, require that ports 32768 - 65535 are open between all agent and master nodes for both TCP and UDP.
 
 ## Prerequisites
 
@@ -21,7 +21,7 @@ This document provides instructions for upgrading a DC/OS cluster from version 1
 - All hosts (masters and agents) must be able to communicate with all other hosts on port `53|UDP`.
 - In CentOS or RedHat, install IP sets with this command (used in some IP detect scripts): `$ sudo yum install -y ipset`
 - You must be familiar with using `systemctl` and `journalctl` command line tools to review and monitor service status. Troubleshooting notes can be found at the end of this [document](#troubleshooting).
-- You must be familiar with the [Advanced DC/OS Installation Guide](/docs/1.7/administration/installing/custom/advanced/).
+- You must be familiar with the [Advanced DC/OS Installation Guide][advanced-install].
 
 ## Instructions
 
@@ -29,8 +29,8 @@ This document provides instructions for upgrading a DC/OS cluster from version 1
 
 1.  Copy and update the DC/OS 1.6 `config.yaml` and `ip-detect` files to a new, clean folder on your bootstrap node.
 
-    **Important:** 
-    
+    **Important:**
+
     *  You cannot change the `exhibitor_zk_backend` setting during an upgrade.
     *  The syntax of the DC/OS 1.7 `config.yaml` differs from that of DC/OS 1.6. For a detailed description of the 1.7 `config.yaml` syntax and parameters, see the [documentation](/docs/1.7/administration/installing/custom/configuration-parameters/).
 
@@ -46,7 +46,7 @@ This document provides instructions for upgrading a DC/OS cluster from version 1
 
         **Important:** This step is critical to prevent task restarts.
 
-    1.  Run the [nginx](/docs/1.7/installing/custom/advanced#nginx) container to serve the installation files.
+    1.  Run the [nginx][advanced-install] container to serve the installation files.
 
 ### DC/OS Masters
 
@@ -153,3 +153,5 @@ $ sudo journalctl -u dcos-mesos-slave
 ## Notes:
 
 - Packages available in the DC/OS 1.7 Universe are newer than those in the DC/OS 1.6 Universe. Services are not automatically upgraded when  DC/OS 1.7 is installed because not all DC/OS services have upgrade paths that will preserve existing state.
+
+[advanced-install]: /docs/1.7/administration/installing/custom/advanced/
