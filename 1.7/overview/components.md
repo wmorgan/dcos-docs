@@ -49,7 +49,7 @@ KillMode=mixed
 ```
 
 ## Cluster ID Service
-The Cluster ID service allows us to generate a UUID for each cluster. If enabled, we can then use this ID to monitor cluster health remotely. This remote tracking allows our support team to better assist customers.
+The Cluster ID service allows us to generate a UUID for each cluster. If enabled, we can then use this ID to monitor cluster health remotely. This remote telemetry allows our support team to better assist customers.
 
 The cluster-id service runs an internal tool called `zk-value-consensus` which uses our internal ZooKeeper to generate a UUID that all the masters agree on. Once an agreement is reached, the ID is written to disk at `/var/lib/dcos/cluster-id`. We write it to `/var/lib/dcos` so the ID is ensured to persist cluster upgrades without changing.
 
