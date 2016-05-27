@@ -35,11 +35,11 @@ Here are the master node hardware requirements.
 
   <tr>
     <td>
-      Nodes: 1<br />OS: RHEL/CentOS 7.2<<br />Processor: 4 cores<br />Memory: 32 GB RAM<br />Hard disk space: 120 GB
+      Nodes: 1<br />OS: RHEL/CentOS 7.2<br />Processor: 4 cores<br />Memory: 32 GB RAM<br />Hard disk space: 120 GB
     </td>
 
     <td>
-      Nodes: 3<br />OS: RHEL/CentOS 7.2<<br />Processor: 4 cores<br />Memory: 32 GB RAM<br />Hard disk space: 120 GB
+      Nodes: 3<br />OS: RHEL/CentOS 7.2<br />Processor: 4 cores<br />Memory: 32 GB RAM<br />Hard disk space: 120 GB
     </td>
   </tr>
   <tr>
@@ -66,11 +66,11 @@ Here are the agent node hardware requirements.
 
   <tr>
     <td class="tg-031e">
-      Nodes: 1<br />OS: RHEL/CentOS 7.2<<br />Processor: 2 cores<br />Memory: 16 GB RAM<br />Hard disk space: 60 GB
+      Nodes: 1<br />OS: RHEL/CentOS 7.2<br />Processor: 2 cores<br />Memory: 16 GB RAM<br />Hard disk space: 60 GB
     </td>
 
     <td class="tg-031e">
-      Nodes: 6<br />OS: RHEL/CentOS 7.2<<br />Processor: 2 cores<br />Memory: 16 GB RAM<br />Hard disk space: 60 GB
+      Nodes: 6<br />OS: RHEL/CentOS 7.2<br />Processor: 2 cores<br />Memory: 16 GB RAM<br />Hard disk space: 60 GB
     </td>
   </tr>
 
