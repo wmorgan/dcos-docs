@@ -21,7 +21,7 @@ Before we dive into the details of the interaction between different DC/OS compo
 - User: also known as Client, is an application either internal or external to the cluster that kicks off a process, for example a human user that submits a Marathon app spec.
 - Agent: runs a discrete Mesos task on behalf of a framework. It is an agent instance registered with the Mesos master. The synonym of agent node is worker or slave node. You can have private or public agent nodes.
 - Executor: launched on agent nodes to run tasks for a service.
-- Task: a unit of work scheduled by a Mesos framework and executed on a Mesos agent. 
+- Task: a unit of work scheduled by a Mesos framework and executed on a Mesos agent.
 - Process: a logical collection of tasks initiated by a Client, for example a Marathon app or a Chronos job.
 
 ### Kernel space
@@ -37,7 +37,7 @@ In DC/OS, the kernel space manages resource allocation and two-level scheduling 
 
 The DC/OS user space spans System Components and DC/OS services such as Chronos or Kafka:
 
-- [System Components](/1.7/overview/components/) are installed and are running by default in the DC/OS cluster and include the following:
+- [System Components][components] are installed and are running by default in the DC/OS cluster and include the following:
   - The Admin Router is an open source NGNIX configuration that provides central authentication and proxy to DC/OS services.
   - Exhibitor automatically configures ZooKeeper during installation and provides a usable Web UI to ZooKeeper.
   - Mesos-DNS provides service discovery, allowing apps and services to find each other by using the domain name system (DNS).
@@ -66,7 +66,7 @@ On each master node the following happens, in chronological order:
 1. DC/OS Marathon connects to the local ZooKeeper (127.0.0.1), discovers the leading Mesos master (`leader.mesos`) and registers as a framework.
 1. Admin Router depends on the Mesos master, Mesos-DNS, and the Distributed DNS Proxy. It runs on each of the master nodes. The admin router is what serves the DC/OS UI and proxies external admin connections into the cluster.
 1. DC/OS UI, Mesos UI, Marathon UI, and Exhibitor UI become externally accessible through the Admin Router.
-1. [Auth](/1.7/administration/security/) is managed on the master nodes.
+1. [Auth][auth] is managed on the master nodes.
 1. The history service provides the data for the graphs in the DC/OS UI dashboard. This data is obtained from the masters.
 1. DC/OS diagnostics and systemd service on every node.
 
@@ -122,3 +122,6 @@ In detail, here are the steps:
 | 10   | Mesos agent reports task status to Mesos master. |
 | 11   | Mesos master reports task status to scheduler. |
 | 12   | Scheduler reports process status to client. |
+
+[auth]: /docs/1.7/administration/security/
+[components]: /docs/1.7/overview/components/

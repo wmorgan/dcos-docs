@@ -4,7 +4,7 @@ nav_title: Security
 menu_order: 7
 ---
 
-This document discusses some of the security features in DC/OS, in addition to
+This topic discusses the security features in DC/OS and
 best practices for deploying DC/OS securely.
 
 ## General security concepts
