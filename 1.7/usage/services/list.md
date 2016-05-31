@@ -1,7 +1,8 @@
 ---
-post_title: Listing Services Installed on your DC/OS cluster
+post_title: Listing Services and Nodes
 nav_title: Listing
 ---
+<!-- This source repo for this topic is https://github.com/dcos/dcos-docs -->
 
 You can monitor the installed DC/OS services and their health through the DC/OS web interface or command line interface.
 
@@ -10,7 +11,7 @@ You can monitor the installed DC/OS services and their health through the DC/OS 
 *   [DC/OS cluster][1] is up and running.
 *   [DC/OS CLI][2] is installed and configured.
 
-# Monitoring DC/OS services in the DC/OS web interface
+# DC/OS services
 
 From the DC/OS web interface, click the **Services** tab. In this example you can see the installed DC/OS services Cassandra, Chronos, and HDFS. All of the services are showing a status of Healthy.
 
@@ -46,6 +47,8 @@ marathon  <privatenode3>   True     3    2.0   1843.0  100.0  <service-id4>
 *   **MEM** Displays the amount of memory used.
 *   **DISK** Displays the amount of disk space used.
 *   **ID** Displays the DC/OS service framework ID. This value is automatically generated and is unique across the cluster.
+
+# Monitoring DC/OS nodes in the CLI
 
  [1]: /docs/1.7/administration/installing/
  [2]: /docs/1.7/usage/cli/install/
