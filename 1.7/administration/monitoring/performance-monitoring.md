@@ -45,8 +45,8 @@ Marathon provides a number of [metrics][1] for monitoring. Here are the ones tha
 If healthy, these metric should always be increasing.
 
 *   `service.mesosphere.marathon.core.launcher.impl.OfferProcessorImpl.incomingOffers` This metric provides the number of offers that Mesos is receiving from Marathon.
-*   `service.mesosphere.marathon.MarathonScheduler.resourceOffers` This metric provides the number of offers that Mesos is making to Marathon.
-*   `service.mesosphere.marathon.MarathonScheduler.statusUpdate` This metric provides the number of offers that Mesos is making to Marathon.
+*   `service.mesosphere.marathon.MarathonScheduler.resourceOffers` This [Dropwizard](http://metrics.dropwizard.io/3.1.0/manual/core/) metric measures the number of resource offers that Marathon receives from Mesos.
+*   `service.mesosphere.marathon.MarathonScheduler.statusUpdate` This [Dropwizard](http://metrics.dropwizard.io/3.1.0/manual/core/) metric measures the number of status updates that Marathon receives from Mesos.
 
 ## Mesos metrics
 
