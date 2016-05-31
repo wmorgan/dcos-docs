@@ -79,5 +79,5 @@ For more information, see the dcos node [command reference][7].
  [4]: /docs/1.7/usage/webinterface/#services
  [5]: /docs/1.7/usage/img/dcos-nodes-1.7.png
  [6]: /docs/1.7/usage/webinterface/#nodes
- [7]: /docs/1.7/usage/cli/command-reference/#dcosnode\
+ [7]: /docs/1.7/usage/cli/command-reference/#dcosnode
  [8]: /docs/1.7/usage/cli/command-reference/#dcosservice
