@@ -4,11 +4,11 @@ menu_order: 1
 ---
 <!-- https://github.com/dcos/dcos-docs -->
 
-Here are some recommendations for monitoring a DC/OS cluster. You can use any monitoring tool with these recommendations. The endpoints listed below will help troubleshoot when issues occur.
+Here are some recommendations for monitoring a DC/OS cluster. You can use any monitoring tools. The endpoints listed below will help you troubleshoot when issues occur.
 
 Your monitoring tools should leverage historic data points so that you can track changes and deviations. You should monitor your cluster when it is known to be in a healthy state as well as unhealthy. This will give you a baseline for what is “normal” in the DC/OS environment. With this historical data, you can fine tune your tools and set appropriate thresholds and conditions. When these thresholds are exceeded, you can send alerts to administrators.
 
-Mesos and Marathon have the metrics types gauge and counter.
+Mesos and Marathon expose the following types of metrics:
 
 *   Gauges are metrics that provide the current state at the moment it was queried. 
 *   Counters have metrics that are additive and include past and present results. These metrics are not persisted across failover.
@@ -48,7 +48,7 @@ Marathon provides a number of [metrics][1] for monitoring. Here are the ones tha
 
 **Communication between Marathon and Mesos**
 
-If healthy, these metric should always be increasing.
+If healthy, these metrics should always be increasing.
 
 *   `service.mesosphere.marathon.core.launcher.impl.OfferProcessorImpl.incomingOffers` This metric provides the number of offers that Mesos is receiving from Marathon.
 *   `service.mesosphere.marathon.MarathonScheduler.resourceOffers` This [Dropwizard](http://metrics.dropwizard.io/3.1.0/manual/core/) metric measures the number of resource offers that Marathon receives from Mesos.
