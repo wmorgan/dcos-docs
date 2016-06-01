@@ -7,7 +7,7 @@ You can get a comprehensive list of the apps being run on your DC/OS cluster nod
 
 **Prerequisites:** [DC/OS and DC/OS CLI][1] are installed
 
-1.  SSH into your master node.
+1.  SSH into your node. For example, use this CLI command to SSH to your master:
     
         $ dcos node ssh --leader --master-proxy
         
