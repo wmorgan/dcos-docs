@@ -2,6 +2,8 @@
 post_title: System Requirements
 menu_order: 1
 ---
+<!-- This source repo for this topic is https://github.com/dcos/dcos-docs -->
+
 # Hardware Prerequisites
 
 You must have a single bootstrap node, Mesos master nodes, and Mesos agent nodes.
@@ -70,7 +72,7 @@ Here are the agent node hardware requirements.
     </td>
 
     <td class="tg-031e">
-      Nodes: 6<br />OS: RHEL/CentOS 7.2<br />Processor: 2 cores<br />Memory: 16 GB RAM<br />Hard disk space: 60 GB
+      Nodes: 6 or more<br />OS: RHEL/CentOS 7.2<br />Processor: 2 cores<br />Memory: 16 GB RAM<br />Hard disk space: 60 GB
     </td>
   </tr>
 
