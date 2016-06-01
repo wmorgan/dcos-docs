@@ -3,43 +3,33 @@ post_title: Usage
 menu_order: 3
 ---
 
-It looks like you've just [installed](/install/) DC/OS. Welcome aboard! Now that you have the DC/OS CLI set up on your local machine, you might be looking at the DC/OS Dashboard wondering, 'What now?'.
-
-You probably already know how to use `docker run ...` to launch a web server, right? You can do the same thing with DC/OS but in a way that is production ready, right off the bat. DC/OS will keep your web server running if it crashes, and allow you to scale it via CLI or the UI, update its config at runtime and much more!
-
-Ready? Let's launch a production-grade containerized web server with this command from the DC/OS CLI:
-
-```bash
-$ dcos marathon app add https://dcos.io/docs/1.7/usage/nginx.json
-```
-
-Now go to the DC/OS Dashboard and open the Marathon service and you should see the web server up and running and ready to serve traffic.
+<!-- This source repo for this topic is https://github.com/dcos/dcos-docs -->
 
 # Getting Started
 
 ## Beginners
 
-Once you've had a good look around in the DC/OS Dashboard and familiarized yourself with the DC/OS CLI, here are a few more exercises that you might want to try.
+Familiarize yourself with the DC/OS UI [Dashboard](/docs/1.7/usage/webinterface/) and DC/OS [CLI](/docs/1.7/usage/cli/), and then try out these tutorials.
 
 If you have a DevOps role:
 
-- How to run a [Ruby on Rails app](/docs/1.7/usage/tutorials/ruby-on-rails/) app
-- How to run [Tomcat](/docs/1.7/usage/tutorials/tomcat/)
+- Running a [Ruby on Rails app](/docs/1.7/usage/tutorials/ruby-on-rails/)
+- Running [Tomcat](/docs/1.7/usage/tutorials/tomcat/)
 
 If you have a data engineering or data scientists role:
 
-- How to run [Spark](/docs/1.7/usage/tutorials/spark/)
-- How to run [Cassandra](/docs/1.7/usage/tutorials/cassandra/)
-- How to run [Kafka](/docs/1.7/usage/tutorials/kafka/)
+- Running [Spark](/docs/1.7/usage/tutorials/spark/)
+- Running [Cassandra](/docs/1.7/usage/tutorials/cassandra/)
+- Running [Kafka](/docs/1.7/usage/tutorials/kafka/)
 
 If you have a DC/OS administrator role:
 
-- How to [manage users](/docs/1.7/administration/user-management/)
-- How to [monitor](/docs/1.7/administration/monitoring/)
+- [Managing users](/docs/1.7/administration/user-management/)
+- [Monitoring](/docs/1.7/administration/monitoring/)
 
-## Intermediate
+## Intermediate or Advanced
 
-Check these out if you've been playing around with DC/OS for a bit and want a deeper dive.
+If you've been playing around with DC/OS for a bit and want a deeper dive, see these tutorials.
 
 If you want to learn more about how DC/OS works:
 
@@ -54,12 +44,10 @@ If you have a DevOps role:
 
 If you have a DC/OS administrator role:
 
-- How to handle [logging](/docs/1.7/administration/logging/)
-- How to handle [auto-scaling](/docs/1.7/usage/tutorials/autoscaling/)
-- How to handle [load-balancing](/docs/1.7/usage/service-discovery/marathon-lb/)
+- [Logging](/docs/1.7/administration/logging/) with DC/OS
+- [Auto-scaling](/docs/1.7/usage/tutorials/autoscaling/) with DC/OS
+- [Load-balancing](/docs/1.7/usage/service-discovery/marathon-lb/) with DC/OS
 
-## Advanced
+If you are now a seasoned DC/OS user and want to adapt or extend DC/OS, you can learn how to [contribute](/contribute)!
 
-Check these out if you are now a seasoned DC/OS user and want to adapt, extend and learn how to [contribute](/contribute) to DC/OS.
 
-We hope you have a good time with DC/OS and enjoy using it as much as we are having creating it.
