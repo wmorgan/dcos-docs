@@ -38,7 +38,7 @@ You can install services directly from the DC/OS package [repository][1] by usin
     For example, to install Chronos:
     
     ```bash
-    dcos package install chronos
+    $ dcos package install chronos
     ```
     
 ### Web UI
@@ -55,7 +55,7 @@ You can install services directly from the DC/OS package [repository][1] by usin
 ### CLI
 
 ```bash
-dcos package list
+$ dcos package list
 ```
 
 ### Web UI
