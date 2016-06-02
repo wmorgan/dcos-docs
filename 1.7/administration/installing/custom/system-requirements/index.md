@@ -78,7 +78,7 @@ Here are the agent node hardware requirements.
 
   <tr>
     <td colspan="2">
-      The agent nodes must also have: * A <code>/var</code> directory with 10 GB or more of free space. This directory is used by the sandbox for both Docker and Mesos Containerizer.* Network Access to a public Docker repository or to an internal Docker registry.</ul>
+      The agent nodes must also have: <ul><li>A <code>/var</code> directory with 10 GB or more of free space. This directory is used by the sandbox for both Docker and Mesos Containerizer.</li><li>Network Access to a public Docker repository or to an internal Docker registry.</li></ul>
     </td>
   </tr>
 </table>
