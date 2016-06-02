@@ -1,10 +1,10 @@
 ---
-post_title: DC/OS Cloud Installation Options
+post_title: DC/OS Cloud Installation
 nav_title: Cloud
 menu_order: 1
 ---
 
-Looking to install DC/OS on your cloud of choice? Look no further! You can use a template or use our advanced custom installer.
+You can install DC/OS on your cloud of choice by using a DC/OS cloud template.
 
 # Amazon Web Services
 

@@ -1,5 +1,5 @@
 ---
-post_title: DC/OS Custom Installation Options
+post_title: DC/OS Custom Installation
 nav_title: Custom
 menu_order: 1
 ---
