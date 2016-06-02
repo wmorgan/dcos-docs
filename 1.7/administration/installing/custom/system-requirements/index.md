@@ -129,7 +129,7 @@ Each Linux distribution requires Docker to be installed in a specific way:
 
 *   **CentOS** - [Install Docker from Docker's yum repository][2].
 *   **RHEL** - Install Docker by using a subscription channel. For more information, see <a href="https://access.redhat.com/articles/881893" target="_blank">Docker Formatted Container Images on Red Hat Systems</a>. <!-- $ curl -sSL https://get.docker.com | sudo sh -->
- +*   **CoreOS** - Comes with Docker pre-installed and pre-configured.
+*   **CoreOS** - Comes with Docker pre-installed and pre-configured.
 
 For more more information, see Docker's <a href="http://docs.docker.com/engine/installation/" target="_blank">distribution-specific installation instructions</a>.
 
