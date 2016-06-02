@@ -43,9 +43,7 @@ You can install services directly from the DC/OS package [repository][1] by usin
     
 ### Web UI
 
-1.  Navigate to the Universe page in the DC/OS UI:
-
-    ![Universe](../img/webui-universe-install.png)
+1.  Navigate to the [**Universe**](/docs/1.7/usage/webinterface/#universe) page in the DC/OS UI.
 
 2.  Choose your package and click **Install package**. 
 
@@ -62,7 +60,7 @@ dcos package list
 
 ### Web UI
 
-Go to the **Services** tab and confirm that the service is running. For more information, see the UI [documentation](/docs/1.7/usage/webinterface/).
+Go to the **Services** tab and confirm that the service is running. For more information, see the UI [documentation](/docs/1.7/usage/webinterface/#services).
 
 **Tip:** Some services from the "Community Packages" section of the Universe will not show up in the DC/OS service listing. For these, inspect the service's Marathon app in the Marathon UI to verify that the service is running and healthy.
 
