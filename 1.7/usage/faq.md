@@ -67,4 +67,4 @@ We recommend using CoreOS, matched with its correct versions and sensible defaul
 [2]: /docs/1.7/usage/service-discovery/
 [3]: http://mesos.apache.org/documentation/latest/attributes-resources/
 [4]: https://support.mesosphere.com/hc/en-us/articles/206474745-How-to-reserve-resources-for-certain-frameworks-in-Mesos-cluster-
-[5]: /docs/1.7administration/installing/custom/create-public-agent/
+[5]: /docs/1.7/administration/installing/custom/create-public-agent/
