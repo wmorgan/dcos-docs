@@ -10,11 +10,11 @@ You can monitor the installed DC/OS services and their health through the DC/OS 
 *   [DC/OS cluster][1] is up and running.
 *   [DC/OS CLI][2] is installed and configured.
 
-# Monitoring DC/OS services in the DC/OS web interface
+### Monitoring DC/OS services in the DC/OS web interface
 
 From the DC/OS web interface, click the [**Services**](/docs/1.7/usage/webinterface/#services) tab. By default all of your services are displayed, sorted by service name. You can also sort the services by health status, number of tasks, CPU, memory, or disk space allocated.
 
-# Monitoring DC/OS services in the DC/OS CLI
+### Monitoring DC/OS services in the DC/OS CLI
 
 From the DC/OS CLI, enter the `dcos service` command. In this example you can see the native Marathon instance, and the installed DC/OS services Chronos, HDFS, and Kafka.
 
