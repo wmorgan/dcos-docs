@@ -12,18 +12,7 @@ You can monitor the installed DC/OS services and their health through the DC/OS 
 
 # Monitoring DC/OS services in the DC/OS web interface
 
-From the DC/OS web interface, click the **Services** tab. In this example you can see the installed DC/OS services Cassandra, Chronos, and HDFS. All of the services are showing a status of Healthy.
-
-![service list](../img/service-list.png)
-
-*   **SERVICE NAME** Displays the DC/OS service name.
-*   **HEALTH** Displays the [Marathon health check][3] status for the service.
-*   **TASKS** Display the number of running tasks.
-*   **CPU** Displays the percentage of CPU in use.
-*   **MEM** Displays the amount of memory used.
-*   **DISK** Displays the amount of disk space used.
-
-For more information about the Services tab, see the DC/OS web interface [documentation][4].
+From the DC/OS web interface, click the [**Services**](/docs/1.7/usage/webinterface/#services) tab. By default all of your services are displayed, sorted by service name. You can also sort the services by health status, number of tasks, CPU, memory, or disk space allocated.
 
 # Monitoring DC/OS services in the DC/OS CLI
 
@@ -49,5 +38,4 @@ marathon  <privatenode3>   True     3    2.0   1843.0  100.0  <service-id4>
 
  [1]: /docs/1.7/administration/installing/
  [2]: /docs/1.7/usage/cli/install/
- [3]: https://mesosphere.github.io/marathon/docs/health-checks.html
  [4]: /docs/1.7/usage/webinterface/#scrollNav-2
