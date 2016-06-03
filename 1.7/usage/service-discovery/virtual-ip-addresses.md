@@ -13,7 +13,7 @@ You can assign a VIP to your application by using the DC/OS Marathon web interfa
 
 To create a VIP:
 
-1.  From the DC/OS web interface, click on the **Services** tab and select **marathon**.
+1.  From the DC/OS web interface, click on the **Services** tab and select **Marathon**.
 
     *   To create a new application, click **Create Application** and select the **Ports and Service Discovery** menu option.
     *   To edit an existing application, select your application and click the **Configuration** tab, then click **Edit**. You can then select the **Ports and Service Discovery** menu option.
@@ -46,7 +46,7 @@ To assign multiple VIPs to your application, switch to JSON mode and add the add
           "protocol": "tcp",
           "name": "test",
           "labels": {
-            "VIP_0": "111.2.1.23",
+            "VIP_0": "111.2.1.22:8080",
             "VIP_1": "111.2.1.23:5050"
           }
         },

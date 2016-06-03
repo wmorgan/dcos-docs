@@ -182,7 +182,7 @@ ExecStart=/opt/mesosphere/bin/dcos-history
 ```
 
 ## Logrotate Service
-This service does what you think it does: ensures DC/OS services don't blow up cluster hosts with to much log data on disk.
+This service does what you think it does: ensures DC/OS services don't blow up cluster hosts with too much log data on disk.
 
 ```
 [Unit]
@@ -196,7 +196,7 @@ ExecStart=/opt/mesosphere/packages/logrotate--52aee4fc02aab1082880abd4411d782514
 ```
 
 ## Marathon Service
-Marathon shouldn't need any introduction, it's the distributed init system for the DC/OS cluster. We run an internal marathon for packages and other DC/OS services.
+Marathon shouldn't need any introduction, it's the distributed init system for the DC/OS cluster. We run an internal Marathon for packages and other DC/OS services.
 
 ```
 [Unit]

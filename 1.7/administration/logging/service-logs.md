@@ -1,5 +1,6 @@
 ---
 post_title: Service and Task Logging
+menu_order: 0
 ---
 
 As soon as you move from one machine to many, accessing and aggregating logs becomes difficult. Once you hit a certain scale, keeping these logs and making them available to others can add massive overhead to your cluster. After watching how users interact with their logs, we’ve scoped the problem to two primary use cases. This allows you to pick the solution with the lowest overhead that solves your specific problem.
@@ -16,7 +17,7 @@ Let’s say that you’ve got a service misbehaving. For some reason, it is cont
 
 ## CLI
 
-If you’ve created a service named `service` in marathon and would like to see stdout for every instance of that in real time, you can run the following:
+If you’ve created a service named `service` in Marathon and would like to see stdout for every instance of that in real time, you can run the following:
 
 ```
 $ dcos task log --follow service
