@@ -59,9 +59,9 @@ Copy the archived DC/OS installer file (`dcos-install.tar`) to the node that tha
 
 1.  Create a directory for the installer files:
 
-     ```bash
-     $ sudo mkdir -p /opt/dcos_install_tmp
-     ```
+    ```bash
+    $ sudo mkdir -p /opt/dcos_install_tmp
+    ```
 
 1.  Unpackage the `dcos-install.tar` file:
 
