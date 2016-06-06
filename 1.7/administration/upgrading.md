@@ -9,6 +9,7 @@ This document provides instructions for upgrading a DC/OS cluster from version 1
 
 **Important:**
 
+- This document is currently in BETA status. Due to a known issue, this install method will cause all apps and tasks to restart within your cluster.
 - The Advanced Installation method is the _only_ recommended upgrade path for DC/OS. It is recommended that you familiarize yourself with the [Advanced DC/OS Installation Guide][advanced-install] before proceeding.
 - The [VIP features](/docs/1.7/usage/service-discovery/virtual-ip-addresses/), added in DC/OS 1.7, require that ports 32768 - 65535 are open between all agent and master nodes for both TCP and UDP.
 
@@ -18,7 +19,7 @@ This document provides instructions for upgrading a DC/OS cluster from version 1
 - For Mesos compatibility reasons, we recommend upgrading any running Marathon-on-Marathon instances to version Marathon 0.16.0-RC3 before proceeding with this DC/OS upgrade.
 - You must have access to copies of the config files used with DCOS 1.6: `config.yaml` and `ip-detect`.
 - You must be using systemd 218 or newer to maintain task state.
-- All hosts (masters and agents) must be able to communicate with all other hosts on port `53|UDP`.
+- All hosts (masters and agents) must be able to communicate with all other hosts on all ports, for both TCP and UDP.
 - In CentOS or RedHat, install IP sets with this command (used in some IP detect scripts): `$ sudo yum install -y ipset`
 - You must be familiar with using `systemctl` and `journalctl` command line tools to review and monitor service status. Troubleshooting notes can be found at the end of this [document](#troubleshooting).
 - You must be familiar with the [Advanced DC/OS Installation Guide][advanced-install].
@@ -99,10 +100,16 @@ Identify your Mesos leader node. This node should be the last master node that y
     $ sudo -i /opt/mesosphere/bin/pkgpanda uninstall
     ```
 
-1.  Remove The DC/OS 1.6 Data Directory
+1.  Remove The DC/OS 1.6 Data Directory and add `mesos-resources`
 
     ```
     $ sudo rm -rf /opt/mesosphere /etc/mesosphere
+    ```
+
+1.  If you have not yet made explicit disk size reservations, create a placeholder file to prevent the installer from building a new one:
+
+    ```
+    $ sudo touch /var/lib/dcos/mesos-resources
     ```
 
 1.  Install DC/OS 1.7
