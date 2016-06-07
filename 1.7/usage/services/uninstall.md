@@ -5,13 +5,31 @@ nav_title: Uninstalling
 
 You can uninstall a DC/OS service from the DC/OS web interface or from the DC/OS CLI.  
 
-* In the DC/OS web interface, click **Universe > Installed**. Hover over the package you wish to uninstall to make the Uninstall link appear.
+## Uninstall a service with the CLI
 
-	![Uninstall Service](/assets/images/uninstall-gui.png)
+1.  Uninstall a datacenter service with this command:
 
-* From the DC/OS CLI, run the following command:
+    ```bash
+    $ dcos package uninstall <servicename>
+    ```
 
-		$ dcos package uninstall <service>
+    For example, to uninstall Chronos:
+
+    ```bash
+    $ dcos package uninstall chronos
+    ```
+
+## Uninstall a service with the web UI
+
+1.  Navigate to the Universe page in the DC/OS UI:
+
+    ![Universe](../img/webui-universe-install.png)
+
+2.  Click on the Installed tab:
+
+    ![Universe](../img/webui-universe-installed-packages.png)
+
+3.  Hover your cursor over the name of the package you wish to uninstall and you will see a red "Uninstall" link to the right. Click this link to uninstall the package.
 
 # <a name="framework-cleaner"></a>The Framework Cleaner Script
 If your service has reserved resources, you can use the framework cleaner docker image, `mesosphere/janitor`, to simplify the process of removing your service instance from ZooKeeper and destroying all the data associated with it.
