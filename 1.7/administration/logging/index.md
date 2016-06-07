@@ -19,7 +19,7 @@ For more information about accessing your logs, see the service and task logs [d
 
 You can find which components are unhealthy in the DC/OS UI on the **System** tab.
 
-![system health](img/ui-system-health-logging.gif)
+![system health](../img/ui-system-health-logging.gif)
 
 You can also aggregate your system logs by using ELK and Splunk. See our [ELK][3] and [Splunk][4] tutorials to get started.
 
