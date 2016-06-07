@@ -1,14 +1,6 @@
 ---
-UID: 5715531b80d8d
-post_title: Uninstalling Services 
-post_excerpt: ""
-layout: page
-published: true
-menu_order: 5 
-page_options_require_authentication: false
-page_options_show_link_unauthenticated: false
-hide_from_navigation: false
-hide_from_related: false
+post_title: Uninstalling Services
+nav_title: Uninstalling
 ---
 
 You can uninstall a DC/OS service from the DC/OS web interface or from the DC/OS CLI.  
