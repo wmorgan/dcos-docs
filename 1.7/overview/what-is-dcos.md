@@ -23,7 +23,7 @@ The CLI is just as important as a GUI, and sometimes not given the credit it is 
 
 ## Service discovery
 
-It is rare to write a service that stands alone and doesn’t need to contact any other services. With three tier applications, you need to figure out how to configure the middle tier to contact the backend database. On a single host, this can be done via. ports. All you have to do is specify a port, assume the IP address is localhost and you’re ready to go. Unfortunately, once you move to multiple hosts there are some problems that can occur:
+It is rare to write a service that stands alone and doesn’t need to contact any other services. With three tier applications, you need to figure out how to configure the middle tier to contact the backend database. On a single host, this can be done via ports. All you have to do is specify a port, assume the IP address is localhost and you’re ready to go. Unfortunately, once you move to multiple hosts there are some problems that can occur:
 
 - What is the host IP the container is running on?
 - How do I configure my clients to connect to the correct host IP?
