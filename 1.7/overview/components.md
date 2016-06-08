@@ -145,7 +145,7 @@ EnvironmentFile=/opt/mesosphere/etc/exhibitor
 ExecStart=/usr/bin/unshare --mount /opt/mesosphere/packages/exhibitor--8b9dac1cdd3a5ea25ae5a2e66f18000ad72c3f26/usr/exhibitor/start_exhibitor.py
 ```
 
-## Generate resolv.conf (gen-resolvconf) Serivce
+## Generate resolv.conf (gen-resolvconf) Service
 The gen-resolvconf service allows us to dynamically provision `/etc/resolv.conf` for your cluster hosts.
 
 ```
