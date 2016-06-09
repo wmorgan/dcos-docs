@@ -1,5 +1,5 @@
 ---
-post_title: Uninstall DC/OS
+post_title: Uninstalling DC/OS
 nav_title: Uninstall
 menu_order: 6
 ---
