@@ -85,15 +85,6 @@ following command:
 
 ```bash
 $ dcos package install jenkins --options=options.json
-WARNING: Jenkins on DC/OS is currently in BETA. There may be bugs, incomplete
-features, incorrect documentation, or other discrepancies.
-
-If you didn't provide a value for `host-volume` in the CLI,
-YOUR DATA WILL NOT BE SAVED IN ANY WAY.
-
-Continue installing? [yes/no] yes
-Installing Marathon app for package [jenkins] version [0.2.3]
-Jenkins has been installed.
 ```
 
 Once ready, Jenkins will appear as a service in the DC/OS dashboard.
