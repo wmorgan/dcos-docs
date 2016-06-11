@@ -33,12 +33,11 @@ An Amazon EC2 <a href="https://aws.amazon.com/ec2/pricing/" target="_blank">m3.x
 - [jquery](https://github.com/stedolan/jq/wiki/Installation)
 
 # Quick Start
-You can quickly get up and running with the DC/OS advanced templates by running this script. The script automatically creates the top level `zen.json` template.
- 
-Before running this script, configure these parameters for your environment: `STACK_NAME`, `VPC_CIDR`, ` PRIVATE_SUBNET_CIDR`, and `PUBLIC_SUBNET_CIDR`.
+You can quickly get up and running with the DC/OS advanced templates. 
 
+## Run the Zen script
 
-## Create the zen.json template
+1.  Save this script as `zen.sh`                                                                     
 
     ```bash
     #!/bin/bash
@@ -46,7 +45,7 @@ Before running this script, configure these parameters for your environment: `ST
     
     if [ -z "${1:-}" ]
     then
-      echo Usage: $(basename "$0") STACK_NAME
+      echo Usage: $(basename "$0") STACK_TAG
       exit 1
     fi
     
@@ -77,5 +76,154 @@ Before running this script, configure these parameters for your environment: `ST
     aws ec2 create-tags --resources "$public_subnet" --tags Key=Name,Value="${STACK_NAME}-public"
     echo "Public SubnetId: $public_subnet"
     ```
+    
+1.  Run the script with a single argument, `STACK_TAG`, which will be used to tag the AWS resources created. For example, to add the `dcos`tag:
 
-Now that you have your `zen.json` template
+    ```bash
+    ./zen.sh dcos
+    ```
+
+    The output should look like this:
+    
+    ```bash
+    Creating Zen Template Dependencies
+    VpcId: vpc-e0bd2c84
+    InternetGatewayID: igw-38071a5d
+    Private SubnetId: subnet-b32c82c5
+    Public SubnetId: subent-b02c55c4
+    ```
+    
+    You will use these values as input to create your stack in CloudFormation in the next step. 
+
+## Launch the DC/OS advanced template on CloudFormation
+
+1.  Go to [CloudFormation](https://console.aws.amazon.com/cloudformation/home) and click **Create Stack**.
+1.  On the **Select Template** page, upload the [zen.json](https://downloads.dcos.io/dcos/EarlyAccess/commit/14509fe1e7899f439527fb39867194c7a425c771/cloudformation/zen-1.json) template from your workstation and click **Next**.
+1.  On the **Specify Details** page, specify these values and and click **Next**.
+
+    *  **Stack name** Specify the cluster name.
+    *  **InternetGateway** Specify the `InternetGatewayID` output value from the `zen.sh` script. The Internet Gateway ID must be attached to the VPC. This Internet Gateway will be used by all nodes for outgoing internet access.
+    *  **KeyName** Specify your AWS EC2 Key Pair. 
+    *  **MasterInstanceType** Specify the Amazon EC2 instance type. The <a href="https://aws.amazon.com/ec2/pricing/" target="_blank">m3.xlarge</a> instance type is recommended.
+    *  **PrivateAgentInstanceCount** Specify the number of private agents.
+    *  **PrivateAgentInstanceType** Specify the Amazon EC2 instance type for the private agent nodes. The <a href="https://aws.amazon.com/ec2/pricing/" target="_blank">m3.xlarge</a> instance type is recommended.
+    *  **PrivateSubnet** Specify the `Private SubnetId` output value from the `zen.sh` script. This subnet ID will be used by all private agents. 
+    *  **PublicAgentInstanceCount** Specify the number of public agents.
+    *  **PublicAgentInstanceType** Specify the Amazon EC2 instance type for the public agent nodes. The <a href="https://aws.amazon.com/ec2/pricing/" target="_blank">m3.xlarge</a> instance type is recommended.
+    *  **PublicSubnet** Specify the `Public SubnetId` output value from the `zen.sh` script. This subnet ID will be used by all public agents. 
+    *  **Vpc** Specify the `VpcId` output value from the `zen.sh` script. All nodes will be launched by using subnets and Internet Gateway under this VPC. 
+    
+1.  On the **Options** page, accept the defaults and click **Next**.
+    
+    **Tip:** You can choose whether to rollback on failure. By default this option is set to **Yes**.
+    
+1.  On the **Review** page, check the acknowledgement box and then click **Create**.
+
+    **Tip:** If the **Create New Stack** page is shown, either AWS is still processing your request or you’re looking at a different region. Navigate to the correct region and refresh the page to see your stack.
+    
+## Monitor the DC/OS cluster convergence process
+
+In CloudFormation you should see:
+
+*  The cluster stack spins up over a period of 15 to 20 minutes. You will have a stack created for each of these, where `<stack-name>` is the value you specified for **Stack name** and `<stack-id>` is an auto-generated ID.
+
+    *  Zen template: `<stack-name>`
+    *  Public agents: `<stack-name>-PublicAgentStack-<stack-id>`
+    *  Private agents: `<stack-name>-PrivateAgentStack-<stack-id>` 
+    *  Masters: `<stack-name>-MasterStack-<stack-id>`
+    *  Infrastructure: `<stack-name>-Infrastructure-<stack-id>`
+
+* The status changes from `CREATE_IN_PROGRESS` to `CREATE_COMPLETE`.
+
+**Troubleshooting:** A `ROLLBACK_COMPLETE` status means the deployment has failed. See the **Events** tab for useful information about failures.
+
+## Launch DC/OS
+
+Launch the DC/OS web interface by entering the master hostname:
+
+1.  From the <a href="https://console.aws.amazon.com/cloudformation/home" target="_blank">Amazon CloudFormation Management</a> page, click to check the box next to your stack.
+
+2.  Click on the **Outputs** tab and copy/paste the Mesos Master hostname into your browser to open the DC/OS web interface. The interface runs on the standard HTTP port 80, so you do not need to specify a port number after the hostname.
+
+    **Tip:** You might need to resize your window to see this tab. You can find your DC/OS hostname any time from the <a href="https://console.aws.amazon.com/cloudformation/home" target="_blank">Amazon CloudFormation Management</a> page.
+
+    ![Monitor stack creation](../img/dcos-aws-step3a.png)
+
+    ![DC/OS dashboard](../img/ui-dashboard.gif)
+
+1.  Click the dropup menu on the lower-left side to install the DC/OS [Command-Line Interface (CLI)][2]. You must install the CLI to administer your DCOS cluster.
+
+    ![install CLI](../img/ui-dashboard-install-cli.gif)
+    
+## Next steps
+
+Now that your advanced template DC/OS installation is up and running you can
+
+### Add more agent nodes
+
+You can add more agent nodes by creating a new stack by using the [advanced-priv-agent.json]() or [advanced-pub-agent.json]() templates. These templates create agents which are then attached to the `PrivateAgentStack` or `PublicAgentStack` as a part of an AutoScalingGroup. 
+
+Use the output values from the `zen.sh` script and your Master and Infra stacks. These new agent nodes will automatically be added to your DC/OS cluster. 
+
+Private agents:
+
+*  **InternalMasterLoadBalancerDnsName** Specify the `InternalMasterLoadBalancerDnsName` value from your master stack (`<stack-name>-MasterStack-<stack-id>`). You can find this value in the **Outputs** tab.
+*  **KeyName** Specify your AWS EC2 Key Pair. 
+*  **PrivateAgentInstanceCount** Specify the number of private agents.
+*  **PrivateAgentInstanceType** Specify the Amazon EC2 instance type for the private agent nodes. The <a href="https://aws.amazon.com/ec2/pricing/" target="_blank">m3.xlarge</a> instance type is recommended.
+*  **PrivateAgentSecurityGroup** Specify the security group ID for private agents. This group should have limited external access. You can find this value in the **Outputs** tab of the Infrastructure stack (`<stack-name>-Infrastructure-<stack-id>`).
+*  **PrivateSubnet** Specify the `Private SubnetId` output value from the `zen.sh` script. This subnet ID will be used by all private agents. 
+
+Public agents:
+
+*  **InternalMasterLoadBalancerDnsName** Specify the `InternalMasterLoadBalancerDnsName` value from your master stack (`<stack-name>-MasterStack-<stack-id>`). You can find this value in the **Outputs** tab.
+*  **KeyName** Specify your AWS EC2 Key Pair. 
+*  **PublicAgentInstanceCount** Specify the number of public agents.
+*  **PublicAgentInstanceType** Specify the Amazon EC2 instance type for the public agent nodes. The <a href="https://aws.amazon.com/ec2/pricing/" target="_blank">m3.xlarge</a> instance type is recommended.
+*  **PublicAgentSecurityGroup** Specify the security group ID for public agents. This group should have limited external access. You can find this value in the **Outputs** tab of the Infrastructure stack (`<stack-name>-Infrastructure-<stack-id>`).
+*  **PublicSubnet** Specify the `Public SubnetId` output value from the `zen.sh` script. This subnet ID will be used by all public agents. 
+
+## Add more masters
+
+You can add more masters to your existing DC/OS cluster. DC/OS clusters can have 1, 3, 5, or 7 masters. 
+
+Single master:
+
+*  [single-master.cloudformation.json]() creates a single master DC/OS cluster. By default when you run the `zen.sh` script the [single-master.cloudformation.json]() is invoked.
+
+    *  **AcceptEULA** Read the Mesosphere EULA and indicate agreement.
+    *  **KeyName** Specify your AWS EC2 Key Pair. 
+    *  **OAuthEnabled** Indicate whether you want to enable OAuth security for your cluster.
+    *  **PublicSlaveInstanceCount** Specify the number of public agents.
+    *  **SlaveInstanceCount** Specify the number of private agents.
+
+Multi master:
+
+*  [multi-master.cloudformation.json]() creates a multi-master DC/OS cluster. You can have 3 [zen-3.json](), 5 [zen-5.json](), or 7 [zen-7.json]() masters.
+
+    *  **AcceptEULA** Read the Mesosphere EULA and indicate agreement.
+    *  **KeyName** Specify your AWS EC2 Key Pair. 
+    *  **OAuthEnabled** Indicate whether you want to enable OAuth security for your cluster.
+    *  **PublicSlaveInstanceCount** Specify the number of public agents.
+    *  **SlaveInstanceCount** Specify the number of private agents.
+    
+
+*  **AcceptEULA** Read the Mesosphere EULA and indicate agreement.
+*  **AdminSecurityGroupID** Specify the Admin security group ID. You can find this value in the **Outputs** tab of the Infrastructure stack (`<stack-name>-Infrastructure-<stack-id>`).
+*  **ExhibitorS3Bucket**  S3 Bucket resource name. Used by Exhibitor for Zookeeper discovery and coordination. See Exhibitor documentation on 'shared configuration': https://github.com/Netflix/exhibitor/wiki/Shared-Configuration for more information
+*  **KeyName** Specify your AWS EC2 Key Pair. 
+*  **LbSecurityGroupID** Specify the load balancer security group ID. These rules allow masters and private agent nodes to communicate. You can find this value in the **Outputs** tab of the Infrastructure stack (`<stack-name>-Infrastructure-<stack-id>`).
+*  **MasterInstanceType** Region-specific instance type. E.g. m3.xlarge
+*  **MasterSecurityGroupId**  Specify the master node security group ID. You can find this value in the Outputs tab for the Infrastructure stack (`<stack-name>-Infrastructure-<stack-id>`).
+*  **PrivateAgentSecurityGroupID** Specify the security group ID for private agents. This group should have limited external access. You can find this value in the **Outputs** tab of the Infrastructure stack (`<stack-name>-Infrastructure-<stack-id>`).
+*  **PrivateSubnet** Specify the `Private SubnetId` output value from the `zen.sh` script. This subnet ID will be used by all private agents.
+*  **PublicAgentSecurityGroupID** Specify the security group ID for public agents. This group should have limited external access. You can find this value in the **Outputs** tab of the Infrastructure stack (`<stack-name>-Infrastructure-<stack-id>`).
+*  **PublicSubnet** Specify the `Public SubnetId` output value from the `zen.sh` script. This subnet ID will be used by all public agents. 
+
+
+This stack level creates masters, on top of the Infrastructure stack already created. 
+
+
+
+
+ [2]: /docs/1.7/usage/cli/install/
