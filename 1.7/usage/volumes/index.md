@@ -1,7 +1,7 @@
 ---
 post_title: Local and External Volumes 
 nav_title: Local and External Volumes 
-menu_order: 10
+menu_order: 4.5 
 ---
 
 You can create stateful applications using either local or external volumes.
