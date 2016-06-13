@@ -118,7 +118,7 @@ We've implemented the [dcos-docs](https://github.com/dcos/dcos-docs) repo as a [
   - Copy the contents of your local dcos-docs repo into the `/dcos-website/dcos-docs` folder.
 
      ```
-     $ cp -rf ~/dcos-docs/ ~/dcos-website/
+     $ cp -rf ~/dcos-docs ~/dcos-website/
      ``` 
 
 1. Make sure npm is up-to-date and install dependencies. 
