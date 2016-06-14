@@ -31,7 +31,8 @@ This effort plans to integrate edge load balancing into the [DC/OS service disco
 
 ### Pluggable External Volumes
 Support for pluggable external volume providers such as [REX-Ray](https://github.com/emccode/rexray), [Flocker](https://github.com/ClusterHQ/flocker), etc.
-For more information, see the [design doc for external volumes (Docker Volume Driver) in Mesos](https://docs.google.com/document/d/1uhi1lf1_sEmnl0HaqHUCsqPb9m9jOKbRlXYW1S-tZis/edit?usp=sharing) and [external volumes in Marathon](https://mesosphere.github.io/marathon/docs/external-volumes.html).
+For more information, see the [design doc for external volumes (Docker Volume Driver) in Mesos](https://docs.google.com/document/d/1uhi1lf1_sEmnl0HaqHUCsqPb9m9jOKbRlXYW1S-tZis/edit?usp=sharing).
+<!-- and [external volumes in Marathon](https://mesosphere.github.io/marathon/docs/external-volumes.html). -->
 
 ## Medium Term
 
