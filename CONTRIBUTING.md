@@ -115,7 +115,7 @@ We've implemented the [dcos-docs](https://github.com/dcos/dcos-docs) repo as a [
      $ rm -r dcos-docs
      $ ln -s <local-path-to-dcos-docs> dcos-docs
      ```
-1. Make sure npm is up-to-date and install dependencies. 
+1. Navigate to the root of the `dcos-website` repo. Then, make sure npm is up-to-date and install dependencies.
     
     ```
     $ sudo npm install npm@latest -g
