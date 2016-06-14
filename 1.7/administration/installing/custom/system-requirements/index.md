@@ -146,7 +146,7 @@ Run this command to disable the sudo password prompt:
 %wheel ALL=(ALL) NOPASSWD: ALL
 ```
 
-Alternatively, you can SSH as root.
+Alternatively, you can SSH as the root user.
 
 ## Bootstrap node
 
