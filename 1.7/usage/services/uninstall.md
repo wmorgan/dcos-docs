@@ -1,6 +1,7 @@
 ---
 post_title: Uninstalling Services
 nav_title: Uninstalling
+menu_order: 30
 ---
 
 You can uninstall a DC/OS service from the DC/OS web interface or from the DC/OS CLI.  

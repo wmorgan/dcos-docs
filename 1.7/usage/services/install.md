@@ -1,5 +1,6 @@
 ---
 post_title: Installing Services
+menu_order: 0
 nav_title: Installing
 ---
 <!-- This source repo for this topic is https://github.com/dcos/dcos-docs -->

@@ -1,6 +1,7 @@
 ---
 post_title: Listing Services Installed on your DC/OS cluster
 nav_title: Listing
+menu_order: 20
 ---
 
 You can monitor the installed DC/OS services and their health through the DC/OS web interface or command line interface.
