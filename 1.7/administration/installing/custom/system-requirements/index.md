@@ -136,6 +136,18 @@ Each Linux distribution requires Docker to be installed in a specific way:
 
 For more more information, see Docker's <a href="http://docs.docker.com/engine/installation/" target="_blank">distribution-specific installation instructions</a>.
 
+### Disable sudo password prompts
+
+To use the [GUI][4] or [CLI][1] installation methods, you must disable password prompts for sudo. 
+
+Run this command to disable the sudo password prompt:
+
+```bash
+%wheel ALL=(ALL) NOPASSWD: ALL
+```
+
+Alternatively, you can SSH as root.
+
 ## Bootstrap node
 
 The bootstrap node is a permanent part of your cluster and is required for DC/OS recovery. The leader state and leader election of your Mesos masters is maintained in Exhibitor ZooKeeper. Before installing DC/OS, you must ensure that your bootstrap node has the following prerequisites.
