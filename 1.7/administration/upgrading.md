@@ -9,7 +9,6 @@ This document provides instructions for upgrading a DC/OS cluster from version 1
 
 **Important:**
 
-- This document is currently in BETA status. Due to a known issue, this install method will cause all apps and tasks to restart within your cluster.
 - The Advanced Installation method is the _only_ recommended upgrade path for DC/OS. It is recommended that you familiarize yourself with the [Advanced DC/OS Installation Guide][advanced-install] before proceeding.
 - The [VIP features](/docs/1.7/usage/service-discovery/virtual-ip-addresses/), added in DC/OS 1.7, require that ports 32768 - 65535 are open between all agent and master nodes for both TCP and UDP.
 
