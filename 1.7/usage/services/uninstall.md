@@ -53,6 +53,9 @@ These are some examples of default configurations (these will vary depending on 
 * Kafka:
     * Default: `-r kafka-role -p kafka-principal -z kafka`
     * Custom name: `-r <name>-role -p <name>-principal -z <name>`
+* HDFS:
+    * Default: `-r hdfs-role -p hdfs-principal -z hdfs-mesos`
+    * Custom name: `-r <name>-role -p <name>-principal -z <name>`
 
 ## Run from the DC/OS CLI
 
