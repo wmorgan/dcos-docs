@@ -21,7 +21,6 @@ Once you've had a good look around in the DC/OS Dashboard and familiarized yours
 
 If you have a DevOps role:
 
-- How to run a [Ruby on Rails app](/docs/1.7/usage/tutorials/ruby-on-rails/) app
 - How to run [Tomcat](/docs/1.7/usage/tutorials/tomcat/)
 
 If you have a data engineering or data scientists role:
