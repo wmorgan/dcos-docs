@@ -108,6 +108,7 @@ Identify your Mesos leader node. This node should be the last master node that y
 1.  If you have not yet made explicit disk size reservations, create a placeholder file to prevent the installer from building a new one:
 
     ```
+    $ sudo mkdir -p /var/lib/dcos
     $ sudo touch /var/lib/dcos/mesos-resources
     ```
 
