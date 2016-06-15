@@ -195,7 +195,7 @@ On each of your cluster nodes, use the following command to:
 
     **Tip:** It may take a few minutes for your node to come back online after reboot.
 
-# Next step
+# Next steps
 
 - [GUI DC/OS Installation Guide][4]
 - [CLI DC/OS Installation Guide][1]
