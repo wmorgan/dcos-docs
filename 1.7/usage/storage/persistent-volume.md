@@ -1,7 +1,7 @@
 ---
 post_title: Persistent Volumes
 menu_order: 10
---------------
+---
 
 **Note:** Persistent volume functionality is considered experimental: use this feature at your own risk. We might add, change, or delete any functionality described in this document.
 
@@ -18,10 +18,7 @@ When you specify a local volume or volumes, tasks and their associated data are 
 
 ## Prerequisites
 
-In order to create stateful applications using local persistent volumes in Marathon, you need to set 2 command line flags that Marathon will use to reserve/unreserve resources and create/destroy volumes.
-
-- `--mesos_authentication_principal`: You can choose any that suits your needs. However, if you have set up ACLs on your Mesos master, this must be an authenticated and authorized prinicpal.
-- `--mesos_role`: This should be a unique role and will be used implicitly, that is, you don't need to configure the Mesos master via `--roles`.
+See the [DC/OS system requirements](/docs/administration/installing/custom/system-requirements/).
 
 ## Configuration options
 
@@ -83,10 +80,6 @@ If reserving resources or creating persistent volumes fails, the created task wi
 # Potential Pitfalls
 
 Be aware of the following issues and limitations when using stateful applications in Marathon that make use of dynamic resevations and persistent volumes.
-
-## Static Reservations
-
-Dynamic reservations can only be created for unreserved resources. If you specify an agent's resources to be reserved for a role via the Mesos `--resources` or `--default_role` flag, these resources cannot be used for dynamic reservations. In addition, if Marathon is started with the `--default_accepted_resource_roles` flag specifying a value that does not contain `*`, your application definition should explicitly specify `"acceptedResourceRoles": ["*"]` in order to allow usage and reservation of unreserved cluster resources.
 
 ## Resource requirements
 
