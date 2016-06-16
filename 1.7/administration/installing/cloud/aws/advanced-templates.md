@@ -9,13 +9,6 @@ The advanced templates for AWS CloudFormation bring power and flexibility to cre
  - Extend and update an existing DC/OS clusters by adding more agents 
  
 The advanced templates are used together in conjunction to create a DC/OS cluster. 
- 
-* **zen.json** This template file orchestrates the component stacks to form an entire DC/OS cluster. Since this is a meta template, it requires the least number of parameters to get a cluster up and running. 
-* **infra.json** This template file defines and creates a DC/OS specific infrastructure that works well with a VPC already created. This is the lowest building block of a DC/OS cluster and the components created in this stack are consumed by the dependent templates (`advanced-master.json`, `advanced-pub-agent.json`, and `advanced-priv-agent.json`).
-* **advanced-master.json** This template file configures the master nodes.
-* **advanced-priv-agent.json** This template configures the private agent nodes.
-* **advanced-pub-agent.json** This template configures the public agent nodes.
-
 
 <!-- Insert graphic -->
 
@@ -167,7 +160,7 @@ Now that your advanced template DC/OS installation is up and running you can
 
 ### Add more agent nodes
 
-You can add more agent nodes by creating a new stack by using the [advanced-priv-agent.json]() or [advanced-pub-agent.json]() templates. These templates create agents which are then attached to the `PrivateAgentStack` or `PublicAgentStack` as a part of an AutoScalingGroup. 
+You can add more agent nodes by creating a new stack by using the [private agent](https://downloads.dcos.io/dcos/EarlyAccess/commit/14509fe1e7899f439527fb39867194c7a425c771/cloudformation/advanced-priv-agent.json) or [public agent](https://downloads.dcos.io/dcos/EarlyAccess/commit/14509fe1e7899f439527fb39867194c7a425c771/cloudformation/advanced-pub-agent.json) templates. These templates create agents which are then attached to the `PrivateAgentStack` or `PublicAgentStack` as a part of an AutoScalingGroup. 
 
 Use the output values from the `zen.sh` script and your Master and Infra stacks. These new agent nodes will automatically be added to your DC/OS cluster. 
 
@@ -193,7 +186,7 @@ Public agents:
 
 # Template reference
 
-These template parameters are used in the advanced templates.
+These parameters are used in the advanced templates.
 
 *  **AcceptEULA** Read the Mesosphere EULA and indicate agreement.
 *  **AdminLocation** Optional: Specify the IP range to whitelist for access to the admin zone. Must be a valid CIDR.
@@ -213,9 +206,6 @@ These template parameters are used in the advanced templates.
 *  **PublicAgentSecurityGroupID** Specify the security group ID for public agents. This group should have limited external access. You can find this value in the **Outputs** tab of the Infrastructure stack (`<stack-name>-Infrastructure-<stack-id>`).
 *  **PublicSubnet** Specify the `Public SubnetId` output value from the `zen.sh` script. This subnet ID will be used by all public agents.
 *  **Vpc** Specify the `VpcId` output value from the `zen.sh` script. All nodes will be launched by using subnets and Internet Gateway under this VPC. 
-
-
-
 
 
  [2]: /docs/1.7/usage/cli/install/
