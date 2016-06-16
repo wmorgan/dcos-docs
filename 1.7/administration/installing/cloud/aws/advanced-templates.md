@@ -47,7 +47,7 @@ Use the `zen.sh` script to create the template dependencies. These dependencies 
     
     if [ -z "${1:-}" ]
     then
-      echo Usage: $(basename "$0") STACK_TAG
+      echo Usage: $(basename "$0") STACK_NAME
       exit 1
     fi
     
@@ -189,30 +189,6 @@ Public agents:
 *  **PublicAgentSecurityGroup** Specify the security group ID for public agents. This group should have limited external access. You can find this value in the **Outputs** tab of the Infrastructure stack (`<stack-name>-Infrastructure-<stack-id>`).
 *  **PublicSubnet** Specify the `Public SubnetId` output value from the `zen.sh` script. This subnet ID will be used by all public agents. 
 
-## Add more masters
-
-You can add more masters to your existing DC/OS cluster. DC/OS clusters can have 1, 3, 5, or 7 masters. 
-
-Single master:
-
-*  [single-master.cloudformation.json]() creates a single master DC/OS cluster. By default when you run the `zen.sh` script the [single-master.cloudformation.json]() is invoked.
-
-    *  **AcceptEULA** Read the Mesosphere EULA and indicate agreement.
-    *  **KeyName** Specify your AWS EC2 Key Pair. 
-    *  **OAuthEnabled** Indicate whether you want to enable OAuth security for your cluster.
-    *  **PublicSlaveInstanceCount** Specify the number of public agents.
-    *  **SlaveInstanceCount** Specify the number of private agents.
-
-Multi master:
-
-*  [multi-master.cloudformation.json]() creates a multi-master DC/OS cluster. You can have 3 [zen-3.json](), 5 [zen-5.json](), or 7 [zen-7.json]() masters.
-
-    *  **AcceptEULA** Read the Mesosphere EULA and indicate agreement.
-    *  **KeyName** Specify your AWS EC2 Key Pair. 
-    *  **OAuthEnabled** Indicate whether you want to enable OAuth security for your cluster.
-    *  **PublicSlaveInstanceCount** Specify the number of public agents.
-    *  **SlaveInstanceCount** Specify the number of private agents.
-    
 
 
 # Template reference
