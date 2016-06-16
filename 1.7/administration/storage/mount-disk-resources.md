@@ -5,7 +5,7 @@ menu_order: 0
 
 # Overview
 
-With DC/OS you can configure [Mesos Mount disk resources][1] across your cluster by simply mounting storage resources on agents using a well-known path. When a DC/OS agent initially starts, it scans for volumes that match the pattern `/dcos/volumeN`, where `N` is an integer. The agent is then automatically configured to offer these disk resources to other services.
+With DC/OS you can configure [Mesos mount disk resources][1] across your cluster by simply mounting storage resources on agents using a well-known path. When a DC/OS agent initially starts, it scans for volumes that match the pattern `/dcos/volumeN`, where `N` is an integer. The agent is then automatically configured to offer these disk resources to other services.
 
 # Example using loopback device
 
@@ -107,12 +107,12 @@ Cloud provider storage services are typically used to back DC/OS Mount Volumes. 
 
 Disk Mount Resources are primarily for stateful services like Kafka and Cassandra which can benefit from having dedicated storage available throughout the cluster. Any service that utilizes a Disk Mount Resource hs exclusive access to the reserved resource. However, it is still important to consider the performance and reliability requirements for the service. The performance of a Disk Mount Resource is based on the characteristic of the underlying storage and DC/OS does not provide any data replication services. Consider the following:
 
-* Use Disk Mount Resources with stateful services which have strict storage requirements.
-* Carefully consider the filesystem type, storage media (network attached, SSD, etc.) and volume characteristics (RAID levels, sizing, etc.) based on the storage needs and requirements of the stateful service.
-* Label Mesos agents using a Mesos Attribute which reflects the characteristics of the agent's Disk Mounts, e.g. IOPS200, RAID1, etc.
+* Use Disk Mount Resources with stateful services that have strict storage requirements.
+* Carefully consider the filesystem type, storage media (network attached, SSD, etc.), and volume characteristics (RAID levels, sizing, etc.) based on the storage needs and requirements of the stateful service.
+* Label Mesos agents using a Mesos attribute that reflects the characteristics of the agent's Disk Mounts, e.g. IOPS200, RAID1, etc.
 * Associate stateful services with storage Agents using Mesos Attribute constraints.
-* Consider isolating demanding storage services to dedicated storage Agents, since the filesystem page cache is a host level shared resource.
-* Ensure all services using Disk Mount Resources are designed handle the permanent loss of one or more Disk Mount Resources. Services are still responsible to manage data replication and retention, graceful recovery from failed Agents, and backups of critical service state.
+* Consider isolating demanding storage services to dedicated storage agents, since the filesystem page cache is a host-level shared resource.
+* Ensure all services using Disk Mount Resources are designed handle the permanent loss of one or more Disk Mount Resources. Services are still responsible for managing data replication and retention, graceful recovery from failed agents, and backups of critical service state.
 
 [1]: http://mesos.apache.org/documentation/latest/multiple-disk/
 [2]: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html
