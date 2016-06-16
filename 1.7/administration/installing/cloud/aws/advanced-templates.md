@@ -35,7 +35,9 @@ An Amazon EC2 <a href="https://aws.amazon.com/ec2/pricing/" target="_blank">m3.x
 # Quick Start
 You can quickly get up and running with the DC/OS advanced templates. 
 
-## Run the Zen script
+## Create your dependencies
+
+Use the `zen.sh` script to create the template dependencies. These dependencies will be used as input to create your stack in CloudFormation.
 
 1.  Save this script as `zen.sh`                                                                     
 
@@ -77,10 +79,10 @@ You can quickly get up and running with the DC/OS advanced templates.
     echo "Public SubnetId: $public_subnet"
     ```
     
-1.  Run the script with a single argument, `STACK_TAG`, which will be used to tag the AWS resources created. For example, to add the `dcos`tag:
+1.  Run the script from the AWS CLI with a single argument, `STACK_TAG`. This argument is used to tag the AWS resources created. For example, to add the `dcos`tag:
 
     ```bash
-    ./zen.sh dcos
+    $ bash ./zen.sh dcos
     ```
 
     The output should look like this:
@@ -93,13 +95,14 @@ You can quickly get up and running with the DC/OS advanced templates.
     Public SubnetId: subent-b02c55c4
     ```
     
-    You will use these values as input to create your stack in CloudFormation in the next step. 
+    Use these dependency values as input to create your stack in CloudFormation in the next steps. 
 
 ## Launch the DC/OS advanced template on CloudFormation
 
 1.  Go to [CloudFormation](https://console.aws.amazon.com/cloudformation/home) and click **Create Stack**.
 1.  On the **Select Template** page, upload the [zen.json](https://downloads.dcos.io/dcos/EarlyAccess/commit/14509fe1e7899f439527fb39867194c7a425c771/cloudformation/zen-1.json) template from your workstation and click **Next**.
 1.  On the **Specify Details** page, specify these values and and click **Next**.
+    ![AWS UI](../img/aws-advanced-1.png)
 
     *  **Stack name** Specify the cluster name.
     *  **InternetGateway** Specify the `InternetGatewayID` output value from the `zen.sh` script. The Internet Gateway ID must be attached to the VPC. This Internet Gateway will be used by all nodes for outgoing internet access.
@@ -127,11 +130,13 @@ In CloudFormation you should see:
 
 *  The cluster stack spins up over a period of 15 to 20 minutes. You will have a stack created for each of these, where `<stack-name>` is the value you specified for **Stack name** and `<stack-id>` is an auto-generated ID.
 
-    *  Zen template: `<stack-name>`
-    *  Public agents: `<stack-name>-PublicAgentStack-<stack-id>`
-    *  Private agents: `<stack-name>-PrivateAgentStack-<stack-id>` 
-    *  Masters: `<stack-name>-MasterStack-<stack-id>`
-    *  Infrastructure: `<stack-name>-Infrastructure-<stack-id>`
+   ![AWS UI](../img/aws-advanced-2.png)
+
+   *  Zen template: `<stack-name>`
+   *  Public agents: `<stack-name>-PublicAgentStack-<stack-id>`
+   *  Private agents: `<stack-name>-PrivateAgentStack-<stack-id>` 
+   *  Masters: `<stack-name>-MasterStack-<stack-id>`
+   *  Infrastructure: `<stack-name>-Infrastructure-<stack-id>`
 
 * The status changes from `CREATE_IN_PROGRESS` to `CREATE_COMPLETE`.
 
@@ -208,20 +213,30 @@ Multi master:
     *  **SlaveInstanceCount** Specify the number of private agents.
     
 
+
+# Template reference
+
+These template parameters are used in the advanced templates.
+
 *  **AcceptEULA** Read the Mesosphere EULA and indicate agreement.
+*  **AdminLocation** Optional: Specify the IP range to whitelist for access to the admin zone. Must be a valid CIDR.
 *  **AdminSecurityGroupID** Specify the Admin security group ID. You can find this value in the **Outputs** tab of the Infrastructure stack (`<stack-name>-Infrastructure-<stack-id>`).
 *  **ExhibitorS3Bucket**  S3 Bucket resource name. Used by Exhibitor for Zookeeper discovery and coordination. See Exhibitor documentation on 'shared configuration': https://github.com/Netflix/exhibitor/wiki/Shared-Configuration for more information
+*  **InternetGateway** Specify the `InternetGatewayID` output value from the `zen.sh` script. The Internet Gateway ID must be attached to the VPC. This Internet Gateway will be used by all nodes for outgoing internet access.
 *  **KeyName** Specify your AWS EC2 Key Pair. 
 *  **LbSecurityGroupID** Specify the load balancer security group ID. These rules allow masters and private agent nodes to communicate. You can find this value in the **Outputs** tab of the Infrastructure stack (`<stack-name>-Infrastructure-<stack-id>`).
-*  **MasterInstanceType** Region-specific instance type. E.g. m3.xlarge
+*  **MasterInstanceType** Region-specific instance type. E.g. m3.xlarge.
 *  **MasterSecurityGroupId**  Specify the master node security group ID. You can find this value in the Outputs tab for the Infrastructure stack (`<stack-name>-Infrastructure-<stack-id>`).
+*  **PrivateAgentInstanceCount** Specify the number of private agents.
+*  **PrivateAgentInstanceType** Specify the Amazon EC2 instance type for the private agent nodes. The <a href="https://aws.amazon.com/ec2/pricing/" target="_blank">m3.xlarge</a> instance type is recommended.
 *  **PrivateAgentSecurityGroupID** Specify the security group ID for private agents. This group should have limited external access. You can find this value in the **Outputs** tab of the Infrastructure stack (`<stack-name>-Infrastructure-<stack-id>`).
 *  **PrivateSubnet** Specify the `Private SubnetId` output value from the `zen.sh` script. This subnet ID will be used by all private agents.
+*  **PublicAgentInstanceCount** Specify the number of public agents.
+*  **PublicAgentInstanceType** Specify the Amazon EC2 instance type for the public agent nodes. The <a href="https://aws.amazon.com/ec2/pricing/" target="_blank">m3.xlarge</a> instance type is recommended.
 *  **PublicAgentSecurityGroupID** Specify the security group ID for public agents. This group should have limited external access. You can find this value in the **Outputs** tab of the Infrastructure stack (`<stack-name>-Infrastructure-<stack-id>`).
-*  **PublicSubnet** Specify the `Public SubnetId` output value from the `zen.sh` script. This subnet ID will be used by all public agents. 
+*  **PublicSubnet** Specify the `Public SubnetId` output value from the `zen.sh` script. This subnet ID will be used by all public agents.
+*  **Vpc** Specify the `VpcId` output value from the `zen.sh` script. All nodes will be launched by using subnets and Internet Gateway under this VPC. 
 
-
-This stack level creates masters, on top of the Infrastructure stack already created. 
 
 
 
