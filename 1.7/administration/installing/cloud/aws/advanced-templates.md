@@ -183,29 +183,4 @@ Public agents:
 *  **PublicSubnet** Specify the `Public SubnetId` output value from the `zen.sh` script. This subnet ID will be used by all public agents. 
 
 
-
-# Template reference
-
-These parameters are used in the advanced templates.
-
-*  **AcceptEULA** Read the Mesosphere EULA and indicate agreement.
-*  **AdminLocation** Optional: Specify the IP range to whitelist for access to the admin zone. Must be a valid CIDR.
-*  **AdminSecurityGroupID** Specify the Admin security group ID. You can find this value in the **Outputs** tab of the Infrastructure stack (`<stack-name>-Infrastructure-<stack-id>`).
-*  **ExhibitorS3Bucket**  S3 Bucket resource name. Used by Exhibitor for Zookeeper discovery and coordination. See Exhibitor documentation on 'shared configuration': https://github.com/Netflix/exhibitor/wiki/Shared-Configuration for more information
-*  **InternetGateway** Specify the `InternetGatewayID` output value from the `zen.sh` script. The Internet Gateway ID must be attached to the VPC. This Internet Gateway will be used by all nodes for outgoing internet access.
-*  **KeyName** Specify your AWS EC2 Key Pair. 
-*  **LbSecurityGroupID** Specify the load balancer security group ID. These rules allow masters and private agent nodes to communicate. You can find this value in the **Outputs** tab of the Infrastructure stack (`<stack-name>-Infrastructure-<stack-id>`).
-*  **MasterInstanceType** Region-specific instance type. E.g. m3.xlarge.
-*  **MasterSecurityGroupId**  Specify the master node security group ID. You can find this value in the Outputs tab for the Infrastructure stack (`<stack-name>-Infrastructure-<stack-id>`).
-*  **PrivateAgentInstanceCount** Specify the number of private agents.
-*  **PrivateAgentInstanceType** Specify the Amazon EC2 instance type for the private agent nodes. The <a href="https://aws.amazon.com/ec2/pricing/" target="_blank">m3.xlarge</a> instance type is recommended.
-*  **PrivateAgentSecurityGroupID** Specify the security group ID for private agents. This group should have limited external access. You can find this value in the **Outputs** tab of the Infrastructure stack (`<stack-name>-Infrastructure-<stack-id>`).
-*  **PrivateSubnet** Specify the `Private SubnetId` output value from the `zen.sh` script. This subnet ID will be used by all private agents.
-*  **PublicAgentInstanceCount** Specify the number of public agents.
-*  **PublicAgentInstanceType** Specify the Amazon EC2 instance type for the public agent nodes. The <a href="https://aws.amazon.com/ec2/pricing/" target="_blank">m3.xlarge</a> instance type is recommended.
-*  **PublicAgentSecurityGroupID** Specify the security group ID for public agents. This group should have limited external access. You can find this value in the **Outputs** tab of the Infrastructure stack (`<stack-name>-Infrastructure-<stack-id>`).
-*  **PublicSubnet** Specify the `Public SubnetId` output value from the `zen.sh` script. This subnet ID will be used by all public agents.
-*  **Vpc** Specify the `VpcId` output value from the `zen.sh` script. All nodes will be launched by using subnets and Internet Gateway under this VPC. 
-
-
  [2]: /docs/1.7/usage/cli/install/
