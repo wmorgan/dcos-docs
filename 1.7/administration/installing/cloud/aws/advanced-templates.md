@@ -103,7 +103,7 @@ Use the `zen.sh` script to create the template dependencies. These dependencies 
 1.  On the **Select Template** page, upload the [zen.json](https://downloads.dcos.io/dcos/EarlyAccess/commit/14509fe1e7899f439527fb39867194c7a425c771/cloudformation/zen-1.json) template from your workstation and click **Next**.
 1.  On the **Specify Details** page, specify these values and and click **Next**.
 
-    ![AWS UI](./img/aws-advanced-1.png)
+    ![AWS UI](../img/aws-advanced-1.png)
 
     *  **Stack name** Specify the cluster name.
     *  **InternetGateway** Specify the `InternetGatewayID` output value from the `zen.sh` script. The Internet Gateway ID must be attached to the VPC. This Internet Gateway will be used by all nodes for outgoing internet access.
@@ -131,7 +131,7 @@ In CloudFormation you should see:
 
 *  The cluster stack spins up over a period of 15 to 20 minutes. You will have a stack created for each of these, where `<stack-name>` is the value you specified for **Stack name** and `<stack-id>` is an auto-generated ID.
 
-   ![AWS UI](./img/aws-advanced-2.png)
+   ![AWS UI](../img/aws-advanced-2.png)
 
    *  Zen template: `<stack-name>`
    *  Public agents: `<stack-name>-PublicAgentStack-<stack-id>`
