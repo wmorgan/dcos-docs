@@ -83,15 +83,18 @@ Here are the agent node hardware requirements.
   </tr>
 </table>
 
-</ul>
-
 *   Your Linux distribution must be running the latest version. You can update CentOS with this command:
-<pre>$ sudo yum upgrade -y</pre>
+
+    ```bash
+    $ sudo yum upgrade -y
+    ```
 
 *   On RHEL 7 and CentOS 7, firewalld must be stopped and disabled. It is a known <a href="https://github.com/docker/docker/issues/16137" target="_blank">Docker issue</a> that firewalld interacts poorly with Docker. For more information, see the <a href="https://docs.docker.com/v1.6/installation/centos/#firewalld" target="_blank">Docker CentOS firewalld</a> documentation.
-<pre>$ sudo systemctl stop firewalld && sudo systemctl disable firewalld</pre>
 
-</ul>
+    ```bash
+    $ sudo systemctl stop firewalld && sudo systemctl disable firewalld
+    ```
+*   DC/OS is installed to `/opt/mesosphere`. Make sure that `/opt/mesosphere` exists on a partition that is not on an LVM Logical Volume or shared storage.
 
 ### Port Configuration
 
@@ -132,6 +135,18 @@ Each Linux distribution requires Docker to be installed in a specific way:
 *   **CoreOS** - Comes with Docker pre-installed and pre-configured.
 
 For more more information, see Docker's <a href="http://docs.docker.com/engine/installation/" target="_blank">distribution-specific installation instructions</a>.
+
+### Disable sudo password prompts
+
+To use the [GUI][4] or [CLI][1] installation methods, you must disable password prompts for sudo. 
+
+Run this command to disable the sudo password prompt:
+
+```bash
+%wheel ALL=(ALL) NOPASSWD: ALL
+```
+
+Alternatively, you can SSH as the root user.
 
 ## Bootstrap node
 
@@ -180,7 +195,7 @@ On each of your cluster nodes, use the following command to:
 
     **Tip:** It may take a few minutes for your node to come back online after reboot.
 
-# Next step
+# Next steps
 
 - [GUI DC/OS Installation Guide][4]
 - [CLI DC/OS Installation Guide][1]

@@ -1,6 +1,7 @@
 ---
 post_title: Uninstalling Services
 nav_title: Uninstalling
+menu_order: 30
 ---
 
 You can uninstall a DC/OS service from the DC/OS web interface or from the DC/OS CLI.  
@@ -51,6 +52,9 @@ These are some examples of default configurations (these will vary depending on 
     * Custom name: `-r <name>-role -p <name>-principal -z <name>`
 * Kafka:
     * Default: `-r kafka-role -p kafka-principal -z kafka`
+    * Custom name: `-r <name>-role -p <name>-principal -z <name>`
+* HDFS:
+    * Default: `-r hdfs-role -p hdfs-principal -z hdfs-mesos`
     * Custom name: `-r <name>-role -p <name>-principal -z <name>`
 
 ## Run from the DC/OS CLI
