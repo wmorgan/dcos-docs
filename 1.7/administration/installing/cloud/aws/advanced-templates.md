@@ -131,7 +131,7 @@ In CloudFormation you should see:
 
 *  The cluster stack spins up over a period of 15 to 20 minutes. You will have a stack created for each of these, where `<stack-name>` is the value you specified for **Stack name** and `<stack-id>` is an auto-generated ID.
 
-   ![AWS UI](../img/aws-advanced-2.png)
+   ![AWS UI](/img/aws-advanced-2.png)
 
    *  Zen template: `<stack-name>`
    *  Public agents: `<stack-name>-PublicAgentStack-<stack-id>`
