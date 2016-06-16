@@ -109,7 +109,7 @@ Both static and dynamic reservations in Mesos are bound to roles, not to framewo
 
 However, if another framework does not respect the presence of labels and the semantics as intended and uses them, Marathon is unable to reclaim these resources for the initial purpose. We recommend never using the same role for different frameworks if one of them uses dynamic reservations. Marathon instances in HA mode do not need to have unique roles, though, because they use the same role by design.
 
-###The Mesos Sandbox
+### The Mesos Sandbox
 
 The temporary Mesos sandbox is still the target for the `stdout` and `stderr` logs. To view these logs, go to the Marathon pane of the DCOS web interface.
 
