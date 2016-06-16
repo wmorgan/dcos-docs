@@ -102,6 +102,7 @@ Use the `zen.sh` script to create the template dependencies. These dependencies 
 1.  Go to [CloudFormation](https://console.aws.amazon.com/cloudformation/home) and click **Create Stack**.
 1.  On the **Select Template** page, upload the [zen.json](https://downloads.dcos.io/dcos/EarlyAccess/commit/14509fe1e7899f439527fb39867194c7a425c771/cloudformation/zen-1.json) template from your workstation and click **Next**.
 1.  On the **Specify Details** page, specify these values and and click **Next**.
+
     ![AWS UI](../img/aws-advanced-1.png)
 
     *  **Stack name** Specify the cluster name.
