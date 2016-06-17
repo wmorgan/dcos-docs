@@ -72,7 +72,7 @@ Use the `zen.sh` script to create the template dependencies. These dependencies 
     echo "Public SubnetId: $public_subnet"
     ```
     
-1.  Run the script from the AWS CLI with a single argument, `STACK_TAG`. This argument is used to tag the AWS resources created. For example, to add the `dcos`tag:
+1.  Run the script from the AWS CLI with a single argument, `STACK_NAME`. This argument is used to tag the AWS resources created. For example, to add the `dcos`tag:
 
     ```bash
     $ bash ./zen.sh dcos
