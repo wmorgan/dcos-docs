@@ -55,7 +55,7 @@ DC/OS agent nodes can be designated as [public](/docs/1.7/overview/concepts/#pub
     ```bash
     $ dcos marathon app list
     ID      MEM  CPUS  TASKS  HEALTH  DEPLOYMENT  CONTAINER  CMD
-    /nginx   64  0.1    0/1    ---      scale       DOCKER   None
+    /myApp   64  0.1    0/1    ---      scale       DOCKER   None
     ```
 
  [1]: /docs/1.7/tutorials/containerized-app/

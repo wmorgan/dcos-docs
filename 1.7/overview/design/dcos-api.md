@@ -1,6 +1,7 @@
 ---
-post_title: DC/OS API Design Doc
+post_title: DC/OS API Design
 nav_title: API
+menu_order: 2
 ---
 
 DC/OS consists of a number of components that each serve a specialized function.

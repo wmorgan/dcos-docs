@@ -1,6 +1,7 @@
 ---
 post_title: DigitalOcean DC/OS Installation Guide
 nav_title: DigitalOcean
+menu_order: 2
 ---
 
 You can create a DC/OS cluster on DigitalOcean using Terraform.
@@ -9,7 +10,7 @@ The included Terraform templates are configured to run Mesosphere DC/OS on Digit
 
 ## Security
 
-- Keep in mind that all nodes are Internet-facing by default after deploying via Terraform and are not secured out-of-the-box. Additional configuration will be required to put master and agent nodes into a security group. 
+- Keep in mind that all nodes are Internet-facing by default after deploying via Terraform and are not secured out-of-the-box. Additional configuration will be required to put master and agent nodes into a security group.
 
 ## Environment
 
@@ -45,11 +46,25 @@ The included Terraform templates are configured to run Mesosphere DC/OS on Digit
     $ ssh-keygen -t rsa -f ./do-key
     ```
 
+4.  Get yourself a token to use against the API. You can [follow the documentation](https://www.digitalocean.com/community/tutorials/how-to-use-the-digitalocean-api-v2).
+
+4.  Add the key to DigitalOcean:
+
+    ```bash
+    $ curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" -d '{"name":"dcos-key","public_key":"<public-key>"}' "https://api.digitalocean.com/v2/account/keys"
+    ```
+
+4. Get the key ID:
+
+    ```bash
+    $ curl -X GET -H 'Content-Type: application/json' -H 'Authorization: Bearer $TOKEN' "https://api.digitalocean.com/v2/account/keys"
+    ```
+
 4.  Copy `sample.terraform.tfvars` to a new file named `terraform.tfvars`, and edit the new file, filling in the values as desired. The following are blank and if not filled in, you will be prompted by terraform when necessary:
 
     - digitalocean_token - Your DigitalOcean API key
-    
-    - ssh_key_fingerprint - Your SSH public key, or fingerprint
+
+    - ssh_key_fingerprint - The key ID from above
 
     - dcos_installer_url - Where to get DC/OS
       https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh

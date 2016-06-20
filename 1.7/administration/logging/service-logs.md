@@ -17,7 +17,7 @@ Let’s say that you’ve got a service misbehaving. For some reason, it is cont
 
 ## CLI
 
-If you’ve created a service named `service` in marathon and would like to see stdout for every instance of that in real time, you can run the following:
+If you’ve created a service named `service` in Marathon and would like to see stdout for every instance of that in real time, you can run the following:
 
 ```
 $ dcos task log --follow service

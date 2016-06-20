@@ -4,6 +4,12 @@ nav_title: Components
 menu_order: 4
 ---
 
+What are the core DC/OS components?
+<!--more-->
+By components, we're referring to the services which work together to bring the DC/OS ecosystem alive. The core component is of course [Apache Mesos](http://mesos.apache.org/) but the DC/OS is actually made of of *many* more services than just this.
+
+If you log into any host in the DC/OS cluster, you can view the currently running services by inspecting `/etc/systemd/system/dcos.target.wants/`.
+
 ```
 ip-10-0-6-126 system # ls dcos.target.wants/
 dcos-adminrouter-reload.service  dcos-exhibitor.service        dcos-marathon.service
@@ -14,12 +20,6 @@ dcos-cosmos.service              dcos-keepalived.service       dcos-signal.servi
 dcos-ddt.service                 dcos-logrotate.service        dcos-signal.timer
 dcos-epmd.service                dcos-logrotate.timer          dcos-spartan.service
 ```
-
-What are the core DC/OS components?
-<!--more-->
-By components, we're referring to the services which work together to bring the DC/OS ecosystem alive. The core component is of course [Apache Mesos](http://mesos.apache.org/) but the DC/OS is actually made of of *many* more services than just this.
-
-If you log into any host in the DC/OS cluster, you can view the currently running services by inspecting `/etc/systemd/system/dcos.target.wants/`.
 
 ## Admin Router Service
 Admin Router is our core internal load balancer. Admin Router is a customized [Nginx](https://www.nginx.com/resources/wiki/) which allows us to proxy all the internal services on :80.
@@ -145,7 +145,7 @@ EnvironmentFile=/opt/mesosphere/etc/exhibitor
 ExecStart=/usr/bin/unshare --mount /opt/mesosphere/packages/exhibitor--8b9dac1cdd3a5ea25ae5a2e66f18000ad72c3f26/usr/exhibitor/start_exhibitor.py
 ```
 
-## Generate resolv.conf (gen-resolvconf) Serivce
+## Generate resolv.conf (gen-resolvconf) Service
 The gen-resolvconf service allows us to dynamically provision `/etc/resolv.conf` for your cluster hosts.
 
 ```
@@ -182,7 +182,7 @@ ExecStart=/opt/mesosphere/bin/dcos-history
 ```
 
 ## Logrotate Service
-This service does what you think it does: ensures DC/OS services don't blow up cluster hosts with to much log data on disk.
+This service does what you think it does: ensures DC/OS services don't blow up cluster hosts with too much log data on disk.
 
 ```
 [Unit]
@@ -196,7 +196,7 @@ ExecStart=/opt/mesosphere/packages/logrotate--52aee4fc02aab1082880abd4411d782514
 ```
 
 ## Marathon Service
-Marathon shouldn't need any introduction, it's the distributed init system for the DC/OS cluster. We run an internal marathon for packages and other DC/OS services.
+Marathon shouldn't need any introduction, it's the distributed init system for the DC/OS cluster. We run an internal Marathon for packages and other DC/OS services.
 
 ```
 [Unit]

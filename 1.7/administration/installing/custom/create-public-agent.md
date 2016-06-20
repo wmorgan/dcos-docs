@@ -33,7 +33,7 @@ These steps must be performed on a machine that is configured as a DC/OS node. A
 2.  Remove the old directory structures on the agent node.
 
     ```bash
-    $ sudo rm -rf /etc/mesosphere /opt/mesosphere /var/lib/mesos
+    $ sudo rm -rf /etc/mesosphere /opt/mesosphere /var/lib/mesos /var/lib/dcos
     ```
 
 3.  Restart the machine.
@@ -59,9 +59,9 @@ Copy the archived DC/OS installer file (`dcos-install.tar`) to the node that tha
 
 1.  Create a directory for the installer files:
 
-     ```bash
-     $ sudo mkdir -p /opt/dcos_install_tmp
-     ```
+    ```bash
+    $ sudo mkdir -p /opt/dcos_install_tmp
+    ```
 
 1.  Unpackage the `dcos-install.tar` file:
 

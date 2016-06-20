@@ -1,5 +1,6 @@
 ---
 post_title: Configuring
+menu_order: 10
 ---
 
 You can customize your DC/OS service during installation with a JSON configuration file. Otherwise, the services are installed by using default values.

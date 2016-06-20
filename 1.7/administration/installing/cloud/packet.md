@@ -1,6 +1,7 @@
 ---
 post_title: Packet DC/OS Installation Guide
 nav_title: Packet
+menu_order: 3
 ---
 
 You can create a DCOS cluster on Packet bare metal using Terraform.

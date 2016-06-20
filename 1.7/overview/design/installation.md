@@ -2,59 +2,64 @@
 post_title: >
     Design: Installation
 nav_title: Installation
+menu_order: 4
 ---
 
 Building, installing and operating DC/OS must be a repeatable process. Even small error rates are unacceptable when you’re working with 10,000 hosts. Because DC/OS is comprised of more than 30 different libraries, services and support packages, a non-standard approach is required. Trying to treat each of those components as independent artifacts to install and configure on target hosts would introduce failures that would get in the way of relying on the system.
 
-Inspired by the approaches  of many mature operating systems, it is possible to build a system that is bulletproof. As you can imagine, this ends up being a little different than what most folks are used to. Once the build process is complete, you end up with a single artifact that contains all the components required to install and run. This looks very similar to the ISO that you end up using to install your favorite Linux distribution.
+Inspired by the approaches of many mature operating systems, it is possible to build a system that is bulletproof. Once the build process is complete, you end up with a single artifact that contains all the components required to install and run. This looks very similar to the ISO that you end up using to install your favorite Linux distribution.
 
-Having a single artifact allows us to make some assumptions and guarantees. The bits are identical on every host, they just have different roles and use a different subset of components. Upgrades are atomic and don’t end up having odd component incompatibilities. Downloads do not depend on multiple different sources since there is just a single file that is trivial to verify for completion and corruption.
+Having a single artifact allows us to make some assumptions and guarantees. 
+
+- The bits are identical on every host, they just have different roles and use a different subset of components. 
+- Upgrades are atomic and don’t end up having odd component incompatibilities. 
+- Downloads do not depend on multiple different sources since there is just a single file that is trivial to verify for completion and corruption.
 
 
 ## Design Goals
 
-Before we jump into how everything works, let’s make the design goals explicit. It is usually important to understand the constraints you’re working with to get to the end architecture and design.
+Before we jump into how everything works, let’s make the design goals explicit. It is important to understand the constraints you’re working with to get to the end architecture and design.
 
 - Dependencies on the host OS should be minimized. This enables DC/OS to run in as many environments as possible.
 - The host OS should be fully customizable. Everyone has a different set of tools that they are currently using. Those tools should work without any changes or porting. This is particularly important when it comes to hardware specific things like kernel modules.
-- Host dependencies should be minimized. It is hard to orchestrate the order with which dependent hosts come up (master, agents). They should be able to come up in any order and only start working when their dependencies are taken care of and provided to the cluster.
+- Dependencies on the host should be minimized. It is hard to orchestrate the order with which dependent hosts come up (master, agents). They should be able to come up in any order and only start working when their dependencies are taken care of and provided to the cluster.
 - The minimum external infrastructure should be required. It is rare for external infrastructure such as PXE boot images and NFS storage to exist.
 - There should be a choice of method for deployment. You’re comfortable with your existing system, there’s no need to go and learn a new one. The integration should have a clean interface and be as minimal as possible.
-- Integration between DC/OS and existing systems such as config management tools and CloudFormation should be as easy as possible. The integration interface needs to be simple and well documented.
+- Integration between DC/OS and existing systems such as config management tools and CloudFormation should be as easy as possible. The integration interface must be simple and well documented.
 - All dependencies and libraries should be bundled as a single artifact. Normal lifecycle processes will upgrade or downgrade libraries and dependencies entirely outside of DC/OS. By not relying on these, the system becomes less fragile and more stable.
-- End users should be able to modify code and configuration in a live system, if necessary. While this is an anti-pattern, it is one that can occasionally help with keeping your infrastructure up at critical times.
-- Installs need to work as close to 100% as possible. Even 1% failures ends up causing 10 failure cases that require manual intervention when you’re operating a 1000 host cluster.
-- Upgrade and rollback of upgrades need to be atomic at a host level.
+- Users should be able to modify code and configuration in a live system, if necessary. While this is an anti-pattern, it is one that can occasionally help with keeping your infrastructure up at critical times.
+- Installs must work as close to 100% as possible. Even 1% failures ends up causing 10 failure cases that require manual intervention when you’re operating a 1000 host cluster.
+- Upgrade and rollback of upgrades must be atomic at a host level.
 - The state of the cluster must be auditable. When running large clusters, it is easy to get into a situation that makes it hard to rely on the state of a single host.
 
 
 ## Packaging
 
-What is the packaging format that works everywhere? Tarballs! A tarball is a compressible file format that bundles a number of files together into a single archive. While there are a lot of common packaging formats out there (deb, rpm, wheel, gem, jar, etc), they all are really just tarballs under the covers. Unfortunately almost all the common formats are built around a single distribution or language, making them hard to use across distros and languages. Some features like pre-install and post-install scripts are really handy to help nudge a system into the right “state”. That isn’t worth the possibility of having unpredictable results and/or untested corner cases. As such, we simplified and made the package installation one step: tarball extraction. No arbitrary code execution and guaranteed reproducibility.
+We chose tarballs for the packaging format because it works everywhere. A tarball is a compressible file format that bundles a number of files together into a single archive. While there are a lot of common packaging formats out there (deb, rpm, wheel, gem, jar, etc), they all are really just tarballs under the covers. Unfortunately almost all the common formats are built around a single distribution or language, making them hard to use across distros and languages. Some features like pre-install and post-install scripts are really handy to help nudge a system into the right “state”. That isn’t worth the possibility of having unpredictable results and/or untested corner cases. As such, we simplified and made the package installation one step: tarball extraction. No arbitrary code execution and guaranteed reproducibility.
 
-All the components in DC/OS are built into a single tarball that eventually gets extracted to `/opt/mesosphere` on the host system. Inside that directory, you end up with something that looks a lot like `/usr/local`. Each component lives in its own package directory and then has the important files linked to the important directories like `bin` and `lib`.
+All of the components in DC/OS are built into a single tarball that eventually gets extracted to `/opt/mesosphere` on the host system. Inside that directory, you end up with something that looks a lot like `/usr/local`. Each component lives in its own package directory and then has the important files linked to the important directories like `bin` and `lib`.
 
 
 ## Building
 
-The master artifact needs to be assembled somehow. As it is made up of a changing list of components, the build tooling ends up looking like its own little package manager. Each component needs to be built from source, configured in a repeatable fashion and then added into the master artifact.
+The master artifact must be assembled somehow. Because the DC/OS build is made up of a changing list of components, the build tooling ends up looking like its own little package manager. Each component must be built from source, configured in a repeatable fashion and then added into the master artifact.
 
-A DC/OS package is defined by two files: [`build`][1] and [`buildinfo.json`][2]. These state what needs to be downloaded and how to build it. At build time, the toolchain takes care of building, packaging and including all the artifacts required into the master tarball.
+A DC/OS package is defined by two files: [`build`][1] and [`buildinfo.json`][2]. These state what must be downloaded and how to build it. At build time, the toolchain takes care of building, packaging and including all the artifacts required into the master tarball.
 
 
 ## Installing
 
-Now that there’s a single package containing all the built components to run DC/OS, you need to do one more thing before installing it on your cluster -  each installation needs to be configured before being placed on hosts. By keeping this configuration small and immutable, you can be sure that every host in your cluster will act the same way.
+Now that there’s a single package containing all the built components to run DC/OS, each installation must be configured before being placed on hosts. By keeping this configuration small and immutable, you can be sure that every host in your cluster will act the same way.
 
 With the configuration tool, all components are built into a package that contains everything to get the cluster running. You’ll pick from a small list of details like DNS configuration and bootstrap information. This then gets added to the single tarball that was built previously. You then have a package that is customized for your hardware and will repeatably create clusters of any size over and over.
 
-Orchestrating the rollout of an installation is difficult, particularly when you need to do things in a certain order. To keep everything as simple as possible, at the host level DC/OS makes no assumptions about the state of the cluster. You can install agents and then masters or even install both at the same time!
+Orchestrating the rollout of an installation is difficult, particularly when you are required to do things in a specific order. To keep everything as simple as possible, at the host level DC/OS makes no assumptions about the state of the cluster. You can install agents and then masters or even install both at the same time!
 
 Once your package is built, you can get going by running `dcos_install.sh` on every host. This script only does three things:
 
 - Downloads the package to the current host.
-- Extracts the package into `/opt/mesosphere`
-- Activates the install by running `pkgpanda install`. This is a small tool that creates symlinks, installs systemd units and sets up which role the host will have (master, agent, agent_public).
+- Extracts the package into `/opt/mesosphere`.
+- Activates the install by running the `pkgpanda install` command.  `pkgpanda` is a small tool that creates symlinks, installs systemd units and sets up the roles for each host (master, agent, agent_public).
 
 That’s really it! Once the ZooKeeper cluster reaches quorum on the masters and Mesos comes up, every agent will join the cluster and you’ll be ready to go. We’ve kept the steps minimal to make sure they’re as reliable as possible.
 
@@ -88,7 +93,7 @@ Instead of having all the packages bundled together into a single image, we coul
 - Moving between distributions requires porting and testing the packages.
 - Package installs have non-zero failure rates. We have seen 10-20% failure rates when trying to install packages. This prevents the cluster coming up successfully and makes it harder to operate.
 - Shipping multiple packages is far more difficult than having a single tarball to hand out. There’s overhead in ensuring multiple packages are robust.
-- Upgrades need to be atomic. It is much more difficult to ensure this across multiple packages.
+- Upgrades must be atomic. It is much more difficult to ensure this across multiple packages.
 
 ### Tarball vs. Container
 
@@ -104,9 +109,9 @@ As it is difficult to maintain bash, we simplified the installation method as fa
 
 It is possible to bake an entire host image that has been configured instead of a tarball that goes on top. Let’s look at why this doesn’t make sense as the sole method for installation:
 
-- We end up being in the distribution update game. Every time RHEL releases a package update, we would need to test, bundle and distribute that. This becomes even harder with CoreOS as we’d end up actually forking the project.
+- We end up being in the distribution update game. Every time RHEL releases a package update, we would be required to test, bundle and distribute that. This becomes even harder with CoreOS as we’d end up actually forking the project.
 - You want to choose their distribution. Some have existing support contracts with Canonical and some with RedHat.
-- You want to configure the base OS. There are security policies and configuration that needs to be applied to the host.
+- You want to configure the base OS. There are security policies and configuration that must be applied to the host.
 
 Host images are a great way to distribute and install DC/OS. By providing the bash install method, it is just as easy to create a new host image for your infrastructure as it would be to integrate with a tool like Puppet.
 
@@ -114,7 +119,7 @@ Host images are a great way to distribute and install DC/OS. By providing the ba
 
 The components included in DC/OS have a significant amount of configuration options. We have spent a long time piecing the correct ones together. These are guaranteed to give you the best operations in production at scale. If we were to expose these options, it would increase the amount of knowledge required to run an DC/OS cluster.
 
-Remember that clusters need to look mostly the same for package install to work. As soon as configuration parameters that the frameworks rely on change, we cannot guarantee that a package can install or run reliably.
+Remember that clusters most look almost the same for package install to work. As soon as configuration parameters that the frameworks rely on change, we cannot guarantee that a package can install or run reliably.
 
 [1]: https://github.com/dcos/dcos/blob/master/packages/mesos/build
 [2]: https://github.com/dcos/dcos/blob/master/packages/mesos/buildinfo.json

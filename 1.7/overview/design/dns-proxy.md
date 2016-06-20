@@ -2,6 +2,7 @@
 post_title: >
     Design: Distributed DNS
 nav_title: Distributed DNS
+menu_order: 3
 ---
 
 ## Background

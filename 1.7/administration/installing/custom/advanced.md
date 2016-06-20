@@ -107,11 +107,26 @@ The DC/OS installation creates these folders:
 
         ```bash
         #!/usr/bin/env bash
-        set -o nounset -o errexit
-
-        MASTER_IP=172.28.128.3
-
-        echo $(/usr/sbin/ip route show to match 172.28.128.3 | grep -Eo '[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}' | tail -1)
+        set -o nounset -o errexit -o pipefail
+        export PATH=/sbin:/usr/sbin:/bin:/usr/bin:$PATH
+        MASTER_IP=$(dig +short master.mesos || true)
+        MASTER_IP=${MASTER_IP:-172.28.128.3}
+        INTERFACE_IP=$(ip r g ${MASTER_IP} | \
+        awk -v master_ip=${MASTER_IP} '
+        BEGIN { ec = 1 }
+        {
+          if($1 == master_ip) {
+            print $7
+            ec = 0
+          } else if($1 == "local") {
+            print $6
+            ec = 0
+          }
+          if (ec == 0) exit;
+        }
+        END { exit ec }
+        ')
+        echo $INTERFACE_IP
         ```
 
 # Install DC/OS
@@ -151,7 +166,7 @@ To install DC/OS:
 
     **Tip:** For the install script to work, you must have created `genconf/config.yaml` and `genconf/ip-detect`.
 
-1.  From your home directory, run this command to host the DC/OS install package through an nginx Docker container. For `<your-port>`, specify the port value that is used in the `bootstrap_url`.
+1.  <a name="nginx"></a>From your home directory, run this command to host the DC/OS install package through an nginx Docker container. For `<your-port>`, specify the port value that is used in the `bootstrap_url`.
 
     ```bash
     $ sudo docker run -d -p <your-port>:80 -v $PWD/genconf/serve:/usr/share/nginx/html:ro nginx
