@@ -22,7 +22,6 @@ Now try these additional tutorials based on your role.
 
 If you have a DevOps role:
 
-- Running a [Ruby on Rails app](/docs/1.7/usage/tutorials/ruby-on-rails/)
 - Running [Tomcat](/docs/1.7/usage/tutorials/tomcat/)
 
 If you have a data engineering or data scientists role:
