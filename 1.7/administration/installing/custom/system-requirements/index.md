@@ -13,7 +13,7 @@ You must have a single bootstrap node, Mesos master nodes, and Mesos agent nodes
 1 node with 2 Cores, 16 GB RAM, 60 GB HDD. This is the node where DC/OS installation is run. This bootstrap node must also have:
 
 *   Python, pip, and virtualenv must be installed for the DC/OS [CLI][1]. pip must be configured to pull packages from PyPI or your private PyPI, if applicable.
-*   A High-availability (HA) load balancer, such as HAProxy to balance the following TCP ports to all master nodes: 80, 443, 8080, 8181, 2181, 5050.
+*   A High-availability (HA) TCP/Layer 3 load balancer, such as HAProxy, to balance the following TCP ports to all master nodes: 80, 443, 8080, 8181, 2181, 5050.
 *  An unencrypted SSH key that can be used to authenticate with the cluster nodes over SSH. Encrypted SSH keys are not supported.
 
 ## Cluster nodes
@@ -96,12 +96,13 @@ Here are the agent node hardware requirements.
     ```
 *   DC/OS is installed to `/opt/mesosphere`. Make sure that `/opt/mesosphere` exists on a partition that is not on an LVM Logical Volume or shared storage.
 
-### Port Configuration
+### Port and Protocol Configuration
 
+*   Secure Shell (SSH) must be enabled on all nodes.
+*   Internet Control Message Protocol (ICMP) must be enabled on all nodes.
+*   Network Time Protocol (NTP) must be enabled on all nodes for clock synchronization.
 *   Each node is network accessible from the bootstrap node.
-*   Each node has SSH enabled and ports open from the bootstrap node.
 *   Each node has unfettered IP-to-IP connectivity from itself to all nodes in the DC/OS cluster.
-*   Each node has Network Time Protocol (NTP) for clock synchronization enabled.
 
 
 # Software Prerequisites
