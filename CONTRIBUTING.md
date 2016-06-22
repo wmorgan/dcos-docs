@@ -30,13 +30,13 @@
 
 1. Clone your fork of the [dcos-docs](https://github.com/dcos/dcos-docs) repo.
 
-    ```
+    ```bash
     $ git clone https://github.com/<your-user-name>/dcos-docs
     ```
 
 1. Create a branch on your fork using your JIRA number as the name.
 
-    ```
+    ```bash
     $ git checkout -b dcos-nnn
     ```
 
@@ -56,7 +56,7 @@
         1. Create a new directory in the appropriate location of the correctly versioned release (e.g., `/1.7/foo`) and a child page within this folder named `index.md` (e.g. `/1.7/foo/index.md`). The actual URI of your page will be `/1.7/foo/`, not `/1.7/foo/index`. For example, if it's a tutorial for 1.7, create a new directory here `/1.7/usage/tutorials/foo/`.
         1. Add your page content, including the required metadata `post_title` and optional `nav_title` and `menu_order`. Do not include any other metadata.
                 
-               ```
+               ```bash
                ---
                post_title: The Title
                ---
@@ -74,7 +74,7 @@
 
 1. Push your changes into the feature branch of your remote.
 
-    ```
+    ```bash
     $ git add .
     $ git commit -m "Addresses issue DCOS-nnn"
     $ git push origin dcos-nnn
@@ -91,19 +91,19 @@ We've implemented the [dcos-docs](https://github.com/dcos/dcos-docs) repo as a [
 
 1. Clone the dcos-website repo.
 
-    ```
+    ```bash
     $ git clone https://github.com/dcos/dcos-website
     ```
 
 1. Check out the develop branch.
 
-    ```
+    ```bash
     $ git checkout develop
     ```
 
 1. Initialize the dcos-docs submodule with the content from the upstream master.
 
-    ```
+    ```bash
     $ git submodule update --init --recursive
     ```
 
@@ -111,26 +111,26 @@ We've implemented the [dcos-docs](https://github.com/dcos/dcos-docs) repo as a [
 
   - Delete the `dcos-website/dcos-dcos` directory and replace it with a symlink to your local dcos-docs repo. 
 
-     ```
+     ```bash
      $ rm -r dcos-docs
      $ ln -s <local-path-to-dcos-docs> dcos-docs
      ```
   - Copy the contents of your local dcos-docs repo into the `/dcos-website/dcos-docs` folder.
 
-     ```
+     ```bash
      $ cp -rf ~/dcos-docs ~/dcos-website/
      ``` 
 
 1. Make sure npm is up-to-date and install dependencies. 
     
-    ```
+    ```bash
     $ sudo npm install npm@latest -g
     $ npm install
     ```
 
 1. Launch the local web server to view your changes.
 
-    ```
+    ```bash
     $ npm start
     ```
     
