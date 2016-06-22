@@ -33,7 +33,7 @@ For those who are more comfortable with the GUI, we have a solution as well! By 
 
 Check out some of the DC/OS UI documentation for more details:
 
-- [DC/OS UI][5]
+- [DC/OS UI](/docs/1.7/usage/webinterface/)
 
 # Compliance
 
