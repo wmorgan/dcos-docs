@@ -24,7 +24,7 @@ $ dcos package repo list
 Universe: https://universe.mesosphere.com/repo
 ```
 
-# <a name="finding-packages"></a>Searching for packages
+## <a name="finding-packages"></a>Searching for packages
 
 The syntax for searching for packages follows.
 
