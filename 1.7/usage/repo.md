@@ -4,7 +4,7 @@ nav_title: Package Repository
 menu_order: 002.5
 ---
 
-DC/OS provides a number of services within its default [Universe]() package repository. By default, the DC/OS CLI is configured to use the DC/OS [Universe](https://github.com/mesosphere/universe), but other package repositories can also be configured.
+DC/OS provides a number of services within its default Universe package repository. By default, the DC/OS CLI is configured to use the DC/OS [Universe](https://github.com/mesosphere/universe), but other package repositories can also be configured.
 
 You can use either the web interface or the CLI to:
 
