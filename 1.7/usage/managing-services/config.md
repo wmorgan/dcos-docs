@@ -1,6 +1,6 @@
 ---
-post_title: Customizing service installation
-nav_title: Customizing
+post_title: Advanced Configuration
+nav_title: Configuring
 menu_order: 001
 ---
 
