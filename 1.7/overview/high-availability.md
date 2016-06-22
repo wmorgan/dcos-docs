@@ -105,6 +105,7 @@ endpoints, which can be used by services like Marathon.
 
 When failures do occur, failover [should be as fast as possible](https://en.wikipedia.org/wiki/Fail-fast). Fast failover
 can be achieved by:
+
  * Using an HA load balancer like
    [marathon-lb](https://github.com/mesosphere/marathon-lb), or
    [Minuteman](https://github.com/dcos/minuteman) for internal layer 4
