@@ -1,5 +1,5 @@
 ---
-post_title: Installing a service
+post_title: Installing Services
 nav_title: Installing
 menu_order: 000
 ---

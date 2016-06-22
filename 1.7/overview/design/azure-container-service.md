@@ -1,6 +1,6 @@
 ---
 post_title: >
-    DC/OS reference implementation: The Azure Container Service
+    Reference implementation: The Azure Container Service
 nav_title: Reference Implementation ACS
 menu_order: 1
 ---

@@ -1,5 +1,5 @@
 ---
-post_title: Log Management in DC/OS with Splunk
+post_title: Log Management with Splunk
 nav_title: Splunk
 menu_order: 3
 ---

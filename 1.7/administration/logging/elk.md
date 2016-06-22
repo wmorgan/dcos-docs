@@ -1,5 +1,5 @@
 ---
-post_title: Log Management in DC/OS with ELK
+post_title: Log Management with ELK
 nav_title: ELK
 menu_order: 1
 ---

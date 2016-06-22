@@ -1,5 +1,5 @@
 ---
-post_title: Service Discovery and Load Balancing in DC/OS
+post_title: Service Discovery
 nav_title: Service Discovery
 menu_order: 3
 ---

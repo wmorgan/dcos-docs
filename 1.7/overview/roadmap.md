@@ -1,5 +1,5 @@
 ---
-post_title: DC/OS Roadmap
+post_title: Roadmap
 nav_title: Roadmap
 menu_order: 9
 ---

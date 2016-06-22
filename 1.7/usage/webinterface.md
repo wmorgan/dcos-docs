@@ -1,5 +1,5 @@
 ---
-post_title: DC/OS Web Graphical User Interface
+post_title: GUI
 nav_title: GUI
 menu_order: 1
 ---

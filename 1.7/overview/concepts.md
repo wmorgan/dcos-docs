@@ -1,5 +1,5 @@
 ---
-post_title: The Concepts of DC/OS
+post_title: Concepts
 nav_title: Concepts
 menu_order: 5
 ---

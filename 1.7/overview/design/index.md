@@ -1,5 +1,5 @@
 ---
-post_title: DC/OS Design
+post_title: Design
 nav_title: Design
 menu_order: 10
 ---

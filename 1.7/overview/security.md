@@ -1,5 +1,5 @@
 ---
-post_title: Security in DC/OS
+post_title: Security
 nav_title: Security
 menu_order: 7
 ---

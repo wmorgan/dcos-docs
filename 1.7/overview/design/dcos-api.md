@@ -1,5 +1,5 @@
 ---
-post_title: DC/OS API Design
+post_title: API Design
 nav_title: API
 menu_order: 2
 ---
