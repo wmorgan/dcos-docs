@@ -1,6 +1,7 @@
 ---
 post_title: How to use NGINX
 nav_title: NGINX
+menu_order: 09
 ---
 
 [NGINX](https://www.nginx.com) is a high-performance HTTP server, reverse proxy, and an IMAP/POP3 proxy server. NGINX is known for its high performance, stability, rich feature set, simple configuration, and low resource consumption. DC/OS allows you to quickly configure, install and manage NGINX.

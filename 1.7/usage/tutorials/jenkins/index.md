@@ -1,6 +1,7 @@
 ---
 post_title: Using Jenkins on DC/OS
 nav_title: Jenkins
+menu_order: 06
 ---
 
 [Jenkins][jenkins-website] is a popular, open source continuous integration

@@ -57,7 +57,7 @@ This parameter specifies the type of storage backend to use for Exhibitor. You c
        **Important:** With `shared_filesystem`, all masters must must have the NFS volume mounted and `exhibitor_fs_config_dir` must be inside of it. If any of your servers are missing the mount, the DC/OS cluster will not start.
 
 ### <a name="master"></a>master_discovery
-This required parameter specifies the Mesos master discovery method. The available options are `static` or `vrrp`.
+This required parameter specifies the Mesos master discovery method. The available options are `static` or `master_http_loadbalancer`.
 
 *  `master_discovery: static`
 This option specifies that Mesos agents are used to discover the masters by giving each agent a static list of master IPs. The masters must not change IP addresses, and if a master is replaced, the new master must take the old master's IP address. If you specify `static`, you must also specify this parameter:
@@ -65,19 +65,12 @@ This option specifies that Mesos agents are used to discover the masters by givi
     *  **master_list**
        This required parameter specifies a list of your static master IP addresses as a YAML nested series (`-`).
 
-*  `master_discovery: vrrp`
-This option specifies that Keepalived with a VIP is used to discover the master. You are required to maintain this VIP infrastructure. If you specify `vrrp`, you must also specify these parameters:
-
-    *  **keepalived_router_id**
-       This parameter specifies the virtual router ID of the Keepalived cluster. You must use the same virtual router ID across your cluster.
-    *  **keepalived_interface**
-       This parameter specifies the interface that Keepalived uses.
-    *  **keepalived_pass**
-       If you've set your `auth_type` to `PASS`, this parameter specifies the password that you set for `auth_pass` in your Keepalived configuration file.
-    *  **keepalived_virtual_ipaddress**
-       This parameter specifies the VIP in use by your Keepalived cluster.
+*  `master_discovery: master_http_loadbalancer`
+This option specifies that the set of masters has an HTTP load balancer in front of them. The agent nodes will know the address of the load balancer. They use the load balancer to access exhibitor on the masters to get the full list of master IPs. If you specify master_http_load_balancer, you must also specify these parameters:
+    * **exhibitor_address**
+      This required parameter specifies an address (preferrably an IP address), where the load balancer in front of the masters can be found. The load balancer must accept traffic on port 8080, port 5050, port 80, and port 443, and forward it to the same port on the master (8080 on lb -> 8080 on one master, 505 on lb -> 5050 on one master). The master to forward any new connection to should be round robin, and should avoid machines that do not respond to requests on port 5050 in order to ensure the box is functioning (mesos master) is up.
     *  **num_masters**
-       This parameter specifies the number of Mesos masters in your DC/OS cluster. If `master_discovery: static`, do not use the `num_masters` parameter.
+       This required parameter specifies the number of Mesos masters in your DC/OS cluster. It cannot be changed later. The number of masters behind the load balancer must never be greater than this number, though it can be fewer during failures.
 
 ## Networking
 ### <a name="dns-search"></a>dns_search
@@ -226,7 +219,7 @@ ssh_user: <username>
 weights: slave_public=1
 ```
 
-#### <a name="zk"></a>DC/OS cluster with 3 masters, an Exhibitor/ZooKeeper backed by ZooKeeper, VRRP master discovery, public agent node, and Google DNS
+#### <a name="zk"></a>DC/OS cluster with 3 masters, an Exhibitor/ZooKeeper backed by ZooKeeper, http load balancer master discovery, public agent node, and Google DNS
 
 ```yaml
 ---
@@ -241,13 +234,10 @@ cluster_name: zk-example
 exhibitor_storage_backend: zookeeper
 exhibitor_zk_hosts: 10.10.10.1:2181
 exhibitor_zk_path: /zk-example
-keepalived_interface: eth1
-keepalived_pass: $MY_STRONG_PASSWORD
-keepalived_router_id: 51
-keepalived_virtual_ipaddress: 67.34.242.55
 log_directory: /genconf/logs
-master_discovery: vrrp
+master_discovery: master_http_loadbalancer
 num_masters: 3
+exhibitor_address: 67.34.242.55
 process_timeout: 120
 resolvers:
 - <dns-resolver-1>

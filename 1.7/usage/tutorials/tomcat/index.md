@@ -1,6 +1,7 @@
 ---
 post_title: Running Tomcat in Docker on DC/OS
 nav_title: Tomcat
+menu_order: 14
 ---
 
 [Apache Tomcat](http://tomcat.apache.org/index.html) provides implementations of Servlet, JSP, EL and WebSocket from the Java EE Web Application Container specification.
