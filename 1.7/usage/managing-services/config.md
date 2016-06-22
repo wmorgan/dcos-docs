@@ -1,76 +1,8 @@
 ---
-post_title: Managing Services
-menu_order: 0
+post_title: Customizing service installation
+nav_title: Customizing
+menu_order: 001
 ---
-
-DC/OS provides a number of services within its default package repository. You can use either the web interface or the CLI to:
-
-* [Manage repositories](#managing-repos)
-* [Find packages](#find-packages)
-* [Customize service installation parameters](#customizing-install)
-* [Install services](#installing)
-* [Monitor installed services](#monitoring)
-* [Add and remove packages from a repository](#add-rm-pks)
-* [Uninstall services](#uninstall)
-
-**Tip:** Before you can use the CLI, you need to [install it](/docs/1.7/usage/cli/install/).
-
-# <a name="managing-repos"></a>Managing repositories
-
-## Listing repositories
-
-By default, the DC/OS CLI is configured to use the Universe, but other package repositories may also be configured.
-
-See which package repositories are currently configured from the DC/OS CLI as follows:
-
-```bash
-$ dcos package repo list
-Universe: https://universe.mesosphere.com/repo
-```
-
-## Adding a repository
-
-The syntax to add a repo using the CLI follows.
-
-```bash
-$ dcos package repo add <repo-name> <repo-URI>
-```
-
-The following command adds a repo named `your-repo` located at `https://yourdomain.com/archive/stuff.zip`.
-
-```bash
-$ dcos package repo add your-repo https://yourdomain.com/archive/stuff.zip
-```
-
-## Removing a repository
-
-The syntax to add a repo using the CLI follows:
-
-```bash
-$ dcos package repo remove <repo-name>
-```
-
-The following command removes a repo named `your-repo`.
-
-```bash
-$ dcos package repo remove your-repo
-```
-
-# <a name="finding-packages"></a>Finding packages
-
-The syntax for searching for packages follows.
-
-```bash
-$ dcos package search [--json <query>]
-```
-
-The following command will locate big data packages.
-
-```bash
-$ dcos package search "big data"
-NAME VERSION FRAMEWORK SOURCE DESCRIPTION
-spark 1.4.0-SNAPSHOT True https://github.com/mesosphere/universe/archive/version-1.x.zip Spark is a fast and general cluster computing system for Big Data
-```
 
 # <a name="customizing-install"></a>Customizing service installation parameters
 
@@ -239,11 +171,11 @@ Services can be uninstalled from either the web interface or the CLI. If the ser
 
 1.  Navigate to the Universe page in the DC/OS UI:
 
-    ![Universe](/docs/latest/usage/services/img/webui-universe-install.png)
+    ![Universe](/docs/1.7/usage/managing-services/img/webui-universe-install.png)
 
 2.  Click on the Installed tab:
 
-    ![Universe](/docs/latest/usage/services/img/webui-universe-installed-packages.png)
+    ![Universe](/docs/1.7/usage/managing-services/img/webui-universe-installed-packages.png)
 
 3.  Hover your cursor over the name of the package you wish to uninstall and you will see a red "Uninstall" link to the right. Click this link to uninstall the package.
 
