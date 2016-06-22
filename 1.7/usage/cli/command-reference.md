@@ -321,7 +321,7 @@ menu_order: 5
 
 By default, `dcos node ssh` connects to the private IP of the node, which is only accessible from hosts within the same network, so you must use the `--master-proxy` option to access your cluster from an outside network. For example, in the default AWS configuration, the private agents are unreachable from the public internet, but you can SSH to them using this option, which will proxy the SSH connection through the publicly reachable master.
 
-## dcos package
+## <a name="cli-dcos-package"></a>dcos package
 
     Description:
         Install and manage software packages from the a DC/OS package repository.

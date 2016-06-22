@@ -1,12 +1,16 @@
 ---
 post_title: Uninstalling Services
 nav_title: Uninstalling
-menu_order: 30
+menu_order: 004
 ---
 
-You can uninstall a DC/OS service from the DC/OS web interface or from the DC/OS CLI.  
+## About uninstalling services
 
-## Uninstall a service with the CLI
+Services can be uninstalled from either the web interface or the CLI. If the service has any reserved resources, you also need to run the framework cleaner script. The framework cleaner script removes the service instance from ZooKeeper, along with any data associated with it.  
+
+## Uninstalling a service
+
+### Uninstalling a service using the CLI
 
 1.  Uninstall a datacenter service with this command:
 
@@ -20,24 +24,27 @@ You can uninstall a DC/OS service from the DC/OS web interface or from the DC/OS
     $ dcos package uninstall chronos
     ```
 
-## Uninstall a service with the web UI
+### Uninstalling a service using the web UI
 
 1.  Navigate to the Universe page in the DC/OS UI:
 
-    ![Universe](../img/webui-universe-install.png)
+    ![Universe](/docs/latest/usage/managing-services/img/webui-universe-install.png)
 
 2.  Click on the Installed tab:
 
-    ![Universe](../img/webui-universe-installed-packages.png)
+    ![Universe](/docs/latest/usage/managing-services/img/webui-universe-installed-packages.png)
 
 3.  Hover your cursor over the name of the package you wish to uninstall and you will see a red "Uninstall" link to the right. Click this link to uninstall the package.
 
-# <a name="framework-cleaner"></a>The Framework Cleaner Script
+## <a name="framework-cleaner"></a>Cleaning up ZooKeeper
+
+### About cleaning up ZooKeeper
+
 If your service has reserved resources, you can use the framework cleaner docker image, `mesosphere/janitor`, to simplify the process of removing your service instance from ZooKeeper and destroying all the data associated with it.
 
 There are two ways to run the framework cleaner script. The preferred method is via the DC/OS CLI. If the CLI is unavailable, you can also run the image as a self-deleting Marathon task.
 
-## Configuration
+### Configuring the cleanup
 
 The script takes the following flags:
 
@@ -53,11 +60,8 @@ These are some examples of default configurations (these will vary depending on 
 * Kafka:
     * Default: `-r kafka-role -p kafka-principal -z kafka`
     * Custom name: `-r <name>-role -p <name>-principal -z <name>`
-* HDFS:
-    * Default: `-r hdfs-role -p hdfs-principal -z hdfs-mesos`
-    * Custom name: `-r <name>-role -p <name>-principal -z <name>`
 
-## Run from the DC/OS CLI
+### Running from the DC/OS CLI
 
 Connect to the leader and start the script:
 
@@ -69,7 +73,7 @@ Connect to the leader and start the script:
 
         leader$ docker run mesosphere/janitor /janitor.py -r sample-role -p sample-principal -z sample-zk
 
-## Run from Marathon
+### Running from Marathon
 
 From the Marathon web interface, use the JSON editor to add the following as a Marathon task. Replace the values passed to `-r`/`-p`/`-z` according to what needs to be cleaned up.
 
@@ -91,7 +95,7 @@ From the Marathon web interface, use the JSON editor to add the following as a M
     
 When the framework cleaner has completed its work, it will automatically remove itself from Marathon to ensure that it's only run once. This removal will often result in a `TASK_KILLED` or even a `TASK_FAILED` outcome for the janitor task, even if it finished successfully. The janitor task will also quickly disappear from both the Marathon web interface and the Dashboard.
 
-## Verify the Outcome
+### Verifying the outcome
 
 To view the script's outcome, go to Mesos (http://your-cluster.com/mesos) and look at the task's `stdout` content. If `stdout` lacks content, run the following command manually:
 
@@ -105,7 +109,7 @@ To view the script's outcome, go to Mesos (http://your-cluster.com/mesos) and lo
     
     agent-node$ docker logs 828ee17b5fd3
     
-## Sample Result
+### Sample result
 
 Here's an example of the output for a successful run for a Cassandra installation:
 

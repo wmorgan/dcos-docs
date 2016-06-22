@@ -1,7 +1,6 @@
 ---
 post_title: How to use Apache Cassandra
 nav_title: Cassandra
-menu_order: 03
 ---
 
 [Apache Cassandra](https://cassandra.apache.org/) is a decentralized structured distributed storage system. Cassandra clusters are highly available, scalable, performant, and fault tolerant. DC/OS Cassandra allows you to quickly configure, install, and manage Apache Cassandra. Multiple Cassandra clusters can also be installed on DC/OS and managed independently, so you can offer Cassandra as a managed service to your organization.
@@ -202,7 +201,7 @@ cqlsh> SELECT * FROM demo.map;
 $ dcos package uninstall cassandra
 ```
 
-Use the [framework cleaner](https://docs.mesosphere.com/1.7/usage/services/uninstall/#framework-cleaner) script to remove your Cassandra instance from Zookeeper and to destroy all data associated with it. The script requires several arguments, the values for which are derived from your service name:
+Use the [framework cleaner](/docs/1.7/usage/managing-services/uninstall/#framework-cleaner) script to remove your Cassandra instance from Zookeeper and to destroy all data associated with it. The script requires several arguments, the values for which are derived from your service name:
 
 `framework-role` is `cassandra_role`
 `framework-principal` is `cassandra_principal`

@@ -1,7 +1,6 @@
 ---
 post_title: How to use Apache Kafka on DC/OS
 nav_title: Kafka
-menu_order: 07
 ---
 
 [Apache Kafka](https://kafka.apache.org/) is a distributed high-throughput publish-subscribe messaging system with strong ordering guarantees. Kafka clusters are highly available, fault tolerant, and very durable. DC/OS Kafka gives you direct access to the Kafka API so that existing producers and consumers can interoperate. You can configure and install DC/OS Kafka in moments. Multiple Kafka clusters can be installed on DC/OS and managed independently, so you can offer Kafka as a managed service to your organization.
@@ -152,7 +151,7 @@ another CTRL-D).
 $ dcos package uninstall --app-id=kafka kafka
 ```
 
-Then, use the [framework cleaner](https://docs.mesosphere.com/1.7/usage/services/uninstall/#framework-cleaner) script to remove your Kafka instance from Zookeeper and to destroy all data associated with it. The script requires several arguments, the values for which are derived from your service name:
+Then, use the [framework cleaner](/docs/1.7/usage/managing-services/uninstall/#framework-cleaner) script to remove your Kafka instance from Zookeeper and to destroy all data associated with it. The script requires several arguments, the values for which are derived from your service name:
 
 `framework-role` is `kafka-role`
 `framework-principal` is `kafka-principal`
