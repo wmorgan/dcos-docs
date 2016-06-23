@@ -1,5 +1,5 @@
 ---
-post_title: Service Discovery
+post_title: Service Discovery and Load Balancing
 nav_title: Service Discovery
 menu_order: 3
 ---
