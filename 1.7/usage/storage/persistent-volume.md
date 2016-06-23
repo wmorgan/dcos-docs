@@ -1,9 +1,9 @@
 ---
-post_title: Persistent Volumes
+post_title: Local Persistent Volumes
 menu_order: 10
 ---
 
-**Note:** Persistent volume functionality is considered experimental: use this feature at your own risk. We might add, change, or delete any functionality described in this document.
+**Note:** Local persistent volume functionality is considered experimental: use this feature at your own risk. We might add, change, or delete any functionality described in this document.
 
 When you specify a local volume or volumes, tasks and their associated data are "pinned" to the node they are first launched on and will be relaunched on that node if they terminate. The resources the application requires are also reserved. Marathon will implicitly reserve an appropriate amount of disk space (as declared in the volume via `persistent.size`) in addition to the sandbox `disk` size you specify as part of your application definition.
 
@@ -34,16 +34,46 @@ Configure a persistent volume with the following options:
 }
 ```
 
-- `containerPath`: The path where your application will read and write data. This must be a single-level path relative to the container; it cannot contain a forward slash (`/`). (`"data"`, but not `"/data"`, `"/var/data"` or `"var/data"`).
+- `containerPath`: The path where your application will read and write data. This must be a single-level path relative to the container; it cannot contain a forward slash (`/`). (`"data"`, but not `"/data"`, `"/var/data"` or `"var/data"`). If your application requires absolute nested paths, [use this configuration](#nested-paths).
 - `mode`: The access mode of the volume. Currently, `"RW"` is the only possible value and will let your application read from and write to the volume.
 - `persistent.size`: The size of the persistent volume in MiBs.
 
 You also need to set the `residency` node in order to tell Marathon to setup a stateful application. Currently, the only valid option for this is:
-```
+
+```json
 "residency": {
   "taskLostBehavior": "WAIT_FOREVER"
 }
 ```
+
+<a name="nested-paths"></a>
+### Specifing an absolute nested container path
+
+The value of `containerPath` must be relative to allow you to dynamically add a local persistent volume to a running container and to ensure consistency across operating systems. However, your application may require an absolute or absolute nested container path.
+
+If your application does require an absolute or absolute nested `containerPath`, configure two volumes. The first volume has the absolute container path you need and does not have the `persistent` parameter. The `hostPath` parameter will match the relative `containerPath` value for the second volume.
+
+```json
+{
+  "containerPath": "/var/lib/data",
+  "hostPath": "mydata",
+  "mode": "RW"
+}
+```
+
+The second volume is a persistent volume with a `containerPath` that matches the `hostPath` of the first volume.
+
+```json
+{
+  "containerPath": "data",
+  "mode": "RW",
+  "persistent": {
+    "size": 1000
+  }
+}
+```
+
+For a complete example, see the [Running stateful MySQL on Marathon](#stateful-sql) section.
 
 # Scaling stateful applications
 
@@ -51,7 +81,7 @@ When you scale your app down, the volumes associated with the terminated instanc
 
 Since all the resources your application needs are still reserved when a volume is detached, you may wish to destroy detached volumes in order to allow other applications and frameworks to use the resources. You may wish to leave them in the detached state, however, if you think you will be scaling your app up again; the data on the volume will still be there.
 
-**Note:** If your app is deleted, any associated volumes and reserved resources will also be deleted.
+**Note:** If your app is destroyed, any associated volumes and reserved resources will also be deleted.
 **Note:** Mesos will currently not remove the data but might do so in the future.
 
 # Upgrading/restarting stateful applications
@@ -68,7 +98,7 @@ In contrast to static reservations, dynamic reservations are created at runtime 
 
 Mesos creates persistent volumes to hold your application's stateful data. Because persistent volumes are local to an agent, the stateful task using this data will be pinned to the agent it was initially launched on, and will be relaunched on this node whenever needed. You do not need to specify any constraints for this to work: when Marathon needs to launch a task, it will accept a matching Mesos offer, dynamically reserve the resources required for the task, create persistent volumes, and make sure the task is always restarted using these reserved resources so that it can access the existing data.
 
-Once a task that used persistent volumes has terminated, its metadata will be kept. This metadata will be used to launch a replacement task when needed.
+When a task that used persistent volumes has terminated, its metadata will be kept. This metadata will be used to launch a replacement task when needed.
 
 For example, if you scale down from 5 to 3 instances, you will see 2 tasks in the `Waiting` state along with the information about the persistent volumes the tasks were using as well as about the agents on which they are placed. Marathon will not unreserve those resources and will not destroy the volumes. When you scale up again, Marathon will attempt to launch tasks that use those existing reservations and volumes as soon as it gets a Mesos offer containing the labeled resources. Marathon will only schedule unreserve/destroy operations when:
 
@@ -113,7 +143,7 @@ The temporary Mesos sandbox is still the target for the `stdout` and `stderr` lo
 1. Create a new Marathon application via the web interface.
 1. Click the Volumes tab.
 1. Choose the size of the volume or volumes you will use. Be sure that you choose a volume size that will fit the needs of your application; you will not be able to modify this size after you launch your application.
-1. Specify the container path, from which your application will read and write data. The container path must be non-nested and cannot contain slashes e.g. `data`, but not  `../../../etc/opt` or `/user/data/`.
+1. Specify the container path from which your application will read and write data. The container path must be non-nested and cannot contain slashes e.g. `data`, but not  `../../../etc/opt` or `/user/data/`. If your application requires such a container path, [use this configuration](#nested-paths).
 1. Click Create.
 
 ## Running stateful PostgreSQL on Marathon
@@ -164,6 +194,7 @@ A model app definition for PostgreSQL on Marathon would look like this. Note tha
 }
 ```
 
+<a name="stateful-sql"></a>
 ## Running stateful MySQL on Marathon
 
 The default MySQL docker image does not allow you to change the data folder. Since we cannot define a persistent volume with an absolute nested `containerPath` like `/var/lib/mysql`, we need to configure a workaround to set up a docker mount from hostPath `mysqldata` (relative to the Mesos sandbox) to `/var/lib/mysql` (the path that MySQL attempts to read/write):
@@ -176,7 +207,7 @@ The default MySQL docker image does not allow you to change the data folder. Sin
 }
 ```
 
-In addition to that, we configure a persistent volume with a containerPath `mysql`, which will mount the local persistent volume as `mysql` into the docker container:
+In addition to that, we configure a persistent volume with a containerPath `mysqldata`, which will mount the local persistent volume as `mysqldata` into the docker container:
 
 ```json
 {
