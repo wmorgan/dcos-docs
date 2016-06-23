@@ -1,5 +1,5 @@
 ---
-post_title: High Availability in DC/OS
+post_title: High Availability
 nav_title: High Availability
 menu_order: 6
 ---

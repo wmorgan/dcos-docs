@@ -1,5 +1,5 @@
 ---
-post_title: The Architecture of DC/OS
+post_title: Architecture
 nav_title: Architecture
 menu_order: 2
 ---

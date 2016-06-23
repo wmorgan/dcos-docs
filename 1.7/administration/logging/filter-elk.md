@@ -1,5 +1,5 @@
 ---
-post_title: Filtering DC/OS Task Logs with ELK
+post_title: Filtering Logs with ELK
 nav_title: Filtering ELK
 menu_order: 2
 ---

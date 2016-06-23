@@ -1,5 +1,5 @@
 ---
-post_title: Monitoring installed services
+post_title: Monitoring Services
 nav_title: Monitoring
 menu_order: 003
 ---

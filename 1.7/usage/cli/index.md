@@ -1,5 +1,5 @@
 ---
-post_title: DC/OS Command Line Interface
+post_title: CLI
 nav_title: CLI
 menu_order: 2
 ---
