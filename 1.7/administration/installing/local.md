@@ -19,7 +19,7 @@ For example, to download the latest Early Access release:
 DC/OS Vagrant installation and usage instructions are maintained in the dcos-vagrant GitHub repository.
 
 - For the latest bug fixes, use the [master branch](https://github.com/dcos/dcos-vagrant/).
-- For increased stability, use the [latest official release]((https://github.com/dcos/dcos-vagrant/releases/latest/)).
+- For increased stability, use the [latest official release](https://github.com/dcos/dcos-vagrant/releases/latest/).
 - For older releases on DC/OS, you may need to download an [older release of DC/OS Vagrant](https://github.com/dcos/dcos-vagrant/releases/).
 
 Follow the the deploy instructions to set up your host machine correctly and to install DC/OS.
