@@ -26,13 +26,9 @@ Services can be uninstalled from either the web interface or the CLI. If the ser
 
 ### Uninstalling a service using the web UI
 
-1.  Navigate to the Universe page in the DC/OS UI:
+1.  Navigate to the **Universe** page in the DC/OS [UI](/docs/1.7/usage/webinterface/#universe).
 
-    ![Universe](/docs/latest/usage/managing-services/img/webui-universe-install.png)
-
-2.  Click on the Installed tab:
-
-    ![Universe](/docs/latest/usage/managing-services/img/webui-universe-installed-packages.png)
+2.  Click on the **Installed** tab to see your installed services.
 
 3.  Hover your cursor over the name of the package you wish to uninstall and you will see a red "Uninstall" link to the right. Click this link to uninstall the package.
 
