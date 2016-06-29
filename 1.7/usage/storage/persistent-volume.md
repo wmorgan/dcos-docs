@@ -34,7 +34,7 @@ Configure a persistent volume with the following options:
 }
 ```
 
-- `containerPath`: The path where your application will read and write data. This must be a single-level path relative to the container; it cannot contain a forward slash (`/`). (`"data"`, but not `"/data"`, `"/var/data"` or `"var/data"`). If your application requires absolute nested paths, [use this configuration](#nested-paths).
+- `containerPath`: The path where your application will read and write data. This must be a single-level path relative to the container; it cannot contain a forward slash (`/`). (`"data"`, but not `"/data"`, `"/var/data"` or `"var/data"`). If your application requires an absolute path, or a relative path with slashes, [use this configuration](#abs-paths).
 - `mode`: The access mode of the volume. Currently, `"RW"` is the only possible value and will let your application read from and write to the volume.
 - `persistent.size`: The size of the persistent volume in MiBs.
 
@@ -46,12 +46,12 @@ You also need to set the `residency` node in order to tell Marathon to setup a s
 }
 ```
 
-<a name="nested-paths"></a>
-### Specifing an absolute nested container path
+<a name="abs-paths"></a>
+### Specifing an unsupported container path
 
-The value of `containerPath` must be relative to allow you to dynamically add a local persistent volume to a running container and to ensure consistency across operating systems. However, your application may require an absolute or absolute nested container path.
+The value of `containerPath` must be relative to allow you to dynamically add a local persistent volume to a running container and to ensure consistency across operating systems. However, your application may require an absolute or container path, or a relative one with slashes.
 
-If your application does require an absolute or absolute nested `containerPath`, configure two volumes. The first volume has the absolute container path you need and does not have the `persistent` parameter. The `hostPath` parameter will match the relative `containerPath` value for the second volume.
+If your application does require an unsupported `containerPath`, configure two volumes. The first volume has the absolute container path you need and does not have the `persistent` parameter. The `hostPath` parameter will match the relative `containerPath` value for the second volume.
 
 ```json
 {
