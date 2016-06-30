@@ -1,7 +1,6 @@
 ---
 post_title: Advanced Features
-post_excerpt: ""
-layout: docs.jade
+menu_order: 20
 ---
 ## HAProxy configuration
 
