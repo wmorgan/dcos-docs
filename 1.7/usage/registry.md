@@ -174,3 +174,7 @@ Now that the registry is deployed you can push an image and deploy a new Maratho
 1. Add a new tag to the image allowing us to push it to our private registry: `sudo docker tag flakio/httpenv:1 192.168.0.1/httpenv:1`
 1. Push the image to the registry we just deployed: `sudo docker push 192.168.0.1/httpenv:1`
 1. Create a new Marathon app with the image from the private registry, using `192.168.0.1/httpenv:1` for the `"image"` field.
+
+## More information
+
+Find out how to [use a private Docker registry](https://mesosphere.github.io/marathon/docs/native-docker-private-registry.html) with Marathon. 
