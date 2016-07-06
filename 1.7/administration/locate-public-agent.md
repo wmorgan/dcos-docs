@@ -13,8 +13,6 @@ After you have installed DC/OS with a public agent node declared, you can naviga
 
 You can find your public agent IP by running this command from the DC/OS CLI. This command SSHs to your cluster to obtain cluster information and then pings [ifconfig.co](https://ifconfig.co/) to determine your public IP address. 
 
-**Tip:** Due to a known issue, you might have to make an initial [SSH connection to your public agent](/administration/sshcluster/) node before running this command. 
-
 ```
 $ for id in $(dcos node --json | jq --raw-output '.[] | select(.reserved_resources.slave_public != null) | .id'); do dcos node ssh --master-proxy --mesos-id=$id "curl -s ifconfig.co" ; done 2>/dev/null
 ```
