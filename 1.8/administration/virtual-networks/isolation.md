@@ -9,11 +9,11 @@ menu_order: 20
 
 DC/OS uses [iptables](http://linux.die.net/man/8/iptables), a fairly high speed, built-in mechanism for filtering traffic in Linux systems, to set up virtual network isolation. We recommend configuring filtering by deploying a homogenous set of rules to all nodes in your infrastructure. In order to simplify this, we also recommend using the [ipset](http://ipset.netfilter.org/ipset.man.html) feature of iptables. 
 
-Set up your own chain that bumps over from the `FORWARD` chain. You can do this by running the following command: <!-- what does this mean? -->
+Set up your own chain that bumps over from the `FORWARD` chain. You can do this by running the following command:
 
     $ iptables -N dcos-isolation
 
-We want to set up a default deny or a default accept policy between filtered overlays. To set up default deny, run the following: <!-- why do we want to do this? -->
+We want to set up a default deny or a default accept policy between filtered overlays. To set up default deny, run the following:
 
     $ iptables -A dcos-isolation -j REJECT
 
@@ -23,7 +23,7 @@ To set up default accept, run the following:
 
 We recommend using the `REJECT` directive as opposed to the `DROP` directive as it makes troubleshooting easier. The default is to allow all.
 
-Use ipset to get onto that chain. <!-- what do we mean by "get onto that chain? --> Create a `hash:net` type ipset named `overlays` that has all of the overlay networks that you want to restrict traffic from, or to. Then insert the rule:
+Use ipset to get onto that chain. Create a `hash:net` type ipset named `overlays` that has all of the overlay networks that you want to restrict traffic from, or to. Then insert the rule:
 
     $ iptables -I FORWARD -m set --match-set overlays src -m set --match-set overlays dst -j dcos-isolation
 
@@ -31,7 +31,7 @@ This rule says that if a given packet is from any of the overlays and is destine
 
     $ iptables -I FORWARD -m set --match-set overlays src -m set --match-set overlays dst -m set ! --match-set src,dst overlay-exceptions -j dcos-isolation
 
-The actual iptables rules that live on the `dcos-isolation` chain are just simple rules, and we recommend that you again use ipsets of type `hash:net` and refer to `src` sets and `dest` sets. The purpose of this is primarily organization. <!-- I don't think I understand this sentence -->
+The actual iptables rules that live on the `dcos-isolation` chain are just simple rules, and we recommend that you again use ipsets of type `hash:net` and refer to `src` sets and `dest` sets. The purpose of this is primarily organization.
 
 **Note:** In future versions of DC/OS we may provide support to automatically create the overlay ipsets for you. These would be under well-known names based on the set of overlays the user is running. For this reason, we strongly recommend not creating any ipsets that begin with `dcos-` or `mesos-`. 
 
