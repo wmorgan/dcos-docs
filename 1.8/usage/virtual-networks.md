@@ -16,8 +16,6 @@ First, you or the data center operator need to [configure the virtual networks](
 
 Virtual networks are configured at install time. You or the data center operator will specify a canonical name for each network in the `config.yaml`. When your service needs to launch a container, refer to it by that canonical name.
 
-<!-- I'd like to have rather more to say about what's going on in this code snip. And this is a marathon app definition I imagine? -->
-
 # Example
 
 ```json
