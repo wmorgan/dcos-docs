@@ -4,14 +4,14 @@ nav_title: Oracle
 menu_order: 4
 ---
 
-This document explains how to install DC/OS on Oracle Cloud Compute.
+You can install DC/OS on Oracle Cloud Compute.
 
 # Prerequisites
 
-- You must be an Oracle Compute Cloud Service user with the Compute_Operations role. See [Managing User Roles](http://www.oracle.com/pls/topic/lookup?ctx=cloud&id=MMOCS-GUID-7E6B287F-E296-4B9B-A50A-575D66D3FA7B) in Managing and Monitoring Oracle Cloud
-- You must be able to log in to the web console of Oracle Compute Cloud Service. See [Accessing Oracle Compute Cloud Service Using the Web Console](http://www.oracle.com/pls/topic/lookup?ctx=stcomputecs&id=STCSG-GUID-D5D584FE-BE32-443D-9CB8-067AF73A15A6) in Using Oracle Compute Cloud Service.
-- The CentOS Linux 7 image (tar.gz file) that you want to use must be available on the host from which you'll access the web console of Oracle Compute Cloud Service.
-- Refer to the [REST API for Oracle Compute Cloud Service (IaaS)](https://docs.oracle.com/cloud/latest/stcomputecs/STCSA/SendRequests.html) to obtain your REST endpoint. 
+- You must be an Oracle Compute Cloud Service user with the `service-instance-name.Compute_Operations` role. For more information, see the Oracle Compute Cloud Service Roles [documentation](https://docs.oracle.com/cloud/latest/computecs_common/OCSUG/GUID-F89D66BD-85F5-4325-8A1F-F8EEE53A7CF1.htm).
+- You must be able to log in to the web console of Oracle Compute Cloud Service. For more information, see the Accessing Oracle Compute Cloud Service Using the Web Console [documentation](http://www.oracle.com/pls/topic/lookup?ctx=stcomputecs&id=STCSG-GUID-D5D584FE-BE32-443D-9CB8-067AF73A15A6).
+- The CentOS Linux 7 image (`tar.gz` file) that you are using must be available on the host that you are using to access the Oracle Compute Cloud Service web console.
+- To obtain your REST endpoint, refer to the [REST API for Oracle Compute Cloud Service (IaaS)](https://docs.oracle.com/cloud/latest/stcomputecs/STCSA/SendRequests.html). 
 
 # System requirements
 
@@ -23,43 +23,51 @@ This document explains how to install DC/OS on Oracle Cloud Compute.
 ## Software
 
 - Identify the REST endpoint.
-- Either SSH installed, if you are using a Linux machine or PuTTY and PuTTYGen, if you are using a Windows machine to access Oracle Compute Cloud Services.
+- **Linux**: SSH installed. 
+- **Windows**: PuTTY and PuTTYGen.
 - An SCP tool, for example, WinSCP.
-- [CentOS Linux 7](http://cloud.centos.org/centos/7/images) Oracle Cloud Image
+- [CentOS Linux 7](http://cloud.centos.org/centos/7/images) Oracle Cloud Image. This tutorial is based on CentOS 7 Linux and before you begin you will need to download the image from CentOS website and upload it to Oracle Compute Cloud Service. Look for Oracle Cloud images at [http://cloud.centos.org/centos/7/images](http://cloud.centos.org/centos/7/images) and download locally. For example `CentOS-7-x86_64-OracleCloud.raw.tar.gz`. 
+
+   - You must have the required role to upload images to Oracle Storage Cloud Service. If this is the first machine image being uploaded to Oracle Storage Cloud Service, then you must have the `Storage Administrator` role. If one or more machine images have previously been uploaded to Oracle Storage Cloud Service, then any user with the `Storage_ReadWriteGroup` role can upload images. 
+   - Also, a replication policy must have been set for your Oracle Storage Cloud Service account and if a replication policy is already set, the `Set Replication Policy` link in `My Services` would be disabled. 
 
 # Prepare the environment
 
-1. **Generate a SSH key pair** by following [this tutorial](http://www.oracle.com/pls/topic/lookup?ctx=stcomputecs&id=OCSUG149) and note to **not use** a passphrase while generating the key pair since DC/OS doesn’t support encrypted SSH keys in this release.
+1. **Generate a SSH key pair** by following [this tutorial](http://www.oracle.com/pls/topic/lookup?ctx=stcomputecs&id=OCSUG149). **Do not** use a passphrase while generating the key pair because DC/OS doesn’t support encrypted SSH keys in this release.
 
-2. **Upload the SSH Key to Oracle Compute**: [Sign in](https://cloud.oracle.com/sign_in) to the Oracle Cloud My Services application, go to the `Network` tab and select `SSH Public Keys` from the left-hand menu. Now click `Add SSH Public Key`. In the dialog box, enter a name and the value of the SSH public key you generated, and then click `Add`. Note: Paste the key value exactly as it was generated. Don't append or insert any extra characters, line breaks, or spaces. Now your SSH public key is added to Oracle Compute Cloud Service:
+2. **Upload the SSH Key to Oracle Compute**: [Sign in](https://cloud.oracle.com/sign_in) to the Oracle Cloud My Services application, go to the `Network` tab and select `SSH Public Keys` from the left-hand menu. Now click `Add SSH Public Key`. 
+
+   In the dialog box, enter a name and the value of the SSH public key that you generated, and then click `Add`. Note: Paste the key value exactly as it was generated. Don't append or insert any extra characters, line breaks, or spaces. Now your SSH public key is added to Oracle Compute Cloud Service:
 
 ![SSH public key added to Oracle Compute Cloud Service](../img/occ00.png)
 
-3. **Upload a CentOS7 image**: This tutorial is based on CentOS 7 Linux and before you begin you will need to download the image from CentOS website and upload it to Oracle Compute Cloud Service. At http://cloud.centos.org/centos/7/images look for Oracle Cloud images, for example `CentOS-7-x86_64-OracleCloud.raw.tar.gz` and download it locally. Note: **you must have the required role to upload images to Oracle Storage Cloud Service**. If this is the first machine image being uploaded to Oracle Storage Cloud Service, then you must have the `Storage Administrator` role. If one or more machine images have previously been uploaded to Oracle Storage Cloud Service, then any user with the `Storage_ReadWriteGroup` role can upload images. Also, a replication policy must have been set for your Oracle Storage Cloud Service account and if a replication policy is already set, the `Set Replication Policy` link in `My Services` would be disabled. Now you can [upload the image to Oracle Compute Cloud Service](http://www.oracle.com/pls/topic/lookup?ctx=stcomputecs&id=STCSG-GUID-799D6F6D-BDED-4DDE-9B3D-BE23BE5F687F) you downloaded earlier. Note: while uploading the image file, take care to **specify a unique name** for the target object, to differentiate the image that you're uploading from other images in Oracle Storage Cloud Service. Finally, register the image by following the instructions in [Registering a Machine Image in Oracle Compute Cloud Service](www.oracle.com/pls/topic/lookup?ctx=stcomputecs&id=STCSG-GUID-B41A8B96-7A71-42D6-8C6B-C6DB9D321F77). 
+3. Upload a CentOS7 image to the [Oracle Compute Cloud Service](http://www.oracle.com/pls/topic/lookup?ctx=stcomputecs&id=STCSG-GUID-799D6F6D-BDED-4DDE-9B3D-BE23BE5F687F). Note: while uploading the image file, you must specify a **unique name** for the target object, to differentiate the image that you're uploading from other images in Oracle Storage Cloud Service. 
+
+4. Register the image by following the instructions in [Registering a Machine Image in Oracle Compute Cloud Service](www.oracle.com/pls/topic/lookup?ctx=stcomputecs&id=STCSG-GUID-B41A8B96-7A71-42D6-8C6B-C6DB9D321F77). 
 
 # Spin up the bootstrap instance
 
-1. Sign in to the Oracle Cloud My Services application at https://myservices.us.oraclecloud.com/mycloud/faces/dashboard.jsp and click on `Oracle Compute Cloud Service` and then on `Open Service Console`. You will be shown the instance overview page.
+1. Sign in to the Oracle Cloud My Services application at [https://myservices.us.oraclecloud.com/mycloud/faces/dashboard.jsp](https://myservices.us.oraclecloud.com/mycloud/faces/dashboard.jsp) and click on `Oracle Compute Cloud Service` -> `Open Service Console`. You will be shown the instance overview page.
 
 ![Oracle Compute Cloud Service - Instances](../img/occ01.png)
 
-2. Click on `Create Instance`
+2. Click on `Create Instance`.
 
-3. Got to the `Private Images` tab and select the CentOS7 image you have registered and click `>`
+3. Got to the `Private Images` tab and select the CentOS7 image you have registered and click `>`.
 
-4. Select shape `oc3` and click `>`:
+4. Select shape `oc3` and click `>`.
 
 ![Oracle Compute Cloud Service - oc3](../img/occ02.png)
 
-5. In the next screen provide the instance an appropriate label and name. Add `default` as security list. Select the pre-uploaded SSH keys and click `>`
+5. In the next screen provide the instance an appropriate label and name. Add `default` as security list. Select the pre-uploaded SSH keys and click `>`.
 
-6. In the next `Volumes` screen leave the default values as it is and click `>`:
+6. In the next `Volumes` screen leave the default values as it is and click `>`.
 
 ![Oracle Compute Cloud Service - volumes](../img/occ03.png)
 
-7. Review your settings and click on `Create`
+7. Review your settings and click on `Create`.
 
-8. Now you should be able to see the instance spinning up:
+8. Now you should be able to see the instance spinning up.
 
 ![Oracle Compute Cloud Service - instance spinning up](../img/occ04.png)
 
@@ -67,7 +75,7 @@ This document explains how to install DC/OS on Oracle Cloud Compute.
 
 # Start Oracle Compute orchestration
 
-In the following we assume you've spun up the bootstrap instance as described in the previous step and that you're logged into it.
+These steps assume that you've spun up the bootstrap instance and that you are logged into it.
 
 1. Download and execute the generator script: 
 
@@ -127,9 +135,9 @@ Image used : /Compute-usoracle08981/ajay.seetharam@oracle.com/CentOS7
  Continue? [y/n]:y
 ```
 
-3. The script will generate the orchestration files and upload them to Oracle Compute as will as kick off the orchestration process.
+3. The script generates the orchestration files, uploads them to Oracle Compute, and starts the orchestration process.
 
-4. Finally, login into https://computeui.us.oraclecloud.com/mycompute/faces/instances.jspx and confirm that all instances have started.
+4. Finally, login into [https://computeui.us.oraclecloud.com/mycompute/faces/instances.jspx](https://computeui.us.oraclecloud.com/mycompute/faces/instances.jspx) and confirm that all instances have started.
 
 # Install DC/OS
 
@@ -173,7 +181,7 @@ ExecStart=/usr/bin/docker daemon --storage-driver=overlay -H fd://
 EOF
 ```
 
-6. Install and launch Docker engine:
+6. Install and launch the Docker engine:
 
 ```bash
 $ sudo yum install --assumeyes --tolerant docker-engine unzip ipset
@@ -294,7 +302,7 @@ $ ./install_public_slave.sh
 
 ## Access the DC/OS Dashboard
 
-If all goes well you can now access the DC/OS Dashboard at `http://<public-ip-of-a-master-node>`: 
+If all goes well you can now access the [DC/OS Dashboard](/docs/1.7/usage/webinterface/) at `http://<public-ip-of-a-master-node>`: 
 
 ![DC/OS Dashboard](../img/occ05.png)
 
