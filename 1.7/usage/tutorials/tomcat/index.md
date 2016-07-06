@@ -102,7 +102,10 @@ In this example the public IP address is `52.39.29.79`:
 ```
 $ dcos node ssh --option StrictHostKeyChecking=no --master-proxy --mesos-id=$(dcos task --json | jq --raw-output '.[] | select(.name == "tomcat") | .slave_id') "curl -s ifconfig.co" 2>/dev/null
 52.39.29.79
+Connection to 10.0.6.5 closed.
 ```
+
+By default this command closes the SSH connection.
 
 ![Apache Tomcat Install Success](img/tomcat-screenshot.png)
 
