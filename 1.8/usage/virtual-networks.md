@@ -18,6 +18,8 @@ Virtual networks are configured at install time. You or the data center operator
 
 # Example
 
+The following Marathon application definition specifies a virtual network named `dcos-1`.
+
 ```json
 {  
    "id":"my-networking",
