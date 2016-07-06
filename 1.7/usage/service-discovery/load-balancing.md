@@ -15,10 +15,10 @@ When you launch a set of tasks when these labels, we distribute them to all of t
 ### Recommendations
 
 #### Caveats
-1. You mustn't firewall traffic between the nodes
-2. You mustn't change ip_local_port_range
+1. Do not firewall traffic between the nodes
+2. Do not change `ip_local_port_range`
 3. You must have the `ipset` package installed
-4. You must run a stock kernel from RHEL 7.2+, or Ubuntu 14.04+ LTS
+4. You must use a supported [operating system](/docs/1.7/administration/installing/custom/system-requirements/).
 
 #### Persistent Connections
 It is recommended when you use our VIPs you keep long-running, persistent connections. The reason behind this is that you can very quickly fill up the TCP socket table if you do not. The default local port range on Linux allows source connections from 32768 to 61000. This allows 28232 connections to be established between a given source IP and a destination address, port pair. TCP connections must go through the time wait state prior to being reclaimed. The Linux kernel's default TCP time wait period is 120 seconds. Given this, you would exhaust the connection table by only making 235 new connections / sec.
@@ -123,7 +123,7 @@ The primary way the algorithm works is that it iterates over the backends and fi
 The probabilistic failure detector randomly chooses backends and checks whether or not the group failure detector considers the agent to be alive. It will continue to do this until it either finds 2 backends that are in the ideal bucket, or until 20 lookups happen. If the prior case happens, it'll choose one at random. If the latter case happens it'll choose one of the 20 at random.
 
 ### Failure detection
-The load balancer includes a state of the art failure detection scheme. This failure detection scheme takes some of the work done in the [Hyparview](http://asc.di.fct.unl.pt/~jleitao/pdf/dsn07-leitao.pdf) work. The failure detector maintains a fully connected sparse graph of connections amongst the nodes in the cluster.
+The load balancer includes a state of the art failure detection scheme. This failure detection scheme takes some of the work done in the [HyParView](http://asc.di.fct.unl.pt/~jleitao/pdf/dsn07-leitao.pdf) work. The failure detector maintains a fully connected sparse graph of connections amongst the nodes in the cluster.
 
 Every node maintains an adjacency table. These adjacency tables are gossiped to every other node in the cluster. These adjacency tables are then used to build an application-level multicast overlay.
 

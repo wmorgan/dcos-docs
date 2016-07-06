@@ -1,5 +1,5 @@
 ---
-post_title: TESTING 1, 2, 3, AND 4 --- DC/OS Documentation
+post_title: DC/OS Documentation
 ---
 
 Welcome to the DC/OS docs. But wait, what is DC/OS? DC/OS is short for Datacenter Operating System, a distributed operating system using Apache Mesos as its kernel:

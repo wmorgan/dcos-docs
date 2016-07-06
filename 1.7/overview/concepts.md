@@ -1,5 +1,5 @@
 ---
-post_title: The Concepts of DC/OS
+post_title: Concepts
 nav_title: Concepts
 menu_order: 5
 ---
@@ -112,6 +112,6 @@ DC/OS uses ZooKeeper, a high-performance coordination service to manage the inst
 [6]: http://mesos.apache.org/documentation/latest/app-framework-development-guide/
 [8]: #agent
 [9]: http://mesos.apache.org/documentation/latest/configuration/
-[10]: https://github.com/dcos/mesos-dns
+[10]: https://github.com/mesosphere/mesos-dns
 [11]: ../security/
 [12]: https://en.wikipedia.org/wiki/Dynamic_Analysis_and_Replanning_Tool

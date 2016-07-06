@@ -1,10 +1,10 @@
 ---
-post_title: Security in DC/OS
+post_title: Security
 nav_title: Security
 menu_order: 7
 ---
 
-This document discusses some of the security features in DC/OS, in addition to
+This topic discusses the security features in DC/OS and
 best practices for deploying DC/OS securely.
 
 ## General security concepts
@@ -69,4 +69,4 @@ Authenticated users are authorized to perform arbitrary actions in their
 cluster. That is, there is currently no fine-grained access control in DC/OS
 besides having access or not having access to services.
 
-See the [Security Administrator's Guide](/docs/1.7/administration/security/) for more information.
+See the [Security Administrator's Guide](/docs/1.7/administration/id-and-access-mgt/) for more information.

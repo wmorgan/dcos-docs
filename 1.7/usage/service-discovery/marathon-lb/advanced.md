@@ -1,15 +1,14 @@
 ---
 post_title: Advanced Features
-post_excerpt: ""
-layout: docs.jade
+menu_order: 20
 ---
 ## HAProxy configuration
 
-Marathon-lb works by automatically generating configuration for HAProxy and then reloading HAProxy as needed. Marathon-lb generates the HAProxy configuration based on application data available from the Marathon REST API. It can also subscribe to the [Marathon Event Bus][10] for real-time updates. When an application starts, stops, relocates or has any change in health status, marathon-lb will automatically regenerate the HAProxy configuration and reload HAProxy.
+marathon-lb works by automatically generating configuration for HAProxy and then reloading HAProxy as needed. marathon-lb generates the HAProxy configuration based on application data available from the Marathon REST API. It can also subscribe to the [Marathon Event Bus][10] for real-time updates. When an application starts, stops, relocates or has any change in health status, marathon-lb will automatically regenerate the HAProxy configuration and reload HAProxy.
 
 ## Templates
 
-Marathon-lb has a templating feature for specifying custom HAProxy configuration parameters. Templates can be set either globally (for all apps), or on a per-app basis using labels. Let’s demonstrate an example of how to specify our own global template. Here’s the template we’ll use:
+marathon-lb has a templating feature for specifying custom HAProxy configuration parameters. Templates can be set either globally (for all apps), or on a per-app basis using labels. Let’s demonstrate an example of how to specify our own global template. Here’s the template we’ll use:
 
 ### Global Template
 
@@ -81,7 +80,7 @@ Other options you may want to specify include enabling the [sticky option][3], [
 
 ## SSL Support
 
-Marathon-lb supports SSL, and you may specify multiple SSL certificates per frontend. Additional SSL certificates can be included by passing a list of paths with the extra `--ssl-certs` command line flag. You can inject your own SSL certificates into the marathon-lb config by specifying the `HAPROXY_SSL_CERT` environment variable in your application definition.
+marathon-lb supports SSL, and you may specify multiple SSL certificates per frontend. Additional SSL certificates can be included by passing a list of paths with the extra `--ssl-certs` command line flag. You can inject your own SSL certificates into the marathon-lb config by specifying the `HAPROXY_SSL_CERT` environment variable in your application definition.
 
 If you do not specify an SSL certificate, marathon-lb will generate a self-signed certificate at startup. If you are using multiple SSL certificates, you can select the SSL certificate per app service port by specifying the `HAPROXY_{n}_SSL_CERT` parameter, which corresponds to the file path for the SSL certificates specified. For example, you might have:
 

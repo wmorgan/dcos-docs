@@ -1,5 +1,5 @@
 ---
-post_title: The Features of DC/OS
+post_title: Features
 nav_title: Features
 menu_order: 3
 ---

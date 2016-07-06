@@ -1,7 +1,7 @@
 ---
-post_title: Service Discovery and Load Balancing in DC/OS
+post_title: Service Discovery and Load Balancing
 nav_title: Service Discovery
-menu_order: 3
+menu_order: 5
 ---
 
 In a dynamic environment, actually discovering where a service is currently running is difficult. There are many different ways to go about this, but we strongly recommend using [VIPs][1].

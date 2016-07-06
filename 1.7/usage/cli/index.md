@@ -1,10 +1,10 @@
 ---
-post_title: DC/OS Command Line Interface
+post_title: CLI
 nav_title: CLI
 menu_order: 2
 ---
 
-You can use the Mesosphere DC/OS command-line interface (CLI) to manage your cluster nodes, install DC/OS packages, inspect the cluster state, and administer the DC/OS service subcommands. You can install the CLI from the DC/OS web interface.
+You can use the DC/OS command-line interface (CLI) to manage your cluster nodes, install DC/OS packages, inspect the cluster state, and administer the DC/OS service subcommands. You can install the CLI from the DC/OS web interface.
 
 To list available commands, either run `dcos` with no parameters or run `dcos help`:
 
@@ -16,6 +16,7 @@ To list available commands, either run `dcos` with no parameters or run `dcos he
     
     Available DC/OS commands:
     
+        auth           	Authenticate to DCOS cluster
         config          Get and set DC/OS CLI configuration properties
         help            Display command line usage information
         marathon        Deploy and manage applications on the DC/OS
@@ -29,7 +30,7 @@ To list available commands, either run `dcos` with no parameters or run `dcos he
 
 # Environment Variables
 
-For easy reference, these environment variables are supported by the DC/OS command line:
+For easy reference, these environment variables are supported by the DC/OS CLI:
 
 The DC/OS CLI supports several environment variables that you can set dynamically.
 

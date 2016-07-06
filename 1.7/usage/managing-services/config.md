@@ -1,12 +1,12 @@
 ---
-post_title: Configuring
+post_title: Advanced Configuration
+nav_title: Configuring
+menu_order: 001
 ---
 
-You can customize your DC/OS service during installation with a JSON configuration file. Otherwise, the services are installed by using default values.
+Each service installs with a set of default parameters. You can discover the default parameters and change them as desired.
 
-The general process is as follows:
-
-1.  View the available configuration options with the `dcos package describe --config <package-name>` command:
+1. View the available configuration options for the service with the `dcos package describe --config <package-name>` command.
 
     ```bash
     $ dcos package describe --config marathon
@@ -36,7 +36,7 @@ The general process is as follows:
     $ nano marathon-config.json
     ```
 
-3.  Use the `properties` objects from step one to build your JSON options file. For example, to change the number of Marathon CPU shares to 3 and memory allocation to 2048:
+3.  Use the `properties` objects (see [Discovering the default parameters](#discover-defaults)) to build your JSON options file. For example, to change the number of Marathon CPU shares to 3 and memory allocation to 2048:
 
     ```json
     {
@@ -52,6 +52,4 @@ The general process is as follows:
     $ dcos package install --options=marathon-config.json marathon
     ```
 
-For more information, see the [dcos package][1] documentation.
-
- [1]: /docs/1.7/usage/cli/command-reference/
+For more information, see the [dcos package](/docs/1.7/usage/cli/command-reference/#cli-dcos-package) documentation.

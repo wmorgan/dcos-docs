@@ -1,13 +1,11 @@
 ---
-post_title: High Availability in DC/OS
+post_title: High Availability
 nav_title: High Availability
 menu_order: 6
 ---
 
 This document discusses the high availability features in DC/OS and best
 practices for building highly available applications on DC/OS.
-
-## General concepts of high availability
 
 ### Leader/follower architecture
 
@@ -107,6 +105,7 @@ endpoints, which can be used by services like Marathon.
 
 When failures do occur, failover [should be as fast as possible](https://en.wikipedia.org/wiki/Fail-fast). Fast failover
 can be achieved by:
+
  * Using an HA load balancer like
    [marathon-lb](https://github.com/mesosphere/marathon-lb), or
    [Minuteman](https://github.com/dcos/minuteman) for internal layer 4

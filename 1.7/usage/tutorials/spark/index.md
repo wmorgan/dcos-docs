@@ -1,6 +1,7 @@
 ---
 post_title: How to use Apache Spark on DC/OS
 nav_title: Spark
+menu_order: 11
 ---
 
 [Apache Spark](https://spark.apache.org/) is a general-purpose data processing engine. It supports batch and stream processing and comes with built-in APIs for SQL, machine learning and graph workloads. Spark is storage-layer agnostic, meaning it doesn't come with its own storage system but provides connectors to read data from and write data into, for example, the local filesystem, HDFS, Kafka, Cassandra, Elasticsearch, and HBase.
@@ -124,7 +125,7 @@ Pi is roughly 3.1412853333333333
 
 After all, it turns out to be useful to use the `dcos spark log` command: we get the result of the computation (an approximation for Pi) without having to dig into the logs.
 
-You can learn about further options on how to run a Spark job via the [DC/OS docs](https://docs.mesosphere.com/manage-service/service-tutorials/running-a-spark-job/).
+You can learn about further options on how to run a Spark job via the [DC/OS docs](https://docs.mesosphere.com/usage/services/spark/).
 
 # Using Spark Interactively
 

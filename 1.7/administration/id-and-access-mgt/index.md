@@ -1,5 +1,6 @@
 ---
 post_title: Security
+nav_title: Identity and Access Management
 menu_order: 3
 ---
 You can enable authentication in your datacenter with DC/OS [oauth](https://github.com/dcos/dcos-oauth). Authentication is managed through the DC/OS web interface. The Admin Router enforces access control.

@@ -3,30 +3,74 @@ post_title: Logging
 menu_order: 3
 ---
 
-DC/OS cluster nodes generate logs that contain diagnostic and status information for DC/OS core components and DC/OS services. There are a couple different types of logs in DC/OS and each of them is managed differently.
+DC/OS cluster nodes generate logs that contain diagnostic and status information for DC/OS core components and DC/OS services.
 
 ## Service and Task Logs
 
-If you're running something on top of DC/OS, then let's get started right away by running the CLI command listed below. For more in depth documents on background and more methods of getting access to your logs, check out [service and task logs][1].
+If you're running something on top of DC/OS, you can get started right away by running this [DC/OS CLI][2] command: 
 
 ```bash
 $ dcos task log --follow my-service-name
 ```
 
-Take a look at the [CLI installation documentation][2] if you’re not already running the CLI.
+For more information about accessing your logs, see the service and task logs [documentation][1].
 
 ## System Logs
 
-For most use cases, you’re normally interested in the logs for unhealthy components. These can be found in the DC/OS UI under `System`.
+You can find which components are unhealthy in the DC/OS UI on the **System** tab.
 
-![system health](img/ui-system-health-logging.gif)
+![system health](../img/ui-system-health-logging.gif)
 
-As you can imagine, it is also possible to aggregate your system logs. Take a look at our [ELK][3] and [Splunk][4] tutorials if you're interested.
+You can also aggregate your system logs by using ELK and Splunk. See our [ELK][3] and [Splunk][4] tutorials to get started.
 
-All the DC/OS components use journald to store their logs. If you'd like to [SSH into a node][5], you'll be able to see them by running the following command:
+All of the DC/OS components use `systemd-journald` to store their logs. To access the DC/OS core component logs, [SSH into a node][5] and run this command to see all logs:
 
 ```bash
 $ journalctl -u "dcos-*" -b
+```
+
+You can also view the logs for specific components by entering the component name: 
+
+**Admin Router**
+    
+```bash
+journalctl -u dcos-nginx -b
+```
+            
+**DC/OS Marathon**
+
+```bash
+journalctl -u dcos-marathon -b
+```
+
+**gen-resolvconf**
+
+```bash
+journalctl -u dcos-gen-resolvconf -b
+```
+    
+**Mesos master node**
+
+```bash
+journalctl -u dcos-mesos-master -b
+``` 
+
+**Mesos agent node**
+
+```bash
+journalctl -u dcos-mesos-slave -b
+```
+
+**Mesos DNS**
+
+```bash
+journalctl -u dcos-mesos-dns -b
+```
+
+**ZooKeeper**
+
+```bash
+journalctl -u dcos-exhibitor -b
 ```
 
 ## Next Steps
@@ -37,8 +81,8 @@ $ journalctl -u "dcos-*" -b
     - [ELK][3]
     - [Splunk][4]
 
-[1]: service-logs/
+[1]: /docs/1.7/administration/logging/service-logs/
 [2]: /docs/1.7/usage/cli/install/
-[3]: elk/
-[4]: splunk/
-[5]: ../sshcluster/
+[3]: /docs/1.7/administration/logging/elk/
+[4]: /docs/1.7/administration/logging/splunk/
+[5]: /docs/1.7/administration/sshcluster/

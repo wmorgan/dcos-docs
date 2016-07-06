@@ -9,7 +9,7 @@ When you’re operating a datacenter, there are a set of common operations that 
 
 On your laptop, the job of scheduling an application to a specific core is handled by the kernel. Abstracting this process out, the kernel manages all of the resources on your computer, including memory, disk, inputs and outputs, etc. There’s no reason why a kernel must operate only on a single computer. Programs to manage resources across multiple computers can solve the same problem. In fact, this is what a container orchestrator does. It can act like a kernel for the combined resources of an entire datacenter instead of the resources of just a single computer.
 
-At this point, the act of running an application on some resources is automated away. Unfortunately, that’s only one small piece of the puzzle. Our modern operating systems contain a plethora of software that is used to solve many other common computing problems and allows us to focus on doing actual work, rather than managing our computers. DC/OS includes these solutions to these common problems out of the box, whereas before you had to research solutions yourself and integrate them by hand into the computers in your datacenter. Some of these are:
+At this point, the act of running an application on some resources is automated away. Unfortunately, that’s only one small piece of the puzzle. Our modern operating systems contain a plethora of software that is used to solve many other common computing problems and allows us to focus on doing actual work, rather than managing our computers. DC/OS includes these solutions to these common problems out of the box, whereas before you had to research solutions yourself and integrate them by hand into the computers in your datacenter. 
 
 
 ## Common management interfaces - GUI and CLI
@@ -23,7 +23,7 @@ The CLI is just as important as a GUI, and sometimes not given the credit it is 
 
 ## Service discovery
 
-It is rare to write a service that stands alone and doesn’t need to contact any other services. With three tier applications, you need to figure out how to configure the middle tier to contact the backend database. On a single host, this can be done via. ports. All you have to do is specify a port, assume the IP address is localhost and you’re ready to go. Unfortunately, once you move to multiple hosts there are some problems that can occur:
+It is rare to write a service that stands alone and doesn’t need to contact any other services. With three tier applications, you need to figure out how to configure the middle tier to contact the backend database. On a single host, this can be done via ports. All you have to do is specify a port, assume the IP address is localhost and you’re ready to go. Unfortunately, once you move to multiple hosts there are some problems that can occur:
 
 - What is the host IP the container is running on?
 - How do I configure my clients to connect to the correct host IP?
