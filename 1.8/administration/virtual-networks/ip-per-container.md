@@ -72,102 +72,102 @@ In the above example, we have defined three overlay networks. The overlay networ
 Once the DC/OS installation is completed you can query the virtual network configuration using the `https://leader.mesos/overlay-master/state` endpoint from within the cluster. In the following, we show the resulting JSON. The `network` key at the bottom lists the current overlay configuration and the `agents` key is a list showing how overlays are split across the Mesos agents. The following shows the network state when there is a single overlay in the cluster named `dcos`.
 
 ```json
-    &quot;agents&quot;: [
+    "agents": [
             {
-                &quot;ip&quot;: &quot;10.10.0.120&quot;,
-                &quot;overlays&quot;: [
+                "ip": "10.10.0.120",
+                "overlays": [
                     {
-                        &quot;backend&quot;: {
-                            &quot;vxlan&quot;: {
-                                &quot;vni&quot;: 1024,
-                                &quot;vtep_ip&quot;: &quot;198.15.0.1/20&quot;,
-                                &quot;vtep_mac&quot;: &quot;70:b3:d5:0f:00:01&quot;,
-                                &quot;vtep_name&quot;: &quot;vtep1024&quot;
+                        "backend": {
+                            "vxlan": {
+                                "vni": 1024,
+                                "vtep_ip": "198.15.0.1/20",
+                                "vtep_mac": "70:b3:d5:0f:00:01",
+                                "vtep_name": "vtep1024"
                             }
                         },
-                        &quot;docker_bridge&quot;: {
-                            &quot;ip&quot;: &quot;44.128.0.128/25&quot;,
-                            &quot;name&quot;: &quot;d-dcos&quot;
+                        "docker_bridge": {
+                            "ip": "44.128.0.128/25",
+                            "name": "d-dcos"
                         },
-                        &quot;info&quot;: {
-                            &quot;name&quot;: &quot;dcos&quot;,
-                            &quot;prefix&quot;: 24,
-                            &quot;subnet&quot;: &quot;44.128.0.0/16&quot;
+                        "info": {
+                            "name": "dcos",
+                            "prefix": 24,
+                            "subnet": "44.128.0.0/16"
                         },
-                        &quot;state&quot;: {
-                            &quot;status&quot;: &quot;STATUS_OK&quot;
+                        "state": {
+                            "status": "STATUS_OK"
                         },
-                        &quot;subnet&quot;: &quot;44.128.0.0/24&quot;
+                        "subnet": "44.128.0.0/24"
                     }
                 ]
             },
             {
-                &quot;ip&quot;: &quot;10.10.0.118&quot;,
-                &quot;overlays&quot;: [
+                "ip": "10.10.0.118",
+                "overlays": [
                     {
-                        &quot;backend&quot;: {
-                            &quot;vxlan&quot;: {
-                                &quot;vni&quot;: 1024,
-                                &quot;vtep_ip&quot;: &quot;198.15.0.2/20&quot;,
-                                &quot;vtep_mac&quot;: &quot;70:b3:d5:0f:00:02&quot;,
-                                &quot;vtep_name&quot;: &quot;vtep1024&quot;
+                        "backend": {
+                            "vxlan": {
+                                "vni": 1024,
+                                "vtep_ip": "198.15.0.2/20",
+                                "vtep_mac": "70:b3:d5:0f:00:02",
+                                "vtep_name": "vtep1024"
                             }
                         },
-                        &quot;docker_bridge&quot;: {
-                            &quot;ip&quot;: &quot;44.128.1.128/25&quot;,
-                            &quot;name&quot;: &quot;d-dcos&quot;
+                        "docker_bridge": {
+                            "ip": "44.128.1.128/25",
+                            "name": "d-dcos"
                         },
-                        &quot;info&quot;: {
-                            &quot;name&quot;: &quot;dcos&quot;,
-                            &quot;prefix&quot;: 24,
-                            &quot;subnet&quot;: &quot;44.128.0.0/16&quot;
+                        "info": {
+                            "name": "dcos",
+                            "prefix": 24,
+                            "subnet": "44.128.0.0/16"
                         },
-                        &quot;state&quot;: {
-                            &quot;status&quot;: &quot;STATUS_OK&quot;
+                        "state": {
+                            "status": "STATUS_OK"
                         },
-                        &quot;subnet&quot;: &quot;44.128.1.0/24&quot;
+                        "subnet": "44.128.1.0/24"
                     }
                 ]
             },
             {
-                &quot;ip&quot;: &quot;10.10.0.119&quot;,
-                &quot;overlays&quot;: [
+                "ip": "10.10.0.119",
+                "overlays": [
                     {
-                        &quot;backend&quot;: {
-                            &quot;vxlan&quot;: {
-                                &quot;vni&quot;: 1024,
-                                &quot;vtep_ip&quot;: &quot;198.15.0.3/20&quot;,
-                                &quot;vtep_mac&quot;: &quot;70:b3:d5:0f:00:03&quot;,
-                                &quot;vtep_name&quot;: &quot;vtep1024&quot;
+                        "backend": {
+                            "vxlan": {
+                                "vni": 1024,
+                                "vtep_ip": "198.15.0.3/20",
+                                "vtep_mac": "70:b3:d5:0f:00:03",
+                                "vtep_name": "vtep1024"
                             }
                         },
-                        &quot;docker_bridge&quot;: {
-                            &quot;ip&quot;: &quot;44.128.2.128/25&quot;,
-                            &quot;name&quot;: &quot;d-dcos&quot;
+                        "docker_bridge": {
+                            "ip": "44.128.2.128/25",
+                            "name": "d-dcos"
                         },
-                        &quot;info&quot;: {
-                            &quot;name&quot;: &quot;dcos&quot;,
-                            &quot;prefix&quot;: 24,
-                            &quot;subnet&quot;: &quot;44.128.0.0/16&quot;
+                        "info": {
+                            "name": "dcos",
+                            "prefix": 24,
+                            "subnet": "44.128.0.0/16"
                         },
-                        &quot;state&quot;: {
-                            &quot;status&quot;: &quot;STATUS_OK&quot;
+                        "state": {
+                            "status": "STATUS_OK"
                         },
-                        &quot;subnet&quot;: &quot;44.128.2.0/24&quot;
+                        "subnet": "44.128.2.0/24"
                     }
                 ]
             }
         ],
-    &quot;network&quot;: {
-            &quot;overlays&quot;: [
+    "network": {
+            "overlays": [
                 {
-                    &quot;name&quot;: &quot;dcos&quot;,
-                    &quot;prefix&quot;: 24,
-                    &quot;subnet&quot;: &quot;44.128.0.0/16&quot;
+                    "name": "dcos",
+                    "prefix": 24,
+                    "subnet": "44.128.0.0/16"
                 }
             ],
-            &quot;vtep_mac_oui&quot;: &quot;70:B3:D5:00:00:00&quot;,
-            &quot;vtep_subnet&quot;: &quot;198.15.0.0/20&quot;
+            "vtep_mac_oui": "70:B3:D5:00:00:00",
+            "vtep_subnet": "198.15.0.0/20"
         }
     }
 ```
