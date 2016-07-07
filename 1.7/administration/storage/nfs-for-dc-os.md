@@ -72,7 +72,14 @@ Make a new folder to mount into:
     $ sudo mkdir /mnt/data
     ```
 
-Create a new Systemd Mount unit to describe the mount. The name of the `.mount` file is the same as the path to the mount point, with the leading slash removed and other slashes converted to dash. Using `/mnt/data` as an example, the file is named `mnt-data.mount`. In addition, replace `10.0.7.181` with the IP of the MFS host:
+Set up a folder for NFS runtime information:
+
+    ```bash
+    $ sudo mkdir /var/lib/nfs
+    ```
+
+
+Create a new Systemd Mount unit to describe the mount. The name of the `.mount` file is the same as the path to the mount point, with the leading slash removed and other slashes converted to dash. Using `/mnt/data` as an example, the file is named `mnt-data.mount`. In addition, replace `10.0.7.181` with the IP of the MFS host. [More information can be found in the CoreOS documentation][1]:
 
     ```bash
     $ cat /etc/systemd/system/mnt-data.mount
@@ -87,3 +94,5 @@ Test the new mount by using `touch` to create a file:
     ```bash
     $ touch /mnt/data/test.txt
     ```
+
+[1]: https://coreos.com/os/docs/latest/mounting-storage.html
