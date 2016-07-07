@@ -14,18 +14,18 @@ After you have installed DC/OS with a public agent node declared, you can naviga
 You can find your public agent IP by running this command from the DC/OS CLI. This command SSHs to your cluster to obtain cluster information and then pings [ifconfig.co](https://ifconfig.co/) to determine your public IP address. 
 
 ```
-$ for id in $(dcos node --json | jq --raw-output '.[] | select(.reserved_resources.slave_public != null) | .id'); do dcos node ssh --master-proxy --mesos-id=$id "curl -s ifconfig.co" ; done 2>/dev/null
+$ for id in $(dcos node --json | jq --raw-output '.[] | select(.reserved_resources.slave_public != null) | .id'); do dcos node ssh --option StrictHostKeyChecking=no --option LogLevel=quiet --master-proxy --mesos-id=$id "curl -s ifconfig.co" ; done 2>/dev/null
 ```
 
 Here is an example where the public IP address is `52.39.29.79`:
 
 ```
-$ for id in $(dcos node --json | jq --raw-output '.[] | select(.reserved_resources.slave_public != null) | .id'); do dcos node ssh --master-proxy --mesos-id=$id "curl -s ifconfig.co" ; done 2>/dev/null
+$ for id in $(dcos node --json | jq --raw-output '.[] | select(.reserved_resources.slave_public != null) | .id'); do dcos node ssh --option StrictHostKeyChecking=no --option LogLevel=quiet --master-proxy --mesos-id=$id "curl -s ifconfig.co" ; done 2>/dev/null
 52.39.29.79
-Connection to 10.0.6.5 closed.
+52.40.79.170
+52.40.79.170
 ```
 
-By default this command closes the SSH connection.
 
 
 
