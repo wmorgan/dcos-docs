@@ -12,7 +12,7 @@ The general syntax for installing a service with the CLI follows.
 $ dcos package install [--options=<config-file-name>.json] <servicename>
 ```
 
-Use the optional `--options` flag to specify the name of the customized JSON file you created in [Customizing service installation parameters](#customizing-install).
+Use the optional `--options` flag to specify the name of the customized JSON file you created in [advanced configuration](/docs/1.7/usage/managing-services/config/).
 
 For example, you would use the following command to install Chronos with the default parameters.
     
