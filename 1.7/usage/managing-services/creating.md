@@ -219,4 +219,4 @@ Run the following from the root of the cloned Universe repository:
     
 ## Next steps
 
-[Deploying public services](/docs/1.7/usage/tutorials/public-app/)
+[Deploying public services](/docs/1.7/usage/tutorials/public-app/) 
