@@ -49,7 +49,7 @@ You can install DC/OS on Oracle Cloud Compute.
 
 1. Sign in to the Oracle Cloud My Services application at [https://myservices.us.oraclecloud.com/mycloud/faces/dashboard.jsp](https://myservices.us.oraclecloud.com/mycloud/faces/dashboard.jsp) and click on `Oracle Compute Cloud Service` -> `Open Service Console`. You will be shown the instance overview page.
 
-  ![Oracle Compute Cloud Service - Instances](../img/occ01.png)
+  ![Oracle Compute Cloud Service - Instances](img/occ01.png)
 
 2. Click on `Create Instance`.
 
@@ -57,19 +57,19 @@ You can install DC/OS on Oracle Cloud Compute.
 
 4. Select shape `oc3` and click `>`.
 
-  ![Oracle Compute Cloud Service - oc3](../img/occ02.png)
+  ![Oracle Compute Cloud Service - oc3](img/occ02.png)
 
 5. In the next screen provide the instance an appropriate label and name. Add `default` as security list. Select the pre-uploaded SSH keys and click `>`.
 
 6. In the next `Volumes` screen leave the default values as it is and click `>`.
 
-  ![Oracle Compute Cloud Service - volumes](../img/occ03.png)
+  ![Oracle Compute Cloud Service - volumes](img/occ03.png)
 
 7. Review your settings and click on `Create`.
 
 8. Now you should be able to see the instance spinning up.
 
-  ![Oracle Compute Cloud Service - instance spinning up](../img/occ04.png)
+  ![Oracle Compute Cloud Service - instance spinning up](img/occ04.png)
 
 9. Wait for the instance to reach `Running` status, which might take a few minutes.
 
@@ -77,10 +77,10 @@ You can install DC/OS on Oracle Cloud Compute.
 
 These steps assume that you've spun up the bootstrap instance and that you are logged into it.
 
-1. Download and execute the generator script:
+1. Download and execute the [generator script][orchestration-generator.sh]:
 
   ```bash
-  $ curl -O https://raw.githubusercontent.com/dcos/dcos-docs/master/1.7/administration/installing/cloud/res/oracle/orchestration-generator.sh
+  $ curl -O https://dcos.io/docs/1.7/administration/installing/cloud/oracle/orchestration-generator.sh
   $ ./orchestration-generator.sh
   ```
 
@@ -192,7 +192,7 @@ These steps assume that you've spun up the bootstrap instance and that you are l
 
 ## Configure and install the DC/OS cluster
 
-1. Create a directory named `genconf` on your bootstrap instance using `mkdir –p genconf` and create a configuration file `genconf/config.yaml` with the following content:
+1. Create a directory named `genconf` on your bootstrap instance using `mkdir -p genconf` and create a configuration file `genconf/config.yaml` with the following content:
 
   ```yaml
   agent_list:
@@ -292,10 +292,10 @@ These steps assume that you've spun up the bootstrap instance and that you are l
   10.106.7.170
   ```
 
-2. Download and execute the `install_public_slave.sh` script:
+2. Download and execute the [`install_public_slave.sh`][install_public_slave.sh] script:
 
   ```bash
-  $ curl -O https://raw.githubusercontent.com/dcos/dcos-docs/master/1.7/administration/installing/cloud/res/oracle/install_public_slave.sh
+  $ curl -O https://dcos.io/docs/1.7/administration/installing/cloud/oracle/install_public_slave.sh
   $ ./install_public_slave.sh
   ```
 
@@ -303,7 +303,7 @@ These steps assume that you've spun up the bootstrap instance and that you are l
 
 If all goes well you can now access the [DC/OS Dashboard](/docs/1.7/usage/webinterface/) at `http://<public-ip-of-a-master-node>`:
 
-![DC/OS Dashboard](../img/occ05.png)
+![DC/OS Dashboard](img/occ05.png)
 
 # Next steps
 
@@ -314,3 +314,5 @@ If all goes well you can now access the [DC/OS Dashboard](/docs/1.7/usage/webint
 [1]: /docs/1.7/usage/cli/install/
 [2]: /docs/1.7/administration/user-management/
 [3]: /docs/1.7/usage/
+[install_public_slave.sh]: /docs/1.7/administration/installing/cloud/oracle/install_public_slave.sh
+[orchestration-generator.sh]: /docs/1.7/administration/installing/cloud/oracle/orchestration-generator.sh
