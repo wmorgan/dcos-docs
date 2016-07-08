@@ -4,7 +4,7 @@ nav_title: Package Repository
 menu_order: 4
 ---
 
-DC/OS provides a number of services within its default Universe package repository. By default, the DC/OS CLI is configured to use the DC/OS [Universe](https://github.com/mesosphere/universe), but other package repositories can also be configured.
+DC/OS comes pre-configured with the [Mesosphere Universe](https://github.com/mesosphere/universe) package repository as the provider of DC/OS packages, but other package repositories can also be added.
 
 You can use either the web interface or the CLI to:
 
@@ -42,11 +42,13 @@ spark 1.4.0-SNAPSHOT True https://github.com/mesosphere/universe/archive/version
 
 ## <a name="adding"></a>Adding a Repository
 
-Add a repo with the name `your-repo` and the repo archive URL `https://yourcompany/archive/stuff.zip`:
+Add a repo with the name `your-repo` and the repo URL `https://universe.yourcompany.com/repo`:
 
 ```bash
-$ dcos package repo add your-repo https://yourcompany/archive/stuff.zip
+$ dcos package repo add your-repo https://universe.yourcompany.com/repo
 ```
+
+For full instructions on how to build an run your own Universe repo see the [Universe Server Documentation](https://github.com/mesosphere/universe#universe-server)
 
 ## <a name="removing"></a>Removing a Repository
 
