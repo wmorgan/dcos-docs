@@ -18,7 +18,7 @@ These steps must be performed on a machine that is configured as a DC/OS node. A
 ### Prerequisites:
 
 *   DC/OS is installed and you have deployed at least one master and one private agent node.
-*   The archived DC/OS installer file (`dcos-install.tar`), that was created post [CLI](/docs/1.7/administration/installing/custom/cli/#backup) or [GUI](/docs/1.7/administration/installing/custom/gui/#backup) installation.
+*   The archived DC/OS installer file (`dcos-install.tar`) from your [installation](/docs/1.7/administration/installing/custom/gui/#backup).     
 
 ### Uninstall the DC/OS private agent software
 
@@ -33,14 +33,14 @@ These steps must be performed on a machine that is configured as a DC/OS node. A
 2.  Remove the old directory structures on the agent node.
 
     ```bash
-    $ sudo rm -rf /etc/mesosphere /opt/mesosphere /var/lib/mesos /var/lib/dcos
+    $ sudo rm -rf /etc/mesosphere /opt/mesosphere /var/lib/mesos
     ```
 
 3.  Restart the machine.
 
     ```bash
     $ sudo reboot
-    ```
+    ```        
 
 ### Install DC/OS and convert to a public agent node
 Copy the archived DC/OS installer file (`dcos-install.tar`) to the node that that is being converted to a public agent. This archive is created during the GUI or CLI [installation](/docs/1.7/administration/installing/custom/gui/#backup) method.
@@ -59,9 +59,9 @@ Copy the archived DC/OS installer file (`dcos-install.tar`) to the node that tha
 
 1.  Create a directory for the installer files:
 
-    ```bash
-    $ sudo mkdir -p /opt/dcos_install_tmp
-    ```
+     ```bash
+     $ sudo mkdir -p /opt/dcos_install_tmp
+     ```
 
 1.  Unpackage the `dcos-install.tar` file:
 
