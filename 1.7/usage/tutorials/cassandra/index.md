@@ -148,7 +148,7 @@ You are now inside your DC/OS cluster and can connect to the Cassandra cluster d
 core@ip-10-0-6-153 ~ $ docker run cassandra:2.2.5 cqlsh <HOST>
 ```
 
-Replace `<HOST>` with the actual host, which that we retrieved by running `dcos cassandra node connection`, above:
+Replace `<HOST>` with the actual host, which that we retrieved by running `dcos cassandra connection`, above:
 
 ```bash
 core@ip-10-0-6-153 ~ $ docker run -ti cassandra:2.2.5 cqlsh 10.0.2.66
@@ -164,7 +164,7 @@ cqlsh> CREATE KEYSPACE demo WITH REPLICATION = { 'class' : 'SimpleStrategy', 're
 Next, create a sample table called `map` in the `demo` keyspace:
 
 ```sql
-cqlsh> USE demo;CREATE TABLE map (key varchar, value varchar, PRIMARY KEY(key));
+cqlsh> CREATE TABLE demo.map (key varchar, value varchar, PRIMARY KEY(key));
 ```
 
 Insert some data in your table:
