@@ -37,46 +37,47 @@ A bootstrap node is required to run the scripts and to bootstrap the DC/OS clust
 
 ### Setup RSA public/private keypairs
 
-1.  You must create the RSA public/private keypairs to allow passwordless logins via SSH to the nodes of the DC/OS cluster. This is required by Ansible to create the cluster nodes and install DC/OS on the nodes. 
+You must create the RSA public/private keypairs to allow passwordless logins via SSH to the nodes of the DC/OS cluster. This is required by Ansible to create the cluster nodes and install DC/OS on the nodes.
 
-    **Important:** Replace `ajazam` with your username in these examples.
+**Important:** Replace `ajazam` with your username in these examples.
 
-    1.  Run this command to generate the keys:
-    
-        ```bash
-        $ ssh-keygen -t rsa -f ~/.ssh/id_rsa -C ajazam
-        ```
-        Do not enter a password when prompted.
-    
-    1.  Make a backup copy of `id_rsa.pub`.
-    
-    1.  Open RSA pub key:
-    
-        ```bash
-        $ vi ~/.ssh/id_rsa.pub
-        ```
-    
-        You should see something like this: 
-        
-        ```bash
-        $ ssh-rsa abcdefghijklmaasnsknsdjfsdfjs;dfj;sdflkjsd ajazam
-        ```
-        
-    1.  Prefix your username, followed by a colon, to the above line. Also 
-    
-        ```bash
-        $ ajazam:ssh-rsa abcdefghijklmaasnsknsdjfsdfjs;dfj;sdflkjsd ajazam
-        ```
-    
-    1.  Save contents of `id_rsa.pub`.
-    
-    1.  Add the rsa public key to your project
-    
-        ```bash
-        $ chmod 400 ~/.ssh/id_rsa
-        $ gcloud compute project-info add-metadata --metadata-from-file sshKeys=~/.ssh/id_rsa.pub
-        ```
-        
+1.  Run this command to generate the keys:
+
+    ```bash
+    $ ssh-keygen -t rsa -f ~/.ssh/id_rsa -C ajazam
+    ```
+
+    Do not enter a password when prompted.
+
+1.  Make a backup copy of `id_rsa.pub`.
+
+1.  Open RSA pub key:
+
+    ```bash
+    $ vi ~/.ssh/id_rsa.pub
+    ```
+
+    You should see something like this:
+
+    ```bash
+    $ ssh-rsa abcdefghijklmaasnsknsdjfsdfjs;dfj;sdflkjsd ajazam
+    ```
+
+1.  Prefix your username, followed by a colon, to the above line. Also
+
+    ```bash
+    $ ajazam:ssh-rsa abcdefghijklmaasnsknsdjfsdfjs;dfj;sdflkjsd ajazam
+    ```
+
+1.  Save contents of `id_rsa.pub`.
+
+1.  Add the rsa public key to your project
+
+    ```bash
+    $ chmod 400 ~/.ssh/id_rsa
+    $ gcloud compute project-info add-metadata --metadata-from-file sshKeys=~/.ssh/id_rsa.pub
+    ```
+
 ### Configure Docker
 
 1.  You must disable SELinux for Docker to work. Make the following change to `/etc/selinux/config`:
@@ -85,7 +86,7 @@ A bootstrap node is required to run the scripts and to bootstrap the DC/OS clust
     SELINUX=disabled
     ```
 
-1.  Reboot host. 
+1.  Reboot host.
 
 1.  To install Docker add the Yum repo.
 
@@ -151,15 +152,15 @@ A bootstrap node is required to run the scripts and to bootstrap the DC/OS clust
     ```bash
     [defaults]
     host_key_checking = False
-    
+
     [paramiko_connection]
     record_host_keys = False
-    
+
     [ssh_connection]
     ssh_args = -o ControlMaster=auto -o ControlPersist=60s -o UserKnownHostsFile=/dev/null
     ```
 
-1.  To create and configure the master nodes run this command: 
+1.  To create and configure the master nodes run this command:
 
     ```bash
     $ ansible-playbook -i hosts install.yml
@@ -177,23 +178,23 @@ A bootstrap node is required to run the scripts and to bootstrap the DC/OS clust
     ```bash
     $ ansible-playbook -i hosts add_agents.yml --extra-vars "start_id=0003 end_id=0004 agent_type=public"
     ```
-    
+
 ## <a name="configure"></a>Configurable parameters
 
-File `./hosts` is an Ansible inventory file. Text wrapped by brackets `[]` represents a group name and individual entries after the group name represent hosts in that group.
+- File `./hosts` is an Ansible inventory file. Text wrapped by brackets `[]` represents a group name and individual entries after the group name represent hosts in that group.
 
-The `[masters]` group contains node names and IP addresses for the master nodes. In the supplied file, the host name is `master0` and the IP address `10.132.0.3` is assigned to `master0`. **YOU MUST CHANGE** the IP address for `master0` for your network. You can create multiple entries, for example `master1`, `master2` etc. Each node must have a unique IP address.
+- The `[masters]` group contains node names and IP addresses for the master nodes. In the supplied file, the host name is `master0` and the IP address `10.132.0.3` is assigned to `master0`. **YOU MUST CHANGE** the IP address for `master0` for your network. You can create multiple entries, for example `master1`, `master2` etc. Each node must have a unique IP address.
 
-The `[agents]` group has one entry. It specifies the names of all the agents one can have in the DC/OS cluster. The value specifies that `agent0000` to `agent9999`. A total of 10,000 agents are allowed. This really is an artificial limit because it can easily be changed.
+- The `[agents]` group has one entry. It specifies the names of all the agents one can have in the DC/OS cluster. The value specifies that `agent0000` to `agent9999`. A total of 10,000 agents are allowed. This really is an artificial limit because it can easily be changed.
 
-The `[bootstrap]` group has the name of the bootstrap node.
+- The `[bootstrap]` group has the name of the bootstrap node.
 
-File `./group_vars/all` contains miscellaneous parameters that will change the behaviour of the installation scripts. The parameters are split into two groups. 
+- File `./group_vars/all` contains miscellaneous parameters that will change the behaviour of the installation scripts. The parameters are split into two groups.
 
-- Group 1 parameters must be changed to reflect your environment. 
-- Group 2 parameters can optionally be changed to change the behaviour of the scripts.
+    - Group 1 parameters must be changed to reflect your environment.
+    - Group 2 parameters can optionally be changed to change the behaviour of the scripts.
 
-### Group 1  
+### Group 1
 You must customize these for your environment.
 
 ### project
@@ -212,7 +213,7 @@ Specify the bootstrap nodes public IP. Default: `10.132.0.2`.
 You can optionally specify your preferred zone. Default: `europe-west1-d`.
 
 
-### Group 2 
+### Group 2
 You can optionally change these parameters to modify the behaviour of the installation scripts.
 
 ### master_boot_disk_size:
