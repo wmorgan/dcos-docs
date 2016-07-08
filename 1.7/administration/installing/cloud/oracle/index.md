@@ -39,11 +39,11 @@ You can install DC/OS on Oracle Cloud Compute.
 
   In the dialog box, enter a name and the value of the SSH public key that you generated, and then click `Add`. Note: Paste the key value exactly as it was generated. Don't append or insert any extra characters, line breaks, or spaces. Now your SSH public key is added to Oracle Compute Cloud Service:
 
-  ![SSH public key added to Oracle Compute Cloud Service](../img/occ00.png)
+  ![SSH public key added to Oracle Compute Cloud Service](img/occ00.png)
 
 3. Upload a CentOS7 image to the [Oracle Compute Cloud Service](http://www.oracle.com/pls/topic/lookup?ctx=stcomputecs&id=STCSG-GUID-799D6F6D-BDED-4DDE-9B3D-BE23BE5F687F). Note: while uploading the image file, you must specify a **unique name** for the target object, to differentiate the image that you're uploading from other images in Oracle Storage Cloud Service.
 
-4. Register the image by following the instructions in [Registering a Machine Image in Oracle Compute Cloud Service](www.oracle.com/pls/topic/lookup?ctx=stcomputecs&id=STCSG-GUID-B41A8B96-7A71-42D6-8C6B-C6DB9D321F77).
+4. Register the image by following the instructions in [Registering a Machine Image in Oracle Compute Cloud Service](http://www.oracle.com/pls/topic/lookup?ctx=stcomputecs&id=STCSG-GUID-B41A8B96-7A71-42D6-8C6B-C6DB9D321F77).
 
 # Spin up the bootstrap instance
 
