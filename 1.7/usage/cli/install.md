@@ -79,6 +79,18 @@ The easiest way to install the DC/OS CLI is by clicking the signpost icon in the
 
     Get detailed command description with 'dcos <command> --help'.
     ```
+6. To authenticate your CLI with your master node and set the auth token, run the below command on bootstrap instance
+
+    ```bash
+    $ dcos auth login
+    ```
+You will be provided an URL and prompted to enter the authentication token
+7. Enter the URL in your browser. Remember to replace the hostname with the public IP of the master node
+
+8. You will be asked to authenticate. Once done you will get the authentication token
+Copy and paste that to your SSH session to authenticate the CLI
+
+
 
 # <a name="windows"></a>Installing on Windows
 
@@ -237,6 +249,16 @@ Pip is included with Python, but you must upgrade pip for it to work properly wi
 
     Get detailed command description with 'dcos <command> --help'.
     ```
+8. To authenticate your CLI with your master node and set the auth token, run the below command on bootstrap instance
+
+    ```bash
+    $ dcos auth login
+    ```
+You will be provided an URL and prompted to enter the authentication token
+9. Enter the URL in your browser. Remember to replace the hostname with the public IP of the master node
+
+10. You will be asked to authenticate. Once done you will get the authentication token
+Copy and paste that to your SSH session to authenticate the CLI
 
  [1]: #linux
  [2]: #windows
