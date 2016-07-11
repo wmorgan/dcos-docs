@@ -105,7 +105,7 @@ Identify your Mesos leader node. This node should be the last master node that y
     $ sudo rm -rf /opt/mesosphere /etc/mesosphere
     ```
 
-1.  DC/OS installer will locate and combine your agent's configuration parameters into a file named `mesos-resources`; part of this process will be calculating the available disk space of each node. If you have not yet made explicit disk size reservations, create a placeholder for this file to prevent the installer from building a new one which might conflict with your stored agent metadata:
+1.  The DC/OS installer discovers and combines your agent's configuration parameters into a file named `mesos-resources`. As a part of this process the available disk space of each node is calculated. If you have not made explicit disk size reservations, you must create a placeholder for the disk reservation file. This prevents the installer from building a new disk reservation file that might conflict with your stored agent metadata:
 
     ```
     $ sudo mkdir -p /var/lib/dcos
