@@ -13,8 +13,9 @@ For some stateful services, such as Jenkins/Velocity, it can be convenient to mo
 
 - These instructions are CoreOS-specific.
 - This is not an HA NFS server. It runs on a single master and should only be used as a proof of concept.
+- If you have access to a pre-existing NFS or another network store, skip to <a href="part2">part II</a>.
 
-### Configure the master with the file-share
+### Part I: Configure the master with the file-share
 
 1. Log in to the master node using the DC/OS command line interface:
 
@@ -49,7 +50,8 @@ For some stateful services, such as Jenkins/Velocity, it can be convenient to mo
     $ sudo systemctl enable nfsd
     ```
 
-### Configure the agent(s) to mount the drive
+<a name="part2"></a>
+### Part II: Configure the agent(s) to mount the drive
 
 1. List nodes in the cluster:
 
