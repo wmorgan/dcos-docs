@@ -23,7 +23,7 @@ An Amazon EC2 <a href="https://aws.amazon.com/ec2/pricing/" target="_blank">m3.x
 
 - An Amazon Web Services account with root [IAM](https://aws.amazon.com/iam/) privileges. Advanced privileges are required to install the advanced templates. Contact your AWS admin for more information.
 - AWS [Command Line Interface](https://aws.amazon.com/cli/)
-- [jquery](https://github.com/stedolan/jq/wiki/Installation)
+- The CLI JSON processor [jq](https://github.com/stedolan/jq/wiki/Installation)
 
 # Quick Start
 You can quickly get up and running with the DC/OS advanced templates. 
