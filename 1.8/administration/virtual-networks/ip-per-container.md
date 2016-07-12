@@ -20,16 +20,17 @@ In Enterprise DC/OS, the virtual network feature is enabled by default. The defa
         prefix: 24
 ```
 
-**Note:** To use virtual networks in DC/OS you MUST make sure to use a recent Linux kernel (3.9 or above) as well as Docker version 1.11 on the agent nodes.
+**Note:** Use a recent Linux kernel (3.9 or later) and Docker version 1.11 or later on the agent nodes.
 
-Each overlay network is identified by a canonical `name`. Containers launched on an overlay network will get an IP address from the `subnet` allocated to the overlay network. To remove the dependency on a global IPAM (IP address management system), the overlay `subnet` is further split into smaller subnets, with each subnet being allocated to an agent. The agents can then use a host-local IPAM to allocate IP addresses from their respective subnets to containers launched on the agent and attached to the given overlay. The `prefix` determines the size of the subnet (carved the overlay `subnet`) allocated to each
-agent.
+Each overlay network is identified by a canonical `name`. Containers launched on an overlay network will get an IP address from the `subnet` allocated to the overlay network. To remove the dependency on a global IPAM, the overlay `subnet` is further split into smaller subnets, with each subnet being allocated to an agent. The agents can then use a host-local IPAM to allocate IP addresses from their respective subnets to containers launched on the agent and attached to the given overlay. The `prefix` defines the number of agents on which the overlay can run and thus determines the size of the subnet (carved from the overlay `subnet`) allocated to each agent. If you specify the same prefix and network mask for an overlay network, your overlay network will only work on one agent node.
 
 In the configuration above, each virtual network is allocated a /17 subnetwork (in the “subnet” field), which is then divided in /24 subnetworks to be used in each host that will be part of the network (in the “prefix” field). This allocates 8 bits (32 total minus 24 allocated for “prefix”) to designate the endpoint (container) inside a host for a maximum of 255 endpoints per host. It also allocates 7 bits (24 minus 17) for hosts that will be members of this overlay network, which provides a maximum of 127 hosts. These values can be configured to adapt to each installation’s needs.
 
 # Adding overlay networks during installation
 
-Currently (as of version 1.8), DC/OS virtual networks can only be added and configured at install time. You can override the default network or add additional virtual networks by modifying your `config.yaml` file:
+Currently (as of version 1.8), DC/OS virtual networks can only be added and configured at install time. To replace or add another virtual network, [reinstall DC/OS according to these instructions](#replace).
+
+You can override the default network or add additional virtual networks by modifying your `config.yaml` file:
 
 ```yaml
     agent_list:
@@ -44,6 +45,8 @@ Currently (as of version 1.8), DC/OS virtual networks can only be added and conf
     - 10.10.0.119
     - 10.10.0.118
     resolvers:
+    # You probably do not want to use these values since they point to public DNS servers.
+    # Instead use values that are more specific to your particular infrastructure.
     - 8.8.4.4
     - 8.8.8.8
     ssh_port: 22
@@ -65,11 +68,9 @@ Currently (as of version 1.8), DC/OS virtual networks can only be added and conf
 
 In the above example, we have defined three overlay networks. The overlay networks `dcos-1` and `dcos-2` basically retain the default overlay networks, and we have added another overlay network called `dcos-3` with subnet range `44.128.0.0/16`. When you create a network, you must give it a name and a subnet. That name is used to launch Marathon tasks and other Mesos frameworks tasks using this specific overlay network.
 
-**Note:** If you specify the same prefix and network mask for an overlay network, it will only work on one agent node.
-
 # Retrieving overlay network state
 
-Once the DC/OS installation is completed you can query the virtual network configuration using the `https://leader.mesos/overlay-master/state` endpoint from within the cluster. In the following, we show the resulting JSON. The `network` key at the bottom lists the current overlay configuration and the `agents` key is a list showing how overlays are split across the Mesos agents. The following shows the network state when there is a single overlay in the cluster named `dcos`.
+Once the DC/OS installation is complete you can query the virtual network configuration using the `https://leader.mesos/overlay-master/state` endpoint from within the cluster. The `network` key at the bottom lists the current overlay configuration and the `agents` key is a list showing how overlays are split across the Mesos agents. The following shows the network state when there is a single overlay in the cluster named `dcos`.
 
 ```json
     "agents": [
@@ -174,7 +175,7 @@ Once the DC/OS installation is completed you can query the virtual network confi
 
 # Deleting Overlay Networks
 
-To delete your overlay network, uninstall DC/OS, then delete the overlay replicated log on the master nodes and the iptable rules on the agent nodes that aer associated with the overlay networks.
+To delete your overlay network, uninstall DC/OS, then delete the overlay replicated log on the master nodes and the iptable rules on the agent nodes that are associated with the overlay networks.
 
 ## The Replicated Log
 
@@ -185,6 +186,7 @@ DC/OS overlay uses a replicated log to persist the overlay network state across 
 ## iptables
 The overlay networks install IPMASQ rules in order to allow containers to talk outside the overlay network. When you delete or replace overlay networks, you must remove the rules associated with the previous overlay networks. To remove the IPMASQ rules associated with each overlay, remove the IPMASQ rule from the POSTROUTING change of the NAT table that corresponds to the overlay networks subnet. Remove these rules on each agent node. 
 
+<a name="replace"></a>
 # Replacing or Adding New Overlay Networks
 
 To replace your overlay network, uninstall DC/OS and delete the replicated log on the master nodes and the iptable rules on the agent nodes. Then, reinstall with the desired networks specified in your `config.yaml` file.
