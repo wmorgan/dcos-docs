@@ -1,6 +1,6 @@
 ---
-post_title: Security
-nav_title: Security
+post_title: Securing Your Cluster
+nav_title: Securing Your Cluster
 menu_order: 7
 ---
 
@@ -29,6 +29,44 @@ the other nodes in the cluster via URL routing. For security, the DC/OS cloud
 template allows configuring a whitelist so that only specific IP address
 ranges are permitted to access the admin zone.
 
+#### Steps for Securing Admin Router
+
+By default, Admin Router will permit unencrypted HTTP traffic. This is not
+considered secure, and you must provide a valid TLS certificate and redirect
+all HTTP traffic to HTTPS in order to properly secure access to your cluster.
+
+Once you have a valid TLS certificate, install the certificate on each master.
+Copy the certificate and private key to a well known location, such as under
+`/etc/ssl/certs`. It's suggested that you change the permissions of the
+private key to not be world-readable. Edit the Admin Router `nginx.conf`, by
+opening the file located at
+`/opt/mesosphere/active/adminrouter/nginx/conf`. Modify the nginx
+configuration `server` section, to look like this:
+
+```
+  server {
+    listen 80 default_server;
+    server_name _;
+    return 301 https://$host$request_uri;
+  }
+
+  server {
+      listen 443 ssl spdy default_server;
+      ssl_certificate /etc/ssl/certs/your-cert.crt;
+      ssl_certificate_key /etc/ssl/certs/your-key.key;
+
+      # rest of config intentionally omitted
+```
+
+In the block above, we're adding a new `server` section above the existing one
+which will redirect all HTTP traffic to HTTPS. We've also removed the
+`listen 80 ...` directive from the second server section. After making the
+changes, restart Admin Router:
+
+```console
+# systemctl restart dcos-adminrouter
+```
+
 ### Private zone
 
 The **private** zone is a non-routable network that is only accessible from
@@ -46,6 +84,14 @@ The agent nodes in the public zone are labeled with a special role so that
 only specific tasks can be scheduled here. These agent nodes have both public
 and private IP addresses and only specific ports should be open in their
 iptables firewall.
+
+By default, when using the cloud-based installers such as the AWS
+CloudFormation templates, a large number of ports are exposed to the Internet
+for the public zone. In production systems, it is unlikely that you would
+expose all of these ports. It's recommended that you close all ports except
+80 and 443 (for HTTP/HTTPS traffic) and use
+[marathon-lb](/docs/1.7/usage/service-discovery/marathon-lb/) with HTTPS for
+managing ingress traffic.
 
 ### Typical AWS deployment
 

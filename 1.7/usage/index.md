@@ -4,12 +4,12 @@ menu_order: 3
 ---
 
 # Getting Started
-After you have [installed](/docs/1.7/administration/installing/) DC/OS and set up the CLI on your local machine, you should familiarize yourself with the DC/OS UI [Dashboard](/docs/1.7/usage/webinterface/) and DC/OS [CLI](/docs/1.7/usage/cli/). 
+After you have [installed](/docs/1.7/administration/installing/) DC/OS and set up the CLI on your local machine, you should familiarize yourself with the DC/OS UI [Dashboard](/docs/1.7/usage/webinterface/) and DC/OS [CLI](/docs/1.7/usage/cli/).
 
 You can then launch a production-grade, highly available, containerized nginx web server with a single command from the DC/OS CLI. DC/OS keeps your web server running if it crashes, allows you to scale it via the user interface and update its config at runtime, and much more!
 
 1.  Run this command to launch a containerized [sample](https://dcos.io/docs/1.7/usage/nginx.json) app on DC/OS.
-    
+
     ```bash
     $ dcos marathon app add https://dcos.io/docs/1.7/usage/nginx.json
     ```
@@ -44,7 +44,7 @@ If you want to learn more about how DC/OS works:
 
 - Check out the [DC/OS Architecture](/docs/1.7/overview/architecture/)
 - Learn how [High Availability](/docs/1.7/overview/high-availability/) is achieved in DC/OS
-- Understand [Network Security](/docs/1.7/overview/security/) in DC/OS
+- Understand [Network Security](/docs/1.7/administration/securing-your-cluster/) in DC/OS
 
 If you have a DevOps role:
 
@@ -58,5 +58,3 @@ If you have a DC/OS administrator role:
 - [Load-balancing](/docs/1.7/usage/service-discovery/marathon-lb/) with DC/OS
 
 If you are now a seasoned DC/OS user and want to adapt or extend DC/OS, you can learn how to [contribute](/contribute)!
-
-

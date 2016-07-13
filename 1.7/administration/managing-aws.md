@@ -74,6 +74,6 @@ To upgrade a DC/OS cluster:
 
 3.  Shutdown your existing DC/OS cluster.
 
- [1]: /docs/1.7/overview/security/
+ [1]: /docs/1.7/administration/securing-your-cluster/
  [2]: /docs/latest/administration/installing/cloud/aws/
  [3]: https://console.aws.amazon.com/cloudformation/home

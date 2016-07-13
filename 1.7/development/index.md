@@ -82,7 +82,7 @@ The following are a set of guidelines that should be considered when creating a 
 
  [1]: http://mesosphere.github.io/universe/
  [2]: http://mesosphere.github.io/universe/#publish-a-package-1
- [3]: /docs/1.7/overview/security/
+ [3]: /docs/1.7/administration/securing-your-cluster/
  [4]: https://github.com/mesosphere/universe
  [5]: http://mesosphere.github.io/universe/#submit-your-package
  [6]: https://github.com/mesosphere/dcos-helloworld
