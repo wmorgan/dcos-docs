@@ -35,7 +35,7 @@ DC/OS uses Mesos-DNS for internal service discovery. While the `.mesos` domain c
           "SOARetry": 600,
           "SOARname": "root.ns1.<domain>",
           "ttl": 60,
-          "zk": "zk://zk-1.zk,zk-2.zk,zk-3.zk:<dcos_zookeeper_port>/mesos"
+          "zk": "zk://zk-1.zk,zk-2.zk,zk-3.zk:2181/mesos"
         }
 
     <table class="table">
