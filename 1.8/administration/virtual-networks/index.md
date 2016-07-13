@@ -8,9 +8,7 @@ DC/OS allows you to create, manage, and use virtual networks, supporting IP-per-
 
 Additionally, virtual networks enable you to provide each container in the system with a unique IP address (“IP-per-container”). This removes the need to worry about potentially overlapping ports in applications, or the need to use nonstandard ports for services to avoid overlapping. IP-per-container functionality also allows you to generate any number of instances of a class of tasks and have them all listen on the same port so that clients don’t have to do port discovery.
 
-A virtual network enables you to run applications that require intra-cluster connectivity, like Cassandra, HDFS, and Riak. Your application can treat the various containers on your network like an end host, making it easier to enforce network isolation. This way, you can run multiple instances of DC/OS services without needing to manage ports. You can also create multiple virtual networks to isolate different portions of your organization, for instance, development, marketing, and production.
-
-**Note:** Isolation guarantees among subnets depend on your CNI implementation and/or your firewall policies. <!-- maybe put this on thet isolation page? -->
+A virtual network enables you to run applications that require intra-cluster connectivity, like Cassandra, HDFS, and Riak. Your application can treat the various containers on your network like an end host, making it easier to enforce network isolation. This way you can run multiple instances of DC/OS services without needing to manage ports. You can also create multiple virtual networks to isolate different portions of your organization, for instance, development, marketing, and production.
 
 [Learn how to use virtual networks in your applications](/docs/1.8/usage/virtual-networks/).
 
