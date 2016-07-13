@@ -1,15 +1,15 @@
 ---
 layout: page
 nav_title: IP-per-Container
-post_title: Configuring IP-per-Container in Virtual Networks
+post_title: Configuring IP-per-Container in Overlay Networks
 menu_order: 10
 ---
 
-In Enterprise DC/OS, the virtual network feature is enabled by default. The default configuration provides two overlay networks `dcos-1` and `dcos-2`, whose YAML configuration is as follows:
+In Enterprise DC/OS, the overlay network feature is enabled by default. The default configuration provides two overlay networks `dcos-1` and `dcos-2`, whose YAML configuration is as follows:
 
 ```yaml
   dcos_overlay_network:
-    vtep_subnet: 192.15.0.0/20
+    vtep_subnet: 172.16/12
     vtep_mac_oui: 70:B3:D5:00:00:00
     overlays: 
       - name: dcos-1
@@ -22,15 +22,15 @@ In Enterprise DC/OS, the virtual network feature is enabled by default. The defa
 
 **Note:** Use a recent Linux kernel (3.9 or later) and Docker version 1.11 or later on the agent nodes.
 
-Each overlay network is identified by a canonical `name`. Containers launched on an overlay network will get an IP address from the `subnet` allocated to the overlay network. To remove the dependency on a global IPAM, the overlay `subnet` is further split into smaller subnets, with each subnet being allocated to an agent. The agents can then use a host-local IPAM to allocate IP addresses from their respective subnets to containers launched on the agent and attached to the given overlay. The `prefix` defines the number of agents on which the overlay can run and thus determines the size of the subnet (carved from the overlay `subnet`) allocated to each agent. If you specify the same prefix and network mask for an overlay network, your overlay network will only work on one agent node.
+Each overlay network is identified by a canonical `name`. Containers launched on an overlay network will get an IP address from the `subnet` allocated to the overlay network. To remove the dependency on a global IPAM, the overlay `subnet` is further split into smaller subnets. Each of *those* subnets is allocated to an agent. The agents can then use a host-local IPAM to allocate IP addresses from their respective subnets to containers launched on the agent and attached to the given overlay. The `prefix` determines the size of the subnet (carved from the overlay `subnet`) allocated to each agent and thus defines the number of agents on which the overlay can run.
 
-In the configuration above, each virtual network is allocated a /17 subnetwork (in the “subnet” field), which is then divided in /24 subnetworks to be used in each host that will be part of the network (in the “prefix” field). This allocates 8 bits (32 total minus 24 allocated for “prefix”) to designate the endpoint (container) inside a host for a maximum of 255 endpoints per host. It also allocates 7 bits (24 minus 17) for hosts that will be members of this overlay network, which provides a maximum of 127 hosts. These values can be configured to adapt to each installation’s needs.
+In the configuration above, each overlay network is allocated a /17 subnetwork (in the “subnet” field), which is then divided into /24 subnetworks to be used in each host that will be part of the network (in the “prefix” field). These values can be configured to adapt to each installation’s needs. If you need a larger network, decrease the network mask prefix of the `subnet`. To create an overlay network for only one agent node, specify the same value for the `subnet` network mask and the `prefix`.
 
 # Adding overlay networks during installation
 
-Currently (as of version 1.8), DC/OS virtual networks can only be added and configured at install time. To replace or add another virtual network, [reinstall DC/OS according to these instructions](#replace).
+Currently (as of version 1.8), DC/OS overlay networks can only be added and configured at install time. To replace or add another overlay network, [reinstall DC/OS according to these instructions](#replace).
 
-You can override the default network or add additional virtual networks by modifying your `config.yaml` file:
+You can override the default network or add additional overlay networks by modifying your `config.yaml` file:
 
 ```yaml
     agent_list:
@@ -70,7 +70,7 @@ In the above example, we have defined three overlay networks. The overlay networ
 
 # Retrieving overlay network state
 
-Once the DC/OS installation is complete you can query the virtual network configuration using the `https://leader.mesos/overlay-master/state` endpoint from within the cluster. The `network` key at the bottom lists the current overlay configuration and the `agents` key is a list showing how overlays are split across the Mesos agents. The following shows the network state when there is a single overlay in the cluster named `dcos`.
+Once the DC/OS installation is complete you can query the overlay network configuration using the `https://leader.mesos/overlay-master/state` endpoint from within the cluster. The `network` key at the bottom lists the current overlay configuration and the `agents` key is a list showing how overlays are split across the Mesos agents. The following shows the network state when there is a single overlay in the cluster named `dcos`.
 
 ```json
     "agents": [
