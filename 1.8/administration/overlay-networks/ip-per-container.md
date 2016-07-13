@@ -24,7 +24,11 @@ In Enterprise DC/OS, the overlay network feature is enabled by default. The defa
 
 Each overlay network is identified by a canonical `name`. Containers launched on an overlay network will get an IP address from the `subnet` allocated to the overlay network. To remove the dependency on a global IPAM, the overlay `subnet` is further split into smaller subnets. Each of *those* subnets is allocated to an agent. The agents can then use a host-local IPAM to allocate IP addresses from their respective subnets to containers launched on the agent and attached to the given overlay. The `prefix` determines the size of the subnet (carved from the overlay `subnet`) allocated to each agent and thus defines the number of agents on which the overlay can run.
 
-In the configuration above, each overlay network is allocated a /17 subnetwork (in the “subnet” field), which is then divided into /24 subnetworks to be used in each host that will be part of the network (in the “prefix” field). These values can be configured to adapt to each installation’s needs. If you need a larger network, decrease the network mask prefix of the `subnet`. To create an overlay network for only one agent node, specify the same value for the `subnet` network mask and the `prefix`.
+In the configuration above, each overlay network is allocated a /17 subnetwork (in the “subnet” field), which is then divided into /24 subnetworks to be used in each host that will be part of the network (in the “prefix” field), as shown:
+
+![Overlay network address space](/1.8/administration/overlay-networks/img/overlay-network-address-space.png)
+
+These values can be configured to adapt to each installation’s needs. If you need a larger network, decrease the network mask prefix of the `subnet`. To create an overlay network for only one agent node, specify the same value for the `subnet` network mask and the `prefix`. The size of the container space is `2^(32-<prefix>)`.
 
 # Adding overlay networks during installation
 
