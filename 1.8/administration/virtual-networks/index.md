@@ -4,7 +4,7 @@ post_title: Virtual Networks
 menu_order: 11.5 
 ---
 
-DC/OS allows you to create, manage, and use virtual networks, supporting IP-per-container with isolation guarantees amongst subnets. Virtual networks allow both Mesos and Docker containers to communicate from within a single node and between nodes on a cluster, and for services to be created such that their traffic is isolated from other traffic coming from any other virtual networks or hosts in the cluster.
+DC/OS allows you to create, manage, and use virtual networks, supporting IP-per-container with isolation guarantees amongst subnets. Virtual networks allow both Mesos and Docker containers to communicate from within a single node and between nodes on a cluster, and for services to be created such that their traffic is isolated from other traffic coming from any other virtual networks or hosts in the cluster. Isolation guarantees among subnets depend on your CNI implementation and/or your firewall policies.
 
 Additionally, virtual networks enable you to provide each container in the system with a unique IP address (“IP-per-container”). This removes the need to worry about potentially overlapping ports in applications, or the need to use nonstandard ports for services to avoid overlapping. IP-per-container functionality also allows you to generate any number of instances of a class of tasks and have them all listen on the same port so that clients don’t have to do port discovery.
 
