@@ -5,7 +5,7 @@ post_title: Configuring IP-per-Container in Overlay Networks
 menu_order: 10
 ---
 
-In Enterprise DC/OS, the overlay network feature is enabled by default. The default configuration provides two overlay networks `dcos-1` and `dcos-2`, whose YAML configuration is as follows:
+In Enterprise DC/OS the overlay network feature is enabled by default. The default configuration provides two overlay networks `dcos-1` and `dcos-2`, whose YAML configuration is as follows:
 
 ```yaml
   dcos_overlay_network:
@@ -22,9 +22,9 @@ In Enterprise DC/OS, the overlay network feature is enabled by default. The defa
 
 **Note:** Use a recent Linux kernel (3.9 or later) and Docker version 1.11 or later on the agent nodes.
 
-Each overlay network is identified by a canonical `name`. Containers launched on an overlay network will get an IP address from the `subnet` allocated to the overlay network. To remove the dependency on a global IPAM, the overlay `subnet` is further split into smaller subnets. Each of *those* subnets is allocated to an agent. The agents can then use a host-local IPAM to allocate IP addresses from their respective subnets to containers launched on the agent and attached to the given overlay. The `prefix` determines the size of the subnet (carved from the overlay `subnet`) allocated to each agent and thus defines the number of agents on which the overlay can run.
+Each overlay network is identified by a canonical `name`. Containers launched on an overlay network will get an IP address from the subnet allocated to the overlay network. To remove the dependency on a global IPAM, the overlay subnet is further split into smaller container subnets. Each of the container subnets is allocated to an agent. The agents can then use a host-local IPAM to allocate IP addresses from their respective container subnets to containers launched on the agent and attached to the given overlay. The `prefix` determines the size of the container subnet (carved from the overlay subnet) allocated to each agent and thus defines the number of agents on which the overlay can run.
 
-In the configuration above, each overlay network is allocated a /17 subnetwork (in the “subnet” field), which is then divided into /24 subnetworks to be used in each host that will be part of the network (in the “prefix” field), as shown:
+In the configuration above each overlay network is allocated a /17 subnet (in the “subnet” field), which is then divided into /24 container subnets to be used on each host that will be part of the network (in the “prefix” field) as shown:
 
 ![Overlay network address space](/1.8/administration/overlay-networks/img/overlay-network-address-space.png)
 

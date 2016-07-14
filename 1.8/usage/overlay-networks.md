@@ -8,7 +8,7 @@ DC/OS enables virtual networking through the use of overlay networks. DC/OS over
 
 * Both Mesos and Docker containers can communicate from within a single node and between nodes on a cluster.
 
-* Services can be created such that their traffic is isolated from other traffic coming from any other virtual network or host in the cluster.
+* Services can be created such that their traffic is isolated from other traffic coming from any other overlay network or host in the cluster.
 
 * They remove the need to worry about potentially overlapping ports in applications, or the need to use nonstandard ports for services to avoid overlapping.
 
@@ -20,15 +20,15 @@ DC/OS enables virtual networking through the use of overlay networks. DC/OS over
 
 **Note:** Isolation guarantees among subnets depend on your CNI implementation and/or your firewall policies.
 
-# Using Virtual Networks
+# Using Overlay Networks
 
-First, you or the data center operator needs to [configure the virtual networks](/docs/1.8/administration/virtual-networks/).
+First, you or the data center operator needs to [configure the overlay networks](/docs/1.8/administration/overlay-networks/).
 
-Virtual networks are configured at install time. You or the data center operator will specify a canonical name for each network in the `config.yaml`. When your service needs to launch a container, refer to it by that canonical name.
+Overlay networks are configured at install time. You or the data center operator will specify a canonical name for each network in the `config.yaml`. When your service needs to launch a container, refer to it by that canonical name.
 
 # Example
 
-The following Marathon application definition specifies a virtual network named `dcos-1`.
+The following Marathon application definition specifies an overlay network named `dcos-1`, which refers to the target DC/OS overlay network of the same name.
 
 ```json
 {  

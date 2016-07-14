@@ -9,7 +9,7 @@ DC/OS enables virtual networking through the use of overlay networks. DC/OS over
 
 * Both Mesos and Docker containers can communicate from within a single node and between nodes on a cluster.
 
-* Services can be created such that their traffic is isolated from other traffic coming from any other virtual network or host in the cluster.
+* Services can be created such that their traffic is isolated from other traffic coming from any other overlay network or host in the cluster.
 
 * They remove the need to worry about potentially overlapping ports in applications, or the need to use nonstandard ports for services to avoid overlapping.
 
@@ -37,6 +37,6 @@ The components of the overlay network interact in the following ways:
 
 - The CNI isolator is used for the Mesos containerizer. [DNI](https://docs.docker.com/engine/userguide/networking/dockernetworks/) is used for the Docker containerizer, shelling out to the Docker daemon.
 
-- For intra-node IP discovery we use an overlay orchestrator called navstar. This operator-facing system component is responsible for programming the overlay backend using a library called lashup that implements a gossip protocol to disseminate and coordinate overlay routing information among all Mesos agents in the DC/OS cluster.
+- For intra-node IP discovery we use an overlay orchestrator called navstar. This operator-facing system component is responsible for programming the overlay backend using a library called [lashup](https://github.com/dcos/lashup) that implements a gossip protocol to disseminate and coordinate overlay routing information among all Mesos agents in the DC/OS cluster.
 
-**Note:** To use overlay networks in DC/OS you must use a recent Linux kernel (3.9 or later) as well as Docker version 1.11 and later on the agent nodes.
+**Note:** To use overlay networks in DC/OS you must use a recent Linux kernel (3.9 and later) as well as Docker version 1.11 and later on the agent nodes.

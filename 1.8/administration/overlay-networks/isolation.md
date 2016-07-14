@@ -27,7 +27,7 @@ Use ipset to get onto the isolation chain. Create a `hash:net` type ipset named 
 
     $ iptables -I FORWARD -m set --match-set overlays src -m set --match-set overlays dst -j dcos-isolation
 
-This rule says that if a given packet is from any of the overlays and is destined to any other overlay, send it to the `dcos-isolation` rule. In most environments, the system should prevent an overlay network's outbound packets from re-entering the same overlay network. In order to avoid this, add an exception set of type `hash:net,net` and add entries for networks that should not be filtered. Modify the rule to: 
+This rule says that if a given packet is from any of the overlays and is destined to any other overlay, send it to the `dcos-isolation` rule. In most environments, the system does not prevent an overlay network's outbound packets from reentering the same overlay network. To prevent this, add an exception set of type `hash:net,net` and add entries for networks that should not be filtered. Modify the rule to: 
 
     $ iptables -I FORWARD -m set --match-set overlays src -m set --match-set overlays dst -m set ! --match-set src,dst overlay-exceptions -j dcos-isolation
 
@@ -40,7 +40,7 @@ The actual iptables rules that live on the `dcos-isolation` chain are just simpl
 Let’s say we have created two overlay networks: `IT` and `HR`. We want HR apps to be able to talk to IT apps, but no IT app should ever be allowed to connect to an HR app. We also want to allow all IT apps to talk to amongst themselves and all HR apps to talk amongst themselves. IT only runs apps on port 80. If we have assigned HR an overlay with the agent subnets carved from `192.168.0.0/16`, and the IT subnet out of `10.150.0.0/16`, we would use the following configuration:
 
     $ iptables -N dcos-isolation
-    $ iptables -A dcos-isolation -j REJECT # Changes it to default drop
+    $ iptables -A dcos-isolation -j REJECT # Changes it to default reject
     $ ipset create it hash:net
     $ ipset create hr hash:net
     $ ipset create overlays list:set
@@ -65,7 +65,7 @@ As well as our hairpin exception rules:
     $ iptables -I dcos-isolation -m set --match-set hr src -m set --match-set hr dst -j RETURN
     $ ipset add simple_allowed 192.168.0.0./16,192.168.0.0./16
     $ ipset add simple_allowed 10.250.0.0/16,10.250.0.0/16
-    $ ipset add complex_allowed 192.168.0.0/16,80,10.250.0.0/16 #this allows traffic
+    $ ipset add complex_allowed 192.168.0.0/16,80,10.250.0.0/16 #this allows traffic from HR to IT on port 80
 
 You can perform debugging with these commands:
 
