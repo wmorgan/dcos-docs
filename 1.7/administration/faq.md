@@ -17,10 +17,16 @@ menu_order: 10
 - **A.** If you specify an `external_storage_backend` other than `static` in your cluster's configuration, you should maintain the external storage for the full lifetime of the cluster to facilitate leader elections. If your cluster is mission critical, it is wise to harden your external storage by using S3 or running the bootstrap ZooKeeper as a quorum. Interruptions of service from the external storage can be tolerated, but permanent loss of state can lead to unexpected conditions.
 
 ###### Q. How do I gracefully shut down an agent?
-- **A.** To gracefully kill an agent node's Mesos process and allow systemd to restart it, use the following command:
+- **A.** To gracefully kill an agent node's Mesos process and allow systemd to restart it, use the following command. _Note: If Auto Scaling Groups are in use, the node will be replaced automatically_:
 
     ```bash
     $ sudo systemctl kill -s SIGUSR1 dcos-mesos-slave
+    ```
+
+- _For a public agent:_
+
+    ```bash
+    $ sudo systemctl kill -s SIGUSR1 dcos-mesos-slave-public
     ```
 
 - To gracefully kill the process and prevent systemd from restarting it, add a `stop` command:
@@ -29,4 +35,8 @@ menu_order: 10
     $ sudo systemctl kill -s SIGUSR1 dcos-mesos-slave && sudo systemctl stop dcos-mesos-slave
     ```
 
-_Note: If Autoscaling groups are in use, the node will be replaced automatically._
+- _For a public agent:_
+
+    ```bash
+    $ sudo systemctl kill -s SIGUSR1 dcos-mesos-slave-public && sudo systemctl stop dcos-mesos-slave-public
+    ```
