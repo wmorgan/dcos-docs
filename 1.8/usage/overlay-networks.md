@@ -28,7 +28,7 @@ Overlay networks are configured at install time. You or the data center operator
 
 # Example
 
-The following Marathon application definition specifies an overlay network named `dcos-1`, which refers to the target DC/OS overlay network of the same name.
+The following Marathon application definition specifies a virtual network named `dcos-1`, which refers to the target DC/OS overlay network of the same name.
 
 ```json
 {  
