@@ -182,7 +182,7 @@ A model app definition for PostgreSQL on Marathon would look like this. Note tha
   },
   "env": {
     "POSTGRES_PASSWORD": "password",
-    "PGDATA": "pgdata"
+    "PGDATA": "/mnt/mesos/sandbox/pgdata"
   },
   "residency": {
     "taskLostBehavior": "WAIT_FOREVER"
