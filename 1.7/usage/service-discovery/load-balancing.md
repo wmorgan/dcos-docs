@@ -7,7 +7,7 @@ menu_order: 2
 DC/OS comes with an east-west load balancer that's meant to be used to enable multi-tier microservices architectures. It acts as a TCP Layer 4 load balancer, and it's tightly integrated with the kernel.
 
 ## Usage
-You can use the layer 4 load balancer by specifying a VIP from the Marathon UI. The VIP must be specified in the format IP:port, for example: *1.2.3.4:5000*. Alternatively, if you're using something other than Marathon, you can create a label on the [port](https://github.com/apache/mesos/blob/b18f5bf48fda12bce9c2ac8e762a08f537ffb41d/include/mesos/mesos.proto#L1813) protocol buffer while launching a task on Mesos. This label's key must be in the format `VIP_$IDX`, where `$IDX` is replaced by a number, starting from 0. Once you create a task, or a set of tasks with a VIP, they will automatically become available to all nodes in the cluster, including the masters.
+You can use the layer 4 load balancer by specifying a VIP from the Marathon UI. The VIP must be specified in the format `IP:port`, for example: `*1.2.3.4:5000*`. Alternatively, if you're using something other than Marathon, you can create a label on the [port](https://github.com/apache/mesos/blob/b18f5bf48fda12bce9c2ac8e762a08f537ffb41d/include/mesos/mesos.proto#L1813) protocol buffer while launching a task on Mesos. This label's key must be in the format `VIP_$IDX`, where `$IDX` is replaced by a number, starting from 0. Once you create a task, or a set of tasks with a VIP, they will automatically become available to all nodes in the cluster, including the masters.
 
 ### Details
 When you launch a set of tasks when these labels, we distribute them to all of the nodes in the cluster. All of the nodes in the cluster act as decision makers in the load balancing process. There is a process that runs on all the agents which is consulted by the kernel when packets are recognized with this destination address. This process keeps track of availability and reachability of these tasks to attempt to send requests to the right backends
@@ -15,16 +15,16 @@ When you launch a set of tasks when these labels, we distribute them to all of t
 ### Recommendations
 
 #### Caveats
-1. Do not firewall traffic between the nodes
-2. Do not change `ip_local_port_range`
-3. You must have the `ipset` package installed
+1. Do not firewall traffic between the nodes.
+2. Do not change `ip_local_port_range`.
+3. You must have the `ipset` package installed.
 4. You must use a supported [operating system](/docs/1.7/administration/installing/custom/system-requirements/).
 
 #### Persistent Connections
 It is recommended when you use our VIPs you keep long-running, persistent connections. The reason behind this is that you can very quickly fill up the TCP socket table if you do not. The default local port range on Linux allows source connections from 32768 to 61000. This allows 28232 connections to be established between a given source IP and a destination address, port pair. TCP connections must go through the time wait state prior to being reclaimed. The Linux kernel's default TCP time wait period is 120 seconds. Given this, you would exhaust the connection table by only making 235 new connections / sec.
 
 #### Healthchecks
-We also recommend taking advantage of Mesos healthchecks. Mesos healthchecks are surfaced to the load balancing layer. **Marathon** only converts **command** healthchecks to Mesos healthchecks. You can simulate HTTP healthchecks via a command similar to `test "$(curl -4 -w '%{http_code}' -s http://localhost:${PORT0}/|cut -f1 -d" ")" == 200`. This ensures the HTTP status code returned is 200. It also assumes your application binds to localhost. The ${PORT0} is set as a variable by Marathon. We do not recommend using TCP healthchecks as they can be misleading as to the liveness of a service.
+We also recommend taking advantage of Mesos healthchecks. Mesos healthchecks are surfaced to the load balancing layer. **Marathon** only converts **command** healthchecks to Mesos healthchecks. You can simulate HTTP healthchecks via a command similar to `test "$(curl -4 -w '%{http_code}' -s http://localhost:${PORT0}/|cut -f1 -d" ")" == 200`. This ensures the HTTP status code returned is 200. It also assumes your application binds to localhost. The `${PORT0}` is set as a variable by Marathon. We do not recommend using TCP healthchecks as they can be misleading as to the liveness of a service.
 
 ### Demo
 If you would like to run a demo, you can configure a Marathon app as mentioned above, and use the URI `https://s3.amazonaws.com/sargun-mesosphere/linux-amd64`, as well as the command `chmod 755 linux-amd64 && ./linux-amd64 -listener=:${PORT0} -say-string=version1` to execute it. You can then test it by hitting the application with the command: `curl http://1.2.3.4:5000`. This app exposes an HTTP API. This HTTP API answers with the PID, hostname, and the 'say-string' that's specified in the app definition. In addition, it exposes a long-running endpoint at `http://1.2.3.4:5000/stream`, which will continue to stream until the connection is terminated. The code for the application is available here: `https://github.com/mesosphere/helloworld`.
@@ -94,7 +94,7 @@ If you begin to see the behaviour as described earlier where the connection tabl
 1. `net.netfilter.nf_conntrack_tcp_timeout_time_wait=0` -- You can set this to 0, but the time_wait state may break connection tracking for other applications
 1. `net.ipv4.tcp_tw_reuse=1` -- This sysctl can be dangerous and break firewalls, as well as NAT implementations. Although, if the firewall properly implements tracking TCP timestamps, it'll be okay. *Do not* set the `net.ipv4.tcp_tw_recycle` sysctl as it is RFC non-compliant and will break firewall connection tracking.
 
-More information about these sysctls can be found here: `https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt`.
+More information about these sysctls can be found here: [https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt](https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt).
 
 ## Debugging
 The load balancer exposes a few endpoints on every node in the DC/OS cluster that can be used for gathering statistics. The URI for these metrics are: `http://localhost:61421/metrics`. This includes data about the backends, and the dataplane runtime.

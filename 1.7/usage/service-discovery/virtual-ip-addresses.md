@@ -18,7 +18,7 @@ To create a VIP:
     *   To create a new application, click **Create Application** and select the **Ports and Service Discovery** menu option.
     *   To edit an existing application, select your application and click the **Configuration** tab, then click **Edit**. You can then select the **Ports and Service Discovery** menu option.
 
-    ![Marathon Ports](/docs/1.7/overview/img/ui-marathon-ports.gif)
+        ![Marathon Ports](/docs/1.7/overview/img/ui-marathon-ports.gif)
 
 2.  Enter the Port, Protocol, Name, and VIP address.
 
