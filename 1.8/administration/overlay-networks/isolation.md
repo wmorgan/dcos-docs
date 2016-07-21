@@ -1,5 +1,4 @@
 ---
-layout: page
 nav_title: Isolation
 post_title: Configuring Isolation in Overlay Networks
 menu_order: 20
@@ -7,7 +6,7 @@ menu_order: 20
 
 # iptables rules
 
-DC/OS uses [iptables](http://linux.die.net/man/8/iptables) to set up overlay network isolation. iptables are a high-speed, built-in mechanism for filtering traffic in Linux systems. We recommend configuring filtering by deploying a homogenous set of rules to all nodes in your infrastructure. In order to simplify this, we also recommend using the [ipset](http://ipset.netfilter.org/ipset.man.html) feature of iptables. 
+DC/OS uses [iptables](http://linux.die.net/man/8/iptables) to set up overlay network isolation. iptables are a high-speed, built-in mechanism for filtering traffic in Linux systems. We recommend configuring filtering by deploying a homogenous set of rules to all nodes in your infrastructure. In order to simplify this, we also recommend using the [ipset](http://ipset.netfilter.org/ipset.man.html) feature of iptables.
 
 Set up your own chain that jumps from the `FORWARD` chain. You can do this by running the following command:
 
@@ -27,7 +26,7 @@ Use ipset to get onto the isolation chain. Create a `hash:net` type ipset named 
 
     $ iptables -I FORWARD -m set --match-set overlays src -m set --match-set overlays dst -j dcos-isolation
 
-This rule says that if a given packet is from any of the overlays and is destined to any other overlay, send it to the `dcos-isolation` rule. In most environments, the system does not prevent an overlay network's outbound packets from reentering the same overlay network. To prevent this, add an exception set of type `hash:net,net` and add entries for networks that should not be filtered. Modify the rule to: 
+This rule says that if a given packet is from any of the overlays and is destined to any other overlay, send it to the `dcos-isolation` rule. In most environments, the system does not prevent an overlay network's outbound packets from reentering the same overlay network. To prevent this, add an exception set of type `hash:net,net` and add entries for networks that should not be filtered. Modify the rule to:
 
     $ iptables -I FORWARD -m set --match-set overlays src -m set --match-set overlays dst -m set ! --match-set src,dst overlay-exceptions -j dcos-isolation
 
@@ -50,8 +49,8 @@ Next, define the subnets and policies:
     $ ipset add it 10.250.0.0/16
     $ ipset add hr 192.168.0.0/16
     $ ipset create simple_allowed hash:net,net
-    $ ipset create complex_allowed hash:net,port,net 
-    $ iptables -I FORWARD -m set --match-set overlays src -m set --match-set overlays dst -j dcos-isolation 
+    $ ipset create complex_allowed hash:net,port,net
+    $ iptables -I FORWARD -m set --match-set overlays src -m set --match-set overlays dst -j dcos-isolation
     $ iptables -A dcos-isolation -m set --match-set simple_allowed src,dst -j RETURN
 
 Now we want to allow traffic going from HR and allow bidirectional connections:

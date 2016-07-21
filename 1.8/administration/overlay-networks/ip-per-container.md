@@ -1,5 +1,4 @@
 ---
-layout: page
 nav_title: IP-per-Container
 post_title: Configuring IP-per-Container in Overlay Networks
 menu_order: 10
@@ -11,7 +10,7 @@ In Enterprise DC/OS the overlay network feature is enabled by default. The defau
   dcos_overlay_network:
     vtep_subnet: 172.16/12
     vtep_mac_oui: 70:B3:D5:00:00:00
-    overlays: 
+    overlays:
       - name: dcos-1
         subnet: 192.168.0.0/17
         prefix: 24
@@ -58,7 +57,7 @@ You can override the default network or add additional overlay networks by modif
     dcos_overlay_network:
       vtep_subnet: 192.15.0.0/20
       vtep_mac_oui: 70:B3:D5:00:00:00
-      overlays: 
+      overlays:
         - name: dcos-1
           subnet: 192.168.0.0/17
           prefix: 24
@@ -188,7 +187,7 @@ DC/OS overlay uses a replicated log to persist the overlay network state across 
 **Note:** The overlay replicated log is different from the [master's replicated log](http://mesos.apache.org/documentation/latest/replicated-log-internals/), which is stored at /var/lib/mesos/master/replicated_log. Removing the *overlay* replicated log will have no effect on the master's recovery semantics.
 
 ## iptables
-The overlay networks install IPMASQ rules in order to allow containers to talk outside the overlay network. When you delete or replace overlay networks, you must remove the rules associated with the previous overlay networks. To remove the IPMASQ rules associated with each overlay, remove the IPMASQ rule from the POSTROUTING change of the NAT table that corresponds to the overlay networks subnet. Remove these rules on each agent node. 
+The overlay networks install IPMASQ rules in order to allow containers to talk outside the overlay network. When you delete or replace overlay networks, you must remove the rules associated with the previous overlay networks. To remove the IPMASQ rules associated with each overlay, remove the IPMASQ rule from the POSTROUTING change of the NAT table that corresponds to the overlay networks subnet. Remove these rules on each agent node.
 
 <a name="replace"></a>
 # Replacing or Adding New Overlay Networks

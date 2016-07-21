@@ -1,7 +1,6 @@
 ---
-layout: page
 post_title: Overlay Networks
-menu_order: 8.5 
+menu_order: 8.5
 ---
 
 DC/OS enables virtual networking through the use of overlay networks. DC/OS overlay networks enable you to provide each container in the system with a unique IP address (“IP-per-container”) with isolation guarantees amongst subnets. DC/OS overlay networks offer the following advantages:
@@ -31,7 +30,7 @@ Overlay networks are configured at install time. You or the data center operator
 The following Marathon application definition specifies a virtual network named `dcos-1`, which refers to the target DC/OS overlay network of the same name.
 
 ```json
-{  
+{
    "id":"my-networking",
    "cmd":"env; ip -o addr; sleep 30",
    "cpus":0.10,
@@ -39,16 +38,16 @@ The following Marathon application definition specifies a virtual network named 
    "instances":1,
    "backoffFactor":1.14472988585,
    "backoffSeconds":5,
-   "ipAddress":{  
+   "ipAddress":{
       "networkName":"dcos-1"
    },
-   "container":{  
+   "container":{
       "type":"DOCKER",
-      "docker":{  
+      "docker":{
          "network":"USER",
          "image":"busybox",
-         "portMappings":[  
-            {  
+         "portMappings":[
+            {
                "containerPort":123,
                "servicePort":80,
                "name":"foo"

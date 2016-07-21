@@ -1,8 +1,7 @@
 ---
-layout: page
 nav_title: Virtual Networks
 post_title: Overlay Networks
-menu_order: 11.5 
+menu_order: 11.5
 ---
 
 DC/OS enables virtual networking through the use of overlay networks. DC/OS overlay networks enable you to provide each container in the system with a unique IP address (“IP-per-container”) with isolation guarantees amongst subnets. DC/OS overlay networks offer the following advantages:
@@ -27,7 +26,7 @@ DC/OS enables virtual networking through the use of overlay networks. DC/OS over
 
 The overall approach to overlay networks in DC/OS looks as follows:
 
-![Overview of the DC/OS Overlay Networks architecture](/1.8/administration/overlay-networks/img/overlay-networks.png) 
+![Overview of the DC/OS Overlay Networks architecture](/1.8/administration/overlay-networks/img/overlay-networks.png)
 
 DC/OS overlay networks do not require an external IP address management (IPAM) solution because IP allocation is handled via the Mesos Master replicated log. Overlay networks do not support external IPAMs.
 
