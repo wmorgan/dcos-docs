@@ -16,6 +16,8 @@ You must have a single bootstrap node, Mesos master nodes, and Mesos agent nodes
 *   A High-availability (HA) TCP/Layer 3 load balancer, such as HAProxy, to balance the following TCP ports to all master nodes: 80, 443, 8080, 8181, 2181, 5050.
 *  An unencrypted SSH key that can be used to authenticate with the cluster nodes over SSH. Encrypted SSH keys are not supported.
 
+**Important:** The bootstrap node must be separate from your cluster nodes.
+
 ## Cluster nodes
 
 The cluster nodes are designated Mesos masters and agents during installation.
@@ -152,6 +154,8 @@ Alternatively, you can SSH as the root user.
 ## Bootstrap node
 
 The bootstrap node is a permanent part of your cluster and is required for DC/OS recovery. The leader state and leader election of your Mesos masters is maintained in Exhibitor ZooKeeper. Before installing DC/OS, you must ensure that your bootstrap node has the following prerequisites.
+
+**Important:** The bootstrap node must be separate from your cluster nodes.
 
 ### DC/OS setup file
 
