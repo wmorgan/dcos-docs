@@ -4,7 +4,7 @@ post_title: Configuring IP-per-Container in Overlay Networks
 menu_order: 10
 ---
 
-In Enterprise DC/OS the overlay network feature is enabled by default. The default configuration provides two overlay networks `dcos-1` and `dcos-2`, whose YAML configuration is as follows:
+In DC/OS the overlay network feature is enabled by default. The default configuration provides two overlay networks `dcos-1` and `dcos-2`, whose YAML configuration is as follows:
 
 ```yaml
   dcos_overlay_network:
@@ -194,6 +194,11 @@ The overlay networks install IPMASQ rules in order to allow containers to talk o
 
 To replace your overlay network, uninstall DC/OS and delete the replicated log on the master nodes and the iptable rules on the agent nodes. Then, reinstall with the desired networks specified in your `config.yaml` file.
 
+# Limitations
+* In DC/OS overlay we slice the subnet of an overlay network into smaller subnets, and allocate these smaller subnets to agents. When an agent has exhausted its allocated address range and a framework tries to launch a container on the overlay network on this agent, the container launch will fail leading to a TASK_FAILED being reported to the framework. Since there is no API to report the exhaustion of addresses on an agent, it is up to the framework to infer that containers cannot be launched on an overlay network due to lack of IP addresses on the agent. This limitation of not being able to report address exhaustion has a direct impact on the behavior of frameworks, such as Marathon, that try to launch "services" with a specified number of instances. Due to this limitation, frameworks such as Marathon might not be able to complete their obligation of launching a service on an overlay network if they repeatedly try to launch instances of a service on an agent that has exhausted its allocated IP address range. The user should be aware of this limitation in order to debug issues using these frameworks when seeing task failures on an overlay network.
+* The DC/OS overlay network does not allow frameworks to reserve IP addresses resulting in ephemeral addresses for containers across multiple incarnations on the overlay network. In order to host services whose IP addresses are assumed to be static, therefore, administrators should use [VIPs (virtual IP addresses)](https://dcos.io/docs/1.7/usage/service-discovery/load-balancing/).
+
 # Troubleshooting
 
 The **Networking** tab of the DC/OS web interface provides information helpful for troubleshooting. You can see which containers are on which network and see their IP addresses.
+

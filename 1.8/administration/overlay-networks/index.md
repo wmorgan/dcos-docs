@@ -4,7 +4,8 @@ post_title: Overlay Networks
 menu_order: 11.5
 ---
 
-DC/OS enables virtual networking through the use of overlay networks. DC/OS overlay networks enable you to provide each container in the system with a unique IP address (“IP-per-container”) with isolation guarantees amongst subnets. DC/OS overlay networks offer the following advantages:
+DC/OS supports virtual networking through CNI (Container Network Interface) for `MesosContainerizer`, and Docker libnetwork for `DockerContainerizer`. The DC/OS overlay network provides an out-of-the-box
+virtual networking solution, using CNI and libnetwork, that provides an ip-per-container solution for Mesos and Docker containers alike. DC/OS overlay network allows containers launched through the `MesosContainerizer` or `DockerContainerizer` to co-exist in the same IP network, with the containers being allocated their own unique IP addresses. DC/OS overlay networks offer the following advantages:
 
 * Both Mesos and Docker containers can communicate from within a single node and between nodes on a cluster.
 
@@ -18,7 +19,7 @@ DC/OS enables virtual networking through the use of overlay networks. DC/OS over
 
 * You can create multiple overlay networks to isolate different portions of your organization, for instance, development, marketing, and production.
 
-**Note:** Isolation guarantees among subnets depend on your CNI implementation and/or your firewall policies.
+**Note:** Isolation guarantees among subnets depend on your firewall policies.
 
 [Learn how to use overlay networks in your applications](/docs/1.8/usage/overlay-networks/).
 
