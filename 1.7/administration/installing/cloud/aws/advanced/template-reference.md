@@ -1,5 +1,4 @@
 ---
-layout: page
 post_title: Template Reference
 menu_order: 200
 ---

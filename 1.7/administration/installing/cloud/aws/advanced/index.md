@@ -1,5 +1,4 @@
 ---
-layout: page
 post_title: Advanced DC/OS Installation on AWS
 nav_title: AWS Advanced
 menu_order: 200
