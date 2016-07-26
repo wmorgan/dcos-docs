@@ -3,7 +3,7 @@ post_title: Quick Start Guide
 menu_order: 100
 ---
 
-You can quickly get up and running with the DC/OS templates. 
+You can quickly get up and running with the advanced DC/OS templates. 
 
 # System requirements
 
@@ -13,6 +13,7 @@ An Amazon EC2 <a href="https://aws.amazon.com/ec2/pricing/" target="_blank">m3.x
 
 ### Software
 
+- The DC/OS advanced AWS [templates](/docs/1.7/administration/installing/cloud/aws/advanced/template-reference/).
 - An Amazon Web Services account with root [IAM](https://aws.amazon.com/iam/) privileges. Advanced privileges are required to install the advanced templates. Contact your AWS admin for more information.
 - AWS [Command Line Interface](https://aws.amazon.com/cli/)
 - The CLI JSON processor [jq](https://github.com/stedolan/jq/wiki/Installation)
@@ -22,9 +23,9 @@ You can quickly get up and running with the DC/OS advanced templates.
 
 ## Create your dependencies
 
-Use the `zen.sh` script to create the template dependencies. These dependencies will be used as input to create your stack in CloudFormation.
+Use the `zen.sh` script to create the Zen template dependencies. These dependencies will be used as input to create your stack in CloudFormation.
 
-1.  Save this script as `zen.sh`                                                                     
+1.  Save this script as `zen.sh`.                                                                     
 
     ```bash
     #!/bin/bash
@@ -86,7 +87,7 @@ Use the `zen.sh` script to create the template dependencies. These dependencies 
 ## Launch the DC/OS advanced template on CloudFormation
 
 1.  Go to [CloudFormation](https://console.aws.amazon.com/cloudformation/home) and click **Create Stack**.
-1.  On the **Select Template** page, upload the [zen.json](https://downloads.dcos.io/dcos/EarlyAccess/commit/14509fe1e7899f439527fb39867194c7a425c771/cloudformation/zen-1.json) template from your workstation and click **Next**.
+1.  On the **Select Template** page, upload the [Zen](/docs/1.7/administration/installing/cloud/aws/advanced/template-reference/#zen) template from your workstation and click **Next**.
 1.  On the **Specify Details** page, specify these values and and click **Next**.
 
     ![AWS UI](../img/aws-advanced-1.png)
@@ -175,6 +176,6 @@ Public agents:
 *  **PublicAgentSecurityGroup** Specify the security group ID for public agents. This group should have limited external access. You can find this value in the **Outputs** tab of the Infrastructure stack (`<stack-name>-Infrastructure-<stack-id>`).
 *  **PublicSubnet** Specify the `Public SubnetId` output value from the `zen.sh` script. This subnet ID will be used by all public agents. 
 
-For all of the advanced configuration options, see the template reference [documentation](/docs/1.7/administration/installing/cloud/aws/template-reference/). 
+For all of the advanced configuration options, see the template reference [documentation](/docs/1.7/administration/installing/cloud/aws/advanced/template-reference/). 
 
  [2]: /docs/1.7/usage/cli/install/

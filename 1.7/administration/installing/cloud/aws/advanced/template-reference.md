@@ -8,10 +8,22 @@ menu_order: 200
 
 These advanced template parameters are specified in the individual JSON files. During DC/OS installation these template files are used to generate a customized DC/OS build.
 
+#### [Zen](#zen) template
+The [Zen](/docs/1.7/administration/installing/cloud/aws/advanced/template-reference/#zen) templates orchestrate the individual component templates to create a DC/OS cluster.
+
+#### Agent template
+The [agent](/docs/1.7/administration/installing/cloud/aws/advanced/template-reference/#private-agent) templates create [public](/docs/1.7/overview/concepts/#public) or [private](/docs/1.7/overview/concepts/#private) agent nodes that are then attached to a DC/OS cluster as a part of an AutoScalingGroup. 
+
+#### Master template
+The [master](/docs/1.7/administration/installing/cloud/aws/advanced/template-reference/#master) templates create master nodes, on top of the infrastructure stack already created.
+
+#### Infrastructure template
+The [infrastructure](/docs/1.7/administration/installing/cloud/aws/advanced/template-reference/#infrastructure) template defines and creates a DC/OS specific infrastructure that works well with an existing VPC. 
+
 
 ## <a name="zen"></a>Zen
 
-The Zen templates ([zen-1.json](https://downloads.dcos.io/dcos/EarlyAccess/commit/14509fe1e7899f439527fb39867194c7a425c771/cloudformation/zen-1.json), [zen-3.json](https://downloads.dcos.io/dcos/EarlyAccess/commit/14509fe1e7899f439527fb39867194c7a425c771/cloudformation/zen-3.json), [zen-5.json](https://downloads.dcos.io/dcos/EarlyAccess/commit/14509fe1e7899f439527fb39867194c7a425c771/cloudformation/zen-5.json), [zen-7.json](https://downloads.dcos.io/dcos/EarlyAccess/commit/14509fe1e7899f439527fb39867194c7a425c771/cloudformation/zen-7.json)) orchestrate the individual component templates.
+The Zen templates ([zen-1.json](https://s3.amazonaws.com/downloads.mesosphere.io/dcos/stable/cloudformation/zen-1.json), [zen-3.json](https://s3.amazonaws.com/downloads.mesosphere.io/dcos/stable/cloudformation/zen-3.json), [zen-5.json](https://s3.amazonaws.com/downloads.mesosphere.io/dcos/stable/cloudformation/zen-5.json), [zen-7.json](https://s3.amazonaws.com/downloads.mesosphere.io/dcos/stable/cloudformation/zen-7.json)) orchestrate the individual component templates.
 
 <table class="table">
   <tr>
@@ -67,7 +79,7 @@ The Zen templates ([zen-1.json](https://downloads.dcos.io/dcos/EarlyAccess/commi
 
 ## <a name="private-agent"></a>Private agents
 
-The private agent template ([advanced-priv-agent.json](https://downloads.dcos.io/dcos/EarlyAccess/commit/14509fe1e7899f439527fb39867194c7a425c771/cloudformation/advanced-priv-agent.json)) creates agents which are then attached to a DC/OS cluster as a part of an AutoScalingGroup. To configure the template, specify the VPC, subnet, and master DNS address for the DC/OS cluster to join. 
+The private agent template ([advanced-priv-agent.json](https://s3.amazonaws.com/downloads.mesosphere.io/dcos/stable/cloudformation/advanced-priv-agent.json)) creates agents which are then attached to a DC/OS cluster as a part of an AutoScalingGroup. To configure the template, specify the VPC, subnet, and master DNS address for the DC/OS cluster to join. 
 
 <table class="table">
   <tr>
@@ -104,7 +116,7 @@ The private agent template ([advanced-priv-agent.json](https://downloads.dcos.io
 
 ## <a name="public-agent"></a>Public agents
 
-The public agent template ([advanced-pub-agent.json](https://downloads.dcos.io/dcos/EarlyAccess/commit/14509fe1e7899f439527fb39867194c7a425c771/cloudformation/advanced-pub-agent.json)) creates agents which are then attached to a DC/OS cluster as a part of an AutoScalingGroup. To configure the template, specify the VPC, subnet, and master DNS address for the DC/OS cluster to join. 
+The public agent template ([advanced-pub-agent.json](https://s3.amazonaws.com/downloads.mesosphere.io/dcos/stable/cloudformation/advanced-pub-agent.json)) creates agents which are then attached to a DC/OS cluster as a part of an AutoScalingGroup. To configure the template, specify the VPC, subnet, and master DNS address for the DC/OS cluster to join. 
 
 <table class="table">
   <tr>
@@ -139,7 +151,7 @@ The public agent template ([advanced-pub-agent.json](https://downloads.dcos.io/d
 
 ## <a name="master"></a>Master
 
-The master templates ([advanced-master-1.json](https://downloads.dcos.io/dcos/EarlyAccess/commit/14509fe1e7899f439527fb39867194c7a425c771/cloudformation/advanced-master-1.json), [advanced-master-3.json](https://downloads.dcos.io/dcos/EarlyAccess/commit/14509fe1e7899f439527fb39867194c7a425c771/cloudformation/advanced-master-3.json), [advanced-master-5.json](https://downloads.dcos.io/dcos/EarlyAccess/commit/14509fe1e7899f439527fb39867194c7a425c771/cloudformation/advanced-master-5.json), [advanced-master-7.json](https://downloads.dcos.io/dcos/EarlyAccess/commit/14509fe1e7899f439527fb39867194c7a425c771/cloudformation/advanced-master-7.json)) create masters, on top of the infrastructure stack already created.
+The master templates ([advanced-master-1.json](https://s3.amazonaws.com/downloads.mesosphere.io/dcos/stable/cloudformation/advanced-master-1.json), [advanced-master-3.json](https://s3.amazonaws.com/downloads.mesosphere.io/dcos/stable/cloudformation/advanced-master-3.json), [advanced-master-5.json](https://s3.amazonaws.com/downloads.mesosphere.io/dcos/stable/cloudformation/advanced-master-5.json), [advanced-master-7.json](https://s3.amazonaws.com/downloads.mesosphere.io/dcos/stable/cloudformation/advanced-master-7.json)) create masters, on top of the infrastructure stack already created.
 
 <table class="table">
   <tr>
@@ -194,7 +206,7 @@ The master templates ([advanced-master-1.json](https://downloads.dcos.io/dcos/Ea
 
 ## <a name="infrastructure"></a>Infrastructure
 
-The infrastructure template ([infra.json](https://downloads.dcos.io/dcos/EarlyAccess/commit/14509fe1e7899f439527fb39867194c7a425c771/cloudformation/infra.json)) defines, and creates, a DC/OS specific infrastructure that works well with a VPC already created. This is the lowest building block of a DC/OS cluster and the components created in this stack are consumed by the dependent templates (master and agents).
+The infrastructure template ([infra.json](https://s3.amazonaws.com/downloads.mesosphere.io/dcos/stable/cloudformation/infra.json)) defines, and creates, a DC/OS specific infrastructure that works well with a VPC already created. This is the lowest building block of a DC/OS cluster and the components created in this stack are consumed by the dependent templates (master and agents).
 
 <table class="table">
   <tr>
