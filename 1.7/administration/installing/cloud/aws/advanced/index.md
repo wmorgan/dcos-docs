@@ -13,3 +13,5 @@ The AWS CloudFormation templates bring power and flexibility to creating and ext
 The templates are used together in conjunction to create a DC/OS cluster. The templates are driven by parameters that AWS CloudFormation uses to create each stack.  
 
 <!-- Insert graphic -->
+
+[Quick Start Guide](/docs/1.7/administration/installing/cloud/aws/advanced/quickstart/)
