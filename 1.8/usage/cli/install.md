@@ -4,13 +4,13 @@ nav_title: Installing
 menu_order: 1
 ---
 
+The easiest way to install the DC/OS CLI is by clicking the signpost icon in the lower left corner of the DC/OS web interface. Or, you can manually install the CLI by following these instructions.
+
 *   [Installing the DC/OS CLI on Linux][1]
 *   [Installing the DC/OS CLI on OS X][2]
 *   [Installing the DC/OS CLI on Windows][3]
 
 # <a name="linux"></a>Installing on Linux
-
-The easiest way to install the DC/OS CLI is by clicking the signpost icon in the lower left corner of the DC/OS web interface. Or, you can manually install the CLI by following these instructions.
 
 #### Prerequisites
 
@@ -65,8 +65,6 @@ The easiest way to install the DC/OS CLI is by clicking the signpost icon in the
     ```
 
 # <a name="osx"></a>Installing on OS X
-
-The easiest way to install the DC/OS CLI is by clicking the signpost icon in the lower left corner of the DC/OS web interface. Or, you can manually install the CLI by following these instructions.
 
 #### Prerequisites
 
