@@ -1,5 +1,5 @@
 ---
-post_title: The Architecture of DC/OS
+post_title: Architecture
 nav_title: Architecture
 menu_order: 2
 ---
@@ -38,7 +38,7 @@ In DC/OS, the kernel space manages resource allocation and two-level scheduling 
 The DC/OS user space spans System Components and DC/OS services such as Chronos or Kafka:
 
 - [System Components][components] are installed and are running by default in the DC/OS cluster and include the following:
-  - The Admin Router is an open source NGNIX configuration that provides central authentication and proxy to DC/OS services.
+  - The Admin Router is an open source NGINX configuration that provides central authentication and proxy to DC/OS services.
   - Exhibitor automatically configures ZooKeeper during installation and provides a usable Web UI to ZooKeeper.
   - Mesos-DNS provides service discovery, allowing apps and services to find each other by using the domain name system (DNS).
   - Minuteman is the internal layer 4 load balancer.
@@ -123,5 +123,5 @@ In detail, here are the steps:
 | 11   | Mesos master reports task status to scheduler. |
 | 12   | Scheduler reports process status to client. |
 
-[auth]: /docs/1.7/administration/security/
+[auth]: /docs/1.7/administration/id-and-access-mgt/
 [components]: /docs/1.7/overview/components/

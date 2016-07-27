@@ -1,25 +1,33 @@
 ---
 post_title: Running Tomcat in Docker on DC/OS
 nav_title: Tomcat
+menu_order: 12
 ---
 
 [Apache Tomcat](http://tomcat.apache.org/index.html) provides implementations of Servlet, JSP, EL and WebSocket from the Java EE Web Application Container specification.
 
+**Prerequisites**
+
+- A DC/OS cluster with at least 1 master and 1 [public agent](/docs/1.7/overview/concepts/#public) node
+- DC/OS [CLI](/docs/1.7/usage/cli/) 0.4.6 or later
+- [jQuery](https://github.com/stedolan/jq/wiki/Installation)
+- [SSH](/docs/1.7/administration/sshcluster/) configured
+
 ## Run the container
 
-Assuming you have a DC/OS cluster up and running, the first step is to download the marathon.json. As the minimum cluster size for this tutorial I recommend at least one node running with the `slave_public` role having 1 CPU, 512mb RAM and port 80 free.
+Download the Tomcat `marathon.json` app definition file to your local host where the DC/OS CLI is installed. 
 
 ```
 curl -O https://dcos.io/docs/1.7/usage/tutorials/tomcat/marathon.json
 ```
 
-Lets inspect the marathon.json:
+Lets inspect the `marathon.json` file:
 
 ```
 cat marathon.json
 ```
 
-It should like similar to the following:
+It should look like this:
 
 ```json
 {
@@ -84,7 +92,20 @@ ID       MEM  CPUS  TASKS  HEALTH  DEPLOYMENT  CONTAINER  CMD
 
 ## View Tomcat
 
-To view Apache Tomcat running, navigate to `http://<public_agent_public_ip>` and see the install success page. 
+To view Apache Tomcat running, navigate to `http://<public_agent_public_ip>` and see the install success page. You can find your public agent IP by running this command from the DC/OS CLI. 
+
+```
+$ dcos node ssh --option StrictHostKeyChecking=no --option LogLevel=quiet --master-proxy --mesos-id=$(dcos task --json | jq --raw-output '.[] | select(.name == "tomcat") | .slave_id') "curl -s ifconfig.co" 2>/dev/null
+```
+
+In this example the public IP address is `52.39.29.79`:
+
+```
+$ dcos node ssh --option StrictHostKeyChecking=no --option LogLevel=quiet --master-proxy --mesos-id=$(dcos task --json | jq --raw-output '.[] | select(.name == "tomcat") | .slave_id') "curl -s ifconfig.co" 2>/dev/null
+52.39.29.79
+```
+
+By default this command closes the SSH connection.
 
 ![Apache Tomcat Install Success](img/tomcat-screenshot.png)
 

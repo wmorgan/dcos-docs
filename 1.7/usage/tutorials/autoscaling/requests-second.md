@@ -1,6 +1,6 @@
 ---
 post_title: >
-  Autoscaling via. requests/second
+  Autoscaling using requests per second
 nav_title: Requests/Second
 ---
 

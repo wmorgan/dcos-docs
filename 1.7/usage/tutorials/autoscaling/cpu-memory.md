@@ -1,6 +1,6 @@
 ---
 post_title: >
-  Autoscaling Marathon services via. CPU/memory
+  Autoscaling Marathon services using CPU and memory
 nav_title: CPU/Memory
 ---
 

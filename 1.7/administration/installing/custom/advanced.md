@@ -13,14 +13,16 @@ The advanced installer requires:
 
 The DC/OS installation creates these folders:
 
-*   `/opt/mesosphere`
-    :   Contains all the DC/OS binaries, libraries, cluster configuration. Do not modify.
+| Folder                                  | Description                                                                                                                                            |
+|-----------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `/opt/mesosphere`                       | Contains all the DC/OS binaries, libraries, cluster configuration. Do not modify.                                                                      |
+| `/etc/systemd/system/dcos.target.wants` | Contains the systemd services which start the things that make up systemd. They must live outside of `/opt/mesosphere` because of systemd constraints. |
+| `/etc/systemd/system/dcos.<units>`      | Contains copies of the units in `/etc/systemd/system/dcos.target.wants`. They must be at the top folder as well as inside `dcos.target.wants`.         |
+| `/var/lib/zookeeper`                    | Contains the [ZooKeeper](/docs/1.7/overview/concepts/#zookeeper) data.                                                                                      |
+| `/var/lib/docker`                       | Contains the Docker data.                                                                                                                              |
+| `/var/lib/dcos`                         | Contains the DC/OS data.                                                                                                                               |
+| `/var/lib/mesos`                        | Contains the Mesos data.                                                                                                                               |
 
-*   `/etc/systemd/system/dcos.target.wants`
-    :   Contains the systemd service units which start the things that make up DC/OS. They must live outside of `/opt/mesosphere` because of systemd constraints.
-
-*   Various units prefixed with `dcos` in `/etc/systemd/system`
-    :   Copies of the units in `/etc/systemd/system/dcos.target.wants`. They must be at the top folder as well as inside `dcos.target.wants`.
 
 # Configure your cluster
 
@@ -35,7 +37,7 @@ The DC/OS installation creates these folders:
     In this step you create a YAML configuration file that is customized for your environment. DC/OS uses this configuration file during installation to generate your cluster installation files.
 
     You can use this template to get started. This template specifies 3 Mesos masters, 3 ZooKeeper instances for Exhibitor storage, static master discovery list, and Google DNS resolvers. If your servers are installed with a domain name in your `/etc/resolv.conf`, you should add `dns_search` to your `config.yaml` file. For parameters descriptions and configuration examples, see the [documentation][1].
-    
+
     **Tip:** If Google DNS is not available in your country, you can replace the Google DNS servers `8.8.8.8` and `8.8.4.4` with your local DNS servers.
 
     ```yaml

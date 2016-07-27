@@ -18,7 +18,7 @@ This document provides instructions for upgrading a DC/OS cluster from version 1
 - For Mesos compatibility reasons, we recommend upgrading any running Marathon-on-Marathon instances to version Marathon 0.16.0-RC3 before proceeding with this DC/OS upgrade.
 - You must have access to copies of the config files used with DCOS 1.6: `config.yaml` and `ip-detect`.
 - You must be using systemd 218 or newer to maintain task state.
-- All hosts (masters and agents) must be able to communicate with all other hosts on port `53|UDP`.
+- All hosts (masters and agents) must be able to communicate with all other hosts on all ports, for both TCP and UDP.
 - In CentOS or RedHat, install IP sets with this command (used in some IP detect scripts): `$ sudo yum install -y ipset`
 - You must be familiar with using `systemctl` and `journalctl` command line tools to review and monitor service status. Troubleshooting notes can be found at the end of this [document](#troubleshooting).
 - You must be familiar with the [Advanced DC/OS Installation Guide][advanced-install].
@@ -99,10 +99,17 @@ Identify your Mesos leader node. This node should be the last master node that y
     $ sudo -i /opt/mesosphere/bin/pkgpanda uninstall
     ```
 
-1.  Remove The DC/OS 1.6 Data Directory
+1.  Remove The DC/OS 1.6 Data Directory and add `mesos-resources`
 
     ```
     $ sudo rm -rf /opt/mesosphere /etc/mesosphere
+    ```
+
+1.  The DC/OS installer discovers and combines your agent's configuration parameters into a file named `mesos-resources`. As a part of this process the available disk space of each node is calculated. If you have not made explicit disk size reservations, you must create a placeholder for the disk reservation file. This prevents the installer from building a new disk reservation file that might conflict with your stored agent metadata:
+
+    ```
+    $ sudo mkdir -p /var/lib/dcos
+    $ sudo touch /var/lib/dcos/mesos-resources
     ```
 
 1.  Install DC/OS 1.7

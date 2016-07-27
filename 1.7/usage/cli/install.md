@@ -59,6 +59,18 @@ The easiest way to install the DC/OS CLI is by clicking the signpost icon in the
 
 5.  Follow the on-screen DC/OS CLI instructions. You can ignore any Python "Insecure Platform" warnings.
 
+6.  Authenticate your CLI with your master node and set the auth token, run the below command on bootstrap instance:
+
+    ```bash
+    $ dcos auth login
+    ```
+
+    You will be provided an URL and prompted to enter the authentication token. Visit the URL to get your authentication token.
+
+7. Enter the URL in your browser.
+
+8. You will be asked to authenticate. Once done, the authentication token will be provided. Copy and paste the token into your terminal. Your CLI should now be authenticated with your cluster!
+
     You can now use the CLI.
 
     ```bash
@@ -79,6 +91,7 @@ The easiest way to install the DC/OS CLI is by clicking the signpost icon in the
 
     Get detailed command description with 'dcos <command> --help'.
     ```
+
 
 # <a name="windows"></a>Installing on Windows
 
@@ -216,6 +229,18 @@ Pip is included with Python, but you must upgrade pip for it to work properly wi
     ```powershell
     PS C:\dcos\> & .activate.ps1; dcos help
     ```
+    
+1. Authenticate your CLI with your master node and set the auth token, run the below command on bootstrap instance:
+
+    ```powershell
+    $ dcos auth login
+    ```
+
+    You will be provided an URL and prompted to enter the authentication token. Visit the URL to get your authentication token.
+
+1. Enter the URL in your browser.
+
+1. You will be asked to authenticate. Once done, the authentication token will be provided. Copy and paste the token into your terminal. Your CLI should now be authenticated with your cluster!
 
     You can now use the CLI.
 

@@ -57,7 +57,7 @@ This parameter specifies the type of storage backend to use for Exhibitor. You c
        **Important:** With `shared_filesystem`, all masters must must have the NFS volume mounted and `exhibitor_fs_config_dir` must be inside of it. If any of your servers are missing the mount, the DC/OS cluster will not start.
 
 ### <a name="master"></a>master_discovery
-This required parameter specifies the Mesos master discovery method. The available options are `static` or `vrrp`.
+This required parameter specifies the Mesos master discovery method. The available options are `static` or `master_http_loadbalancer`.
 
 *  `master_discovery: static`
 This option specifies that Mesos agents are used to discover the masters by giving each agent a static list of master IPs. The masters must not change IP addresses, and if a master is replaced, the new master must take the old master's IP address. If you specify `static`, you must also specify this parameter:
@@ -65,19 +65,12 @@ This option specifies that Mesos agents are used to discover the masters by givi
     *  **master_list**
        This required parameter specifies a list of your static master IP addresses as a YAML nested series (`-`).
 
-*  `master_discovery: vrrp`
-This option specifies that Keepalived with a VIP is used to discover the master. You are required to maintain this VIP infrastructure. If you specify `vrrp`, you must also specify these parameters:
-
-    *  **keepalived_router_id**
-       This parameter specifies the virtual router ID of the Keepalived cluster. You must use the same virtual router ID across your cluster.
-    *  **keepalived_interface**
-       This parameter specifies the interface that Keepalived uses.
-    *  **keepalived_pass**
-       If you've set your `auth_type` to `PASS`, this parameter specifies the password that you set for `auth_pass` in your Keepalived configuration file.
-    *  **keepalived_virtual_ipaddress**
-       This parameter specifies the VIP in use by your Keepalived cluster.
+*  `master_discovery: master_http_loadbalancer`
+This option specifies that the set of masters has an HTTP load balancer in front of them. The agent nodes will know the address of the load balancer. They use the load balancer to access exhibitor on the masters to get the full list of master IPs. If you specify master_http_load_balancer, you must also specify these parameters:
+    * **exhibitor_address**
+      This required parameter specifies an address (preferrably an IP address), where the load balancer in front of the masters can be found. The load balancer must accept traffic on port 8080, port 5050, port 80, and port 443, and forward it to the same port on the master (8080 on lb -> 8080 on one master, 505 on lb -> 5050 on one master). The master to forward any new connection to should be round robin, and should avoid machines that do not respond to requests on port 5050 in order to ensure the box is functioning (mesos master) is up.
     *  **num_masters**
-       This parameter specifies the number of Mesos masters in your DC/OS cluster. If `master_discovery: static`, do not use the `num_masters` parameter.
+       This required parameter specifies the number of Mesos masters in your DC/OS cluster. It cannot be changed later. The number of masters behind the load balancer must never be greater than this number, though it can be fewer during failures.
 
 ## Networking
 ### <a name="dns-search"></a>dns_search
@@ -91,7 +84,18 @@ In this example, `example.com` has public website `www.example.com` and all of t
 dns_search: dc1.example.com dc1.example.com example.com dc1.example.com dc2.example.com example.com
 ```
 ### resolvers
-This required parameter specifies a YAML nested list (`-`) of DNS resolvers for your DC/OS cluster nodes. You can specify a maximum of 3 resolvers. Set this parameter to the most authoritative nameservers that you have. If you want to resolve internal hostnames, set it to a nameserver that can resolve them. If you have no internal hostnames to resolve, you can set this to a public nameserver like Google or AWS. In the example file above, the <a href="https://developers.google.com/speed/public-dns/docs/using" target="_blank">Google Public DNS IP addresses (IPv4)</a> are specified (`8.8.8.8` and `8.8.4.4`).
+
+This required parameter specifies a YAML nested list (`-`) of DNS resolvers for your DC/OS cluster nodes. You can specify a maximum of 3 resolvers. Set this parameter to the most authoritative nameservers that you have.
+
+-  If you want to resolve internal hostnames, set it to a nameserver that can resolve them.
+-  If you do not have internal hostnames to resolve, you can set this to a public nameserver like Google or AWS. For example, you can specify the [Google Public DNS IP addresses (IPv4)](https://developers.google.com/speed/public-dns/docs/using):
+
+    ```bash
+    resolvers:
+    - 8.8.4.4
+    - 8.8.8.8
+    ```
+-  If you do not have a DNS infrastructure and do not have access to internet DNS servers, you can specify `resolvers: []`. By specifying this setting, all requests to non-`.mesos` will return an error. For more information, see the Mesos-DNS [documentation](/docs/1.7/usage/service-discovery/mesos-dns/).
 
 **Caution:** If you set the `resolvers` parameter incorrectly, you will permanently damage your configuration and have to reinstall DC/OS.
 
@@ -226,7 +230,7 @@ ssh_user: <username>
 weights: slave_public=1
 ```
 
-#### <a name="zk"></a>DC/OS cluster with 3 masters, an Exhibitor/ZooKeeper backed by ZooKeeper, VRRP master discovery, public agent node, and Google DNS
+#### <a name="zk"></a>DC/OS cluster with 3 masters, an Exhibitor/ZooKeeper backed by ZooKeeper, http load balancer master discovery, public agent node, and Google DNS
 
 ```yaml
 ---
@@ -241,13 +245,10 @@ cluster_name: zk-example
 exhibitor_storage_backend: zookeeper
 exhibitor_zk_hosts: 10.10.10.1:2181
 exhibitor_zk_path: /zk-example
-keepalived_interface: eth1
-keepalived_pass: $MY_STRONG_PASSWORD
-keepalived_router_id: 51
-keepalived_virtual_ipaddress: 67.34.242.55
 log_directory: /genconf/logs
-master_discovery: vrrp
+master_discovery: master_http_loadbalancer
 num_masters: 3
+exhibitor_address: 67.34.242.55
 process_timeout: 120
 resolvers:
 - <dns-resolver-1>

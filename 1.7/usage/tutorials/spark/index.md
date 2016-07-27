@@ -1,6 +1,7 @@
 ---
 post_title: How to use Apache Spark on DC/OS
 nav_title: Spark
+menu_order: 11
 ---
 
 [Apache Spark](https://spark.apache.org/) is a general-purpose data processing engine. It supports batch and stream processing and comes with built-in APIs for SQL, machine learning and graph workloads. Spark is storage-layer agnostic, meaning it doesn't come with its own storage system but provides connectors to read data from and write data into, for example, the local filesystem, HDFS, Kafka, Cassandra, Elasticsearch, and HBase.
@@ -209,6 +210,7 @@ To get started with Zeppelin, check out the Zeppelin [docs](http://zeppelin.incu
 
 **Further resources**:
 
+- [DC/OS Spark Official Documentation](http://docs.mesosphere.com/usage/service-guides/spark)
 - [Mesos-specific](https://spark.apache.org/docs/latest/running-on-mesos.html#configuration) configuration options for Spark
 - [Mesos run modes](https://spark.apache.org/docs/latest/running-on-mesos.html#mesos-run-modes) for Spark
 - A gentle introduction into [Spark on Mesos](http://www.slideshare.net/Typesafe_Inc/how-to-deploy-apache-spark-to-mesosdcos) by Lightbend

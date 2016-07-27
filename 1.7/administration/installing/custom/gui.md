@@ -10,14 +10,15 @@ This installation method uses a bootstrap node to administer the DC/OS installat
 
 The DC/OS installation creates these folders:
 
-*   `/opt/mesosphere`
-    Contains all the DC/OS binaries, libraries, cluster configuration. Do not modify.
-
-*   `/etc/systemd/system/dcos.target.wants`
-    Contains the systemd service units which start the things that make up DC/OS. They must live outside of `/opt/mesosphere` because of systemd constraints.
-
-*   Various units prefixed with `dcos` in `/etc/systemd/system`
-    Copies of the units in `/etc/systemd/system/dcos.target.wants`. They must be at the top folder as well as inside `dcos.target.wants`.
+| Folder                                  | Description                                                                                                                                            |
+|-----------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `/opt/mesosphere`                       | Contains all the DC/OS binaries, libraries, cluster configuration. Do not modify.                                                                      |
+| `/etc/systemd/system/dcos.target.wants` | Contains the systemd services which start the things that make up systemd. They must live outside of `/opt/mesosphere` because of systemd constraints. |
+| `/etc/systemd/system/dcos.<units>`      | Contains copies of the units in `/etc/systemd/system/dcos.target.wants`. They must be at the top folder as well as inside `dcos.target.wants`.         |
+| `/var/lib/zookeeper`                    | Contains the [ZooKeeper](/docs/1.7/overview/concepts/#zookeeper) data.                                                                                      |
+| `/var/lib/docker`                       | Contains the Docker data.                                                                                                                              |
+| `/var/lib/dcos`                         | Contains the DC/OS data.                                                                                                                               |
+| `/var/lib/mesos`                        | Contains the Mesos data.                                                                                                                               |
 
 
 # Install DC/OS
@@ -58,22 +59,22 @@ The DC/OS installation creates these folders:
 
     ### Deployment Settings
 
-    **Master Private IP List** 
+    **Master Private IP List**
     Specify a comma-separated list of your internal static master IP addresses.
 
-    **Agent Private IP List** 
+    **Agent Private IP List**
     Specify a comma-separated list of your internal static agent IP addresses.
 
-    **Master Public IP** 
+    **Master Public IP**
     Specify a publicly accessible proxy IP address to one of your master nodes. If you don't have a proxy or already have access to the network where you are deploying this cluster, you can use one of the master IP's that you specified in the master list. This proxy IP address is used to access the DC/OS web interface on the master node after DC/OS is installed.
 
-    **SSH Username** 
+    **SSH Username**
     Specify the SSH username, for example `centos`.
 
-    **SSH Listening Port** 
+    **SSH Listening Port**
     Specify the port to SSH to, for example `22`.
 
-    **SSH Key** 
+    **SSH Key**
     Specify the private SSH key with access to your master IPs.
 
     ### DC/OS Environment Settings

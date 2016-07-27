@@ -1,6 +1,7 @@
 ---
 post_title: Marathon Tutorials
 nav_title: Marathon
+menu_order: 08
 ---
 
 We have some excellent material for you to get started with Marathon and further explore the many features it offers:

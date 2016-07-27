@@ -1,6 +1,7 @@
 ---
 post_title: Deploying a Docker-based Service to Marathon
 nav_title: Docker Service
+menu_order: 05
 ---
 
 In this tutorial, a custom Docker app is created and added to Marathon.

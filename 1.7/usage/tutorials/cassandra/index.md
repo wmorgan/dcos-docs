@@ -1,6 +1,7 @@
 ---
 post_title: How to use Apache Cassandra
 nav_title: Cassandra
+imenu_order: 03
 ---
 
 [Apache Cassandra](https://cassandra.apache.org/) is a decentralized structured distributed storage system. Cassandra clusters are highly available, scalable, performant, and fault tolerant. DC/OS Cassandra allows you to quickly configure, install, and manage Apache Cassandra. Multiple Cassandra clusters can also be installed on DC/OS and managed independently, so you can offer Cassandra as a managed service to your organization.
@@ -148,7 +149,7 @@ You are now inside your DC/OS cluster and can connect to the Cassandra cluster d
 core@ip-10-0-6-153 ~ $ docker run cassandra:2.2.5 cqlsh <HOST>
 ```
 
-Replace `<HOST>` with the actual host, which that we retrieved by running `dcos cassandra node connection`, above:
+Replace `<HOST>` with the actual host, which that we retrieved by running `dcos cassandra connection`, above:
 
 ```bash
 core@ip-10-0-6-153 ~ $ docker run -ti cassandra:2.2.5 cqlsh 10.0.2.66
@@ -164,7 +165,7 @@ cqlsh> CREATE KEYSPACE demo WITH REPLICATION = { 'class' : 'SimpleStrategy', 're
 Next, create a sample table called `map` in the `demo` keyspace:
 
 ```sql
-cqlsh> USE demo;CREATE TABLE map (key varchar, value varchar, PRIMARY KEY(key));
+cqlsh> CREATE TABLE demo.map (key varchar, value varchar, PRIMARY KEY(key));
 ```
 
 Insert some data in your table:
@@ -201,7 +202,7 @@ cqlsh> SELECT * FROM demo.map;
 $ dcos package uninstall cassandra
 ```
 
-Use the [framework cleaner](https://docs.mesosphere.com/framework_cleaner/) script to remove your Cassandra instance from Zookeeper and to destroy all data associated with it. The script requires several arguments, the values for which are derived from your service name:
+Use the [framework cleaner](/docs/1.7/usage/managing-services/uninstall/#framework-cleaner) script to remove your Cassandra instance from Zookeeper and to destroy all data associated with it. The script requires several arguments, the values for which are derived from your service name:
 
 `framework-role` is `cassandra_role`
 `framework-principal` is `cassandra_principal`

@@ -1,7 +1,7 @@
 ---
 post_title: Usage Frequently Asked Questions
 nav_title: FAQ
-menu_order: 6
+menu_order: 9
 ---
 
 We've collected some questions we often encounter concerning the usage of DC/OS. Have got a new question you'd like to see? Use the `Submit feedback` button at the bottom of this page to suggest it or check out how you can [contribute](https://dcos.io/contribute/) also the answer to it.
@@ -10,10 +10,9 @@ We've collected some questions we often encounter concerning the usage of DC/OS.
 
 This most commonly occurs when an application being launched has higher system requirements than any of the available offers coming to Marathon via Mesos. The deployment will eventually fail; check system requirements and increase the resources to the application if you want the deployment to succeed.
 
-## Why is my Marathon app launching on public agent instead of private?
+## Why is my Marathon app launching on private agent instead of public?
 
-- To run a Marathon app on public agents, you must set the acceptedResourceRoles property to `"acceptedResourceRoles":["slave_public"]`
-- To run a Marathon app on any agent node type, you must set the acceptedResourceRoles property to `"acceptedResourceRoles":["slave_public", "*"]`
+By default apps are launched on private nodes. For more information, see the [documentation][5].
 
 ## What is meant by service ports in a Marathon app?
 
@@ -68,3 +67,4 @@ We recommend using CoreOS, matched with its correct versions and sensible defaul
 [2]: /docs/1.7/usage/service-discovery/
 [3]: http://mesos.apache.org/documentation/latest/attributes-resources/
 [4]: https://support.mesosphere.com/hc/en-us/articles/206474745-How-to-reserve-resources-for-certain-frameworks-in-Mesos-cluster-
+[5]: /docs/1.7/administration/installing/custom/create-public-agent/
