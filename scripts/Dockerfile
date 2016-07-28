@@ -12,7 +12,7 @@ RUN apt-get install -y sudo ruby nodejs nodejs-legacy npm git sudo
 RUN echo 'docsuser ALL= NOPASSWD: ALL' >> /etc/sudoers
 
 # Add the script for checking out and building the site.
-ADD scripts/site-local.sh /home/docsuser/site-local.sh
+ADD site-local.sh /home/docsuser/site-local.sh
 RUN chown docsuser /home/docsuser/site-local.sh
 RUN chmod +x /home/docsuser/site-local.sh
 
