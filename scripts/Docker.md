@@ -1,7 +1,7 @@
 Introduction
 ---
 
-We have put together a Docker image that makes it easy to build and render the DC/OS documentation site locally. The commands below need to be executed from within `dcos-docs` directory.
+We have put together a Docker image that makes it easy to build and render  DC/OS documentation site locally. The commands below need to be executed from within `dcos-docs` directory.
 
 1. Build the `dcos-docs` container
 ```bash
@@ -37,7 +37,8 @@ Transformers.markdown is deprecated, you must replace the :markdown jade filter,
 [BS] Serving files from: ./build
 ```
 
-The site should be available at http://localhost:3000 and the Browsersync should be at http://localhost:3001.
+The site should be available at http://localhost:3000 and the Browsersync should be at http://localhost:3001. At this point changes you made to the local copy of dcos-docs should be visible in the documentation section of the website.
+
 
 
 To stop the web server (and the container) just hit Ctrl-C.
