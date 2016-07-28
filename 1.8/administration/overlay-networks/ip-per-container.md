@@ -193,10 +193,10 @@ To replace your overlay network, uninstall DC/OS and delete the replicated log o
 
 <a name="limitations"></a>
 # Limitations
-* The DC/OS overlay network does not allow frameworks to reserve IP addresses that result in ephemeral addresses for containers across multiple incarnations on the overlay network. 
- 
-  To host services whose IP addresses are assumed to be static, administrators should use [VIPs (virtual IP addresses)](https://dcos.io/docs/1.7/usage/service-discovery/load-balancing/) to access their services.
-
+* The DC/OS overlay network does not allow frameworks to reserve IP addresses that result in ephemeral addresses for containers across multiple incarnations on the overlay network. This restriction ensures that a given client connects to the correct service even if they have cached their DNS request.
+  
+  [VIPs (virtual IP addresses)](https://dcos.io/docs/1.7/usage/service-discovery/load-balancing/) are built in to DC/OS and offer a clean way of allocating static addresses to services. If you are using overlay networks, you should use VIPs to access your services.
+  
 * In DC/OS overlay we slice the subnet of an overlay network into smaller subnets and allocate these smaller subnets to agents. When an agent has exhausted its allocated address range and a framework tries to launch a container on the overlay network on this agent, the container launch will fail, leading to a TASK_FAILED message to the framework.
 
   Since there is no API to report the exhaustion of addresses on an agent, it is up to the framework to infer that containers cannot be launched on an overlay network due to lack of IP addresses on the agent. This limitation has a direct impact on the behavior of frameworks, such as Marathon, that try to launch "services" with a specified number of instances. Due to this limitation, frameworks such as Marathon might not be able to complete their obligation of launching a service on an overlay network if they repeatedly try to launch instances of a service on an agent that has exhausted its allocated IP address range.
