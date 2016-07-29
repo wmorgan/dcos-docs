@@ -46,7 +46,7 @@ Click the ArangoDB task to reveal the subtask that the framework has started:
 
 ![Tasks](img/tasks.png)
 
-Click “Open Service” to open the ArangoDB Webinterface.
+Click “Open Service” to open the ArangoDB web interface.
 
 ![Dashboard](img/arangodb.png)
 
@@ -54,9 +54,9 @@ Congratulations! You now have ArangoDB running on DC/OS.
 
 ## Using ArangoDB within the DC/OS cluster
 
-Now that you have ArangoDB running you will likely want to fill it with some data and be able to use it as a data store for your applications.
+Now that ArangoDB is running you can fill it with some data and use it as a data store for your applications.
 
-To do so you need to talk to the so called "Coordinators" of your ArangoDB cluster. As you can't be sure where they are located and due to the fact that they might move or change anytime throughout your cluster lifetime (task might fail, up- and downscaling and so forth) it is a bad idea to hardcode their IP addresses and ports in your applications.
+To get started, talk to the "Coordinators" of your ArangoDB cluster. You should not hardcode the "Coordinators" IP addresses and ports in your applications because they can move or change at any time throughout your cluster lifetime (e.g. tasks might fail, up- and downscaling) .
 
 To connect to ArangoDB from the inside deploy the [ArangoDB Mesos HAProxy](https://github.com/arangodb/arangodb-mesos-haproxy).
 
@@ -68,7 +68,7 @@ $ cd arangodb-mesos-haproxy
 $ dcos marathon app add marathon.json
 ```
 
-This will create a proxy within DC/OS which is always accessible via `arangodb-proxy.marathon.mesos:8529`. It will watch out for any coordinator changes and serve as a connection broker to the coordinators. Use this as the endpoint within your applications. To make it highly available and/or scale it you can simply add a few more instances via the marathon ui.
+To make your proxy highly available or scale it, you can simply add a few more instances via the Marathon UI.
 
 ## Further reading
 
