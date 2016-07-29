@@ -3,7 +3,7 @@ post_title: Name-based VIPs
 menu_order: 20
 ---
 
-Name-based VIPs allow clients connect with a service address instead of an IP address. DC/OS generates name-based VIPs such that the cannot collide with IP VIPs, which means that administrators don't need to carefully manage name-based VIPs to avoid collision. This also means that name-based VIPs can be automatically when the service is installed.
+Name-based VIPs allow clients connect with a service address instead of an IP address. DC/OS generates name-based VIPs such that the cannot collide with IP VIPs, which means that administrators don't need to carefully manage name-based VIPs to avoid collision. This also means that name-based VIPs can be automatically created when the service is installed.
 
 # How to Create Name-Based VIPs
 
