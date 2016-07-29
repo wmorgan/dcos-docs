@@ -15,7 +15,7 @@ The DC/OS installation creates these folders:
 | `/opt/mesosphere`                       | Contains all the DC/OS binaries, libraries, cluster configuration. Do not modify.                                                                      |
 | `/etc/systemd/system/dcos.target.wants` | Contains the systemd services which start the things that make up systemd. They must live outside of `/opt/mesosphere` because of systemd constraints. |
 | `/etc/systemd/system/dcos.<units>`      | Contains copies of the units in `/etc/systemd/system/dcos.target.wants`. They must be at the top folder as well as inside `dcos.target.wants`.         |
-| `/var/lib/zookeeper`                    | Contains the [ZooKeeper](/docs/1.7/overview/concepts/#zookeeper) data.                                                                                      |
+| `/var/lib/zookeeper`                    | Contains the [ZooKeeper](/docs/1.8/overview/concepts/#zookeeper) data.                                                                                      |
 | `/var/lib/docker`                       | Contains the Docker data.                                                                                                                              |
 | `/var/lib/dcos`                         | Contains the DC/OS data.                                                                                                                               |
 | `/var/lib/mesos`                        | Contains the Mesos data.                                                                                                                               |
@@ -379,13 +379,13 @@ After DC/OS is installed and deployed across your cluster, you can add more agen
     18:17:14:: ====> 10.10.0.160:22 FAILED
     ```
 
- [2]: /docs/1.7/usage/cli/install/
- [3]: /docs/1.7/administration/installing/custom/advanced/
- [4]: /docs/1.7/administration/installing/custom/system-requirements/
+ [2]: /docs/1.8/usage/cli/install/
+ [3]: /docs/1.8/administration/installing/custom/advanced/
+ [4]: /docs/1.8/administration/installing/custom/system-requirements/
  [5]: https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
- [6]: /docs/1.7/administration/installing/custom/configuration-parameters/
- [7]: /docs/1.7/administration/installing/custom/uninstall/
- [8]: /docs/1.7/usage/
- [9]: /docs/1.7/administration/installing/custom/troubleshooting/
- [10]: /docs/1.7/administration/user-management/
- [11]: /docs/1.7/administration/installing/custom/create-public-agent/
+ [6]: /docs/1.8/administration/installing/custom/configuration-parameters/
+ [7]: /docs/1.8/administration/installing/custom/uninstall/
+ [8]: /docs/1.8/usage/
+ [9]: /docs/1.8/administration/installing/custom/troubleshooting/
+ [10]: /docs/1.8/administration/user-management/
+ [11]: /docs/1.8/administration/installing/custom/create-public-agent/

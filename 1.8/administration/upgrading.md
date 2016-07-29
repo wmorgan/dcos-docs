@@ -10,7 +10,7 @@ This document provides instructions for upgrading a DC/OS cluster from version 1
 **Important:**
 
 - The Advanced Installation method is the _only_ recommended upgrade path for DC/OS. It is recommended that you familiarize yourself with the [Advanced DC/OS Installation Guide][advanced-install] before proceeding.
-- The [VIP features](/docs/1.7/usage/service-discovery/virtual-ip-addresses/), added in DC/OS 1.7, require that ports 32768 - 65535 are open between all agent and master nodes for both TCP and UDP.
+- The [VIP features](/docs/1.8/usage/service-discovery/virtual-ip-addresses/), added in DC/OS 1.7, require that ports 32768 - 65535 are open between all agent and master nodes for both TCP and UDP.
 
 ## Prerequisites
 
@@ -32,7 +32,7 @@ This document provides instructions for upgrading a DC/OS cluster from version 1
     **Important:**
 
     *  You cannot change the `exhibitor_zk_backend` setting during an upgrade.
-    *  The syntax of the DC/OS 1.7 `config.yaml` differs from that of DC/OS 1.6. For a detailed description of the 1.7 `config.yaml` syntax and parameters, see the [documentation](/docs/1.7/administration/installing/custom/configuration-parameters/).
+    *  The syntax of the DC/OS 1.7 `config.yaml` differs from that of DC/OS 1.6. For a detailed description of the 1.7 `config.yaml` syntax and parameters, see the [documentation](/docs/1.8/administration/installing/custom/configuration-parameters/).
 
 1.  After you have merged your 1.6 `config.yaml` into the 1.7 `config.yaml` format, you can build your installer package:
 
@@ -114,13 +114,13 @@ Identify your Mesos leader node. This node should be the last master node that y
 
 1.  Install DC/OS 1.7
 
-    -  [Private](/docs/1.7/overview/concepts/#private) agents (default)
+    -  [Private](/docs/1.8/overview/concepts/#private) agents (default)
 
        ```
        $ sudo bash dcos_install.sh -d slave
        ```
 
-    -  [Public](/docs/1.7/overview/concepts/#public) Agents
+    -  [Public](/docs/1.8/overview/concepts/#public) Agents
 
        ```
        $ sudo bash dcos_install.sh -d slave_public
@@ -161,4 +161,4 @@ $ sudo journalctl -u dcos-mesos-slave
 
 - Packages available in the DC/OS 1.7 Universe are newer than those in the DC/OS 1.6 Universe. Services are not automatically upgraded when  DC/OS 1.7 is installed because not all DC/OS services have upgrade paths that will preserve existing state.
 
-[advanced-install]: /docs/1.7/administration/installing/custom/advanced/
+[advanced-install]: /docs/1.8/administration/installing/custom/advanced/

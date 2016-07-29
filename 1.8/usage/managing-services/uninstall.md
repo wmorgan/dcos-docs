@@ -26,7 +26,7 @@ Services can be uninstalled from either the web interface or the CLI. If the ser
 
 ### Uninstalling a service using the web UI
 
-1.  Navigate to the **Universe** page in the DC/OS [UI](/docs/1.7/usage/webinterface/#universe).
+1.  Navigate to the **Universe** page in the DC/OS [UI](/docs/1.8/usage/webinterface/#universe).
 
 2.  Click on the **Installed** tab to see your installed services.
 

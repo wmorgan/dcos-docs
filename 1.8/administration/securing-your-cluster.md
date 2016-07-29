@@ -90,7 +90,7 @@ CloudFormation templates, a large number of ports are exposed to the Internet
 for the public zone. In production systems, it is unlikely that you would
 expose all of these ports. It's recommended that you close all ports except
 80 and 443 (for HTTP/HTTPS traffic) and use
-[marathon-lb](/docs/1.7/usage/service-discovery/marathon-lb/) with HTTPS for
+[marathon-lb](/docs/1.8/usage/service-discovery/marathon-lb/) with HTTPS for
 managing ingress traffic.
 
 ### Typical AWS deployment
@@ -115,4 +115,4 @@ Authenticated users are authorized to perform arbitrary actions in their
 cluster. That is, there is currently no fine-grained access control in DC/OS
 besides having access or not having access to services.
 
-See the [Security Administrator's Guide](/docs/1.7/administration/id-and-access-mgt/) for more information.
+See the [Security Administrator's Guide](/docs/1.8/administration/id-and-access-mgt/) for more information.
