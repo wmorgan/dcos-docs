@@ -21,6 +21,7 @@ menu_order: 20
 
 # A Job with a Schedule
 
+```
 {
   "id": "my-scheduled-job",
   "description": "A job that sleeps on a schedule",
@@ -39,3 +40,20 @@ menu_order: 20
     }
   ]
 }
+```
+
+# A Schedule-Only JSON file
+
+```
+[
+  {
+    "concurrencyPolicy": "ALLOW",
+    "cron": "20 0 * * *",
+    "enabled": true,
+    "id": "nightly",
+    "nextRunAt": "2016-07-26T00:20:00.000+0000",
+    "startingDeadlineSeconds": 900,
+    "timezone": "UTC"
+  }
+]
+```
