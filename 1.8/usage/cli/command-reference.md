@@ -120,8 +120,8 @@ menu_order: 5
     
 ## dcos job
 
-Description:
-    Deploy and manage jobs in DC/OS.
+    Description:
+        Deploy and manage jobs in DC/OS.
 
     Usage:
         dcos job [--help]
@@ -139,36 +139,68 @@ Description:
         dcos job schedule show <job-id> [--json]
         dcos job schedule remove <job-id> <schedule-id>
         dcos job schedule update <job-id> <schedule-file>
-        dcos job show runs <job-id> [--run-id <run-id>][--q]
+        dcos job show runs <job-id> [--run-id <run-id>][--json][--q]
         dcos job history <job-id> [--json][--show-failures]
 
-Commands:
-    job add
-        Add a job.
-    job remove
-        Remove a job.
-    job show
-        Show the job.
-    job kill
-        Show the job.
-    job run
-        Run a job now.
-    job list
-        Show all job definitions.
-    job schedule
-        Provides ability to create, update and remove schedules for a job.
-    job history
-        Provides a job run history.
+        Commands:
+            job add
+                Add a job.
+        job remove
+            Remove a job.
+        job show
+            Show the job.
+        job update
+            Update the job.
+        job kill
+            Show the job.
+        job run
+            Run a job now.
+        job list
+            Show all job definitions.
+        job schedule add
+            Adds a schedule to a job.
+        job schedule show
+            Shows the schedules of a job.
+        job schedule remove
+            Removes a schedule from a job.
+        job schedule update
+            Updates a schedule on a job.
+        job show runs
+            Shows the successful and failure runs of a job.
+        job history
+            Provides a job run history.
 
-Options:
-    -h, --help
-        Print usage.
-    --version
-        Print version information.
-
-Positional Arguments:
-    <job-id>
-        The job ID.
+    Options:
+        -h, --help
+            Print usage.
+        --version
+            Print version information.
+        --config-schema
+            Show the configuration schema for the Metronome subcommand.
+        --info
+            Print a short description of this subcommand.
+        --stopCurrentJobRuns
+            Indicates on a job removal that all current running jobs should be killed.
+        --all
+            Instead of specifying a run_id to kill, indicates all runs should be killed.
+        --json
+            Print JSON-formatted list instead of a table.
+        --q
+            Indicates a quiet mode which results in just an array of run ids.
+        --show-failures
+            Indicates to show the failure table and statistics for history.
+    
+    Positional Arguments:
+        <job-id>
+            The job ID.
+        <job-file>
+            A JSON formatted file of a job.
+        <run-id>
+            The run ID of a job run.
+        <schedule-file>
+            A JSON formatted file of a job schedule.
+        <schedule-id>
+            The schedule ID.
 
 ## dcos marathon
 
