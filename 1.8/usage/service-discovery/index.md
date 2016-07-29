@@ -6,7 +6,7 @@ menu_order: 5
 
 In a dynamic environment, actually discovering where a service is currently running is difficult. There are many different ways to go about this, but we strongly recommend using [VIPs][1].
 
-You can check out our deep dive on how we've implemented [VIPs and L4 load balancing][4]. This solution makes it easy to work with services on DC/OS.
+You can check out our deep dive on how we've implemented [VIPs and L4 load balancing][4]. This solution it easy to work with services on DC/OS.
 
 # How do my services talk to each other?
 
