@@ -93,8 +93,6 @@ If you use the same schedule for more than one job, you can create a separate JS
    dcos job remove <job-id>
     ```
 
-nope... dcos job remove myjob where pikachu is . In the JSON it is the id field. in your json it is myjob
-
 1. Go to the "Jobs" tab of the DC/OS web interface to verify that you have removed your job, or verify from the CLI:
    
     ```
