@@ -23,7 +23,7 @@ overlay. The `prefix` determines the size of the subnet (carved from the overlay
 
 In the default configuration above each overlay network is allocated a /8 subnet (in the “subnet” field), which is then divided into /26 container subnets to be used on each host that will be part of the network (in the “prefix” field) as shown:
 
-![Overlay network address space](/docs/1.8/administration/overlay-networks/img/overlay-network-address-space.png)
+![Overlay network address space](/1.8/administration/overlay-networks/img/overlay-network-address-space.png)
 
 With the default configuration each agent will be able to host a maximum of 2^5=32 Mesos containers and 32 docker containers. It is important to note that with this specific configuration, if a framework tries to launch more than 32 tasks on the Mesos containerzier or the Docker containerizer, it will result in a TASK_FAILURE. Please read the [limitations](#limitations) to understand more about this constraint in the system.
 
