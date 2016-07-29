@@ -23,7 +23,7 @@ overlay. The `prefix` determines the size of the subnet (carved from the overlay
 
 In the default configuration above each overlay network is allocated a /8 subnet (in the “subnet” field), which is then divided into /26 container subnets to be used on each host that will be part of the network (in the “prefix” field) as shown:
 
-![Overlay network address space](/1.8/administration/overlay-networks/img/overlay-network-address-space.png)
+![Overlay network address space](/docs/1.8/administration/overlay-networks/img/overlay-network-address-space.png)
 
 With the default configuration each agent will be able to host a maximum of 2^5=32 Mesos containers and 32 docker containers. It is important to note that with this specific configuration, if a framework tries to launch more than 32 tasks on the Mesos containerzier or the Docker containerizer, it will result in a TASK_FAILURE. Please read the [limitations](#limitations) to understand more about this constraint in the system.
 
@@ -195,7 +195,7 @@ To replace your overlay network, uninstall DC/OS and delete the replicated log o
 # Limitations
 * The DC/OS overlay network does not allow frameworks to reserve IP addresses that result in ephemeral addresses for containers across multiple incarnations on the overlay network. This restriction ensures that a given client connects to the correct service even if they have cached their DNS request.
   
-  [VIPs (virtual IP addresses)](https://dcos.io/docs/1.7/usage/service-discovery/load-balancing/) are built in to DC/OS and offer a clean way of allocating static addresses to services. If you are using overlay networks, you should use VIPs to access your services.
+  [VIPs (virtual IP addresses)](/docs/1.8/usage/service-discovery/load-balancing/) are built in to DC/OS and offer a clean way of allocating static addresses to services. If you are using overlay networks, you should use VIPs to access your services.
   
 * In DC/OS overlay we slice the subnet of an overlay network into smaller subnets and allocate these smaller subnets to agents. When an agent has exhausted its allocated address range and a framework tries to launch a container on the overlay network on this agent, the container launch will fail, leading to a TASK_FAILED message to the framework.
 

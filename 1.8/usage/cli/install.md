@@ -48,7 +48,7 @@ The easiest way to install the DC/OS CLI is by clicking the signpost icon in the
     $ dcos auth login
     ```
     
-    You will be prompted for your username and password. For more information on the `superuser` and security, see the [documentation](/1.8/administration/id-and-access-mgt/).
+    You will be prompted for your username and password. For more information on the `superuser` and security, see the [documentation](/docs/1.8administration/id-and-access-mgt/).
     
     ```bash
     $ dcos auth login
@@ -106,7 +106,7 @@ The easiest way to install the DC/OS CLI is by clicking the signpost icon in the
     $ dcos auth login
     ```
     
-    You will be prompted for your username and password. For more information on the `superuser` and security, see the [documentation](/1.8/administration/id-and-access-mgt/).
+    You will be prompted for your username and password. For more information on the `superuser` and security, see the [documentation](/docs/1.8/administration/id-and-access-mgt/).
     
     ```powershell
     $ dcos auth login
