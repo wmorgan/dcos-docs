@@ -65,7 +65,7 @@ On each master node the following happens, in chronological order:
 1. DC/OS Marathon is launched and starts on every master node.
 1. DC/OS Marathon connects to the local ZooKeeper (127.0.0.1), discovers the leading Mesos master (`leader.mesos`) and registers as a framework.
 1. Admin Router depends on the Mesos master, Mesos-DNS, and the Distributed DNS Proxy. It runs on each of the master nodes. The admin router is what serves the DC/OS UI and proxies external admin connections into the cluster.
-1. DC/OS UI, Mesos UI, Marathon UI, and Exhibitor UI become externally accessible through the Admin Router.
+1. DC/OS UI, Mesos UI, and Exhibitor UI become externally accessible through the Admin Router.
 1. [Auth][auth] is managed on the master nodes.
 1. The history service provides the data for the graphs in the DC/OS UI dashboard. This data is obtained from the masters.
 1. DC/OS diagnostics and systemd service on every node.
@@ -113,7 +113,7 @@ In detail, here are the steps:
 | 1    | Client/Scheduler init: the Client needs to know how to connect to the Scheduler in order to launch a process, for example via Mesos-DNS or DC/OS CLI. |
 | 2    | Mesos master sends resource offer to Scheduler: the resource offers are based on cluster resources managed through agents and the [DRF](https://www.cs.berkeley.edu/~alig/papers/drf.pdf) algorithm in Mesos master.|
 | 3    | Scheduler declines resource offers because no process requests from Clients are pending. As long as no clients have initiated a process, the scheduler will reject offers from the master. |
-| 4    | Client initiates process launch. For example, this could be a user creating a Marathon app via the UI or via the HTTP endpoint `/v2/app`. |
+| 4    | Client initiates process launch. For example, this could be a user creating a Marathon app via the DC/OS [Services](/docs/1.8/usage/webinterface) tab or via the HTTP endpoint `/v2/app`. |
 | 5    | Mesos master sends the resource offers . For example, `cpus(*):1; mem(*):128; ports(*):[21452-21452]` |
 | 6    | If resource offer matches the requirements the Scheduler has for the process, it accepts the offer and sends a `launchTask` request to Mesos master. |
 | 7    | Mesos master directs Mesos agents to launch tasks. |

@@ -93,7 +93,7 @@ DC/OS Marathon is started on the master nodes. The native Marathon instance that
 
 **Troubleshooting:**
 
-*   Go directly to the DC/OS Marathon web interface and view status at `<master-node>/marathon`.
+*   Go to the **Services** tab on the [web interface](/docs/1.8/usage/webinterface) and view status.
 
 *   SSH to your master node and enter this command to view the logs from boot time:
 

@@ -29,7 +29,7 @@ For more advanced usage, you can check out the CLI documentation:
 
 ## GUI
 
-For those who are more comfortable with the GUI, we have a solution as well! By going to `Services -> Marathon -> service` in the DC/OS UI, you’ll be able to download all the files your service has produced as well as watch stdout/stderr via. the `Log Viewer`.
+From the GUI, go to the **Services** tab in the DC/OS UI and you’ll be able to download all the files your service has produced as well as watch stdout/stderr via. the `Log Viewer`.
 
 Check out some of the DC/OS UI documentation for more details:
 
