@@ -6,11 +6,11 @@
 
 - Use relative links.
 
-- Begin all links at the root `docs` level and include the version number subdirectory. (e.g., `/docs/1.7/administration/sshcluster/`).
+- Begin all links at the root `docs` level and include the version number subdirectory. (e.g., `/docs/1.8/administration/sshcluster/`).
 
 - Each directory must contain an `index.md` file. This acts as the base-level topic for each folder in the site (required).
 
-- Do not include file names in your paths. Our site converts any files not named `index.md` into directory names. For example, the directory `/docs/1.7/administration/` contains a file named `user-management.md`. To link to this content on the live site, you would use the following path: `/docs/1.7/administration/user-management/`.
+- Do not include file names in your paths. Our site converts any files not named `index.md` into directory names. For example, the directory `/docs/1.8/administration/` contains a file named `user-management.md`. To link to this content on the live site, you would use the following path: `/docs/1.8/administration/user-management/`.
 
 - The table of contents of each page is automatically generated based on the top-level headers.
 
@@ -53,7 +53,7 @@
                Post markdown goes here.
                ```
     - To create a page with hierarchy:
-        1. Create a new directory in the appropriate location of the correctly versioned release (e.g., `/1.7/foo`) and a child page within this folder named `index.md` (e.g. `/1.7/foo/index.md`). The actual URI of your page will be `/1.7/foo/`, not `/1.7/foo/index`. For example, if it's a tutorial for 1.7, create a new directory here `/1.7/usage/tutorials/foo/`.
+        1. Create a new directory in the appropriate location of the correctly versioned release (e.g., `/1.8/foo`) and a child page within this folder named `index.md` (e.g. `/1.8/foo/index.md`). The actual URI of your page will be `/1.8/foo/`, not `/1.8/foo/index`. For example, if it's a tutorial for 1.7, create a new directory here `/1.8/usage/tutorials/foo/`.
         1. Add your page content, including the required metadata `post_title` and optional `nav_title` and `menu_order`. Do not include any other metadata.
                 
                ```bash
@@ -70,7 +70,7 @@
 
         * Include all required assets in your `/foo` directory, for example, Marathon app spec, JSON docs, or a Dockerfile.
 
-        * If you're unsure about what exactly should go into a tutorial, you can always check out [spark/](/docs/1.7/usage/tutorials/spark/) for reference.
+        * If you're unsure about what exactly should go into a tutorial, you can always check out [spark/](/docs/1.8/usage/tutorials/spark/) for reference.
 
 1. Push your changes into the feature branch of your remote.
 

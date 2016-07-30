@@ -71,7 +71,7 @@ Connect to the leader and start the script:
 
 ### Running from Marathon
 
-From the Marathon web interface, use the JSON editor to add the following as a Marathon task. Replace the values passed to `-r`/`-p`/`-z` according to what needs to be cleaned up.
+From the DC/OS [**Services**](/docs/1.8/usage/webinterface) tab, use the JSON editor to add the following as a Marathon task. Replace the values passed to `-r`/`-p`/`-z` according to what needs to be cleaned up.
 
     {
       "id": "janitor",
@@ -89,7 +89,7 @@ From the Marathon web interface, use the JSON editor to add the following as a M
       }
     }
     
-When the framework cleaner has completed its work, it will automatically remove itself from Marathon to ensure that it's only run once. This removal will often result in a `TASK_KILLED` or even a `TASK_FAILED` outcome for the janitor task, even if it finished successfully. The janitor task will also quickly disappear from both the Marathon web interface and the Dashboard.
+When the framework cleaner has completed its work, it will automatically remove itself from Marathon to ensure that it's only run once. This removal will often result in a `TASK_KILLED` or even a `TASK_FAILED` outcome for the janitor task, even if it finished successfully. The janitor task will also quickly disappear from both the Services and Dashboard tab.
 
 ### Verifying the outcome
 

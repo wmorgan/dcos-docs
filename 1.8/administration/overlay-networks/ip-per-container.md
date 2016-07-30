@@ -31,7 +31,7 @@ These values can be configured to adapt to each installation’s needs. You can 
 
 # Adding overlay networks during installation
 
-Currently (as of version 1.8), DC/OS overlay networks can only be added and configured at install time. To replace or add another overlay network, [reinstall DC/OS according to these instructions](#replace).
+DC/OS overlay networks can only be added and configured at install time. To replace or add another overlay network, [reinstall DC/OS according to these instructions](#replace).
 
 You can override the default network or add additional overlay networks by modifying your `config.yaml` file:
 
@@ -70,7 +70,7 @@ In the above example, we have defined two overlay networks. The overlay network 
 
 # Retrieving overlay network state
 
-Once the DC/OS installation is complete you can query the overlay network configuration using the `https://leader.mesos/overlay-master/state` endpoint from within the cluster. The `network` key at the bottom lists the current overlay configuration and the `agents` key is a list showing how overlays are split across the Mesos agents. The following shows the network state when there is a single overlay in the cluster named `dcos`.
+After the DC/OS installation is complete you can query the overlay network configuration using the `https://leader.mesos/overlay-master/state` endpoint from within the cluster. The `network` key at the bottom lists the current overlay configuration and the `agents` key is a list showing how overlays are split across the Mesos agents. The following shows the network state when there is a single overlay in the cluster named `dcos`.
 
 ```json
     "agents": [
