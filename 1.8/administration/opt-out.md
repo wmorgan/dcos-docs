@@ -26,5 +26,5 @@ Note that if you’ve already installed your cluster and would like to disable t
 [1]: ../installing/custom/cli/
 [2]: ../installing/custom/advanced/
 [3]: ../installing/custom/configuration-parameters/
-[4]: /docs/1.7/administration/installing/custom/configuration-parameters/
+[4]: /docs/1.8/administration/installing/custom/configuration-parameters/
 

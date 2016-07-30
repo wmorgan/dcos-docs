@@ -118,7 +118,7 @@ Periodically updates the systemd-resolved for Mesos DNS.<!-- dcos-gen-resolvconf
 Runs keepalived to make a VRRP load balancer that can be used to access the masters.<!-- dcos-keepalived.service/ -->
 
 ### Layer 4 Load Balancer
-The DC/OS Layer 4 Load Balancer that enables multi-tier microservices architectures. For more information, see the [documentation](/docs/1.7/usage/service-discovery/load-balancing/).<!-- dcos-minuteman.service/ -->
+The DC/OS Layer 4 Load Balancer that enables multi-tier microservices architectures. For more information, see the [documentation](/docs/1.8/usage/service-discovery/load-balancing/).<!-- dcos-minuteman.service/ -->
 
 ### Logrotate
 
@@ -134,11 +134,11 @@ The DC/OS Marathon instance starts and monitors DC/OS applications and services.
 
 ### Mesos Agent
 
-The mesos-slave process for [private](/docs/1.7/overview/concepts/#private) agent nodes.<!-- dcos-mesos-slave.service/ -->
+The mesos-slave process for [private](/docs/1.8/overview/concepts/#private) agent nodes.<!-- dcos-mesos-slave.service/ -->
 
 ### Mesos Agent Public
 
-The mesos-slave process for [public](/docs/1.7/overview/concepts/#public) agent nodes.<!-- dcos-mesos-slave-public.service/ -->
+The mesos-slave process for [public](/docs/1.8/overview/concepts/#public) agent nodes.<!-- dcos-mesos-slave-public.service/ -->
 
 ### Mesos DNS
 
