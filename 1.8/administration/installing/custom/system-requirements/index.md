@@ -115,7 +115,7 @@ Here are the agent node hardware requirements.
 
 **Requirements**
 
-* Docker 1.7 or greater must be installed on all bootstrap and cluster nodes.
+* Docker 1.7 or greater must be installed on all bootstrap and cluster nodes. However, Docker version 1.12.x is not supported.
 
 **Recommendations**
 
