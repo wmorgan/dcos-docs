@@ -69,23 +69,23 @@ Clicking on a node opens the Nodes side panel, which provides CPU, memory, and d
 
 # <a name="network"></a>Network
 
-The Network tab provides information helpful for troubleshooting your virtual networks. You can see which containers are on which network and see their IP addresses. For more information, see the [documentation](/docs/1.8/administration/overlay-networks/ip-per-container.md).
+The Network tab provides information helpful for troubleshooting your virtual networks. You can see which containers are on which network and see their IP addresses. For more information, see the [documentation](/docs/1.8/administration/overlay-networks/ip-per-container/).
 
 ![Network](../img/ui-dashboard-network.gif)
 
 # <a name="universe"></a>Universe
 
-The Universe tab shows all of the available DC/OS services. You can install packages from the DC/OS Universe with a single click. The packages can be installed with defaults or customized directly in the web interface. 
+The Universe tab shows all of the available DC/OS services. You can install packages from the DC/OS Universe with a single click. The packages can be installed with defaults or customized directly in the web interface.
 
 ![universe](../img/ui-dashboard-universe.gif)
 
 # <a name="system"></a>System
 
 The System tab provides access to the administration controls of DC/OS. From this tab you can:
- 
+
 - View the system health of your DC/OS components
 - Manage your DC/OS package repositories
-- Manage user access 
+- Manage user access
 
 ![system](../img/ui-dashboard-system1.gif)
 

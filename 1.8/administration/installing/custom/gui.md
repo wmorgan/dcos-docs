@@ -147,7 +147,7 @@ It is recommended that you save your DC/OS installer file immediately after inst
 - [Uninstall DC/OS][7]
 
 [1]: https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
-[2]: /docs/1.8/overview/service-discovery/
+[2]: /docs/1.8/usage/service-discovery/
 [3]: /docs/1.8/administration/installing/custom/system-requirements/
 [4]: /docs/1.8/administration/installing/custom/create-public-agent/
 [5]: /docs/1.8/usage/cli/install/

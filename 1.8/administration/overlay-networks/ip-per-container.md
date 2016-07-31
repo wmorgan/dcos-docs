@@ -8,7 +8,7 @@ The overlay network feature is enabled by default in DC/OS. The default configur
 
 ```yaml
   dcos_overlay_network:
-    vtep_subnet: 44.128.0.0/20 
+    vtep_subnet: 44.128.0.0/20
     vtep_mac_oui: 70:B3:D5:00:00:00
     overlays:
       - name: dcos
@@ -23,7 +23,7 @@ overlay. The `prefix` determines the size of the subnet (carved from the overlay
 
 In the default configuration above each overlay network is allocated a /8 subnet (in the “subnet” field), which is then divided into /26 container subnets to be used on each host that will be part of the network (in the “prefix” field) as shown:
 
-![Overlay network address space](/1.8/administration/overlay-networks/img/overlay-network-address-space.png)
+![Overlay network address space](/docs/1.8/administration/overlay-networks/img/overlay-network-address-space.png)
 
 With the default configuration each agent will be able to host a maximum of 2^5=32 Mesos containers and 32 docker containers. It is important to note that with this specific configuration, if a framework tries to launch more than 32 tasks on the Mesos containerzier or the Docker containerizer, it will result in a TASK_FAILURE. Please read the [limitations](#limitations) to understand more about this constraint in the system.
 
@@ -73,104 +73,104 @@ In the above example, we have defined two overlay networks. The overlay network 
 After the DC/OS installation is complete you can query the overlay network configuration using the `https://leader.mesos/overlay-master/state` endpoint from within the cluster. The `network` key at the bottom lists the current overlay configuration and the `agents` key is a list showing how overlays are split across the Mesos agents. The following shows the network state when there is a single overlay in the cluster named `dcos`.
 
 ```json
-    "agents": [
-            {
-                "ip": "10.10.0.120",
-                "overlays": [
-                    {
-                        "backend": {
-                            "vxlan": {
-                                "vni": 1024,
-                                "vtep_ip": "198.15.0.1/20",
-                                "vtep_mac": "70:b3:d5:0f:00:01",
-                                "vtep_name": "vtep1024"
-                            }
-                        },
-                        "docker_bridge": {
-                            "ip": "44.128.0.128/25",
-                            "name": "d-dcos"
-                        },
-                        "info": {
-                            "name": "dcos",
-                            "prefix": 24,
-                            "subnet": "44.128.0.0/16"
-                        },
-                        "state": {
-                            "status": "STATUS_OK"
-                        },
-                        "subnet": "44.128.0.0/24"
-                    }
-                ]
-            },
-            {
-                "ip": "10.10.0.118",
-                "overlays": [
-                    {
-                        "backend": {
-                            "vxlan": {
-                                "vni": 1024,
-                                "vtep_ip": "198.15.0.2/20",
-                                "vtep_mac": "70:b3:d5:0f:00:02",
-                                "vtep_name": "vtep1024"
-                            }
-                        },
-                        "docker_bridge": {
-                            "ip": "44.128.1.128/25",
-                            "name": "d-dcos"
-                        },
-                        "info": {
-                            "name": "dcos",
-                            "prefix": 24,
-                            "subnet": "44.128.0.0/16"
-                        },
-                        "state": {
-                            "status": "STATUS_OK"
-                        },
-                        "subnet": "44.128.1.0/24"
-                    }
-                ]
-            },
-            {
-                "ip": "10.10.0.119",
-                "overlays": [
-                    {
-                        "backend": {
-                            "vxlan": {
-                                "vni": 1024,
-                                "vtep_ip": "198.15.0.3/20",
-                                "vtep_mac": "70:b3:d5:0f:00:03",
-                                "vtep_name": "vtep1024"
-                            }
-                        },
-                        "docker_bridge": {
-                            "ip": "44.128.2.128/25",
-                            "name": "d-dcos"
-                        },
-                        "info": {
-                            "name": "dcos",
-                            "prefix": 24,
-                            "subnet": "44.128.0.0/16"
-                        },
-                        "state": {
-                            "status": "STATUS_OK"
-                        },
-                        "subnet": "44.128.2.0/24"
-                    }
-                ]
-            }
-        ],
-    "network": {
+"agents": [
+        {
+            "ip": "10.10.0.120",
             "overlays": [
                 {
-                    "name": "dcos",
-                    "prefix": 24,
-                    "subnet": "44.128.0.0/16"
+                    "backend": {
+                        "vxlan": {
+                            "vni": 1024,
+                            "vtep_ip": "198.15.0.1/20",
+                            "vtep_mac": "70:b3:d5:0f:00:01",
+                            "vtep_name": "vtep1024"
+                        }
+                    },
+                    "docker_bridge": {
+                        "ip": "44.128.0.128/25",
+                        "name": "d-dcos"
+                    },
+                    "info": {
+                        "name": "dcos",
+                        "prefix": 24,
+                        "subnet": "44.128.0.0/16"
+                    },
+                    "state": {
+                        "status": "STATUS_OK"
+                    },
+                    "subnet": "44.128.0.0/24"
                 }
-            ],
-            "vtep_mac_oui": "70:B3:D5:00:00:00",
-            "vtep_subnet": "198.15.0.0/20"
+            ]
+        },
+        {
+            "ip": "10.10.0.118",
+            "overlays": [
+                {
+                    "backend": {
+                        "vxlan": {
+                            "vni": 1024,
+                            "vtep_ip": "198.15.0.2/20",
+                            "vtep_mac": "70:b3:d5:0f:00:02",
+                            "vtep_name": "vtep1024"
+                        }
+                    },
+                    "docker_bridge": {
+                        "ip": "44.128.1.128/25",
+                        "name": "d-dcos"
+                    },
+                    "info": {
+                        "name": "dcos",
+                        "prefix": 24,
+                        "subnet": "44.128.0.0/16"
+                    },
+                    "state": {
+                        "status": "STATUS_OK"
+                    },
+                    "subnet": "44.128.1.0/24"
+                }
+            ]
+        },
+        {
+            "ip": "10.10.0.119",
+            "overlays": [
+                {
+                    "backend": {
+                        "vxlan": {
+                            "vni": 1024,
+                            "vtep_ip": "198.15.0.3/20",
+                            "vtep_mac": "70:b3:d5:0f:00:03",
+                            "vtep_name": "vtep1024"
+                        }
+                    },
+                    "docker_bridge": {
+                        "ip": "44.128.2.128/25",
+                        "name": "d-dcos"
+                    },
+                    "info": {
+                        "name": "dcos",
+                        "prefix": 24,
+                        "subnet": "44.128.0.0/16"
+                    },
+                    "state": {
+                        "status": "STATUS_OK"
+                    },
+                    "subnet": "44.128.2.0/24"
+                }
+            ]
         }
+    ],
+"network": {
+        "overlays": [
+            {
+                "name": "dcos",
+                "prefix": 24,
+                "subnet": "44.128.0.0/16"
+            }
+        ],
+        "vtep_mac_oui": "70:B3:D5:00:00:00",
+        "vtep_subnet": "198.15.0.0/20"
     }
+}
 ```
 
 # Deleting Overlay Networks
@@ -194,9 +194,9 @@ To replace your overlay network, uninstall DC/OS and delete the replicated log o
 <a name="limitations"></a>
 # Limitations
 * The DC/OS overlay network does not allow frameworks to reserve IP addresses that result in ephemeral addresses for containers across multiple incarnations on the overlay network. This restriction ensures that a given client connects to the correct service even if they have cached their DNS request.
-  
-  [VIPs (virtual IP addresses)](/docs/1.8/usage/service-discovery/load-balancing/) are built in to DC/OS and offer a clean way of allocating static addresses to services. If you are using overlay networks, you should use VIPs to access your services.
-  
+
+  [VIPs (virtual IP addresses)](/docs/1.8/usage/service-discovery/load-balancing-vips/) are built in to DC/OS and offer a clean way of allocating static addresses to services. If you are using overlay networks, you should use VIPs to access your services.
+
 * In DC/OS overlay we slice the subnet of an overlay network into smaller subnets and allocate these smaller subnets to agents. When an agent has exhausted its allocated address range and a framework tries to launch a container on the overlay network on this agent, the container launch will fail, leading to a TASK_FAILED message to the framework.
 
   Since there is no API to report the exhaustion of addresses on an agent, it is up to the framework to infer that containers cannot be launched on an overlay network due to lack of IP addresses on the agent. This limitation has a direct impact on the behavior of frameworks, such as Marathon, that try to launch "services" with a specified number of instances. Due to this limitation, frameworks such as Marathon might not be able to complete their obligation of launching a service on an overlay network if they repeatedly try to launch instances of a service on an agent that has exhausted its allocated IP address range.

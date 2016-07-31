@@ -1,6 +1,6 @@
 ---
 post_title: Jobs
-nav_title: Jobs Overview
+nav_title: Jobs
 menu_order: 6.5
 ---
 

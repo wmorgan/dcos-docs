@@ -7,7 +7,7 @@ Authentication is managed in the DC/OS web interface.
 
 You can authorize individual users. You can grant access to users who are local or remote to your datacenter.
 
-The DC/OS user database is persisted in ZooKeeper by running on the master nodes in [znodes](https://zookeeper.apache.org/doc/r3.1.2/zookeeperProgrammers.html#sc_zkDataModel_znodes) under the path `/dcos/users`. Tokens that are sent to DC/OS in an HTTP Authorization header must be in this format: `token=<token>`. In future versions `Bearer <token>` will also be supported. 
+The DC/OS user database is persisted in ZooKeeper by running on the master nodes in [znodes](https://zookeeper.apache.org/doc/r3.1.2/zookeeperProgrammers.html#sc_zkDataModel_znodes) under the path `/dcos/users`. Tokens that are sent to DC/OS in an HTTP Authorization header must be in this format: `token=<token>`. In future versions `Bearer <token>` will also be supported.
 
 ## User management
 
@@ -133,7 +133,7 @@ security features as well as on introducing new ones in the coming releases.
 
 ## Next Steps
 
-- [Understand DC/OS security](/docs/1.8/overview/security/)
+- [Understand DC/OS security](/docs/1.8/administration/securing-your-cluster/)
 - [Learn how to monitor a DC/OS cluster](/docs/1.8/administration/monitoring/)
 
  [1]: https://en.wikipedia.org/wiki/STARTTLS

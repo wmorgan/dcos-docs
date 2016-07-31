@@ -1,7 +1,7 @@
 ---
 post_title: >
     Reference implementation: The Azure Container Service
-nav_title: Reference Implementation ACS
+nav_title: ACS
 menu_order: 1
 ---
 

@@ -4,7 +4,7 @@ nav_title: Getting Started
 menu_order: 10
 ---
 
-You can create and administer jobs in the DC/OS web interface, the DC/OS CLI, or via the API. You can add permissions to your job via an access control list (ACL). [Learn more](/1.8/administration/id-and-access-mgt/permissions/service-acls). 
+You can create and administer jobs in the DC/OS web interface, the DC/OS CLI, or via the API.
 
 # DC/OS Web Interface
 
@@ -22,7 +22,7 @@ From the DC/OS web interface, click the **Jobs** tab, then the **New Job** butto
 
 ## Modify, View, or Remove a Job
 
-From the "Jobs" tab, click the name of your job to modify or delete your job. While the job is running you can click the job instance to drill down to "Details," "Files," and "Logs" data. 
+From the "Jobs" tab, click the name of your job to modify or delete your job. While the job is running you can click the job instance to drill down to "Details," "Files," and "Logs" data.
 
 # DC/OS CLI
 
@@ -52,16 +52,16 @@ You can create and manage jobs from the DC/OS CLI using `dcos job` commands. To 
       ]
     }
     ```
-    
+
     **Note:** You can only assign one schedule to a job.
-  
+
   1. Add the job:
     ```
     dcos job add myjob.json
     ```
-    
+
     **Note:** You can choose any name for your job file.
-    
+
   1. Go to the "Jobs" tab of the DC/OS web interface to verify that you have added your job, or verify from the CLI:
      ```
      dcos job list
@@ -94,11 +94,11 @@ If you use the same schedule for more than one job, you can create a separate JS
     ```
 
 1. Go to the "Jobs" tab of the DC/OS web interface to verify that you have removed your job, or verify from the CLI:
-   
+
     ```
    dcos job list
     ```
-   
+
 ## Modify or View a Job
 
 To modify your job, by update your JSON job file, then run
@@ -114,7 +114,7 @@ dcos job schedule add <job-id> <schedule-file>
 dcos job schedule remove <job-id> <schedule-id>
 dcos job schedule update <job-id> <schedule-id> <schedule-file>
 ```
-        
+
 To view details about your job, run:
 
 ```

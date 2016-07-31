@@ -21,5 +21,5 @@ If you're unable to use Mesos-DNS or VIPs, you can use a [load balanced solution
 [1]: virtual-ip-addresses/
 [2]: mesos-dns/
 [3]: marathon-lb/
-[4]: load-balancing/
+[4]: load-balancing-vips/
 [5]: dns-naming/
