@@ -3,7 +3,7 @@ post_title: Quick Start Guide
 menu_order: 100
 ---
 
-You can quickly get up and running with the advanced DC/OS templates. 
+You can quickly get up and running with the advanced DC/OS templates.
 
 # System requirements
 
@@ -19,53 +19,53 @@ An Amazon EC2 <a href="https://aws.amazon.com/ec2/pricing/" target="_blank">m3.x
 - The CLI JSON processor [jq](https://github.com/stedolan/jq/wiki/Installation)
 
 # Quick Start
-You can quickly get up and running with the DC/OS advanced templates. 
+You can quickly get up and running with the DC/OS advanced templates.
 
 ## Create your dependencies
 
 Use the `zen.sh` script to create the Zen template dependencies. These dependencies will be used as input to create your stack in CloudFormation.
 
-1.  Save this script as `zen.sh`.                                                                     
+1.  Save this script as `zen.sh`.
 
     ```bash
     #!/bin/bash
     export AWS_DEFAULT_OUTPUT="json"
     set -o errexit -o nounset -o pipefail
-    
+
     if [ -z "${1:-}" ]
     then
       echo Usage: $(basename "$0") STACK_NAME
       exit 1
     fi
-    
+
     STACK_NAME="$1"
     VPC_CIDR=10.0.0.0/16
     PRIVATE_SUBNET_CIDR=10.0.0.0/17
     PUBLIC_SUBNET_CIDR=10.0.128.0/20
-    
+
     echo "Creating Zen Template Dependencies"
-    
+
     vpc=$(aws ec2 create-vpc --cidr-block "$VPC_CIDR" --instance-tenancy default | jq -r .Vpc.VpcId)
     aws ec2 wait vpc-available --vpc-ids "$vpc"
     aws ec2 create-tags --resources "$vpc" --tags Key=Name,Value="$STACK_NAME"
     echo "VpcId: $vpc"
-    
+
     ig=$(aws ec2 create-internet-gateway | jq -r .InternetGateway.InternetGatewayId)
     aws ec2 attach-internet-gateway --internet-gateway-id "$ig" --vpc-id "$vpc"
     aws ec2 create-tags --resources "$ig" --tags Key=Name,Value="$STACK_NAME"
     echo "InternetGatewayId: $ig"
-    
+
     private_subnet=$(aws ec2 create-subnet --vpc-id "$vpc" --cidr-block "$PRIVATE_SUBNET_CIDR" | jq -r .Subnet.SubnetId)
     aws ec2 wait subnet-available --subnet-ids "$private_subnet"
     aws ec2 create-tags --resources "$private_subnet" --tags Key=Name,Value="${STACK_NAME}-private"
     echo "Private SubnetId: $private_subnet"
-    
+
     public_subnet=$(aws ec2 create-subnet --vpc-id "$vpc" --cidr-block "$PUBLIC_SUBNET_CIDR" | jq -r .Subnet.SubnetId)
     aws ec2 wait subnet-available --subnet-ids "$public_subnet"
     aws ec2 create-tags --resources "$public_subnet" --tags Key=Name,Value="${STACK_NAME}-public"
     echo "Public SubnetId: $public_subnet"
     ```
-    
+
 1.  Run the script from the AWS CLI with a single argument, `STACK_NAME`. This argument is used to tag the AWS resources created. For example, to add the `dcos`tag:
 
     ```bash
@@ -73,7 +73,7 @@ Use the `zen.sh` script to create the Zen template dependencies. These dependenc
     ```
 
     The output should look like this:
-    
+
     ```bash
     Creating Zen Template Dependencies
     VpcId: vpc-e0bd2c84
@@ -81,8 +81,8 @@ Use the `zen.sh` script to create the Zen template dependencies. These dependenc
     Private SubnetId: subnet-b32c82c5
     Public SubnetId: subent-b02c55c4
     ```
-    
-    Use these dependency values as input to create your stack in CloudFormation in the next steps. 
+
+    Use these dependency values as input to create your stack in CloudFormation in the next steps.
 
 ## Launch the DC/OS advanced template on CloudFormation
 
@@ -94,24 +94,24 @@ Use the `zen.sh` script to create the Zen template dependencies. These dependenc
 
     *  **Stack name** Specify the cluster name.
     *  **InternetGateway** Specify the `InternetGatewayID` output value from the `zen.sh` script. The Internet Gateway ID must be attached to the VPC. This Internet Gateway will be used by all nodes for outgoing internet access.
-    *  **KeyName** Specify your AWS EC2 Key Pair. 
+    *  **KeyName** Specify your AWS EC2 Key Pair.
     *  **MasterInstanceType** Specify the Amazon EC2 instance type. The <a href="https://aws.amazon.com/ec2/pricing/" target="_blank">m3.xlarge</a> instance type is recommended.
     *  **PrivateAgentInstanceCount** Specify the number of private agents.
     *  **PrivateAgentInstanceType** Specify the Amazon EC2 instance type for the private agent nodes. The <a href="https://aws.amazon.com/ec2/pricing/" target="_blank">m3.xlarge</a> instance type is recommended.
-    *  **PrivateSubnet** Specify the `Private SubnetId` output value from the `zen.sh` script. This subnet ID will be used by all private agents. 
+    *  **PrivateSubnet** Specify the `Private SubnetId` output value from the `zen.sh` script. This subnet ID will be used by all private agents.
     *  **PublicAgentInstanceCount** Specify the number of public agents.
     *  **PublicAgentInstanceType** Specify the Amazon EC2 instance type for the public agent nodes. The <a href="https://aws.amazon.com/ec2/pricing/" target="_blank">m3.xlarge</a> instance type is recommended.
-    *  **PublicSubnet** Specify the `Public SubnetId` output value from the `zen.sh` script. This subnet ID will be used by all public agents. 
-    *  **Vpc** Specify the `VpcId` output value from the `zen.sh` script. All nodes will be launched by using subnets and Internet Gateway under this VPC. 
-    
+    *  **PublicSubnet** Specify the `Public SubnetId` output value from the `zen.sh` script. This subnet ID will be used by all public agents.
+    *  **Vpc** Specify the `VpcId` output value from the `zen.sh` script. All nodes will be launched by using subnets and Internet Gateway under this VPC.
+
 1.  On the **Options** page, accept the defaults and click **Next**.
-    
+
     **Tip:** You can choose whether to rollback on failure. By default this option is set to **Yes**.
-    
+
 1.  On the **Review** page, check the acknowledgement box and then click **Create**.
 
     **Tip:** If the **Create New Stack** page is shown, either AWS is still processing your request or you’re looking at a different region. Navigate to the correct region and refresh the page to see your stack.
-    
+
 ## Monitor the DC/OS cluster convergence process
 
 In CloudFormation you should see:
@@ -122,7 +122,7 @@ In CloudFormation you should see:
 
    *  Zen template: `<stack-name>`
    *  Public agents: `<stack-name>-PublicAgentStack-<stack-id>`
-   *  Private agents: `<stack-name>-PrivateAgentStack-<stack-id>` 
+   *  Private agents: `<stack-name>-PrivateAgentStack-<stack-id>`
    *  Masters: `<stack-name>-MasterStack-<stack-id>`
    *  Infrastructure: `<stack-name>-Infrastructure-<stack-id>`
 
@@ -147,35 +147,35 @@ Launch the DC/OS web interface by entering the master hostname:
 1.  Click the dropup menu on the lower-left side to install the DC/OS [Command-Line Interface (CLI)][2]. You must install the CLI to administer your DCOS cluster.
 
     ![install CLI](../img/ui-dashboard-install-cli.gif)
-    
+
 ## Next steps
 
 Now that your advanced template DC/OS installation is up and running you can
 
 ### Add more agent nodes
 
-You can add more agent nodes by creating a new stack by using the [private agent](https://downloads.dcos.io/dcos/EarlyAccess/commit/14509fe1e7899f439527fb39867194c7a425c771/cloudformation/advanced-priv-agent.json) or [public agent](https://downloads.dcos.io/dcos/EarlyAccess/commit/14509fe1e7899f439527fb39867194c7a425c771/cloudformation/advanced-pub-agent.json) templates. These templates create agents which are then attached to the `PrivateAgentStack` or `PublicAgentStack` as a part of an AutoScalingGroup. 
+You can add more agent nodes by creating a new stack by using the [private agent](https://downloads.dcos.io/dcos/EarlyAccess/cloudformation/advanced-priv-agent.json) or [public agent](https://downloads.dcos.io/dcos/EarlyAccess/cloudformation/advanced-pub-agent.json) templates. These templates create agents which are then attached to the `PrivateAgentStack` or `PublicAgentStack` as a part of an AutoScalingGroup.
 
-Use the output values from the `zen.sh` script and your Master and Infra stacks. These new agent nodes will automatically be added to your DC/OS cluster. 
+Use the output values from the `zen.sh` script and your Master and Infra stacks. These new agent nodes will automatically be added to your DC/OS cluster.
 
 Private agents:
 
 *  **InternalMasterLoadBalancerDnsName** Specify the `InternalMasterLoadBalancerDnsName` value from your master stack (`<stack-name>-MasterStack-<stack-id>`). You can find this value in the **Outputs** tab.
-*  **KeyName** Specify your AWS EC2 Key Pair. 
+*  **KeyName** Specify your AWS EC2 Key Pair.
 *  **PrivateAgentInstanceCount** Specify the number of private agents.
 *  **PrivateAgentInstanceType** Specify the Amazon EC2 instance type for the private agent nodes. The <a href="https://aws.amazon.com/ec2/pricing/" target="_blank">m3.xlarge</a> instance type is recommended.
 *  **PrivateAgentSecurityGroup** Specify the security group ID for private agents. This group should have limited external access. You can find this value in the **Outputs** tab of the Infrastructure stack (`<stack-name>-Infrastructure-<stack-id>`).
-*  **PrivateSubnet** Specify the `Private SubnetId` output value from the `zen.sh` script. This subnet ID will be used by all private agents. 
+*  **PrivateSubnet** Specify the `Private SubnetId` output value from the `zen.sh` script. This subnet ID will be used by all private agents.
 
 Public agents:
 
 *  **InternalMasterLoadBalancerDnsName** Specify the `InternalMasterLoadBalancerDnsName` value from your master stack (`<stack-name>-MasterStack-<stack-id>`). You can find this value in the **Outputs** tab.
-*  **KeyName** Specify your AWS EC2 Key Pair. 
+*  **KeyName** Specify your AWS EC2 Key Pair.
 *  **PublicAgentInstanceCount** Specify the number of public agents.
 *  **PublicAgentInstanceType** Specify the Amazon EC2 instance type for the public agent nodes. The <a href="https://aws.amazon.com/ec2/pricing/" target="_blank">m3.xlarge</a> instance type is recommended.
 *  **PublicAgentSecurityGroup** Specify the security group ID for public agents. This group should have limited external access. You can find this value in the **Outputs** tab of the Infrastructure stack (`<stack-name>-Infrastructure-<stack-id>`).
-*  **PublicSubnet** Specify the `Public SubnetId` output value from the `zen.sh` script. This subnet ID will be used by all public agents. 
+*  **PublicSubnet** Specify the `Public SubnetId` output value from the `zen.sh` script. This subnet ID will be used by all public agents.
 
-For all of the advanced configuration options, see the template reference [documentation](/docs/1.8/administration/installing/cloud/aws/advanced/template-reference/). 
+For all of the advanced configuration options, see the template reference [documentation](/docs/1.8/administration/installing/cloud/aws/advanced/template-reference/).
 
  [2]: /docs/1.8/usage/cli/install/
