@@ -53,7 +53,7 @@ The included Terraform templates are configured to run Mesosphere DC/OS on Packe
     - packet_project_id - Packet Project ID
 
     - dcos_installer_url - Where to get DCOS
-      https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
+      https://downloads.dcos.io/dcos/EarlyAccess/commit/14509fe1e7899f439527fb39867194c7a425c771/dcos_generate_config.sh
 
     The following have default values and may be changed depending on your requirements:
 

@@ -26,7 +26,7 @@ The DC/OS installation creates these folders:
 1.  Download the [DC/OS installer][1] to your bootstrap node.
 
     ```bash
-    $ curl -O https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
+    $ curl -O https://downloads.dcos.io/dcos/EarlyAccess/commit/14509fe1e7899f439527fb39867194c7a425c771/dcos_generate_config.sh
     ```
 
 1.  From your terminal, start the DC/OS GUI installer with this command.
@@ -146,7 +146,7 @@ It is recommended that you save your DC/OS installer file immediately after inst
 - [Using your cluster][6]
 - [Uninstall DC/OS][7]
 
-[1]: https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
+[1]: https://downloads.dcos.io/dcos/EarlyAccess/commit/14509fe1e7899f439527fb39867194c7a425c771/dcos_generate_config.sh
 [2]: /docs/1.7/overview/service-discovery/
 [3]: /docs/1.7/administration/installing/custom/system-requirements/
 [4]: /docs/1.7/administration/installing/custom/create-public-agent/

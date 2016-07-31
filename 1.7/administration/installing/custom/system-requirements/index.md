@@ -141,7 +141,7 @@ For more more information, see Docker's <a href="http://docs.docker.com/engine/i
 
 ### Disable sudo password prompts
 
-To use the [GUI][4] or [CLI][1] installation methods, you must disable password prompts for sudo. 
+To use the [GUI][4] or [CLI][1] installation methods, you must disable password prompts for sudo.
 
 Run this command to disable the sudo password prompt:
 
@@ -208,6 +208,6 @@ On each of your cluster nodes, use the following command to:
 
 [1]: /docs/1.7/administration/installing/custom/cli/
 [2]: /docs/1.7/administration/installing/custom/system-requirements/install-docker-centos/
-[3]: https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
+[3]: https://downloads.dcos.io/dcos/EarlyAccess/commit/14509fe1e7899f439527fb39867194c7a425c771/dcos_generate_config.sh
 [4]: /docs/1.7/administration/installing/custom/gui/
 [5]: /docs/1.7/administration/installing/custom/advanced/

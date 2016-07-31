@@ -248,7 +248,7 @@ These steps assume that you've spun up the bootstrap instance and that you are l
 6. Download the DC/OS installer:
 
   ```bash
-  $ curl -O https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
+  $ curl -O https://downloads.dcos.io/dcos/EarlyAccess/commit/14509fe1e7899f439527fb39867194c7a425c771/dcos_generate_config.sh
   ```
 
 7. Run the following command to generate your customized DC/OS build file:
