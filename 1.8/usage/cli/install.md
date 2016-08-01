@@ -42,12 +42,14 @@ The easiest way to install the DC/OS CLI is by clicking the signpost icon in the
 
     You are now ready to use the CLI. Enter `dcos` to get started.
 
-1.  Authenticate your CLI with your master node and set the auth token:
+1.  Authenticate your CLI with your master node:
 
     ```bash
     $ dcos auth login
     ```
 
+    Follow the instructions in the DC/OS CLI. For more information about security, see the [documentation](/docs/1.8/administration/id-and-access-mgt/).
+    
     Your CLI should now be authenticated with your cluster!
 
     ```bash
@@ -92,19 +94,13 @@ The easiest way to install the DC/OS CLI is by clicking the signpost icon in the
     dcos config set core.dcos_url http://example.com
     ```
 
-1.  Authenticate your CLI with your master node and set the auth token:
+1.  Authenticate your CLI with your master node:
 
     ```powershell
     $ dcos auth login
     ```
 
-    You will be prompted for your username and password. For more information on the `superuser` and security, see the [documentation](/docs/1.8/administration/id-and-access-mgt/).
-
-    ```powershell
-    $ dcos auth login
-    http://dcos-ab-1234.us-west-2.elb.amazonaws.com username: bootstrapuser
-    bootstrapuser@http://dcos-ab-1234.us-west-2.elb.amazonaws.com's password:
-    ```
+    Follow the instructions in the DC/OS CLI. For more information about security, see the [documentation](/docs/1.8/administration/id-and-access-mgt/).
 
     Your CLI should now be authenticated with your cluster!
 
