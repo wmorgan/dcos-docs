@@ -1,5 +1,5 @@
 ---
-nav_title: Virtual Networks
+nav_title: Overlay Networks
 post_title: Overlay Networks
 menu_order: 11.5
 ---
