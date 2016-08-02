@@ -50,12 +50,10 @@ The script takes the following flags:
 
 These are some examples of default configurations (these will vary depending on selected task name, etc):
 
-* Cassandra:
-    * Default: `-r cassandra-role -p cassandra-principal -z cassandra`
-    * Custom name: `-r <name>-role -p <name>-principal -z <name>`
-* Kafka:
-    * Default: `-r kafka-role -p kafka-principal -z kafka`
-    * Custom name: `-r <name>-role -p <name>-principal -z <name>`
+* Cassandra default: docker run mesosphere/janitor /janitor.py -r cassandra-role -p cassandra-principal -z dcos-service-cassandra
+* HDFS default: docker run mesosphere/janitor /janitor.py -r hdfs-role -p hdfs-principal -z dcos-service-hdfs
+* Kafka default: docker run mesosphere/janitor /janitor.py -r kafka-role -p kafka-principal -z dcos-service-kafka
+* Custom values: docker run mesosphere/janitor /janitor.py -r <custom_role> -p <custom_principal> -z dcos-service-<custom_service_name>
 
 ### Running from the DC/OS CLI
 
