@@ -10,7 +10,7 @@ You can check out our deep dive on how we've implemented [VIPs and L4 load balan
 
 # How do my services talk to each other?
 
-When creating a service, you have the opportunity to assign a VIP (IP:PORT) that your service can be reached at. Check out the [VIP][1] documentation for some details on how to do that.
+When creating a service, you have the opportunity to assign a VIP (`IP:PORT`) that your service can be reached at. Check out the [VIP][1] documentation for some details on how to do that.
 
 # What if I don't have a VIP configured?
 

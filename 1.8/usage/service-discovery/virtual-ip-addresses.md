@@ -13,10 +13,10 @@ You can assign a VIP to your application by using the DC/OS Marathon web interfa
 
 To create a VIP:
 
-1.  From the DC/OS web interface, click on the **Services** tab and select **Marathon**.
+1.  From the DC/OS web interface, click on the **Services** tab.
 
-    *   To create a new application, click **Create Application** and select the **Ports and Service Discovery** menu option.
-    *   To edit an existing application, select your application and click the **Configuration** tab, then click **Edit**. You can then select the **Ports and Service Discovery** menu option.
+    *   To create a new application, click **Deploy Service** and select the **Networks** tab.
+    *   To edit an existing application, select your application and click **Edit**, then select the **Networks** tab. 
 
         ![Marathon Ports](/docs/1.8/overview/img/ui-marathon-ports.gif)
 

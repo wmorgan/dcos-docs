@@ -75,7 +75,7 @@ The Network tab provides information helpful for troubleshooting your virtual ne
 
 # <a name="universe"></a>Universe
 
-The Universe tab shows all of the available DC/OS services. You can install packages from the DC/OS Universe with a single click. The packages can be installed with defaults or customized directly in the web interface.
+The Universe tab shows all of the available DC/OS services from package [repositories](/docs/1.8/usage/repo/). You can install packages from the DC/OS Universe with a single click. The packages can be installed with defaults or customized directly in the web interface.
 
 ![universe](../img/ui-dashboard-universe.gif)
 
