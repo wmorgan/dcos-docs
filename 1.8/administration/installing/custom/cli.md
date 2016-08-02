@@ -135,8 +135,6 @@ The DC/OS installation creates these folders:
     ssh_user: <username>
     ```
 
-    **Important:** You cannot use an NFS mount for Exhibitor storage with the automated command line installation method. To use an NFS mount for Exhibitor storage (`exhibitor_storage_backend: shared_filesystem`), you must use the [advanced installation method][3].
-
 3.  Copy your private SSH key to `genconf/ssh_key`. For more information, see the [ssh_key_path][6] parameter.
 
     ```bash
@@ -380,7 +378,6 @@ After DC/OS is installed and deployed across your cluster, you can add more agen
     ```
 
  [2]: /docs/1.8/usage/cli/install/
- [3]: /docs/1.8/administration/installing/custom/advanced/
  [4]: /docs/1.8/administration/installing/custom/system-requirements/
  [5]: https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
  [6]: /docs/1.8/administration/installing/custom/configuration-parameters/
