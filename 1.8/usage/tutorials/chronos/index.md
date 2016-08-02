@@ -43,8 +43,6 @@ DC/OS now includes a built-in job scheduler. Chronos is the original way to run 
 
     Go to the **Services** tab and verify that Chronos shows up in the list as **Healthy**.
 
-    ![Chronos in the services view](img/ui-services-chronos.png)
-
     ### DC/OS CLI
 
     Run this command to view installed services:
