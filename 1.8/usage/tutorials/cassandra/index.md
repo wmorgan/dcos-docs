@@ -35,7 +35,7 @@ In this tutorial you will learn how to:
 ## Prerequisites
 
 - A running DC/OS cluster with three nodes, each with 2 CPUs and 2 GB of RAM available.
-- [DC/OS CLI](/docs/1.7/usage/cli/install/) installed.
+- [DC/OS CLI](/docs/1.8/usage/cli/install/) installed.
 
 ## Installing Cassandra
 
@@ -200,7 +200,7 @@ cqlsh> SELECT * FROM demo.map;
 $ dcos package uninstall cassandra
 ```
 
-Use the [framework cleaner](/docs/1.7/usage/managing-services/uninstall/#framework-cleaner) script to remove your Cassandra instance from Zookeeper and to destroy all data associated with it. The script requires several arguments, the values for which are derived from your service name:
+Use the [framework cleaner](/docs/1.8/usage/managing-services/uninstall/#framework-cleaner) script to remove your Cassandra instance from Zookeeper and to destroy all data associated with it. The script requires several arguments, the values for which are derived from your service name:
 
 `framework-role` is `cassandra_role`
 `framework-principal` is `cassandra_principal`

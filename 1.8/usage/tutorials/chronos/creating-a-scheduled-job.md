@@ -78,5 +78,5 @@ We're going to create a job that runs every 10 seconds and prints the current da
 
 - [Chronos documentation on Github][2]
 
- [1]: /docs/1.7/usage/tutorials/chronos/
+ [1]: /docs/1.8/usage/tutorials/chronos/
  [2]: http://mesos.github.io/chronos/

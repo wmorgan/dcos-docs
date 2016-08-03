@@ -84,7 +84,7 @@ DC/OS now includes a built-in job scheduler. Chronos is the original way to run 
 
  [1]: #chronosinstall
  [2]: #uninstall
- [3]: /docs/1.7/usage/cli/install/
- [4]: /docs/1.7/usage/cli/command-reference/
- [5]: /docs/1.7/administration/installing/
- [6]: /docs/1.7/usage/tutorials/chronos/creating-a-scheduled-job/
+ [3]: /docs/1.8/usage/cli/install/
+ [4]: /docs/1.8/usage/cli/command-reference/
+ [5]: /docs/1.8/administration/installing/
+ [6]: /docs/1.8/usage/tutorials/chronos/creating-a-scheduled-job/
