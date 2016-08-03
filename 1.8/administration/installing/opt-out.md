@@ -1,6 +1,6 @@
 ---
 post_title: Opt-Out
-menu_order: 6
+menu_order: 4
 ---
 
 ## Authentication
@@ -23,8 +23,8 @@ telemetry_enabled: 'false'
 
 Note that if you’ve already installed your cluster and would like to disable this in-place, you can go through an [upgrade][3] with the same parameter set.
 
-[1]: ../installing/custom/cli/
-[2]: ../installing/custom/advanced/
-[3]: ../installing/custom/configuration-parameters/
+[1]: /docs/1.8/administration/installing/custom/cli/
+[2]: /docs/1.8/administration/installing/custom/advanced/
+[3]: /docs/1.8/administration/installing/custom/configuration-parameters/
 [4]: /docs/1.8/administration/installing/custom/configuration-parameters/
 
