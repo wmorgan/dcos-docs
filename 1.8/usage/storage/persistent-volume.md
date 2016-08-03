@@ -138,9 +138,9 @@ The temporary Mesos sandbox is still the target for the `stdout` and `stderr` lo
 
 # Examples
 
-## Creating a stateful application via the Marathon UI
+## Creating a stateful application via the DC/OS UI
 
-1. Create a new Marathon application via the web interface.
+1. Create a new service via the web interface in "Services" > "Deploy Service".
 1. Click the Volumes tab.
 1. Choose the size of the volume or volumes you will use. Be sure that you choose a volume size that will fit the needs of your application; you will not be able to modify this size after you launch your application.
 1. Specify the container path from which your application will read and write data. The container path must be non-nested and cannot contain slashes e.g. `data`, but not  `../../../etc/opt` or `/user/data/`. If your application requires such a container path, [use this configuration](#nested-paths).
@@ -311,7 +311,7 @@ http DELETE http://dcos/service/marathon/v2/apps/postgres/tasks/postgres.53ab873
 
 ## View the Status of Your Application with Persistent Local Volumes
 
-After you have created your Marathon application, click the _Volumes_ tab of the application detail view to get detailed information about your app instances and associated volumes.
+After you have created your application, click the _Volumes_ tab of the application detail view to get detailed information about your app instances and associated volumes.
 
 The Status column tells you if your app instance is attached to the volume or not. The app instance will read as "detached" if you have scaled down your application. Currently the only Operation Type available is read/write (RW).
 
