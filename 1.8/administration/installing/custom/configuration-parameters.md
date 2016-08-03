@@ -18,7 +18,7 @@ This required parameter specifies the URI path for the DC/OS installer to store 
 This parameter specifies the name of your cluster.
 
 ### exhibitor_storage_backend
-This parameter specifies the type of storage backend to use for Exhibitor. You can use internal DC/OS storage (`static`) or specify an external storage system (`zookeeper`, `aws_s3`, and `shared_filesystem`) for configuring and orchestrating Zookeeper with Exhibitor on the master nodes. Exhibitor automatically configures your Zookeeper installation on the master nodes during your DC/OS installation.
+This parameter specifies the type of storage backend to use for Exhibitor. You can use internal DC/OS storage (`static`) or specify an external storage system (`zookeeper`, and `aws_s3`) for configuring and orchestrating Zookeeper with Exhibitor on the master nodes. Exhibitor automatically configures your Zookeeper installation on the master nodes during your DC/OS installation.
 
 *   `exhibitor_storage_backend: static`
     This option specifies that the Exhibitor storage backend is managed internally within your cluster.
@@ -48,13 +48,6 @@ This parameter specifies the type of storage backend to use for Exhibitor. You c
        This parameter specifies S3 prefix to be used within your S3 bucket to be used by Exhibitor.
 
        **Tip:** AWS EC2 Classic is not supported.
-
-*   `exhibitor_storage_backend: shared_filesystem`
-    This option specifies a Network File System (NFS) mount for shared storage. If you specify `shared_filesystem`, you must also specify this parameter:
-    *  **exhibitor_fs_config_dir**
-       This parameter specifies the absolute path to the folder that Exhibitor uses to coordinate its configuration. This should be a directory inside of a Network File System (NFS) mount. For example, if every master has `/fserv` mounted via NFS, set as `exhibitor_fs_config_dir: /fserv/dcos-exhibitor`.
-
-       **Important:** With `shared_filesystem`, all masters must must have the NFS volume mounted and `exhibitor_fs_config_dir` must be inside of it. If any of your servers are missing the mount, the DC/OS cluster will not start.
 
 ### <a name="master"></a>master_discovery
 This required parameter specifies the Mesos master discovery method. The available options are `static` or `master_http_loadbalancer`.
@@ -160,38 +153,6 @@ resolvers:
 ssh_key_path: /genconf/ssh-key
 ssh_port: '<port-number>'
 ssh_user: <username>
-```
-
-
-#### <a name="shared"></a>DC/OS cluster with 3 masters, an Exhibitor/ZooKeeper shared filesystem storage backend, Internal DNS
-
-```yaml
----
-agent_list:
-- <agent-private-ip-1>
-- <agent-private-ip-2>
-- <agent-private-ip-3>
-- <agent-private-ip-4>
-- <agent-private-ip-5>
-bootstrap_url: file:///tmp/dcos
-cluster_name: fs-example
-exhibitor_fs_config_dir: /shared-mount
-exhibitor_storage_backend: shared_filesystem
-log_directory: /genconf/logs
-master_discovery: static
-master_list:
-- <master-private-ip-1>
-- <master-private-ip-2>
-- <master-private-ip-3>
-process_timeout: 120
-resolvers:
-- <dns-resolver-1>
-- <dns-resolver-2>
-roles: slave_public
-ssh_key_path: /genconf/ssh-key
-ssh_port: '<port-number>'
-ssh_user: <username>
-weights: slave_public=1
 ```
 
 #### <a name="aws"></a>DC/OS Cluster with 3 masters, an Exhibitor/ZooKeeper backed by an AWS S3 bucket, AWS DNS, and a public agent node
