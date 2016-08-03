@@ -17,7 +17,7 @@ You should see this output:
     core.timeout=5
     
 
-This configuration is stored in the `~/./dcos/dcos.toml` configuration file.
+This configuration is stored in the `~/.dcos/dcos.toml` configuration file.
 
 # Configuring the DC/OS URL
 
