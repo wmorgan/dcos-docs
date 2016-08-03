@@ -1,11 +1,9 @@
 ---
 post_title: Using Virtual IP Addresses
-post_excerpt: ""
-layout: docs.jade
 ---
 DC/OS can map traffic from a single Virtual IP (VIP) to multiple IP addresses and ports.
 
-You can assign a VIP to your application by using the DC/OS Marathon web interface. The values you enter in these fields are translated into the appropriate `portMapping` entry in your application definition. Toggle to `JSON mode` as you create your app to see and edit your application definition.
+You can assign a VIP to your application from the DC/OS web interface. The values you enter when you deploy a new service are translated into the appropriate `portMapping` entry in your Marathon application definition. Toggle to `JSON mode` as you create your app to see and edit your application definition.
 
 ## Prerequisite:
 
@@ -13,50 +11,15 @@ You can assign a VIP to your application by using the DC/OS Marathon web interfa
 
 To create a VIP:
 
-1.  From the DC/OS web interface, click on the **Services** tab and select **Marathon**.
+1.  From the DC/OS web interface, click on the **Services** tab and click "Deploy New Service".
 
-    *   To create a new application, click **Create Application** and select the **Ports and Service Discovery** menu option.
-    *   To edit an existing application, select your application and click the **Configuration** tab, then click **Edit**. You can then select the **Ports and Service Discovery** menu option.
+    *   To create a new application, click **Create Application** and select the **Network** menu option.
+    *   To edit an existing application, select your application, click the **Configuration** tab, then click **Edit**. You can then select the **Network** menu option.
 
-        ![Marathon Ports](/docs/1.8/overview/img/ui-marathon-ports.gif)
+2.  Check the "Discovery" checkbox, then fill in the LB Port, Name, and Protocol fields. As you fill in these fields, the service addresses that Marathon sets up will appear at the bottom of the screen. You can assign multiple VIPs to your app by clicking "+ Add an endpoint".
 
-2.  Enter the Port, Protocol, Name, and VIP address.
-
-    **Tip:** Select **JSON Mode** to edit your application directly in JSON.
+    **Tip:** Toggle to **JSON Mode** to edit your application JSON directly and to see the application definition you have created.
 
     For more information on port configuration, see the [ports documentation][1].
-
-## Assigning Multiple VIPs to Your App
-
-To assign multiple VIPs to your application, switch to JSON mode and add the additional VIPs to your `portDefinitions`. In this example, the additional VIP added is `"VIP_1": "111.2.1.23:5050"`:
-
-    {
-      "id": null,
-      "cmd": "",
-      "cpus": 1,
-      "mem": 128,
-      "disk": 0,
-      "instances": 1,
-      "ports": [
-        0
-      ],
-      "portDefinitions": [
-        {
-          "port": 3333,
-          "protocol": "tcp",
-          "name": "test",
-          "labels": {
-            "VIP_0": "111.2.1.22:8080",
-            "VIP_1": "111.2.1.23:5050"
-          }
-        },
-        {
-          "port": 0,
-          "protocol": "tcp",
-          "name": null,
-          "labels": null
-        }
-      ]
-    }
 
  [1]: http://mesosphere.github.io/marathon/docs/ports.html
