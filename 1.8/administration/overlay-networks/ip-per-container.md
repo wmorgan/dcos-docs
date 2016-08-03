@@ -66,7 +66,7 @@ You can override the default network or add additional overlay networks by modif
           prefix: 24
 ```
 
-In the above example, we have defined two overlay networks. The overlay network `dcos` retains the default overlay network, and we have added another overlay network called `dcos-1` with subnet range `192.168.0.0/16`. When you create a network, you must give it a name and a subnet. That name is used to launch Marathon tasks and other Mesos framework tasks using this specific overlay network. Due to restrictions on the size of the Linux device names the overlay network name has to be less than thirteen characters. Please go through the [limitations](#limitations] section to learn more about the reasoning behind this limitation.
+In the above example, we have defined two overlay networks. The overlay network `dcos` retains the default overlay network, and we have added another overlay network called `dcos-1` with subnet range `192.168.0.0/16`. When you create a network, you must give it a name and a subnet. That name is used to launch Marathon tasks and other Mesos framework tasks using this specific overlay network. Due to restrictions on the size of the Linux device names the overlay network name has to be less than thirteen characters. Please go through the [limitations](#limitations) section to learn more about the reasoning behind this limitation.
 
 # Retrieving overlay network state
 
