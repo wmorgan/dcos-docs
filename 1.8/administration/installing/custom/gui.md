@@ -98,7 +98,7 @@ The DC/OS installation creates these folders:
     *   SSH to each node in your cluster and run `rm -rf /opt/mesosphere`.
     *   SSH to your bootstrap master node and run `rm -rf /var/lib/zookeeper`
     
-    ![preflight](../dcos-gui-run-preflight.png)
+    ![preflight](../img/dcos-gui-run-preflight.png)
 
 6.  Click **Deploy** to install DC/OS on your cluster. If errors any errors are found, fix and then click **Retry**.
 
