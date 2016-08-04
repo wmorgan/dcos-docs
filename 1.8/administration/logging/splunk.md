@@ -30,25 +30,34 @@ For each Master node in your DC/OS cluster:
         #!/bin/sh
 
         exec journalctl --since=now -f          \
+            -u dcos-3dt.service                 \
+            -u dcos-logrotate-master.timer      \
             -u dcos-adminrouter-reload.service  \
-            -u dcos-adminrouter.service         \
-            -u dcos-cluster-id.service          \
-            -u dcos-cosmos.service              \
-            -u dcos-ddt.service                 \
-            -u dcos-epmd.service                \
-            -u dcos-exhibitor.service           \
-            -u dcos-gen-resolvconf.service      \
-            -u dcos-history.service             \
-            -u dcos-keepalived.service          \
-            -u dcos-logrotate.service           \
             -u dcos-marathon.service            \
+            -u dcos-adminrouter-reload.timer    \
             -u dcos-mesos-dns.service           \
+            -u dcos-adminrouter.service         \
             -u dcos-mesos-master.service        \
+            -u dcos-cfn-signal.service          \
+            -u dcos-metronome.service           \
+            -u dcos-cosmos.service              \
             -u dcos-minuteman.service           \
+            -u dcos-download.service            \
+            -u dcos-navstar.service             \
+            -u dcos-epmd.service                \
             -u dcos-oauth.service               \
+            -u dcos-exhibitor.service           \
+            -u dcos-setup.service               \
+            -u dcos-gen-resolvconf.service      \
             -u dcos-signal.service              \
-            -u dcos-spartan.service             \
-            -u dcos-spartan-watchdog.service
+            -u dcos-gen-resolvconf.timer        \
+            -u dcos-signal.timer                \
+            -u dcos-history.service             \
+            -u dcos-spartan-watchdog.service    \
+            -u dcos-link-env.service            \
+            -u dcos-spartan-watchdog.timer      \
+            -u dcos-logrotate-master.service    \
+            -u dcos-spartan.service
 
 2.  Make the script executable:
 
@@ -69,29 +78,16 @@ For each agent node in your DC/OS cluster:
         #!/bin/sh
 
             journalctl --since="now" -f                 \
-                -u dcos-3dt.service                      \
-                -u dcos-logrotate-agent.timer            \
-                -u dcos-3dt.socket                       \
-                -u dcos-mesos-slave.service              \
-                -u dcos-adminrouter-agent.service        \
-                -u dcos-minuteman.service                \
-                -u dcos-adminrouter-reload.service       \
-                -u dcos-navstar.service                  \
-                -u dcos-adminrouter-reload.timer         \
-                -u dcos-rexray.service                   \
-                -u dcos-cfn-signal.service               \
-                -u dcos-setup.service                    \
-                -u dcos-download.service                 \ 
-                -u dcos-signal.timer                     \
-                -u dcos-epmd.service                     \
-                -u dcos-spartan-watchdog.service         \
-                -u dcos-gen-resolvconf.service           \
-                -u dcos-spartan-watchdog.timer           \
-                -u dcos-gen-resolvconf.timer             \
-                -u dcos-spartan.service                  \
-                -u dcos-link-env.service                 \
-                -u dcos-vol-discovery-priv-agent.service \
-                -u dcos-logrotate-agent.service          
+                -u dcos-ddt.service                     \
+                -u dcos-epmd.service                    \
+                -u dcos-gen-resolvconf.service          \
+                -u dcos-logrotate.service               \
+                -u dcos-mesos-slave.service             \
+                -u dcos-mesos-slave-public.service      \
+                -u dcos-minuteman.service               \
+                -u dcos-spartan.service                 \
+                -u dcos-spartan-watchdog.service        \
+                -u dcos-vol-discovery-priv-agent.service
 
 2.  Make the script executable:
 

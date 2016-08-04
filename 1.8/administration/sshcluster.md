@@ -10,7 +10,7 @@ These instructions explain how to set up an SSH connection to your DC/OS cluster
 
 **Requirements:**
 
-*   During [AWS DC/OS cluster creation][4], a `.pem` file is created. You will need this `.pem` file to SSH to your cluster.
+*   An unencrypted SSH key that can be used to authenticate with the cluster nodes over SSH. Encrypted SSH keys are not supported.
 
 ### <a name="unix"></a>SSH to your DC/OS cluster on Unix/Linux (OS X, Ubuntu, etc)
 
@@ -47,15 +47,13 @@ These instructions explain how to set up an SSH connection to your DC/OS cluster
 
     *   **To SSH to an agent node:**
 
-        1.  From the Mesos web interface, copy the agent node ID. You can find the IDs on the **Frameworks** (`<master-node-IPaddress>/mesos/#/frameworks`) or **Slaves** page (`<master-node-IPaddress>/mesos/#/slaves`).
-
-            ![Mesos Sandbox](../img/mesos-sandbox-slave-copy.png)
-
-        2.  From the DC/OS CLI, enter the following command, where `<mesos-id>` is your agent ID:
+        1.  From the DC/OS CLI, enter the following command, where `<mesos-id>` is your agent ID. 
 
             ```bash
             $ dcos node ssh --master-proxy --mesos-id=<mesos-id>
             ```
+            
+            **Tip:** To find the agent ID, select the **Nodes** tab in the DC/OS [web interface](/docs/1.8/usage/webinterface) and click **Details**. 
 
 
 ### <a name="windows"></a>SSH to your DC/OS cluster on Windows

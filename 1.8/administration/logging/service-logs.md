@@ -17,7 +17,7 @@ Let’s say that you’ve got a service misbehaving. For some reason, it is cont
 
 ## CLI
 
-If you’ve created a service named `service` in Marathon and would like to see stdout for every instance of that in real time, you can run the following:
+If you’ve created a DC/OS service named `service` and would like to see stdout for every instance of that in real time, you can run the following:
 
 ```
 $ dcos task log --follow service
@@ -29,11 +29,7 @@ For more advanced usage, you can check out the CLI documentation:
 
 ## GUI
 
-From the GUI, go to the **Services** tab in the DC/OS UI and you’ll be able to download all the files your service has produced as well as watch stdout/stderr via. the `Log Viewer`.
-
-Check out some of the DC/OS UI documentation for more details:
-
-- [DC/OS UI](/docs/1.8/usage/webinterface/)
+From the **Services** tab in the [DC/OS UI](/docs/1.8/usage/webinterface/) you can download all the log files for your service. You can also monitor stdout/stderr.
 
 # Compliance
 
