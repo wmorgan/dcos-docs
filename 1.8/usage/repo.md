@@ -48,7 +48,7 @@ Add a repo with the name `your-repo` and the repo URL `https://universe.yourcomp
 $ dcos package repo add your-repo https://universe.yourcompany.com/repo
 ```
 
-For full instructions on how to build an run your own Universe repo see the [Universe Server Documentation](https://github.com/mesosphere/universe#universe-server)
+For full instructions on how to build an run your own Universe repo see the [Universe Server Documentation](https://github.com/mesosphere/universe#universe-server).
 
 ## <a name="removing"></a>Removing a Repository
 

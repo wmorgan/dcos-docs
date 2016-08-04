@@ -10,15 +10,40 @@ This installation method uses a bootstrap node to administer the DC/OS installat
 
 The DC/OS installation creates these folders:
 
-| Folder                                  | Description                                                                                                                                            |
-|-----------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `/opt/mesosphere`                       | Contains all the DC/OS binaries, libraries, cluster configuration. Do not modify.                                                                      |
-| `/etc/systemd/system/dcos.target.wants` | Contains the systemd services which start the things that make up systemd. They must live outside of `/opt/mesosphere` because of systemd constraints. |
-| `/etc/systemd/system/dcos.<units>`      | Contains copies of the units in `/etc/systemd/system/dcos.target.wants`. They must be at the top folder as well as inside `dcos.target.wants`.         |
-| `/var/lib/zookeeper`                    | Contains the [ZooKeeper](/docs/1.8/overview/concepts/#zookeeper) data.                                                                                      |
-| `/var/lib/docker`                       | Contains the Docker data.                                                                                                                              |
-| `/var/lib/dcos`                         | Contains the DC/OS data.                                                                                                                               |
-| `/var/lib/mesos`                        | Contains the Mesos data.                                                                                                                               |
+<table class="table">
+  <tr>
+    <th>Folder</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><code>/opt/mesosphere<code></td>
+    <td>Contains all the DC/OS binaries, libraries, cluster configuration. Do not modify.</td>
+  </tr>
+  <tr>
+    <td><code>/etc/systemd/system/dcos.target.wants<code></td>
+    <td>Contains the systemd services which start the things that make up systemd. They must live outside of `/opt/mesosphere` because of systemd constraints.</td>
+  </tr>
+  <tr>
+    <td><code>/etc/systemd/system/dcos.&lt;units&gt;<code></td>
+    <td>Contains copies of the units in `/etc/systemd/system/dcos.target.wants`. They must be at the top folder as well as inside `dcos.target.wants`.</td>
+  </tr>
+  <tr>
+    <td><code>/var/lib/zookeeper<code></td>
+    <td>Contains the [ZooKeeper](/docs/1.8/overview/concepts/#zookeeper) data.</td>
+  </tr>
+  <tr>
+    <td><code>/var/lib/docker<code></td>
+    <td>Contains the Docker data. </td>
+  </tr>
+  <tr>
+    <td><code>/var/lib/dcos<code></td>
+    <td>Contains the DC/OS data.</td>
+  </tr>
+  <tr>
+    <td><code>/var/lib/mesos<code></td>
+    <td>Contains the Mesos data.</td>
+  </tr>
+</table>
 
 # Configure your cluster
 
@@ -108,7 +133,7 @@ The DC/OS installation creates these folders:
 
     In this step you create a YAML configuration file that is customized for your environment. DC/OS uses this configuration file during installation to generate your cluster installation files.
 
-    You can use this template to get started. This template specifies 3 Mesos masters, 5 Mesos agents, and SSH configuration specified. If your servers are installed with a domain name in your `/etc/resolv.conf`, you should add `dns_search` to your `config.yaml` file. For parameters descriptions and configuration examples, see the [documentation][6].
+    You can use this template to get started. This template specifies 3 masters, 5 [private](/docs/1.8/overview/concepts/#private) agents, 1 [public](/docs/1.8/overview/concepts/#public) agent, and SSH configuration specified. If your servers are installed with a domain name in your `/etc/resolv.conf`, you should add `dns_search` to your `config.yaml` file. For parameters descriptions and configuration examples, see the [documentation][6].
 
     **Tip:** If Google DNS is not available in your country, you can replace the Google DNS servers `8.8.8.8` and `8.8.4.4` with your local DNS servers.
 
@@ -128,6 +153,8 @@ The DC/OS installation creates these folders:
     - <master-private-ip-1>
     - <master-private-ip-2>
     - <master-private-ip-3>
+    public_agent_list:
+    - <public-agent-private-ip>
     resolvers:
     - 8.8.4.4
     - 8.8.8.8
@@ -345,7 +372,7 @@ It is recommended that you save your DC/OS installer file immediately after inst
 # Next Steps
 
 - [Add users to your cluster][10]
-- [Add a public agent][11]
+- [Add a public agent post-installation][11]
 - [Install the DC/OS Command-Line Interface (CLI)][2]
 - [Troubleshooting DC/OS installation][9]
 - [Use your cluster][8]

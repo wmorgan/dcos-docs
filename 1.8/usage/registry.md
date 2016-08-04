@@ -11,7 +11,7 @@ The advantages of a private Docker registry are:
 - They can be securely deployed in your local environment (DC/OS cluster).
 - Reduced latency for pushing and pulling images, leading to faster deployments.
 
-This article describes how to set up a private Docker registry in a DC/OS cluster and make it accessible through a [VIP](/docs/1.8/usage/service-discovery/virtual-ip-addresses/). 
+This article describes how to set up a private Docker registry in a DC/OS cluster and make it accessible through a [VIP](/docs/1.8/usage/service-discovery/load-balancing-vips/virtual-ip-addresses/). 
 
 ## Security options
 

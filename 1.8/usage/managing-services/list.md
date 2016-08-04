@@ -19,15 +19,6 @@ marathon  <privatenode3>   True     3    2.0   1843.0  100.0  <service-id4>
 
 ## Monitoring services using the DC/OS web interface
 
-From the DC/OS web interface, click the **Services** [**Services**](/docs/1.8/usage/webinterface/#services) tab. 
+From the DC/OS web interface, click the [**Services**](/docs/1.8/usage/webinterface/#services) tab. 
 
-*   **NAME** Displays the DC/OS service name.
-*   **HOST** Displays the private agent node where the service running.
-*   **ACTIVE** Indicates whether the service is connected to a scheduler.
-*   **TASK** Displays the number of running tasks.
-*   **CPU** Displays the percentage of CPU in use.
-*   **MEM** Displays the amount of memory used.
-*   **DISK** Displays the amount of disk space used.
-*   **ID** Displays the DC/OS service framework ID. This value is automatically generated and is unique across the cluster.
-
-The [Web Interfaces](/docs/1.8/usage/webinterface/#services) page contains more details about the **Services** tab. 
+![Services](../img/dcos-services.png)

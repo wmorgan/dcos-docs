@@ -7,7 +7,7 @@ To demonstrate marathon-lb, you can boot a DC/OS cluster on AWS to run an intern
 
 ## Prequisistes
 
-*   [A DC/OS cluster][1]
+*   [A DC/OS cluster][1].
 *   [DC/OS and DC/OS CLI][2] are installed.
 
 ## Steps

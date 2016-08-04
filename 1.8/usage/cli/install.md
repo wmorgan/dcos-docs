@@ -47,7 +47,7 @@ The easiest way to install the DC/OS CLI is by clicking the signpost icon in the
     $ dcos auth login
     ```
     
-    Follow the instructions in the DC/OS CLI. For more information about security, see the [documentation](/docs/1.8/administration/security/).
+    Follow the instructions in the DC/OS CLI. For more information about security, see the [documentation](/docs/1.8/administration/id-and-access-mgt/).
     
     Your CLI should now be authenticated with your cluster! Enter `dcos` to get started.
 
@@ -109,7 +109,7 @@ The easiest way to install the DC/OS CLI is by clicking the signpost icon in the
     $ dcos auth login
     ```
     
-    Follow the instructions in the DC/OS CLI. For more information about security, see the [documentation](/docs/1.8/administration/security/).
+    Follow the instructions in the DC/OS CLI. For more information about security, see the [documentation](/docs/1.8/administration/id-and-access-mgt/).
     
     Your CLI should now be authenticated with your cluster! Enter `dcos` to get started.
     
