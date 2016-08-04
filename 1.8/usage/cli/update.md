@@ -8,6 +8,8 @@ You can update the DC/OS CLI to the latest version or downgrade to an older vers
 
 # <a name="upgrade"></a>Upgrade the CLI
 
+**Important:** If you downloaded the CLI from PYPI or from the DC/OS UI version 1.7 or earlier, you must completely [uninstall](/docs/1.8/usage/cli/uninstall/) the CLI. You cannot upgrade. 
+
 You can upgrade an existing DC/OS CLI installation to the latest build.
 
 1.  From your DC/OS CLI installation directory, enter this command to update the DC/OS CLI:
