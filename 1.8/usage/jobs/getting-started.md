@@ -16,7 +16,7 @@ From the DC/OS web interface, click the **Jobs** tab, then the **New Job** butto
 * **Memory**
 * **Disk space**
 * **Command** - The command your job will execute. Leave this blank if you will use a Docker image.
-* **Schedule** - Specify the schedule in cron format, as well as the time zone and starting deadline. Use [this crontab generator](http://crontab.guru) for help.
+* **Schedule** - Specify the schedule in cron format, as well as the time zone and starting deadline. Use [this crontab generator](http://crontab.guru) for help with cron format and this [list of time zones](http://www.timeanddate.com/time/zones/) for time zone format.
 * **Docker Container** - Fill in this field if you will use a Docker image to specify the action of your job.
 * **Labels**
 
