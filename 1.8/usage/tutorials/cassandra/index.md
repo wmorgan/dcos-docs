@@ -1,7 +1,7 @@
 ---
 post_title: How to use Apache Cassandra
 nav_title: Cassandra
-imenu_order: 03
+menu_order: 03
 ---
 
 [Apache Cassandra](https://cassandra.apache.org/) is a decentralized structured distributed storage system. Cassandra clusters are highly available, scalable, performant, and fault tolerant. DC/OS Cassandra allows you to quickly configure, install, and manage Apache Cassandra. Multiple Cassandra clusters can also be installed on DC/OS and managed independently, so you can offer Cassandra as a managed service to your organization.
