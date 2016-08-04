@@ -57,6 +57,8 @@ The DC/OS installation creates these folders:
 
 4.  Specify your Deployment and DC/OS Environment settings:
 
+    ![preflight](../img/dcos-gui-preflight.png)
+
     ### Deployment Settings
 
     **Master Private IP List**
@@ -91,12 +93,12 @@ The DC/OS installation creates these folders:
 
 5.  Click **Run Pre-Flight**. The preflight script installs the cluster prerequisites and validates that your cluster is installable. For a list of cluster prerequisites, see the scripted installer [prerequisites][3]. This step can take up to 15 minutes to complete. If errors any errors are found, fix and then click **Retry**.
 
-    ![preflight](../img/dcos-gui-preflight.png)
-
    **Important:* If you exit your GUI installation before launching DC/OS, you must do this before reinstalling:
 
     *   SSH to each node in your cluster and run `rm -rf /opt/mesosphere`.
     *   SSH to your bootstrap master node and run `rm -rf /var/lib/zookeeper`
+    
+    ![preflight](../dcos-gui-run-preflight.png)
 
 6.  Click **Deploy** to install DC/OS on your cluster. If errors any errors are found, fix and then click **Retry**.
 
