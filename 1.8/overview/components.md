@@ -10,21 +10,24 @@ By components, we're referring to the services which work together to bring the 
 
 If you log into any host in the DC/OS cluster, you can view the currently running services by inspecting `/etc/systemd/system/dcos.target.wants/`.
 
-```
-ip-10-0-6-126 system # ls dcos.target.wants/
-dcos-adminrouter-reload.service  dcos-exhibitor.service        dcos-marathon.service
-dcos-adminrouter-reload.timer    dcos-gen-resolvconf.service   dcos-mesos-dns.service
-dcos-adminrouter.service         dcos-gen-resolvconf.timer     dcos-mesos-master.service
-dcos-cluster-id.service          dcos-history-service.service  dcos-minuteman.service
-dcos-cosmos.service              dcos-keepalived.service       dcos-signal.service
-dcos-ddt.service                 dcos-logrotate.service        dcos-signal.timer
-dcos-epmd.service                dcos-logrotate.timer          dcos-spartan.service
+```bash
+$ ls
+dcos-3dt.service                 dcos-marathon.service
+dcos-adminrouter-reload.service  dcos-mesos-dns.service
+dcos-adminrouter-reload.timer    dcos-mesos-master.service
+dcos-adminrouter.service         dcos-metronome.service
+dcos-cosmos.service              dcos-minuteman.service
+dcos-epmd.service                dcos-navstar.service
+dcos-exhibitor.service           dcos-oauth.service
+dcos-gen-resolvconf.service      dcos-signal.service
+dcos-gen-resolvconf.timer        dcos-signal.timer
+dcos-history.service             dcos-spartan-watchdog.service
+dcos-logrotate-master.service    dcos-spartan-watchdog.timer
+dcos-logrotate-master.timer      dcos-spartan.service
 ```
 
 ## Admin Router Service
-Admin Router is our core internal load balancer. Admin Router is a customized [Nginx](https://www.nginx.com/resources/wiki/) which allows us to proxy all the internal services on :80.
-
-Without Admin Router being up, you could not access the DC/OS UI. Admin Router is a core component of the DC/OS ecosystem.
+The Admin Router service (`dcos-adminrouter.service `) is the core internal load balancer for DC/OS. Admin Router is a customized [Nginx](https://www.nginx.com/resources/wiki/) that proxies all of the internal services on port `80`.
 
 ```
 [Unit]
@@ -53,9 +56,9 @@ KillMode=mixed
 ```
 
 ## Cluster ID Service
-The cluster-id service allows us to generate a UUID for each cluster. We use this ID to track cluster health remotely (if enabled). This remote tracking allows our support team to better assist our customers.
+The cluster-id service generates a universally unique identifier (UUID) for each cluster. We use this ID to track cluster health remotely (if enabled). This remote tracking allows our support team to better assist our customers.
 
-The cluster-id service runs an internal tool called `zk-value-consensus` which uses our internal ZooKeeper to generate a UUID that all the masters agree on. Once an agreement is reached, the ID is written to disk at `/var/lib/dcos/cluster-id`. We write it to `/var/lib/dcos` so the ID is ensured to persist cluster upgrades without changing.
+The cluster-id service runs an internal tool called `zk-value-consensus` which uses our internal [ZooKeeper](/docs/1.8/overview/concepts/#exhibitorforzookeeper) to generate a UUID that all the masters agree on. Once an agreement is reached, the ID is written to disk at `/var/lib/dcos/cluster-id`. We write it to `/var/lib/dcos` so the ID is ensured to persist cluster upgrades without changing.
 
 ```
 [Unit]
@@ -68,7 +71,7 @@ ExecStart=/bin/sh -c "/opt/mesosphere/bin/python -c 'import uuid; print(uuid.uui
 ```
 
 ## Cosmos Service
-The Cosmos service is our internal packaging API service. You access this service everytime you run `dcos package install...` from the CLI. This API allows us to deploy DC/OS packages from the DC/OS universe to your DC/OS cluster.
+The Cosmos service (`dcos-cosmos.service `) is our internal packaging API service. This service is accessed every time that you run `dcos package install` from the CLI. This API deploys DC/OS packages from the DC/OS [Universe](https://github.com/mesosphere/universe) to your DC/OS cluster.
 
 ```
 [Unit]
@@ -90,8 +93,8 @@ ExecStartPre=-/bin/mkdir -p /var/lib/cosmos
 ExecStart=/opt/mesosphere/bin/java -Xmx2G -jar "/opt/mesosphere/packages/cosmos--e5b42c8cd703c1eb7b83868b1
 ```
 
-## Diagnostics (DDT) Service
-The diagnostics service (also known as 3DT or dcos-ddt.service, no relationship to the pesticide!) is our diagnostics utility for DC/OS systemd components. This service runs on every host, tracking the internal state of the systemd unit. The service runs in two modes, with or without the `-pull` argument. If running on a master host, it executes `/opt/mesosphere/bin/3dt -pull` which queries Mesos-DNS for a list of known masters in the cluster, then queries a master (usually itself) `:5050/statesummary` and gets a list of agents.
+## Diagnostics Service
+The diagnostics service (`dcos-3dt.service`) is the diagnostics utility for DC/OS systemd components. This service runs on every host, tracking the internal state of the systemd unit. The service runs in two modes, with or without the `-pull` argument. If running on a master host, it executes `/opt/mesosphere/bin/3dt -pull` which queries Mesos-DNS for a list of known masters in the cluster, then queries a master (usually itself) `:5050/statesummary` and gets a list of agents.
 
 From this complete list of cluster hosts, it queries all 3DT health endpoints (`:1050/system/health/v1/health`). This endpoint returns health state for the DC/OS systemd units on that host. The master 3DT processes, along with doing this aggregation also expose `/system/health/v1/` endpoints to feed this data by `unit` or `node` IP to the DC/OS user interface.
 
@@ -106,33 +109,8 @@ RestartSec=5
 ExecStart=/opt/mesosphere/bin/3dt -pull
 ```
 
-## Distributed DNS Proxy
-Distributed DNS Proxy is our internal DNS dispatcher. It conforms to RFC5625 as a DNS forwarder for DC/OS cluster services.
-
-```
-[Unit]
-Description=DNS Dispatcher: An RFC5625 Compliant DNS Forwarder
-[Service]
-Restart=always
-StartLimitInterval=0
-RestartSec=5
-WorkingDirectory=/opt/mesosphere/active/spartan/spartan
-EnvironmentFile=/opt/mesosphere/environment
-EnvironmentFile=/opt/mesosphere/etc/dns_config
-EnvironmentFile=/opt/mesosphere/etc/dns_search_config
-EnvironmentFile=-/opt/mesosphere/etc/dns_config_master
-ExecStartPre=/usr/bin/env modprobe dummy
-ExecStartPre=-/usr/bin/env ip link add spartan type dummy
-ExecStartPre=/usr/bin/env ip link set spartan up
-ExecStartPre=-/usr/bin/env ip addr add 198.51.100.1/32 dev spartan
-ExecStartPre=-/usr/bin/env ip addr add 198.51.100.2/32 dev spartan
-ExecStartPre=-/usr/bin/env ip addr add 198.51.100.3/32 dev spartan
-ExecStart=/opt/mesosphere/active/spartan/spartan/bin/spartan foreground
-Environment=HOME=/opt/mesosphere
-```
-
-## Erlang Port Mapper (EPMD) Service
-The erlang port mapper is designed to support our internal layer 4 load balancer we call `minuteman`.
+## Erlang Port Mapper Daemon Service
+The Erlang Port Mapper Daemon (EPMD) (`dcos-epmd.service`) supports the internal DC/OS layer 4 load balancer that is called [minuteman](#minuteman).
 
 ```
 [Unit]
@@ -149,7 +127,7 @@ Environment=HOME=/opt/mesosphere
 ```
 
 ## Exhibitor Service
-Exhibitor is a project from [netflix](https://github.com/Netflix/exhibitor) that allows us to manage and automate the deployment of ZooKeeper.
+DC/OS uses Exhibitor (`dcos-exhibitor.service`), a project from [Netflix](https://github.com/Netflix/exhibitor), to manage and automate the deployment of [ZooKeeper](/docs/1.8/overview/concepts/#exhibitorforzookeeper).
 
 ```
 [Unit]
@@ -170,8 +148,8 @@ EnvironmentFile=/opt/mesosphere/etc/exhibitor
 ExecStart=/usr/bin/unshare --mount /opt/mesosphere/packages/exhibitor--8b9dac1cdd3a5ea25ae5a2e66f18000ad72c3f26/usr/exhibitor/start_exhibitor.py
 ```
 
-## Generate resolv.conf (gen-resolvconf) Service
-The gen-resolvconf service allows us to dynamically provision `/etc/resolv.conf` for your cluster hosts.
+## Generate resolv.conf Service
+The Generate resolv.conf Service (`dcos-gen-resolvconf.service`) dynamically provisions `/etc/resolv.conf` for your cluster hosts.
 
 ```
 [Unit]
@@ -191,7 +169,7 @@ ExecStart=/opt/mesosphere/bin/gen_resolvconf.py /etc/resolv.conf
 ```
 
 ## History Service
-The history service provides a simple service for storing stateful information about your DC/OS cluster. This data is stored on disk for 24 hours. Along with storing this data, the history service also exposes a HTTP API for the DC/OS user interface to query. All DC/OS cluster stats which involve memory, CPU and disk usage are driven by this service (including the donuts!).
+The history service (`dcos-history.service`) provides a simple service for storing stateful information about your DC/OS cluster. This data is stored on disk for 24 hours. Along with storing this data, the history service also exposes a HTTP API for the DC/OS user interface to query. All DC/OS cluster stats which involve memory, CPU and disk usage are driven by this service (including the donuts!).
 
 ```
 [Unit]
@@ -207,7 +185,7 @@ ExecStart=/opt/mesosphere/bin/dcos-history
 ```
 
 ## Logrotate Service
-This service does what you think it does: ensures DC/OS services don't blow up cluster hosts with too much log data on disk.
+The Logrotate (`dcos-logrotate-master.service`) service ensures DC/OS services don't overload cluster hosts with too much log data on disk.
 
 ```
 [Unit]
@@ -221,7 +199,7 @@ ExecStart=/opt/mesosphere/packages/logrotate--52aee4fc02aab1082880abd4411d782514
 ```
 
 ## Marathon Service
-Marathon shouldn't need any introduction, it's the distributed init system for the DC/OS cluster. We run an internal Marathon for packages and other DC/OS services.
+Marathon (`dcos-marathon.service`) is the distributed init system for the DC/OS cluster. We run an internal [Marathon](/docs/1.8/overview/concepts/#dcosmarathon) for packages and other DC/OS services. 
 
 ```
 [Unit]
@@ -241,7 +219,7 @@ ExecStart=/opt/mesosphere/bin/java -Xmx2G -jar "/opt/mesosphere/packages/maratho
 ```
 
 ## Mesos-DNS Service
-Mesos-DNS is the internal DNS service for the DC/OS cluster. Mesos-DNS provides the namespace `$service.mesos` to all cluster hosts. For example, you can login to your leading mesos master with `ssh leader.mesos`.
+Mesos-DNS is the internal DNS service (`dcos-mesos-dns.service`) for the DC/OS cluster. [Mesos-DNS](/docs/1.8/overview/concepts/#mesosdns) provides the namespace `$service.mesos` to all cluster hosts. For example, you can login to your leading mesos master with `ssh leader.mesos`.
 
 ```
 [Unit]
@@ -256,8 +234,8 @@ EnvironmentFile=/opt/mesosphere/environment
 ExecStart=/opt/mesosphere/bin/mesos-dns --config=/opt/mesosphere/etc/mesos-dns.json -logtostderr=true
 ```
 
-## Minuteman Service
-This is our internal layer 4 loadbalancer.
+## <a name="minuteman"></a>Minuteman Service
+[Minuteman](https://github.com/dcos/minuteman) (`dcos-minuteman.service`) is the internal DC/OS layer 4 loadbalancer.
 
 ```
 [Unit]
@@ -281,7 +259,7 @@ Environment=HOME=/opt/mesosphere
 ```
 
 ## Signal Service
-The DC/OS signal service queries the diagnostics service `/system/health/v1/report` endpoint on the leading master and sends this data to SegmentIO for use in tracking metrics and customer support.
+The DC/OS signal service (`dcos-signal.service`) queries the diagnostics service `/system/health/v1/report` endpoint on the leading master and sends this data to SegmentIO for use in tracking metrics and customer support.
 
 ```
 [Unit]
@@ -291,4 +269,29 @@ After=dcos-mesos-master.service
 EnvironmentFile=/opt/mesosphere/environment
 EnvironmentFile=-/opt/mesosphere/etc/cfn_signal_metadata
 ExecStart=/opt/mesosphere/bin/dcos-signal --write_key=51ybGTeFEFU1xo6u10XMDrr6kATFyRyh
+```
+
+## Distributed DNS Proxy
+Distributed DNS Proxy (`dcos-spartan.service`) is the internal DC/OS DNS dispatcher. It conforms to RFC5625 as a DNS forwarder for DC/OS cluster services.
+
+```
+[Unit]
+Description=DNS Dispatcher: An RFC5625 Compliant DNS Forwarder
+[Service]
+Restart=always
+StartLimitInterval=0
+RestartSec=5
+WorkingDirectory=/opt/mesosphere/active/spartan/spartan
+EnvironmentFile=/opt/mesosphere/environment
+EnvironmentFile=/opt/mesosphere/etc/dns_config
+EnvironmentFile=/opt/mesosphere/etc/dns_search_config
+EnvironmentFile=-/opt/mesosphere/etc/dns_config_master
+ExecStartPre=/usr/bin/env modprobe dummy
+ExecStartPre=-/usr/bin/env ip link add spartan type dummy
+ExecStartPre=/usr/bin/env ip link set spartan up
+ExecStartPre=-/usr/bin/env ip addr add 198.51.100.1/32 dev spartan
+ExecStartPre=-/usr/bin/env ip addr add 198.51.100.2/32 dev spartan
+ExecStartPre=-/usr/bin/env ip addr add 198.51.100.3/32 dev spartan
+ExecStart=/opt/mesosphere/active/spartan/spartan/bin/spartan foreground
+Environment=HOME=/opt/mesosphere
 ```

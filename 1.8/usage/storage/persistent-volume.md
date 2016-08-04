@@ -81,10 +81,12 @@ When you scale your app down, the volumes associated with the terminated instanc
 
 Since all the resources your application needs are still reserved when a volume is detached, you may wish to destroy detached volumes in order to allow other applications and frameworks to use the resources. You may wish to leave them in the detached state, however, if you think you will be scaling your app up again; the data on the volume will still be there.
 
-**Note:** If your app is destroyed, any associated volumes and reserved resources will also be deleted.
-**Note:** Mesos will currently not remove the data but might do so in the future.
+**Notes:** 
 
-# Upgrading/restarting stateful applications
+-  If your app is destroyed, any associated volumes and reserved resources will also be deleted.
+-  Mesos will currently not remove the data but might do so in the future.
+
+# Upgrading or restarting stateful applications
 
 The default `UpgradeStrategy` for a stateful application is a `minimumHealthCapacity` of `0.5` and a `maximumOverCapacity` of `0`. If you override this default, your definition must stay below these values in order to pass validation. The `UpgradeStrategy` must stay below these values because Marathon needs to be able to kill old tasks before starting new ones so that the new versions can take over reservations and volumes and Marathon cannot create additional tasks (as a `maximumOverCapacity > 0` would induce) in order to prevent additional volume creation.
 

@@ -20,13 +20,24 @@ For example, you would use the following command to install Chronos with the def
 $ dcos package install chronos
 ```
     
-## Installing a service using the web interface
+## Installing a service using the UI
+
+From the DC/OS UI you can install services from the **Services** or **Universe** tab. The Universe tab shows all of the available DC/OS services from package [repositories](/docs/1.8/usage/repo/). The Services tab provides a full featured interface to the native DC/OS Marathon instance.
+
+
+### Universe tab
 
 1.  Navigate to the [**Universe**](/docs/1.8/usage/webinterface/#universe) page in the DC/OS UI.
 
 2.  Choose your package and click **Install package**. 
 
 3.  Confirm your installation or choose **Advanced Installation** to include a custom configuration, as discussed in [Customizing service installation parameters](#customizing-install).
+
+### Services tab
+
+1.  Navigate to the [**Services**](/docs/1.8/usage/webinterface/#services) tab in the DC/OS UI.
+1.  Specify your Marathon app definition and click **Deploy**.
+1.  Click **Deploy**. 
 
 ## Verifying your installation
 
