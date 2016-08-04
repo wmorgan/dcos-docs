@@ -15,13 +15,8 @@ You can create a job as a single command you include when you create the job, or
 When you create your job, you can specify:
 
 * The amount of CPU your job will consume.
-
 * The amount of memory youd job will consume.
-
 * The disk space your job will consume.
-
-* The schedule for your job, in chron format. You can also set the time zone and starting deadline.
-
+* The schedule for your job, in cron format. You can also set the time zone and starting deadline.
 * An arbitrary number of labels to attach to your job.
-
 * Permissions for your job.
