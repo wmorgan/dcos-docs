@@ -20,5 +20,3 @@ marathon  <privatenode3>   True     3    2.0   1843.0  100.0  <service-id4>
 ## Monitoring services using the DC/OS web interface
 
 From the DC/OS web interface, click the [**Services**](/docs/1.8/usage/webinterface/#services) tab. 
-
-![Services](../img/dcos-services.png)
