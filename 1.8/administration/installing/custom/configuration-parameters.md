@@ -9,7 +9,7 @@ These configuration parameters are specified in [YAML][1] format in your config.
 # Cluster Setup
 
 ### agent_list
-This parameter specifies a YAML nested list (`-`) of IPv4 addresses to your agent host names.
+This parameter specifies a YAML nested list (`-`) of IPv4 addresses to your [private agent](/docs/1.8/overview/concepts/#private) host names.
 
 ### bootstrap_url
 This required parameter specifies the URI path for the DC/OS installer to store the customized DC/OS build files. If you are using the automated DC/OS installer, you should specify `bootstrap_url: file:///opt/dcos_install_tmp` unless you have moved the installer assets. By default the automated DC/OS installer places the build files in `file:///opt/dcos_install_tmp`.
@@ -64,6 +64,9 @@ This option specifies that the set of masters has an HTTP load balancer in front
       This required parameter specifies an address (preferrably an IP address), where the load balancer in front of the masters can be found. The load balancer must accept traffic on port 8080, port 5050, port 80, and port 443, and forward it to the same port on the master (8080 on lb -> 8080 on one master, 505 on lb -> 5050 on one master). The master to forward any new connection to should be round robin, and should avoid machines that do not respond to requests on port 5050 in order to ensure the box is functioning (mesos master) is up.
     *  **num_masters**
        This required parameter specifies the number of Mesos masters in your DC/OS cluster. It cannot be changed later. The number of masters behind the load balancer must never be greater than this number, though it can be fewer during failures.
+       
+### <a name="public-agent"></a>public_agent_list
+This parameter specifies a YAML nested list (`-`) of IPv4 addresses to your [public agent](/docs/1.8/overview/concepts/#public) host names.
 
 ## Networking
 ### <a name="dns-search"></a>dns_search
@@ -209,6 +212,8 @@ exhibitor_zk_path: /zk-example
 log_directory: /genconf/logs
 master_discovery: master_http_loadbalancer
 num_masters: 3
+public_agent_list:
+- 10.10.0.139
 exhibitor_address: 67.34.242.55
 process_timeout: 120
 resolvers:
