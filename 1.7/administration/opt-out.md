@@ -11,7 +11,7 @@ You can opt-out of the provided authentication by disabling it for your cluster.
 oauth_enabled: 'false'
 ```
 
-Note that if you’ve already installed your cluster and would like to disable this in-place, you can go through an upgrade with the same parameter set.
+If you’ve already installed your cluster and want to disable authentication in-place, you can go through an upgrade with the `oauth_enabled: 'false'` set.
 
 ## Telemetry
 
@@ -21,7 +21,7 @@ You can opt-out of providing anonymous data by disabling telemetry for your clus
 telemetry_enabled: 'false'
 ```
 
-Note that if you’ve already installed your cluster and would like to disable this in-place, you can go through an [upgrade][3] with the same parameter set.
+If you’ve already installed your cluster and want to disable telemetry in-place, you can go through an upgrade with the `telemetry_enabled: 'false'` set.
 
 [1]: ../installing/custom/cli/
 [2]: ../installing/custom/advanced/
