@@ -125,7 +125,7 @@ The DC/OS installation creates these folders:
     *Important:* The IP address of a node must not change after DC/OS is installed on the node. For example, the IP address must not change when a node is rebooted or if the DHCP lease is renewed. If the IP address of a node does change, the node must be wiped and reinstalled.
     
     #### Send Anonymous Telemetry
-    Indicate whether to allow Mesosphere to collect anonymous DC/OS usage data. For more information, see the [documentation](/docs/1.8/administration/telemetry/).
+    Indicate whether to allow Mesosphere to collect anonymous DC/OS usage data. For more information, see the [documentation](/docs/1.8/overview/telemetry/).
     
     #### Enable Authentication
     Indicate whether to enable authentication for your DC/OS cluster. For more information, see the [documentation](/docs/1.8/administration/id-and-access-mgt/).

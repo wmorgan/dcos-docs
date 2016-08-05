@@ -36,7 +36,7 @@ The Zen templates ([zen-1.json](https://s3.amazonaws.com/downloads.mesosphere.io
   </tr>
   <tr>
     <td>AcceptEULA</td>
-    <td>Read the Mesosphere EULA and indicate agreement: https://docs.mesosphere.com/community-edition-eula/.</td>
+    <td>Read the Mesosphere EULA and indicate agreement.</td>
   </tr>
   <tr>
     <td>Vpc</td>
