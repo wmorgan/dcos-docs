@@ -28,8 +28,6 @@ When using the DC/OS UI, we receive two types of notifications:
 - Login information
 - The pages you’ve viewed while navigating the UI
 
-<hr>
-
 ## Opt-Out
 
-- For more information, see the [dcoumentation](/docs/1.8/administration/opt-out/).
+- For more information, see the [documentation](/docs/1.8/administration/opt-out/).
