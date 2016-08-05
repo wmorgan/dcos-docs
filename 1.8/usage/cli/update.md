@@ -12,11 +12,10 @@ You can update the DC/OS CLI to the latest version or downgrade to an older vers
 
 You can upgrade an existing DC/OS CLI installation to the latest build.
 
-1.  From your DC/OS CLI installation directory, enter this command to update the DC/OS CLI:
+1.  From your DC/OS CLI installation directory, enter this command to update the DC/OS CLI with the version (`<version>`) specified:
     
     ```bash
-    $ source bin/activate
-    $ pip install -U dcoscli
+    $ curl https://downloads.dcos.io/binaries/cli/darwin/x86-64/<version>/dcos
     ```
 
 # <a name="downgrade"></a>Downgrade the CLI
