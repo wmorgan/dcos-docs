@@ -178,7 +178,7 @@ These steps assume that you've spun up the bootstrap instance and that you are l
   $ sudo mkdir -p /etc/systemd/system/docker.service.d && sudo tee /etc/systemd/system/docker.service.d/override.conf <<EOF
   [Service]
   ExecStart=
-  ExecStart=/usr/bin/docker daemon --storage-driver=overlay -H fd://
+  ExecStart=/usr/bin/docker daemon --storage-driver=overlay
   EOF
   ```
 
