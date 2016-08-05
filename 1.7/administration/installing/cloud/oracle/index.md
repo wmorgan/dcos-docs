@@ -8,7 +8,7 @@ You can install DC/OS on Oracle Cloud Compute.
 
 # Prerequisites
 
-- You must be an Oracle Compute Cloud Service user with the `service-instance-name.Compute_Operations` role. For more information, see the Oracle Compute Cloud Service Roles [documentation](https://docs.oracle.com/cloud/latest/computecs_common/OCSUG/GUID-F89D66BD-85F5-4325-8A1F-F8EEE53A7CF1.htm).
+- You must be an Oracle Compute Cloud Service user with the `service-instance-name.Compute_Operations` role. For more information, see the Oracle Compute Cloud ServicFSSe Roles [documentation](https://docs.oracle.com/cloud/latest/computecs_common/OCSUG/GUID-F89D66BD-85F5-4325-8A1F-F8EEE53A7CF1.htm).
 - You must be able to log in to the web console of Oracle Compute Cloud Service. For more information, see the Accessing Oracle Compute Cloud Service Using the Web Console [documentation](http://www.oracle.com/pls/topic/lookup?ctx=stcomputecs&id=STCSG-GUID-D5D584FE-BE32-443D-9CB8-067AF73A15A6).
 - The CentOS Linux 7 image (`tar.gz` file) that you are using must be available on the host that you are using to access the Oracle Compute Cloud Service web console.
 - To obtain your REST endpoint, refer to the [REST API for Oracle Compute Cloud Service (IaaS)](https://docs.oracle.com/cloud/latest/stcomputecs/STCSA/SendRequests.html).
@@ -212,8 +212,8 @@ These steps assume that you've spun up the bootstrap instance and that you are l
   resolvers:
   - 8.8.4.4
   - 8.8.8.8
-  SSH_port: 22
-  SSH_user: centos
+  ssh_port: 22
+  ssh_user: centos
   ```
 
   Note:
@@ -231,7 +231,7 @@ These steps assume that you've spun up the bootstrap instance and that you are l
   EOF
   ```
 
-3. Create a file for the private key using `touch genconf/dcos_private_key.ppk` and paste the content of the private key you generated in the very first step, Prepare the environment, into it.
+3. Create a file for the private key using `vi dcos_private_key.ppk` and paste the content of the private key you generated in the very first step, Prepare the environment, into it.
 
 4. Convert the private key to `openssh` format to use between the instances using:
 
@@ -242,7 +242,7 @@ These steps assume that you've spun up the bootstrap instance and that you are l
 5. Adapt the permissions and copy the generated key:
 
   ```bash
-  $ sudo chown centos key && cp key genconf/SSH_key && chmod 0600 genconf/SSH_key
+  $ sudo chown centos key && cp key genconf/ssh_key && chmod 0600 genconf/ssh_key
   ```
 
 6. Download the DC/OS installer:
