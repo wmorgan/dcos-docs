@@ -12,7 +12,13 @@ You can update the DC/OS CLI to the latest version or downgrade to an older vers
 
 You can upgrade an existing DC/OS CLI installation to the latest build.
 
-1.  From your DC/OS CLI installation directory, enter this command to update the DC/OS CLI with the version (`<version>`) specified:
+1.  Remove the current CLI binary:
+
+    ```bash
+    $ rm path/to/binary/dcos
+    ```
+
+1.  From the directory you want to install the new DC/OS CLI binary, enter this command to update the DC/OS CLI with the upgrade version (`<version>`) specified:
     
     ```bash
     $ curl https://downloads.dcos.io/binaries/cli/darwin/x86-64/<version>/dcos
@@ -22,19 +28,14 @@ You can upgrade an existing DC/OS CLI installation to the latest build.
 
 You can downgrade an existing DC/OS CLI installation to an older version.
 
-**Tip:** Downgrading is necessary if you are using DC/OS 1.6.0 or earlier.
+1.  Remove the current CLI binary:
 
-1.  Delete your DC/OS CLI installation directories:
-    
     ```bash
-    $ sudo rm -rf dcos && rm -rf ~/.dcos
+    $ rm path/to/binary/dcos
     ```
 
-2.  Install the legacy version of the DC/OS CLI, where <public-master-ip> is the public IP of your master node:
+1.  From the directory you want to install the new DC/OS CLI binary, enter this command to update the DC/OS CLI with the downgrade version (`<version>`) specified:
     
     ```bash
-    mkdir -p dcos && cd dcos && 
-      curl -O https://downloads.dcos.io/dcos-cli/install-legacy.sh && 
-      bash ./install-legacy.sh . <public-master-ip> && 
-      source ./bin/env-setup
+    $ curl https://downloads.dcos.io/binaries/cli/darwin/x86-64/<version>/dcos
     ```
