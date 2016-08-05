@@ -140,7 +140,7 @@ This component is the mesos-master process that orchestrates agent tasks.<!-- dc
 This component connects to existing Mesos volume mounts on agent nodes during installation. For more information on Mesos Persistent Volumes, see the [documentation](http://mesos.apache.org/documentation/latest/persistent-volume/). <!-- dcos-vol-discovery-pub-agent.service/ -->
 
 ### Navstar
-This component is the network overlay orchestrator. For more information, see the [documentation](https://github.com/dcos/navstar).
+This component is a daemon that provides virtual networking and DNS services. It is the network overlay orchestrator. For more information, see the [documentation](https://github.com/dcos/navstar).
 
 ### OAuth
 This component provides the DC/OS authorization service. <!-- dcos-oauth.service/ -->
