@@ -77,7 +77,7 @@ You can install DC/OS on Oracle Cloud Compute.
 
 These steps assume that you've spun up the bootstrap instance and that you are logged into it.
 
-1. Download and execute the [generator script][orchestration-generator.sh]:
+1. Download and execute the generator script (`orchestration-generator.sh`):
 
   ```bash
   $ curl -O https://dcos.io/docs/1.7/administration/installing/cloud/oracle/orchestration-generator.sh
@@ -292,7 +292,7 @@ These steps assume that you've spun up the bootstrap instance and that you are l
   10.106.7.170
   ```
 
-2. Download and execute the [`install_public_slave.sh`][install_public_slave.sh] script:
+2. Download and execute the public agent script (`install_public_slave.sh`) script:
 
   ```bash
   $ curl -O https://dcos.io/docs/1.7/administration/installing/cloud/oracle/install_public_slave.sh

@@ -133,7 +133,6 @@ security features as well as on introducing new ones in the coming releases.
 
 ## Next Steps
 
-- [Understand DC/OS security](/docs/1.7/overview/security/)
 - [Learn how to monitor a DC/OS cluster](/docs/1.7/administration/monitoring/)
 
  [1]: https://en.wikipedia.org/wiki/STARTTLS
