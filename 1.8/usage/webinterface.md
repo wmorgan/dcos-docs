@@ -15,7 +15,7 @@ There main tabs in the DC/OS UI are:
 - [Universe](#universe)
 - [System](#system)
 
-Additionally, there are quick-launch icons on the lower-left side of the web interface for the documentation, installing the CLI, and user sign out.
+Additionally, there is a User Menu on the lower-left side of the web interface that includes links for documentation, CLI installation, and user sign out.
 
 # <a name="dashboard"></a>Dashboard
 
