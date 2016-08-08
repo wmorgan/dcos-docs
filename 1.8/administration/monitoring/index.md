@@ -107,7 +107,7 @@ This component periodically updates the systemd-resolved for Mesos DNS.<!-- dcos
 This component powers the DC/OS Jobs feature. For more information, see the [documentation](/docs/1.8/usage/jobs/).
 
 ### Layer 4 Load Balancer
-This component is the DC/OS Layer 4 Load Balancer that enables multi-tier microservices architectures. For more information, see the [documentation](/docs/1.8/usage/service-discovery/load-balancing/).<!-- dcos-minuteman.service/ -->
+This component is the DC/OS Layer 4 Load Balancer that enables multi-tier microservices architectures. For more information, see the [documentation](/docs/1.8/usage/service-discovery/load-balancing-vips/).<!-- dcos-minuteman.service/ -->
 
 ### Logrotate Mesos Master
 This component automatically rotates compression, removal, and mailing of log files for master nodes.
@@ -147,9 +147,6 @@ This component provides the DC/OS authorization service. <!-- dcos-oauth.service
 
 ### Package Service
 This component manages the Universe package repositories. <!-- dcos-cosmos.service/ -->
-
-### REX-Ray
-This component provides external persistent volumes. For more information, see the [documentation](/docs/1.8/usage/service-guides/marathon/external-volumes/).
 
 ### Signal
 This component sends a periodic ping back to Mesosphere with high-level cluster information to help improve DC/OS, and provides advanced monitoring of cluster issues.<!-- dcos-signal.service/ -->
