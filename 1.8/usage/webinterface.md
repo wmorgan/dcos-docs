@@ -6,7 +6,16 @@ menu_order: 1
 
 The DC/OS web interface provides a rich graphical view of your DC/OS cluster. With the web interface you can view the current state of your entire cluster and DC/OS services. The web interface is installed as a part of your DC/OS installation.
 
-There are three major views in the DC/OS web interface: Dashboard, Services, and Nodes. Additionally, there are quick-launch icons on the lower-left navigation panel for starting the DC/OS CLI, chat sessions, and the DC/OS documentation.
+There main tabs in the DC/OS UI are:
+
+- [Dashboard](#dashboard)
+- [Services](#services)
+- [Network](#network)
+- [Nodes](#nodes)
+- [Universe](#universe)
+- [System](#system)
+
+Additionally, there is a User Menu on the lower-left side of the web interface that includes links for documentation, CLI installation, and user sign out.
 
 # <a name="dashboard"></a>Dashboard
 
