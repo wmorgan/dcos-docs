@@ -185,13 +185,11 @@ process_timeout: 120
 resolvers:
 - <dns-resolver-1>
 - <dns-resolver-2>
-roles: slave_public
 s3_bucket: mybucket
 s3_prefix: s3-example
 ssh_key_path: /genconf/ssh-key
 ssh_port: '<port-number>'
 ssh_user: <username>
-weights: slave_public=1
 ```
 
 #### <a name="zk"></a>DC/OS cluster with 3 masters, an Exhibitor/ZooKeeper backed by ZooKeeper, http load balancer master discovery, public agent node, and Google DNS
@@ -219,11 +217,9 @@ process_timeout: 120
 resolvers:
 - <dns-resolver-1>
 - <dns-resolver-2>
-roles: slave_public
 ssh_key_path: /genconf/ssh-key
 ssh_port: '<port-number>'
 ssh_user: <username>
-weights: slave_public=1
 ```
 
  [1]: https://en.wikipedia.org/wiki/YAML
