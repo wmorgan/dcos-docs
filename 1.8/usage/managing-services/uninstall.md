@@ -43,7 +43,7 @@ From the DC/OS UI you can uninstall services from the **Services** or **Universe
 
 ## <a name="framework-cleaner"></a>Cleaning up ZooKeeper
 
-### About cleaning up ZooKeeper
+### About Cleaning up ZooKeeper
 
 If your service has reserved resources, you can use the framework cleaner docker image, `mesosphere/janitor`, to simplify the process of removing your service instance from ZooKeeper and destroying all the data associated with it.
 
