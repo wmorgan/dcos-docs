@@ -1,6 +1,6 @@
 ---
 post_title: Overlay Networks
-menu_order: 8.5
+menu_order: 20 
 ---
 
 DC/OS enables virtual networking through the use of overlay networks. DC/OS overlay networks enable you to provide each container in the system with a unique IP address (“IP-per-container”) with isolation guarantees amongst subnets. DC/OS overlay networks offer the following advantages:
