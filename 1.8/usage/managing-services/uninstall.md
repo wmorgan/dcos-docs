@@ -153,3 +153,33 @@ If you run the script via Marathon, you will also see the following output:
 
     Deleting self from Marathon to avoid run loop: /janitor
     Successfully deleted self from marathon (code=200): /janitor
+
+### Troubleshooting
+
+If you run the `mesosphere/janitor` image and get the error below, you must provide an auth token:
+
+    $  docker run mesosphere/janitor /janitor.py [... role/principal/zk args ...]
+    [... other output ...]
+    ('Invalid HTTP response:', HTTPError(u'401 Client Error: Unauthorized for url: http://leader.mesos:5050/master/slaves',))
+    Deleting volumes failed, skipping other steps.
+    
+    /janitor.py
+      -v/--verbose
+      -r/--role=<framework-role>
+      -p/--principal=<framework-principal>
+      -z/--zk_path=<zk-path>
+      [-m/--master_url=http://leader.mesos:5050/master/]
+      [-n/--marathon_url=http://marathon.mesos:8080/v2/apps/]
+      [-e/--exhibitor_url=http://leader.mesos:8181/]
+      [--username=dcos_user]
+      [--password=dcos_password]
+      [--auth_token=dcos_auth_tok]
+
+To get the auth token you need, run `dcos config sho core.dcos_acs_token` from the DC/OS CLI on your local machine:
+
+    $ dcos config show core.dcos_acs_token
+    eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE0NzEyNzQyNzUsInVpZCI6ImJvb3RzdHJhcHVzZXIifQ.NrIG5ZiRcAW6Ra5wfmKRHFwiNNQBSJKMocaads9KXJIJRxYfTsPT_gHJsUGW5ZEiVxeLpraLCLB385bolb8aluDDt7RpNlxA6qQAZ84xZI3JU69SMAZxJSXY7TO_MhBEz0DcszD8Guem6F8eTA0uqQPI5FcFxER8okCjlScLF1-r55hP7PF5yLsIX5F4Ti_Jz12Yz3xRKMuDiBX2L4e_WJhzc_t5UXkTx25QPbC8M4pOlwRBeplqTpjQL6b7BLM4n7m35JUpUH56aWpk94kCK3XPO66YYjrWm3tlmQegTTs99XkKIYUfuSGbWi3Fytse8zXrctuiloresfJ37y3Y9g
+
+Then, run the `mesosphere/janitor` image with the `--auth_token` flag:
+
+    $ docker run mesosphere/janitor /janitor.py [... role/principal/zk args ...] --auth_token=<token>
