@@ -95,12 +95,12 @@ The Zen templates orchestrate the individual component templates.
 The private agent template creates agents which are then attached to a DC/OS cluster as a part of an AutoScalingGroup. To configure the template, specify the VPC, subnet, and master DNS address for the DC/OS cluster to join. 
 
 **CoreOS**
- 
- - [advanced-priv-agent.json](https://s3-us-west-2.amazonaws.com/downloads.dcos.io/dcos/EarlyAccess/cloudformation/coreos-advanced-priv-agent.json)
- 
- **CentOS:**
- 
- - [advanced-priv-agent.json](https://s3-us-west-2.amazonaws.com/downloads.dcos.io/dcos/EarlyAccess/cloudformation/el7-advanced-priv-agent.json)
+
+- [advanced-priv-agent.json](https://s3-us-west-2.amazonaws.com/downloads.dcos.io/dcos/EarlyAccess/cloudformation/coreos-advanced-priv-agent.json)
+
+**CentOS:**
+
+- [advanced-priv-agent.json](https://s3-us-west-2.amazonaws.com/downloads.dcos.io/dcos/EarlyAccess/cloudformation/el7-advanced-priv-agent.json)
 
 
 <table class="table">
