@@ -154,7 +154,7 @@ Now that your advanced template DC/OS installation is up and running you can
 
 ### Add more agent nodes
 
-You can add more agent nodes by creating a new stack by using the [private agent](https://downloads.dcos.io/dcos/EarlyAccess/cloudformation/advanced-priv-agent.json) or [public agent](https://downloads.dcos.io/dcos/EarlyAccess/cloudformation/advanced-pub-agent.json) templates. These templates create agents which are then attached to the `PrivateAgentStack` or `PublicAgentStack` as a part of an AutoScalingGroup.
+You can add more agent nodes by creating a new stack by using the [private agent](/docs/1.8/administration/installing/cloud/aws/advanced/template-reference/#private-agent) or [public agent](/docs/1.8/administration/installing/cloud/aws/advanced/template-reference/#public-agent) templates. These templates create agents which are then attached to the `PrivateAgentStack` or `PublicAgentStack` as a part of an AutoScalingGroup.
 
 Use the output values from the `zen.sh` script and your Master and Infra stacks. These new agent nodes will automatically be added to your DC/OS cluster.
 
