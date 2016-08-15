@@ -84,10 +84,13 @@
 
 We've implemented the [dcos-docs](https://github.com/dcos/dcos-docs) repo as a [submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) of the [dcos-website](https://github.com/dcos/dcos-website) repo. Before submitting your pull request against the [dcos-docs](https://github.com/dcos/dcos-docs) repo, fork the parent [dcos-website](https://github.com/dcos/dcos-website) repo and build the site locally. This will allow you to confirm that your content renders correctly and that all of your links work. 
 
-1. Make sure you have the following: 
-    - [Ruby](https://www.ruby-lang.org/en/documentation/installation/)
-    - [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-    - [Node](https://docs.npmjs.com/getting-started/installing-node)
+#### Prerequisites:
+Make sure you have the following prerequisites: 
+
+- [Ruby](https://www.ruby-lang.org/en/documentation/installation/) 
+- [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+- [Node](https://docs.npmjs.com/getting-started/installing-node)
+- [Gulp](http://gulpjs.com/)
 
 1. Clone the dcos-website repo.
 
