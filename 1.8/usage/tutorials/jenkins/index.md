@@ -69,14 +69,14 @@ as NFS, CIFS, and so on.
 
 If you only want to run Jenkins in a development environment, it's trivial
 to pin it to a single agent in the DC/OS cluster. Create the file
-`options.json` with the configuration below, modifying
-`storage.pinned-hostname` to correspond with an agent IP in your DC/OS cluster:
+`options.json` with the configuration below, modifying `pinned-hostname`
+to correspond to an agent IP in your DC/OS cluster:
 
 ```bash
 $ cat options.json
 {
-    "jenkins": {
-        "storage.pinned-hostname": "10.100.100.88"
+    "storage": {
+        "pinned-hostname": "10.100.100.88"
     }
 }
 ```
@@ -109,11 +109,13 @@ resembles the following example:
 ```bash
 $ cat options.json
 {
-    "jenkins": {
-        "framework-name": "jenkins-prod",
-        "host-volume": "/mnt/jenkins",
+    "service": {
+        "name": "jenkins-prod",
         "cpus": 2.0,
         "mem": 4096
+    },
+    "storage": {
+        "host-volume": "/mnt/jenkins"
     }
 }
 ```
@@ -217,7 +219,7 @@ $ parallel-ssh -O StrictHostKeyChecking=no -l azureuser -h pssh_agents "mount -t
 ### Creating an NFS file share with Amazon EFS
 
 To start, open the [Amazon EFS console][amazon-efs-console], click
-`Create file system` and then `Create file system`.  Ensure you are in the
+`Create file system` and then `Create file system`. Ensure you are in the
 same availability zone as as your DC/OS cluster.
 
 Select the VPC of your DC/OS cluster and click `Next Step`:
@@ -235,7 +237,7 @@ appropriate availability zone is selected, then click `Create File System`:
 ![Amazon EFS: Review and Create](img/amazon-efs-review-and-create.png)
 
 Once your EFS volume has been created, Amazon provides a link (click `here`)
-with instructions for mounting on Amazon, Red Hat, and SuSE Linux:
+on instructions for mounting on Amazon, Red Hat, and SuSE Linux:
 
 ![Amazon EFS: Created](img/amazon-efs-created.png)
 
