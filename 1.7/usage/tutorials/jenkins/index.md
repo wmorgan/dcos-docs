@@ -70,7 +70,7 @@ as NFS, CIFS, and so on.
 If you only want to run Jenkins in a development environment, it's trivial
 to pin it to a single agent in the DC/OS cluster. Create the file
 `options.json` with the configuration below, modifying
-`storage.pinned-hostname` to correspond with an agent IP in your DC/OS cluster:
+`storage.pinned-hostname` to correspond to an agent IP in your DC/OS cluster:
 
 ```bash
 $ cat options.json
@@ -125,7 +125,7 @@ $ dcos package install jenkins --options=options.json
 ```
 
 If you don't have a file share set up and are looking for a solution, continue
-with the next section for instructions on how to set up a shares using
+to the next section for instructions on how to set up a shares using
 CIFS on Microsoft Azure or NFS on Amazon EFS.
 
 ### Creating a CIFS file share on Microsoft Azure
@@ -214,10 +214,10 @@ $ parallel-ssh -O StrictHostKeyChecking=no -l azureuser -h pssh_agents "if [ ! -
 $ parallel-ssh -O StrictHostKeyChecking=no -l azureuser -h pssh_agents "mount -t cifs //mh9storage.file.core.windows.net/jenkins /mnt/jenkins -o vers=3.0,username=REDACTED,password=REDACTED,dir_mode=0777,file_mode=0777"
 ```
 
-### Creating a NFS file share with Amazon EFS
+### Creating an NFS file share with Amazon EFS
 
-To start, open the [Amazon EFS console][amazon-efs-console] and click
-`Create file system` and click `Create file system`.  Ensure you are in the
+To start, open the [Amazon EFS console][amazon-efs-console], click
+`Create file system` and then `Create file system`. Ensure you are in the
 same availability zone as as your DC/OS cluster.
 
 Select the VPC of your DC/OS cluster and click `Next Step`:
@@ -229,7 +229,7 @@ desired.  Click `Next Step`:
 
 ![Amazon EFS: Optional Settings](img/amazon-efs-optional-settings.png)
 
-A "Review and create" screen will be presented.  Double-check that the
+You will see a "Review and create" screen. Double check that the
 appropriate availability zone is selected, then click `Create File System`:
 
 ![Amazon EFS: Review and Create](img/amazon-efs-review-and-create.png)
@@ -239,7 +239,7 @@ on instructions for mounting on Amazon, Red Hat, and SuSE Linux:
 
 ![Amazon EFS: Created](img/amazon-efs-created.png)
 
-See below for instructions on mounting an NFS volume under CoreOS.
+See below for instructions on mounting an NFS volume on CoreOS.
 
 ### Mounting an NFS file share on CoreOS
 
