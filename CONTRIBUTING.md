@@ -85,12 +85,39 @@
 We've implemented the [dcos-docs](https://github.com/dcos/dcos-docs) repo as a [submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) of the [dcos-website](https://github.com/dcos/dcos-website) repo. Before submitting your pull request against the [dcos-docs](https://github.com/dcos/dcos-docs) repo, fork the parent [dcos-website](https://github.com/dcos/dcos-website) repo and build the site locally. This will allow you to confirm that your content renders correctly and that all of your links work. 
 
 #### Prerequisites:
-Make sure you have the following prerequisites: 
 
-- [Ruby](https://www.ruby-lang.org/en/documentation/installation/) 
-- [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-- [Node](https://docs.npmjs.com/getting-started/installing-node)
-- [Gulp](http://gulpjs.com/)
+1.  Install the prerequisites:
+
+    1.  [Ruby](https://www.ruby-lang.org/en/documentation/installation/) 
+        
+        ```bash
+        $ sudo yum install ruby
+        ```
+        
+    1.  [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+    
+        ```bash
+        $ sudo yum install git
+        ```
+        
+    1.  Install EPEL repo, [Node](https://docs.npmjs.com/getting-started/installing-node), and NPM.
+    
+        ```bash
+        $ sudo yum install -y epel-release && sudo yum install -y nodejs && sudo yum install -y npm@latest -g && npm install
+        ```
+        
+    1.  nvm 6.3.1
+        
+        ```bash
+        $ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.4/install.sh | bash
+        $ nvm install 6.3.1 && nvm alias default 6.3.1
+        ```
+        
+    1.  [Gulp](http://gulpjs.com/)
+    
+        ```bash
+        $ sudo npm install --global gulp-cli
+        ```
 
 1. Clone the dcos-website repo.
 
@@ -104,32 +131,18 @@ Make sure you have the following prerequisites:
     $ git checkout develop
     ```
 
-1. Initialize the dcos-docs submodule with the content from the upstream master.
+1. Initialize the `dcos-docs` submodule with the content from the upstream master.
 
     ```bash
     $ git submodule update --init --recursive
     ```
 
-1. Replace the content from the upstream master with the content from your local dcos-docs repo using one of the following methods.
-
-  - Delete the `dcos-website/dcos-dcos` directory and replace it with a symlink to your local `dcos-docs` repo. For example, if your directory structure is `/projects/dcos-website` and `/projects/dcos-docs`, you can issue these commands from the `dcos-website` directory:
+    Optional: replace the content from the upstream master with the content from your local `dcos-docs` repo. Delete the `dcos-website/dcos-dcos` directory and replace it with a symlink to your local `dcos-docs` repo. For example, if your directory structure is `/projects/dcos-website` and `/projects/dcos-docs`, you can issue these commands from the `dcos-website` directory:
 
      ```bash
      $ rm -r dcos-docs
      $ ln -s <local-path-to-dcos-docs> dcos-docs
-     ```
-  - Copy the contents of your local dcos-docs repo into the `/dcos-website/dcos-docs` folder.
-
-     ```bash
-     $ cp -rf ~/dcos-docs ~/dcos-website/
      ``` 
-
-1. Make sure npm is up-to-date and install dependencies. 
-    
-    ```bash
-    $ sudo npm install npm@latest -g
-    $ npm install
-    ```
 
 1. Launch the local web server to view your changes.
 
