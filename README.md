@@ -7,10 +7,11 @@ These documents are used as source to generate [dev.dcos.io/docs](https://dev.dc
 **Issue tracking is moving to the [DCOS JIRA](https://dcosjira.atlassian.net/) ([docs component](https://dcosjira.atlassian.net/issues/?jql=project%20%3D%20DCOS%20AND%20component%20%3D%20docs)).
 Issues on Github will be disabled soon.**
 
-## Versions
+## Developing
 
-- [1.7](1.7) (latest)
-
+1. Install [docker](https://docs.docker.com/)
+1. Run `make`
+1. Visit [localhost](http://localhost:3000)
 
 ## Contributing
 
