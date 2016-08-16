@@ -56,14 +56,14 @@ You can create and manage jobs from the DC/OS CLI using `dcos job` commands. To 
 
     **Note:** You can only assign one schedule to a job.
 
-  1. Add the job:
+1. Add the job:
     ```
     dcos job add myjob.json
     ```
 
     **Note:** You can choose any name for your job file.
 
-  1. Go to the "Jobs" tab of the DC/OS web interface to verify that you have added your job, or verify from the CLI:
+1. Go to the "Jobs" tab of the DC/OS web interface to verify that you have added your job, or verify from the CLI:
      ```
      dcos job list
      ```
