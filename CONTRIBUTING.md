@@ -90,7 +90,7 @@ We've implemented the [dcos-docs](https://github.com/dcos/dcos-docs) repo as a [
 
     1.  [Ruby](https://www.ruby-lang.org/en/documentation/installation/) 
         
-        **CentOS**
+        *CentOS*
         
         ```bash
         $ sudo yum install -y ruby
@@ -98,7 +98,7 @@ We've implemented the [dcos-docs](https://github.com/dcos/dcos-docs) repo as a [
         
     1.  [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
     
-        **CentOS**
+        *CentOS*
                 
         ```bash
         $ sudo yum install git
@@ -106,11 +106,15 @@ We've implemented the [dcos-docs](https://github.com/dcos/dcos-docs) repo as a [
         
     1.  Install EPEL repo, [Node](https://docs.npmjs.com/getting-started/installing-node), and NPM.
     
+        *CentOS*
+        
         ```bash
         $ sudo yum install -y epel-release && sudo yum install -y nodejs && sudo yum install -y npm && npm install && npm update
         ```
         
     1.  nvm 6.3.1
+        
+        *CentOS*
         
         ```bash
         $ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.4/install.sh | bash
@@ -119,6 +123,8 @@ We've implemented the [dcos-docs](https://github.com/dcos/dcos-docs) repo as a [
         
     1.  [Gulp](http://gulpjs.com/)
     
+        *CentOS*
+        
         ```bash
         $ sudo npm install --global gulp-cli
         ```
