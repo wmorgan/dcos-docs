@@ -90,12 +90,16 @@ We've implemented the [dcos-docs](https://github.com/dcos/dcos-docs) repo as a [
 
     1.  [Ruby](https://www.ruby-lang.org/en/documentation/installation/) 
         
+        **CentOS**
+        
         ```bash
-        $ sudo yum install ruby
+        $ sudo yum install -y ruby
         ```
         
     1.  [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
     
+        **CentOS**
+                
         ```bash
         $ sudo yum install git
         ```
@@ -103,7 +107,7 @@ We've implemented the [dcos-docs](https://github.com/dcos/dcos-docs) repo as a [
     1.  Install EPEL repo, [Node](https://docs.npmjs.com/getting-started/installing-node), and NPM.
     
         ```bash
-        $ sudo yum install -y epel-release && sudo yum install -y nodejs && sudo yum install -y npm@latest -g && npm install
+        $ sudo yum install -y epel-release && sudo yum install -y nodejs && sudo yum install -y npm && npm install && npm update
         ```
         
     1.  nvm 6.3.1
@@ -122,10 +126,10 @@ We've implemented the [dcos-docs](https://github.com/dcos/dcos-docs) repo as a [
 1. Clone the dcos-website repo.
 
     ```bash
-    $ git clone https://github.com/dcos/dcos-website
+    $ git clone https://github.com/dcos/dcos-website 
     ```
 
-1. Check out the develop branch.
+1. Check out the develop branch of `dcos-website`.
 
     ```bash
     $ git checkout develop
