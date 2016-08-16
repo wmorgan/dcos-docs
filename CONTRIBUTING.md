@@ -90,44 +90,77 @@ We've implemented the [dcos-docs](https://github.com/dcos/dcos-docs) repo as a [
 
     1.  [Ruby](https://www.ruby-lang.org/en/documentation/installation/) 
         
-        *CentOS*
+        -  *CentOS*
         
-        ```bash
-        $ sudo yum install -y ruby
-        ```
+           ```bash
+           $ sudo yum install -y ruby
+           ```
+           
+        -  *MacOS using [Homebrew](http://brew.sh/)*
+        
+            ```bash
+            $ brew install ruby
+            ```
         
     1.  [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
     
-        *CentOS*
+        -  *CentOS*
                 
-        ```bash
-        $ sudo yum install git
-        ```
+            ```bash
+            $ sudo yum install git
+            ```
+            
+        -  *MacOS using [Homebrew](http://brew.sh/)*
+        
+            ```bash
+            $ brew install git
+            ```
         
     1.  Install EPEL repo, [Node](https://docs.npmjs.com/getting-started/installing-node), and NPM.
     
-        *CentOS*
+        -  *CentOS*
         
-        ```bash
-        $ sudo yum install -y epel-release && sudo yum install -y nodejs && sudo yum install -y npm && npm install && npm update
-        ```
+            ```bash
+            $ sudo yum install -y epel-release && sudo yum install -y nodejs && sudo yum install -y npm && npm update
+            ```
+            
+        -  *MacOS using [Homebrew](http://brew.sh/)*
+        
+            ```bash
+            $ brew install -y nodejs 
+            $ brew install npm
+            $ npm update
+            ```
         
     1.  nvm 6.3.1
         
-        *CentOS*
+        -  *CentOS*
         
-        ```bash
-        $ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.4/install.sh | bash
-        $ nvm install 6.3.1 && nvm alias default 6.3.1
-        ```
+            ```bash
+            $ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.4/install.sh | bash
+            $ nvm install 6.3.1 && nvm alias default 6.3.1
+            ```
+            
+        -  *MacOS*
+        
+            ```bash
+            $ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.4/install.sh | bash
+            $ nvm install 6.3.1 && nvm alias default 6.3.1
+            ```
         
     1.  [Gulp](http://gulpjs.com/)
     
-        *CentOS*
+        -  *CentOS*
         
-        ```bash
-        $ sudo npm install --global gulp-cli
-        ```
+            ```bash
+            $ sudo npm install --global gulp-cli
+            ```
+        
+        -  *MacOS*
+        
+            ```bash
+            $ npm install --global gulp-cli
+            ```
 
 1. Clone the dcos-website repo.
 
