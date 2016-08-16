@@ -33,12 +33,6 @@ Packages are published to the Mesosphere Universe repository on GitHub. At their
     -  `marathon.json.mustache` - a [mustache](http://mustache.github.io/) template that when rendered will create a [Marathon](http://github.com/mesosphere/marathon) app definition capable of running your service.
     -  `resource.json` - contains all of the externally hosted resources (e.g. Docker images, HTTP objects and images) that are required to install the application.
 
-1.  Install the Universe repository pre-commit hooks.
-
-    ```bash
-    $ bash scripts/install-git-hooks.sh
-    ```
-
 1.  Create a new directory for the your package in `repo/packages/`. For example, to create a package named `helloworld` the structure is `repo/packages/H/helloworld/0`. The `0` directory corresponds to the release number of the package.  If you look at other packages in Universe, many have multiple releases (directories `0`, `1`, `2`, etc).
 
 Now, you're ready to start creating your package!  
@@ -47,18 +41,18 @@ Now, you're ready to start creating your package!
 
 Every package in Universe must have a package.json file which specifies the high level metadata about the package. This file specifies the highest-level metadata about the package (comparable to a `package.json` in Node.js or `setup.py` in Python).
 
-Currently, a package can specify one of two values for `.packagingVersion`, either 2.0 or 3.0. The version is declared will dictate which other files are required for the complete package as well as the schemas all the files must adhere to. 
+Currently, a package can specify one of two values for `.packagingVersion`, either 2.0 or 3.0. The version declared will dictate which other files are required for the complete package as well as the schemas all the files must adhere to. 
 
-Below is a snippet that represents a version 2.0 package. See [`repo/meta/schema/package-schema.json`](https://github.com/mesosphere/universe/blob/version-3.x/repo/meta/schema/package-schema.json) for the full JSON schema outlining what properties are available for each corresponding version of a package.
+Below is a snippet that represents a version 2.0 package. See [`package.json`](https://github.com/mesosphere/universe#packagejson) for details on what can be defined in package.json.
 
 ```javascript
 {
-  "packagingVersion": "2.0", // use either 2.0 or 3.0
-  "name": "foo", // your package name
-  "version": "1.2.3", // the version of the container that you are launching
-  "tags": ["mesosphere", "framework"],
-  "maintainer": "help@bar.io", // who to contact for help
-  "description": "Does baz.", // description of package
+  "packagingVersion": "2.0",                           // use either 2.0 or 3.0
+  "name": "foo",                                       // your package name
+  "version": "1.2.3",                                  // the version of the package
+  "tags": ["mesosphere", "framework"],                 
+  "maintainer": "help@bar.io",                         // who to contact for help
+  "description": "Does baz.",                          // description of package
   "scm": "https://github.com/bar/foo.git", 
   "website": "http://bar.io/foo", 
   "framework": true,
@@ -68,9 +62,9 @@ Below is a snippet that represents a version 2.0 package. See [`repo/meta/schema
 
 ## Step Two: Create resource.json
 
-This file declares all the externally hosted assets the package will need &mdash; for example: Docker containers, images, or native binary CLI.  See the resource schema version [2.0](https://github.com/mesosphere/universe/blob/version-3.x/repo/meta/schema/v2-resource-schema.json) or [3.0](https://github.com/mesosphere/universe/blob/version-3.x/repo/meta/schema/v3-resource-schema.json) for the available assets for each.
+This file declares all the externally hosted assets the package will need &mdash; for example: Docker containers, images, or native binary CLI.  See the [`resource.json`](https://github.com/mesosphere/universe#resourcejson) for details on what can be defined in resource.json.
 
-```javascript
+```json
 {
   "images": {
     "icon-small": "http://some.org/foo/small.png",
@@ -118,12 +112,12 @@ alternate image named `icon-cassandra-small@2x.png`.
 
 ## Step Three: Create config.json
 
-This file declares the packages configuration properties, such as the amount of CPUs, number of instances, and allotted memory.  In step four, these properties will be injected into the` marathon.json.mustache file`.
+This file declares the packages configuration properties, such as the amount of CPUs, number of instances, and allotted memory.  In step four, the defaults specified in `config.json` will be part of the context when `marathon.json.mustache` is rendered.
 
-Each property can provide a default value, specify whether it's required, and provide validation (minimum and maximum values).  Users can then override specific values at installation time by passing an options file to the DC/OS CLI or by setting config values through the DC/OS [UI](https://docs.mesosphere.com/current/usage/webinterface/#universe).
+Each property should provide a default value, specify whether it's required, and provide validation (minimum and maximum values).  Users can then override specific values at installation time by passing an options file to the DC/OS CLI or by setting config values through the DC/OS [UI](https://docs.mesosphere.com/current/usage/webinterface/#universe).
 
 
-```javascript
+```json
 {
   "type": "object",
   "properties": {
@@ -187,35 +181,16 @@ following order:
 
 For information about health checks and volumes, reference the [Marathon documentation](https://mesosphere.github.io/marathon/docs/rest-api.html).
 
-## Step Five: Install Your Package
+## Step Five: Test Your Package
 
-At this point, your package has all the required files for running on DC/OS.  Push all of these changes up to your fork of Universe on GitHub.
+Follow the instructions to build and run a [Universe Server](https://github.com/mesosphere/universe#universe-server).
 
-The next step is to verify that your new package works as expected.  To test this you are going to install it on a DC/OS cluster.
+After your built Universe Server is up and running, install your package using either the DC/OS CLI or DC/OS UI.
 
-You must have DC/OS and DC/OS CLI [installed](/docs/1.7/administration/installing/).
+## Step Six: Publish Your Package
 
-#### Verify and build package
+Follow the instructions "[Submit your Package](https://github.com/mesosphere/universe#submit-your-package)" to publish your package. 
 
-Run the following from the root of the cloned Universe repository:
-
-    $ scripts/build.sh
-
-#### Install package on your cluster
-
-1.  Add your fork as a remote repository for your cluster:
-
-    ```bash
-    $ dcos package repo add Development https://github.com/<your-username>/universe/archive/<your-branch-name>.zip
-    ```
-
-    This prepares your cluster to install your package, but doesn't actually install it.
-    
-1.  Install your package with this command.
-    
-        $ dcos package install <your-package>
-    
-    It may take a few minutes for your package to deploy on your cluster.  When it's done deploying, you will see your package listed in the DC/OS UI Services tab.
     
 ## Next steps
 
