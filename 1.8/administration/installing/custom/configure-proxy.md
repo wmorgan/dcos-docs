@@ -26,14 +26,6 @@ By default the DC/OS [Universe](https://github.com/mesosphere/universe) reposito
     sudo systemctl restart dcos-cosmos
     ```
 
-1.  Edit the unit file `/opt/mesosphere/active/dcos-oauth/dcos.target.wants_master/dcos-oauth.service` to add a line `EnvironmentFile=-/var/lib/dcos/environment.proxy` just after `EnvironmentFile=/opt/mesosphere/environment`.
-
-1.  Do a daemon-reload so that changes in the util file are registered. 
-
-    ```
-    sudo systemctl daemon-reload
-    ```
-
 1.  Restart the Oauth service for the changes to take effect.
 
     ```
