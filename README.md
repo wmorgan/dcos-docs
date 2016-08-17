@@ -100,9 +100,8 @@ This method builds and launches a Docker container. For more information, see th
 
 **Prerequisites:**
 
-- [Docker](https://docs.docker.com/engine/installation/)
+- Latest version of [Docker](https://docs.docker.com/engine/installation/)
 
-1. Install [Docker](https://docs.docker.com/)
 1. Run `make`.
 
     **Tip:** This can take up to 15 minutes to complete.
