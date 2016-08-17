@@ -98,7 +98,7 @@ Issues on Github will be disabled soon.**
 ### Automated build
 This method builds and launches a Docker container. For more information, see this [PR](https://github.com/dcos/dcos-docs/pull/532).
 
-**Prerequisite:** Latest version of [Docker](https://docs.docker.com/engine/installation/)
+**Prerequisite:** Latest version of [Docker](https://docs.docker.com/engine/installation/).
 
 1. Run `make`.
 
