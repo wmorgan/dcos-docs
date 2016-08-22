@@ -175,7 +175,7 @@ If you run the `mesosphere/janitor` image and get the error below, you must prov
       [--password=dcos_password]
       [--auth_token=dcos_auth_tok]
 
-To get the auth token you need, run `dcos config sho core.dcos_acs_token` from the DC/OS CLI on your local machine:
+To get the auth token, run `dcos config show core.dcos_acs_token` from the DC/OS CLI on your local machine:
 
     $ dcos config show core.dcos_acs_token
     eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE0NzEyNzQyNzUsInVpZCI6ImJvb3RzdHJhcHVzZXIifQ.NrIG5ZiRcAW6Ra5wfmKRHFwiNNQBSJKMocaads9KXJIJRxYfTsPT_gHJsUGW5ZEiVxeLpraLCLB385bolb8aluDDt7RpNlxA6qQAZ84xZI3JU69SMAZxJSXY7TO_MhBEz0DcszD8Guem6F8eTA0uqQPI5FcFxER8okCjlScLF1-r55hP7PF5yLsIX5F4Ti_Jz12Yz3xRKMuDiBX2L4e_WJhzc_t5UXkTx25QPbC8M4pOlwRBeplqTpjQL6b7BLM4n7m35JUpUH56aWpk94kCK3XPO66YYjrWm3tlmQegTTs99XkKIYUfuSGbWi3Fytse8zXrctuiloresfJ37y3Y9g
