@@ -113,13 +113,19 @@ Here are the agent node hardware requirements.
 
 ### Docker
 
-**Requirements**
+Docker must be installed on all bootstrap and cluster nodes. The supported versions of Docker are:
 
-* Docker 1.7 or greater must be installed on all bootstrap and cluster nodes.
+- 1.7.x 
+- 1.8.x
+- 1.9.x
+- 1.10.x
+- 1.11.x
+
+**Important:** Version 1.12.x is not supported.
 
 **Recommendations**
 
-* Docker 1.9 or greater is recommended <a href="https://github.com/docker/docker/issues/9718" target="_blank">for stability reasons</a>.
+* Docker 1.9.x - 1.11.x is recommended <a href="https://github.com/docker/docker/issues/9718" target="_blank">for stability reasons</a>.
 
 * Do not use Docker `devicemapper` storage driver in `loop-lvm` mode. For more information, see [Docker and the Device Mapper storage driver](https://docs.docker.com/engine/userguide/storagedriver/device-mapper-driver/).
 
