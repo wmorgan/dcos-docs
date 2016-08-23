@@ -13,6 +13,7 @@ In DC/OS, agent nodes are designated as [public](/docs/1.8/overview/concepts/#pu
 *   DC/OS is installed using the [custom](/docs/1.8/administration/installing/custom/) installation method.
 *   The archived DC/OS installer file (`dcos-install.tar`) from your [installation](/docs/1.8/administration/installing/custom/gui/#backup).
 *   Available agent nodes that satisfy the [system requirements](/docs/1.8/administration/installing/custom/system-requirements/).
+*   The CLI JSON processor [jq](https://github.com/stedolan/jq/wiki/Installation)
 
 ### Install DC/OS agent nodes
 Copy the archived DC/OS installer file (`dcos-install.tar`) to the agent node. This archive is created during the GUI or CLI [installation](/docs/1.8/administration/installing/custom/gui/#backup) method.
@@ -52,21 +53,21 @@ Copy the archived DC/OS installer file (`dcos-install.tar`) to the agent node. T
     **Tip:**  You can verify that your new agent node is public by running this command from a workstation with the DC/OS CLI. You should see a result of `1`, which indicates that you have at least one public node.
     
     ```bash
-    $ curl -skSL -H "Authorization: token=$(dcos config show core.dcos_acs_token)" $(dcos config show core.dcos_url)/mesos/master/slaves | grep slave_public | wc -l
-               1
+    $ dcos node --json | jq --raw-output '.[] | select(.reserved_resources.slave_public != null) | .id' | wc -l
+             1
     ```
     
     Public agent nodes:
     
     ```bash
-    $ sudo bash /opt/dcos_install_tmp/dcos_install.sh slave_public
+    $ dcos node --json | jq --raw-output '.[] | select(.reserved_resources.slave_public != null) | .id' | wc -l
     ```
 
     **Tip:**  You can verify that your new agent node is public by running this command from a workstation with the DC/OS CLI. You should see a result of `1`, which indicates that you have at least one public node.
 
     ```bash
-    $ curl -skSL -H "Authorization: token=$(dcos config show core.dcos_acs_token)" $(dcos config show core.dcos_url)/mesos/master/slaves | grep slave_public | wc -l
-               1
+    $ dcos node --json | jq --raw-output '.[] | select(.reserved_resources.slave_public == null) | .id' | wc -l
+             1
     ```
 
  [1]: /docs/1.8/administration/installing/custom/gui/
