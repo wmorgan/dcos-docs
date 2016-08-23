@@ -8,7 +8,7 @@ Welcome to the DC/OS documentation. DC/OS is short for Datacenter Operating Syst
 
 DC/OS comes with a powerful CLI and a beautiful GUI, a package manager and many more things to run containers and big data workloads in production. Learn more about [what DC/OS offers](/docs/1.8/overview/what-is-dcos/).
 
-Now that you know what DC/OS is, [check out the installation instructions](/docs/1.8/administration/installing/)?
+Now that you know what DC/OS is, [check out the installation instructions](/docs/1.8/administration/installing/)!
 
 ---
 
