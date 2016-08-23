@@ -98,9 +98,9 @@ Issues on Github will be disabled soon.**
 ### Automated build
 This method builds and launches a Docker container. For more information, see this [PR](https://github.com/dcos/dcos-docs/pull/532).
 
-**Prerequisite:** Latest version of [Docker](https://docs.docker.com/engine/installation/).
+**Prerequisite:** Latest version of [Docker](https://docs.docker.com/engine/installation/) installed and running.
 
-1. Run `make`.
+1. Run `sudo make`.
 
     **Tip:** This can take up to 15 minutes to complete.
 1. Visit [localhost](http://localhost:3000)
