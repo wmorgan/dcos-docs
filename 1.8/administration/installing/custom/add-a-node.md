@@ -1,7 +1,7 @@
 ---
 post_title: Adding Agent Nodes
 nav_title: Add Node
-menu_order: 8
+menu_order: 9
 ---
 
 You can add agent nodes to an existing DC/OS cluster. 
