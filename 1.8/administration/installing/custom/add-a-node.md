@@ -1,0 +1,73 @@
+---
+post_title: Adding Agent Nodes
+nav_title: Add Node
+menu_order: 8
+---
+
+You can add agent nodes to an existing DC/OS cluster. 
+
+In DC/OS, agent nodes are designated as [public](/docs/1.8/overview/concepts/#public) or [private](/docs/1.8/overview/concepts/#private) during installation. By default, agent nodes are designated as private during [GUI][1] or [CLI][2] installation.
+
+### Prerequisites:
+
+*   DC/OS is installed using the [custom](/docs/1.8/administration/installing/custom/) installation method.
+*   The archived DC/OS installer file (`dcos-install.tar`) from your [installation](/docs/1.8/administration/installing/custom/gui/#backup).
+*   Available agent nodes that satisfy the [system requirements](/docs/1.8/administration/installing/custom/system-requirements/).
+
+### Install DC/OS agent nodes
+Copy the archived DC/OS installer file (`dcos-install.tar`) to the agent node. This archive is created during the GUI or CLI [installation](/docs/1.8/administration/installing/custom/gui/#backup) method.
+
+1.  Copy the files to your agent node. For example, you can use Secure Copy (scp) to copy `dcos-install.tar` to your home directory:
+
+    ```bash
+    $ scp ~/dcos-install.tar $username@$node-ip:~/dcos-install.tar
+    ```
+
+2.  SSH to the machine:
+
+    ```bash
+    $ ssh $USER@$AGENT
+    ```
+
+1.  Create a directory for the installer files:
+
+     ```bash
+     $ sudo mkdir -p /opt/dcos_install_tmp
+     ```
+
+1.  Unpackage the `dcos-install.tar` file:
+
+    ```bash
+    $ sudo tar xf dcos-install.tar -C /opt/dcos_install_tmp
+    ```
+
+1.  Run this command to install DC/OS on your agent nodes. You must designate your agent nodes as public or private.
+
+    Private agent nodes:
+    
+    ```bash
+    $ sudo bash /opt/dcos_install_tmp/dcos_install.sh slave
+    ```
+    
+    **Tip:**  You can verify that your new agent node is public by running this command from a workstation with the DC/OS CLI. You should see a result of `1`, which indicates that you have at least one public node.
+    
+    ```bash
+    $ curl -skSL -H "Authorization: token=$(dcos config show core.dcos_acs_token)" $(dcos config show core.dcos_url)/mesos/master/slaves | grep slave_public | wc -l
+               1
+    ```
+    
+    Public agent nodes:
+    
+    ```bash
+    $ sudo bash /opt/dcos_install_tmp/dcos_install.sh slave_public
+    ```
+
+    **Tip:**  You can verify that your new agent node is public by running this command from a workstation with the DC/OS CLI. You should see a result of `1`, which indicates that you have at least one public node.
+
+    ```bash
+    $ curl -skSL -H "Authorization: token=$(dcos config show core.dcos_acs_token)" $(dcos config show core.dcos_url)/mesos/master/slaves | grep slave_public | wc -l
+               1
+    ```
+
+ [1]: /docs/1.8/administration/installing/custom/gui/
+ [2]: /docs/1.8/administration/installing/custom/cli/

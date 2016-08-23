@@ -1,23 +1,38 @@
 ---
-post_title: Creating a Public Agent
-nav_title: Public Agent
+post_title: Converting Agent Node Types
+nav_title: Convert Agent Type
 menu_order: 8
 ---
 
-In DC/OS, agent nodes that are publicly accessible are designated as public and those that are not are designated as private. By default, agent nodes are designated as private during [GUI][1] or [CLI][2] installation.
+You can convert agent nodes to public or private for an existing DC/OS cluster. 
 
-You can determine how many public agent nodes are in your cluster by running the following command from the DC/OS CLI. A result of `0` indicates that you do not have a public agent. A result of `1` means that you have one or more public agents.
+In DC/OS, agent nodes are designated as [public](/docs/1.8/overview/concepts/#public) or [private](/docs/1.8/overview/concepts/#private) during installation. By default, agent nodes are designated as private during [GUI][1] or [CLI][2] installation.
+
+You can determine the node type by running a command from the DC/OS CLI. 
+
+**Public node query**
+
+A result of `0` indicates that you do not have a public agent. A result of `1` means that you have one or more public agents. In this example, there are no public agents.
 
 ```bash
 $ curl -skSL -H "Authorization: token=$(dcos config show core.dcos_acs_token)" $(dcos config show core.dcos_url)/mesos/master/slaves | grep slave_public | wc -l
            0
 ```
 
-These steps must be performed on a machine that is configured as a DC/OS node. Any tasks that are running on the node will be terminated during this conversion process.
+**Private node query**
+
+A result of `0` indicates that you do not have a private agent. A result of `1` means that you have one or more private agents. In this example, there are no private agents.
+
+```bash
+$ curl -skSL -H "Authorization: token=$(dcos config show core.dcos_acs_token)" $(dcos config show core.dcos_url)/mesos/master/slaves | grep slave_private | wc -l
+           0
+```
+
 
 ### Prerequisites:
+These steps must be performed on a machine that is configured as a DC/OS node. Any tasks that are running on the node will be terminated during this conversion process.
 
-*   DC/OS is installed and you have deployed at least one master and one private agent node.
+*   DC/OS is installed using the [custom](/docs/1.8/administration/installing/custom/) installation method and you have deployed at least one [master](/docs/1.8/overview/concepts/#master) and one [private](/docs/1.8/overview/concepts/#private) agent node.
 *   The archived DC/OS installer file (`dcos-install.tar`) from your [installation](/docs/1.8/administration/installing/custom/gui/#backup).     
 
 ### Uninstall the DC/OS private agent software
@@ -81,8 +96,6 @@ Copy the archived DC/OS installer file (`dcos-install.tar`) to the node that tha
     $ curl -skSL -H "Authorization: token=$(dcos config show core.dcos_acs_token)" $(dcos config show core.dcos_url)/mesos/master/slaves | grep slave_public | wc -l
                1
     ```
-
-    You should see an output greater than zero to indicate at least one public agent.
 
  [1]: /docs/1.8/administration/installing/custom/gui/
  [2]: /docs/1.8/administration/installing/custom/cli/
