@@ -6,14 +6,14 @@ menu_order: 8
 
 You can convert agent nodes to public or private for an existing DC/OS cluster. 
 
-In DC/OS, agent nodes are designated as [public](/docs/1.8/overview/concepts/#public) or [private](/docs/1.8/overview/concepts/#private) during installation. By default, agent nodes are designated as private during [GUI][1] or [CLI][2] installation.
+Agent nodes are designated as [public](/docs/1.8/overview/concepts/#public) or [private](/docs/1.8/overview/concepts/#private) during installation. By default, they are designated as private during [GUI][1] or [CLI][2] installation.
 
 ### Prerequisites:
 These steps must be performed on a machine that is configured as a DC/OS node. Any tasks that are running on the node will be terminated during this conversion process.
 
 *   DC/OS is installed using the [custom](/docs/1.8/administration/installing/custom/) installation method and you have deployed at least one [master](/docs/1.8/overview/concepts/#master) and one [private](/docs/1.8/overview/concepts/#private) agent node.
 *   The archived DC/OS installer file (`dcos-install.tar`) from your [installation](/docs/1.8/administration/installing/custom/gui/#backup).     
-*   The CLI JSON processor [jq](https://github.com/stedolan/jq/wiki/Installation)
+*   The CLI JSON processor [jq](https://github.com/stedolan/jq/wiki/Installation).
 
 ### Determine the node type
 You can determine the node type by running this command from the DC/OS CLI. 
@@ -87,24 +87,10 @@ Copy the archived DC/OS installer file (`dcos-install.tar`) to the node that tha
     $ sudo bash /opt/dcos_install_tmp/dcos_install.sh slave
     ```
     
-    **Tip:**  You can verify that your new agent node is public by running this command from a workstation with the DC/OS CLI. You should see a result of `1`, which indicates that you have at least one public node.
-    
-    ```bash
-    $ dcos node --json | jq --raw-output '.[] | select(.reserved_resources.slave_public != null) | .id' | wc -l
-             1
-    ```
-    
     Public agent nodes:
     
     ```bash
     $ dcos node --json | jq --raw-output '.[] | select(.reserved_resources.slave_public != null) | .id' | wc -l
-    ```
-
-    **Tip:**  You can verify that your new agent node is public by running this command from a workstation with the DC/OS CLI. You should see a result of `1`, which indicates that you have at least one public node.
-
-    ```bash
-    $ dcos node --json | jq --raw-output '.[] | select(.reserved_resources.slave_public == null) | .id' | wc -l
-             1
     ```
 
  [1]: /docs/1.8/administration/installing/custom/gui/
