@@ -22,7 +22,7 @@ DC/OS overlay networks allow containers launched through the MesosContainerizer 
 
 **Note:** Isolation guarantees among subnets depend on your firewall policies.
 
-[Learn how to use overlay networks in your applications](/docs/1.8/usage/overlay-networks/).
+[Learn how to use overlay networks in your applications](/docs/1.8/usage/service-discovery/load-balancing-vips/overlay-networks/).
 
 # Overview
 
