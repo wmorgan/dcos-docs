@@ -14,6 +14,7 @@ Agent nodes are designated as [public](/docs/1.8/overview/concepts/#public) or [
 *   The archived DC/OS installer file (`dcos-install.tar`) from your [installation](/docs/1.8/administration/installing/custom/gui/#backup).
 *   Available agent nodes that satisfy the [system requirements](/docs/1.8/administration/installing/custom/system-requirements/).
 *   The CLI JSON processor [jq](https://github.com/stedolan/jq/wiki/Installation).
+*   SSH installed and configured. This is required for accessing nodes in the DC/OS cluster.
 
 ### Install DC/OS agent nodes
 Copy the archived DC/OS installer file (`dcos-install.tar`) to the agent node. This archive is created during the GUI or CLI [installation](/docs/1.8/administration/installing/custom/gui/#backup) method.
@@ -56,7 +57,7 @@ Copy the archived DC/OS installer file (`dcos-install.tar`) to the agent node. T
     $ dcos node --json | jq --raw-output '.[] | select(.reserved_resources.slave_public != null) | .id' | wc -l
     ```
     
-    **Tip:** You can determine the node type by running this command from the DC/OS CLI. 
+    **Tip:** You can verify the node type by running this command from the DC/OS CLI. 
              
     -   Run this command to determine whether your node is a private agent. A result of `1` indicates that it is a private agent, `0` means it is not. 
     

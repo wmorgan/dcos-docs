@@ -14,6 +14,7 @@ These steps must be performed on a machine that is configured as a DC/OS node. A
 *   DC/OS is installed using the [custom](/docs/1.8/administration/installing/custom/) installation method and you have deployed at least one [master](/docs/1.8/overview/concepts/#master) and one [private](/docs/1.8/overview/concepts/#private) agent node.
 *   The archived DC/OS installer file (`dcos-install.tar`) from your [installation](/docs/1.8/administration/installing/custom/gui/#backup).     
 *   The CLI JSON processor [jq](https://github.com/stedolan/jq/wiki/Installation).
+*   SSH installed and configured. This is required for accessing nodes in the DC/OS cluster.
 
 ### Determine the node type
 You can determine the node type by running this command from the DC/OS CLI. 
