@@ -412,4 +412,4 @@ After DC/OS is installed and deployed across your cluster, you can add more agen
  [8]: /docs/1.8/usage/
  [9]: /docs/1.8/administration/installing/custom/troubleshooting/
  [10]: /docs/1.8/administration/user-management/
- [11]: /docs/1.8/administration/installing/custom/create-public-agent/
+ [11]: /docs/1.8/administration/installing/custom/convert-agent-type/
