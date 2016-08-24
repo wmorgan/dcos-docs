@@ -7,15 +7,19 @@ This tutorial illustrates how labels can be defined using the DC/OS web interfac
 
 When you deploy applications or containers in a DC/OS cluster, you can associate a tag or label with your deployed components in order to track and report usage of the cluster by those components. For example, you may want to assign a cost center identifier or a customer number to a Mesos application and produce a summary report at the end of the month with usage metrics such as the amount of CPU and memory allocated to the applications by cost center or customer.
 
-## Assigning Labels to Applications and Tasks
+# Assigning Labels to Applications and Tasks
 
-You can attach labels to tasks either via the **Services** tab of the DC/OS web interface or from the DC/OS CLI using the Marathon HTTP API.
+You can attach labels to tasks either via the **Services** tab of the DC/OS web interface or from the DC/OS CLI. You can specify more than one label, but each label can have only one value.
 
-From the DC/OS web interface, click the **Services** tab. You can add labels when you deploy a new service or edit an existing one from the **Labels** tab. When you deploy the application, the label name and value will be associated with it. You can query the label using the Marathon HTTP API. You can specify more than one label, but each label can have only one value.
+## Assign a Label from the DC/OS Web Interface
+
+From the DC/OS web interface, click the **Services** tab. You can add labels when you deploy a new service or edit an existing one from the **Labels** tab.
+
+## Assign a label from the DC/OS CLI
 
 You can also specify label values in the `labels` parameter of your application definition. 
 
-    $ vi myap.json
+    $ vi myapp.json
     
     {
         "id": "myapp",
@@ -37,8 +41,8 @@ Then, deploy from the DC/OS CLI:
 $ dcos marathon app add <myapp>.json
 ```
 
+# Displaying Label Information
 
-## Displaying Label Information
 
 Once your applications is deployed and started, you can filter by label from the **Services** tab of the DC/OS UI.
 
