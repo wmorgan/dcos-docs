@@ -1,6 +1,6 @@
 ---
 post_title: Converting Agent Node Types
-nav_title: Convert Agent Type
+nav_title: Convert Node Type
 menu_order: 8
 ---
 
