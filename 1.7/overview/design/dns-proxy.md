@@ -23,7 +23,7 @@ Distributed DNS Proxy also enables high availability of ZooKeepers. You can alwa
 ## Watchdog
 Since DNS is such a specialized, sensitive subsystem we've chosen to protect it with a watchdog. There is a service installed on each node that runs every 5 minutes and checks whether or not it can query `ready.spartan`. To avoid harmonic effects, it sleeps for 1 minute past its initial start time to avoid racing spartan. You can monitor the system health of the watchdog as DNS Dispatcher Watchdog in the system health [dashboard][2].
 
-In addition to this watchdog, we also run genresolv, which checks whether or not Distributed DNS Proxy is alive to generate the resolv.conf. If it believe Distributed DNS Proxy not to be alive, it then rewrites the resolv.conf with the upstream resolvers that you've configured into your DC/OS cluster.
+In addition to this watchdog, we also run genresolv, which checks whether or not Distributed DNS Proxy is alive to generate the resolv.conf. If it believes Distributed DNS Proxy not to be alive, it then rewrites the resolv.conf with the upstream resolvers that you've configured into your DC/OS cluster.
 
 ## Distributed DNS Proxy Interface
 Distributed DNS Proxy creates its own network interface. This interface is actually a dummy device called `spartan`. This device hosts 3 IPs, `198.51.100.1/32`, `198.51.100.2/32`, `198.51.100.3/32`. You can monitor the system health of the DNS Proxy as the DNS Dispatcher component in the system health [dashboard][2].
