@@ -80,7 +80,7 @@ For some stateful services, such as Jenkins/Velocity, it can be convenient to mo
     $ sudo mkdir /var/lib/nfs
     ```
 
-1. Create a new systemd mount unit to describe the mount. The name of the `.mount` file is the same as the path to the mount point, with the leading slash removed and other slashes converted to dash. Using `/mnt/data` as an example, the file is named `mnt-data.mount`. In addition, replace `10.0.7.181` with the IP of the MFS host. [More information can be found in the CoreOS documentation][1]:
+1. Create a new systemd mount unit to describe the mount. The name of the `.mount` file is the same as the path to the mount point, with the leading slash removed and other slashes converted to dash. Using `/mnt/data` as an example, the file is named `mnt-data.mount`. In addition, replace `10.0.7.181` with the IP of the NFS host. [More information can be found in the CoreOS documentation][1]:
 
     ```bash
     $ cat /etc/systemd/system/mnt-data.mount
