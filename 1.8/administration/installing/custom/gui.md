@@ -106,13 +106,7 @@ The DC/OS installation creates these folders:
     #### Private SSH Key
     Specify the private SSH key with access to your master IPs.
     
-    #### Customer ID
-    Specify the 30-character UUID that was given to you by the Mesosphere customer representative.
-    
     ### DC/OS Environment Settings
-    
-    #### Username
-    Specify a user name for the initial superuser account. At least one superuser account is required for Enterprise DC/OS. For more information about security, see the [documentation](/docs/1.8/administration/id-and-access-mgt/).
     
     #### Upstream DNS Servers
     Specify a comma-separated list of DNS resolvers for your DC/OS cluster nodes. Set this parameter to the most authoritative nameservers that you have. If you want to resolve internal hostnames, set it to a nameserver that can resolve them. If you have no internal hostnames to resolve, you can set this to a public nameserver like Google or AWS. In the example above, the <a href="https://developers.google.com/speed/public-dns/docs/using" target="_blank">Google Public DNS IP addresses (IPv4)</a> are specified: `8.8.8.8` and `8.8.4.4`. If Google DNS is not available in your country, you can replace the Google DNS servers with your local DNS servers.
