@@ -13,6 +13,10 @@ The Admin Router runs on the DC/OS master servers to provide a proxy for the adm
 
 A Mesos agent node runs a discrete Mesos task on behalf of a framework. It is an agent instance registered with the Mesos master. The synonym of agent node is worker or slave node. See also [private][1] and [public][2] agent nodes.
 
+# <a name="bootstrap"></a>Bootstrap node
+
+The node where a custom DC/OS installation is run. For more information, see the [system requirements](/docs/1.8/administration/installing/custom/system-requirements/#bootstrap-node).
+
 # <a name="cloudtemplate"></a>Cloud template
 
 The [cloud templates][3] are optimized to run DC/OS. The templates are JSON-formatted text files that describe the resources and properties.
