@@ -20,7 +20,7 @@ You can assign a VIP to one of your services by following these steps. For some 
 
     **Tip:** Select **JSON Mode** to edit your application directly in JSON.
 
-    For more information on port configuration, see the [ports documentation][1].
+    For more information on port configuration, see the [Marathon ports documentation][2].
 
 3.  From inside the cluster, you will be able to use your VIP directly. You can [SSH][3] into the cluster and run this command to see it work:
 
