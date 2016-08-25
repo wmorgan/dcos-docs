@@ -320,6 +320,6 @@ $ dcos package uninstall jenkins
 [jenkins-mesos-plugin]: https://github.com/jenkinsci/mesos-plugin
 [jenkins-service-docs]: https://docs.mesosphere.com/manage-service/jenkins/
 [jenkins-website]: https://jenkins-ci.org
-[marathon-service-docs]: https://docs.mesosphere.com/manage-service/marathon/
+[marathon-service-docs]: https://dcos.io/docs/1.8/usage/managing-services/install/
 [mesosphere-universe-jenkins]: https://github.com/mesosphere/universe/tree/version-2.x/repo/packages/J/jenkins
 [mount-file-share-azure]: https://azure.microsoft.com/en-us/documentation/articles/storage-how-to-use-files-linux/
