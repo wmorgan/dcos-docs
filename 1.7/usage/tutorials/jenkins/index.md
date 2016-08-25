@@ -311,7 +311,7 @@ $ dcos package uninstall jenkins
 
   * [Jenkins project website][jenkins-website] (jenkins-ci.org)
   * [Jenkins service documentation][jenkins-service-docs] (mesosphere.com)
-  * [Marathon service documentation](https://docs.mesosphere.com/manage-service/marathon/) (mesosphere.com)
+  * [Marathon service documentation](https://docs.mesosphere.com/1.7/usage/service-guides/marathon/) (mesosphere.com)
   * [Mesos plugin for Jenkins][jenkins-mesos-plugin] (github.com)
 
 [amazon-efs-console]: https://console.aws.amazon.com/efs/
