@@ -18,11 +18,12 @@ The following information is collected.
     <td>General</td>
     <td>
     <ul>
-    <li>Anonymous cluster ID</li>
-    <li>Customer ID (Enterprise DC/OS)</li>
-    <li>DC/OS host system</li>
-    <li>DC/OS type: DC/OS or Mesosphere Enterprise DC/OS</li>
-    <li>DC/OS version</li>
+    <li>Cluster ID (`clusterId`)</li>
+    <li>Customer ID (Enterprise DC/OS) (`customerKey`)</li>
+    <li>DC/OS host system (`provider`)</li>
+    <li>DC/OS type: DC/OS or Mesosphere Enterprise DC/OS (`variant`)</li>
+    <li>DC/OS version (`environmentVersion`)</li>
+    <li>(`source`)</li>
     </ul>
     </td>
   </tr>  
@@ -30,14 +31,23 @@ The following information is collected.
     <td>Mesos</td>
     <td>The Mesos telemetry data provides the total resources available in the cluster and their current usage. 
     <ul>
-    <li>Allocated disk space in MB</li>
-    <li>Disk space available in MB</li>
-    <li>Memory allocated in MB</li>
-    <li>Memory available in MB</li>
-    <li>Number of allocated CPUs</li>
-    <li>Number of CPUs available</li>
-    <li>Number of installed DC/OS services</li>
-    <li>Which DC/OS services are installed</li>
+    <li>Number of active agents (`agents_active`)</li>
+    <li>Number of connected agents (`agents_connected`)</li>
+    <li>Cluster ID (`clusterId`)</li>
+    <li>Number of CPUs available (`cpu_total`)</li>
+    <li>Number of allocated CPUs (`cpu_used`)</li>
+    <li>Customer ID (Enterprise DC/OS) (`customerKey`)</li>
+    <li>Disk space available in MB (`disk_total`)</li>
+    <li>Allocated disk space in MB (`disk_used`)</li>
+    <li>Memory available in MB (`mem_total`)</li>
+    <li>Memory allocated in MB (`mem_used`)</li>
+    <li>DC/OS host system (`provider`)</li>
+    <li>Number of installed DC/OS services (`framework_count`)</li>
+    <li>Which DC/OS services are installed (`frameworks`)</li>
+    <li>Number of tasks (`task_count`)</li>
+    <li>DC/OS type: DC/OS or Mesosphere Enterprise DC/OS (`variant`)</li>
+    <li>Anonymous cluster ID (`anonymousId`)</li>
+    <li>DC/OS action (`event`). For example, `"event": "package_list"`, `"event": "health"`, or `"event": "mesos_track"`.</li>
     </ul>
     </td>
   </tr>
