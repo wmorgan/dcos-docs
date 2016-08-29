@@ -419,7 +419,7 @@ By default, `dcos node ssh` connects to the private IP of the node, which is onl
             https://universe.mesosphere.com/rep
     
 
-## <a name=dcosservice"></a>dcos service
+## <a name="dcosservice"></a>dcos service
 
     Description:
         Manage DC/OS services.
