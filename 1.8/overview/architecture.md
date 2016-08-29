@@ -108,20 +108,64 @@ The chronological interaction between the above components looks like this. Noti
 
 In detail, here are the steps:
 
-| Step | Description |
-| ---- | ----------- |
-| 1    | Client/Scheduler init: the Client needs to know how to connect to the Scheduler in order to launch a process, for example via Mesos-DNS or DC/OS CLI. |
-| 2    | Mesos master sends resource offer to Scheduler: the resource offers are based on cluster resources managed through agents and the [DRF](https://www.cs.berkeley.edu/~alig/papers/drf.pdf) algorithm in Mesos master.|
-| 3    | Scheduler declines resource offers because no process requests from Clients are pending. As long as no clients have initiated a process, the scheduler will reject offers from the master. |
-| 4    | Client initiates process launch. For example, this could be a user creating a Marathon app via the DC/OS [Services](/docs/1.8/usage/webinterface) tab or via the HTTP endpoint `/v2/app`. |
-| 5    | Mesos master sends the resource offers . For example, `cpus(*):1; mem(*):128; ports(*):[21452-21452]` |
-| 6    | If resource offer matches the requirements the Scheduler has for the process, it accepts the offer and sends a `launchTask` request to Mesos master. |
-| 7    | Mesos master directs Mesos agents to launch tasks. |
-| 8    | Mesos agent launches tasks via Executor. |
-| 9    | Executor reports task status to Mesos agent. |
-| 10   | Mesos agent reports task status to Mesos master. |
-| 11   | Mesos master reports task status to scheduler. |
-| 12   | Scheduler reports process status to client. |
+<table class="table">
+<thead>
+<tr>
+<th>Step</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Client/Scheduler init: the Client needs to know how to connect to the Scheduler in order to launch a process, for example via Mesos-DNS or DC/OS CLI.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Mesos master sends resource offer to Scheduler: the resource offers are based on cluster resources managed through agents and the <a href="https://www.cs.berkeley.edu/~alig/papers/drf.pdf">DRF</a> algorithm in Mesos master.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Scheduler declines resource offers because no process requests from Clients are pending. As long as no clients have initiated a process, the scheduler will reject offers from the master.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Client initiates process launch. For example, this could be a user creating a Marathon app via the DC/OS <a href="/1.8/usage/webinterface">Services</a> tab or via the HTTP endpoint <code>/v2/app</code>.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Mesos master sends the resource offers . For example, <code>cpus(*):1; mem(*):128; ports(*):[21452-21452]</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td>If resource offer matches the requirements the Scheduler has for the process, it accepts the offer and sends a <code>launchTask</code> request to Mesos master.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Mesos master directs Mesos agents to launch tasks.</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Mesos agent launches tasks via Executor.</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Executor reports task status to Mesos agent.</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Mesos agent reports task status to Mesos master.</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Mesos master reports task status to scheduler.</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Scheduler reports process status to client.</td>
+</tr>
+</tbody>
+</table>
 
 [auth]: /docs/1.8/administration/id-and-access-mgt/
 [components]: /docs/1.8/overview/components/
