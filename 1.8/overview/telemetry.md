@@ -74,6 +74,138 @@ The following information is collected.
     </tr>
 </table>
 
+For example:
+
+```json
+{
+    "cosmos": {
+        "properties": {
+            "clusterId": "70b28f00-e38f-41b2-a723-aab344f535b9",
+            "customerKey": "",
+            "environmentVersion": "",
+            "package_list": [],
+            "provider": "aws",
+            "source": "cluster",
+            "variant": "open"
+        },
+        "anonymousId": "70b28f00-e38f-41b2-a723-aab344f535b9",
+        "event": "package_list"
+    },
+    "diagnostics": {
+        "properties": {
+            "clusterId": "70b28f00-e38f-41b2-a723-aab344f535b9",
+            "customerKey": "",
+            "environmentVersion": "",
+            "health-unit-dcos-3dt-service-total": 3,
+            "health-unit-dcos-3dt-service-unhealthy": 0,
+            "health-unit-dcos-3dt-socket-total": 2,
+            "health-unit-dcos-3dt-socket-unhealthy": 0,
+            "health-unit-dcos-adminrouter-agent-service-total": 2,
+            "health-unit-dcos-adminrouter-agent-service-unhealthy": 0,
+            "health-unit-dcos-adminrouter-reload-service-total": 3,
+            "health-unit-dcos-adminrouter-reload-service-unhealthy": 0,
+            "health-unit-dcos-adminrouter-reload-timer-total": 3,
+            "health-unit-dcos-adminrouter-reload-timer-unhealthy": 0,
+            "health-unit-dcos-adminrouter-service-total": 1,
+            "health-unit-dcos-adminrouter-service-unhealthy": 0,
+            "health-unit-dcos-cosmos-service-total": 1,
+            "health-unit-dcos-cosmos-service-unhealthy": 0,
+            "health-unit-dcos-epmd-service-total": 3,
+            "health-unit-dcos-epmd-service-unhealthy": 0,
+            "health-unit-dcos-exhibitor-service-total": 1,
+            "health-unit-dcos-exhibitor-service-unhealthy": 0,
+            "health-unit-dcos-gen-resolvconf-service-total": 3,
+            "health-unit-dcos-gen-resolvconf-service-unhealthy": 0,
+            "health-unit-dcos-gen-resolvconf-timer-total": 3,
+            "health-unit-dcos-gen-resolvconf-timer-unhealthy": 0,
+            "health-unit-dcos-history-service-total": 1,
+            "health-unit-dcos-history-service-unhealthy": 0,
+            "health-unit-dcos-logrotate-agent-service-total": 2,
+            "health-unit-dcos-logrotate-agent-service-unhealthy": 0,
+            "health-unit-dcos-logrotate-agent-timer-total": 2,
+            "health-unit-dcos-logrotate-agent-timer-unhealthy": 0,
+            "health-unit-dcos-logrotate-master-service-total": 1,
+            "health-unit-dcos-logrotate-master-service-unhealthy": 0,
+            "health-unit-dcos-logrotate-master-timer-total": 1,
+            "health-unit-dcos-logrotate-master-timer-unhealthy": 0,
+            "health-unit-dcos-marathon-service-total": 1,
+            "health-unit-dcos-marathon-service-unhealthy": 0,
+            "health-unit-dcos-mesos-dns-service-total": 1,
+            "health-unit-dcos-mesos-dns-service-unhealthy": 0,
+            "health-unit-dcos-mesos-master-service-total": 1,
+            "health-unit-dcos-mesos-master-service-unhealthy": 0,
+            "health-unit-dcos-mesos-slave-public-service-total": 1,
+            "health-unit-dcos-mesos-slave-public-service-unhealthy": 0,
+            "health-unit-dcos-mesos-slave-service-total": 1,
+            "health-unit-dcos-mesos-slave-service-unhealthy": 0,
+            "health-unit-dcos-metronome-service-total": 1,
+            "health-unit-dcos-metronome-service-unhealthy": 0,
+            "health-unit-dcos-minuteman-service-total": 3,
+            "health-unit-dcos-minuteman-service-unhealthy": 0,
+            "health-unit-dcos-navstar-service-total": 3,
+            "health-unit-dcos-navstar-service-unhealthy": 0,
+            "health-unit-dcos-oauth-service-total": 1,
+            "health-unit-dcos-oauth-service-unhealthy": 0,
+            "health-unit-dcos-pkgpanda-api-service-total": 3,
+            "health-unit-dcos-pkgpanda-api-service-unhealthy": 0,
+            "health-unit-dcos-pkgpanda-api-socket-total": 3,
+            "health-unit-dcos-pkgpanda-api-socket-unhealthy": 0,
+            "health-unit-dcos-rexray-service-total": 2,
+            "health-unit-dcos-rexray-service-unhealthy": 0,
+            "health-unit-dcos-signal-service-total": 1,
+            "health-unit-dcos-signal-service-unhealthy": 0,
+            "health-unit-dcos-signal-timer-total": 3,
+            "health-unit-dcos-signal-timer-unhealthy": 0,
+            "health-unit-dcos-spartan-service-total": 3,
+            "health-unit-dcos-spartan-service-unhealthy": 0,
+            "health-unit-dcos-spartan-watchdog-service-total": 3,
+            "health-unit-dcos-spartan-watchdog-service-unhealthy": 0,
+            "health-unit-dcos-spartan-watchdog-timer-total": 3,
+            "health-unit-dcos-spartan-watchdog-timer-unhealthy": 0,
+            "health-unit-dcos-vol-discovery-priv-agent-service-total": 1,
+            "health-unit-dcos-vol-discovery-priv-agent-service-unhealthy": 0,
+            "health-unit-dcos-vol-discovery-pub-agent-service-total": 1,
+            "health-unit-dcos-vol-discovery-pub-agent-service-unhealthy": 0,
+            "provider": "aws",
+            "source": "cluster",
+            "variant": "open"
+        },
+        "anonymousId": "70b28f00-e38f-41b2-a723-aab344f535b9",
+        "event": "health"
+    },
+    "mesos": {
+        "properties": {
+            "agents_active": 2,
+            "agents_connected": 2,
+            "clusterId": "70b28f00-e38f-41b2-a723-aab344f535b9",
+            "cpu_total": 8,
+            "cpu_used": 0,
+            "customerKey": "",
+            "disk_total": 71154,
+            "disk_used": 0,
+            "environmentVersion": "",
+            "framework_count": 2,
+            "frameworks": [
+                {
+                    "name": "marathon"
+                },
+                {
+                    "name": "metronome"
+                }
+            ],
+            "mem_total": 28036,
+            "mem_used": 0,
+            "provider": "aws",
+            "source": "cluster",
+            "task_count": 0,
+            "variant": "open"
+        },
+        "anonymousId": "70b28f00-e38f-41b2-a723-aab344f535b9",
+        "event": "mesos_track"
+    }
+}
+```
+
 
 ## Opt-Out
 
