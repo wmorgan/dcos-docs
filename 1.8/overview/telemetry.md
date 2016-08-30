@@ -5,7 +5,7 @@ menu_order: 7
 
 To continuously improve the DC/OS experience, we have included a telemetry component that reports anonymous usage data back to us. We use this data to monitor the reliability of core DC/OS components, installations, and to find out which features are most popular.
  
-The DC/OS signal service (`dcos-signal.service`) queries the diagnostics service `/system/health/v1/report` endpoint on the leading master and sends this data to SegmentIO for use in tracking metrics and customer support.The signal service is the telemetry component.
+The anonymous usage information is sent back to us by the signal service (`dcos-signal.service`) queries the diagnostics service `/system/health/v1/report` endpoint on the leading master and sends this data to SegmentIO for use in tracking metrics and customer support.The signal service is the telemetry component.
 
 The following information is collected.
 
