@@ -5,18 +5,9 @@ menu_order: 100
 
 You can quickly get up and running with the advanced DC/OS templates.
 
-# System requirements
+# Prerequisites
 
-### Hardware
-
-An Amazon EC2 <a href="https://aws.amazon.com/ec2/pricing/" target="_blank">m3.xlarge</a> instance. Selecting smaller-sized VMs is not recommended, and selecting fewer VMs will likely cause certain resource-intensive services, such as distributed datastores, to not work properly.
-
-### Software
-
-- The DC/OS advanced AWS [templates](/docs/1.8/administration/installing/cloud/aws/advanced/template-reference/).
-- An Amazon Web Services account with root [IAM](https://aws.amazon.com/iam/) privileges. Advanced privileges are required to install the advanced templates. Contact your AWS admin for more information.
-- AWS [Command Line Interface](https://aws.amazon.com/cli/)
-- The CLI JSON processor [jq](https://github.com/stedolan/jq/wiki/Installation)
+See the AWS DC/OS advanced template [system requirements](/docs/1.8/administration/installing/cloud/aws/advanced/system-requirements/).
 
 # Quick Start
 You can quickly get up and running with the DC/OS advanced templates.
@@ -150,7 +141,7 @@ Launch the DC/OS web interface by entering the master hostname:
 
 ## Next steps
 
-Now that your advanced template DC/OS installation is up and running you can
+Now that your advanced template DC/OS installation is up and running you can add more agent nodes.
 
 ### Add more agent nodes
 
@@ -176,6 +167,7 @@ Public agents:
 *  **PublicAgentSecurityGroup** Specify the security group ID for public agents. This group should have limited external access. You can find this value in the **Outputs** tab of the Infrastructure stack (`<stack-name>-Infrastructure-<stack-id>`).
 *  **PublicSubnet** Specify the `Public SubnetId` output value from the `zen.sh` script. This subnet ID will be used by all public agents.
 
-For all of the advanced configuration options, see the template reference [documentation](/docs/1.8/administration/installing/cloud/aws/advanced/template-reference/).
+### Template reference
+For the complete advanced configuration options, see the template reference [documentation](/docs/1.8/administration/installing/cloud/aws/advanced/template-reference/).
 
  [2]: /docs/1.8/usage/cli/install/
