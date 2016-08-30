@@ -3,10 +3,11 @@ post_title: Telemetry
 menu_order: 7
 ---
 
-To continuously improve the DC/OS experience, we have included a telemetry component that reports anonymous usage data back to us. We use this data to monitor the reliability of core DC/OS components, installations, and to find out which features are most popular. 
+To continuously improve the DC/OS experience, we have included a telemetry component that reports anonymous usage data back to us. We use this data to monitor the reliability of core DC/OS components, installations, and to find out which features are most popular.
+ 
+The DC/OS signal service (`dcos-signal.service`) queries the diagnostics service `/system/health/v1/report` endpoint on the leading master and sends this data to SegmentIO for use in tracking metrics and customer support.The signal service is the telemetry component.
 
 The following information is collected.
-
 
 
 <table class="table">
@@ -16,7 +17,7 @@ The following information is collected.
   </tr>
     <tr>
     <td>General</td>
-    <td>
+    <td>The following data is collected across all tracks.
     <ul>
     <li>Cluster ID (`clusterId`)</li>
     <li>Customer ID (Enterprise DC/OS) (`customerKey`)</li>
@@ -74,7 +75,44 @@ The following information is collected.
     </tr>
 </table>
 
-For example:
+
+# general
+
+For each track (segment term), the data is the same:
+"clusterId": "70b28f00-e38f-41b2-a723-aab344f535b9",
+- the `anonymousID` we create for every cluster. created at startup. persists across cluster forever. 
+
+"customerKey": "",
+- Enterprise: this is set with the customer key that we give to you.
+
+"environmentVersion": "",
+- The version of DC/OS.
+
+"provider": "aws",
+- What platform DC/OS is running on: aws, on-prem, azure.
+
+"source": "cluster",
+- Hard-coded setting that indicates cluster.
+
+"variant": "open"
+- Either OSS or Enterprise
+
+"anonymousId": "70b28f00-e38f-41b2-a723-aab344f535b9",
+- an anonymous ID we create for every cluster. created at startup. persists across cluster forever.
+
+"event": "package_list"
+- name that appears in segment.io. cosmos, health, mesos_track.
+
+# diagnostics
+
+For every systemd unit, the following is collected:
+```
+"health-unit-dcos-<UNIT_NAME>-total": 3, "health-unit-dcos-<UNIT_NAME>-unhealthy": 0,
+```
+
+# mesos
+
+
 
 ```json
 {
