@@ -122,7 +122,7 @@ Other ad blockers like uBlock Origin are known to work.
 
 ## Further reading
 
-- [Let’s encrypt DCOS!](https://mesosphere.com/blog/2016/04/06/lets-encrypt-dcos/):
+- [Let’s encrypt DC/OS!](https://mesosphere.com/blog/2016/04/06/lets-encrypt-dcos/):
   a blog post about using [Let's Encrypt](https://letsencrypt.org/) with
   services running on DC/OS.
 
