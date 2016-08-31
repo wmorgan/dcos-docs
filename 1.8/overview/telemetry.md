@@ -140,7 +140,7 @@ Here is an example of the JSON telemetry report that is collected:
         "properties": {
             "clusterId": "70b28f00-e38f-41b2-a723-aab344f535b9",
             "customerKey": "",
-            "environmentVersion": "",
+            "environmentVersion": "1.8",
             “package_list”: [
             {
             “name”: “kafka”
@@ -160,7 +160,7 @@ Here is an example of the JSON telemetry report that is collected:
         "properties": {
             "clusterId": "70b28f00-e38f-41b2-a723-aab344f535b9",
             "customerKey": "",
-            "environmentVersion": "",
+            "environmentVersion": "1.8",
             "health-unit-dcos-3dt-service-total": 3,
             "health-unit-dcos-3dt-service-unhealthy": 0,
             "health-unit-dcos-3dt-socket-total": 2,
@@ -248,7 +248,7 @@ Here is an example of the JSON telemetry report that is collected:
             "customerKey": "",
             "disk_total": 71154,
             "disk_used": 0,
-            "environmentVersion": "",
+            "environmentVersion": "1.8",
             "framework_count": 2,
             "frameworks": [
                 {
