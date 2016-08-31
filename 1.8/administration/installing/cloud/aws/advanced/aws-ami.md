@@ -3,16 +3,24 @@ post_title: Installing Using a Custom AMI
 nav_title: Custom AMI
 menu_order: 199
 ---
-You can use a customized [Amazon Machine Images (AMI)](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html) to launch DC/OS instances. For an example of how to build and deploy a custom AMI for DC/OS, see the [DC/OS CentOS 7 AMI](https://github.com/dcos/dcos/tree/master/cloud_images).
+
+You can use customized [Amazon Machine Images (AMI)](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html) based on either CentOS 7 or CoreOS with the advanced templates. 
 
 - A custom AMI can be used to integrate DC/OS installation with your own in-house configuration management tools.
 - A custom AMI can be used if you want kernel or driver customization.
 
+# Build your AMI
+
+1.  Using the DC/OS [cloud_images](https://github.com/dcos/dcos/tree/master/cloud_images) scripts for CentOS 7 as a template, create an AWS AMI in the same target region as your DC/OS stack. The AMI must satisfy all of the DC/OS AMI prerequisites as shown in the template.
+
+1.  Build and deploy your AMI. For an example of how to build and deploy AMIs to multiple regions, see the DC/OS Packer build scripts [here](https://github.com/dcos/dcos/blob/master/cloud_images/centos7/packer.json).
+
+# Install DC/OS
 
 **Prerequisites:**
 
 - AWS DC/OS advanced template [system requirements](/docs/1.8/administration/installing/cloud/aws/advanced/system-requirements/).
-- An AWS AMI in the same target region as your DC/OS stack. For an example of how to build and deploy AMIs to multiple regions, see the DC/OS Packer build scripts [here](https://github.com/dcos/dcos/blob/master/cloud_images/centos7/packer.json). 
+- An AWS AMI in the same target region as your DC/OS stack with the prerequisites installed.  
 
  
 1.  Go to [CloudFormation](https://console.aws.amazon.com/cloudformation/home) and click **Create Stack**.
