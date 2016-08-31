@@ -172,7 +172,9 @@ To test the vhost feature, navigate to the AWS console and look for your public 
 
 ![lb5](../img/lb5.jpg)
 
-Our ELB is able to route traffic to HAProxy. Next, let’s modify our nginx app to expose our service. To do this, you’ll need to get the public DNS name for the ELB from the `Description` tab. In this example, my public DNS name is `brenden-j-PublicSl-1LTLKZEH6B2G6-1145355943.us-west-2.elb.amazonaws.com`.
+Our ELB is able to route traffic to HAProxy. Next, let’s modify our nginx app to expose our service. To do this, you’ll need to get the public DNS name for the ELB from the `Description` tab. In this example, my public DNS name is `brenden-j-publicsl-1ltlkzeh6b2g6-1145355943.us-west-2.elb.amazonaws.com`.
+
+**Warning:** Your public DNS name must be entered entirely in lower case.
 
 Modify the external nginx app to look like this:
 
