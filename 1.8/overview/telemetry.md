@@ -81,50 +81,51 @@ This information is collected from the DC/OS [Mesos Master](/docs/1.8/overview/c
 
 <table class="table">
 <tr>
-    <th>Type</th>
-    <th>Description</th>
-  </tr>
-    <tr><td>agents_active</td><td>Number of active agents. For example: <pre>"agents_active": 2,</pre></td></tr>
-    <tr><td>agents_connected</td><td>Number of connected agents. For example: <pre>"agents_connected": 2,</pre></td></tr>
-    <tr><td>cpu_total</td><td>Number of CPUs available. For example: <pre>"cpu_total": 8,</pre></td></tr>
-    <tr><td>cpu_used</td><td>Number of allocated CPUs. For example: <pre>"cpu_used": 0,</pre></td></tr>
-    <tr><td>disk_total</td><td>Disk space available in MB. For example: <pre>"disk_total": 71154,</pre></td></tr>
-    <tr><td>disk_used</td><td>Allocated disk space in MB. For example: <pre>"disk_used": 0,</pre></td></tr>
-    <tr><td>framework_count</td><td>Number of installed DC/OS services. For example: <pre>"framework_count": 2,</pre></td></tr>
-    <tr><td>frameworks</td><td>Which DC/OS services are installed. For example:
-    <pre>
-    "frameworks": [
-                    {
-                        "name": "marathon"
-                    },
-                    {
-                        "name": "metronome"
-                    }
-                ],
-    </pre></td></tr>
-    <tr><td>mem_total</td><td>Memory available in MB. For example: <pre>"mem_total": 28036,</pre></td></tr>
-    <tr><td>mem_used</td><td>Memory allocated in MB. For example: <pre>"mem_used": 0,</pre></td></tr>
-    <tr><td>task_count</td><td>Number of tasks. For example: <pre>"task_count": 0,</pre></td></tr>
-  </tr>
-    </table>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tr><td>agents_active</td><td>Number of active agents. For example: <pre>"agents_active": 2,</pre></td></tr>
+<tr><td>agents_connected</td><td>Number of connected agents. For example: <pre>"agents_connected": 2,</pre></td></tr>
+<tr><td>cpu_total</td><td>Number of CPUs available. For example: <pre>"cpu_total": 8,</pre></td></tr>
+<tr><td>cpu_used</td><td>Number of allocated CPUs. For example: <pre>"cpu_used": 0,</pre></td></tr>
+<tr><td>disk_total</td><td>Disk space available in MB. For example: <pre>"disk_total": 71154,</pre></td></tr>
+<tr><td>disk_used</td><td>Allocated disk space in MB. For example: <pre>"disk_used": 0,</pre></td></tr>
+<tr><td>framework_count</td><td>Number of installed DC/OS services. For example: <pre>"framework_count": 2,</pre></td></tr>
+<tr><td>frameworks</td><td>Which DC/OS services are installed. For example:
+<pre>
+"frameworks": [
+                {
+                    "name": "marathon"
+                },
+                {
+                    "name": "metronome"
+                }
+            ],
+</pre></td></tr>
+<tr><td>mem_total</td><td>Memory available in MB. For example: <pre>"mem_total": 28036,</pre></td></tr>
+<tr><td>mem_used</td><td>Memory allocated in MB. For example: <pre>"mem_used": 0,</pre></td></tr>
+<tr><td>task_count</td><td>Number of tasks. For example: <pre>"task_count": 0,</pre></td></tr>
+</tr>
+</table>
+
     
 ## Package service
 This information is collected from the DC/OS [Package service](/docs/1.8/overview/components/#package-service) component.
 
 <table class="table">
 <tr>
-    <th>Type</th>
-    <th>Description</th>
-  </tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
 <tr>
 <td>package_list</td>
 <td>Which packages are installed. For example, if you had Kafka and Spark: 
 <pre>"package_list": [
 {
-    "name": "kafka"
+"name": "kafka"
 },
 {
-    "name": "spark"
+"name": "spark"
 }
 ],
 </pre></td>
