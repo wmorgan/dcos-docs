@@ -16,7 +16,7 @@ The recommended hardware.
 ## Software
 The recommended software.
 
-# Install DCOS
+# Install DC/OS
 
 Explain the usage of each step. Screen shots and detailed command line instructions are highly encouraged. There is an outline that should be used for each step:
 

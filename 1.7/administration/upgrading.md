@@ -16,7 +16,7 @@ This document provides instructions for upgrading a DC/OS cluster from version 1
 
 - Mesos, Mesos Frameworks, Marathon, Docker and all running tasks in the cluster should be stable and in a known healthy state.
 - For Mesos compatibility reasons, we recommend upgrading any running Marathon-on-Marathon instances to version Marathon 0.16.0-RC3 before proceeding with this DC/OS upgrade.
-- You must have access to copies of the config files used with DCOS 1.6: `config.yaml` and `ip-detect`.
+- You must have access to copies of the config files used with DC/OS 1.6: `config.yaml` and `ip-detect`.
 - You must be using systemd 218 or newer to maintain task state.
 - All hosts (masters and agents) must be able to communicate with all other hosts on all ports, for both TCP and UDP.
 - In CentOS or RedHat, install IP sets with this command (used in some IP detect scripts): `$ sudo yum install -y ipset`

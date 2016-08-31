@@ -43,4 +43,4 @@ $ sudo -i /opt/mesosphere/bin/pkgpanda uninstall
 $ sudo rm -rf /opt/mesosphere /etc/mesosphere
 ```
 
-**Tip:** Uninstalling DCOS with these commands does not delete everything on the host.
+**Tip:** Uninstalling DC/OS with these commands does not delete everything on the host.

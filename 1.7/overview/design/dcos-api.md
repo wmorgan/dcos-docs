@@ -48,7 +48,7 @@ Status: draft
 * Package - apt-get, yum, docker registry
    * CRUD - packages
    * view package repo
-   * view running packages (Blurs into DCOS Service?)
+   * view running packages (Blurs into DC/OS Service?)
    * add repo
 * Log - journald
    * System components
@@ -100,7 +100,7 @@ Status: draft
 * There is a single root endpoint that the API is based off, users do not need to connect to different hosts to use the API.
 * The API is available in the user context in the cluster.
    * You can only see the endpoints that are available for your current logged in permissions.
-* The SDK is integrated into the DCOS API
+* The SDK is integrated into the DC/OS API
    * There will be endpoints in the API that are RPC calls for the SDK
 * Match the terminology in existing and popular APIs as much as possible
 * The process API should start a one-off and have no (or as little as possible) definition.

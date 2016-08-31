@@ -4,7 +4,7 @@ nav_title: Packet
 menu_order: 3
 ---
 
-You can create a DCOS cluster on Packet bare metal using Terraform.
+You can create a DC/OS cluster on Packet bare metal using Terraform.
 
 The included Terraform templates are configured to run Mesosphere DC/OS on Packet. Depending on the DC/OS services that you install, or the amount of computing power your workload needs, you might have to modify the templates to suit your needs. You can modify the Terraform templates, but Mesosphere cannot assist in troubleshooting. If you require support, please email help@packet.net, visit the Packet IRC channel (#packethost on freenode) or consider the Enterprise DC/OS.
 
@@ -18,7 +18,7 @@ The included Terraform templates are configured to run Mesosphere DC/OS on Packe
 
 - Packet “Type 0” Server instances
 
-# Create a DCOS cluster
+# Create a DC/OS cluster
 
 ## Prerequisites:
 
@@ -28,13 +28,13 @@ The included Terraform templates are configured to run Mesosphere DC/OS on Packe
 
 - [Terraform by Hashicorp](https://www.terraform.io/intro/getting-started/install.html)
 
-## Installing DCOS
+## Installing DC/OS
 
 #### With this method, the network is open by default. Because of this, network security is a concern and should be addressed as soon as possible by the administrator.
 
 1.  Download and install Terraform using the instructions on the link provided above
 
-2.  [Download the DCOS Terraform manifests from GitHub](https://github.com/dcos/packet-terraform) into a local  directory.
+2.  [Download the DC/OS Terraform manifests from GitHub](https://github.com/dcos/packet-terraform) into a local  directory.
 
     ```bash
     $ git clone https://github.com/dcos/packet-terraform
@@ -52,7 +52,7 @@ The included Terraform templates are configured to run Mesosphere DC/OS on Packe
 
     - packet_project_id - Packet Project ID
 
-    - dcos_installer_url - Where to get DCOS
+    - dcos_installer_url - Where to get DC/OS
       https://downloads.dcos.io/dcos/EarlyAccess/commit/14509fe1e7899f439527fb39867194c7a425c771/dcos_generate_config.sh
 
     The following have default values and may be changed depending on your requirements:
@@ -60,16 +60,16 @@ The included Terraform templates are configured to run Mesosphere DC/OS on Packe
     - packet_facility - Packet facility: [ewr1|sjc1|ams1]
       ewr1 is New Jersey, ams1 is Amsterdam, sjc1 is San Jose - default sjc1
 
-    - packet_agent_type - Type of Packet Server to use for the DCOS Agents: [baremetal_0|baremetal_1|baremetal_3]
-      Choose the Packet Server type to use for the DCOS Private Agents - default baremetal_0
+    - packet_agent_type - Type of Packet Server to use for the DC/OS Agents: [baremetal_0|baremetal_1|baremetal_3]
+      Choose the Packet Server type to use for the DC/OS Private Agents - default baremetal_0
 
-    - packet_master_type - Type of Packet Server to use for the DCOS Master: [baremetal_0|baremetal_1|baremetal_3]
-      Choose the Packet Server type to use for the DCOS Master Nodes - default baremetal_0
+    - packet_master_type - Type of Packet Server to use for the DC/OS Master: [baremetal_0|baremetal_1|baremetal_3]
+      Choose the Packet Server type to use for the DC/OS Master Nodes - default baremetal_0
 
-    - packet_boot_type - Type of Packet Server to use for the DCOS Boot Node: [baremetal_0|baremetal_1|baremetal_3]
-      Choose the Packet Server type to use for the DCOS Boot Server - default baremetal_0
+    - packet_boot_type - Type of Packet Server to use for the DC/OS Boot Node: [baremetal_0|baremetal_1|baremetal_3]
+      Choose the Packet Server type to use for the DC/OS Boot Server - default baremetal_0
 
-    - dcos_cluster_name - the name of your DCOS cluster - defaults to packet-dcos
+    - dcos_cluster_name - the name of your DC/OS cluster - defaults to packet-dcos
 
     - dcos_agent_count - Number of private agents to deploy - defaults to  4
 
@@ -79,18 +79,18 @@ The included Terraform templates are configured to run Mesosphere DC/OS on Packe
 
     - key_file_path - The path to your ssh private key created in step 4 - defaults to ./packet-key
 
-5.  Also from that same directory, run `terraform apply` which will deploy the servers into your project at Packet, and run the DCOS installation routine. When it completes, you will see output similar to the following, but with the IP addresses assigned to your servers:
+5.  Also from that same directory, run `terraform apply` which will deploy the servers into your project at Packet, and run the DC/OS installation routine. When it completes, you will see output similar to the following, but with the IP addresses assigned to your servers:
 
     ![terraform apply output](../../../img/packet_terraform_output.png)
 
-You may need to wait a few minutes from this point for all the DCOS services to become active and the control panel available on the master node. After 15 or 20 minutes, you'll want to check out the [troubleshooting](../../custom/troubleshooting/) documentation.
+You may need to wait a few minutes from this point for all the DC/OS services to become active and the control panel available on the master node. After 15 or 20 minutes, you'll want to check out the [troubleshooting](../../custom/troubleshooting/) documentation.
 
-# Launch DCOS
-Launch the DCOS web interface by entering the Mesos master IP address:
+# Launch DC/OS
+Launch the DC/OS web interface by entering the Mesos master IP address:
 
-1.  Cut/paste the link provided by after running terraform apply, or by running terraform output from the same directory, into your browser to open the DCOS web interface. The interface runs on the standard HTTP port 80, so you do not need to specify a port number after the hostname.
+1.  Cut/paste the link provided by after running terraform apply, or by running terraform output from the same directory, into your browser to open the DC/OS web interface. The interface runs on the standard HTTP port 80, so you do not need to specify a port number after the hostname.
 
-2.  Install the DCOS Command-Line Interface (CLI). You can install the CLI to administer your DCOS cluster. You can access the documentation at any time by clicking the caret icon in the lower left corner.
+2.  Install the DC/OS Command-Line Interface (CLI). You can install the CLI to administer your DC/OS cluster. You can access the documentation at any time by clicking the caret icon in the lower left corner.
 
     ![dcos help link](../../../img/packet_help_link.png)
 
