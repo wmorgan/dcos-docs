@@ -13,4 +13,4 @@ The templates are used together in conjunction to create a DC/OS cluster. The te
 <!-- Insert graphic -->
 
 * [Quick Start Guide](/docs/1.8/administration/installing/cloud/aws/advanced/quickstart/)
-* [Installing DC/OS Using AWS AMI](/docs/1.8/administration/installing/cloud/aws/advanced/aws-ami/)
+* [Installing Using a Custom AMI](/docs/1.8/administration/installing/cloud/aws/advanced/aws-ami/)
