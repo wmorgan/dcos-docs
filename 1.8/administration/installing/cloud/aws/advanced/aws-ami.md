@@ -1,9 +1,9 @@
 ---
-post_title: Installing DC/OS Using AWS AMI
-nav_title: AWS AMI
+post_title: Installing Using a Custom AMI
+nav_title: Custom AMI
 menu_order: 199
 ---
-You can use a customized [Amazon Machine Images (AMI)](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html) to launch DC/OS instances. For an example of how to build and deploy, see the [DC/OS CentOS 7 AMI](https://github.com/dcos/dcos/tree/master/cloud_images).
+You can use a customized [Amazon Machine Images (AMI)](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html) to launch DC/OS instances. For an example of how to build and deploy a custom AMI for DC/OS, see the [DC/OS CentOS 7 AMI](https://github.com/dcos/dcos/tree/master/cloud_images).
 
 - A custom AMI can be used to integrate DC/OS installation with your own in-house configuration management tools.
 - A custom AMI can be used if you want kernel or driver customization.
@@ -17,8 +17,7 @@ You can use a customized [Amazon Machine Images (AMI)](http://docs.aws.amazon.co
  
 1.  Go to [CloudFormation](https://console.aws.amazon.com/cloudformation/home) and click **Create Stack**.
 1.  On the **Select Template** page, upload the DC/OS advanced templates ([zen](/docs/1.8/administration/installing/cloud/aws/advanced/template-reference/#zen), [master](/docs/1.8/administration/installing/cloud/aws/advanced/template-reference/#master), [agent](/docs/1.8/administration/installing/cloud/aws/advanced/template-reference/#private-agent)) and click **Next**.
-1.  On the **Specify Details** page, specify a cluster name (`Stack name`), AMI ID (`CustomAMI`), Key Pair (`KeyName`), authentication (`OAuthEnabled`), public agent (`PublicSlaveInstanceCount`), private agent (`SlaveInstanceCount`), and click **Next**.
-
+1.  On the **Specify Details** page, specify a cluster name (`Stack name`), AMI ID (`CustomAMI`), Key Pair (`KeyName`), public agent (`PublicSlaveInstanceCount`), private agent (`SlaveInstanceCount`), and click **Next**.
 1.  On the **Specify Details** page, specify these values and and click **Next**.
 
     *  **Stack name** Specify the cluster name.
@@ -33,13 +32,10 @@ You can use a customized [Amazon Machine Images (AMI)](http://docs.aws.amazon.co
     *  **PublicAgentInstanceType** Specify the Amazon EC2 instance type for the public agent nodes. The <a href="https://aws.amazon.com/ec2/pricing/" target="_blank">m3.xlarge</a> instance type is recommended.
     *  **PublicSubnet** Specify the `Public SubnetId` output value from the `zen.sh` script. This subnet ID will be used by all public agents.
     *  **Vpc** Specify the `VpcId` output value from the `zen.sh` script. All nodes will be launched by using subnets and Internet Gateway under this VPC.
-
 1.  On the **Options** page, accept the defaults and click **Next**.
-
     **Tip:** You can choose whether to rollback on failure. By default this option is set to **Yes**.
 
 1.  On the **Review** page, check the acknowledgement box and then click **Create**.
-
     **Tip:** If the **Create New Stack** page is shown, either AWS is still processing your request or you’re looking at a different region. Navigate to the correct region and refresh the page to see your stack.
 
 ## Monitor the DC/OS cluster convergence process
