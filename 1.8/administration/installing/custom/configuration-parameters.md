@@ -18,7 +18,7 @@ This required parameter specifies the URI path for the DC/OS installer to store 
 This parameter specifies the name of your cluster.
 
 ### exhibitor_storage_backend
-This parameter specifies the type of storage backend to use for Exhibitor. You can use internal DC/OS storage (`static`) or specify an external storage system (`zookeeper`, and `aws_s3`) for configuring and orchestrating Zookeeper with Exhibitor on the master nodes. Exhibitor automatically configures your Zookeeper installation on the master nodes during your DC/OS installation.
+This parameter specifies the type of storage backend to use for Exhibitor. You can use internal DC/OS storage (`static`) or specify an external storage system (`zookeeper`, `aws_s3`, and `azure`) for configuring and orchestrating Zookeeper with Exhibitor on the master nodes. Exhibitor automatically configures your Zookeeper installation on the master nodes during your DC/OS installation.
 
 *   `exhibitor_storage_backend: static`
     This option specifies that the Exhibitor storage backend is managed internally within your cluster.
@@ -48,6 +48,15 @@ This parameter specifies the type of storage backend to use for Exhibitor. You c
        This parameter specifies S3 prefix to be used within your S3 bucket to be used by Exhibitor.
 
        **Tip:** AWS EC2 Classic is not supported.
+*   `exhibitor_storage_backend: azure`
+   This option specifies an Azure Storage Account for shared storage. The data will be stored under the container named `dcos-exhibitor`. If you specify `azure`, you must also specify these parameters:
+    *  **exhibitor_azure_account_name**
+       This parameter specifies the Azure Storage Account Name.
+    *  **exhibitor_azure_account_key**
+       This parameter specifies a secret key to access the Azure Storage Account.
+    *  **exhibitor_azure_prefix**
+       This parameter specifies the blob prefix to be used within your Storage Account to be used by Exhibitor.
+
 
 ### <a name="master"></a>master_discovery
 This required parameter specifies the Mesos master discovery method. The available options are `static` or `master_http_loadbalancer`.
@@ -59,11 +68,11 @@ This option specifies that Mesos agents are used to discover the masters by givi
        This required parameter specifies a list of your static master IP addresses as a YAML nested series (`-`).
 
 *   `master_discovery: master_http_loadbalancer` This option specifies that the set of masters has an HTTP load balancer in front of them. The agent nodes will know the address of the load balancer. They use the load balancer to access Exhibitor on the masters to get the full list of master IPs. If you specify `master_http_load_balancer`, you must also specify these parameters:
-    
-    *   **exhibitor_address** This required parameter specifies the location (preferably an IP address) of the load balancer in front of the masters. The load balancer must accept traffic on ports 8080, 5050, 80, and 443; and forward it to the same ports on the master (for example, 8080 on lb -> 8080 on one master, 5050 on lb -> 5050 on one master). The master should forward any new connections via round robin, and should avoid machines that do not respond to requests on port 5050 to ensure the master is up. 
+
+    *   **exhibitor_address** This required parameter specifies the location (preferably an IP address) of the load balancer in front of the masters. The load balancer must accept traffic on ports 8080, 5050, 80, and 443; and forward it to the same ports on the master (for example, 8080 on lb -> 8080 on one master, 5050 on lb -> 5050 on one master). The master should forward any new connections via round robin, and should avoid machines that do not respond to requests on port 5050 to ensure the master is up.
     *  **num_masters**
        This required parameter specifies the number of Mesos masters in your DC/OS cluster. It cannot be changed later. The number of masters behind the load balancer must never be greater than this number, though it can be fewer during failures.
-       
+
 ### <a name="public-agent"></a>public_agent_list
 This parameter specifies a YAML nested list (`-`) of IPv4 addresses to your [public agent](/docs/1.8/overview/concepts/#public) host names.
 
