@@ -75,7 +75,7 @@ Use the `zen.sh` script to create the Zen template dependencies. These dependenc
 
     Use these dependency values as input to create your stack in CloudFormation in the next steps.
 
-## Launch the DC/OS advanced template on CloudFormation
+## <a href="launch"></a>Launch the DC/OS advanced template on CloudFormation
 
 1.  Go to [CloudFormation](https://console.aws.amazon.com/cloudformation/home) and click **Create Stack**.
 1.  On the **Select Template** page, upload the [Zen](/docs/1.8/administration/installing/cloud/aws/advanced/template-reference/#zen) template from your workstation and click **Next**.
@@ -84,6 +84,7 @@ Use the `zen.sh` script to create the Zen template dependencies. These dependenc
     ![AWS UI](../img/aws-advanced-1.png)
 
     *  **Stack name** Specify the cluster name.
+    *  **CustomAMI** Optional: Specify the AMI ID. For more information, see [Installing Using a Custom AMI](/docs/1.8/administration/installing/cloud/aws/advanced/aws-ami).
     *  **InternetGateway** Specify the `InternetGatewayID` output value from the `zen.sh` script. The Internet Gateway ID must be attached to the VPC. This Internet Gateway will be used by all nodes for outgoing internet access.
     *  **KeyName** Specify your AWS EC2 Key Pair.
     *  **MasterInstanceType** Specify the Amazon EC2 instance type. The <a href="https://aws.amazon.com/ec2/pricing/" target="_blank">m3.xlarge</a> instance type is recommended.
