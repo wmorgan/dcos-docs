@@ -96,10 +96,6 @@ The synonym of slave node is worker or agent node. A Mesos agent node runs a dis
 
 Mesos provides an abstraction for accessing storage for schedulers for Java and C++ only. This is the preferred method to access ZooKeeper for DC/OS services.
 
-# <a name="superuser"></a>Superuser
-
-During installation, DC/OS creates an initial user account with `superuser` privileges. The person installing DC/OS sets the name and password of this account. For more information, see the Identity and Access Management [documentation](/docs/1.8/administration/id-and-access-mgt/).
-
 # <a name="task"></a>Task
 
 A unit of work scheduled by a Mesos framework and executed on a Mesos agent. In Hadoop terminology, this is a “job”. In MySQL terminology, this is a “query” or “statement”. A task may simply be a Bash command, a Python script, or a [complex AI application][12].
