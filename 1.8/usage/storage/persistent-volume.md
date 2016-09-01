@@ -75,7 +75,7 @@ The second volume is a persistent volume with a `containerPath` that matches the
 
 For a complete example, see the [Running stateful MySQL on Marathon](#stateful-sql) section.
 
-## Creating a stateful application via the DC/OS UI
+## Creating a stateful application via the DC/OS Web Interface
 
 1. Create a new service via the web interface in "Services" > "Deploy Service".
 1. Click the Volumes tab.
