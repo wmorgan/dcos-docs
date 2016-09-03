@@ -11,7 +11,7 @@ You can log into any host in the DC/OS cluster and view the currently running se
 You can view the DC/OS component details in the <a href="https://github.com/dcos/dcos/">https://github.com/dcos/dcos/</a> repo in the packages directory. 
 
 
-<table>
+<table class="table">
   <tr>
     <th>Component</th>
     <th>Description</th>
