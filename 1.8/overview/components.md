@@ -18,7 +18,7 @@ You can view the DC/OS component details in the <a href="https://github.com/dcos
   </tr>
   <tr>
     <td>Admin Router Service</td>
-    <td>This component is an open-source Nginx configuration created by Mesosphere that provides central authentication and proxy to DC/OS services within the cluster. The Admin Router service (`dcos-adminrouter.service `) is the core internal load balancer for DC/OS. Admin Router is a customized [Nginx](https://www.nginx.com/resources/wiki/) that proxies all of the internal services on port `80`.</td>
+    <td>This component is an open-source Nginx configuration created by Mesosphere that provides central authentication and proxy to DC/OS services within the cluster. The Admin Router service (`dcos-adminrouter.service `) is the core internal load balancer for DC/OS. Admin Router is a customized <a href="https://www.nginx.com/resources/wiki/">Nginx</a> that proxies all of the internal services on port `80`.</td>
   </tr>
   <tr>
     <td>Admin Router Agent</td>
@@ -62,11 +62,11 @@ You can view the DC/OS component details in the <a href="https://github.com/dcos
   </tr>
   <tr>
     <td>Erlang Port Mapping Daemon</td>
-    <td>This component (`dcos-epmd.service`) supports the internal DC/OS layer 4 load balancer that is called [Minuteman](https://github.com/dcos/minuteman).</td>
+    <td>This component (`dcos-epmd.service`) supports the internal DC/OS layer 4 load balancer that is called <a href="https://github.com/Netflix/exhibitor">Minuteman</a>.</td>
   </tr>
   <tr>
     <td>Exhibitor</td>
-    <td>This component (`dcos-exhibitor.service`) is the Exhibitor supervisor for Zookeeper. DC/OS uses Exhibitor, a project from [Netflix](https://github.com/Netflix/exhibitor), to manage and automate the deployment of [ZooKeeper](/docs/1.8/overview/concepts/#exhibitorforzookeeper).</td>
+    <td>This component (`dcos-exhibitor.service`) is the Exhibitor supervisor for Zookeeper. DC/OS uses Exhibitor, a project from <a href="https://github.com/Netflix/exhibitor">Netflix</a>, to manage and automate the deployment of <a href="/docs/1.8/overview/concepts/#exhibitorforzookeeper">ZooKeeper</a>.</td>
   </tr>
   <tr>
     <td>Generate resolv.conf</td>
@@ -82,11 +82,11 @@ You can view the DC/OS component details in the <a href="https://github.com/dcos
   </tr>
   <tr>
     <td>Job</td>
-    <td>This component (`dcos-metronome.service/`) powers the DC/OS Jobs feature. For more information, see the [documentation](/docs/1.8/usage/jobs/).</td>
+    <td>This component (`dcos-metronome.service/`) powers the DC/OS Jobs feature. For more information, see the <a href="/docs/1.8/usage/jobs/">documentation</a>.</td>
   </tr>
   <tr>
     <td>Layer 4 Load Balancer</td>
-    <td>This component (`dcos-minuteman.service`), also known as [Minuteman](https://github.com/dcos/minuteman), is the DC/OS Layer 4 Load Balancer that enables multi-tier microservices architectures. For more information, see the [documentation](/docs/1.8/usage/service-discovery/load-balancing-vips/).</td>
+    <td>This component (`dcos-minuteman.service`), also known as <a href="https://github.com/dcos/minuteman">Minuteman</a>, is the DC/OS Layer 4 Load Balancer that enables multi-tier microservices architectures. For more information, see the <a href="/docs/1.8/usage/service-discovery/load-balancing-vips/">documentation</a>.</td>
   </tr>
   <tr>
     <td>Logrotate master</td>
@@ -106,15 +106,15 @@ You can view the DC/OS component details in the <a href="https://github.com/dcos
   </tr>
   <tr>
     <td>Mesos Agent</td>
-    <td>This component (`dcos-mesos-slave.service`) is the mesos-slave process for [private](/docs/1.8/overview/concepts/#private) agent nodes.</td>
+    <td>This component (`dcos-mesos-slave.service`) is the mesos-slave process for <a href="/docs/1.8/overview/concepts/#private">private</a> agent nodes.</td>
   </tr>
   <tr>
     <td>Mesos Agent Public</td>
-    <td>This component (`dcos-mesos-slave-public.service`) is the mesos-slave process for [public](/docs/1.8/overview/concepts/#public) agent nodes.</td>
+    <td>This component (`dcos-mesos-slave-public.service`) is the mesos-slave process for <a href="/docs/1.8/overview/concepts/#public">public</a> agent nodes.</td>
   </tr>
   <tr>
     <td>Mesos DNS</td>
-    <td>This component (`dcos-mesos-dns.service`) provides service discovery within the cluster. Mesos-DNS is the internal DNS service (`dcos-mesos-dns.service`) for the DC/OS cluster. [Mesos-DNS](/docs/1.8/overview/concepts/#mesosdns) provides the namespace `$service.mesos` to all cluster hosts. For example, you can login to your leading mesos master with `ssh leader.mesos`.</td>
+    <td>This component (`dcos-mesos-dns.service`) provides service discovery within the cluster. Mesos-DNS is the internal DNS service (`dcos-mesos-dns.service`) for the DC/OS cluster. <a href="/docs/1.8/overview/concepts/#mesosdns">Mesos-DNS</a> provides the namespace `$service.mesos` to all cluster hosts. For example, you can login to your leading mesos master with `ssh leader.mesos`.</td>
   </tr>
   <tr>
     <td>Mesos History</td>
@@ -126,11 +126,11 @@ You can view the DC/OS component details in the <a href="https://github.com/dcos
   </tr>
   <tr>
     <td>Mesos Persistent Volume Discovery</td>
-    <td>This component (`dcos-vol-discovery-pub-agent.service`) connects to existing Mesos volume mounts on agent nodes during installation. For more information on Mesos Persistent Volumes, see the [documentation](http://mesos.apache.org/documentation/latest/persistent-volume/).</td>
+    <td>This component (`dcos-vol-discovery-pub-agent.service`) connects to existing Mesos volume mounts on agent nodes during installation. For more information on Mesos Persistent Volumes, see the <a href="http://mesos.apache.org/documentation/latest/persistent-volume/">documentation</a>.</td>
   </tr>
   <tr>
     <td>Navstar</td>
-    <td>This component (`dcos-navstar.service/`) is a daemon that provides virtual networking and DNS services. It is the network overlay orchestrator. For more information, see the [documentation](https://github.com/dcos/navstar).</td>
+    <td>This component (`dcos-navstar.service/`) is a daemon that provides virtual networking and DNS services. It is the network overlay orchestrator. For more information, see the <a href="https://github.com/dcos/navstar">documentation</a>.</td>
   </tr>
   <tr>
     <td>OAuth</td>
@@ -138,7 +138,7 @@ You can view the DC/OS component details in the <a href="https://github.com/dcos
   </tr>
   <tr>
     <td>Package service</td>
-    <td>This component (`dcos-cosmos.service `) is the internal packaging API service. This service is accessed every time that you run `dcos package install` from the CLI. This API deploys DC/OS packages from the DC/OS [Universe](https://github.com/mesosphere/universe) to your DC/OS cluster.</td>
+    <td>This component (`dcos-cosmos.service `) is the internal packaging API service. This service is accessed every time that you run `dcos package install` from the CLI. This API deploys DC/OS packages from the DC/OS <a href="https://github.com/mesosphere/universe">Universe</a> to your DC/OS cluster.</td>
   </tr>
   <tr>
     <td>Signal</td>
