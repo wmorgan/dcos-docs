@@ -42,7 +42,7 @@ You can view the DC/OS component details in the <a href="https://github.com/dcos
   </tr>
   <tr>
     <td>Diagnostics</td>
-    <td><p>This component (`dcos-ddt.service`) is the diagnostics utility for DC/OS systemd components. This service runs on every host, tracking the internal state of the systemd unit. The service runs in two modes, with or without the `-pull` argument. If running on a master host, it executes `/opt/mesosphere/bin/3dt -pull` which queries Mesos-DNS for a list of known masters in the cluster, then queries a master (usually itself) `:5050/statesummary` and gets a list of agents.</p><p>From this complete list of cluster hosts, it queries all 3DT health endpoints (`:1050/system/health/v1/health`). This endpoint returns health state for the DC/OS systemd units on that host. The master 3DT processes, along with doing this aggregation also expose `/system/health/v1/` endpoints to feed this data by `unit` or `node` IP to the DC/OS user interface.</p></td>
+    <td><p>This component (`dcos-3dt.service`\`dcos-ddt.service`) is the diagnostics utility for DC/OS systemd components. This service runs on every host, tracking the internal state of the systemd unit. The service runs in two modes, with or without the `-pull` argument. If running on a master host, it executes `/opt/mesosphere/bin/3dt -pull` which queries Mesos-DNS for a list of known masters in the cluster, then queries a master (usually itself) `:5050/statesummary` and gets a list of agents.</p><p>From this complete list of cluster hosts, it queries all 3DT health endpoints (`:1050/system/health/v1/health`). This endpoint returns health state for the DC/OS systemd units on that host. The master 3DT processes, along with doing this aggregation also expose `/system/health/v1/` endpoints to feed this data by `unit` or `node` IP to the DC/OS user interface.</p></td>
   </tr>
   <tr>
     <td>Diagnostics socket</td>
@@ -70,7 +70,7 @@ You can view the DC/OS component details in the <a href="https://github.com/dcos
   </tr>
   <tr>
     <td>Generate resolv.conf</td>
-    <td>This component allows the agent nodes locate the master nodes. It dynamically provisions `/etc/resolv.conf` for your cluster hosts.</td>
+    <td>This component (`dcos-gen-resolvconf.service`) allows the agent nodes locate the master nodes. It dynamically provisions `/etc/resolv.conf` for your cluster hosts.</td>
   </tr>
   <tr>
     <td>Generate resolv.conf Timer</td>
@@ -89,7 +89,7 @@ You can view the DC/OS component details in the <a href="https://github.com/dcos
     <td>This component (`dcos-minuteman.service`), also known as <a href="https://github.com/dcos/minuteman">Minuteman</a>, is the DC/OS Layer 4 Load Balancer that enables multi-tier microservices architectures. For more information, see the <a href="/docs/1.8/usage/service-discovery/load-balancing-vips/">documentation</a>.</td>
   </tr>
   <tr>
-    <td>Logrotate master</td>
+    <td>Logrotate Mesos Master</td>
     <td>This component (`dcos-logrotate-master.service`) automatically rotates compression, removal, and mailing of log files for master nodes. This ensures DC/OS services don't overload cluster hosts with too much log data on disk.</td>
   </tr>
   <tr>
@@ -98,7 +98,7 @@ You can view the DC/OS component details in the <a href="https://github.com/dcos
   </tr>
   <tr>
     <td>Logrotate Timer</td>
-    <td>This component (`dcos-logrotate.timer`) sets the logrotate interval at 2 minutes.</td>
+    <td>This component (`dcos-logrotate-agent.timer` and `dcos-logrotate-master.timer`) sets the logrotate interval at 2 minutes.</td>
   </tr>
   <tr>
     <td>Marathon</td>
@@ -140,6 +140,14 @@ You can view the DC/OS component details in the <a href="https://github.com/dcos
     <td>Package service</td>
     <td>This component (`dcos-cosmos.service `) is the internal packaging API service. This service is accessed every time that you run `dcos package install` from the CLI. This API deploys DC/OS packages from the DC/OS <a href="https://github.com/mesosphere/universe">Universe</a> to your DC/OS cluster.</td>
   </tr>
+  <tr>
+      <td>Pkgpanda API</td>
+      <td>This component (`dcos-pkgpanda-api.service`) creates symlinks, installs systemd units, and sets up the roles for each host (master, private agent, public agent).</td>
+    </tr>
+    <tr>
+      <td>Pkgpanda API socket</td>
+      <td>This component (`dcos-pkgpanda-api.socket`) is the Pkgpanda API socket.</td>
+    </tr>
   <tr>
     <td>Signal</td>
     <td>This component (`dcos-signal.service`) sends a periodic ping back to Mesosphere with high-level cluster information to help improve DC/OS, and provides advanced monitoring of cluster issues. Signal queries the diagnostics service `/system/health/v1/report` endpoint on the leading master and sends this data to SegmentIO for use in tracking metrics and customer support.</td>
