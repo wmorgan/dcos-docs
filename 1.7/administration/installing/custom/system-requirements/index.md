@@ -105,6 +105,7 @@ Here are the agent node hardware requirements.
 *   Network Time Protocol (NTP) must be enabled on all nodes for clock synchronization.
 *   Each node is network accessible from the bootstrap node.
 *   Each node has unfettered IP-to-IP connectivity from itself to all nodes in the DC/OS cluster.
+*   UDP must be open for ingress to port 53 on the masters. To attach to a cluster, the Mesos agent node service (`dcos-mesos-slave`) uses this port to find `leader.mesos`. 
 
 
 # Software Prerequisites
