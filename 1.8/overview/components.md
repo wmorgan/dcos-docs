@@ -82,7 +82,7 @@ You can view the DC/OS component details in the <a href="https://github.com/dcos
   </tr>
   <tr>
     <td>Job</td>
-    <td>This component (`dcos-metronome.service/`) powers the DC/OS Jobs feature. For more information, see the <a href="/docs/1.8/usage/jobs/">documentation</a>.</td>
+    <td>This component (`dcos-metronome.service`) powers the DC/OS Jobs feature. For more information, see the <a href="/docs/1.8/usage/jobs/">documentation</a>.</td>
   </tr>
   <tr>
     <td>Layer 4 Load Balancer</td>
