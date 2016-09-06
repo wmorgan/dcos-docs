@@ -33,13 +33,11 @@ The components of the overlay network interact in the following ways:
 
 - The CNI isolator is used for the Mesos containerizer. [DNI](https://docs.docker.com/engine/userguide/networking/dockernetworks/) is used for the Docker containerizer, shelling out to the Docker daemon.
 
-- An overlay orchestrator ([Navstar](https://github.com/dcos/navstar)) performs intra-node IP discovery. This operator-facing system component uses a library, ([lashup](https://github.com/dcos/lashup)) to program the overlay backend. Lashup <!-- note: this name will change --> implements a gossip protocol to disseminate and coordinate overlay routing information among all Mesos agents in the DC/OS cluster.
+- An overlay orchestrator ([Navstar](https://github.com/dcos/navstar)) performs intra-node IP discovery. This operator-facing system component uses a library, ([lashup](https://github.com/dcos/lashup)) to program the overlay backend. Lashup implements a gossip protocol to disseminate and coordinate overlay routing information among all Mesos agents in the DC/OS cluster.
 
 **Note:** Your network must adhere to the [DC/OS system requirements](https://dcos.io/docs/1.8/administration/installing/custom/system-requirements/) to use DC/OS overlay networks.
 
-# Navstar DNS <!-- note this name will change -->
-
-<!-- What's Navstar? Why does an end-user need to know? Is this the right place for this? what do I have to do to pull up these records?-->
+# Navstar DNS
 
 Navstar maps IPs to names on your overlay network. During DNS lookup for a taskâ€™s IP, there are situations when it is unknown to the DNS server if the IP address stored in NetworkInfo is accessible or not. Three entries in Navstar DNS help to remedy this situation:
 
@@ -64,7 +62,7 @@ Navstar maps IPs to names on your overlay network. During DNS lookup for a taskâ
 
 * Certain names are reserved and cannot be used as DC/OS overlay network names, primarily because DC/OS overlay uses Docker networking underneath to connect Docker containers to the overlay, which in turn reserves certain network names. The reserved names are: `host`, `bridge` and `default`.
 
-* Marathon health checks will not work with certain overlay network configurations. If you are not using the default DC/OS overlay network configuration and Marathon does not have access to the overlay network, health checks will fail consistently even if the service is healthy. <!-- To allow Marathon to access the overlay network... -->
+* Marathon health checks will not work with certain overlay network configurations. If you are not using the default DC/OS overlay network configuration and Marathon does not have access to the overlay network, health checks will fail consistently even if the service is healthy.
 
   Marathon health checks _will_ work in any of the following circumstances:
 
