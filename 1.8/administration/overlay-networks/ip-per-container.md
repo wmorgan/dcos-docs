@@ -6,8 +6,6 @@ menu_order: 10
 
 The overlay network feature is enabled by default in DC/OS. The default configuration of DC/OS provides an overlay network, `dcos`, whose YAML configuration is as follows:
 
-<!-- can a user do this with a cloud installation of DC/OS? Send answer and config to Joel -->
-
 ```yaml
   dcos_overlay_network:
     vtep_subnet: 44.128.0.0/20
