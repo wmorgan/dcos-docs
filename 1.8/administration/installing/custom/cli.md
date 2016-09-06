@@ -173,41 +173,10 @@ The DC/OS installation creates these folders:
 
 In this step you create a custom DC/OS build file on your bootstrap node and then install DC/OS across your cluster nodes with SSH. With this installation method you create a bootstrap server that uses your SSH key and connects to every node to automate the deployment.
 
-You can view all of the automated command line installer options with the `--help` flag:
+**Tip:** 
 
-```bash
-$ sudo bash dcos_generate_config.sh --help
-Running mesosphere/dcos-genconf docker with BUILD_DIR set to /home/centos/genconf
-usage:
-Install DC/OS
-
-dcos_installer [-h] [-f LOG_FILE] [--hash-password HASH_PASSWORD] [-v]
-[--web | --genconf | --preflight | --deploy | --postflight | --uninstall | --validate-config | --test]
-
-Environment Settings:
-
-  PORT                  Set the :port to run the web UI
-  CHANNEL_NAME          ADVANCED - Set build channel name
-  BOOTSTRAP_ID          ADVANCED - Set bootstrap ID for build
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -v, --verbose         Verbose log output (DEBUG).
-  --offline             Do not install preflight prerequisites on CentOS7,
-                        RHEL7 in web mode
-  --web                 Run the web interface.
-  --genconf             Execute the configuration generation (genconf).
-  --preflight           Execute the preflight checks on a series of nodes.
-  --install-prereqs     Install preflight prerequisites. Works only on CentOS7
-                        and RHEL7.
-  --deploy              Execute a deploy.
-  --postflight          Execute postflight checks on a series of nodes.
-  --uninstall           Execute uninstall on target hosts.
-  --validate-config     Validate the configuration in config.yaml
-  --test                Performs tests on the dcos_installer application
-```
-
-**Tip:** If something goes wrong and you want to rerun your setup, use these cluster [cleanup instructions][7].
+- You can view all of the automated command line installer options with the `dcos_generate_config.sh --help` flag.
+- If something goes wrong and you want to rerun your setup, use these cluster [cleanup instructions][7].
 
 To install DC/OS:
 
