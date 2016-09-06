@@ -156,7 +156,7 @@ Then, use the [framework cleaner](/docs/1.8/usage/managing-services/uninstall/#f
 
 `framework-role` is `kafka-role`
 `framework-principal` is `kafka-principal`
-`zk_path` is `kafka`
+`zk_path` is `dcos-service-kafka`
 
 ## Further resources
 
