@@ -12,14 +12,32 @@ You can use customized [Amazon Machine Images (AMI)](http://docs.aws.amazon.com/
 To get started, build a custom AMI and then install DC/OS by using the advanced templates. 
 
 # Build a custom AMI
-Here is the recommend method to build your AMI:
+This is the recommend method to building your own AMI.
 
-1.  Using the DC/OS [cloud_images](https://github.com/dcos/dcos/tree/master/cloud_images) scripts for CentOS 7 as a template, create an AWS AMI in the same target region as your DC/OS stack. 
+## Test that you can build the DC/OS cloud_images AMI 
 
-    **Important:** The AMI must satisfy all of the DC/OS AMI prerequisites as shown in the template.
+1.  Use the DC/OS [cloud_images](https://github.com/dcos/dcos/tree/master/cloud_images) scripts as a template. These scripts build a CentOS7 AMI with all of the DC/OS prerequisites installed. 
 
-1.  Build and deploy your AMI. For an example of how to build and deploy AMIs to multiple regions, see the DC/OS Packer build scripts [here](https://github.com/dcos/dcos/blob/master/cloud_images/centos7/packer.json).
+    **Important:**
+    
+    - Verify that you can build and deploy an AMI using these scripts as-is, without modification. 
+    - An AMI must be deployed to every region where a cluster will be launched. The DC/OS Packer build script [create_dcos_ami.sh](https://github.com/dcos/dcos/blob/master/cloud_images/centos7/create_dcos_ami.sh) can deploy the AMI to multiple regions by setting the environment variable `DEPLOY_REGIONS` before running the script.
 
-# Install DC/OS
+1.  Launch the DC/OS advanced template using the AWS CloudFormation web console and specify the DC/OS cloud_images AMI. Verify that the cluster launched successfully. For more information, see the QuickStart [documentation](/docs/1.8/administration/installing/cloud/aws/advanced/quickstart/#launch).
 
-Launch the DC/OS advanced template on CloudFormation and specify your custom AMI. For more information, see the QuickStart [documentation](/docs/1.8/administration/installing/cloud/aws/advanced/quickstart/#launch).
+## Modify the DC/OS cloud_images AMI for your environment
+
+After you have successfully built and deployed the unmodified DC/OS cloud_images AMI using the AWS CloudFormation web console:
+
+1.  Modify the DC/OS [cloud_images](https://github.com/dcos/dcos/tree/master/cloud_images) AMI scripts with your own AMI customizations. 
+
+    **Important:** Your AMI must satisfy all of the DC/OS AMI prerequisites as shown in the template.
+
+1.  Launch the DC/OS advanced templates using the AWS CloudFormation web console and specify your customized AMI. Verify that DC/OS starts as expected and that services can be launched on the DC/OS cluster. 
+
+    **Troubleshooting:**
+    
+    - Familiarize yourself with the DC/OS service startup [process](/1.8/overview/architecture/#boot). 
+    - See the installation troubleshooting [documentation](/1.8/administration/installing/custom/troubleshooting/). To troubleshoot you must have [SSH access](/1.8/administration/sshcluster/) to all of the cluster nodes. 
+    - The [DC/OS Slack](https://dcos.io/docs/1.8/support/) community is another a good place to get help.
+

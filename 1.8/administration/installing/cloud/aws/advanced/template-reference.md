@@ -45,7 +45,7 @@ The Zen templates orchestrate the individual component templates.
   </tr>
   <tr>
     <td>AdminLocation</td>
-    <td>Optional: Specify the IP range to whitelist for access to the admin zone. Must be a valid CIDR.</td>
+    <td>Optional: Specify the IP range to whitelist for access to the admin zone. Must be a valid CIDR. To allow access from any IP address, use `0.0.0.0/0`.</td>
   </tr>
   <tr>
     <td>CustomAMI</td>
