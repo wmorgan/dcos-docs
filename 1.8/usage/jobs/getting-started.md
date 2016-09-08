@@ -12,17 +12,19 @@ You can create and administer jobs in the DC/OS web interface or via the API.
 
 From the DC/OS web interface, click the **Jobs** tab, then the **New Job** button. Fill in the following fields, or toggle to JSON mode to edit the JSON directly:
 
-* **CPU**
-* **Memory**
-* **Disk space**
+* **Job ID** - The ID of your job.
+* **Description** - A description of your job.
+* **CPU** - The amount of CPU your job requires.
+* **Memory** - The amount of memory your job requires.
+* **Disk space** - The amount of disk space your job requires.
 * **Command** - The command your job will execute. Leave this blank if you will use a Docker image.
 * **Schedule** - Specify the schedule in cron format, as well as the time zone and starting deadline. Use [this crontab generator](http://crontab.guru) for help.
 * **Docker Container** - Fill in this field if you will use a Docker image to specify the action of your job.
-* **Labels**
+* **Labels** - Attach metadata to your job.
 
 ## Modify, View, or Remove a Job
 
-From the "Jobs" tab, click the name of your job to modify or delete your job. While the job is running you can click the job instance to drill down to "Details," "Files," and "Logs" data.
+From the **Jobs** tab, click the name of your job to modify or delete your job. While the job is running you can click the job instance to drill down to **Details**, **Files**, and **Logs** data.
 
 # Metronome API
 
