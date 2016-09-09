@@ -149,6 +149,14 @@ You can view the DC/OS component details in the <a href="https://github.com/dcos
   <td>This component (`dcos-pkgpanda-api.socket`) is the Pkgpanda API socket.</td>
 </tr>
 <tr>
+      <td>Pkgpanda API</td>
+      <td>This component (`dcos-pkgpanda-api.service`) creates symlinks, installs systemd units, and sets up the roles for each host (master, private agent, public agent).</td>
+    </tr>
+    <tr>
+      <td>Pkgpanda API socket</td>
+      <td>This component (`dcos-pkgpanda-api.socket`) is the Pkgpanda API socket.</td>
+    </tr>
+>>>>>>> bugfix/minor-cleanup
   <tr>
     <td>Signal</td>
     <td>This component (`dcos-signal.service`) sends a periodic ping back to Mesosphere with high-level cluster information to help improve DC/OS, and provides advanced monitoring of cluster issues. Signal queries the diagnostics service `/system/health/v1/report` endpoint on the leading master and sends this data to SegmentIO for use in tracking metrics and customer support.</td>
