@@ -4,9 +4,9 @@ post_title: Overlay Networks
 menu_order: 11.5
 ---
 
-The DC/OS overlay network feature is an out-of-the-box virtual networking solution that provides an ip-per-container for Mesos and Docker containers alike. The DC/OS overlay network uses CNI (Container Network Interface) for the MesosContainerizer and Docker libnetwork for the DockerContainerizer.
+The DC/OS overlay network feature is an out-of-the-box virtual networking solution that provides an ip-per-container for Mesos and Docker containers alike. The DC/OS overlay network uses CNI (Container Network Interface) for the Mesos Containerizer and Docker libnetwork for the Docker Containerizer.
 
-DC/OS overlay networks allow containers launched through the Mesos Containerizer or Docker Containerizer to co-exist on the same IP network, allocating each container their own unique IP address. DC/OS overlay networks offer the following advantages:
+DC/OS overlay networks allow containers launched through the Mesos Containerizer or Docker Containerizer to co-exist on the same IP network, allocating each container its own unique IP address. DC/OS overlay networks offer the following advantages:
 
 * Both Mesos and Docker containers can communicate from within a single node and between nodes on a cluster.
 * Services can be created such that their traffic is isolated from other traffic coming from any other overlay network or host in the cluster.
@@ -23,7 +23,7 @@ DC/OS overlay networks allow containers launched through the Mesos Containerizer
 
 DC/OS overlay network architecture:
 
-![Overview of the DC/OS Overlay Networks architecture](../img/overlay-networks.png)
+![Overview of the DC/OS Overlay Networks architecture](img/overlay-networks.png)
 
 DC/OS overlay networks do not require an external IP address management (IPAM) solution because IP allocation is handled via the Mesos Master replicated log. Overlay networks do not support external IPAMs.
 
@@ -67,7 +67,5 @@ Navstar maps IPs to names on your overlay network. During DNS lookup for a taskâ
   Marathon health checks _will_ work in any of the following circumstances:
 
   * You are using the default DC/OS overlay network configuration.
-
   * Marathon has access to the overlay network.
-
   * You use a [`command` health check](http://mesosphere.github.io/marathon/docs/health-checks.html).
