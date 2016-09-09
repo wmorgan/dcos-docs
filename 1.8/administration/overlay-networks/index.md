@@ -62,7 +62,7 @@ Navstar maps IPs to names on your overlay network. During DNS lookup for a taskâ
 
 * Certain names are reserved and cannot be used as DC/OS overlay network names, primarily because DC/OS overlay uses Docker networking underneath to connect Docker containers to the overlay, which in turn reserves certain network names. The reserved names are: `host`, `bridge` and `default`.
 
-* Marathon health checks will not work with certain overlay network configurations. If you are not using the default DC/OS overlay network configuration and Marathon does not have access to the overlay network, health checks will fail consistently even if the service is healthy.
+* Marathon health checks will not work with certain overlay network configurations. If you are not using the default DC/OS overlay network configuration and Marathon is isolated from the overlay network, health checks will fail consistently even if the service is healthy.
 
   Marathon health checks _will_ work in any of the following circumstances:
 
