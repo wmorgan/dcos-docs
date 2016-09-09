@@ -14,3 +14,4 @@ The templates are used together in conjunction to create a DC/OS cluster. The te
 
 * [Quick Start Guide](/docs/1.8/administration/installing/cloud/aws/advanced/quickstart/)
 * [Installing Using a Custom AMI](/docs/1.8/administration/installing/cloud/aws/advanced/aws-ami/)
+* [Generating Custom AWS CF Templates](/docs/1.8/administration/installing/cloud/aws/advanced/aws-custom/)
