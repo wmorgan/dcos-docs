@@ -22,8 +22,6 @@ Overlay networks are configured at install time. You or the data center operator
 
 To use an overlay network in a Marathon app definition, specify the `"network": "USER"` property along with an `ipAddress` field in the form: `{"ipAddress": {"network": "$MYNETWORK"}}`. The value of `$MYNETWORK` is the canonical name of the network.
 
-**Note:** Marathon currently only supports overlay networking through the Docker containerizer (DNI), not the Mesos containerizer.
-
 # Example
 
 The following Marathon application definition specifies a network named `dcos-1`, which refers to the target DC/OS overlay network of the same name.
