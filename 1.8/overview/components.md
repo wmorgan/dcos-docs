@@ -117,7 +117,7 @@ You can view the DC/OS component details in the <a href="https://github.com/dcos
     <td>This component (`dcos-mesos-dns.service`) provides service discovery within the cluster. Mesos-DNS is the internal DNS service (`dcos-mesos-dns.service`) for the DC/OS cluster. <a href="/docs/1.8/overview/concepts/#mesosdns">Mesos-DNS</a> provides the namespace `$service.mesos` to all cluster hosts. For example, you can login to your leading mesos master with `ssh leader.mesos`.</td>
   </tr>
   <tr>
-    <td>Mesos History</td>
+    <td>History Service</td>
     <td>This component (`dcos-history-service.service`) enables the DC/OS web interface to display cluster usage statistics.</td>
   </tr>
   <tr>
@@ -129,7 +129,7 @@ You can view the DC/OS component details in the <a href="https://github.com/dcos
     <td>This component (`dcos-vol-discovery-pub-agent.service`) connects to existing Mesos volume mounts on agent nodes during installation. For more information on Mesos Persistent Volumes, see the <a href="http://mesos.apache.org/documentation/latest/persistent-volume/">documentation</a>.</td>
   </tr>
   <tr>
-    <td>Navstar</td>
+    <td>Virtual Network Service</td>
     <td>This component (`dcos-navstar.service/`) is a daemon that provides virtual networking and DNS services. It is the network overlay orchestrator. For more information, see the <a href="https://github.com/dcos/navstar">documentation</a>.</td>
   </tr>
   <tr>
@@ -140,23 +140,14 @@ You can view the DC/OS component details in the <a href="https://github.com/dcos
     <td>Package service</td>
     <td>This component (`dcos-cosmos.service `) is the internal packaging API service. This service is accessed every time that you run `dcos package install` from the CLI. This API deploys DC/OS packages from the DC/OS <a href="https://github.com/mesosphere/universe">Universe</a> to your DC/OS cluster.</td>
   </tr>
-  <tr>
-  <td>Pkgpanda API</td>
-  <td>This component (`dcos-pkgpanda-api.service`) creates symlinks, installs systemd units, and sets up the roles for each host (master, private agent, public agent).</td>
-</tr>
 <tr>
-  <td>Pkgpanda API socket</td>
-  <td>This component (`dcos-pkgpanda-api.socket`) is the Pkgpanda API socket.</td>
-</tr>
-<tr>
-      <td>Pkgpanda API</td>
+      <td>System Package Manager API</td>
       <td>This component (`dcos-pkgpanda-api.service`) creates symlinks, installs systemd units, and sets up the roles for each host (master, private agent, public agent).</td>
     </tr>
     <tr>
-      <td>Pkgpanda API socket</td>
-      <td>This component (`dcos-pkgpanda-api.socket`) is the Pkgpanda API socket.</td>
+      <td>System Package Manager API socket</td>
+      <td>This component (`dcos-pkgpanda-api.socket`) is the System Package Manager API socket.</td>
     </tr>
->>>>>>> bugfix/minor-cleanup
   <tr>
     <td>Signal</td>
     <td>This component (`dcos-signal.service`) sends a periodic ping back to Mesosphere with high-level cluster information to help improve DC/OS, and provides advanced monitoring of cluster issues. Signal queries the diagnostics service `/system/health/v1/report` endpoint on the leading master and sends this data to SegmentIO for use in tracking metrics and customer support.</td>
