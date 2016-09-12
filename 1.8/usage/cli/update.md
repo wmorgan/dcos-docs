@@ -12,13 +12,13 @@ You can update the DC/OS CLI to the latest version or downgrade to an older vers
 
 You can upgrade an existing DC/OS CLI installation to the latest build.
 
-1.  Remove the current CLI binary. By default, this file is located in `/usr/local/bin/dcos`.
+1.  Remove the current CLI binary. For example, if you installed to `/usr/local/bin/`:
                                    
     ```bash
     $ rm -rf /usr/local/bin/dcos
     ```
 
-1.  Download the DC/OS CLI binary (`dcos`) to your local directory (for example, `/usr/local/bin/`).Update the command with the desired upgrade version (`<version>`):
+1.  Download the DC/OS CLI binary (`dcos`) to your local directory (for example, `/usr/local/bin/`). Update the command with the desired upgrade version (`<version>`):
     
     ```bash
     $ curl https://downloads.dcos.io/binaries/cli/darwin/x86-64/<version>/dcos
@@ -26,16 +26,18 @@ You can upgrade an existing DC/OS CLI installation to the latest build.
     
     **Important:** The CLI must be installed on a system that is external to your DC/OS cluster.
     
-1.  Make the CLI binary executable.
+1.  **Mac OS X and Linux:** Make the CLI binary executable. 
     
     ```bash
     chmod +x dcos
     ```
-    
+   
+    **Tip:** If your system is unable to find the executable, you may need to re-open the command prompt or add the installation directory to your PATH environment variable manually.
+
 1.  Point the CLI to your DC/OS master node. In this example, `http://example.com` is the master node IP address.
     
     ```bash
-    ./dcos config set core.dcos_url http://example.com
+    dcos config set core.dcos_url http://example.com
     ```
 
     Follow the instructions in the DC/OS CLI. For more information about security, see the [documentation](/docs/1.8/administration/id-and-access-mgt/).
@@ -43,7 +45,7 @@ You can upgrade an existing DC/OS CLI installation to the latest build.
     Your CLI should now be authenticated with your cluster! Enter `dcos` to get started.
 
     ```bash
-    ./dcos
+    dcos
     Command line utility for the Mesosphere Datacenter Operating
     System (DC/OS). The Mesosphere DC/OS is a distributed operating
     system built around Apache Mesos. This utility provides tools
