@@ -9,7 +9,7 @@ You can create custom advanced templates for DC/OS. You can then deploy and run 
 **Prerequisites:**
 
 * A node that meets custom installer bootstrap node [system requirements](/docs/1.8/administration/installing/custom/system-requirements/).
-* Advanced template [system requirements](/docs/1.8/administration/cloud/aws/advanced/system-requirements/).
+* Advanced template [system requirements](/docs/1.8/administration/installing/cloud/aws/advanced/system-requirements/).
 * An Amazon S3 bucket with read-write access.
 
 
