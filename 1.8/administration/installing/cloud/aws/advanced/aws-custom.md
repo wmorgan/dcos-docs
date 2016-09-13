@@ -12,6 +12,7 @@ You can create custom advanced templates for DC/OS. You can then deploy and run 
 * Advanced template [system requirements](/docs/1.8/administration/installing/cloud/aws/advanced/system-requirements/).
 * An Amazon S3 bucket with read-write access.
     * The S3 bucket must have a bucket policy that allows the launched AWS instances to download the files from the s3 bucket. Here is a sample policy that allows anyone to download:
+    
       ```json
       {
         "Version":"2012-10-17",
