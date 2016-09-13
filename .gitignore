@@ -7,3 +7,4 @@ npm-debug.log
 dcos-website
 
 tmp
+tmp/website
