@@ -64,7 +64,7 @@ You can create custom advanced templates for DC/OS. You can then deploy and run 
     *  **aws_template_storage_secret_access_key**
        Specify the AWS [Secret Access Key](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSGettingStartedGuide/AWSCredentials.html). For example, `aws_template_storage_secret_access_key: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY`.
     
-1.  Run the DC/OS installer script with the AWS argument specified. This command creates and uploads a custom build of the DC/OS artifacts and templates uploaded to the specified S3 bucket.
+1.  Run the DC/OS installer script with the AWS argument specified. This command creates and uploads a custom build of the DC/OS artifacts and templates to the specified S3 bucket.
 
     ```bash
     $ sudo bash dcos_generate_config.sh --aws-cloudformation
