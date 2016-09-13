@@ -19,7 +19,7 @@ You can create custom advanced templates for DC/OS. You can then deploy and run 
     ```bash
     $ mkdir -p genconf
     ```
-1.  Create a configuration file and save as `config.yaml`. This configuration file specifies your AWS credentials and the S3 location to store the generated artifacts. These are the required parameters:
+1.  Create a configuration file in the `genconf` directory and save as `config.yaml`. This configuration file specifies your AWS credentials and the S3 location to store the generated artifacts. These are the required parameters:
 
     ```bash
     aws_template_storage_bucket: cody-test-advanced
@@ -60,7 +60,7 @@ You can create custom advanced templates for DC/OS. You can then deploy and run 
     AWS CloudFormation templates now available at: https://<amazon-web-endpoint>/<path-to-directory>
     ```
 1.  Go to [CloudFormation](https://console.aws.amazon.com/cloudformation/home) and click **Create Stack**.
-1.  On the **Select Template** page, specify the Amazon S3 template URL path to your Zen template. For example, `https://s3-us-west-2.amazonaws.com/templates/dcos/cloudformation/el7-zen-1.json`.
+1.  On the **Select Template** page, specify the Amazon S3 template URL path to your Zen template. For example, `https://s3-us-west-2.amazonaws.com/user-aws/templates/config_id/14222z9104081387447be59e178438749d154w3g/cloudformation/el7-zen-1.json`.
 
 ### Template reference
 For the complete advanced configuration options, see the template reference [documentation](/docs/1.8/administration/installing/cloud/aws/advanced/template-reference/).
