@@ -70,7 +70,12 @@ Identify your Mesos leader node. This node should be the last master node that y
     $ sudo rm -rf /opt/mesosphere /etc/mesosphere
     ```
 
-<!-- Insert additional step for `exhibitor_storage_backend: zookeeper` users. -->
+1. **Important:** If `exhibitor_storage_backend` is set to `zookeeper`, add the user `dcos_exhibitor` and give it ownership of the ZooKeeper data directory:
+
+    ```
+    $ sudo useradd --system --home-dir /opt/mesosphere --shell /sbin/nologin -c 'DCOS System User' dcos_exhibitor
+    $ sudo chown -R dcos_exhibitor /var/lib/zookeeper
+    ```
 
 1. Install DC/OS 1.8:
 
