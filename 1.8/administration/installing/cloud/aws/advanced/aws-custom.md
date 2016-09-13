@@ -30,7 +30,7 @@ You can create custom advanced templates for DC/OS. You can then deploy and run 
       
 
 1.  Download the [dcos_generate_config.sh](https://dcos.io/releases/) to your bootstrap node.
-1.  Create a directory named `genconf` on your node and navigate to it.
+1.  Create a directory named `genconf` in the home directory of your node and navigate to it.
     
     ```bash
     $ mkdir -p genconf
