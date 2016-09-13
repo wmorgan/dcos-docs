@@ -11,7 +11,23 @@ You can create custom advanced templates for DC/OS. You can then deploy and run 
 * A node that meets custom installer bootstrap node [system requirements](/docs/1.8/administration/installing/custom/system-requirements/).
 * Advanced template [system requirements](/docs/1.8/administration/installing/cloud/aws/advanced/system-requirements/).
 * An Amazon S3 bucket with read-write access.
-
+    * The S3 bucket must have a bucket policy that allows the launched AWS instances to download the files from the s3 bucket. Here is a sample policy that allows anyone to download:
+      ```json
+      {
+        "Version":"2012-10-17",
+        "Statement":[
+          {
+            "Sid":"AddPerm",
+            "Effect":"Allow",
+            "Principal": "*",
+            "Action":["s3:GetObject"],
+            "Resource":["arn:aws:s3:::<bucket_name>/<bucket_path>/*"]
+          }
+        ]
+      }
+      ```
+      For more information about s3 bucket polices, see the [AWS Documentation](http://docs.aws.amazon.com/AmazonS3/latest/dev/example-bucket-policies.html).
+      
 
 1.  Download the [dcos_generate_config.sh](https://dcos.io/releases/) to your bootstrap node.
 1.  Create a directory named `genconf` on your node and navigate to it.
