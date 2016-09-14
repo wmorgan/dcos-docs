@@ -22,10 +22,10 @@ For new users installing to existing virtual or physical machines, on-premises o
 
 For advanced users installing to existing virtual or physical machines, on-premises or in the cloud, the [Advanced Installer][5] provides a scriptable, automatable interface to integrate with your preferred configuration management system.
 
-[1]: local/
-[2]: /docs/1.8/cloud/aws/
-[3]: /docs/1.8/cloud/azure/
-[4]: /docs/1.8/custom/gui/
-[5]: /docs/1.8/custom/advanced/
-[6]: /docs/1.8/cloud/
-[7]: /docs/1.8/custom/
+[1]: /docs/1.8/administration/installing/local/
+[2]: /docs/1.8/administration/installing/cloud/aws/
+[3]: /docs/1.8/administration/installing/cloud/azure/
+[4]: /docs/1.8/administration/installing/custom/gui/
+[5]: /docs/1.8/administration/installing/custom/advanced/
+[6]: /docs/1.8/administration/installing/cloud/
+[7]: /docs/1.8/administration/installing/custom/
