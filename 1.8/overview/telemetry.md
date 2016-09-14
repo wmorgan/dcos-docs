@@ -31,12 +31,6 @@ For each category this data is collected:
 "clusterId": "70b28f00-e38f-41b2-a723-aab344f535b9"
 </pre>
 </td></tr>
-<tr><td>customerKey (Enterprise DC/OS)</td>
-<td>This is the Enterprise DC/OS customer key. Customer keys are delivered via email to the Authorized Support Contact. For example:
-<pre>
-"customerKey": "ab1c23de-45f6-7g8h-9012-i345j6k7lm8n",
-</pre>
-</td></tr>
 <tr><td>event</td>
 <td>This is the category that appears in Segment. Possible values are <code>package_list</code> (Package service), <code>health</code> (Diagnostics), and <code>mesos_track</code> (Mesos). For example:
 <pre>
@@ -281,4 +275,4 @@ The DC/OS UI sends two types of notifications to [Segment](https://segment.com/d
 
 ## Opt-Out
 
-You can also choose to opt-out of the telemetry features. For more information, see the [documentation](/docs/1.8/administration/opt-out/).
+You can also choose to opt-out of the telemetry features. For more information, see the [documentation](/docs/1.8/administration/installing/opt-out/).

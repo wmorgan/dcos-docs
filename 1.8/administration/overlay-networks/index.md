@@ -33,7 +33,7 @@ The components of the overlay network interact in the following ways:
 
 - The CNI isolator is used for the Mesos containerizer. [DNI](https://docs.docker.com/engine/userguide/networking/dockernetworks/) is used for the Docker containerizer, shelling out to the Docker daemon.
 
-- An overlay orchestrator ([Navstar](https://github.com/dcos/navstar)) performs intra-node IP discovery. This operator-facing system component uses a library, ([lashup](https://github.com/dcos/lashup)) to program the overlay backend. Lashup implements a gossip protocol to disseminate and coordinate overlay routing information among all Mesos agents in the DC/OS cluster.
+- For intra-node IP discovery we use an overlay orchestrator called Virtual Network Service. This operator-facing system component is responsible for programming the overlay backend using a library called [lashup](https://github.com/dcos/lashup) that implements a gossip protocol to disseminate and coordinate overlay routing information among all Mesos agents in the DC/OS cluster.
 
 **Note:** Your network must adhere to the [DC/OS system requirements](https://dcos.io/docs/1.8/administration/installing/custom/system-requirements/) to use DC/OS overlay networks.
 

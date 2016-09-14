@@ -44,20 +44,20 @@ The Zen templates orchestrate the individual component templates.
     <th>Key Value</th>
   </tr>
   <tr>
-    <td>KeyName</td>
-    <td>AWS EC2 Key Pair to SSH into instances</td>
+    <td>AdminLocation</td>
+    <td>Optional: Specify the IP range to whitelist for access to the admin zone. Must be a valid CIDR. To allow access from any IP address, use `0.0.0.0/0`.</td>
   </tr>
   <tr>
-    <td>AcceptEULA</td>
-    <td>Read the Mesosphere EULA and indicate agreement: https://docs.mesosphere.com/community-edition-eula/.</td>
-  </tr>
-  <tr>
-    <td>Vpc</td>
-    <td>Existing VPC to use. Nodes will be launched using subnets and Internet Gateway under this VPC</td>
+    <td>CustomAMI</td>
+    <td>Optional: Specify an AMI ID. Must reside in the same region and have all DC/OS prerequisites installed.</td>
   </tr>
   <tr>
     <td>InternetGateway</td>
     <td>Internet Gateway ID, must be attached to the 'Vpc'. Used by all nodes for outgoing Internet access.</td>
+  </tr>
+  <tr>
+    <td>KeyName</td>
+    <td>AWS EC2 Key Pair to SSH into instances</td>
   </tr>
   <tr>
     <td>MasterInstanceType</td>
@@ -86,6 +86,10 @@ The Zen templates orchestrate the individual component templates.
   <tr>
     <td>PublicSubnet</td>
     <td>Subnet ID for use by all public agent nodes</td>
+  </tr>
+  <tr>
+    <td>Vpc</td>
+    <td>Existing VPC to use. Nodes will be launched using subnets and Internet Gateway under this VPC</td>
   </tr>
 </table>
 
