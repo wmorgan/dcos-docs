@@ -25,7 +25,7 @@ In the default configuration above each overlay network is allocated a /8 subnet
 
 The bits reserved for ContainerID (6 in this example) are then subdivided into two equal groups (of 5 bits in this example) that are used for Mesos containers and Docker containers respectively. With the default configuration, each agent will be able to host a maximum of 2^5=32 Mesos containers and 32 docker containers. With this specific configuration, if a service tries to launch more than 32 tasks on the Mesos containerizer or the Docker containerizer, it will receive a `TASK_FAILED`. Consult the [limitations](/docs/1.8/administration/overlay-networks/) section of the main Overlay Networks page to learn more about this constraint.
 
-These values can be configured to adapt to each installation’s needs. You can also add more overlay networks in addition to the default one, or modify/delete the existing overlay network. Currently, the addition/deletion of an overlay network is supported only at install time. The next section describes how you can add more overlay networks to the existing default configuration.
+You can modify the default overlay network configuration and add more overlay networks to fit your needs. Currently, you can only add or delete an overlay network at install time. The next section describes how you can add more overlay networks to the existing default configuration.
 
 # Adding overlay networks during installation
 
