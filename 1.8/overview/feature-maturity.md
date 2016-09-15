@@ -26,13 +26,11 @@ The purpose of the feature maturity phases is to educate customers, partners, an
 
 **Mesosphere Dogfooding:** Feature in-use in Mesosphere production environment.
 
-## Support
-
-DC/OS is a free and open source [community-supported](/docs/1.8/support/) product.
-
 # <a name="phases"></a>Phases
 
 ## <a name="experimental"></a>Experimental
+
+Use these features at your own risk. We might add, change, or delete any functionality.
 
 ### Completeness
 
@@ -47,11 +45,9 @@ DC/OS is a free and open source [community-supported](/docs/1.8/support/) produc
 * Limited or no system test
 * Limited or no Mesosphere dogfooding
 
-### Support
-
-* DC/OS is a free and open source [community-supported](/docs/1.8/support/) product.
-
 ## <a name="preview"></a>Preview
+
+We might add, change, or delete any functionality.
 
 ### Completeness
 
@@ -65,10 +61,6 @@ DC/OS is a free and open source [community-supported](/docs/1.8/support/) produc
 * Robust functional test
 * Limited or no system test
 * Limited or no Mesosphere dogfooding
-
-### Support
-
-* DC/OS is a free and open source [community-supported](/docs/1.8/support/) product.
 
 ## <a name="stable"></a>Stable
 
@@ -86,7 +78,4 @@ DC/OS is a free and open source [community-supported](/docs/1.8/support/) produc
 * Robust fault testing
 * Robust Mesosphere dogfooding
 
-### Support
-
-* DC/OS is a free and open source [community-supported](/docs/1.8/support/) product.
 
