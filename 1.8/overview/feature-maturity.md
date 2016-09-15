@@ -28,7 +28,7 @@ The purpose of the feature maturity phases is to educate customers, partners, an
 
 ## Support
 
-Mesosphere Support with SLA offered for the feature. 
+DC/OS is a free and open source [community-supported](/docs/1.8/support/) product.
 
 # <a name="phases"></a>Phases
 
