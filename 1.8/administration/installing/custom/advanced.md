@@ -71,6 +71,7 @@ The DC/OS installation creates these folders:
     cluster_name: '<cluster-name>'
     exhibitor_storage_backend: static
     ip_detect_filename: /genconf/ip-detect
+    master_discovery: static
     master_list:
     - <master-private-ip-1>
     - <master-private-ip-2>
