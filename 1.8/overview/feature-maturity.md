@@ -1,6 +1,5 @@
 ---
-post_title: Feature Maturity Phases
-nav_title: Feature Maturity
+post_title: Feature Maturity
 menu_order: 10
 ---
 
@@ -36,7 +35,7 @@ Mesosphere Support offered for the feature. i.e., 8x5 or 24x7.
 
 # <a name="phases"></a>Phases
 
-## Experimental
+## <a name="experimental"></a>Experimental
 
 ### Completeness
 
@@ -55,7 +54,7 @@ Mesosphere Support offered for the feature. i.e., 8x5 or 24x7.
 
 * No technical support from Mesosphere
 
-## Preview
+## <a name="preview"></a>Preview
 
 ### Completeness
 
@@ -74,7 +73,7 @@ Mesosphere Support offered for the feature. i.e., 8x5 or 24x7.
 
 * No SLA governed support available
 
-## Stable
+## <a name="stable"></a>Stable
 
 ### Completeness
 
