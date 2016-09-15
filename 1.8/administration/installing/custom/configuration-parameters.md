@@ -25,7 +25,7 @@ This parameter specifies the type of storage backend to use for Exhibitor. You c
 *   `exhibitor_storage_backend: zookeeper`
     This option specifies a ZooKeeper instance for shared storage. If you use a ZooKeeper instance to bootstrap Exhibitor, this ZooKeeper instance must be separate from your DC/OS cluster. You must have at least 3 ZooKeeper instances running at all times for high availability. If you specify `zookeeper`, you must also specify these parameters.
     *   **exhibitor_zk_hosts**
-        This parameter specifies a comma-separated list of one or more ZooKeeper node IP addresses to use for configuring the internal Exhibitor instances. Exhibitor uses this ZooKeeper cluster to orchestrate it's configuration. Multiple ZooKeeper instances are recommended for failover in production environments.
+        This parameter specifies a comma-separated list (`<ZK_IP>:<ZK_PORT>, <ZK_IP>:<ZK_PORT>, <ZK_IP:ZK_PORT>`) of one or more ZooKeeper node IP and port addresses to use for configuring the internal Exhibitor instances. Exhibitor uses this ZooKeeper cluster to orchestrate it's configuration. Multiple ZooKeeper instances are recommended for failover in production environments. 
     *   **exhibitor_zk_path**
         This parameter specifies the filepath that Exhibitor uses to store data, including the `zoo.cfg` file.
 *   `exhibitor_storage_backend: aws_s3`
@@ -213,7 +213,7 @@ agent_list:
 bootstrap_url: file:///tmp/dcos
 cluster_name: zk-example
 exhibitor_storage_backend: zookeeper
-exhibitor_zk_hosts: 10.10.10.1:2181
+exhibitor_zk_hosts: 10.0.0.1:2181, 10.0.0.2:2181, 10.0.0.3:2181
 exhibitor_zk_path: /zk-example
 log_directory: /genconf/logs
 master_discovery: master_http_loadbalancer
