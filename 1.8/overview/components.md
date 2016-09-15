@@ -17,10 +17,6 @@ You can view the DC/OS component details in the <a href="https://github.com/dcos
     <th>Description</th>
   </tr>
   <tr>
-    <td>Admin Router Service</td>
-    <td>This component is an open-source Nginx configuration created by Mesosphere that provides central authentication and proxy to DC/OS services within the cluster. The Admin Router service (`dcos-adminrouter.service `) is the core internal load balancer for DC/OS. Admin Router is a customized <a href="https://www.nginx.com/resources/wiki/">Nginx</a> that proxies all of the internal services on port `80`.</td>
-  </tr>
-  <tr>
     <td>Admin Router Agent</td>
     <td>This component is a high performance web server and a reverse proxy server that lists all of the agent nodes in your cluster.</td>
   </tr>
@@ -36,6 +32,10 @@ You can view the DC/OS component details in the <a href="https://github.com/dcos
     <td>Admin Router Reloader Timer</td>
     <td>This component (`dcos-adminrouter-reload.timer`) sets the Admin Router Reloader interval at once per hour.</td>
   </tr>
+  <tr>
+      <td>Admin Router Service</td>
+      <td>This component is an open-source Nginx configuration created by Mesosphere that provides central authentication and proxy to DC/OS services within the cluster. The Admin Router service (`dcos-adminrouter.service `) is the core internal load balancer for DC/OS. Admin Router is a customized <a href="https://www.nginx.com/resources/wiki/">Nginx</a> that proxies all of the internal services on port `80`.</td>
+    </tr>
   <tr>
     <td>Cluster ID</td>
     <td>The cluster-id service generates a universally unique identifier (UUID) for each cluster. We use this ID to track cluster health remotely (if enabled). This remote tracking allows our support team to better assist our customers.</td>
@@ -70,15 +70,15 @@ You can view the DC/OS component details in the <a href="https://github.com/dcos
   </tr>
   <tr>
     <td>Generate resolv.conf</td>
-    <td>This component (`dcos-gen-resolvconf.service`) allows the agent nodes locate the master nodes. It dynamically provisions `/etc/resolv.conf` for your cluster hosts.</td>
+    <td>This component (`dcos-gen-resolvconf.service`) dynamically provisions `/etc/resolv.conf` so that each cluster host can use Mesos-DNS to resolve task names to the IP and port addresses.</td>
   </tr>
   <tr>
     <td>Generate resolv.conf Timer</td>
     <td>This component (`dcos-gen-resolvconf.timer`) periodically updates the systemd-resolved for Mesos DNS.</td>
   </tr>
   <tr>
-    <td>History</td>
-    <td>This component (`dcos-history.service`) provides a simple service for storing stateful information about your DC/OS cluster. This data is stored on disk for 24 hours. Along with storing this data, the history service also exposes a HTTP API for the DC/OS user interface to query. All DC/OS cluster stats which involve memory, CPU and disk usage are driven by this service (including the donuts!).</td>
+    <td>History Service</td>
+    <td>This component (`dcos-history.service`) enables the DC/OS UI to display cluster usage statistics and stores the dashboard graph data for the UI. This data is stored on disk for 24 hours. Along with storing this data, the history service also exposes a HTTP API for the DC/OS user interface to query. All DC/OS cluster stats which involve memory, CPU and disk usage are driven by this service.</td>
   </tr>
   <tr>
     <td>Job</td>
@@ -90,7 +90,7 @@ You can view the DC/OS component details in the <a href="https://github.com/dcos
   </tr>
   <tr>
     <td>Logrotate Mesos Master</td>
-    <td>This component (`dcos-logrotate-master.service`) automatically rotates compression, removal, and mailing of log files for master nodes. This ensures DC/OS services don't overload cluster hosts with too much log data on disk.</td>
+    <td>This component (`dcos-logrotate-master.service`) automatically manages compression, removal, and mailing of log files for Mesos master processes. This ensures DC/OS services don't overload cluster hosts with too much log data on disk.</td>
   </tr>
   <tr>
     <td>Logrotate Mesos Slave</td>
@@ -98,7 +98,7 @@ You can view the DC/OS component details in the <a href="https://github.com/dcos
   </tr>
   <tr>
     <td>Logrotate Timer</td>
-    <td>This component (`dcos-logrotate-agent.timer` and `dcos-logrotate-master.timer`) sets the logrotate interval at 2 minutes.</td>
+    <td>These components (`dcos-logrotate-agent.timer` and `dcos-logrotate-master.timer`) set the logrotate interval at 2 minutes.</td>
   </tr>
   <tr>
     <td>Marathon</td>
@@ -117,7 +117,7 @@ You can view the DC/OS component details in the <a href="https://github.com/dcos
     <td>This component (`dcos-mesos-dns.service`) provides service discovery within the cluster. Mesos-DNS is the internal DNS service (`dcos-mesos-dns.service`) for the DC/OS cluster. <a href="/docs/1.8/overview/concepts/#mesosdns">Mesos-DNS</a> provides the namespace `$service.mesos` to all cluster hosts. For example, you can login to your leading mesos master with `ssh leader.mesos`.</td>
   </tr>
   <tr>
-    <td>Mesos History</td>
+    <td>History Service</td>
     <td>This component (`dcos-history-service.service`) enables the DC/OS web interface to display cluster usage statistics.</td>
   </tr>
   <tr>
@@ -129,7 +129,7 @@ You can view the DC/OS component details in the <a href="https://github.com/dcos
     <td>This component (`dcos-vol-discovery-pub-agent.service`) connects to existing Mesos volume mounts on agent nodes during installation. For more information on Mesos Persistent Volumes, see the <a href="http://mesos.apache.org/documentation/latest/persistent-volume/">documentation</a>.</td>
   </tr>
   <tr>
-    <td>Navstar</td>
+    <td>Virtual Network Service</td>
     <td>This component (`dcos-navstar.service/`) is a daemon that provides virtual networking and DNS services. It is the network overlay orchestrator. For more information, see the <a href="https://github.com/dcos/navstar">documentation</a>.</td>
   </tr>
   <tr>
@@ -140,24 +140,6 @@ You can view the DC/OS component details in the <a href="https://github.com/dcos
     <td>Package service</td>
     <td>This component (`dcos-cosmos.service `) is the internal packaging API service. This service is accessed every time that you run `dcos package install` from the CLI. This API deploys DC/OS packages from the DC/OS <a href="https://github.com/mesosphere/universe">Universe</a> to your DC/OS cluster.</td>
   </tr>
-  <tr>
-  <td>Pkgpanda API</td>
-  <td>This component (`dcos-pkgpanda-api.service`) creates symlinks, installs systemd units, and sets up the roles for each host (master, private agent, public agent).</td>
-</tr>
-<tr>
-  <td>Pkgpanda API socket</td>
-  <td>This component (`dcos-pkgpanda-api.socket`) is the Pkgpanda API socket.</td>
-</tr>
-<tr>
-      <td>Pkgpanda API</td>
-      <td>This component (`dcos-pkgpanda-api.service`) creates symlinks, installs systemd units, and sets up the roles for each host (master, private agent, public agent).</td>
-    </tr>
-    <tr>
-      <td>Pkgpanda API socket</td>
-      <td>This component (`dcos-pkgpanda-api.socket`) is the Pkgpanda API socket.</td>
-    </tr>
->>>>>>> bugfix/minor-cleanup
-  <tr>
     <td>Signal</td>
     <td>This component (`dcos-signal.service`) sends a periodic ping back to Mesosphere with high-level cluster information to help improve DC/OS, and provides advanced monitoring of cluster issues. Signal queries the diagnostics service `/system/health/v1/report` endpoint on the leading master and sends this data to SegmentIO for use in tracking metrics and customer support.</td>
   </tr>
@@ -165,6 +147,15 @@ You can view the DC/OS component details in the <a href="https://github.com/dcos
     <td>Signal Timer</td>
     <td>This component (`dcos-signal.timer`) sets the Signal component interval at once per hour.</td>
   </tr>
+<tr>
+      <td>System Package Manager API</td>
+      <td>This component (`dcos-pkgpanda-api.service`) creates symlinks, installs systemd units, and sets up the roles for each host (master, private agent, public agent).</td>
+    </tr>
+    <tr>
+      <td>System Package Manager API socket</td>
+      <td>This component (`dcos-pkgpanda-api.socket`) is the System Package Manager API socket.</td>
+    </tr>
+  <tr>
 </table>
 
 

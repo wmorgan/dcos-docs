@@ -1,13 +1,15 @@
 ---
 post_title: Installing Using a Custom AMI
 nav_title: Custom AMI
-menu_order: 199
+menu_order: 101
 ---
 
 You can use customized [Amazon Machine Images (AMI)](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html) based on CentOS 7 or CoreOS to launch DC/OS with the advanced templates. 
 
 - A custom AMI can be used to integrate DC/OS installation with your own in-house configuration management tools.
 - A custom AMI can be used if you want kernel or driver customization.
+
+**Important:** This feature is considered [preview](/docs/1.8/overview/feature-maturity/#preview): use it at your own risk. We might add, change, or delete any functionality as described in this document.
 
 To get started, build a custom AMI and then install DC/OS by using the advanced templates. 
 
@@ -37,7 +39,7 @@ After you have successfully built and deployed the unmodified DC/OS cloud_images
 
     **Troubleshooting:**
     
-    - Familiarize yourself with the DC/OS service startup [process](/1.8/overview/architecture/#boot). 
-    - See the installation troubleshooting [documentation](/1.8/administration/installing/custom/troubleshooting/). To troubleshoot you must have [SSH access](/1.8/administration/sshcluster/) to all of the cluster nodes. 
+    - Familiarize yourself with the DC/OS service startup [process](/docs/1.8/overview/architecture/#boot). 
+    - See the installation troubleshooting [documentation](/docs/1.8/administration/installing/custom/troubleshooting/). To troubleshoot you must have [SSH access](/docs/1.8/administration/sshcluster/) to all of the cluster nodes. 
     - The [DC/OS Slack](https://dcos.io/docs/1.8/support/) community is another a good place to get help.
 
