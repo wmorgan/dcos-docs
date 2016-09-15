@@ -3,7 +3,7 @@ post_title: Local Persistent Volumes
 menu_order: 10
 ---
 
-**Note:** Local persistent volume functionality is considered experimental: use this feature at your own risk. We might add, change, or delete any functionality described in this document.
+**Note:** Local persistent volume functionality is considered experimental: use this feature at your own risk. We might add, change, or delete any functionality as described in this document.
 
 When you specify a local volume or volumes, tasks and their associated data are "pinned" to the node they are first launched on and will be relaunched on that node if they terminate. The resources the application requires are also reserved. Marathon will implicitly reserve an appropriate amount of disk space (as declared in the volume via `persistent.size`) in addition to the sandbox `disk` size you specify as part of your application definition.
 
