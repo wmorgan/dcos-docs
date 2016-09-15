@@ -26,13 +26,11 @@ The purpose of the feature maturity phases is to educate customers, partners, an
 
 **Mesosphere Dogfooding:** Feature in-use in Mesosphere production environment.
 
-## Support
-
-Mesosphere Support offered for the feature. i.e., 8x5 or 24x7.
-
 # <a name="phases"></a>Phases
 
 ## <a name="experimental"></a>Experimental
+
+Use these features at your own risk. We might add, change, or delete any functionality.
 
 ### Completeness
 
@@ -47,11 +45,9 @@ Mesosphere Support offered for the feature. i.e., 8x5 or 24x7.
 * Limited or no system test
 * Limited or no Mesosphere dogfooding
 
-### Support
-
-* No technical support from Mesosphere
-
 ## <a name="preview"></a>Preview
+
+We might add, change, or delete any functionality.
 
 ### Completeness
 
@@ -65,10 +61,6 @@ Mesosphere Support offered for the feature. i.e., 8x5 or 24x7.
 * Robust functional test
 * Limited or no system test
 * Limited or no Mesosphere dogfooding
-
-### Support
-
-* No SLA governed support available
 
 ## <a name="stable"></a>Stable
 
@@ -86,6 +78,4 @@ Mesosphere Support offered for the feature. i.e., 8x5 or 24x7.
 * Robust fault testing
 * Robust Mesosphere dogfooding
 
-### Support
 
-* SLA governed support available
