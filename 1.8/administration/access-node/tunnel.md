@@ -36,7 +36,7 @@ Run the following command from the DC/OS CLI:
 $ dcos tunnel socks
 ```
 
-Configure your application to use the proxy on port 1080: `127.0.0.1: 1080`
+Configure your application to use the proxy on port 1080: `127.0.0.1:1080`
 
 ### Port Forwarding
 The SOCKS proxy works by port forwarding. Append `.mydcos.directory` to the end of your domain when you enter commands. For instance, `http://example.com:8080/?query=hello` becomes `http://example.com.mydcos.directory:8080/?query=hello`.
