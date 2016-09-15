@@ -9,6 +9,8 @@ You can use customized [Amazon Machine Images (AMI)](http://docs.aws.amazon.com/
 - A custom AMI can be used to integrate DC/OS installation with your own in-house configuration management tools.
 - A custom AMI can be used if you want kernel or driver customization.
 
+**Important:** This feature is considered [preview](/docs/1.8/overview/feature-maturity/#preview): use it at your own risk. We might add, change, or delete any functionality as described in this document.
+
 To get started, build a custom AMI and then install DC/OS by using the advanced templates. 
 
 # Build a custom AMI

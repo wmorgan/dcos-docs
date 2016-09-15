@@ -6,6 +6,8 @@ menu_order: 40
 
 Containerizers allow you to run tasks in containers. Running tasks in containers offers a number of benefits, including the ability to isolate tasks from one another and control task resources programmatically.
 
+**Important:** This feature is considered [experimental](/docs/1.8/overview/feature-maturity/#experimental): use it at your own risk. We might add, change, or delete any functionality as described in this document.
+
 DC/OS supports the Mesos containerizer types [Mesos universal containerizer](http://mesos.apache.org/documentation/latest/containerizer/#Mesos) and [Docker containerizer](http://mesos.apache.org/documentation/latest/containerizer/#Docker).
 
 # Mesos Universal Containerizer
