@@ -19,31 +19,31 @@ The DC/OS installation creates these folders:
     <th>Description</th>
   </tr>
   <tr>
-    <td><code>/opt/mesosphere<code></td>
+    <td><code>/opt/mesosphere</code></td>
     <td>Contains all the DC/OS binaries, libraries, cluster configuration. Do not modify.</td>
   </tr>
   <tr>
-    <td><code>/etc/systemd/system/dcos.target.wants<code></td>
+    <td><code>/etc/systemd/system/dcos.target.wants</code></td>
     <td>Contains the systemd services which start the things that make up systemd. They must live outside of `/opt/mesosphere` because of systemd constraints.</td>
   </tr>
   <tr>
-    <td><code>/etc/systemd/system/dcos.&lt;units&gt;<code></td>
+    <td><code>/etc/systemd/system/dcos.&lt;units&gt;</code></td>
     <td>Contains copies of the units in `/etc/systemd/system/dcos.target.wants`. They must be at the top folder as well as inside `dcos.target.wants`.</td>
   </tr>
   <tr>
-    <td><code>/var/lib/zookeeper<code></td>
+    <td><code>/var/lib/zookeeper</code></td>
     <td>Contains the [ZooKeeper](/docs/1.8/overview/concepts/#zookeeper) data.</td>
   </tr>
   <tr>
-    <td><code>/var/lib/docker<code></td>
+    <td><code>/var/lib/docker</code></td>
     <td>Contains the Docker data. </td>
   </tr>
   <tr>
-    <td><code>/var/lib/dcos<code></td>
+    <td><code>/var/lib/dcos</code></td>
     <td>Contains the DC/OS data.</td>
   </tr>
   <tr>
-    <td><code>/var/lib/mesos<code></td>
+    <td><code>/var/lib/mesos</code></td>
     <td>Contains the Mesos data.</td>
   </tr>
 </table>
@@ -61,7 +61,7 @@ The DC/OS installation creates these folders:
 
     In this step you create a YAML configuration file that is customized for your environment. DC/OS uses this configuration file during installation to generate your cluster installation files.
 
-    You can use this template to get started. This template specifies 3 Mesos masters, 3 ZooKeeper instances for Exhibitor storage, static master discovery list, and Google DNS resolvers. If your servers are installed with a domain name in your `/etc/resolv.conf`, you should add `dns_search` to your `config.yaml` file. For parameters descriptions and configuration examples, see the [documentation][1].
+    You can use this template to get started. This template specifies 3 Mesos masters, 3 ZooKeeper instances for Exhibitor storage, static master discovery list, internal storage backend for Exhibitor, and Google DNS resolvers. If your servers are installed with a domain name in your `/etc/resolv.conf`, you should add `dns_search` to your `config.yaml` file. For parameters descriptions and configuration examples, see the [documentation][1].
 
     **Tip:** If Google DNS is not available in your country, you can replace the Google DNS servers `8.8.8.8` and `8.8.4.4` with your local DNS servers.
 
@@ -71,6 +71,7 @@ The DC/OS installation creates these folders:
     cluster_name: '<cluster-name>'
     exhibitor_storage_backend: static
     ip_detect_filename: /genconf/ip-detect
+    master_discovery: static
     master_list:
     - <master-private-ip-1>
     - <master-private-ip-2>
