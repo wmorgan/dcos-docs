@@ -28,7 +28,7 @@ The purpose of the feature maturity phases is to educate customers, partners, an
 
 ## Support
 
-Mesosphere Support offered for the feature. i.e., 8x5 or 24x7.
+Mesosphere Support with SLA offered for the feature. 
 
 # <a name="phases"></a>Phases
 
@@ -49,7 +49,7 @@ Mesosphere Support offered for the feature. i.e., 8x5 or 24x7.
 
 ### Support
 
-* No technical support from Mesosphere
+* DC/OS is a free and open source [community-supported](/docs/1.8/support/) product.
 
 ## <a name="preview"></a>Preview
 
@@ -68,7 +68,7 @@ Mesosphere Support offered for the feature. i.e., 8x5 or 24x7.
 
 ### Support
 
-* No SLA governed support available
+* DC/OS is a free and open source [community-supported](/docs/1.8/support/) product.
 
 ## <a name="stable"></a>Stable
 
@@ -88,4 +88,5 @@ Mesosphere Support offered for the feature. i.e., 8x5 or 24x7.
 
 ### Support
 
-* SLA governed support available
+* DC/OS is a free and open source [community-supported](/docs/1.8/support/) product.
+
