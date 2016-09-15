@@ -1,7 +1,7 @@
 ---
 post_title: Jobs
 nav_title: Jobs
-menu_order: 6.5
+menu_order: 80 
 ---
 
 You can create scheduled jobs in DC/OS without installing a separate service. Create and administer jobs in the DC/OS web interface or via an API.
