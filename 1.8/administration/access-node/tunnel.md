@@ -39,9 +39,6 @@ $ dcos tunnel socks
 
 Configure your application to use the proxy on port 1080: `127.0.0.1:1080`
 
-### Port Forwarding
-The SOCKS proxy works by port forwarding. Append `.mydcos.directory` to the end of your domain when you enter commands. For instance, `http://example.com:1080/?query=hello` becomes `http://example.com.mydcos.directory:1080/?query=hello`.
-
 ##  HTTP
 Run the following command from the DC/OS CLI:
 
@@ -61,9 +58,16 @@ Then, configure your application to run HTTP on the port you specified above.
 The HTTP proxy works by port forwarding. Append `.mydcos.directory` to the end of your domain when you enter commands. For instance, `http://example.com:8080/?query=hello` becomes `http://example.com.mydcos.directory:8080/?query=hello`.
 
 ### SRV Records
-The HTTP proxy exposes DC/OS SRV records as URLs in the form `_<port-name>._<service-name>._tcp.marathon.mesos.mydcos.directory`.
+The HTTP proxy exposes DC/OS SRV records as URLs in the form `_<port-name>._<service-name>._tcp.marathon.mesos`.
 
-To name a port, add `name` to the `portMappings` or `portDefinitions` field of a Marathon application definition. Whether you use `portMappings` or `portDefinitions` depends on whether you are using `BRIDGE` or `HOST` networking. [Learn more about networking and ports in Marathon](https://mesosphere.github.io/marathon/docs/ports.html).
+#### Find your Service Name
+The `<service-name>` is the entry in the **ID** field of a service you create from the DC/OS web interface or the value of the `id` field in your Marathon application definition.
+
+#### Add a Named Port from the DC/OS Web Interface
+To name a port from the DC/OS web interface, go to the **Services** tab, click the name of your service, and then click **Edit**. Enter a name for your port on the **Network** tab.
+
+#### Add a Named Port in a Marathon Application Definition
+Alternatively, you can add `name` to the `portMappings` or `portDefinitions` field of a Marathon application definition. Whether you use `portMappings` or `portDefinitions` depends on whether you are using `BRIDGE` or `HOST` networking. [Learn more about networking and ports in Marathon](https://mesosphere.github.io/marathon/docs/ports.html).
 
 ```json
 "portMappings": [
@@ -89,10 +93,6 @@ To name a port, add `name` to the `portMappings` or `portDefinitions` field of a
   ]
 ```
 
-Alternatively, you can add a named port from the DC/OS web interface. Go to the **Services** tab, click the name of your service, and then click **Edit**. Enter a name for your port on the **Network** tab.
-
-The `<service-name>` is the value of the `id` field in your Marathon application definition or the entry in the **ID** field of a service you create from the DC/OS web interface.
-
 ## VPN
 Run the following command from the DC/OS CLI
 
@@ -101,8 +101,6 @@ $ sudo dcos tunnel vpn
 ```
 
 The VPN client attempts to auto-configure DNS, but this functionality does not work on Mac OSX. To use the VPN client on OSX, [add the DNS servers](https://support.apple.com/kb/PH18499?locale=en_US) that DC/OS Tunnel instructs you to use.
-
-The VPN does not work by port forwarding, so you do not need to append `.mydcos.directory` to the end of your commands. For example, to access the DC/OS web interface from within the cluster, point your browser to `https://master.mesos`.
 
 When you use the VPN, you are virtually within your cluster. To access your master node, just enter the following from your terminal:
 
