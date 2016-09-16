@@ -67,7 +67,7 @@ The included Terraform templates are configured to run Mesosphere DC/OS on Digit
     - ssh_key_fingerprint - The key ID from above
 
     - dcos_installer_url - Where to get DC/OS
-      https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
+      https://downloads.dcos.io/dcos/stable/dcos_generate_config.sh
 
     The following have default values and may be changed depending on your requirements:
 

@@ -12,13 +12,13 @@ These advanced template parameters are specified in the individual JSON files. D
 The [Zen](/docs/1.8/administration/installing/cloud/aws/advanced/template-reference/#zen) templates orchestrate the individual component templates to create a DC/OS cluster.
 
 #### Agent template
-The [agent](/docs/1.8/administration/installing/cloud/aws/advanced/template-reference/#private-agent) templates create [public](/docs/1.8/overview/concepts/#public) or [private](/docs/1.8/overview/concepts/#private) agent nodes that are then attached to a DC/OS cluster as a part of an AutoScalingGroup. 
+The [agent](/docs/1.8/administration/installing/cloud/aws/advanced/template-reference/#private-agent) templates create [public](/docs/1.8/overview/concepts/#public) or [private](/docs/1.8/overview/concepts/#private) agent nodes that are then attached to a DC/OS cluster as a part of an AutoScalingGroup.
 
 #### Master template
 The [master](/docs/1.8/administration/installing/cloud/aws/advanced/template-reference/#master) templates create master nodes, on top of the infrastructure stack already created.
 
 #### Infrastructure template
-The [infrastructure](/docs/1.8/administration/installing/cloud/aws/advanced/template-reference/#infrastructure) template defines and creates a DC/OS specific infrastructure that works well with an existing VPC. 
+The [infrastructure](/docs/1.8/administration/installing/cloud/aws/advanced/template-reference/#infrastructure) template defines and creates a DC/OS specific infrastructure that works well with an existing VPC.
 
 
 ## <a name="zen"></a>Zen
@@ -26,17 +26,17 @@ The Zen templates orchestrate the individual component templates.
 
 **CoreOS**
 
-- [zen-1.json](https://s3-us-west-2.amazonaws.com/downloads.dcos.io/dcos/EarlyAccess/cloudformation/coreos-zen-1.json)
-- [zen-3.json](https://s3-us-west-2.amazonaws.com/downloads.dcos.io/dcos/EarlyAccess/cloudformation/coreos-zen-3.json)
-- [zen-5.json](https://s3-us-west-2.amazonaws.com/downloads.dcos.io/dcos/EarlyAccess/cloudformation/coreos-zen-5.json)
-- [zen-7.json](https://s3-us-west-2.amazonaws.com/downloads.dcos.io/dcos/EarlyAccess/cloudformation/coreos-zen-7.json)
+- [zen-1.json](https://downloads.dcos.io/dcos/stable/cloudformation/coreos-zen-1.json)
+- [zen-3.json](https://downloads.dcos.io/dcos/stable/cloudformation/coreos-zen-3.json)
+- [zen-5.json](https://downloads.dcos.io/dcos/stable/cloudformation/coreos-zen-5.json)
+- [zen-7.json](https://downloads.dcos.io/dcos/stable/cloudformation/coreos-zen-7.json)
 
 **CentOS:**
 
-- [zen-1.json](https://s3-us-west-2.amazonaws.com/downloads.dcos.io/dcos/EarlyAccess/cloudformation/el7-zen-1.json)
-- [zen-3.json](https://s3-us-west-2.amazonaws.com/downloads.dcos.io/dcos/EarlyAccess/cloudformation/el7-zen-3.json)
-- [zen-5.json](https://s3-us-west-2.amazonaws.com/downloads.dcos.io/dcos/EarlyAccess/cloudformation/el7-zen-5.json)
-- [zen-7.json](https://s3-us-west-2.amazonaws.com/downloads.dcos.io/dcos/EarlyAccess/cloudformation/el7-zen-7.json)
+- [zen-1.json](https://downloads.dcos.io/dcos/stable/cloudformation/el7-zen-1.json)
+- [zen-3.json](https://downloads.dcos.io/dcos/stable/cloudformation/el7-zen-3.json)
+- [zen-5.json](https://downloads.dcos.io/dcos/stable/cloudformation/el7-zen-5.json)
+- [zen-7.json](https://downloads.dcos.io/dcos/stable/cloudformation/el7-zen-7.json)
 
 <table class="table">
   <tr>
@@ -96,15 +96,15 @@ The Zen templates orchestrate the individual component templates.
 
 ## <a name="private-agent"></a>Private agents
 
-The private agent template creates agents which are then attached to a DC/OS cluster as a part of an AutoScalingGroup. To configure the template, specify the VPC, subnet, and master DNS address for the DC/OS cluster to join. 
+The private agent template creates agents which are then attached to a DC/OS cluster as a part of an AutoScalingGroup. To configure the template, specify the VPC, subnet, and master DNS address for the DC/OS cluster to join.
 
 **CoreOS**
 
-- [advanced-priv-agent.json](https://s3-us-west-2.amazonaws.com/downloads.dcos.io/dcos/EarlyAccess/cloudformation/coreos-advanced-priv-agent.json)
+- [advanced-priv-agent.json](https://downloads.dcos.io/dcos/stable/cloudformation/coreos-advanced-priv-agent.json)
 
 **CentOS:**
 
-- [advanced-priv-agent.json](https://s3-us-west-2.amazonaws.com/downloads.dcos.io/dcos/EarlyAccess/cloudformation/el7-advanced-priv-agent.json)
+- [advanced-priv-agent.json](https://downloads.dcos.io/dcos/stable/cloudformation/el7-advanced-priv-agent.json)
 
 
 <table class="table">
@@ -143,14 +143,14 @@ The private agent template creates agents which are then attached to a DC/OS clu
 ## <a name="public-agent"></a>Public agents
 
 The public agent template creates agents which are then attached to a DC/OS cluster as a part of an AutoScalingGroup. To configure the template, specify the VPC, subnet, and master DNS address for the DC/OS cluster to join.
- 
+
 **CoreOS**
 
-- [advanced-pub-agent.json](https://s3-us-west-2.amazonaws.com/downloads.dcos.io/dcos/EarlyAccess/cloudformation/coreos-advanced-pub-agent.json)
+- [advanced-pub-agent.json](https://downloads.dcos.io/dcos/stable/cloudformation/coreos-advanced-pub-agent.json)
 
 **CentOS:**
 
-- [advanced-pub-agent.json](https://s3-us-west-2.amazonaws.com/downloads.dcos.io/dcos/EarlyAccess/cloudformation/el7-advanced-pub-agent.json)
+- [advanced-pub-agent.json](https://downloads.dcos.io/dcos/stable/cloudformation/el7-advanced-pub-agent.json)
 
 <table class="table">
   <tr>
@@ -189,17 +189,17 @@ The master templates create masters, on top of the infrastructure stack already 
 
 **CoreOS**
 
-- [advanced-master-1.json](https://s3-us-west-2.amazonaws.com/downloads.dcos.io/dcos/EarlyAccess/cloudformation/coreos-advanced-master-1.json)
-- [advanced-master-3.json](https://s3-us-west-2.amazonaws.com/downloads.dcos.io/dcos/EarlyAccess/cloudformation/coreos-advanced-master-3.json)
-- [advanced-master-5.json](https://s3-us-west-2.amazonaws.com/downloads.dcos.io/dcos/EarlyAccess/cloudformation/coreos-advanced-master-5.json)
-- [advanced-master-7.json](https://s3-us-west-2.amazonaws.com/downloads.dcos.io/dcos/EarlyAccess/cloudformation/coreos-advanced-master-7.json)
+- [advanced-master-1.json](https://downloads.dcos.io/dcos/stable/cloudformation/coreos-advanced-master-1.json)
+- [advanced-master-3.json](https://downloads.dcos.io/dcos/stable/cloudformation/coreos-advanced-master-3.json)
+- [advanced-master-5.json](https://downloads.dcos.io/dcos/stable/cloudformation/coreos-advanced-master-5.json)
+- [advanced-master-7.json](https://downloads.dcos.io/dcos/stable/cloudformation/coreos-advanced-master-7.json)
 
 **CentOS:**
 
-- [advanced-master-1.json](https://s3-us-west-2.amazonaws.com/downloads.dcos.io/dcos/EarlyAccess/cloudformation/el7-advanced-master-1.json)
-- [advanced-master-3.json](https://s3-us-west-2.amazonaws.com/downloads.dcos.io/dcos/EarlyAccess/cloudformation/el7-advanced-master-3.json)
-- [advanced-master-5.json](https://s3-us-west-2.amazonaws.com/downloads.dcos.io/dcos/EarlyAccess/cloudformation/el7-advanced-master-5.json)
-- [advanced-master-7.json](https://s3-us-west-2.amazonaws.com/downloads.dcos.io/dcos/EarlyAccess/cloudformation/el7-advanced-master-7.json)
+- [advanced-master-1.json](https://downloads.dcos.io/dcos/stable/cloudformation/el7-advanced-master-1.json)
+- [advanced-master-3.json](https://downloads.dcos.io/dcos/stable/cloudformation/el7-advanced-master-3.json)
+- [advanced-master-5.json](https://downloads.dcos.io/dcos/stable/cloudformation/el7-advanced-master-5.json)
+- [advanced-master-7.json](https://downloads.dcos.io/dcos/stable/cloudformation/el7-advanced-master-7.json)
 
 
 <table class="table">
@@ -255,7 +255,7 @@ The master templates create masters, on top of the infrastructure stack already 
 
 ## <a name="infrastructure"></a>Infrastructure
 
-The infrastructure template ([infra.json](https://s3-us-west-2.amazonaws.com/downloads.dcos.io/dcos/EarlyAccess/cloudformation/infra.json)) defines, and creates, a DC/OS specific infrastructure that works well with a VPC already created. This is the lowest building block of a DC/OS cluster and the components created in this stack are consumed by the dependent templates (master and agents).
+The infrastructure template ([infra.json](https://downloads.dcos.io/dcos/stable/cloudformation/infra.json)) defines, and creates, a DC/OS specific infrastructure that works well with a VPC already created. This is the lowest building block of a DC/OS cluster and the components created in this stack are consumed by the dependent templates (master and agents).
 
 <table class="table">
   <tr>

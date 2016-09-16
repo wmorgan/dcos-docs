@@ -266,7 +266,7 @@ Do not change this parameter. It is required by the Google Cloud SDK.
 Specify the filename for the DC/OS installer. Default `dcos_generate_config.sh`.
 
 ### dcos_installer_download_path
-Specify the location of where the dcos installer is available from [dcos.io](https://dcos.io). Default: `https://downloads.dcos.io/dcos/EarlyAccess/{{ dcos_installer_filename }}`. The value of `{{ dcos_installer_file }}` is described above.
+Specify the location of where the dcos installer is available from [dcos.io](https://dcos.io). Default: `https://downloads.dcos.io/dcos/stable/{{ dcos_installer_filename }}`. The value of `{{ dcos_installer_file }}` is described above.
 
 ### home_directory
 Specify the home directory for your logins. Default: `/home/{{ login_name }}`. The value of `{{ login_name }}` is described above.

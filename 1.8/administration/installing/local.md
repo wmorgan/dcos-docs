@@ -12,7 +12,7 @@ First, it's necessary to download a [DC/OS Release](/releases/).
 
 For example, to download the latest Early Access release:
 
-    $ curl -O https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh
+    $ curl -O https://downloads.dcos.io/dcos/stable/dcos_generate_config.sh
 
 # 2. Install DC/OS Vagrant
 
