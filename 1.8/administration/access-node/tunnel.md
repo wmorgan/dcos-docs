@@ -28,7 +28,7 @@ DC/OS Tunnel provides you with full access to the DNS, masters, and agents from 
 * For VPN functionality, you must have [the OpenVPN client](https://openvpn.net/index.php/open-source/downloads.html) installed.
 * The DC/OS Tunnel package must be installed: run `dcos package install tunnel-cli --cli` from the DC/OS CLI.
 
-**Note:** * Only Linux and OS X are supported currently.
+**Note:** Only Linux and OS X are supported currently.
 
 ##  SOCKS
 Run the following command from the DC/OS CLI:
@@ -40,7 +40,7 @@ $ dcos tunnel socks
 Configure your application to use the proxy on port 1080: `127.0.0.1:1080`
 
 ### Port Forwarding
-The SOCKS proxy works by port forwarding. Append `.mydcos.directory` to the end of your domain when you enter commands. For instance, `http://example.com:8080/?query=hello` becomes `http://example.com.mydcos.directory:1080/?query=hello`.
+The SOCKS proxy works by port forwarding. Append `.mydcos.directory` to the end of your domain when you enter commands. For instance, `http://example.com:1080/?query=hello` becomes `http://example.com.mydcos.directory:1080/?query=hello`.
 
 ##  HTTP
 Run the following command from the DC/OS CLI:
@@ -49,7 +49,7 @@ Run the following command from the DC/OS CLI:
 $ sudo dcos tunnel http
 ```
 
-To run the HTTP proxy without root privileges, configure it not to use port 80:
+To run the HTTP proxy without root privileges, use the `--port` flag to configure it to use another port:
 
 ```
 $ dcos tunnel http --port 8000
@@ -63,23 +63,33 @@ The HTTP proxy works by port forwarding. Append `.mydcos.directory` to the end o
 ### SRV Records
 The HTTP proxy exposes DC/OS SRV records as URLs in the form `_<port-name>._<service-name>._tcp.marathon.mesos.mydcos.directory`.
 
-To name a port, add `name` to the `portMappings` field of a Marathon application definition:
+To name a port, add `name` to the `portMappings` or `portDefinitions` field of a Marathon application definition. Whether you use `portMappings` or `portDefinitions` depends on whether you are using `BRIDGE` or `HOST` networking. [Learn more about networking and ports in Marathon](https://mesosphere.github.io/marathon/docs/ports.html).
 
 ```json
 "portMappings": [
-        {
-          "name": "<my-port-name>",
-          "containerPort": 3000,
-          "hostPort": 0,
-          "servicePort": 10000,
-          "labels": {
-            "VIP_0": "1.1.1.1:30000"
-          }
+    {
+        "name": "<my-port-name>",
+        "containerPort": 3000,
+        "hostPort": 0,
+        "servicePort": 10000,
+        "labels": {
+             "VIP_0": "1.1.1.1:30000"
         }
-      ]
+    }
+]
 ```
 
-Alternatively, add a named port from the DC/OS web interface by going to **Services** > **Deploy Service**. Then, click the **Network** tab to enter a name for your port.
+```json
+"portDefinitions": [
+    {
+      "name": "<my-port-name>",
+      "protocol": "tcp",
+      "port": 0,    
+    }
+  ]
+```
+
+Alternatively, you can add a named port from the DC/OS web interface. Go to the **Services** tab, click the name of your service, and then click **Edit**. Enter a name for your port on the **Network** tab.
 
 The `<service-name>` is the value of the `id` field in your Marathon application definition or the entry in the **ID** field of a service you create from the DC/OS web interface.
 
@@ -97,7 +107,7 @@ The VPN does not work by port forwarding, so you do not need to append `.mydcos.
 When you use the VPN, you are virtually within your cluster. To access your master node, just enter the following from your terminal:
 
 ```
-ssh core@master.mesos
+$ ssh core@master.mesos
 ```
 
 Similarly, you can interact with your agent nodes from virtually within the cluster. For instance:
