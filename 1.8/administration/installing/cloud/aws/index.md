@@ -4,7 +4,7 @@ nav_title: AWS
 menu_order: 0
 ---
 
-You can create a DC/OS cluster for Amazon Web Services (AWS) by using the DC/OS templates on AWS CloudFormation.
+You can create a DC/OS cluster for Amazon Web Services (AWS) using the <a href="https://downloads.dcos.io/dcos/stable/aws.html" target="_blank">DC/OS templates for AWS CloudFormation</a>.
 
 These instructions provide a basic AWS CloudFormation template that creates a DC/OS cluster that is suitable for demonstrations and POCs. This is the fastest way to get started with the DC/OS templates for AWS CloudFormation.
 
