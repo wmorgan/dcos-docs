@@ -7,7 +7,7 @@ menu_order: 10
 When developing applications on DC/OS, you may find it helpful to access your cluster from your local machine via SOCKS proxy, HTTP proxy, or VPN. For instance, you can work from your own development environment and immediately test against your DC/OS cluster.
 
 # SOCKS
-DC/OS Tunnel can run a SOCKS proxy over SSH to the cluster. SOCKS proxies work for any protocol, but your application must be configured to use the proxy, which runs on port 1080 by default. Access URLs by appending the `mydcos.directory` domain.
+DC/OS Tunnel can run a SOCKS proxy over SSH to the cluster. SOCKS proxies work for any protocol, but your application must be configured to use the proxy, which runs on port 1080 by default.
 
 # HTTP
 Run the HTTP proxy on your local port 80 to tunnel HTTP requests without modifying your application. Access URLs by appending the `mydcos.directory` domain. You can also [use DNS SRV records as if they were URLs](#srv). The HTTP proxy requires root access to use port 80, but can be configured to use a different port.
