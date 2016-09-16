@@ -21,9 +21,9 @@ virtual network. The `prefix` determines the size of the subnet (carved from the
 
 In the default configuration above each virtual network is allocated a /8 subnet (in the “subnet” field), which is then divided into /26 container subnets to be used on each host that will be part of the network (in the “prefix” field) as shown:
 
-![Overlay network address space](../img/overlay-network-address-space.png)
+![Virtual network address space](../img/overlay-network-address-space.png)
 
-The bits reserved for ContainerID (6 in this example) are then subdivided into two equal groups (of 5 bits in this example) that are used for Mesos containers and Docker containers respectively. With the default configuration, each agent will be able to host a maximum of 2^5=32 Mesos containers and 32 docker containers. With this specific configuration, if a service tries to launch more than 32 tasks on the Mesos containerizer or the Docker containerizer, it will receive a `TASK_FAILED`. Consult the [limitations](/docs/1.8/administration/virtual-networks/) section of the main Overlay Networks page to learn more about this constraint.
+The bits reserved for ContainerID (6 in this example) are then subdivided into two equal groups (of 5 bits in this example) that are used for Mesos containers and Docker containers respectively. With the default configuration, each agent will be able to host a maximum of 2^5=32 Mesos containers and 32 docker containers. With this specific configuration, if a service tries to launch more than 32 tasks on the Mesos containerizer or the Docker containerizer, it will receive a `TASK_FAILED`. Consult the [limitations](/docs/1.8/administration/virtual-networks/) section of the main Virtual Networks page to learn more about this constraint.
 
 You can modify the default virtual network configuration and add more virtual networks to fit your needs. Currently, you can only add or delete a virtual network at install time. The next section describes how you can add more virtual networks to the existing default configuration.
 
@@ -64,9 +64,9 @@ You can override the default network or add additional virtual networks by modif
           prefix: 24
 ```
 
-In the above example, we have defined two virtual networks. The virtual network `dcos` retains the default virtual network, and we have added another virtual network called `dcos-1` with subnet range `192.168.0.0/16`. When you create a network, you must give it a name and a subnet. That name is used to launch Marathon tasks and other Mesos framework tasks using this specific virtual network. Due to restrictions on the size of Linux device names, the virtual network name must be less than thirteen characters. Consult the [limitations](/docs/1.8/administration/virtual-networks/) section of the main Overlay Networks page to learn more.
+In the above example, we have defined two virtual networks. The virtual network `dcos` retains the default virtual network, and we have added another virtual network called `dcos-1` with subnet range `192.168.0.0/16`. When you create a network, you must give it a name and a subnet. That name is used to launch Marathon tasks and other Mesos framework tasks using this specific virtual network. Due to restrictions on the size of Linux device names, the virtual network name must be less than thirteen characters. Consult the [limitations](/docs/1.8/administration/virtual-networks/) section of the main Virtual Networks page to learn more.
 
-# Retrieving virtual network state
+# Retrieving Virtual Network State
 
 After DC/OS installation is complete, you can query the virtual network configuration using the `https://leader.mesos/overlay-master/state` endpoint from within the cluster. The `network` key at the bottom lists the current virtual configuration and the `agents` key is a list showing how virtual networks are split across the Mesos agents. The following shows the network state when there is a single virtual network in the cluster named `dcos`.
 
@@ -171,7 +171,7 @@ After DC/OS installation is complete, you can query the virtual network configur
 }
 ```
 
-# Deleting Overlay Networks
+# Deleting Virtual Networks
 
 To delete your virtual network, uninstall DC/OS, then delete the virtual replicated log on the master nodes and the iptable rules on the agent nodes that are associated with the virtual networks.
 
