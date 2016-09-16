@@ -58,7 +58,7 @@ Then, configure your application to run HTTP on the port you specified above.
 The HTTP proxy works by port forwarding. Append `.mydcos.directory` to the end of your domain when you enter commands. For instance, `http://example.com:8080/?query=hello` becomes `http://example.com.mydcos.directory:8080/?query=hello`.
 
 ### SRV Records
-The HTTP proxy exposes DC/OS SRV records as URLs in the form `_<port-name>._<service-name>._tcp.marathon.mesos`.
+The HTTP proxy exposes DC/OS SRV records as URLs in the form `_<port-name>._<service-name>._tcp.marathon.mesos.mydcos.directory`.
 
 #### Find your Service Name
 The `<service-name>` is the entry in the **ID** field of a service you create from the DC/OS web interface or the value of the `id` field in your Marathon application definition.
