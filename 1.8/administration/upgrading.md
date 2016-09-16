@@ -70,7 +70,12 @@ Identify your Mesos leader node. This node should be the last master node that y
     $ sudo rm -rf /opt/mesosphere /etc/mesosphere
     ```
 
-<!-- Insert additional step for `exhibitor_storage_backend: zookeeper` users. -->
+1. **Important:** If `exhibitor_storage_backend` is set to `zookeeper`, add the user `dcos_exhibitor` and give it ownership of the ZooKeeper data directory:
+
+    ```
+    $ sudo useradd --system --home-dir /opt/mesosphere --shell /sbin/nologin -c 'DCOS System User' dcos_exhibitor
+    $ sudo chown -R dcos_exhibitor /var/lib/zookeeper
+    ```
 
 1. Install DC/OS 1.8:
 
@@ -81,7 +86,7 @@ Identify your Mesos leader node. This node should be the last master node that y
 1.  Validate the upgrade
 
     - Monitor the Exhibitor UI to confirm that the Master re-joins the ZooKeeper quorum successfully (the status indicator will turn green).  The Exhibitor UI is available at `http://<dcos_master>:8181/`.
-    - Verify that `http://<dcos_master>/mesos` indicates that the upgraded master is running Mesos 0.28.0.
+    - Verify that `http://<dcos_master>/mesos` indicates that the upgraded master is running Mesos 1.0.1.
 
 ### DC/OS Agents
 
