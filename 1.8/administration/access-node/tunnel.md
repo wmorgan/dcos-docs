@@ -1,6 +1,6 @@
 ---
-nav_title: Access by Proxy
-post_title: Access by Proxy using DC/OS Tunnel
+nav_title: Access by Proxy and VPN
+post_title: Access by Proxy and VPN using DC/OS Tunnel
 menu_order: 10
 ---
 
