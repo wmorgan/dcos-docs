@@ -1,7 +1,7 @@
 ---
 post_title: Uninstalling DC/OS
 nav_title: Uninstall
-menu_order: 6
+menu_order: 500
 ---
 
 You can uninstall DC/OS from each node individually or from all nodes at once.

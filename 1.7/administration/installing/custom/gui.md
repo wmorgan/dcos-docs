@@ -1,7 +1,7 @@
 ---
 post_title: GUI DC/OS Installation Guide
 nav_title: GUI
-menu_order: 2
+menu_order: 100
 ---
 
 The automated GUI installer provides a simple graphical interface that guides you through the installation of DC/OS. The automated installer provides a basic installation that is suitable for demonstrations and POCs. Only a subset of the configuration options are available with the GUI method. This is the fastest way to get started with DC/OS.

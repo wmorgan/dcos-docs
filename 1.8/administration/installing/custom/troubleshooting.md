@@ -1,7 +1,7 @@
 ---
 post_title: Troubleshooting your DC/OS installation
 nav_title: Troubleshooting
-menu_order: 5
+menu_order: 400
 ---
 
 During DC/OS installation, each of the components will converge from a failing state to a running state in the logs.
