@@ -22,11 +22,10 @@ DC/OS Tunnel provides you with full access to the DNS, masters, and agents from 
 # Using DC/OS Tunnel
 
 ## Prerequisites
-* DC/OS 1.8+
-* Docker
-* Requires [SSH access](/1.8/administration/access-node/sshcluster/) (key authentication only).
-* For VPN functionality, you must have [the OpenVPN client](https://openvpn.net/index.php/open-source/downloads.html) installed.
-* The DC/OS Tunnel package must be installed: run `dcos package install tunnel-cli --cli` from the DC/OS CLI.
+* The [DC/OS CLI](/1.8/usage/cli/install/).
+* The DC/OS Tunnel package. Run `dcos package install tunnel-cli --cli` from the DC/OS CLI.
+* [SSH access](/1.8/administration/access-node/sshcluster/) (key authentication only).
+* [The OpenVPN client](https://openvpn.net/index.php/open-source/downloads.html) for VPN functionality.
 
 **Note:** Only Linux and OS X are supported currently.
 
