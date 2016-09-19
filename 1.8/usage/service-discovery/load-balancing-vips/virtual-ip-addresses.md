@@ -18,15 +18,34 @@ You can assign a VIP to your application from the DC/OS web interface. The value
 
 To create a VIP:
 
-1.  From the DC/OS web interface, click on the **Services** tab and click "Deploy Service".
+1.  From the DC/OS web interface, click on the **Services** tab and either click your service name or click "Deploy Service" to create a new service.
 
-    *   To create a new application, click **Create Application** and select the **Network** menu option.
-    *   To edit an existing application, select your application, then click **Edit**. You can then select the **Network** menu option.
+    *   Select the **Network** tab.
+    *   To edit an existing application, click **Edit**. You can then select the **Network** menu option.
 
-2.  Check the "Discovery" checkbox, then fill in the LB Port, Name, and Protocol fields. As you fill in these fields, the service addresses that Marathon sets up will appear at the bottom of the screen. You can assign multiple VIPs to your app by clicking "+ Add an endpoint".
+2.  Check the "Load Balance" checkbox, then fill in the LB Port, Name, and Protocol fields. As you fill in these fields, the service addresses that Marathon sets up will appear at the bottom of the screen. You can assign multiple VIPs to your app by clicking "+ Add an endpoint".
 
-    **Tip:** Toggle to **JSON Mode** to edit your application JSON directly and to see the application definition you have created.
+    The resulting JSON includes a `portDefinitions` field with the VIP you specified:
+    
+    ```
+    "portDefinitions": [
+        {
+          "protocol": "tcp",
+          "port": 5555,
+          "labels": {
+            "VIP_0": "/:5555"
+          },
+          "name": "my-vip"
+        },
+        {
+          "protocol": "tcp",
+          "port": 0
+        }
+      ]
+    ```
 
-    For more information on port configuration, see the [ports documentation][1].
+    **Tip:** Toggle to **JSON Mode** to edit the JSON directly and to see the application definition you have created.
+
+For more information on port configuration, see the [ports documentation][1].
 
  [1]: http://mesosphere.github.io/marathon/docs/ports.html

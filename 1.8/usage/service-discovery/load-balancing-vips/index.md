@@ -10,7 +10,7 @@ DC/OS comes with an east-west load balancer that's meant to be used to enable mu
 You can use the layer 4 load balancer by assigning a [VIP from the DC/OS web interface](/docs/1.8/usage/service-discovery/load-balancing-vips/virtual-ip-addresses/). Alternatively, if you're using something other than Marathon, you can create a label on the [port](https://github.com/apache/mesos/blob/b18f5bf48fda12bce9c2ac8e762a08f537ffb41d/include/mesos/mesos.proto#L1813) protocol buffer while launching a task on Mesos. This label's key must be in the format `VIP_$IDX`, where `$IDX` is replaced by a number, starting from 0. Once you create a task, or a set of tasks with a VIP, they will automatically become available to all nodes in the cluster, including the masters.
 
 ### Details
-When you launch a set of tasks when these labels, we distribute them to all of the nodes in the cluster. All of the nodes in the cluster act as decision makers in the load balancing process. There is a process that runs on all the agents which is consulted by the kernel when packets are recognized with this destination address. This process keeps track of availability and reachability of these tasks to attempt to send requests to the right backends
+When you launch a set of tasks with these labels, we distribute them to all of the nodes in the cluster. All of the nodes in the cluster act as decision makers in the load balancing process. There is a process that runs on all the agents which is consulted by the kernel when packets are recognized with this destination address. This process keeps track of availability and reachability of these tasks to attempt to send requests to the right backends
 
 ### Recommendations
 
@@ -77,7 +77,7 @@ This will run an HAProxy on the public agent, on port 80. If you'd like, you can
 
 ## Potential Roadblocks
 ### IP Overlay
-If the VIP address that's specified is used elsewhere in the network is can prove problematic. Although the VIP is a 3-tuple, it is best to ensure that the IP dedicated to the VIP is only in use by the load balancing software and isn't in use at all in your network. Therefore, you should choose IPs from the RFC1918 range.
+Problems can arise if the VIP address that you specified is used elsewhere in the network. Although the VIP is a 3-tuple, it is best to ensure that the IP dedicated to the VIP is only in use by the load balancing software and isn't in use at all in your network. Therefore, you should choose IPs from the RFC1918 range.
 
 ### IPSet
 You must have the command ipset installed. If you do not, you may see an error like:
