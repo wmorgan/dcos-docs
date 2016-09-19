@@ -1,6 +1,6 @@
 ---
 post_title: System Requirements
-menu_order: 1
+menu_order: 000
 ---
 <!-- This source repo for this topic is https://github.com/dcos/dcos-docs -->
 

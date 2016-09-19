@@ -1,7 +1,7 @@
 ---
 post_title: Uninstalling DC/OS
 nav_title: Uninstall
-menu_order: 6
+menu_order: 500
 ---
 
 It is recommended that you completely wipe your nodes before reinstalling DC/OS. Uninstall will be supported in future releases. For more information, see [DCOS-250](https://dcosjira.atlassian.net/browse/DCOS-250) and [DCOS-192](https://dcosjira.atlassian.net/browse/DCOS-192).
