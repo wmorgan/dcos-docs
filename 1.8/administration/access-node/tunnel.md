@@ -6,6 +6,8 @@ menu_order: 10
 
 When developing services on DC/OS, you may find it helpful to access your cluster from your local machine via SOCKS proxy, HTTP proxy, or VPN. For instance, you can work from your own development environment and immediately test against your DC/OS cluster.
 
+**Warning:** DC/OS Tunnel is appropriate for development, debugging, and testing only. Do not use DC/OS Tunnel in production.
+
 # SOCKS
 DC/OS Tunnel can run a SOCKS proxy over SSH to the cluster. SOCKS proxies work for any protocol, but your service must be configured to use the proxy, which runs on port 1080 by default.
 
@@ -14,7 +16,7 @@ DC/OS Tunnel can run a SOCKS proxy over SSH to the cluster. SOCKS proxies work f
 The HTTP proxy can run in two modes: transparent and standard.
 
 ##  Transparent Mode
-In transparent mode, the HTTP proxy runs as superuser on port 80 and does not require modification to your application. Access URLs by appending the `mydcos.directory` domain. You can also [use DNS SRV records as if they were URLs](#srv).
+In transparent mode, the HTTP proxy runs as superuser on port 80 and does not require modification to your application. Access URLs by appending the `mydcos.directory` domain. You can also [use DNS SRV records as if they were URLs](#srv). The HTTP proxy cannot currently access HTTPS in transparent mode.
 
 ## Standard Mode
 You must configure your service to use the HTTP proxy in standard mode, though it does not have any of the limitations of transparent mode. As in transparent mode, you can use [DNS SRV](#srv) records as URLs.
@@ -22,8 +24,6 @@ You must configure your service to use the HTTP proxy in standard mode, though i
 <a name="srv"></a>
 ## SRV Records
 A SRV DNS record is a mapping from a name to a IP/port pair. DC/OS creates SRV records in the form `_<port-name>._<service-name>._tcp.marathon.mesos`. The HTTP proxy exposes these as URLs. This feature can be useful for communicating with DC/OS services.
-
-**Note:** The HTTP proxy cannot currently access HTTPS.
 
 # VPN
 DC/OS Tunnel provides you with full access to the DNS, masters, and agents from within the cluster. OpenVPN requires root privileges to configure these routes.
@@ -79,7 +79,6 @@ DC/OS Tunnel provides you with full access to the DNS, masters, and agents from 
           <td>
               <ul>
                   <li>Requires application configuration</li>
-                  <li>Only supports HTTP</li>
               </ul>
               </td>
      </tr>
@@ -135,7 +134,7 @@ $ sudo dcos tunnel http
 ```
 
 #### Port Forwarding
-In transparent mode, the HTTP proxy works by port forwarding. Append `.mydcos.directory` to the end of your domain when you enter commands. For instance, `http://example.com:8080/?query=hello` becomes `http://example.com.mydcos.directory:8080/?query=hello`.
+In transparent mode, the HTTP proxy works by port forwarding. Append `.mydcos.directory` to the end of your domain when you enter commands. For instance, `http://example.com/?query=hello` becomes `http://example.com.mydcos.directory/?query=hello`. **Note:** In transparent mode, you cannot specify a port in a URL.
 
 ### Standard mode
 To run the HTTP proxy in standard mode, without root privileges, use the `--port` flag to configure it to use another port:
