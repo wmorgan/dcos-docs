@@ -79,6 +79,7 @@ DC/OS Tunnel provides you with full access to the DNS, masters, and agents from 
           <td>
               <ul>
                   <li>Requires application configuration</li>
+                  <li>Only supports HTTP/HTTPS</li>
               </ul>
               </td>
      </tr>
