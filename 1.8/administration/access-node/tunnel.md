@@ -19,7 +19,7 @@ The HTTP proxy can run in two modes: transparent and standard.
 In transparent mode, the HTTP proxy runs as superuser on port 80 and does not require modification to your application. Access URLs by appending the `mydcos.directory` domain. You can also [use DNS SRV records as if they were URLs](#srv). The HTTP proxy cannot currently access HTTPS in transparent mode.
 
 ## Standard Mode
-You must configure your service to use the HTTP proxy in standard mode, though it does not have any of the limitations of transparent mode. As in transparent mode, you can use [DNS SRV](#srv) records as URLs.
+Though you must configure your service to use the HTTP proxy in standard mode, it does not have any of the limitations of transparent mode. As in transparent mode, you can use [DNS SRV](#srv) records as URLs.
 
 <a name="srv"></a>
 ## SRV Records
