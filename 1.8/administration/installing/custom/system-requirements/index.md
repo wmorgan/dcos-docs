@@ -159,9 +159,12 @@ Alternatively, you can SSH as the root user.
 
 ## Bootstrap node
 
-The bootstrap node is a permanent part of your cluster and is required for DC/OS recovery. The leader state and leader election of your Mesos masters is maintained in Exhibitor ZooKeeper. Before installing DC/OS, you must ensure that your bootstrap node has the following prerequisites.
+Before installing DC/OS, you must ensure that your bootstrap node has the following prerequisites.
 
-**Important:** The bootstrap node must be separate from your cluster nodes.
+**Important:** 
+
+* If you specify `exhibitor_storage_backend: zookeeper`, the bootstrap node is a permanent part of your cluster. With `exhibitor_storage_backend: zookeeper` the leader state and leader election of your Mesos masters is maintained in Exhibitor ZooKeeper on the bootstrap node. For more information, see the configuration parameter [documentation](/docs/1.8/administration/installing/custom/configuration-parameters/).
+* The bootstrap node must be separate from your cluster nodes.
 
 ### DC/OS setup file
 
