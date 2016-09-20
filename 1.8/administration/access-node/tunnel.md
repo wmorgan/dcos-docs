@@ -61,7 +61,7 @@ DC/OS Tunnel provides you with full access to the DNS, masters, and agents from 
       </td>
       <td>
           <ul>
-              <li>Cannot specify port (except through SRV)</li>
+              <li>Cannot specify ports (except through SRV)</li>
               <li>Only supports HTTP</li>
               <li>Runs as superuser</li>
           </ul>
