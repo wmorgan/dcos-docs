@@ -1,7 +1,7 @@
 ---
 post_title: Managing Package Repositories
 nav_title: Package Repository
-menu_order: 4
+menu_order: 50
 ---
 
 DC/OS comes pre-configured with the [Mesosphere Universe](https://github.com/mesosphere/universe) package repository as the provider of DC/OS packages, but other package repositories can also be added.
