@@ -1,7 +1,7 @@
 ---
 post_title: GUI
 nav_title: GUI
-menu_order: 1
+menu_order: 0
 ---
 
 The DC/OS web interface provides a rich graphical view of your DC/OS cluster. With the web interface you can view the current state of your entire cluster and DC/OS services. The web interface is installed as a part of your DC/OS installation.
